@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { LogoStacked } from "@/components/brand/Logo";
 import { LazyNfcStage } from "@/components/three/Lazy";
 
-const HERO_LOOK = { shape: "disc", theme: "classic", lang: "en", business: "" } as const;
+const HERO_LOOK = { theme: "classic", lang: "en", business: "" } as const;
 
 const fade = (delay: number) => ({
   initial: { opacity: 0, y: 30 },

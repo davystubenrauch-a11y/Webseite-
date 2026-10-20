@@ -3,11 +3,11 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
-import { geometryOf, paintBack, paintFront, paintInlay, type FaceOptions } from "@/lib/drawNfc";
+import { DISC, paintBack, paintFront, paintInlay, type FaceOptions } from "@/lib/drawNfc";
 import { sans, serif } from "@/lib/fonts";
-import type { Lang, Shape, Theme } from "@/lib/pricing";
+import type { Lang, Theme } from "@/lib/pricing";
 
-export type ProductLook = { shape: Shape; theme: Theme; lang: Lang; business: string };
+export type ProductLook = { theme: Theme; lang: Lang; business: string };
 
 type Props = ProductLook & {
   /** Separates the acrylic layers to reveal the NFC inlay. */
@@ -34,44 +34,16 @@ function useFontsReady() {
   return ready;
 }
 
-/** Outline of the product as a THREE.Shape, centred on the origin. */
-function makeShape(shape: Shape) {
-  const { w, h, r } = geometryOf(shape);
-  const s = new THREE.Shape();
-  if (shape === "disc") {
-    s.absarc(0, 0, r, 0, Math.PI * 2, false);
-    return s;
-  }
-  const x = -w / 2;
-  const y = -h / 2;
-  s.moveTo(x + r, y);
-  s.lineTo(x + w - r, y);
-  s.quadraticCurveTo(x + w, y, x + w, y + r);
-  s.lineTo(x + w, y + h - r);
-  s.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-  s.lineTo(x + r, y + h);
-  s.quadraticCurveTo(x, y + h, x, y + h - r);
-  s.lineTo(x, y + r);
-  s.quadraticCurveTo(x, y, x + r, y);
-  return s;
-}
+/** Flat circular face; CircleGeometry already maps UVs across the full texture. */
+const makeFace = () => new THREE.CircleGeometry(DISC.radius, 128);
 
-/** Flat face geometry whose UVs span the bounding box (ShapeGeometry uses raw coordinates). */
-function makeFace(shape: Shape) {
-  const { w, h } = geometryOf(shape);
-  const g = new THREE.ShapeGeometry(makeShape(shape), 96);
-  const pos = g.attributes.position;
-  const uv = g.attributes.uv;
-  for (let i = 0; i < pos.count; i++) uv.setXY(i, pos.getX(i) / w + 0.5, pos.getY(i) / h + 0.5);
-  return g;
-}
+const discShape = () => new THREE.Shape().absarc(0, 0, DISC.radius, 0, Math.PI * 2, false);
 
-function useCanvasTexture(px: readonly [number, number]) {
+function useCanvasTexture(px: number) {
   const gl = useThree((s) => s.gl);
   return useMemo(() => {
     const c = document.createElement("canvas");
-    c.width = px[0];
-    c.height = px[1];
+    c.width = c.height = px;
     const t = new THREE.CanvasTexture(c);
     t.colorSpace = THREE.SRGBColorSpace;
     t.anisotropy = gl.capabilities.getMaxAnisotropy();
@@ -101,28 +73,27 @@ function bodyMaterial(theme: Theme) {
   });
 }
 
-export default function NfcProduct({ shape, theme, lang, business, exploded = false, spin = 0.35 }: Props) {
+export default function NfcProduct({ theme, lang, business, exploded = false, spin = 0.35 }: Props) {
   const fontsReady = useFontsReady();
-  const geo = geometryOf(shape);
-  const half = geo.depth / 2;
+  const half = DISC.depth / 2;
 
-  const front = useCanvasTexture(geo.px);
-  const back = useCanvasTexture(geo.px);
-  const inlay = useCanvasTexture(geo.px);
+  const front = useCanvasTexture(DISC.px);
+  const back = useCanvasTexture(DISC.px);
+  const inlay = useCanvasTexture(DISC.px);
 
   // Repaint artwork whenever the look changes (and once more when fonts arrive).
   useEffect(() => {
-    const o: FaceOptions = { shape, theme, lang, business, sans: sans.style.fontFamily, serif: serif.style.fontFamily };
+    const o: FaceOptions = { theme, lang, business, sans: sans.style.fontFamily, serif: serif.style.fontFamily };
     paint(front, (ctx, w, h) => paintFront(ctx, w, h, o));
     paint(back, (ctx, w, h) => paintBack(ctx, w, h, o));
     paint(inlay, (ctx, w, h) => {
       ctx.clearRect(0, 0, w, h);
-      paintInlay(ctx, w, h, shape);
+      paintInlay(ctx, w, h);
     });
-  }, [shape, theme, lang, business, fontsReady, front, back, inlay]);
+  }, [theme, lang, business, fontsReady, front, back, inlay]);
 
   const geometries = useMemo(() => {
-    const body = new THREE.ExtrudeGeometry(makeShape(shape), {
+    const body = new THREE.ExtrudeGeometry(discShape(), {
       depth: half,
       bevelEnabled: true,
       bevelThickness: BEVEL,
@@ -130,8 +101,8 @@ export default function NfcProduct({ shape, theme, lang, business, exploded = fa
       bevelSegments: 3,
       curveSegments: 96,
     });
-    return { body, face: makeFace(shape) };
-  }, [shape, half]);
+    return { body, face: makeFace() };
+  }, [half]);
 
   const materials = useMemo(
     () => ({
@@ -146,13 +117,6 @@ export default function NfcProduct({ shape, theme, lang, business, exploded = fa
         roughness: 0.35,
         depthWrite: false,
       }),
-      base: new THREE.MeshPhysicalMaterial(
-        theme === "navy"
-          ? { color: "#b8924a", metalness: 1, roughness: 0.32 }
-          : theme === "carbon"
-            ? { color: "#0d0e10", roughness: 0.5, clearcoat: 0.6 }
-            : { color: "#e9edf2", roughness: 0.6 },
-      ),
     }),
     [theme, front, back, inlay],
   );
@@ -220,7 +184,6 @@ export default function NfcProduct({ shape, theme, lang, business, exploded = fa
   });
 
   const faceZ = half + BEVEL + 0.001;
-  const isStand = shape === "stand";
 
   return (
     <group
@@ -231,7 +194,6 @@ export default function NfcProduct({ shape, theme, lang, business, exploded = fa
       onPointerCancel={onUp}
       onPointerOver={() => (document.body.style.cursor = "grab")}
       onPointerOut={() => !drag.current.active && (document.body.style.cursor = "")}
-      position-y={isStand ? 0.25 : 0}
     >
       {/* Front acrylic half with the printed Google review artwork. */}
       <group ref={frontLayer}>
@@ -254,12 +216,6 @@ export default function NfcProduct({ shape, theme, lang, business, exploded = fa
         <mesh geometry={geometries.face} material={materials.back} position-z={-faceZ} rotation-y={Math.PI} />
       </group>
 
-      {/* Counter stand foot. */}
-      {isStand && (
-        <mesh material={materials.base} position={[0, -geo.h / 2 - 0.12, 0]}>
-          <boxGeometry args={[geo.w * 0.72, 0.32, 0.7]} />
-        </mesh>
-      )}
     </group>
   );
 }

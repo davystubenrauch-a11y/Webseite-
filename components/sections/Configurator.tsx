@@ -10,13 +10,12 @@ import {
   addOns,
   euro,
   nfcDiscount,
+  nfcProduct,
   nfcTotal,
-  shapes,
   themes,
   tourTiers,
   webTiers,
   type ServiceId,
-  type Shape,
   type Theme,
   type Tier,
 } from "@/lib/pricing";
@@ -49,8 +48,8 @@ export default function Configurator() {
 /* ------------------------------------------------------------------ NFC studio */
 
 function NfcStudio() {
-  const { shape, theme, lang, business, qty, exploded } = useConfig((s) => s);
-  const { unit, total } = nfcTotal(shape, qty);
+  const { theme, lang, business, qty, exploded } = useConfig((s) => s);
+  const { unit, total } = nfcTotal(qty);
   const discount = nfcDiscount(qty);
 
   return (
@@ -58,11 +57,11 @@ function NfcStudio() {
       {/* Stage */}
       <div className="glass rim relative min-h-[420px] overflow-hidden sm:min-h-[560px]">
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(197,160,89,0.14),transparent_60%)]" />
-        <LazyNfcStage className="absolute inset-0" particles={80} cameraZ={shape === "card" ? 7.4 : 8} spin={0.3} />
+        <LazyNfcStage className="absolute inset-0" particles={80} cameraZ={8} spin={0.3} />
         <div className="pointer-events-none absolute left-5 top-5 flex flex-col gap-1">
           <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">Live-Vorschau</span>
-          <span className="font-serif text-xl text-white">{shapes[shape].label}</span>
-          <span className="text-xs text-white/50">{shapes[shape].detail}</span>
+          <span className="font-serif text-xl text-white">{nfcProduct.label}</span>
+          <span className="text-xs text-white/50">{nfcProduct.detail}</span>
         </div>
         <button
           type="button"
@@ -93,17 +92,16 @@ function NfcStudio() {
 
       {/* Controls */}
       <div className="glass flex flex-col gap-7 p-6 sm:p-8">
-        <Field label="Produkt">
-          <div className="grid grid-cols-3 gap-2">
-            {(Object.keys(shapes) as Shape[]).map((k) => (
-              <Choice key={k} active={shape === k} onClick={() => set({ shape: k })}>
-                <ShapeGlyph shape={k} />
-                <span className="mt-2 block text-xs font-semibold">{shapes[k].label}</span>
-                <span className="block text-[11px] text-white/45">ab {euro(shapes[k].price)}</span>
-              </Choice>
-            ))}
-          </div>
-        </Field>
+        <div className="flex items-center gap-4 rounded-2xl border border-gold/30 bg-gold/[0.06] p-4">
+          <span className="relative grid h-14 w-14 shrink-0 place-items-center rounded-full bg-gradient-to-br from-white to-[#e7ebf0]">
+            <span className="nfc-ring absolute inset-1 rounded-full" />
+            <Icon name="nfc" className="h-5 w-5 text-[#202124]" />
+          </span>
+          <span>
+            <span className="block font-semibold text-white">{nfcProduct.label}</span>
+            <span className="block text-xs text-white/55">{nfcProduct.detail} · NTAG 215 · ab {euro(nfcProduct.price)}</span>
+          </span>
+        </div>
 
         <Field label="Design">
           <div className="grid grid-cols-3 gap-2">
@@ -188,11 +186,11 @@ function addService(id: ServiceId) {
 /* ------------------------------------------------------------- package builder */
 
 function PackageBuilder() {
-  const { webTier, tourTier, addOns: picked, shape, qty, inquiryServices } = useConfig((s) => s);
+  const { webTier, tourTier, addOns: picked, qty, inquiryServices } = useConfig((s) => s);
   const web = webTiers.find((t) => t.id === webTier);
   const tour = tourTiers.find((t) => t.id === tourTier);
   const extras = addOns.filter((a) => picked.includes(a.id) && ((a.for === "web" && web) || (a.for === "roomtour" && tour)));
-  const nfc = inquiryServices.includes("nfc") ? nfcTotal(shape, qty).total : 0;
+  const nfc = inquiryServices.includes("nfc") ? nfcTotal(qty).total : 0;
   const oneOff = (web?.price ?? 0) + (tour?.price ?? 0) + nfc + extras.filter((e) => !e.suffix).reduce((s, e) => s + e.price, 0);
   const monthly = extras.filter((e) => e.suffix).reduce((s, e) => s + e.price, 0);
 
@@ -217,7 +215,7 @@ function PackageBuilder() {
         <div className="glass rim p-6 sm:p-8">
           <p className="eyebrow">Ihr Paket</p>
           <ul className="mt-6 space-y-3 text-sm">
-            {nfc > 0 && <Line label={`${qty} × ${shapes[shape].label}`} value={euro(Math.round(nfc))} />}
+            {nfc > 0 && <Line label={`${qty} × ${nfcProduct.label}`} value={euro(Math.round(nfc))} />}
             {web && <Line label={`Website · ${web.label}`} value={euro(web.price)} />}
             {tour && <Line label={`Roomtour · ${tour.label}`} value={euro(tour.price)} />}
             {extras.map((e) => (
@@ -350,17 +348,4 @@ function Choice({ active, onClick, children }: { active: boolean; onClick: () =>
       {children}
     </button>
   );
-}
-
-function ShapeGlyph({ shape }: { shape: Shape }) {
-  const cls = "mx-auto block border-2 border-current";
-  if (shape === "disc") return <span className={`${cls} h-8 w-8 rounded-full`} />;
-  if (shape === "stand")
-    return (
-      <span className="mx-auto block w-8">
-        <span className={`${cls} h-7 w-7 rounded-md`} />
-        <span className="mx-auto -mt-0.5 block h-1.5 w-6 rounded-sm bg-current" />
-      </span>
-    );
-  return <span className={`${cls} mt-1.5 h-5 w-8 rounded-[4px]`} />;
 }

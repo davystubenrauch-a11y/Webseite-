@@ -3,9 +3,9 @@ import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "F&D Solutions | NFC Review Cards, High-End Websites & KI-Roomtours aus München",
+  title: "F&D Solutions | NFC Review Discs, High-End Websites & KI-Roomtours aus München",
   description:
-    "F&D Solutions aus München: smarte NFC Google-Bewertungskarten und Aufsteller, maßgeschneiderte High-End-Websites und KI-gestützte 3D-Roomtours für Immobilien, Hotels und Gewerbe.",
+    "F&D Solutions aus München: smarte runde NFC Google-Bewertungsplatten, maßgeschneiderte High-End-Websites und KI-gestützte 3D-Roomtours für Immobilien, Hotels und Gewerbe.",
   openGraph: {
     title: "F&D Solutions",
     description: "Vertrauen, automatisiert. Zukunft, gebaut.",

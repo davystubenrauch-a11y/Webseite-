@@ -1,11 +1,10 @@
-// Canvas artwork for the NFC review products (front, back and the embedded chip inlay).
+// Canvas artwork for the round NFC review disc (front, back and the embedded chip inlay).
 // The 3D model paints these canvases into textures, so the configurator can re-render
-// them live whenever the visitor changes shape, theme, language or company name.
+// them live whenever the visitor changes theme, language or company name.
 
-import type { Lang, Shape, Theme } from "./pricing";
+import type { Lang, Theme } from "./pricing";
 
 export type FaceOptions = {
-  shape: Shape;
   theme: Theme;
   lang: Lang;
   business: string;
@@ -16,13 +15,8 @@ export type FaceOptions = {
 
 const G = { blue: "#4285F4", red: "#EA4335", yellow: "#FBBC05", green: "#34A853" };
 
-/** Physical outline of each product in scene units, plus the canvas resolution. */
-export const geometryOf = (shape: Shape) =>
-  shape === "card"
-    ? { w: 3.4, h: 2.15, r: 0.2, depth: 0.05, px: [1600, 1012] as const }
-    : shape === "stand"
-      ? { w: 3, h: 3, r: 0.28, depth: 0.12, px: [1400, 1400] as const }
-      : { w: 3, h: 3, r: 1.5, depth: 0.12, px: [1400, 1400] as const };
+/** Physical size of the round disc in scene units, plus the canvas resolution. */
+export const DISC = { radius: 1.5, depth: 0.12, px: 1400 };
 
 const palette = (theme: Theme) =>
   theme === "navy"
@@ -34,15 +28,10 @@ const palette = (theme: Theme) =>
 const copy = (lang: Lang) =>
   lang === "de" ? { tap: "HIER ANTIPPEN", review: "Bewerte uns auf" } : { tap: "TAP HERE", review: "Review Us On" };
 
-/** Rounded-rect or circle outline inset from the canvas edge. */
-function outline(ctx: CanvasRenderingContext2D, w: number, h: number, shape: Shape, inset: number) {
+/** Circular outline inset from the canvas edge. */
+function outline(ctx: CanvasRenderingContext2D, w: number, h: number, inset: number) {
   ctx.beginPath();
-  if (shape === "disc") {
-    ctx.arc(w / 2, h / 2, w / 2 - inset, 0, Math.PI * 2);
-  } else {
-    const r = (shape === "card" ? 0.09 : 0.075) * Math.min(w, h);
-    ctx.roundRect(inset, inset, w - inset * 2, h - inset * 2, Math.max(r - inset * 0.6, 4));
-  }
+  ctx.arc(w / 2, h / 2, w / 2 - inset, 0, Math.PI * 2);
 }
 
 function background(ctx: CanvasRenderingContext2D, w: number, h: number, theme: Theme) {
@@ -61,7 +50,7 @@ function background(ctx: CanvasRenderingContext2D, w: number, h: number, theme: 
 }
 
 /** The signature four-colour ring: each quadrant stroked through its own clip. */
-function colourRing(ctx: CanvasRenderingContext2D, w: number, h: number, shape: Shape) {
+function colourRing(ctx: CanvasRenderingContext2D, w: number, h: number) {
   const s = Math.min(w, h);
   const quads: [number, number, string][] = [
     [0, 0, G.blue],
@@ -74,7 +63,7 @@ function colourRing(ctx: CanvasRenderingContext2D, w: number, h: number, shape: 
     ctx.beginPath();
     ctx.rect(x, y, w / 2, h / 2);
     ctx.clip();
-    outline(ctx, w, h, shape, s * 0.075);
+    outline(ctx, w, h, s * 0.075);
     ctx.strokeStyle = c;
     ctx.lineWidth = s * 0.03;
     ctx.stroke();
@@ -198,34 +187,13 @@ export function paintFront(ctx: CanvasRenderingContext2D, w: number, h: number, 
   const t = copy(o.lang);
   ctx.clearRect(0, 0, w, h);
   background(ctx, w, h, o.theme);
-  colourRing(ctx, w, h, o.shape);
+  colourRing(ctx, w, h);
 
   ctx.fillStyle = p.ink;
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
   const spaced = (txt: string) => txt.split("").join(" ");
 
-  if (o.shape === "card") {
-    // Landscape layout: pictogram left, wordmark and rating right.
-    const s = h;
-    const lx = w * 0.26;
-    fitText(ctx, spaced(t.tap), w * 0.3, "700", s * 0.06, o.sans);
-    ctx.fillText(spaced(t.tap), lx, h * 0.25);
-    tapIcon(ctx, lx, h * 0.57, s * 0.36, p.ink, o.sans);
-    const rx = w * 0.66;
-    googleWordmark(ctx, rx, h * 0.39, s * 0.2, o.sans);
-    ctx.fillStyle = p.star;
-    for (let i = 0; i < 5; i++) star(ctx, rx + (i - 2) * s * 0.085, h * 0.56, s * 0.034);
-    ctx.fillStyle = p.ink;
-    fitText(ctx, t.review, w * 0.4, "600", s * 0.07, o.sans);
-    ctx.fillText(t.review, rx, h * 0.68);
-    if (o.business) {
-      ctx.fillStyle = p.sub;
-      fitText(ctx, o.business, w * 0.42, "600", s * 0.055, o.serif);
-      ctx.fillText(o.business, rx, h * 0.8);
-    }
-    return;
-  }
 
   const s = w;
   ctx.font = `700 ${s * 0.042}px ${o.sans}`;
@@ -239,7 +207,7 @@ export function paintFront(ctx: CanvasRenderingContext2D, w: number, h: number, 
   ctx.fillText(t.review, w / 2, h * 0.765);
   if (o.business) {
     ctx.fillStyle = p.sub;
-    fitText(ctx, o.business, w * (o.shape === "disc" ? 0.42 : 0.6), "600", s * 0.04, o.serif);
+    fitText(ctx, o.business, w * 0.42, "600", s * 0.04, o.serif);
     ctx.fillText(o.business, w / 2, h * 0.835);
   }
 }
@@ -251,9 +219,9 @@ export function paintBack(ctx: CanvasRenderingContext2D, w: number, h: number, o
   background(ctx, w, h, o.theme);
   ctx.save();
   ctx.globalAlpha = o.theme === "classic" ? 0.28 : 0.18;
-  paintInlay(ctx, w, h, o.shape);
+  paintInlay(ctx, w, h);
   ctx.restore();
-  outline(ctx, w, h, o.shape, Math.min(w, h) * 0.075);
+  outline(ctx, w, h, Math.min(w, h) * 0.075);
   ctx.strokeStyle = o.theme === "classic" ? "rgba(32,33,36,0.12)" : "rgba(197,160,89,0.35)";
   ctx.lineWidth = Math.min(w, h) * 0.006;
   ctx.stroke();
@@ -270,23 +238,22 @@ export function paintBack(ctx: CanvasRenderingContext2D, w: number, h: number, o
 }
 
 /** Copper antenna coil and chip, drawn on a transparent canvas. */
-export function paintInlay(ctx: CanvasRenderingContext2D, w: number, h: number, shape: Shape) {
+export function paintInlay(ctx: CanvasRenderingContext2D, w: number, h: number) {
   const s = Math.min(w, h);
   const cx = w / 2;
   const cy = h / 2;
   const turns = 7;
-  const outer = shape === "card" ? [w * 0.36, h * 0.34] : [s * 0.3, s * 0.3];
+  const outer = s * 0.3;
   const pitch = s * 0.016;
 
   // PET carrier.
   ctx.save();
   ctx.fillStyle = "rgba(240,244,248,0.16)";
   ctx.beginPath();
-  if (shape === "disc") ctx.arc(cx, cy, outer[0] + s * 0.04, 0, Math.PI * 2);
-  else ctx.roundRect(cx - outer[0] - s * 0.04, cy - outer[1] - s * 0.04, (outer[0] + s * 0.04) * 2, (outer[1] + s * 0.04) * 2, s * 0.05);
+  ctx.arc(cx, cy, outer + s * 0.04, 0, Math.PI * 2);
   ctx.fill();
 
-  const copper = ctx.createLinearGradient(cx - outer[0], cy - outer[1], cx + outer[0], cy + outer[1]);
+  const copper = ctx.createLinearGradient(cx - outer, cy - outer, cx + outer, cy + outer);
   copper.addColorStop(0, "#7a4a1f");
   copper.addColorStop(0.35, "#e3a465");
   copper.addColorStop(0.55, "#b87333");
@@ -294,18 +261,15 @@ export function paintInlay(ctx: CanvasRenderingContext2D, w: number, h: number, 
   ctx.strokeStyle = copper;
   ctx.lineWidth = s * 0.008;
   for (let i = 0; i < turns; i++) {
-    const rx = outer[0] - i * pitch;
-    const ry = outer[1] - i * pitch;
     ctx.beginPath();
-    if (shape === "disc") ctx.arc(cx, cy, rx, 0, Math.PI * 2);
-    else ctx.roundRect(cx - rx, cy - ry, rx * 2, ry * 2, Math.max(s * 0.04 - i * 2, 2));
+    ctx.arc(cx, cy, outer - i * pitch, 0, Math.PI * 2);
     ctx.stroke();
   }
   // Bridge from the coil to the chip.
   ctx.beginPath();
-  ctx.moveTo(cx + outer[0] - turns * pitch, cy);
+  ctx.moveTo(cx + outer - turns * pitch, cy);
   ctx.lineTo(cx + s * 0.05, cy);
-  ctx.moveTo(cx + outer[0], cy + s * 0.012);
+  ctx.moveTo(cx + outer, cy + s * 0.012);
   ctx.lineTo(cx + s * 0.05, cy + s * 0.03);
   ctx.stroke();
 

@@ -20,12 +20,11 @@ type Props = {
 };
 
 function StoreProduct({ spin }: { spin?: number }) {
-  const shape = useConfig((s) => s.shape);
   const theme = useConfig((s) => s.theme);
   const lang = useConfig((s) => s.lang);
   const business = useConfig((s) => s.business);
   const exploded = useConfig((s) => s.exploded);
-  return <NfcProduct shape={shape} theme={theme} lang={lang} business={business} exploded={exploded} spin={spin} />;
+  return <NfcProduct theme={theme} lang={lang} business={business} exploded={exploded} spin={spin} />;
 }
 
 /** Pulls the camera back on narrow/tall canvases so the product always fits horizontally. */
@@ -40,7 +39,7 @@ function FitCamera({ z, halfWidth = 2.3 }: { z: number; halfWidth?: number }) {
   return null;
 }
 
-/** WebGL stage for the NFC product. Rendering pauses while scrolled out of view. */
+/** WebGL stage for the NFC review disc. Rendering pauses while scrolled out of view. */
 export default function NfcStage({ className, look, particles = 260, cameraZ = 7, spin }: Props) {
   const [ref, inView] = useInView<HTMLDivElement>();
   return (

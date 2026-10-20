@@ -23,9 +23,9 @@ export const services = [
   {
     id: "nfc",
     index: "01",
-    title: "NFC Google Review Cards & Stands",
+    title: "NFC Google Review Disc",
     kicker: "Bewertungen auf Knopfdruck",
-    text: "Ein Tap mit dem Smartphone öffnet direkt Ihr Google-Bewertungsformular, ohne App und ohne Suchen. Edle Acryl-Aufsteller, Platten und Karten mit eingebettetem NTAG-215-Chip und QR-Fallback.",
+    text: "Ein Tap mit dem Smartphone öffnet direkt Ihr Google-Bewertungsformular, ohne App und ohne Suchen. Edle runde Acryl-Platten (Ø 10 cm) mit eingebettetem NTAG-215-Chip, selbstklebend für Theke, Tisch oder Tür.",
     features: ["Funktioniert mit iPhone & Android", "Individuelles Branding & Farben", "Ziel-Link jederzeit änderbar", "Ab 1 Stück, Mengenrabatt ab 10"],
   },
   {
@@ -58,7 +58,7 @@ export const stats = [
 // Invented testimonials are prohibited under German competition law (UWG).
 export const testimonials = [
   {
-    quote: "Seit die NFC-Aufsteller an unserer Theke stehen, bekommen wir jede Woche neue Bewertungen. Die Gäste finden es sogar spannend.",
+    quote: "Seit die NFC-Platten an unserer Theke kleben, bekommen wir jede Woche neue Bewertungen. Die Gäste finden es sogar spannend.",
     name: "Beispielkunde",
     role: "Gastronomie · München",
   },

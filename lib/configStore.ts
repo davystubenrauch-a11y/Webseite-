@@ -1,14 +1,13 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import type { Lang, ServiceId, Shape, Theme } from "./pricing";
+import type { Lang, ServiceId, Theme } from "./pricing";
 
 /**
  * Tiny global store shared by the 3D product, the configurator and the inquiry
  * wizard: whatever the visitor builds in the configurator is carried into the inquiry.
  */
 export type ConfigState = {
-  shape: Shape;
   theme: Theme;
   lang: Lang;
   business: string;
@@ -23,7 +22,6 @@ export type ConfigState = {
 };
 
 const DEFAULT_STATE: ConfigState = {
-  shape: "disc",
   theme: "classic",
   lang: "en",
   business: "",

@@ -6,14 +6,14 @@ import Icon from "@/components/ui/Icon";
 import Reveal, { SectionHead } from "@/components/ui/Reveal";
 import { configStore, useConfig } from "@/lib/configStore";
 import { budgets, propertyTypes, serviceLabels, summarize, timelines, validate, type Errors, type Inquiry as Data } from "@/lib/inquiry";
-import { addOns, shapes, themes, tourTiers, webTiers, type ServiceId, type Shape, type Theme } from "@/lib/pricing";
+import { addOns, nfcProduct, themes, tourTiers, webTiers, type ServiceId, type Theme } from "@/lib/pricing";
 import { site, telHref } from "@/lib/site";
 
 const STEPS = ["Leistung", "Details", "Kontakt", "Übersicht"];
 
 const EMPTY: Data = {
   services: [],
-  nfc: { shape: "disc", theme: "classic", qty: 10, business: "" },
+  nfc: { theme: "classic", qty: 10, business: "" },
   web: { tier: "", url: "" },
   roomtour: { tier: "", property: "", area: "" },
   addOns: [],
@@ -33,7 +33,7 @@ type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent"; id: strin
 
 const serviceIcons: Record<ServiceId, string> = { nfc: "nfc", web: "web", roomtour: "roomtour" };
 const serviceHints: Record<ServiceId, string> = {
-  nfc: "Karten, Platten & Aufsteller mit NFC-Chip",
+  nfc: "Runde Acryl-Platten mit NFC-Chip",
   web: "Individuelle, conversion-starke Websites",
   roomtour: "360°-Rundgänge & KI-Walkthroughs",
 };
@@ -51,12 +51,12 @@ export default function Inquiry() {
     setData((d) => ({
       ...d,
       services: Array.from(new Set([...d.services, ...cfg.inquiryServices])),
-      nfc: { shape: cfg.shape, theme: cfg.theme, qty: cfg.qty, business: cfg.business },
+      nfc: { theme: cfg.theme, qty: cfg.qty, business: cfg.business },
       web: { ...d.web, tier: cfg.webTier ?? d.web.tier },
       roomtour: { ...d.roomtour, tier: cfg.tourTier ?? d.roomtour.tier },
       addOns: cfg.addOns,
     }));
-  }, [cfg.inquiryServices, cfg.shape, cfg.theme, cfg.qty, cfg.business, cfg.webTier, cfg.tourTier, cfg.addOns]);
+  }, [cfg.inquiryServices, cfg.theme, cfg.qty, cfg.business, cfg.webTier, cfg.tourTier, cfg.addOns]);
 
   const patch = (p: Partial<Data>) => setData((d) => ({ ...d, ...p }));
   const clearError = (key: string) => setErrors(({ [key]: _, ...rest }) => rest);
@@ -309,13 +309,8 @@ function StepDetails({ data, patch, errors, clearError }: StepProps) {
       <StepTitle title="Ein paar Details" text="Damit wir Ihr Angebot passgenau vorbereiten können." />
       <div className="space-y-8">
         {has("nfc") && (
-          <Group title="NFC-Produkte" icon="nfc">
-            <div className="grid gap-4 sm:grid-cols-3">
-              <Select label="Produkt" value={data.nfc.shape} onChange={(v) => patch({ nfc: { ...data.nfc, shape: v } })}>
-                {(Object.keys(shapes) as Shape[]).map((k) => (
-                  <option key={k} value={k}>{shapes[k].label}</option>
-                ))}
-              </Select>
+          <Group title="NFC Review Disc" icon="nfc">
+            <div className="grid gap-4 sm:grid-cols-2">
               <Select label="Design" value={data.nfc.theme} onChange={(v) => patch({ nfc: { ...data.nfc, theme: v } })}>
                 {(Object.keys(themes) as Theme[]).map((k) => (
                   <option key={k} value={k}>{themes[k].label}</option>
@@ -489,7 +484,7 @@ function StepSummary({ data, onEdit }: { data: Data; onEdit: (step: number) => v
     ["Leistungen", data.services.map((s) => serviceLabels[s]).join(", "), 0],
   ];
   if (data.services.includes("nfc"))
-    rows.push(["NFC", `${data.nfc.qty} × ${shapes[data.nfc.shape as Shape]?.label} · ${themes[data.nfc.theme as Theme]?.label}${data.nfc.business ? ` · „${data.nfc.business}“` : ""}`, 1]);
+    rows.push(["NFC", `${data.nfc.qty} × ${nfcProduct.label} · ${themes[data.nfc.theme as Theme]?.label}${data.nfc.business ? ` · „${data.nfc.business}“` : ""}`, 1]);
   if (data.services.includes("web")) rows.push(["Website", `${tier(webTiers, data.web.tier)}${data.web.url ? ` · ${data.web.url}` : ""}`, 1]);
   if (data.services.includes("roomtour"))
     rows.push(["Roomtour", `${data.roomtour.property}${data.roomtour.area ? ` · ${data.roomtour.area} m²` : ""} · ${tier(tourTiers, data.roomtour.tier)}`, 1]);

@@ -4,7 +4,7 @@ import type { ServiceId } from "./pricing";
 
 export type Inquiry = {
   services: ServiceId[];
-  nfc: { shape: string; theme: string; qty: number; business: string };
+  nfc: { theme: string; qty: number; business: string };
   web: { tier: string; url: string };
   roomtour: { tier: string; property: string; area: string };
   addOns: string[];
@@ -24,7 +24,7 @@ export type Inquiry = {
 export type Errors = Partial<Record<string, string>>;
 
 export const serviceLabels: Record<ServiceId, string> = {
-  nfc: "NFC Google Review Cards & Stands",
+  nfc: "NFC Google Review Disc",
   web: "High-End Webentwicklung",
   roomtour: "KI-Roomtour & Walkthroughs",
 };
@@ -71,7 +71,7 @@ export function summarize(d: Inquiry) {
     `Leistungen: ${d.services.map((s) => serviceLabels[s]).join(", ")}`,
   ];
   if (d.services.includes("nfc"))
-    lines.push(`NFC: ${d.nfc.qty} × ${d.nfc.shape} · Design ${d.nfc.theme}${d.nfc.business ? ` · Aufdruck "${d.nfc.business}"` : ""}`);
+    lines.push(`NFC: ${d.nfc.qty} × Review Disc (Ø 10 cm) · Design ${d.nfc.theme}${d.nfc.business ? ` · Aufdruck "${d.nfc.business}"` : ""}`);
   if (d.services.includes("web")) lines.push(`Website: Paket ${d.web.tier}${d.web.url ? ` · bestehende Seite ${d.web.url}` : ""}`);
   if (d.services.includes("roomtour"))
     lines.push(`Roomtour: ${d.roomtour.tier || "Paket offen"} · ${d.roomtour.property}${d.roomtour.area ? ` · ${d.roomtour.area} m²` : ""}`);

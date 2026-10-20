@@ -1,16 +1,12 @@
 // Catalogue and price list used by the configurator and the inquiry wizard.
 // NOTE: All prices are placeholder guide values. Replace them with your real prices before going live.
 
-export type Shape = "disc" | "stand" | "card";
 export type Theme = "classic" | "navy" | "carbon";
 export type Lang = "de" | "en";
 export type ServiceId = "nfc" | "web" | "roomtour";
 
-export const shapes: Record<Shape, { label: string; detail: string; price: number }> = {
-  disc: { label: "Round Disc", detail: "Ø 10 cm Acryl-Platte · selbstklebend", price: 29 },
-  stand: { label: "Theken-Stand", detail: "12 × 12 cm Aufsteller mit Fuß", price: 39 },
-  card: { label: "Review Card", detail: "Scheckkartenformat · 85,6 × 54 mm", price: 19 },
-};
+/** Our single NFC product: the round acrylic review disc. */
+export const nfcProduct = { label: "NFC Review Disc", detail: "Ø 10 cm Acryl-Platte · selbstklebend", price: 29 };
 
 export const themes: Record<Theme, { label: string; swatch: string }> = {
   classic: { label: "Classic White", swatch: "linear-gradient(135deg,#ffffff,#e8edf3)" },
@@ -26,8 +22,8 @@ export function nfcDiscount(qty: number) {
   return 0;
 }
 
-export function nfcTotal(shape: Shape, qty: number) {
-  const unit = shapes[shape].price * (1 - nfcDiscount(qty));
+export function nfcTotal(qty: number) {
+  const unit = nfcProduct.price * (1 - nfcDiscount(qty));
   return { unit, total: unit * qty };
 }
 

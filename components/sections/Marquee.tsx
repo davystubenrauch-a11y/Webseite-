@@ -1,4 +1,4 @@
-const items = ["NFC Review Cards", "Theken-Stands", "High-End Webentwicklung", "KI-Roomtours", "360° Walkthroughs", "Made in München", "5-Sterne-Automatisierung"];
+const items = ["NFC Review Discs", "Tap to Review", "High-End Webentwicklung", "KI-Roomtours", "360° Walkthroughs", "Made in München", "5-Sterne-Automatisierung"];
 
 /** Endless gold ticker between hero and content. */
 export default function Marquee() {
