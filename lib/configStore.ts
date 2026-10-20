@@ -22,7 +22,7 @@ export type ConfigState = {
 };
 
 const DEFAULT_STATE: ConfigState = {
-  theme: "classic",
+  theme: "white",
   lang: "en",
   business: "",
   qty: 10,

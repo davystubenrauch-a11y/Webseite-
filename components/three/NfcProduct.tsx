@@ -57,11 +57,9 @@ const paint = (t: THREE.CanvasTexture, fn: (ctx: CanvasRenderingContext2D, w: nu
   t.needsUpdate = true;
 };
 
-/** Body/edge materials per theme: frosted acrylic, gold-rimmed navy, or carbon. */
+/** Body/edge material per colour: frosted white acrylic or glossy black. */
 function bodyMaterial(theme: Theme) {
-  if (theme === "navy")
-    return new THREE.MeshPhysicalMaterial({ color: "#c5a059", metalness: 1, roughness: 0.28, clearcoat: 0.6 });
-  if (theme === "carbon")
+  if (theme === "black")
     return new THREE.MeshPhysicalMaterial({ color: "#151619", metalness: 0.3, roughness: 0.35, clearcoat: 1 });
   return new THREE.MeshPhysicalMaterial({
     color: "#f3f6fa",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { AnimatePresence, motion, useScroll, useSpring } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { LogoInline } from "@/components/brand/Logo";
 import { nav } from "@/lib/site";
 
@@ -9,8 +9,6 @@ export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState<string>("");
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 30 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -38,13 +36,12 @@ export default function Nav() {
 
   return (
     <header className="fixed inset-x-0 top-0 z-50">
-      <motion.div className="h-[2px] origin-left bg-gradient-to-r from-gold-deep via-gold-bright to-gold-soft" style={{ scaleX: progress }} />
       <div
         className={`transition-all duration-500 ${
           scrolled ? "border-b border-white/[0.06] bg-navy-900/75 backdrop-blur-xl" : "bg-transparent"
         }`}
       >
-        <nav className="mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Hauptnavigation">
+        <nav className="mx-auto flex h-[72px] max-w-6xl items-center justify-between px-4 sm:px-6 lg:px-8" aria-label="Hauptnavigation">
           <LogoInline />
           <ul className="hidden items-center gap-1 lg:flex">
             {nav.map(({ id, label }) => (

@@ -10,14 +10,14 @@ import { seals, stats, testimonials } from "@/lib/content";
 
 export default function Trust() {
   return (
-    <section id="referenzen" className="relative py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="referenzen" className="relative py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHead
           center
-          eyebrow="Referenzen & Vertrauen"
+          eyebrow="Kundenstimmen"
           title={
             <>
-              Ergebnisse, die man <span className="text-gold italic">messen</span> kann.
+              Darauf können Sie sich <span className="text-gold">verlassen.</span>
             </>
           }
         />
@@ -25,7 +25,7 @@ export default function Trust() {
         <Stats />
         <Testimonials />
 
-        <div className="mt-16 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {seals.map((s, i) => (
             <Reveal key={s.title} delay={i * 0.08} className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-gold/40">
               <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/40 text-gold transition group-hover:shadow-rim">
@@ -47,13 +47,12 @@ function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   return (
-    <div ref={ref} className="mt-16 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/10 lg:grid-cols-4">
+    <div ref={ref} className="mt-10 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/10 lg:grid-cols-4">
       {stats.map((s, i) => {
-        const decimals = "decimals" in s ? s.decimals : 0;
-        return (
+                return (
           <div key={s.label} className={`bg-white/[0.02] p-6 text-center sm:p-10 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""} border-white/10 lg:border-l lg:first:border-l-0`}>
             <p className="font-serif text-4xl font-semibold text-gold-soft sm:text-5xl">
-              <AnimatedNumber value={inView ? s.value : 0} format={(n) => n.toLocaleString("de-DE", { minimumFractionDigits: decimals, maximumFractionDigits: decimals })} />
+              <AnimatedNumber value={inView ? s.value : 0} format={(n) => Math.round(n).toLocaleString("de-DE")} />
               <span className="text-2xl sm:text-3xl">{s.suffix}</span>
             </p>
             <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/45">{s.label}</p>

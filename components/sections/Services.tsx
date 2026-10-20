@@ -22,20 +22,20 @@ const inquire = (id: ServiceId) => {
 
 export default function Services() {
   return (
-    <section id="leistungen" className="relative py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="leistungen" className="relative py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHead
           center
           eyebrow="Leistungen"
           title={
             <>
-              Drei Disziplinen. <span className="text-gold italic">Ein Anspruch.</span>
+              Was wir für Sie <span className="text-gold">tun.</span>
             </>
           }
-          lead="Vom ersten Eindruck vor Ort bis zum digitalen Rundgang: Unsere Leistungen greifen ineinander und stärken gemeinsam Ihre Reputation."
+          lead="Drei Leistungen, die zusammenpassen: mehr Bewertungen, eine gute Website und ein Rundgang durch Ihre Räume."
         />
 
-        <div className="mt-20 space-y-8 lg:space-y-10">
+        <div className="mt-12 space-y-6">
           {services.map((s, i) => {
             const Preview = previews[s.id];
             const flip = i % 2 === 1;
@@ -43,16 +43,13 @@ export default function Services() {
               <Reveal key={s.id}>
                 <article className="glass rim group grid overflow-hidden lg:grid-cols-2">
                   <div className={`relative flex flex-col justify-center p-7 sm:p-12 ${flip ? "lg:order-2" : ""}`}>
-                    <span aria-hidden className="pointer-events-none absolute -top-6 right-6 font-serif text-[9rem] font-semibold leading-none text-white/[0.03]">
-                      {s.index}
-                    </span>
                     <span className="inline-flex items-center gap-3 text-gold">
-                      <span className="grid h-11 w-11 place-items-center rounded-xl border border-gold/30 bg-gold/10 transition duration-500 group-hover:rotate-6 group-hover:scale-110">
+                      <span className="grid h-11 w-11 place-items-center rounded-xl border border-gold/30 bg-gold/10 transition duration-500 ">
                         <Icon name={s.id} />
                       </span>
                       <span className="text-xs font-semibold uppercase tracking-[0.3em]">{s.kicker}</span>
                     </span>
-                    <h3 className="mt-6 font-serif text-3xl font-semibold leading-tight text-white sm:text-4xl">{s.title}</h3>
+                    <h3 className="mt-6 font-serif text-3xl font-semibold leading-tight text-white">{s.title}</h3>
                     <p className="mt-4 leading-relaxed text-white/65">{s.text}</p>
                     <ul className="mt-7 grid gap-3 sm:grid-cols-2">
                       {s.features.map((f) => (
@@ -71,7 +68,7 @@ export default function Services() {
                       </a>
                     </div>
                   </div>
-                  <div className={`relative min-h-[320px] border-white/5 bg-navy-950/40 sm:min-h-[420px] ${flip ? "lg:order-1 lg:border-r" : "lg:border-l"}`}>
+                  <div className={`relative min-h-[320px] border-white/5 bg-navy-950/40 sm:min-h-[360px] ${flip ? "lg:order-1 lg:border-r" : "lg:border-l"}`}>
                     <Preview />
                   </div>
                 </article>
@@ -225,12 +222,12 @@ function TourPreview() {
       <LazyRoomScan className="absolute inset-0" />
       <div className="pointer-events-none absolute inset-x-5 top-5 flex items-center justify-between text-[10px] font-semibold uppercase tracking-[0.25em] text-white/70">
         <span className="flex items-center gap-2">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-google-red" /> KI-Scan aktiv
+          <span className="h-1.5 w-1.5 rounded-full bg-gold" /> Beispiel-Rundgang
         </span>
-        <span className="rounded-full border border-white/15 bg-navy-950/60 px-3 py-1 backdrop-blur">8K · 360°</span>
+        <span className="rounded-full border border-white/15 bg-navy-950/60 px-3 py-1 backdrop-blur">360°</span>
       </div>
       <div className="pointer-events-none absolute inset-x-5 bottom-5 flex flex-wrap gap-2">
-        {["Wohnbereich · 34 m²", "Essbereich", "Grundriss ✓"].map((t) => (
+        {["Wohnbereich", "Essbereich", "Grundriss"].map((t) => (
           <span key={t} className="rounded-full border border-gold/30 bg-navy-950/70 px-3 py-1.5 text-[11px] text-gold-soft backdrop-blur">
             {t}
           </span>

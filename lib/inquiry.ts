@@ -25,12 +25,12 @@ export type Errors = Partial<Record<string, string>>;
 
 export const serviceLabels: Record<ServiceId, string> = {
   nfc: "NFC Google Review Disc",
-  web: "High-End Webentwicklung",
-  roomtour: "KI-Roomtour & Walkthroughs",
+  web: "Webseiten-Erstellung",
+  roomtour: "Roomtour & 360°-Rundgang",
 };
 
 export const propertyTypes = ["Immobilie / Wohnung", "Hotel", "Ferienwohnung", "Gewerbe / Büro", "Gastronomie", "Sonstiges"];
-export const budgets = ["bis 1.000 €", "1.000 – 3.000 €", "3.000 – 7.500 €", "über 7.500 €", "Noch offen"];
+export const budgets = ["bis 500 €", "500 – 1.000 €", "1.000 – 2.500 €", "über 2.500 €", "Noch offen"];
 export const timelines = ["So schnell wie möglich", "In 1–3 Monaten", "In 3–6 Monaten", "Flexibel"];
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;

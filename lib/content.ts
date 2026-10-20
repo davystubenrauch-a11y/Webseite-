@@ -3,19 +3,19 @@
 
 export const pillars = [
   {
-    title: "Seriosität",
-    text: "Feste Ansprechpartner, transparente Festpreise und Verträge ohne Kleingedrucktes. Wir sind erreichbar, persönlich und in München.",
+    title: "Persönlich",
+    text: "Sie sprechen direkt mit uns, den beiden Gründern. Keine Hotline, keine wechselnden Ansprechpartner.",
     icon: "shield",
   },
   {
-    title: "High-Tech",
-    text: "NFC-Hardware, 3D-Web und KI-Bildverarbeitung: Wir setzen Technologie ein, die heute schon den Standard von morgen definiert.",
-    icon: "spark",
+    title: "Fair",
+    text: "Klare Festpreise, bevor wir starten. Websites und Roomtours gibt es schon ab 300 €.",
+    icon: "check",
   },
   {
-    title: "Automatisierung",
-    text: "Unsere Lösungen arbeiten für Sie, rund um die Uhr. Mehr Bewertungen, mehr Anfragen, mehr Buchungen, ohne zusätzlichen Aufwand.",
-    icon: "loop",
+    title: "Modern",
+    text: "Wir arbeiten mit aktueller Technik, damit Ihr Unternehmen online so gut aussieht wie vor Ort.",
+    icon: "spark",
   },
 ] as const;
 
@@ -24,59 +24,59 @@ export const services = [
     id: "nfc",
     index: "01",
     title: "NFC Google Review Disc",
-    kicker: "Bewertungen auf Knopfdruck",
-    text: "Ein Tap mit dem Smartphone öffnet direkt Ihr Google-Bewertungsformular, ohne App und ohne Suchen. Edle runde Acryl-Platten (Ø 10 cm) mit eingebettetem NTAG-215-Chip, selbstklebend für Theke, Tisch oder Tür.",
-    features: ["Funktioniert mit iPhone & Android", "Individuelles Branding & Farben", "Ziel-Link jederzeit änderbar", "Ab 1 Stück, Mengenrabatt ab 10"],
+    kicker: "Mehr Google-Bewertungen",
+    text: "Ihre Kunden halten das Handy an die Platte und landen direkt bei Ihrer Google-Bewertung, ohne App und ohne Suchen. Runde Acryl-Platte (Ø 10 cm) mit NFC-Chip, in Weiß oder Schwarz.",
+    features: ["Funktioniert mit iPhone & Android", "Weiß oder Schwarz", "Mit Ihrem Firmennamen", "Mengenrabatt ab 10 Stück"],
   },
   {
     id: "web",
     index: "02",
-    title: "High-End Webentwicklung",
-    kicker: "Websites, die verkaufen",
-    text: "Maßgeschneiderte Websites mit Next.js, 3D-Elementen und durchdachter Nutzerführung. Blitzschnell, SEO-stark und auf Conversion optimiert, damit aus Besuchern Kunden werden.",
-    features: ["Individuelles Design, keine Templates", "Lighthouse-Ziel 95+", "SEO, Analytics & DSGVO-konform", "Hosting & Wartung auf Wunsch"],
+    title: "Webseiten-Erstellung",
+    kicker: "Ab 300 €",
+    text: "Eine moderne Website, die auf Handy und Computer gut aussieht und schnell lädt. Vom einfachen One-Pager bis zur größeren Firmenseite, mit Impressum und Datenschutz.",
+    features: ["Modernes, individuelles Design", "Für Handy optimiert", "Kontaktformular & Google Maps", "Hosting auf Wunsch"],
   },
   {
     id: "roomtour",
     index: "03",
-    title: "KI-Roomtour & Walkthroughs",
-    kicker: "Räume erleben, bevor man sie betritt",
-    text: "Immersive 360°-Rundgänge und KI-gestützte Walkthrough-Videos in bis zu 8K für Immobilien, Hotels und Gewerbe. Inklusive Grundriss, Hotspots und optionalem KI-Home-Staging.",
-    features: ["360°-Rundgang in 8K", "KI-Walkthrough-Video in 4K", "Hotspots, Grundriss & Maße", "Einbettung auf Website & Portalen"],
+    title: "Roomtour & 360°-Rundgang",
+    kicker: "Ab 300 €",
+    text: "Virtuelle Rundgänge und Walkthrough-Videos für Immobilien, Ferienwohnungen, Hotels und Gewerbe. Interessenten sehen sich die Räume online an, bevor sie vorbeikommen.",
+    features: ["360°-Rundgang", "Walkthrough-Video", "Grundriss & Info-Punkte", "Für Website & Immobilienportale"],
   },
 ] as const;
 
-/** Product facts, not track-record claims, so they stay true from day one. */
+/** Facts about the offer, not track-record claims, so they stay true from day one. */
 export const stats = [
-  { value: 3, suffix: " Sek.", label: "vom Tap zur Bewertung" },
-  { value: 13.56, suffix: " MHz", label: "NFC-Frequenz, ISO 14443", decimals: 2 },
-  { value: 95, suffix: "+", label: "Lighthouse-Zielwert" },
-  { value: 8, suffix: "K", label: "Roomtour-Auflösung" },
+  { value: 300, suffix: " €", label: "Websites ab" },
+  { value: 300, suffix: " €", label: "Roomtours ab" },
+  { value: 24, suffix: " h", label: "Antwortzeit" },
+  { value: 2, suffix: "", label: "feste Ansprechpartner" },
 ] as const;
 
 // PLATZHALTER: Replace these with real, approved customer quotes before going live.
 // Invented testimonials are prohibited under German competition law (UWG).
 export const testimonials = [
   {
-    quote: "Seit die NFC-Platten an unserer Theke kleben, bekommen wir jede Woche neue Bewertungen. Die Gäste finden es sogar spannend.",
+    quote: "Seit die NFC-Platte an unserer Theke klebt, bekommen wir regelmäßig neue Bewertungen. Die Gäste nutzen sie gern.",
     name: "Beispielkunde",
     role: "Gastronomie · München",
   },
   {
-    quote: "Die neue Website wirkt so hochwertig wie unser Produkt. Die Anfragen über das Formular haben sich spürbar erhöht.",
+    quote: "Die neue Website war schnell fertig, sieht professionell aus und war bezahlbar. Genau das, was wir gebraucht haben.",
     name: "Beispielkunde",
     role: "Handwerksbetrieb · Oberbayern",
   },
   {
-    quote: "Mit der KI-Roomtour konnten Interessenten die Wohnung vorab erleben. Besichtigungen waren dadurch deutlich zielgerichteter.",
+    quote: "Mit dem Rundgang konnten sich Interessenten die Wohnung vorab ansehen. Das hat uns viele Besichtigungen gespart.",
     name: "Beispielkunde",
-    role: "Immobilienmakler · München",
+    role: "Vermietung · München",
   },
 ] as const;
 
 export const seals = [
-  { title: "DSGVO-konform", text: "Datenschutz by Design" },
-  { title: "Hosting in der EU", text: "Server-Standort Deutschland" },
-  { title: "Persönlich", text: "Feste Ansprechpartner" },
-  { title: "Festpreise", text: "Transparent und verbindlich" },
+  { title: "DSGVO-konform", text: "Datenschutz von Anfang an" },
+  { title: "Aus München", text: "Persönlich vor Ort" },
+  { title: "Festpreise", text: "Keine versteckten Kosten" },
+  { title: "Schnell", text: "Antwort innerhalb von 24 h" },
 ] as const;

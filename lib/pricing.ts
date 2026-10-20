@@ -1,7 +1,7 @@
 // Catalogue and price list used by the configurator and the inquiry wizard.
 // NOTE: All prices are placeholder guide values. Replace them with your real prices before going live.
 
-export type Theme = "classic" | "navy" | "carbon";
+export type Theme = "white" | "black";
 export type Lang = "de" | "en";
 export type ServiceId = "nfc" | "web" | "roomtour";
 
@@ -9,9 +9,8 @@ export type ServiceId = "nfc" | "web" | "roomtour";
 export const nfcProduct = { label: "NFC Review Disc", detail: "Ø 10 cm Acryl-Platte · selbstklebend", price: 29 };
 
 export const themes: Record<Theme, { label: string; swatch: string }> = {
-  classic: { label: "Classic White", swatch: "linear-gradient(135deg,#ffffff,#e8edf3)" },
-  navy: { label: "Navy & Gold", swatch: "linear-gradient(135deg,#0f172a,#1e293b 60%,#c5a059)" },
-  carbon: { label: "Carbon Black", swatch: "linear-gradient(135deg,#050506,#232428)" },
+  white: { label: "Weiß", swatch: "linear-gradient(135deg,#ffffff,#e8edf3)" },
+  black: { label: "Schwarz", swatch: "linear-gradient(135deg,#050506,#232428)" },
 };
 
 /** Volume discount tiers for NFC products. */
@@ -30,22 +29,22 @@ export function nfcTotal(qty: number) {
 export type Tier = { id: string; label: string; price: number; features: string[] };
 
 export const webTiers: Tier[] = [
-  { id: "launch", label: "Launch", price: 1490, features: ["One-Pager / Landingpage", "Mobile-first Design", "Kontaktformular & SEO-Basis"] },
-  { id: "business", label: "Business", price: 2990, features: ["Bis zu 8 Unterseiten", "CMS zur Selbstpflege", "Conversion-Tracking & SEO"] },
-  { id: "signature", label: "Signature", price: 5990, features: ["Individuelles 3D/Motion-Design", "Shop oder Buchungssystem", "Performance-Garantie 95+"] },
+  { id: "basis", label: "Basis", price: 300, features: ["One-Pager mit Ihren Inhalten", "Für Handy & Desktop optimiert", "Kontaktformular, Impressum & Datenschutz"] },
+  { id: "business", label: "Business", price: 690, features: ["Bis zu 5 Unterseiten", "Google-Maps & Bewertungen eingebunden", "Grundlegende SEO-Einrichtung"] },
+  { id: "premium", label: "Premium", price: 1290, features: ["Bis zu 10 Unterseiten", "Individuelles Design & Animationen", "Inhalte selbst bearbeitbar"] },
 ];
 
 export const tourTiers: Tier[] = [
-  { id: "essential", label: "Essential", price: 390, features: ["Bis 100 m²", "360°-Rundgang in 8K", "Einbettung auf Ihrer Website"] },
-  { id: "pro", label: "Pro", price: 790, features: ["Bis 300 m²", "KI-Walkthrough-Video in 4K", "Grundriss & Hotspots"] },
-  { id: "estate", label: "Estate", price: 1490, features: ["Unbegrenzte Fläche", "KI-Home-Staging", "Drohnen-Außenansicht"] },
+  { id: "basis", label: "Basis", price: 300, features: ["Bis 80 m²", "360°-Rundgang", "Link & Einbettung für Website und Portale"] },
+  { id: "plus", label: "Plus", price: 490, features: ["Bis 200 m²", "Walkthrough-Video", "Grundriss & Info-Punkte"] },
+  { id: "premium", label: "Premium", price: 790, features: ["Ab 200 m² / Gewerbe & Hotel", "KI-Home-Staging", "Video für Social Media"] },
 ];
 
 export const addOns: { id: string; label: string; price: number; suffix?: string; for: ServiceId }[] = [
-  { id: "hosting", label: "Hosting & Wartung", price: 49, suffix: "/ Monat", for: "web" },
-  { id: "copy", label: "Texte & Fotografie", price: 690, for: "web" },
-  { id: "staging", label: "KI-Home-Staging (pro Raum)", price: 59, for: "roomtour" },
-  { id: "express", label: "Express-Lieferung 48 h", price: 190, for: "roomtour" },
+  { id: "hosting", label: "Hosting & Wartung", price: 19, suffix: "/ Monat", for: "web" },
+  { id: "copy", label: "Texte schreiben lassen", price: 150, for: "web" },
+  { id: "staging", label: "KI-Home-Staging (pro Raum)", price: 29, for: "roomtour" },
+  { id: "express", label: "Express-Lieferung 48 h", price: 79, for: "roomtour" },
 ];
 
 export const euro = (n: number) =>

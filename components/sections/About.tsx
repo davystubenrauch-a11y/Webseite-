@@ -10,23 +10,23 @@ import { site, telHref } from "@/lib/site";
 
 export default function About() {
   return (
-    <section id="vision" className="relative py-28 sm:py-36">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="vision" className="relative py-16 sm:py-24">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <div className="grid gap-16 lg:grid-cols-[1.1fr_1fr] lg:items-center">
           <SectionHead
-            eyebrow="Über uns · Vision"
+            eyebrow="Über uns"
             title={
               <>
-                Seriosität trifft auf <span className="text-gold italic">High-Tech.</span>
+                Zwei Gründer, <span className="text-gold">ein Ziel.</span>
               </>
             }
-            lead="F&D Solutions wurde in München mit einer klaren Überzeugung gegründet: Vertrauen ist die wertvollste Währung im digitalen Zeitalter. Wir verbinden handfeste Produkte mit digitaler Präzision, damit Ihr Unternehmen dort glänzt, wo Kunden heute entscheiden: online."
+            lead="F&D Solutions sind Florian Dressler und Davy Stubenrauch aus München. Wir helfen kleinen und mittleren Unternehmen dabei, online einen guten Eindruck zu machen: mit mehr Google-Bewertungen, einer modernen Website und Rundgängen, die Räume zeigen, wie sie wirklich sind. Ehrlich beraten, fair bepreist."
           />
           <Reveal delay={0.2}>
             <FounderCard />
           </Reveal>
         </div>
-        <div className="mt-16 grid gap-4 md:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
           {pillars.map((p, i) => (
             <Reveal key={p.title} delay={0.1 * i} className="glass rim group p-7 transition duration-500 hover:-translate-y-1">
               <span className="grid h-11 w-11 place-items-center rounded-xl border border-gold/30 bg-gold/10 text-gold transition group-hover:scale-110">
@@ -47,8 +47,8 @@ function FounderCard() {
   const ref = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
-  const rx = useSpring(useTransform(my, [0, 1], [10, -10]), { stiffness: 150, damping: 18 });
-  const ry = useSpring(useTransform(mx, [0, 1], [-12, 12]), { stiffness: 150, damping: 18 });
+  const rx = useSpring(useTransform(my, [0, 1], [4, -4]), { stiffness: 150, damping: 18 });
+  const ry = useSpring(useTransform(mx, [0, 1], [-5, 5]), { stiffness: 150, damping: 18 });
   const glare = useTransform([mx, my] as const, ([x, y]: number[]) => `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(255,255,255,0.14), transparent 45%)`);
 
   const onMove = (e: React.PointerEvent) => {

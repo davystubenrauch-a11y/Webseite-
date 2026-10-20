@@ -13,7 +13,7 @@ const STEPS = ["Leistung", "Details", "Kontakt", "Übersicht"];
 
 const EMPTY: Data = {
   services: [],
-  nfc: { theme: "classic", qty: 10, business: "" },
+  nfc: { theme: "white", qty: 10, business: "" },
   web: { tier: "", url: "" },
   roomtour: { tier: "", property: "", area: "" },
   addOns: [],
@@ -34,8 +34,8 @@ type Status = { kind: "idle" } | { kind: "sending" } | { kind: "sent"; id: strin
 const serviceIcons: Record<ServiceId, string> = { nfc: "nfc", web: "web", roomtour: "roomtour" };
 const serviceHints: Record<ServiceId, string> = {
   nfc: "Runde Acryl-Platten mit NFC-Chip",
-  web: "Individuelle, conversion-starke Websites",
-  roomtour: "360°-Rundgänge & KI-Walkthroughs",
+  web: "Moderne Websites ab 300 €",
+  roomtour: "360°-Rundgänge & Videos ab 300 €",
 };
 
 export default function Inquiry() {
@@ -120,21 +120,21 @@ export default function Inquiry() {
   };
 
   return (
-    <section id="anfrage" className="relative py-28 sm:py-36">
+    <section id="anfrage" className="relative py-16 sm:py-24">
       <div aria-hidden className="absolute left-1/2 top-40 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gold/[0.06] blur-[140px]" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHead
           center
           eyebrow="Anfrage"
           title={
             <>
-              Konfigurieren Sie Ihre <span className="text-gold italic">Anfrage.</span>
+              Unverbindlich <span className="text-gold">anfragen.</span>
             </>
           }
-          lead="In vier kurzen Schritten zu Ihrem individuellen Angebot. Kostenlos, unverbindlich und mit Antwort innerhalb von 24 Stunden."
+          lead="In vier kurzen Schritten zu Ihrem Angebot. Kostenlos, und wir melden uns innerhalb von 24 Stunden."
         />
 
-        <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_340px]">
+        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_340px]">
           <Reveal className="glass rim overflow-hidden">
             {status.kind === "sent" ? (
               <Success status={status} onReset={reset} onMail={() => openMail(data)} name={data.name} />
@@ -362,7 +362,7 @@ function StepDetails({ data, patch, errors, clearError }: StepProps) {
           </Group>
         )}
         {has("roomtour") && (
-          <Group title="KI-Roomtour" icon="roomtour">
+          <Group title="Roomtour" icon="roomtour">
             <div className="grid gap-4 sm:grid-cols-3">
               <Select
                 label="Objektart *"

@@ -19,11 +19,9 @@ const G = { blue: "#4285F4", red: "#EA4335", yellow: "#FBBC05", green: "#34A853"
 export const DISC = { radius: 1.5, depth: 0.12, px: 1400 };
 
 const palette = (theme: Theme) =>
-  theme === "navy"
-    ? { bg: ["#1e293b", "#0f172a"], ink: "#E9D49B", sub: "#c5a059", star: "#D4AF37" }
-    : theme === "carbon"
-      ? { bg: ["#26272c", "#08080a"], ink: "#F1F3F4", sub: "#bdc1c6", star: G.yellow }
-      : { bg: ["#ffffff", "#e9edf2"], ink: "#202124", sub: "#5f6368", star: G.yellow };
+  theme === "black"
+    ? { bg: ["#26272c", "#08080a"], ink: "#F1F3F4", sub: "#bdc1c6", star: G.yellow }
+    : { bg: ["#ffffff", "#e9edf2"], ink: "#202124", sub: "#5f6368", star: G.yellow };
 
 const copy = (lang: Lang) =>
   lang === "de" ? { tap: "HIER ANTIPPEN", review: "Bewerte uns auf" } : { tap: "TAP HERE", review: "Review Us On" };
@@ -44,7 +42,7 @@ function background(ctx: CanvasRenderingContext2D, w: number, h: number, theme: 
   // Fine frosted-acrylic grain.
   const n = Math.round((w * h) / 900);
   for (let i = 0; i < n; i++) {
-    ctx.fillStyle = theme === "classic" ? `rgba(0,0,0,${Math.random() * 0.025})` : `rgba(255,255,255,${Math.random() * 0.03})`;
+    ctx.fillStyle = theme === "white" ? `rgba(0,0,0,${Math.random() * 0.025})` : `rgba(255,255,255,${Math.random() * 0.03})`;
     ctx.fillRect(Math.random() * w, Math.random() * h, 1.5, 1.5);
   }
 }
@@ -218,18 +216,18 @@ export function paintBack(ctx: CanvasRenderingContext2D, w: number, h: number, o
   ctx.clearRect(0, 0, w, h);
   background(ctx, w, h, o.theme);
   ctx.save();
-  ctx.globalAlpha = o.theme === "classic" ? 0.28 : 0.18;
+  ctx.globalAlpha = o.theme === "white" ? 0.28 : 0.18;
   paintInlay(ctx, w, h);
   ctx.restore();
   outline(ctx, w, h, Math.min(w, h) * 0.075);
-  ctx.strokeStyle = o.theme === "classic" ? "rgba(32,33,36,0.12)" : "rgba(197,160,89,0.35)";
+  ctx.strokeStyle = o.theme === "white" ? "rgba(32,33,36,0.12)" : "rgba(255,255,255,0.18)";
   ctx.lineWidth = Math.min(w, h) * 0.006;
   ctx.stroke();
 
   const s = Math.min(w, h);
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = o.theme === "classic" ? "#8a6a2e" : "#d4af37";
+  ctx.fillStyle = o.theme === "white" ? "#8a6a2e" : "#d4af37";
   ctx.font = `700 ${s * 0.12}px ${o.serif}`;
   ctx.fillText("F&D", w / 2, h * 0.2);
   ctx.fillStyle = p.sub;

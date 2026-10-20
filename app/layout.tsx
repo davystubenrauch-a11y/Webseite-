@@ -3,12 +3,12 @@ import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "F&D Solutions | NFC Review Discs, High-End Websites & KI-Roomtours aus München",
+  title: "F&D Solutions | NFC-Bewertungsplatten, Websites & Roomtours aus München",
   description:
-    "F&D Solutions aus München: smarte runde NFC Google-Bewertungsplatten, maßgeschneiderte High-End-Websites und KI-gestützte 3D-Roomtours für Immobilien, Hotels und Gewerbe.",
+    "F&D Solutions aus München: smarte runde NFC Google-Bewertungsplatten, moderne Websites ab 300 € und 360°-Roomtours ab 300 € für Immobilien, Hotels und Gewerbe.",
   openGraph: {
     title: "F&D Solutions",
-    description: "Vertrauen, automatisiert. Zukunft, gebaut.",
+    description: "Google-Bewertungen per NFC, Websites ab 300 € und 360°-Roomtours aus München.",
     type: "website",
     locale: "de_DE",
   },
@@ -23,7 +23,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${serif.variable} ${display.variable} ${sans.variable}`}>
       <body className="font-sans">
         {children}
-        <div className="grain" aria-hidden />
       </body>
     </html>
   );

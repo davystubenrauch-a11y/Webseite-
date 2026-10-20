@@ -25,18 +25,18 @@ const fmtEuro = (n: number) => euro(Math.round(n));
 
 export default function Configurator() {
   return (
-    <section id="konfigurator" className="relative py-28 sm:py-36">
+    <section id="konfigurator" className="relative py-16 sm:py-24">
       <div aria-hidden className="absolute inset-x-0 top-1/3 -z-10 h-[600px] bg-gradient-to-b from-transparent via-gold/[0.04] to-transparent" />
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHead
           center
-          eyebrow="Interaktiver Konfigurator"
+          eyebrow="Konfigurator"
           title={
             <>
-              Gestalten Sie Ihr <span className="text-gold italic">Paket.</span> Live.
+              Stellen Sie Ihr <span className="text-gold">Paket</span> zusammen.
             </>
           }
-          lead="Passen Sie Ihr NFC-Produkt in Echtzeit an und stellen Sie Website- und Roomtour-Leistungen dazu. Ihre Auswahl wird automatisch in die Anfrage übernommen."
+          lead="Gestalten Sie Ihre NFC-Platte und wählen Sie bei Bedarf Website und Roomtour dazu. Ihre Auswahl übernehmen wir automatisch in die Anfrage."
         />
         <NfcStudio />
         <PackageBuilder />
@@ -53,11 +53,11 @@ function NfcStudio() {
   const discount = nfcDiscount(qty);
 
   return (
-    <Reveal className="mt-16 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+    <Reveal className="mt-10 grid gap-6 lg:grid-cols-[1.15fr_1fr]">
       {/* Stage */}
       <div className="glass rim relative min-h-[420px] overflow-hidden sm:min-h-[560px]">
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(197,160,89,0.14),transparent_60%)]" />
-        <LazyNfcStage className="absolute inset-0" particles={80} cameraZ={8} spin={0.3} />
+        <LazyNfcStage className="absolute inset-0" particles={0} cameraZ={8} spin={0.3} />
         <div className="pointer-events-none absolute left-5 top-5 flex flex-col gap-1">
           <span className="text-[10px] font-semibold uppercase tracking-[0.3em] text-white/50">Live-Vorschau</span>
           <span className="font-serif text-xl text-white">{nfcProduct.label}</span>
@@ -103,8 +103,8 @@ function NfcStudio() {
           </span>
         </div>
 
-        <Field label="Design">
-          <div className="grid grid-cols-3 gap-2">
+        <Field label="Farbe">
+          <div className="grid grid-cols-2 gap-2">
             {(Object.keys(themes) as Theme[]).map((k) => (
               <Choice key={k} active={theme === k} onClick={() => set({ theme: k })}>
                 <span className="mx-auto block h-8 w-8 rounded-full border border-white/20" style={{ background: themes[k].swatch }} />
@@ -204,10 +204,10 @@ function PackageBuilder() {
 
   return (
     <div className="mt-6 grid gap-6 lg:grid-cols-[1fr_1fr_0.85fr]">
-      <TierColumn title="Webentwicklung" icon="web" tiers={webTiers} selected={webTier} onPick={(id) => pick("webTier", "web", id)}>
+      <TierColumn title="Website" icon="web" tiers={webTiers} selected={webTier} onPick={(id) => pick("webTier", "web", id)}>
         {web && <AddOnList service="web" picked={picked} onToggle={toggleAddOn} />}
       </TierColumn>
-      <TierColumn title="KI-Roomtour" icon="roomtour" tiers={tourTiers} selected={tourTier} onPick={(id) => pick("tourTier", "roomtour", id)}>
+      <TierColumn title="Roomtour" icon="roomtour" tiers={tourTiers} selected={tourTier} onPick={(id) => pick("tourTier", "roomtour", id)}>
         {tour && <AddOnList service="roomtour" picked={picked} onToggle={toggleAddOn} />}
       </TierColumn>
 

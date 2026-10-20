@@ -2,7 +2,7 @@
 // contact sections is read from here, so update it in one place before going live.
 export const site = {
   name: "F&D Solutions",
-  claim: "Digitale Exzellenz. Made in München.",
+  claim: "Digitale Lösungen aus München.",
   email: "fd.solutions@web.de",
   city: "München",
   founders: [

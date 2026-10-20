@@ -80,17 +80,15 @@ body {
 
   .text-gold {
     background: linear-gradient(120deg, #9c7a35 0%, #d4af37 25%, #f6e7b0 45%, #c5a059 65%, #d4af37 100%);
-    background-size: 200% 100%;
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    animation: shimmer 8s linear infinite;
   }
 
   .btn-gold {
     @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-full px-7 py-3.5 text-sm font-semibold tracking-wide text-navy-900 transition-transform duration-300 hover:-translate-y-0.5;
     background: linear-gradient(135deg, #a98638, #d4af37 35%, #f3e2a9 55%, #c5a059 80%);
-    box-shadow: 0 10px 40px -10px rgba(212, 175, 55, 0.7), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    box-shadow: 0 8px 24px -12px rgba(212, 175, 55, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
   .btn-gold::after {
     content: "";
@@ -144,7 +142,7 @@ body {
   }
 
   .section-title {
-    @apply font-serif text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl;
+    @apply font-serif text-3xl font-semibold leading-[1.1] tracking-tight text-white sm:text-4xl lg:text-5xl;
   }
 }
 

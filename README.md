@@ -1,6 +1,6 @@
 # F&D Solutions: Firmen-Website
 
-Luxuriöse, futuristische One-Page-Website für **F&D Solutions** (München): runde NFC Google Review Discs, High-End-Webentwicklung und KI-Roomtours.
+Moderne, seriöse One-Page-Website für **F&D Solutions** (München): runde NFC Google Review Discs (Weiß/Schwarz), Webseiten-Erstellung ab 300 € und Roomtours ab 300 €.
 
 **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS · React Three Fiber + drei (three.js) · Framer Motion
 
@@ -15,10 +15,10 @@ npm run lint     # TypeScript-Prüfung
 
 | Bereich | Datei | Inhalt |
 |---|---|---|
-| Hero | `components/sections/Hero.tsx` | F&D-Logo, Slogan, CTAs, drehbare 3D-NFC-Platte mit Partikeln, Parallax |
+| Hero | `components/sections/Hero.tsx` | F&D-Logo, Slogan, CTAs, drehbare 3D-NFC-Platte |
 | Vision | `components/sections/About.tsx` | Werte + die Visitenkarte als neigbare 3D-Karte (klickbare Telefonnummern) |
 | Leistungen | `components/sections/Services.tsx` | 3 Showcase-Cards mit Live-Vorschauen (Tap-Animation, Browser-Mockup, 3D-Punktwolken-Roomtour) |
-| Konfigurator | `components/sections/Configurator.tsx` | NFC-Studio für die runde Review Disc (Design, Sprache, Firmenname, Menge, Preis) + Paket-Builder Web/Roomtour |
+| Konfigurator | `components/sections/Configurator.tsx` | NFC-Studio für die runde Review Disc (Farbe Weiß/Schwarz, Sprache, Firmenname, Menge, Preis) + Paket-Builder Web/Roomtour |
 | Referenzen | `components/sections/Trust.tsx` | Kennzahlen, Testimonials, Vertrauenssiegel |
 | Anfrage | `components/sections/Inquiry.tsx` | 4-Schritte-Wizard mit Validierung, Übersicht, Erfolgsmeldung |
 | Footer / Recht | `Footer.tsx`, `app/impressum`, `app/datenschutz` | Schnellnavigation, Kontakt, Social, Impressum, Datenschutz |
@@ -43,6 +43,6 @@ Ohne Konfiguration öffnet der Wizard automatisch eine vorausgefüllte E-Mail an
 
 ## Vor dem Livegang anpassen
 - `lib/site.ts`: **Postanschrift** (Pflicht fürs Impressum), Social-Links.
-- `lib/pricing.ts`: alle Preise sind **Platzhalter-Richtwerte**.
+- `lib/pricing.ts`: Einstiegspreise (Website und Roomtour je ab 300 €) sind vorgegeben, die höheren Pakete, Extras und der NFC-Preis sind **Platzhalter-Richtwerte**.
 - `lib/content.ts`: Die **Testimonials sind Platzhalter** und müssen durch echte, freigegebene Kundenstimmen ersetzt werden (erfundene Bewertungen sind nach UWG unzulässig).
 - `app/impressum`, `app/datenschutz`: Mustertexte, bitte rechtlich prüfen lassen.
