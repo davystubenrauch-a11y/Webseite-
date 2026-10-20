@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --petrol-950: #06141a;
+  --petrol-900: #0a1e26;
+  --petrol-800: #0f2a34;
+  --gold: #c9a55a;
+  --emerald: #2fa35b;
+  --stone: #f6f3ee;
+  /* Procedural marble: fractal noise banded into soft veins. */
+  --marble: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='m' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0035 0.009' numOctaves='6' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='1 0 0 0 0 1 0 0 0 0 1 0 0 0 0 0 0 0 0 1'/%3E%3CfeComponentTransfer%3E%3CfeFuncR type='table' tableValues='0.97 0.95 0.93 0.72 0.94 0.96 0.97'/%3E%3CfeFuncG type='table' tableValues='0.96 0.94 0.92 0.71 0.93 0.95 0.96'/%3E%3CfeFuncB type='table' tableValues='0.94 0.92 0.9 0.7 0.91 0.93 0.94'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23m)'/%3E%3C/svg%3E");
+  /* Same noise, keyed to alpha: pale veins only, for dark surfaces. */
+  --veins: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='900' height='900'%3E%3Cfilter id='v' x='0' y='0' width='1' height='1'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.0035 0.009' numOctaves='6' seed='11' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.95 0 0 0 0 0.93 0 0 0 0 0.86 1 0 0 0 0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='table' tableValues='0 0 0.05 0.9 0.05 0 0'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23v)'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+
+html {
+  background: var(--petrol-950);
+  overflow-x: clip;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: #f4f1ea;
+  background:
+    radial-gradient(1200px 700px at 80% -10%, rgba(47, 163, 91, 0.16), transparent 60%),
+    radial-gradient(900px 600px at 0% 25%, rgba(201, 165, 90, 0.1), transparent 60%),
+    linear-gradient(180deg, var(--petrol-800) 0%, var(--petrol-900) 45%, var(--petrol-950) 100%);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: rgba(47, 163, 91, 0.4);
+  color: #fff;
+}
+
+@layer components {
+  /* Light stone section with marble veining. */
+  .marble {
+    background-color: var(--stone);
+    background-image: linear-gradient(180deg, rgba(246, 243, 238, 0.35), rgba(237, 232, 224, 0.6)), var(--marble);
+    background-size: auto, 900px 900px;
+    color: #12262d;
+  }
+
+  /* Marble whisper over dark petrol sections. */
+  .marble-dark {
+    position: relative;
+    isolation: isolate;
+  }
+  .marble-dark::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background-image: var(--veins);
+    background-size: 900px 900px;
+    opacity: 0.09;
+    pointer-events: none;
+  }
+
+  .glass {
+    @apply relative rounded-3xl border border-white/10 bg-white/[0.04] backdrop-blur-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.06),
+      0 30px 80px -30px rgba(0, 0, 0, 0.8);
+  }
+
+  /* Gold rim light: a gradient border that glows on hover. */
+  .rim {
+    @apply relative;
+  }
+  .rim::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    padding: 1px;
+    border-radius: inherit;
+    background: linear-gradient(140deg, rgba(226, 196, 122, 0.7), rgba(201, 165, 90, 0.05) 35%, rgba(47, 163, 91, 0.12) 65%, rgba(226, 196, 122, 0.45));
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .rim::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    box-shadow: 0 0 40px -12px rgba(226, 196, 122, 0.55);
+    opacity: 0.35;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+  }
+  .rim:hover::after {
+    opacity: 1;
+  }
+
+  .text-gold {
+    background: linear-gradient(120deg, #8e6e2e 0%, #c9a55a 22%, #f6e7b0 45%, #c9a55a 65%, #e2c47a 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 6s linear infinite;
+  }
+
+  .text-emerald-grad {
+    background: linear-gradient(120deg, #14653a, #2fa35b 40%, #9ad86a 60%, #2fa35b);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shimmer 7s linear infinite;
+  }
+
+  /* Hollow display type with a gold hairline. */
+  .text-outline {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(226, 196, 122, 0.55);
+  }
+  .text-outline-dark {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(18, 38, 45, 0.25);
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-3 font-display text-[11px] font-semibold uppercase tracking-[0.38em] text-gold;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply h-px w-8 bg-gold/70;
+  }
+
+  .btn-gold {
+    @apply relative inline-flex items-center gap-3 overflow-hidden rounded-full px-7 py-4 font-display text-sm font-semibold uppercase tracking-[0.2em] text-petrol-950 transition-transform duration-300;
+    background: linear-gradient(120deg, #8e6e2e, #e2c47a 30%, #f8ecc4 50%, #c9a55a 70%, #8e6e2e);
+    background-size: 220% 100%;
+    animation: shimmer 6s linear infinite;
+    box-shadow: 0 12px 40px -12px rgba(226, 196, 122, 0.7);
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px);
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center gap-3 rounded-full border border-white/15 bg-white/[0.04] px-7 py-4 font-display text-sm font-semibold uppercase tracking-[0.2em] text-white backdrop-blur-md transition-colors duration-300 hover:border-gold/50 hover:text-gold-soft;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/70 backdrop-blur;
+  }
+
+  .fade-edges {
+    -webkit-mask-image: radial-gradient(closest-side, #000 70%, transparent);
+    mask-image: radial-gradient(closest-side, #000 70%, transparent);
+  }
+}
+
+.grain {
+  position: fixed;
+  inset: -50%;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.05;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
