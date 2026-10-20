@@ -26,7 +26,7 @@ export default function Studio({ accent = "#2FA35B" }: { accent?: string }) {
       <Environment resolution={256} frames={Infinity}>
         <color attach="background" args={["#071419"]} />
         <Lightformer form="rect" intensity={3} position={[0, 5, 3]} scale={[10, 2, 1]} color="#ffffff" />
-        <Lightformer form="rect" intensity={2.2} position={[-4, 0, 3]} rotation-y={Math.PI / 3} scale={[1.2, 10, 1]} color="#ffffff" />
+        <Lightformer form="rect" intensity={1.2} position={[-4, 0, 3]} rotation-y={Math.PI / 3} scale={[1.2, 10, 1]} color="#ffffff" />
         <Lightformer form="rect" intensity={1.1} position={[4.5, 0, 1]} rotation-y={-Math.PI / 2} scale={[6, 8, 1]} color="#C9A55A" />
         <Lightformer form="rect" intensity={0.8} position={[-5, 0, -2]} rotation-y={Math.PI / 2} scale={[6, 8, 1]} color={accent} />
         <Lightformer form="ring" intensity={1.5} position={[0, -4, 3]} scale={3} color="#F1E2B5" />

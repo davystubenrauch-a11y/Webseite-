@@ -187,12 +187,12 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
   const alu = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#c9ced2",
+        color: "#e6e9ec",
         metalness: 1,
-        roughness: 0.16,
+        roughness: 0.2,
         anisotropy: 0.6,
         clearcoat: 0.2,
-        envMapIntensity: 1,
+        envMapIntensity: 1.6,
         side: THREE.DoubleSide,
       }),
     [],
@@ -202,6 +202,12 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
     () =>
       new THREE.MeshPhysicalMaterial({
         map: label.color,
+        // The artwork also drives emission so the can keeps the photo's
+        // colours; scene lights only add shape and highlights on top.
+        emissive: new THREE.Color("#ffffff"),
+        emissiveMap: label.color,
+        emissiveIntensity: 0.55,
+        toneMapped: false,
         roughnessMap: label.pbr,
         metalnessMap: label.pbr,
         roughness: 1,
@@ -301,7 +307,7 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
     s.wet = THREE.MathUtils.damp(s.wet, chilled ? 1 : 0, 1.4, dt);
     labelMat.clearcoatNormalScale.setScalar(s.wet * 0.6);
     labelMat.clearcoatRoughness = 0.14 - s.wet * 0.06;
-    alu.roughness = 0.16 + s.wet * 0.1;
+    alu.roughness = 0.2 + s.wet * 0.1;
 
     const d = driven ?? restPose();
     if (group.current && tiltGroup.current) {
