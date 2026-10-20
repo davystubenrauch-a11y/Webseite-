@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 :root {
-  --navy-700: #1c232e;
-  --navy-900: #0f141c;
+  --navy-800: #1e293b;
+  --navy-900: #0f172a;
+  --navy-950: #080d1a;
   --gold: #c5a059;
   --gold-bright: #d4af37;
-  --royal: #2563eb;
   color-scheme: dark;
 }
 
@@ -21,12 +21,17 @@ body {
   min-height: 100vh;
   color: #f5f2ea;
   background:
-    radial-gradient(1200px 700px at 85% -10%, rgba(37, 99, 235, 0.18), transparent 60%),
-    radial-gradient(900px 600px at 0% 20%, rgba(197, 160, 89, 0.12), transparent 60%),
-    linear-gradient(180deg, var(--navy-700) 0%, var(--navy-900) 55%, #0b0f16 100%);
+    radial-gradient(1200px 700px at 85% -10%, rgba(66, 133, 244, 0.12), transparent 60%),
+    radial-gradient(900px 600px at 0% 20%, rgba(197, 160, 89, 0.1), transparent 60%),
+    linear-gradient(180deg, var(--navy-800) 0%, var(--navy-900) 45%, var(--navy-950) 100%);
   background-attachment: fixed;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
+}
+
+/* Cormorant defaults to old-style figures; prices and stats read better with lining numerals. */
+.font-serif {
+  font-variant-numeric: lining-nums;
 }
 
 ::selection {
@@ -111,6 +116,33 @@ body {
     @apply h-px w-8 bg-gradient-to-r from-transparent to-gold;
   }
 
+  /* Form controls */
+  .input {
+    @apply w-full rounded-xl border border-white/10 bg-navy-950/60 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition focus:border-gold/70 focus:bg-navy-950/80 focus:ring-2 focus:ring-gold/20;
+  }
+  .select {
+    @apply appearance-none pr-10;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23c5a059' stroke-width='2.5'><path d='m6 9 6 6 6-6'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+  }
+  .select option {
+    @apply bg-navy-900 text-white;
+  }
+  .checkbox {
+    @apply h-5 w-5 shrink-0 cursor-pointer appearance-none rounded-md border border-white/25 bg-navy-950/60 transition checked:border-gold checked:bg-gold;
+  }
+  .checkbox:checked {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%230f172a' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'><path d='m5 12.5 4.5 4.5L19 7.5'/></svg>");
+    background-size: 75%;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .footer-link {
+    @apply text-sm text-white/55 transition hover:text-gold-soft;
+  }
+
   .section-title {
     @apply font-serif text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-6xl;
   }
@@ -154,6 +186,39 @@ input[type="range"].gold-range::-moz-range-thumb {
   mask-composite: intersect;
 }
 
+/* Hero backdrop: fine gold grid that fades out towards the edges. */
+.hero-grid {
+  background-image: linear-gradient(rgba(197, 160, 89, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(197, 160, 89, 0.07) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse at 60% 45%, #000 10%, transparent 70%);
+  mask-image: radial-gradient(ellipse at 60% 45%, #000 10%, transparent 70%);
+}
+
+/* Subtle paper texture on the business card. */
+.card-texture {
+  background: radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.05), transparent 50%),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.012) 0 2px, transparent 2px 5px);
+}
+
+/* Four-colour ring of the review disc. */
+.nfc-ring {
+  background: conic-gradient(from -90deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0 100%);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+}
+
+/* Legal pages typography. */
+.legal h2 {
+  @apply mt-10 font-serif text-2xl font-semibold text-gold-soft;
+}
+.legal p {
+  @apply mt-3 leading-relaxed text-white/70;
+}
+.legal .note {
+  @apply mt-12 text-xs text-white/40;
+}
+
 .grain {
   pointer-events: none;
   position: fixed;
@@ -167,7 +232,9 @@ input[type="range"].gold-range::-moz-range-thumb {
   html {
     scroll-behavior: auto;
   }
-  .text-gold {
+  .text-gold,
+  .animate-marquee,
+  .animate-float {
     animation: none;
   }
 }

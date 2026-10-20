@@ -1,25 +1,26 @@
 import type { Metadata, Viewport } from "next";
-import { serif, sans } from "@/lib/fonts";
+import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "f&d solutions — Smart Review Cards, Websites & Airbnb Walkthroughs",
+  title: "F&D Solutions | NFC Review Cards, High-End Websites & KI-Roomtours aus München",
   description:
-    "Elite agency for smart NFC Google review cards, high-converting custom websites and immersive Airbnb property walkthroughs.",
+    "F&D Solutions aus München: smarte NFC Google-Bewertungskarten und Aufsteller, maßgeschneiderte High-End-Websites und KI-gestützte 3D-Roomtours für Immobilien, Hotels und Gewerbe.",
   openGraph: {
-    title: "f&d solutions",
-    description: "Elevate your online reputation & digital presence.",
+    title: "F&D Solutions",
+    description: "Vertrauen, automatisiert. Zukunft, gebaut.",
     type: "website",
+    locale: "de_DE",
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0F141C",
+  themeColor: "#0f172a",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${serif.variable} ${sans.variable}`}>
+    <html lang="de" className={`${serif.variable} ${display.variable} ${sans.variable}`}>
       <body className="font-sans">
         {children}
         <div className="grain" aria-hidden />

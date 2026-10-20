@@ -1,22 +1,15 @@
-const items = [
-  "Boutique Hotels",
-  "Fine Dining",
-  "Dental Clinics",
-  "Luxury Rentals",
-  "Salons & Spas",
-  "Real Estate",
-  "Fitness Studios",
-  "Private Clinics",
-];
+const items = ["NFC Review Cards", "Theken-Stands", "High-End Webentwicklung", "KI-Roomtours", "360° Walkthroughs", "Made in München", "5-Sterne-Automatisierung"];
 
+/** Endless gold ticker between hero and content. */
 export default function Marquee() {
+  const row = [...items, ...items];
   return (
-    <div className="relative overflow-hidden border-y border-white/10 bg-navy-900/40 py-6 [mask-image:linear-gradient(90deg,transparent,#000_15%,#000_85%,transparent)]">
-      <div className="flex w-max animate-[marquee_40s_linear_infinite] gap-14 motion-reduce:animate-none">
-        {[...items, ...items].map((it, i) => (
-          <span key={i} className="flex items-center gap-14 whitespace-nowrap font-serif text-2xl italic text-white/40">
-            {it}
-            <span className="text-sm not-italic text-gold">✦</span>
+    <div className="relative overflow-hidden border-y border-white/[0.06] bg-navy-950/40 py-5" aria-hidden>
+      <div className="flex w-max animate-marquee gap-12 whitespace-nowrap">
+        {row.map((t, i) => (
+          <span key={i} className="flex items-center gap-12 font-display text-sm tracking-[0.3em] text-white/45">
+            {t.toUpperCase()}
+            <span className="text-gold">✦</span>
           </span>
         ))}
       </div>

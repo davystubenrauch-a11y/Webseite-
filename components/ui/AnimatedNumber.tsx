@@ -5,7 +5,7 @@ import { animate } from "framer-motion";
 
 export default function AnimatedNumber({
   value,
-  format = (n) => Math.round(n).toLocaleString("en-US"),
+  format = (n) => Math.round(n).toLocaleString("de-DE"),
   className,
 }: {
   value: number;

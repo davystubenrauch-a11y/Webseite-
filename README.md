@@ -1,30 +1,48 @@
-# f&d solutions — landing page
+# F&D Solutions: Firmen-Website
 
-Luxury-tech landing page for **f&d solutions**: smart NFC Google review cards, custom website development and Airbnb property walkthroughs.
+Luxuriöse, futuristische One-Page-Website für **F&D Solutions** (München): NFC Google Review Cards & Stands, High-End-Webentwicklung und KI-Roomtours.
 
-**Stack:** Next.js (App Router) · Tailwind CSS · React Three Fiber + drei · GSAP ScrollTrigger · Framer Motion
+**Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS · React Three Fiber + drei (three.js) · Framer Motion
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000
+npm run dev      # http://localhost:3000
 npm run build && npm start
+npm run lint     # TypeScript-Prüfung
 ```
 
-## Sections
+## Aufbau
 
-1. **Hero:** photorealistic 3D round review card (`components/three/ReviewCard.tsx`). Matte navy body, brushed gold rim, Google "G", gold NFC waves and a real, scannable QR code. It idles in a 360° spin, tilts toward the pointer with spring physics, can be dragged to spin with inertia, and picks up live reflections from an animated procedural studio environment. Gold and blue particles drift off the rim. Scrolling drives the card's exit transform.
-2. **Live Card Studio:** typing a company name re-engraves the 3D card in real time. You can also pick the headline, metal finish (gold / champagne / platinum) and batch size, and flip the card to see the back.
-3. **Review ROI Calculator:** sliders for monthly clients, spend, rating and existing reviews. It projects review growth, rating and revenue lift. The assumptions live in `lib/roi.ts` and are shown in the UI.
-4. **Services:** service pillars, an interactive browser mockup (pointer tilt, desktop/mobile, brand themes, Lighthouse rings) and a cinematic 3D Airbnb walkthrough with hotspot nodes and an auto-tour.
-5. **Contact & Booking:** month calendar, time slots, service selection and a form. On confirm it offers an `.ics` calendar download and a pre-filled email to the agency.
+| Bereich | Datei | Inhalt |
+|---|---|---|
+| Hero | `components/sections/Hero.tsx` | F&D-Logo, Slogan, CTAs, drehbare 3D-NFC-Platte mit Partikeln, Parallax |
+| Vision | `components/sections/About.tsx` | Werte + die Visitenkarte als neigbare 3D-Karte (klickbare Telefonnummern) |
+| Leistungen | `components/sections/Services.tsx` | 3 Showcase-Cards mit Live-Vorschauen (Tap-Animation, Browser-Mockup, 3D-Punktwolken-Roomtour) |
+| Konfigurator | `components/sections/Configurator.tsx` | NFC-Studio (Form, Design, Sprache, Firmenname, Menge, Preis) + Paket-Builder Web/Roomtour |
+| Referenzen | `components/sections/Trust.tsx` | Kennzahlen, Testimonials, Vertrauenssiegel |
+| Anfrage | `components/sections/Inquiry.tsx` | 4-Schritte-Wizard mit Validierung, Übersicht, Erfolgsmeldung |
+| Footer / Recht | `Footer.tsx`, `app/impressum`, `app/datenschutz` | Schnellnavigation, Kontakt, Social, Impressum, Datenschutz |
 
-## Customise
+### 3D
+- `components/three/NfcProduct.tsx`: NFC-Produkt (Round Disc, Theken-Stand, Review Card) aus zwei Acrylhälften, dazwischen Kupfer-Antenne + NTAG-215-Chip. „NFC-Chip zeigen“ öffnet die Explosionsansicht. Ziehen zum Drehen (mit Trägheit).
+- `lib/drawNfc.ts`: Canvas-Artwork (Google-Farbring, „Tap Here“, Wordmark, Sterne, Firmenname, Chip-Inlay), live neu gezeichnet.
+- `components/three/RoomScan.tsx`: KI-Raumscan als Punktwolke mit Scan-Welle und Kamerafahrt.
+- Alle Canvases werden lazy geladen und pausieren außerhalb des Viewports.
 
-- `lib/site.ts`: agency email and the URL encoded in the card's QR code.
-- `lib/cardStore.ts`: card defaults and metal finishes.
-- `lib/drawCard.ts`: the canvas artwork for the card faces. Colour and PBR (roughness/metalness) maps are painted from the same layout, so the gold ink reads as metal.
-- `tailwind.config.ts`: brand palette (`navy`, `gold`, `royal`).
+## Anfrage-Versand
+`app/api/inquiry/route.ts` validiert serverseitig (gleiches Schema wie der Client, `lib/inquiry.ts`), mit Honeypot und Rate-Limit. Versand über Umgebungsvariablen:
 
-Booking has no backend. The confirmation step produces an `.ics` file and a `mailto:` link. To store bookings server-side, connect a form endpoint or a scheduling API (Cal.com, Calendly).
+```bash
+RESEND_API_KEY=...                 # E-Mail via resend.com
+INQUIRY_TO=fd.solutions@web.de
+INQUIRY_FROM="F&D Solutions <anfrage@ihre-domain.de>"
+# oder
+INQUIRY_WEBHOOK_URL=https://...    # Make, Zapier, n8n, Formspree …
+```
+Ohne Konfiguration öffnet der Wizard automatisch eine vorausgefüllte E-Mail an `fd.solutions@web.de`. Es geht also keine Anfrage verloren.
 
-Marketing figures in the hero and services sections (e.g. "9.4×", "+31% booking rate") are placeholders. Replace them with your own data.
+## Vor dem Livegang anpassen
+- `lib/site.ts`: **Postanschrift** (Pflicht fürs Impressum), Social-Links.
+- `lib/pricing.ts`: alle Preise sind **Platzhalter-Richtwerte**.
+- `lib/content.ts`: Die **Testimonials sind Platzhalter** und müssen durch echte, freigegebene Kundenstimmen ersetzt werden (erfundene Bewertungen sind nach UWG unzulässig).
+- `app/impressum`, `app/datenschutz`: Mustertexte, bitte rechtlich prüfen lassen.
