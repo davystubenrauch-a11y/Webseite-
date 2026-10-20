@@ -102,7 +102,7 @@ export default function Flavor() {
           </div>
 
           <div className="relative h-[46svh] sm:h-[60svh] lg:h-[80svh]">
-            <LazyCanCanvas className="absolute -inset-x-16 inset-y-0" driven={driven} spin={0} accent={note.color} particles={380} drops={active !== 2} cameraZ={7.6} />
+            <LazyCanCanvas className="absolute -inset-x-16 inset-y-0" driven={driven} spin={0} accent={note.color} particles={380} drops={active !== 2} cameraZ={8.3} />
           </div>
 
           {/* All notes stay mounted and crossfade, so fast scrubbing never strands an exit. */}

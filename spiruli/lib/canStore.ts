@@ -11,7 +11,7 @@ export type CanState = {
   face: { side: "front" | "back"; n: number };
 };
 
-let state: CanState = { chilled: true, autoSpin: true, face: { side: "front", n: 0 } };
+let state: CanState = { chilled: false, autoSpin: true, face: { side: "front", n: 0 } };
 const listeners = new Set<() => void>();
 
 export const canStore = {

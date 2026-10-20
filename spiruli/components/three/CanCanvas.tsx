@@ -59,7 +59,7 @@ export default function CanCanvas({
           <AlgaeParticles count={particles} />
           <AlgaeParticles count={Math.round(particles * 0.35)} variant="powder" inner={1.1} outer={2.2} />
           {drops && <CitrusDrops />}
-          <ContactShadows position={[0, -1.75, 0]} opacity={0.55} scale={5} blur={2.6} far={2.2} color="#000000" />
+          <ContactShadows position={[0, -1.68, 0]} opacity={0.55} scale={5} blur={2.6} far={2.2} color="#000000" />
         </Suspense>
       </Canvas>
     </div>

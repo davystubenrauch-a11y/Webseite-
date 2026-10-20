@@ -3,14 +3,14 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useFrame, useThree, type ThreeEvent } from "@react-three/fiber";
 import * as THREE from "three";
-import { LABEL_H, LABEL_W, paintLabel } from "@/lib/drawLabel";
+import { LABEL_H, LABEL_W, paintLabel, type FrontArt } from "@/lib/drawLabel";
 import { makeCondensation } from "@/lib/condensation";
 import { useCan } from "@/lib/canStore";
 import { display, sans } from "@/lib/fonts";
 
-/** Sleek can proportions (≈ 58 mm × 146 mm), in scene units. */
+/** Proportions taken from the product photo (label height ≈ 2.52 × diameter). */
 export const CAN_R = 0.58;
-const BODY_H = 2.44;
+const BODY_H = 2.92;
 const TOP = BODY_H / 2;
 
 /**
@@ -46,7 +46,31 @@ function useFontsReady() {
   return ready;
 }
 
-function useLabelTextures(ready: boolean) {
+function loadImage(src: string) {
+  return new Promise<HTMLImageElement>((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+/** Front artwork baked from the product photo (scripts/bake-label.py). */
+function useFrontArt() {
+  const [art, setArt] = useState<FrontArt | null>(null);
+  useEffect(() => {
+    let alive = true;
+    Promise.all([loadImage("/label/front.webp"), loadImage("/label/front-pbr.webp")])
+      .then(([color, pbr]) => alive && setArt({ color, pbr, width: color.naturalWidth }))
+      .catch(() => undefined);
+    return () => {
+      alive = false;
+    };
+  }, []);
+  return art;
+}
+
+function useLabelTextures(ready: boolean, front: FrontArt | null) {
   const { gl } = useThree();
   const tex = useMemo(() => {
     const make = () => {
@@ -68,11 +92,11 @@ function useLabelTextures(ready: boolean) {
 
   useEffect(() => {
     const fonts = { display: display.style.fontFamily, sans: sans.style.fontFamily };
-    paintLabel((tex.color.image as HTMLCanvasElement).getContext("2d")!, "color", fonts);
-    paintLabel((tex.pbr.image as HTMLCanvasElement).getContext("2d")!, "pbr", fonts);
+    paintLabel((tex.color.image as HTMLCanvasElement).getContext("2d")!, "color", fonts, front);
+    paintLabel((tex.pbr.image as HTMLCanvasElement).getContext("2d")!, "pbr", fonts, front);
     tex.color.needsUpdate = true;
     tex.pbr.needsUpdate = true;
-  }, [tex, ready]);
+  }, [tex, ready, front]);
 
   useEffect(
     () => () => {
@@ -122,36 +146,38 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
   const tiltGroup = useRef<THREE.Group>(null);
   const group = useRef<THREE.Group>(null);
   const ready = useFontsReady();
-  const label = useLabelTextures(ready);
+  const front = useFrontArt();
+  const label = useLabelTextures(ready, front);
   const { chilled, autoSpin, face } = useCan((s) => s);
 
   const geo = useMemo(
     () => ({
       body: new THREE.CylinderGeometry(CAN_R, CAN_R, BODY_H, 160, 1, true, Math.PI, Math.PI * 2),
       bottom: lathe([
-        [0, -TOP - 0.16],
-        [0.2, -TOP - 0.17],
-        [0.36, -TOP - 0.21],
-        [0.43, -TOP - 0.24],
-        [0.47, -TOP - 0.24],
-        [0.52, -TOP - 0.21],
-        [0.56, -TOP - 0.14],
-        [0.578, -TOP - 0.06],
+        [0, -TOP - 0.07],
+        [0.2, -TOP - 0.075],
+        [0.36, -TOP - 0.09],
+        [0.43, -TOP - 0.1],
+        [0.47, -TOP - 0.1],
+        [0.53, -TOP - 0.085],
+        [0.565, -TOP - 0.05],
+        [0.578, -TOP - 0.02],
         [CAN_R, -TOP],
       ]),
+      // Short neck: on the photo the label runs almost up to the rim.
       shoulder: lathe([
         [CAN_R, TOP],
-        [0.578, TOP + 0.05],
-        [0.56, TOP + 0.11],
-        [0.52, TOP + 0.17],
-        [0.49, TOP + 0.2],
-        [0.488, TOP + 0.22],
-        [0.497, TOP + 0.235],
-        [0.49, TOP + 0.25],
-        [0.474, TOP + 0.245],
-        [0.468, TOP + 0.22],
-        [0.462, TOP + 0.205],
-        [0, TOP + 0.205],
+        [0.578, TOP + 0.02],
+        [0.565, TOP + 0.045],
+        [0.54, TOP + 0.07],
+        [0.525, TOP + 0.085],
+        [0.524, TOP + 0.1],
+        [0.533, TOP + 0.112],
+        [0.526, TOP + 0.124],
+        [0.51, TOP + 0.12],
+        [0.504, TOP + 0.1],
+        [0.498, TOP + 0.088],
+        [0, TOP + 0.088],
       ]),
       tab: makeTabShape(),
     }),
@@ -180,11 +206,11 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
         metalnessMap: label.pbr,
         roughness: 1,
         metalness: 1,
-        clearcoat: 1,
-        clearcoatRoughness: 0.06,
+        clearcoat: 0.55,
+        clearcoatRoughness: 0.14,
         clearcoatNormalMap: label.drops,
         clearcoatNormalScale: new THREE.Vector2(0, 0),
-        envMapIntensity: 1.25,
+        envMapIntensity: 1,
       }),
     [label],
   );
@@ -274,7 +300,7 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
     // Condensation beads up or evaporates gradually.
     s.wet = THREE.MathUtils.damp(s.wet, chilled ? 1 : 0, 1.4, dt);
     labelMat.clearcoatNormalScale.setScalar(s.wet * 0.6);
-    labelMat.clearcoatRoughness = 0.06 + s.wet * 0.06;
+    labelMat.clearcoatRoughness = 0.14 - s.wet * 0.06;
     alu.roughness = 0.16 + s.wet * 0.1;
 
     const d = driven ?? restPose();
@@ -321,12 +347,12 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
         <mesh geometry={geo.bottom} material={alu} />
         <mesh geometry={geo.shoulder} material={alu} />
         {/* Pull tab and rivet */}
-        <mesh geometry={geo.tab} material={alu} position={[0, TOP + 0.212, 0.02]} rotation={[-Math.PI / 2, 0, 0]} />
-        <mesh material={alu} position={[0, TOP + 0.215, 0.06]}>
+        <mesh geometry={geo.tab} material={alu} position={[0, TOP + 0.095, 0.02]} rotation={[-Math.PI / 2, 0, 0]} />
+        <mesh material={alu} position={[0, TOP + 0.098, 0.06]}>
           <cylinderGeometry args={[0.035, 0.04, 0.02, 24]} />
         </mesh>
         {/* Score line of the opening */}
-        <mesh position={[0, TOP + 0.207, 0.25]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh position={[0, TOP + 0.09, 0.25]} rotation={[-Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.13, 0.004, 8, 64, Math.PI * 1.2]} />
           <meshStandardMaterial color="#8d9398" metalness={1} roughness={0.4} />
         </mesh>

@@ -114,7 +114,7 @@ export default function Hero() {
           className="relative order-1 -mx-5 h-[62svh] min-h-[440px] sm:mx-0 lg:order-2 lg:h-[78svh] lg:max-h-[820px]"
         >
           <div aria-hidden className="absolute left-1/2 top-1/2 h-[78%] w-[78%] max-w-[560px] -translate-x-1/2 -translate-y-1/2 animate-spin-slow rounded-full border border-dashed border-gold/15" />
-          <LazyCanCanvas className="absolute -inset-x-10 inset-y-0 sm:-inset-x-24" driven={driven} cameraZ={7.4} />
+          <LazyCanCanvas className="absolute -inset-x-10 inset-y-0 sm:-inset-x-24" driven={driven} cameraZ={8.1} />
           <div className="absolute inset-x-0 bottom-0 flex justify-center">
             <CanControls />
           </div>

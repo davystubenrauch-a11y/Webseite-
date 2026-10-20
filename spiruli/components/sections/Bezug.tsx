@@ -51,7 +51,7 @@ export default function Bezug() {
 
         <div className="relative h-[520px] lg:h-[680px]">
           <div aria-hidden className="absolute left-1/2 top-1/2 h-[70%] w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full border border-gold/15" />
-          <LazyCanCanvas className="absolute -inset-x-10 inset-y-0" particles={300} cameraZ={7.2} />
+          <LazyCanCanvas className="absolute -inset-x-10 inset-y-0" particles={300} cameraZ={7.9} />
         </div>
       </div>
     </section>
