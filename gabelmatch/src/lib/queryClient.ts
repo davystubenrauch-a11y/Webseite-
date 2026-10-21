@@ -9,6 +9,9 @@ function isClientError(error: unknown): boolean {
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
+      // Auch ohne erkannte Verbindung einmal versuchen: So zeigen Screens einen Fehler mit
+      // „Erneut versuchen“ statt eines fälschlich leeren Zustands (z. B. „Noch keine Gruppe“).
+      networkMode: 'offlineFirst',
       staleTime: 30_000,
       retry: (failureCount, error) => !isClientError(error) && failureCount < 2,
     },

@@ -19,6 +19,7 @@ export function OfflineBanner() {
     <View
       accessibilityRole="alert"
       accessibilityLiveRegion="polite"
+      pointerEvents="none"
       style={[styles.banner, { backgroundColor: colors.text, paddingTop: insets.top + spacing.xs }]}
     >
       <Ionicons name="cloud-offline-outline" size={18} color={colors.background} />
