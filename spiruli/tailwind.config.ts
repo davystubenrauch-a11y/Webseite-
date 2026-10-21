@@ -5,63 +5,35 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        // Petrol from the can: text, buttons, structure.
         petrol: {
-          950: "#06141A",
-          900: "#0A1E26",
-          800: "#0F2A34",
-          700: "#163845",
-          600: "#1F4A59",
+          DEFAULT: "#134A5A",
+          900: "#0E2F3A",
+          700: "#1B5A6C",
+          100: "#E3EEF0",
+          50: "#F1F6F7",
         },
-        gold: {
-          DEFAULT: "#C9A55A",
-          bright: "#E2C47A",
-          soft: "#F1E2B5",
-          deep: "#8E6E2E",
+        // Algae green: accents and highlights.
+        leaf: {
+          DEFAULT: "#3E9B4F",
+          dark: "#2C7A3B",
+          light: "#7DBE4A",
+          50: "#EEF6EB",
         },
-        emerald: {
-          DEFAULT: "#2FA35B",
-          bright: "#6CC04A",
-          deep: "#14653A",
+        sand: {
+          DEFAULT: "#F7F5F0",
+          200: "#EFEBE3",
+          300: "#E3DDD2",
         },
-        stone: {
-          50: "#F6F3EE",
-          100: "#EDE8E0",
-          200: "#DCD5CA",
-          400: "#9C958A",
-          700: "#4A4640",
-        },
+        muted: "#5B6B70",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
-        serif: ["var(--font-serif)", "Georgia", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        rim: "0 0 0 1px rgba(201,165,90,0.35), 0 0 24px -4px rgba(226,196,122,0.35)",
-        "rim-lg": "0 0 0 1px rgba(201,165,90,0.5), 0 0 60px -10px rgba(226,196,122,0.55)",
-        emerald: "0 10px 40px -10px rgba(47,163,91,0.6)",
-      },
-      keyframes: {
-        shimmer: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "100%": { backgroundPosition: "200% 50%" },
-        },
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        float: {
-          "0%,100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        spinSlow: {
-          to: { transform: "rotate(360deg)" },
-        },
-      },
-      animation: {
-        shimmer: "shimmer 6s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        "spin-slow": "spinSlow 40s linear infinite",
+        card: "0 1px 2px rgba(14,47,58,0.04), 0 12px 32px -16px rgba(14,47,58,0.18)",
+        lift: "0 2px 4px rgba(14,47,58,0.05), 0 24px 48px -20px rgba(14,47,58,0.28)",
       },
     },
   },

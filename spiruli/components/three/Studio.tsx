@@ -24,7 +24,7 @@ export default function Studio({ accent = "#2FA35B" }: { accent?: string }) {
       <pointLight position={[-3, 0.5, 4]} intensity={14} color="#cfe6ee" />
       <pointLight position={[3, -2, -1.5]} intensity={18} color="#E2C47A" />
       <Environment resolution={256} frames={Infinity}>
-        <color attach="background" args={["#071419"]} />
+        <color attach="background" args={["#dfe6e8"]} />
         <Lightformer form="rect" intensity={3} position={[0, 5, 3]} scale={[10, 2, 1]} color="#ffffff" />
         <Lightformer form="rect" intensity={1.2} position={[-4, 0, 3]} rotation-y={Math.PI / 3} scale={[1.2, 10, 1]} color="#ffffff" />
         <Lightformer form="rect" intensity={1.1} position={[4.5, 0, 1]} rotation-y={-Math.PI / 2} scale={[6, 8, 1]} color="#C9A55A" />
