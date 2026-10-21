@@ -6,11 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Wires declarative scroll animations:
- *  [data-reveal]            fade/rise in when entering the viewport
+ *  [data-reveal]            gentle fade/rise when entering the viewport
  *  [data-reveal-stagger]    children reveal in sequence
- *  [data-parallax="0.2"]    scrubbed vertical drift
- *  [data-scrub-line]        gold line that draws as the section scrolls
- *  [data-split]             headline words rise in, one after another
+ *  [data-scrub-line]        line that draws as the section scrolls
  */
 export default function ScrollStory() {
   useEffect(() => {
@@ -21,43 +19,22 @@ export default function ScrollStory() {
     const ctx = gsap.context(() => {
       gsap.utils.toArray<HTMLElement>("[data-reveal]").forEach((el) => {
         gsap.from(el, {
-          y: 48,
+          y: 24,
           opacity: 0,
-          filter: "blur(6px)",
-          duration: 1,
-          ease: "expo.out",
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          duration: 0.8,
+          ease: "power3.out",
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
 
       gsap.utils.toArray<HTMLElement>("[data-reveal-stagger]").forEach((el) => {
         gsap.from(el.children, {
-          y: 36,
+          y: 20,
           opacity: 0,
-          duration: 0.9,
-          ease: "expo.out",
-          stagger: 0.09,
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-split]").forEach((el) => {
-        gsap.from(el.querySelectorAll(".split-word"), {
-          yPercent: 110,
-          rotate: 3,
-          duration: 1.1,
-          ease: "expo.out",
-          stagger: 0.06,
-          scrollTrigger: { trigger: el, start: "top 85%", once: true },
-        });
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-parallax]").forEach((el) => {
-        const amount = parseFloat(el.dataset.parallax || "0.2");
-        gsap.to(el, {
-          yPercent: -amount * 100,
-          ease: "none",
-          scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+          duration: 0.7,
+          ease: "power3.out",
+          stagger: 0.08,
+          scrollTrigger: { trigger: el, start: "top 88%", once: true },
         });
       });
 
@@ -69,7 +46,7 @@ export default function ScrollStory() {
             scaleX: 1,
             ease: "none",
             transformOrigin: "left center",
-            scrollTrigger: { trigger: el, start: "top 90%", end: "top 40%", scrub: true },
+            scrollTrigger: { trigger: el, start: "top 90%", end: "top 45%", scrub: true },
           },
         );
       });

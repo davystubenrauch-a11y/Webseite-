@@ -16,12 +16,3 @@ export function isValidPzn(pzn: string) {
   return sum % 11 === Number(pzn[7]);
 }
 
-/** Scroll chapters, in page order. Drives the nav and the chapter rail. */
-export const chapters = [
-  { id: "hero", label: "Spiruli" },
-  { id: "story", label: "Expertise" },
-  { id: "geschmack", label: "Geschmack" },
-  { id: "matrix", label: "Nährstoffe" },
-  { id: "qualitaet", label: "Qualität" },
-  { id: "bezug", label: "Bezug" },
-];
