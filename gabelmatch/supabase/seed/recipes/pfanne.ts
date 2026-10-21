@@ -1,0 +1,253 @@
+import type { RecipeDef } from '../types';
+
+export const pfanne: RecipeDef[] = [
+  {
+    slug: 'gemuese-curry-kokos',
+    title: 'Gemüse-Curry mit Kokosmilch',
+    description: 'Mildes rotes Curry mit Süßkartoffel, Paprika und Zuckerschoten.',
+    category: 'pfanne_wok', diet: 'vegan', minutes: 30, difficulty: 1, servings: 3,
+    ingredients: [
+      ['suesskartoffel', 1], ['paprika', 1], ['zuckerschoten', 150, 'g'], ['zwiebel', 1], ['rote_currypaste', 2, 'EL'],
+      ['kokosmilch', 400, 'ml'], ['gemuesebruehe', 150, 'ml'], ['limette', 1], ['basmati', 200, 'g'], ['koriander', 0.5, 'Bund'],
+      ['sojasauce', 1, 'EL'], ['oel', 1, 'EL'],
+    ],
+    steps: [
+      'Reis garen. Süßkartoffel in kleine Würfel, Paprika in Streifen, Zwiebel in Spalten schneiden.',
+      'Zwiebel im Öl anbraten, Currypaste 1 Minute mitrösten.',
+      'Kokosmilch, Brühe und Süßkartoffel zugeben und 12 Minuten köcheln lassen.',
+      'Paprika und Zuckerschoten zugeben und 4 Minuten mitgaren. Mit Sojasauce und Limettensaft abschmecken und mit Koriander servieren.',
+    ],
+  },
+  {
+    slug: 'haehnchen-curry',
+    title: 'Cremiges Hähnchen-Curry',
+    description: 'Zartes Hähnchen in einer milden Tomaten-Sahne-Currysauce, inspiriert von Butter Chicken.',
+    category: 'pfanne_wok', diet: 'fleisch', minutes: 35, difficulty: 2, servings: 4,
+    ingredients: [
+      ['haehnchenbrust', 600, 'g'], ['joghurt', 150, 'g'], ['zwiebel', 1], ['knoblauch', 3, 'Zehe'], ['ingwer', 20, 'g'],
+      ['garam_masala', 2, 'TL'], ['kurkuma', 1, 'TL'], ['passierte_tomaten', 400, 'ml'], ['sahne', 150, 'ml'],
+      ['butter', 30, 'g'], ['basmati', 300, 'g'], ['koriander', 0.5, 'Bund'], ['salz', null],
+    ],
+    steps: [
+      'Hähnchen würfeln und mit Joghurt, der Hälfte der Gewürze und Salz mischen. 10 Minuten ziehen lassen. Reis garen.',
+      'Zwiebel, Knoblauch und Ingwer fein hacken und in Butter weich dünsten, restliche Gewürze kurz mitrösten.',
+      'Hähnchen samt Marinade zugeben und 5 Minuten braten.',
+      'Tomaten und Sahne zugeben und 12 Minuten sanft köcheln lassen. Abschmecken und mit Koriander und Reis servieren.',
+    ],
+  },
+  {
+    slug: 'erdnuss-nudeln',
+    title: 'Asia-Nudeln mit Erdnusssauce',
+    description: 'Klebrige, würzige Nudeln mit knackigem Gemüse und gerösteten Erdnüssen.',
+    category: 'pfanne_wok', diet: 'vegan', minutes: 20, difficulty: 1, servings: 2,
+    ingredients: [
+      ['reisnudeln', 200, 'g'], ['erdnussbutter', 3, 'EL'], ['sojasauce', 3, 'EL'], ['limette', 1], ['ahornsirup', 1, 'EL'],
+      ['knoblauch', 1, 'Zehe'], ['karotte', 1], ['paprika', 1], ['fruehlingszwiebel', 3], ['erdnuesse', 30, 'g'],
+      ['chiliflocken', 0.5, 'TL'], ['oel', 1, 'EL'],
+    ],
+    steps: [
+      'Nudeln nach Packungsangabe einweichen bzw. garen.',
+      'Erdnussbutter, Sojasauce, Limettensaft, Ahornsirup, gehackten Knoblauch und 4 EL heißes Wasser glatt rühren.',
+      'Karotte und Paprika in feine Streifen schneiden und im Öl im Wok 3 Minuten braten.',
+      'Nudeln und Sauce zugeben und gut durchschwenken. Mit Frühlingszwiebeln, gehackten Erdnüssen und Chili servieren.',
+    ],
+  },
+  {
+    slug: 'gebratene-nudeln-haehnchen',
+    title: 'Gebratene Nudeln mit Hähnchen',
+    description: 'Wie vom Lieblingsimbiss: Mie-Nudeln, Hähnchen, Gemüse und würzige Sojasauce.',
+    category: 'pfanne_wok', diet: 'fleisch', minutes: 25, difficulty: 1, servings: 2,
+    ingredients: [
+      ['mie_nudeln', 200, 'g'], ['haehnchenbrust', 250, 'g'], ['pak_choi', 2], ['karotte', 1], ['fruehlingszwiebel', 2],
+      ['knoblauch', 1, 'Zehe'], ['ingwer', 10, 'g'], ['sojasauce', 4, 'EL'], ['honig', 1, 'TL'], ['sesamoel', 1, 'TL'], ['oel', 2, 'EL'],
+    ],
+    steps: [
+      'Nudeln nach Packungsangabe garen und abtropfen lassen.',
+      'Hähnchen in dünne Streifen schneiden und im heißen Öl im Wok 4 Minuten braten.',
+      'Karotte in Streifen, Pak Choi in Stücke schneiden und mit Knoblauch und Ingwer 3 Minuten mitbraten.',
+      'Nudeln, Sojasauce, Honig und Sesamöl zugeben und kräftig durchschwenken. Mit Frühlingszwiebeln servieren.',
+    ],
+  },
+  {
+    slug: 'zuercher-geschnetzeltes',
+    title: 'Geschnetzeltes Zürcher Art',
+    description: 'Zartes Geschnetzeltes mit Champignons in Rahmsauce – traditionell mit Rösti oder Spätzle.',
+    category: 'pfanne_wok', diet: 'fleisch', minutes: 30, difficulty: 2, servings: 3,
+    ingredients: [
+      ['geschnetzeltes', 500, 'g'], ['champignons', 250, 'g'], ['zwiebel', 1], ['weisswein', 100, 'ml'], ['sahne', 200, 'ml'],
+      ['mehl', 1, 'EL'], ['butter', 20, 'g'], ['petersilie', 0.5, 'Bund'], ['spaetzle', 500, 'g'], ['oel', 2, 'EL'],
+      ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Fleisch trocken tupfen, mit Mehl bestäuben und portionsweise im heißen Öl kurz scharf anbraten. Herausnehmen.',
+      'Zwiebel und Pilze in Butter anbraten, mit Wein ablöschen und etwas einkochen lassen.',
+      'Sahne zugießen, 3 Minuten köcheln lassen, Fleisch zurückgeben und nur noch erhitzen.',
+      'Mit Salz, Pfeffer und Petersilie abschmecken. Spätzle erhitzen und dazu servieren.',
+    ],
+  },
+  {
+    slug: 'shakshuka',
+    title: 'Shakshuka',
+    description: 'In würziger Paprika-Tomatensauce pochierte Eier – großartig mit frischem Brot.',
+    category: 'pfanne_wok', diet: 'vegetarisch', minutes: 30, difficulty: 1, servings: 2,
+    ingredients: [
+      ['eier', 4], ['gehackte_tomaten', 1, 'Dose'], ['paprika', 1], ['zwiebel', 1], ['knoblauch', 2, 'Zehe'],
+      ['kreuzkuemmel', 1, 'TL'], ['paprikapulver', 1, 'TL'], ['chiliflocken', 0.5, 'TL'], ['feta', 60, 'g'],
+      ['petersilie', 0.5, 'Bund'], ['olivenoel', 2, 'EL'], ['baguette', 0.5], ['salz', null],
+    ],
+    steps: [
+      'Zwiebel und Paprika würfeln und im Öl 6 Minuten weich braten. Knoblauch und Gewürze kurz mitrösten.',
+      'Tomaten zugeben, salzen und 10 Minuten einköcheln lassen.',
+      'Vier Mulden in die Sauce drücken, Eier hineinschlagen und zugedeckt 6–8 Minuten stocken lassen.',
+      'Mit Feta und Petersilie bestreuen und direkt aus der Pfanne mit Brot servieren.',
+    ],
+  },
+  {
+    slug: 'tofu-teriyaki-pfanne',
+    title: 'Tofu-Gemüse-Pfanne Teriyaki',
+    description: 'Knuspriger Tofu und buntes Gemüse in glänzender Teriyakisauce.',
+    category: 'pfanne_wok', diet: 'vegan', minutes: 25, difficulty: 1, servings: 2,
+    ingredients: [
+      ['tofu', 250, 'g'], ['brokkoli', 0.5], ['paprika', 1], ['karotte', 1], ['sojasauce', 4, 'EL'], ['ahornsirup', 2, 'EL'],
+      ['ingwer', 10, 'g'], ['knoblauch', 1, 'Zehe'], ['speisestaerke', 2, 'TL'], ['reis', 150, 'g'], ['sesam', 1, 'EL'], ['oel', 2, 'EL'],
+    ],
+    steps: [
+      'Reis garen. Tofu trocken tupfen, würfeln, mit 1 TL Stärke bestäuben und im Öl rundum knusprig braten. Herausnehmen.',
+      'Gemüse klein schneiden und in derselben Pfanne 5 Minuten bissfest braten.',
+      'Sojasauce, Ahornsirup, geriebenen Ingwer, Knoblauch, restliche Stärke und 4 EL Wasser verrühren, zugießen und aufkochen.',
+      'Tofu unterheben, mit Sesam bestreuen und mit Reis servieren.',
+    ],
+  },
+  {
+    slug: 'knoblauch-chili-garnelen',
+    title: 'Knoblauch-Chili-Garnelen',
+    description: 'In Olivenöl gebratene Garnelen mit viel Knoblauch – dazu Baguette zum Tunken.',
+    category: 'pfanne_wok', diet: 'fisch', minutes: 15, difficulty: 1, servings: 2,
+    ingredients: [
+      ['garnelen', 300, 'g'], ['knoblauch', 4, 'Zehe'], ['chili', 1], ['olivenoel', 5, 'EL'], ['zitrone', 0.5],
+      ['petersilie', 0.5, 'Bund'], ['baguette', 1], ['salz', null],
+    ],
+    steps: [
+      'Knoblauch in Scheiben, Chili in Ringe schneiden.',
+      'Öl in einer Pfanne erhitzen, Knoblauch und Chili 1 Minute anschwitzen.',
+      'Garnelen zugeben und 2–3 Minuten braten, bis sie rosa sind. Salzen.',
+      'Mit Zitronensaft und Petersilie vollenden und mit Baguette servieren.',
+    ],
+  },
+  {
+    slug: 'pad-thai-tofu',
+    title: 'Pad Thai mit Tofu',
+    description: 'Thailändische Reisnudeln mit Ei, Tofu, Limette und Erdnüssen.',
+    category: 'pfanne_wok', diet: 'vegetarisch', minutes: 30, difficulty: 2, servings: 2,
+    ingredients: [
+      ['reisnudeln', 200, 'g'], ['tofu', 150, 'g'], ['eier', 2], ['fruehlingszwiebel', 3], ['knoblauch', 2, 'Zehe'],
+      ['sojasauce', 3, 'EL'], ['zucker', 1, 'EL'], ['limette', 1], ['tomatenmark', 1, 'TL'], ['erdnuesse', 40, 'g'],
+      ['koriander', 0.5, 'Bund'], ['chiliflocken', 0.5, 'TL'], ['oel', 3, 'EL'],
+    ],
+    steps: [
+      'Reisnudeln in heißem Wasser einweichen, bis sie weich, aber noch bissfest sind. Abgießen.',
+      'Sojasauce, Zucker, Limettensaft, Tomatenmark und 3 EL Wasser verrühren.',
+      'Tofu würfeln und im Öl im Wok goldbraun braten. Knoblauch zugeben, dann an den Rand schieben und die Eier darin verrühren.',
+      'Nudeln und Sauce zugeben und 2–3 Minuten schwenken. Mit Frühlingszwiebeln, gehackten Erdnüssen, Koriander und Chili servieren.',
+    ],
+  },
+  {
+    slug: 'frikadellen-gurkensalat',
+    title: 'Frikadellen mit Gurkensalat',
+    description: 'Saftige Frikadellen nach Hausmacherart mit frischem Dill-Gurkensalat.',
+    category: 'pfanne_wok', diet: 'fleisch', minutes: 35, difficulty: 1, servings: 4,
+    ingredients: [
+      ['hackfleisch', 500, 'g'], ['broetchen', 1], ['zwiebel', 1], ['eier', 1], ['senf', 1, 'TL'], ['majoran', 1, 'TL'],
+      ['gurke', 1], ['joghurt', 150, 'g'], ['dill', 0.5, 'Bund'], ['essig', 1, 'EL'], ['oel', 3, 'EL'],
+      ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Brötchen in Wasser einweichen und gut ausdrücken. Zwiebel fein würfeln.',
+      'Hack mit Brötchen, Zwiebel, Ei, Senf, Majoran, Salz und Pfeffer verkneten und zu 8 Frikadellen formen.',
+      'Im Öl bei mittlerer Hitze von jeder Seite 5–6 Minuten braten.',
+      'Gurke hobeln, mit Joghurt, Essig, Dill, Salz und Pfeffer mischen und dazu servieren.',
+    ],
+  },
+  {
+    slug: 'chana-masala',
+    title: 'Kichererbsen-Curry (Chana Masala)',
+    description: 'Nordindisches Kichererbsen-Curry mit Tomaten, Ingwer und Garam Masala.',
+    category: 'pfanne_wok', diet: 'vegan', minutes: 30, difficulty: 1, servings: 3,
+    ingredients: [
+      ['kichererbsen', 2, 'Dose'], ['gehackte_tomaten', 1, 'Dose'], ['zwiebel', 2], ['knoblauch', 3, 'Zehe'], ['ingwer', 20, 'g'],
+      ['garam_masala', 2, 'TL'], ['kreuzkuemmel', 1, 'TL'], ['kurkuma', 0.5, 'TL'], ['chiliflocken', 0.5, 'TL'],
+      ['zitrone', 0.5], ['koriander', 0.5, 'Bund'], ['basmati', 200, 'g'], ['oel', 2, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Reis garen. Zwiebeln fein würfeln und im Öl 8 Minuten goldbraun braten.',
+      'Knoblauch und Ingwer fein hacken, mit allen Gewürzen 1 Minute mitrösten.',
+      'Tomaten und abgespülte Kichererbsen zugeben, mit 150 ml Wasser auffüllen und 15 Minuten köcheln lassen.',
+      'Einige Kichererbsen zerdrücken, damit die Sauce bindet. Mit Zitronensaft, Salz und Koriander abschmecken.',
+    ],
+  },
+  {
+    slug: 'schnitzel-wiener-art',
+    title: 'Schnitzel Wiener Art',
+    description: 'Hauchdünn geklopft, goldbraun paniert, dazu Zitrone und Gurkensalat oder Pommes.',
+    category: 'pfanne_wok', diet: 'fleisch', minutes: 30, difficulty: 2, servings: 4,
+    ingredients: [
+      ['schnitzel', 4], ['mehl', 50, 'g'], ['eier', 2], ['semmelbroesel', 100, 'g'], ['butter', 30, 'g'], ['oel', 150, 'ml'],
+      ['zitrone', 1], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Schnitzel zwischen Frischhaltefolie dünn klopfen, salzen und pfeffern.',
+      'Mehl, verquirlte Eier und Semmelbrösel in drei tiefe Teller geben. Schnitzel nacheinander darin wenden, die Panade nicht andrücken.',
+      'Öl und Butter in einer großen Pfanne erhitzen. Schnitzel schwimmend von jeder Seite 2–3 Minuten goldbraun backen, dabei die Pfanne schwenken, damit die Panade souffliert.',
+      'Auf Küchenpapier abtropfen lassen und mit Zitronenspalten servieren.',
+    ],
+  },
+  {
+    slug: 'pilzpfanne-semmelknoedel',
+    title: 'Rahmpilze mit gebratenen Knödeln',
+    description: 'Champignons in Rahmsauce mit in Scheiben gebratenen Semmelknödeln aus Brötchen vom Vortag.',
+    category: 'pfanne_wok', diet: 'vegetarisch', minutes: 45, difficulty: 2, servings: 3,
+    ingredients: [
+      ['broetchen', 5], ['milch', 250, 'ml'], ['eier', 2], ['zwiebel', 2], ['petersilie', 1, 'Bund'], ['champignons', 500, 'g'],
+      ['sahne', 200, 'ml'], ['butter', 30, 'g'], ['muskat', 1, 'Prise'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Brötchen klein würfeln, mit warmer Milch übergießen und 10 Minuten ziehen lassen. Eine Zwiebel würfeln und in etwas Butter anschwitzen.',
+      'Mit Eiern, der Hälfte der Petersilie, Salz und Muskat zur Brötchenmasse geben, verkneten und zu zwei Rollen formen. In Frischhaltefolie wickeln und 20 Minuten in siedendem Wasser garen.',
+      'Pilze in Scheiben schneiden und mit der zweiten gewürfelten Zwiebel in Butter kräftig braten. Sahne zugeben und sämig einkochen.',
+      'Knödelrollen in Scheiben schneiden und in einer Pfanne goldbraun braten. Mit Rahmpilzen und Petersilie servieren.',
+    ],
+  },
+  {
+    slug: 'fisch-zitronenbutter',
+    title: 'Fischfilet in Zitronenbutter',
+    description: 'Gebratenes Fischfilet mit Kapern-Zitronenbutter, Petersilienkartoffeln und Erbsen.',
+    category: 'pfanne_wok', diet: 'fisch', minutes: 25, difficulty: 1, servings: 2,
+    ingredients: [
+      ['fischfilet', 300, 'g'], ['kartoffel', 500, 'g'], ['erbsen_tk', 150, 'g'], ['butter', 40, 'g'], ['zitrone', 1],
+      ['kapern', 1, 'EL'], ['mehl', 2, 'EL'], ['petersilie', 0.5, 'Bund'], ['oel', 1, 'EL'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Kartoffeln schälen und in Salzwasser 20 Minuten garen. Erbsen die letzten 3 Minuten mitgaren.',
+      'Fisch trocken tupfen, salzen, in Mehl wenden und im Öl von jeder Seite 2–3 Minuten braten. Herausnehmen.',
+      'Butter in der Pfanne aufschäumen lassen, Kapern und Zitronensaft zugeben.',
+      'Kartoffeln mit Petersilie schwenken und mit Fisch und Erbsen anrichten. Zitronenbutter darüberträufeln.',
+    ],
+  },
+  {
+    slug: 'ratatouille',
+    title: 'Ratatouille',
+    description: 'Provenzalisches Schmorgemüse mit Kräutern – schmeckt aufgewärmt sogar noch besser.',
+    category: 'pfanne_wok', diet: 'vegan', minutes: 50, difficulty: 1, servings: 4,
+    ingredients: [
+      ['aubergine', 1], ['zucchini', 2], ['paprika', 2], ['zwiebel', 1], ['knoblauch', 3, 'Zehe'], ['gehackte_tomaten', 1, 'Dose'],
+      ['thymian', 3, 'Zweig'], ['rosmarin', 1, 'Zweig'], ['olivenoel', 5, 'EL'], ['basilikum', 0.5, 'Bund'], ['baguette', 1],
+      ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Gemüse in gleich große Würfel schneiden.',
+      'Aubergine im Öl 5 Minuten anbraten, dann Zwiebel, Paprika und Zucchini zugeben und weitere 5 Minuten braten.',
+      'Knoblauch, Tomaten und Kräuter zugeben und zugedeckt bei kleiner Hitze 25 Minuten schmoren.',
+      'Abschmecken, mit Basilikum bestreuen und mit Baguette servieren.',
+    ],
+  },
+];
