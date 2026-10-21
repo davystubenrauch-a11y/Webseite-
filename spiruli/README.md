@@ -15,17 +15,21 @@ When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
 
 ## Sections
 
-1. **Hero:** photorealistic 3D can (`components/three/SpiruliCan.tsx`). The aluminium body, neck, lid and pull tab are built in code. The front artwork is the real can design: `scripts/bake-label.py` unwraps it from the product photo (`public/spiruli-can.jpg`), removes the baked-in studio lighting, and writes a colour texture plus a PBR map (`public/label/`), so the gold ink renders as metal. The back of the label and the gold band are painted in `lib/drawLabel.ts`. The can auto-rotates 360°, can be dragged with inertia, tilts toward the pointer and snaps to the front or back. "Eiskalt" adds condensation. Spirulina micro-particles, citrus drops and elderberries float around it.
-2. **Benefits:** vegan, natural B vitamins, 18+ amino acids, tested quality.
-3. **Story & Expertise:** biotechnologists, therapists and master brewers, plus a scroll-drawn process timeline ending in the SGS Fresenius certification.
-4. **Flavor Profile:** pinned scroll scene. The can turns once per note (Holunder → Zitrus → Algen) while the light colour and copy change.
-5. **Ingredient & Nutrition Matrix:** periodic-table grid of the B-complex, vitamin C, folic acid and 18 amino acids plus GABA. It has filters (B-Komplex, Aminosäuren, Essentiell, BCAA…) and a detail panel. Data lives in `lib/nutrients.ts`.
-6. **Medical Grade:** PZN 11110571 seal and a real, scannable Code 39 PZN barcode (`lib/code39.ts`), with a live PZN-8 check-digit verification. Also shows the IFA GmbH listing and the SGS Fresenius quality card.
-7. **Bezug:** pharmacy ordering steps, a copy-PZN button and a trade-inquiry CTA.
+1. **Hero (lime):** giant "Natürliche Energie." headline with the 3D can floating between the words. Ingredient illustrations drift with the pointer, and a rotating "Dreh mich!" sticker invites visitors to drag the can.
+2. **Ticker:** tilted band with the key facts.
+3. **Manifest:** the product statement in large type; its words ink in as you scroll.
+4. **Zutaten:** horizontal ingredient journey (Holunder, Zitrus, Spirulina, Fermentation). It is pinned and scrolled sideways on desktop and swipeable on mobile.
+5. **Die Dose:** the 3D can with four callouts (vegan, B vitamins, amino acids, PZN), plus spin/back/"Eiskalt" controls.
+6. **Nährstoffe:** vitamin accordion with the EU claims, and an amino-acid chip cloud with filters (Essentiell, BCAA).
+7. **Wer dahinter steckt:** biotechnologists, therapists, master brewers.
+8. **Geprüft & gelistet:** PZN ticket with a scannable barcode and check-digit maths, plus the SGS Fresenius stamp.
+9. **FAQ** and a final **"Frag in deiner Apotheke"** call to action.
+
+The 3D can (`components/three/SpiruliCan.tsx`) uses the real artwork, unwrapped from the product photo by `scripts/bake-label.py` into `public/label/`.
 
 ## Design
 
-Light, calm look: warm off-white background, petrol from the can for text and buttons, algae green as the accent (`tailwind.config.ts`). Manrope for all text; Josefin Sans only for the SPIRULI wordmark.
+Colour blocks taken from the ingredients: lime, elderberry, citrus and algae on cream, anchored by the can's petrol (`tailwind.config.ts`). Bricolage Grotesque for text, Caveat for handwritten notes, Josefin Sans for the SPIRULI wordmark. Ink outlines and offset "sticker" shadows give the page a printed, crafted feel.
 
 ## Updating the can artwork
 

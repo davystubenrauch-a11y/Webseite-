@@ -1,39 +1,33 @@
 import type { Config } from "tailwindcss";
 
+/** Palette taken from the ingredients: lime, elderberry, citrus, algae — anchored by the can's petrol. */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        // Petrol from the can: text, buttons, structure.
-        petrol: {
-          DEFAULT: "#134A5A",
-          900: "#0E2F3A",
-          700: "#1B5A6C",
-          100: "#E3EEF0",
-          50: "#F1F6F7",
-        },
-        // Algae green: accents and highlights.
-        leaf: {
-          DEFAULT: "#3E9B4F",
-          dark: "#2C7A3B",
-          light: "#7DBE4A",
-          50: "#EEF6EB",
-        },
-        sand: {
-          DEFAULT: "#F7F5F0",
-          200: "#EFEBE3",
-          300: "#E3DDD2",
-        },
-        muted: "#5B6B70",
+        ink: "#12343F",
+        petrol: { DEFAULT: "#134A5A", soft: "#DCEBEE" },
+        lime: { DEFAULT: "#D4EE6F", deep: "#A8CF3F" },
+        cream: { DEFAULT: "#FBF7EE", 200: "#F2EBDD", 300: "#E4DBC8" },
+        berry: { DEFAULT: "#5B2E6E", soft: "#ECDFF3" },
+        citrus: { DEFAULT: "#F2A91B", soft: "#FFF0C4" },
+        algae: { DEFAULT: "#2F8A4E", soft: "#DDEFD9" },
       },
       fontFamily: {
-        display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
+        hand: ["var(--font-hand)", "cursive"],
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
-      boxShadow: {
-        card: "0 1px 2px rgba(14,47,58,0.04), 0 12px 32px -16px rgba(14,47,58,0.18)",
-        lift: "0 2px 4px rgba(14,47,58,0.05), 0 24px 48px -20px rgba(14,47,58,0.28)",
+      keyframes: {
+        marquee: { to: { transform: "translateX(-50%)" } },
+        spin: { to: { transform: "rotate(360deg)" } },
+        bob: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-12px)" } },
+      },
+      animation: {
+        marquee: "marquee 30s linear infinite",
+        "spin-slow": "spin 18s linear infinite",
+        bob: "bob 6s ease-in-out infinite",
       },
     },
   },
