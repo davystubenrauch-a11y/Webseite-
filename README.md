@@ -1,5 +1,7 @@
 # F&D Solutions: Firmen-Website
 
+> 📱 Die mobile App **Gabelmatch** liegt eigenständig im Ordner [`gabelmatch/`](gabelmatch/README.md).
+
 Moderne, seriöse One-Page-Website für **F&D Solutions** (München): runde NFC Google Review Discs (Weiß/Schwarz), Webseiten-Erstellung ab 300 € und Roomtours ab 300 €.
 
 **Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS · React Three Fiber + drei (three.js) · Framer Motion

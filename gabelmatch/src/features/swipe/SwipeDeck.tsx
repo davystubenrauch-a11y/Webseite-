@@ -80,34 +80,36 @@ function DeckCard({ recipe, index, topX, threshold, screenWidth, coverage, onSwi
   const passed = useSharedValue(0); // -1 / 0 / 1: welche Schwelle gerade überschritten ist
 
   const finish = (liked: boolean) => {
-    topX.value = 0;
+    topX.set(0);
     onSwipe(recipe, liked);
   };
 
   const flyOut = (liked: boolean, velocityX = 0) => {
     'worklet';
     const target = (liked ? 1 : -1) * screenWidth * 1.5;
-    x.value = withTiming(target, { duration: Math.max(160, 320 - Math.abs(velocityX) / 12) }, (done) => {
-      if (done) scheduleOnRN(finish, liked);
-    });
-    topX.value = withTiming(liked ? threshold : -threshold, { duration: 200 });
+    x.set(
+      withTiming(target, { duration: Math.max(160, 320 - Math.abs(velocityX) / 12) }, (done) => {
+        if (done) scheduleOnRN(finish, liked);
+      }),
+    );
+    topX.set(withTiming(liked ? threshold : -threshold, { duration: 200 }));
     // flyOut läuft per Geste auf dem UI-Thread, per Button/Screenreader auf dem JS-Thread
     if ((globalThis as { _WORKLET?: boolean })._WORKLET) scheduleOnRN(haptics.swipe);
     else haptics.swipe();
   };
 
-  useImperativeHandle(deckRef, () => ({ swipe: (liked: boolean) => flyOut(liked) }), [recipe.id]);
+  useImperativeHandle(deckRef, () => ({ swipe: (liked: boolean) => flyOut(liked) }));
 
   const pan = usePanGesture({
     enabled: isTop,
     minDistance: 6,
     onUpdate: (event) => {
-      x.value = event.translationX;
-      y.value = event.translationY * 0.4;
-      topX.value = event.translationX;
+      x.set(event.translationX);
+      y.set(event.translationY * 0.4);
+      topX.set(event.translationX);
       const zone = event.translationX > threshold ? 1 : event.translationX < -threshold ? -1 : 0;
-      if (zone !== passed.value) {
-        passed.value = zone;
+      if (zone !== passed.get()) {
+        passed.set(zone);
         if (zone !== 0) scheduleOnRN(haptics.tick);
       }
     },
@@ -116,10 +118,10 @@ function DeckCard({ recipe, index, topX, threshold, screenWidth, coverage, onSwi
       if (Math.abs(event.translationX) > threshold || fling) {
         flyOut(event.translationX > 0 || (fling && event.velocityX > 0), event.velocityX);
       } else {
-        x.value = withSpring(0, { damping: 16, stiffness: 180 });
-        y.value = withSpring(0, { damping: 16, stiffness: 180 });
-        topX.value = withSpring(0, { damping: 16, stiffness: 180 });
-        passed.value = 0;
+        x.set(withSpring(0, { damping: 16, stiffness: 180 }));
+        y.set(withSpring(0, { damping: 16, stiffness: 180 }));
+        topX.set(withSpring(0, { damping: 16, stiffness: 180 }));
+        passed.set(0);
       }
     },
   });

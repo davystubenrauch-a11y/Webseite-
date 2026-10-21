@@ -17,7 +17,9 @@ import { matchKeys } from './api';
 export function useRealtimeSync(userId: string, onMatch: (match: MatchRow) => void) {
   const client = useQueryClient();
   const onMatchRef = useRef(onMatch);
-  onMatchRef.current = onMatch;
+  useEffect(() => {
+    onMatchRef.current = onMatch;
+  });
 
   useEffect(() => {
     const channel = supabase

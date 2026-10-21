@@ -1,3 +1,4 @@
+/* eslint-disable import/first -- jest.mock muss vor dem Import stehen */
 jest.mock('expo-linking', () => ({ createURL: (path: string) => `gabelmatch://${path}` }));
 
 import { inviteLink, normalizeInviteCode } from '../invite';

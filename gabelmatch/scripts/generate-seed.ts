@@ -6,22 +6,17 @@
  * Seed beliebig oft eingespielt werden – vorhandene Rezepte werden aktualisiert,
  * bereits hinterlegte Fotos (image_url) bleiben erhalten.
  */
-import { createHash } from 'node:crypto';
 import { writeFileSync } from 'node:fs';
 import path from 'node:path';
 
 import { INGREDIENTS, RECIPES } from '../supabase/seed';
+import { recipeUuid } from '../supabase/seed/uuid';
 import { validateRecipes } from '../supabase/seed/validate';
 
 const errors = validateRecipes(RECIPES);
 if (errors.length) {
   console.error(`Rezeptdaten fehlerhaft:\n- ${errors.join('\n- ')}`);
   process.exit(1);
-}
-
-export function recipeUuid(slug: string): string {
-  const hex = createHash('md5').update(`gabelmatch:recipe:${slug}`).digest('hex');
-  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-a${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
 }
 
 const q = (value: string | number | null | undefined): string =>

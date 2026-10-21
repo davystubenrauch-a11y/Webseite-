@@ -11,9 +11,9 @@ type IconName = ComponentProps<typeof Ionicons>['name'];
 
 const icon =
   (active: IconName, inactive: IconName) =>
-  ({ color, focused, size }: { color: ColorValue; focused: boolean; size: number }) => (
-    <Ionicons name={focused ? active : inactive} size={size} color={color as string} />
-  );
+  function TabIcon({ color, focused, size }: { color: ColorValue; focused: boolean; size: number }) {
+    return <Ionicons name={focused ? active : inactive} size={size} color={color as string} />;
+  };
 
 export default function TabsLayout() {
   const { t } = useI18n();

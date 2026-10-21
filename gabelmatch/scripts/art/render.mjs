@@ -1,6 +1,7 @@
 // Rendert die SVG-Quellen aus illustrations.mjs als PNG nach assets/images/.
 // Aufruf: node scripts/art/render.mjs   (benötigt Playwright: npm i -D playwright)
-import { mkdirSync } from 'node:fs';
+import { execFileSync } from 'node:child_process';
+import { mkdirSync, readdirSync, unlinkSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { createRequire } from 'node:module';
@@ -36,8 +37,6 @@ for (const job of jobs) {
 await browser.close();
 
 // Kategorie-Illustrationen zusätzlich als kompaktes JPEG ablegen (kleineres App-Bundle)
-import { execFileSync } from 'node:child_process';
-import { readdirSync, unlinkSync } from 'node:fs';
 for (const file of readdirSync(out('categories')).filter((f) => f.endsWith('.png'))) {
   const src = out('categories', file);
   execFileSync('python3', ['-c', `from PIL import Image; Image.open(${JSON.stringify(src)}).convert('RGB').save(${JSON.stringify(src.replace(/\.png$/, '.jpg'))}, quality=84, optimize=True, progressive=True)`]);

@@ -36,6 +36,7 @@ async function ensureAndroidChannel() {
   if (Platform.OS !== 'android') return;
   await Notifications.setNotificationChannelAsync('matches', {
     name: 'Matches',
+    // eslint-disable-next-line import/namespace -- Enum wird von eslint-plugin-import nicht erkannt
     importance: Notifications.AndroidImportance.HIGH,
     vibrationPattern: [0, 200, 120, 200],
     lightColor: '#C93A22',

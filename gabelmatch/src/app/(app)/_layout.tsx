@@ -51,7 +51,9 @@ function AppEffects({ userId }: { userId: string }) {
   const toast = useToast();
   const pathname = usePathname();
   const pathnameRef = useRef(pathname);
-  pathnameRef.current = pathname;
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
   const { passwordRecovery } = useAuth();
   const { selectGroup } = useCurrentGroup();
   const join = useJoinGroup();

@@ -1,5 +1,5 @@
 import { router } from 'expo-router';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { Pressable, StyleSheet, View } from 'react-native';
 
 import { AppText } from '@/components/AppText';
@@ -15,26 +15,25 @@ import { errorKey } from '@/lib/errors';
 import { useI18n } from '@/lib/i18n';
 import { useTheme } from '@/theme/ThemeProvider';
 import { radius, spacing } from '@/theme/typography';
+import type { ProfileRow } from '@/types/database';
 
 export default function ProfileScreen() {
   const { t } = useI18n();
-  const { colors } = useTheme();
-  const toast = useToast();
   const userId = useUserId();
   const profile = useProfile(userId);
-  const update = useUpdateProfile(userId);
-  const [name, setName] = useState('');
-  const [avatar, setAvatar] = useState('🍽️');
-
-  useEffect(() => {
-    if (profile.data) {
-      setName(profile.data.display_name);
-      setAvatar(profile.data.avatar_emoji);
-    }
-  }, [profile.data]);
 
   if (profile.isLoading) return <LoadingState />;
-  if (profile.error) return <ErrorState message={t(errorKey(profile.error))} onRetry={() => void profile.refetch()} />;
+  if (profile.error || !profile.data) return <ErrorState message={t(errorKey(profile.error))} onRetry={() => void profile.refetch()} />;
+  return <ProfileForm userId={userId} profile={profile.data} />;
+}
+
+function ProfileForm({ userId, profile }: { userId: string; profile: ProfileRow }) {
+  const { t } = useI18n();
+  const { colors } = useTheme();
+  const toast = useToast();
+  const update = useUpdateProfile(userId);
+  const [name, setName] = useState(profile.display_name);
+  const [avatar, setAvatar] = useState(profile.avatar_emoji);
 
   const save = () =>
     update.mutate(

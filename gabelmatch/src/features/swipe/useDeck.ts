@@ -1,4 +1,4 @@
-import { useMemo, useRef } from 'react';
+import { useMemo, useState } from 'react';
 
 import type { Member } from '../groups/api';
 import { buildDeck, pantryCoverage, type RecipeFilters } from '../recipes/ranking';
@@ -21,16 +21,22 @@ type Input = {
  * noch gewischte Karten – so springt die sichtbare Karte nicht, wenn andere parallel swipen.
  */
 export function useDeck({ catalog, session, filters, swipes, pantry, lastMatched, userId, activeMembers }: Input) {
-  const swipesRef = useRef(swipes);
-  swipesRef.current = swipes;
   const activeIds = activeMembers.map((m) => m.user_id).join(',');
   const filtersKey = `${filters.maxMinutes}|${filters.diet}|${filters.category}`;
+
+  // Swipes der anderen nur beim Neuaufbau des Stapels berücksichtigen (Snapshot pro Runde/Filter)
+  const deckKey = `${session?.id}|${filtersKey}|${activeIds}`;
+  const [snapshot, setSnapshot] = useState({ key: deckKey, swipes });
+  if (snapshot.key !== deckKey || (snapshot.swipes === undefined && swipes !== undefined)) {
+    setSnapshot({ key: deckKey, swipes });
+  }
+  const snapshotSwipes = snapshot.swipes;
 
   const ordered = useMemo(() => {
     if (!catalog || !session) return [];
     const others = new Set(activeIds.split(',').filter((id) => id && id !== userId));
     const likedByOthers = new Map<string, number>();
-    for (const swipe of swipesRef.current ?? []) {
+    for (const swipe of snapshotSwipes ?? []) {
       if (swipe.liked && others.has(swipe.user_id)) likedByOthers.set(swipe.recipe_id, (likedByOthers.get(swipe.recipe_id) ?? 0) + 1);
     }
     return buildDeck(catalog.recipes, filters, new Set(), {
@@ -41,8 +47,8 @@ export function useDeck({ catalog, session, filters, swipes, pantry, lastMatched
       likedByOthers,
       otherActiveMembers: others.size,
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [catalog, session?.id, filtersKey, pantry, lastMatched, activeIds, userId]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- filters/session über filtersKey/session.id
+  }, [catalog, session?.id, filtersKey, pantry, lastMatched, activeIds, userId, snapshotSwipes]);
 
   const mySwiped = useMemo(
     () => new Set((swipes ?? []).filter((s) => s.user_id === userId).map((s) => s.recipe_id)),
