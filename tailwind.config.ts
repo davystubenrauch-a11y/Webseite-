@@ -1,11 +1,12 @@
 import type { Config } from "tailwindcss";
 
 /**
- * F&D Solutions brand palette:
- * deep navy surfaces, metallic gold accents, Google colours reserved for the NFC products.
+ * F&D Solutions palette: light slate surfaces, a clear blue accent,
+ * per-service accent colours, and Google colours for the NFC product.
+ * Navy and gold remain only for the logo on the business card.
  */
 const config: Config = {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.ts"],
   theme: {
     extend: {
       colors: {
@@ -22,6 +23,12 @@ const config: Config = {
           soft: "#e6cf94",
           deep: "#8a6a2e",
         },
+        // Primary accent of the light theme.
+        brand: {
+          DEFAULT: "#2563eb",
+          dark: "#1d4ed8",
+          light: "#eff6ff",
+        },
         google: {
           blue: "#4285F4",
           red: "#EA4335",
@@ -31,12 +38,12 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Georgia", "serif"],
+        heading: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "var(--font-serif)", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        rim: "0 0 0 1px rgba(197,160,89,0.35), 0 0 24px -4px rgba(212,175,55,0.35)",
-        "rim-lg": "0 0 0 1px rgba(197,160,89,0.5), 0 0 60px -10px rgba(212,175,55,0.55)",
+        ring: "0 0 0 4px rgba(37,99,235,0.15)",
       },
       keyframes: {
         shimmer: {

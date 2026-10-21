@@ -5,6 +5,7 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 import { Monogram } from "@/components/brand/Logo";
 import Icon from "@/components/ui/Icon";
 import Reveal, { SectionHead } from "@/components/ui/Reveal";
+import { pillarChips } from "@/lib/accents";
 import { pillars } from "@/lib/content";
 import { site, telHref } from "@/lib/site";
 
@@ -17,7 +18,7 @@ export default function About() {
             eyebrow="Über uns"
             title={
               <>
-                Zwei Gründer, <span className="text-gold">ein Ziel.</span>
+                Zwei Gründer, <span className="text-brand">ein Ziel.</span>
               </>
             }
             lead="F&D Solutions sind Florian Dressler und Davy Stubenrauch aus München. Wir helfen kleinen und mittleren Unternehmen dabei, online einen guten Eindruck zu machen: mit mehr Google-Bewertungen, einer modernen Website und Rundgängen, die Räume zeigen, wie sie wirklich sind. Ehrlich beraten, fair bepreist."
@@ -28,12 +29,12 @@ export default function About() {
         </div>
         <div className="mt-10 grid gap-4 md:grid-cols-3">
           {pillars.map((p, i) => (
-            <Reveal key={p.title} delay={0.1 * i} className="glass rim group p-7 transition duration-500 hover:-translate-y-1">
-              <span className="grid h-11 w-11 place-items-center rounded-xl border border-gold/30 bg-gold/10 text-gold transition group-hover:scale-110">
+            <Reveal key={p.title} delay={0.1 * i} className="card card-hover group p-7 transition duration-500 hover:-translate-y-1">
+              <span className={`grid h-11 w-11 place-items-center rounded-xl border transition group-hover:scale-110 ${pillarChips[i]}`}>
                 <Icon name={p.icon} />
               </span>
-              <h3 className="mt-5 font-serif text-2xl font-semibold text-white">{p.title}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-white/60">{p.text}</p>
+              <h3 className="mt-5 font-heading text-2xl font-semibold text-slate-900">{p.title}</h3>
+              <p className="mt-2 text-sm leading-relaxed text-slate-600">{p.text}</p>
             </Reveal>
           ))}
         </div>
@@ -73,7 +74,7 @@ function FounderCard() {
         <div aria-hidden className="card-texture absolute inset-0" />
         <motion.div aria-hidden className="absolute inset-0" style={{ background: glare }} />
         <div className="relative flex h-full flex-col items-center justify-center px-[6%] text-center" style={{ transform: "translateZ(40px)" }}>
-          <Monogram className="h-[19%] w-auto" />
+          <Monogram tone="gold" className="h-[19%] w-auto" />
           <span className="font-display text-[clamp(0.9rem,3.2vw,1.6rem)] tracking-[0.12em] text-gold">SOLUTIONS</span>
           <span className="mt-[2%] h-px w-[86%] bg-gradient-to-r from-transparent via-gold to-transparent" />
           <div className="mt-[3%] grid w-full grid-cols-2 divide-x divide-gold/50">

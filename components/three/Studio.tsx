@@ -17,16 +17,16 @@ export default function Studio() {
 
   return (
     <>
-      <ambientLight intensity={0.25} />
+      <ambientLight intensity={0.6} />
       <spotLight position={[4, 6, 6]} angle={0.4} penumbra={1} intensity={60} color="#fff4dc" />
       <pointLight position={[-5, -2, 3]} intensity={25} color="#2563EB" />
-      <pointLight position={[4, -3, -2]} intensity={18} color="#D4AF37" />
+      <pointLight position={[4, -3, -2]} intensity={14} color="#93c5fd" />
       <Environment resolution={128} frames={Infinity}>
-        <color attach="background" args={["#0b0f16"]} />
+        <color attach="background" args={["#9aa7b8"]} />
         <Lightformer form="rect" intensity={3} position={[0, 4, 4]} scale={[10, 2, 1]} color="#ffffff" />
-        <Lightformer form="rect" intensity={2.5} position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[8, 3, 1]} color="#C5A059" />
+        <Lightformer form="rect" intensity={2.5} position={[-5, 0, 2]} rotation-y={Math.PI / 2} scale={[8, 3, 1]} color="#e2e8f0" />
         <Lightformer form="rect" intensity={2} position={[5, 0, 2]} rotation-y={-Math.PI / 2} scale={[8, 3, 1]} color="#2563EB" />
-        <Lightformer form="ring" intensity={1.5} position={[0, -4, 3]} scale={3} color="#F3E2A9" />
+        <Lightformer form="ring" intensity={1.5} position={[0, -4, 3]} scale={3} color="#ffffff" />
         <group ref={sweep}>
           <Lightformer form="rect" intensity={6} position={[0, 0, 6]} scale={[0.6, 12, 1]} color="#ffffff" />
         </group>

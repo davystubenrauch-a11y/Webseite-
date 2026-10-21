@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Icon from "@/components/ui/Icon";
 import Reveal, { SectionHead } from "@/components/ui/Reveal";
+import { accents } from "@/lib/accents";
 import { configStore, useConfig } from "@/lib/configStore";
 import { budgets, propertyTypes, serviceLabels, summarize, timelines, validate, type Errors, type Inquiry as Data } from "@/lib/inquiry";
 import { addOns, nfcProduct, themes, tourTiers, webTiers, type ServiceId, type Theme } from "@/lib/pricing";
@@ -121,21 +122,21 @@ export default function Inquiry() {
 
   return (
     <section id="anfrage" className="relative py-16 sm:py-24">
-      <div aria-hidden className="absolute left-1/2 top-40 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-gold/[0.06] blur-[140px]" />
+      <div aria-hidden className="absolute left-1/2 top-40 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-brand/[0.05] blur-[140px]" />
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <SectionHead
           center
           eyebrow="Anfrage"
           title={
             <>
-              Unverbindlich <span className="text-gold">anfragen.</span>
+              Unverbindlich <span className="text-brand">anfragen.</span>
             </>
           }
           lead="In vier kurzen Schritten zu Ihrem Angebot. Kostenlos, und wir melden uns innerhalb von 24 Stunden."
         />
 
         <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_340px]">
-          <Reveal className="glass rim overflow-hidden">
+          <Reveal className="card card-hover overflow-hidden">
             {status.kind === "sent" ? (
               <Success status={status} onReset={reset} onMail={() => openMail(data)} name={data.name} />
             ) : (
@@ -160,25 +161,25 @@ export default function Inquiry() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-                <div className="flex items-center justify-between gap-3 border-t border-white/10 px-5 py-5 sm:px-10">
+                <div className="flex items-center justify-between gap-3 border-t border-slate-200 px-5 py-5 sm:px-10">
                   <button
                     type="button"
                     onClick={() => go(step - 1)}
                     disabled={step === 0}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-white/70 transition hover:text-white disabled:pointer-events-none disabled:opacity-0"
+                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-slate-600 transition hover:text-slate-900 disabled:pointer-events-none disabled:opacity-0"
                   >
                     <Icon name="back" className="h-4 w-4" /> Zurück
                   </button>
                   {status.kind === "error" && <p className="hidden text-sm text-google-red sm:block" role="alert">{status.message}</p>}
                   {step < 3 ? (
-                    <button type="button" onClick={() => go(step + 1)} className="btn-gold">
+                    <button type="button" onClick={() => go(step + 1)} className="btn-primary">
                       Weiter <Icon name="arrow" className="h-4 w-4" />
                     </button>
                   ) : (
-                    <button type="button" onClick={submit} disabled={status.kind === "sending"} className="btn-gold disabled:opacity-70">
+                    <button type="button" onClick={submit} disabled={status.kind === "sending"} className="btn-primary disabled:opacity-70">
                       {status.kind === "sending" ? (
                         <>
-                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-navy-900/30 border-t-navy-900" /> Wird gesendet…
+                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" /> Wird gesendet…
                         </>
                       ) : (
                         <>
@@ -194,30 +195,30 @@ export default function Inquiry() {
           </Reveal>
 
           <Reveal delay={0.15} className="flex flex-col gap-4">
-            <div className="glass p-6">
+            <div className="card p-6">
               <p className="eyebrow">Direkter Draht</p>
               <ul className="mt-5 space-y-4">
                 {site.founders.map((f) => (
                   <li key={f.name}>
-                    <p className="font-serif text-lg font-semibold text-white">{f.name}</p>
-                    <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-gold-soft">
-                      <Icon name="phone" className="h-4 w-4 text-gold" /> {f.phone}
+                    <p className="font-heading text-lg font-semibold text-slate-900">{f.name}</p>
+                    <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-slate-600 transition hover:text-brand">
+                      <Icon name="phone" className="h-4 w-4 text-brand" /> {f.phone}
                     </a>
                   </li>
                 ))}
                 <li>
-                  <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-white/65 transition hover:text-gold-soft">
-                    <Icon name="mail" className="h-4 w-4 text-gold" /> {site.email}
+                  <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-slate-600 transition hover:text-brand">
+                    <Icon name="mail" className="h-4 w-4 text-brand" /> {site.email}
                   </a>
                 </li>
-                <li className="inline-flex items-center gap-2 text-sm text-white/65">
-                  <Icon name="pin" className="h-4 w-4 text-gold" /> {site.city}
+                <li className="inline-flex items-center gap-2 text-sm text-slate-600">
+                  <Icon name="pin" className="h-4 w-4 text-brand" /> {site.city}
                 </li>
               </ul>
             </div>
-            <div className="glass p-6 text-sm leading-relaxed text-white/60">
-              <p className="flex items-center gap-2 font-semibold text-white">
-                <Icon name="lock" className="h-4 w-4 text-gold" /> Ihre Daten sind sicher
+            <div className="card p-6 text-sm leading-relaxed text-slate-600">
+              <p className="flex items-center gap-2 font-semibold text-slate-900">
+                <Icon name="lock" className="h-4 w-4 text-brand" /> Ihre Daten sind sicher
               </p>
               <p className="mt-2">Verschlüsselte Übertragung, keine Weitergabe an Dritte. Wir nutzen Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
             </div>
@@ -240,15 +241,15 @@ function Progress({ step, onJump }: { step: number; onJump: (i: number) => void 
             onClick={() => onJump(i)}
             aria-current={i === step ? "step" : undefined}
             className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border text-xs font-bold transition ${
-              i < step ? "border-gold bg-gold text-navy-900" : i === step ? "border-gold text-gold shadow-rim" : "border-white/15 text-white/40"
+              i < step ? "border-brand bg-brand text-slate-900" : i === step ? "border-brand text-brand shadow-ring" : "border-slate-200 text-slate-400"
             }`}
           >
             {i < step ? <Icon name="check" className="h-4 w-4" /> : i + 1}
           </button>
-          <span className={`hidden text-xs font-semibold uppercase tracking-[0.15em] md:block ${i === step ? "text-white" : "text-white/40"}`}>{label}</span>
+          <span className={`hidden text-xs font-semibold uppercase tracking-[0.15em] md:block ${i === step ? "text-slate-900" : "text-slate-400"}`}>{label}</span>
           {i < STEPS.length - 1 && (
-            <span className="relative h-px flex-1 bg-white/10">
-              <motion.span className="absolute inset-y-0 left-0 bg-gold" animate={{ width: i < step ? "100%" : "0%" }} transition={{ duration: 0.5 }} />
+            <span className="relative h-px flex-1 bg-slate-200">
+              <motion.span className="absolute inset-y-0 left-0 bg-brand" animate={{ width: i < step ? "100%" : "0%" }} transition={{ duration: 0.5 }} />
             </span>
           )}
         </li>
@@ -260,8 +261,8 @@ function Progress({ step, onJump }: { step: number; onJump: (i: number) => void 
 function StepTitle({ title, text }: { title: string; text: string }) {
   return (
     <div className="mb-7 mt-4">
-      <h3 className="font-serif text-3xl font-semibold text-white">{title}</h3>
-      <p className="mt-1 text-sm text-white/55">{text}</p>
+      <h3 className="font-heading text-3xl font-semibold text-slate-900">{title}</h3>
+      <p className="mt-1 text-sm text-slate-500">{text}</p>
     </div>
   );
 }
@@ -280,17 +281,17 @@ function StepServices({ selected, onToggle, error }: { selected: ServiceId[]; on
               onClick={() => onToggle(s)}
               aria-pressed={on}
               className={`group relative rounded-2xl border p-5 text-left transition duration-300 ${
-                on ? "border-gold bg-gold/10 shadow-rim" : "border-white/10 bg-white/[0.02] hover:-translate-y-1 hover:border-gold/40"
+                on ? "border-brand bg-brand/10 shadow-ring" : "border-slate-200 bg-white hover:-translate-y-1 hover:border-brand/40"
               }`}
             >
-              <span className={`absolute right-4 top-4 grid h-6 w-6 place-items-center rounded-full border transition ${on ? "border-gold bg-gold text-navy-900" : "border-white/20"}`}>
+              <span className={`absolute right-4 top-4 grid h-6 w-6 place-items-center rounded-full border transition ${on ? "border-brand bg-brand text-slate-900" : "border-slate-300"}`}>
                 {on && <Icon name="check" className="h-3.5 w-3.5" />}
               </span>
-              <span className="grid h-12 w-12 place-items-center rounded-xl border border-gold/30 bg-gold/10 text-gold">
+              <span className={`grid h-12 w-12 place-items-center rounded-xl border ${accents[s].chip}`}>
                 <Icon name={serviceIcons[s]} className="h-6 w-6" />
               </span>
-              <span className="mt-5 block font-semibold leading-snug text-white">{serviceLabels[s]}</span>
-              <span className="mt-1 block text-xs text-white/50">{serviceHints[s]}</span>
+              <span className="mt-5 block font-semibold leading-snug text-slate-900">{serviceLabels[s]}</span>
+              <span className="mt-1 block text-xs text-slate-500">{serviceHints[s]}</span>
             </button>
           );
         })}
@@ -436,8 +437,8 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
         <Input label="Telefon" type="tel" autoComplete="tel" {...field("phone")} />
       </div>
       <div className="mt-6">
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-white/45">Bevorzugter Kontaktweg</p>
-        <div className="inline-flex rounded-full border border-white/10 bg-navy-950/50 p-1">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">Bevorzugter Kontaktweg</p>
+        <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1">
           {(["email", "phone"] as const).map((p) => (
             <button
               key={p}
@@ -446,7 +447,7 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
                 clearError("phone");
                 patch({ contactPref: p });
               }}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition ${data.contactPref === p ? "bg-gold text-navy-900" : "text-white/60 hover:text-white"}`}
+              className={`rounded-full px-5 py-2 text-sm font-semibold transition ${data.contactPref === p ? "bg-brand text-slate-900" : "text-slate-600 hover:text-slate-900"}`}
             >
               {p === "email" ? "E-Mail" : "Rückruf"}
             </button>
@@ -455,7 +456,7 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
       </div>
       {/* Honeypot – hidden from humans. */}
       <input type="text" tabIndex={-1} autoComplete="off" value={data.website} onChange={(e) => patch({ website: e.target.value })} className="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden />
-      <label className="mt-8 flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-white/65">
+      <label className="mt-8 flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-slate-600">
         <input
           type="checkbox"
           checked={data.consent}
@@ -467,7 +468,7 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
         />
         <span>
           Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage gespeichert und verarbeitet werden. Details in der{" "}
-          <a href="/datenschutz" className="text-gold underline-offset-4 hover:underline">
+          <a href="/datenschutz" className="text-brand underline-offset-4 hover:underline">
             Datenschutzerklärung
           </a>
           . *
@@ -496,18 +497,18 @@ function StepSummary({ data, onEdit }: { data: Data; onEdit: (step: number) => v
   return (
     <div>
       <StepTitle title="Alles korrekt?" text="Prüfen Sie Ihre Angaben und senden Sie die Anfrage ab." />
-      <dl className="divide-y divide-white/10 rounded-2xl border border-white/10">
+      <dl className="divide-y divide-slate-200 rounded-2xl border border-slate-200">
         {rows.map(([k, v, s]) => (
           <div key={k} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:gap-6">
-            <dt className="w-28 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-white/45">{k}</dt>
-            <dd className="flex-1 text-sm text-white">{v}</dd>
-            <button type="button" onClick={() => onEdit(s)} className="self-start text-xs font-semibold text-gold hover:text-gold-soft sm:self-auto">
+            <dt className="w-28 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{k}</dt>
+            <dd className="flex-1 text-sm text-slate-900">{v}</dd>
+            <button type="button" onClick={() => onEdit(s)} className="self-start text-xs font-semibold text-brand hover:text-brand sm:self-auto">
               Ändern
             </button>
           </div>
         ))}
       </dl>
-      {data.message && <p className="mt-4 rounded-2xl border border-white/10 p-5 text-sm italic text-white/65">„{data.message}“</p>}
+      {data.message && <p className="mt-4 rounded-2xl border border-slate-200 p-5 text-sm italic text-slate-600">„{data.message}“</p>}
     </div>
   );
 }
@@ -516,29 +517,29 @@ function Success({ status, onReset, onMail, name }: { status: Extract<Status, { 
   return (
     <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="flex min-h-[560px] flex-col items-center justify-center px-6 py-16 text-center">
       <div className="relative grid h-24 w-24 place-items-center">
-        <span className="absolute inset-0 animate-ping2 rounded-full border border-gold/50" />
+        <span className="absolute inset-0 animate-ping2 rounded-full border border-brand/40" />
         <svg viewBox="0 0 52 52" className="h-24 w-24" aria-hidden>
-          <motion.circle cx="26" cy="26" r="24" fill="none" stroke="#d4af37" strokeWidth="2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.7 }} />
-          <motion.path d="M15 27l7 7 15-15" fill="none" stroke="#d4af37" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.6 }} />
+          <motion.circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.7 }} />
+          <motion.path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.6 }} />
         </svg>
       </div>
-      <h3 className="mt-8 font-serif text-4xl font-semibold text-white">
+      <h3 className="mt-8 font-heading text-4xl font-semibold text-slate-900">
         {status.viaMail ? "Fast geschafft" : "Vielen Dank"}
         {name ? `, ${name.split(" ")[0]}` : ""}!
       </h3>
-      <p className="mt-4 max-w-md leading-relaxed text-white/65">
+      <p className="mt-4 max-w-md leading-relaxed text-slate-600">
         {status.viaMail
           ? "Wir haben Ihr E-Mail-Programm mit der fertigen Anfrage geöffnet. Bitte senden Sie die Nachricht dort noch ab."
           : "Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen."}
       </p>
-      {status.id && !status.viaMail && <p className="mt-4 text-xs uppercase tracking-[0.25em] text-gold">Referenz {status.id}</p>}
+      {status.id && !status.viaMail && <p className="mt-4 text-xs uppercase tracking-[0.25em] text-brand">Referenz {status.id}</p>}
       <div className="mt-10 flex flex-wrap justify-center gap-3">
         {status.viaMail && (
-          <button type="button" onClick={onMail} className="btn-gold">
+          <button type="button" onClick={onMail} className="btn-primary">
             E-Mail erneut öffnen
           </button>
         )}
-        <button type="button" onClick={onReset} className="btn-glass">
+        <button type="button" onClick={onReset} className="btn-secondary">
           Neue Anfrage
         </button>
       </div>
@@ -551,7 +552,7 @@ function Success({ status, onReset, onMail, name }: { status: Extract<Status, { 
 function Group({ title, icon, children }: { title: string; icon: string; children: React.ReactNode }) {
   return (
     <fieldset>
-      <legend className="mb-4 flex items-center gap-2 text-sm font-semibold text-gold-soft">
+      <legend className="mb-4 flex items-center gap-2 text-sm font-semibold text-brand-dark">
         <Icon name={icon} className="h-4 w-4" /> {title}
       </legend>
       {children}
@@ -576,7 +577,7 @@ type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> 
 function Input({ label, error, onChange, ...rest }: InputProps) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">{label}</span>
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">{label}</span>
       <input {...rest} onChange={(e) => onChange(e.target.value)} aria-invalid={!!error} className={`input ${error ? "!border-[#ff8a80]/70" : ""}`} />
       <FieldError msg={error} />
     </label>
@@ -586,7 +587,7 @@ function Input({ label, error, onChange, ...rest }: InputProps) {
 function Select({ label, value, onChange, error, children }: { label: string; value: string; onChange: (v: string) => void; error?: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">{label}</span>
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">{label}</span>
       <select value={value} onChange={(e) => onChange(e.target.value)} aria-invalid={!!error} className={`input select ${error ? "!border-[#ff8a80]/70" : ""}`}>
         {children}
       </select>
@@ -598,7 +599,7 @@ function Select({ label, value, onChange, error, children }: { label: string; va
 function Textarea({ label, value, onChange, error, placeholder }: { label: string; value: string; onChange: (v: string) => void; error?: string; placeholder?: string }) {
   return (
     <label className="block">
-      <span className="mb-2 flex justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-white/45">
+      <span className="mb-2 flex justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
         {label}
         <span className="normal-case tracking-normal">{value.length}/2000</span>
       </span>

@@ -105,8 +105,9 @@ export default function NfcProduct({ theme, lang, business, exploded = false, sp
   const materials = useMemo(
     () => ({
       body: bodyMaterial(theme),
-      front: new THREE.MeshPhysicalMaterial({ map: front, roughness: 0.32, clearcoat: 1, clearcoatRoughness: 0.12 }),
-      back: new THREE.MeshPhysicalMaterial({ map: back, roughness: 0.4, clearcoat: 0.8 }),
+      // Low reflection keeps the printed colours saturated against the light page.
+      front: new THREE.MeshPhysicalMaterial({ map: front, roughness: 0.45, clearcoat: 0.35, clearcoatRoughness: 0.2, envMapIntensity: 0.35 }),
+      back: new THREE.MeshPhysicalMaterial({ map: back, roughness: 0.45, clearcoat: 0.35, envMapIntensity: 0.35 }),
       inlay: new THREE.MeshStandardMaterial({
         map: inlay,
         transparent: true,

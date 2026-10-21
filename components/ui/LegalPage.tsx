@@ -5,10 +5,10 @@ import Footer from "@/components/sections/Footer";
 export default function LegalPage({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <>
-      <header className="border-b border-white/[0.06] bg-navy-900/80 backdrop-blur-xl">
+      <header className="border-b border-slate-200 bg-white/85 backdrop-blur-xl">
         <div className="mx-auto flex h-[72px] max-w-4xl items-center justify-between px-4 sm:px-6">
           <LogoInline href="/" />
-          <a href="/" className="text-sm text-white/60 transition hover:text-gold-soft">← Zur Startseite</a>
+          <a href="/" className="text-sm text-slate-600 transition hover:text-brand">← Zur Startseite</a>
         </div>
       </header>
       <main id="top" className="mx-auto max-w-4xl px-4 py-20 sm:px-6">

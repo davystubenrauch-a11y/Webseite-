@@ -65,9 +65,9 @@ const fragment = /* glsl */ `
   void main() {
     float d = length(gl_PointCoord - 0.5);
     if (d > 0.5) discard;
-    vec3 gold = vec3(0.83, 0.69, 0.22);
+    vec3 amber = vec3(0.96, 0.62, 0.04);
     vec3 ice = vec3(0.62, 0.74, 1.0);
-    vec3 col = mix(gold, ice, step(0.82, vMix)) + vGlow * vec3(1.0, 0.95, 0.8);
+    vec3 col = mix(amber, ice, step(0.82, vMix)) + vGlow * vec3(1.0, 0.95, 0.8);
     float a = (1.0 - d * 2.0) * (0.25 + vVisible * 0.6 + vGlow);
     gl_FragColor = vec4(col, a * max(vVisible, vGlow));
   }
@@ -114,10 +114,10 @@ function Wireframe() {
     <group>
       {geos.map(({ g, p }, i) => (
         <lineSegments key={i} geometry={g} position={p}>
-          <lineBasicMaterial color="#c5a059" transparent opacity={i === 0 ? 0.35 : 0.22} />
+          <lineBasicMaterial color="#f59e0b" transparent opacity={i === 0 ? 0.4 : 0.25} />
         </lineSegments>
       ))}
-      <gridHelper args={[7, 14, "#c5a059", "#1e293b"]} position={[0, 0.001, 0]} scale={[1, 1, 5.4 / 7]} />
+      <gridHelper args={[7, 14, "#f59e0b", "#1e293b"]} position={[0, 0.001, 0]} scale={[1, 1, 5.4 / 7]} />
     </group>
   );
 }
@@ -141,7 +141,7 @@ function Hotspots() {
       {spots.map((p, i) => (
         <mesh key={i} position={p} ref={(m) => void (m && (refs.current[i] = m))}>
           <sphereGeometry args={[0.08, 16, 16]} />
-          <meshBasicMaterial color="#f6e7b0" />
+          <meshBasicMaterial color="#fde68a" />
         </mesh>
       ))}
     </>

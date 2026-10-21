@@ -38,7 +38,7 @@ export function SectionHead({
     <Reveal className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
       <span className={`eyebrow ${center ? "justify-center" : ""}`}>{eyebrow}</span>
       <h2 className="section-title mt-5">{title}</h2>
-      {lead && <p className="mt-6 text-base leading-relaxed text-white/65 sm:text-lg">{lead}</p>}
+      {lead && <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">{lead}</p>}
     </Reveal>
   );
 }

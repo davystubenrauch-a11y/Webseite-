@@ -29,6 +29,11 @@ npm run lint     # TypeScript-Prüfung
 - `components/three/RoomScan.tsx`: KI-Raumscan als Punktwolke mit Scan-Welle und Kamerafahrt.
 - Alle Canvases werden lazy geladen und pausieren außerhalb des Viewports.
 
+## Farben
+Helles Design: Hintergrund `slate-50`, weiße Karten, Akzentblau `brand` (#2563eb) in `tailwind.config.ts`.
+Jede Leistung hat eine eigene Akzentfarbe (`lib/accents.ts`): NFC grün, Website blau, Roomtour bernstein.
+Navy und Gold gibt es nur noch auf der nachgebauten Visitenkarte.
+
 ## Anfrage-Versand
 `app/api/inquiry/route.ts` validiert serverseitig (gleiches Schema wie der Client, `lib/inquiry.ts`), mit Honeypot und Rate-Limit. Versand über Umgebungsvariablen:
 

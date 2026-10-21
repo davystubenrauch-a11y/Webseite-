@@ -17,7 +17,7 @@ export default function Trust() {
           eyebrow="Kundenstimmen"
           title={
             <>
-              Darauf können Sie sich <span className="text-gold">verlassen.</span>
+              Darauf können Sie sich <span className="text-brand">verlassen.</span>
             </>
           }
         />
@@ -27,13 +27,13 @@ export default function Trust() {
 
         <div className="mt-10 grid grid-cols-2 gap-4 lg:grid-cols-4">
           {seals.map((s, i) => (
-            <Reveal key={s.title} delay={i * 0.08} className="group flex items-center gap-4 rounded-2xl border border-white/10 bg-white/[0.02] p-5 transition hover:border-gold/40">
-              <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-gold/40 text-gold transition group-hover:shadow-rim">
+            <Reveal key={s.title} delay={i * 0.08} className="group flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-brand/40">
+              <span className="relative grid h-12 w-12 shrink-0 place-items-center rounded-full border border-brand/30 text-brand transition group-hover:shadow-ring">
                 <Icon name="shield" className="h-5 w-5" />
               </span>
               <span>
-                <span className="block text-sm font-semibold text-white">{s.title}</span>
-                <span className="block text-xs text-white/50">{s.text}</span>
+                <span className="block text-sm font-semibold text-slate-900">{s.title}</span>
+                <span className="block text-xs text-slate-500">{s.text}</span>
               </span>
             </Reveal>
           ))}
@@ -47,15 +47,15 @@ function Stats() {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
   return (
-    <div ref={ref} className="mt-10 grid grid-cols-2 overflow-hidden rounded-3xl border border-white/10 lg:grid-cols-4">
+    <div ref={ref} className="mt-10 grid grid-cols-2 overflow-hidden rounded-3xl border border-slate-200 lg:grid-cols-4">
       {stats.map((s, i) => {
                 return (
-          <div key={s.label} className={`bg-white/[0.02] p-6 text-center sm:p-10 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""} border-white/10 lg:border-l lg:first:border-l-0`}>
-            <p className="font-serif text-4xl font-semibold text-gold-soft sm:text-5xl">
+          <div key={s.label} className={`bg-white p-6 text-center sm:p-10 ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t lg:border-t-0" : ""} border-slate-200 lg:border-l lg:first:border-l-0`}>
+            <p className="font-heading text-4xl font-semibold text-brand-dark sm:text-5xl">
               <AnimatedNumber value={inView ? s.value : 0} format={(n) => Math.round(n).toLocaleString("de-DE")} />
               <span className="text-2xl sm:text-3xl">{s.suffix}</span>
             </p>
-            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-white/45">{s.label}</p>
+            <p className="mt-2 text-xs uppercase tracking-[0.18em] text-slate-500">{s.label}</p>
           </div>
         );
       })}
@@ -76,11 +76,11 @@ function Testimonials() {
   return (
     <Reveal className="mt-10">
       <div
-        className="glass rim relative overflow-hidden px-6 py-12 text-center sm:px-16 sm:py-16"
+        className="card card-hover relative overflow-hidden px-6 py-12 text-center sm:px-16 sm:py-16"
         onPointerEnter={() => setPaused(true)}
         onPointerLeave={() => setPaused(false)}
       >
-        <span aria-hidden className="absolute left-6 top-0 font-serif text-[10rem] leading-none text-gold/10 sm:left-12">
+        <span aria-hidden className="absolute left-6 top-0 font-heading text-[10rem] leading-none text-brand/10 sm:left-12">
           &ldquo;
         </span>
         <div className="flex justify-center gap-1 text-google-yellow" aria-label="5 von 5 Sternen">
@@ -97,10 +97,10 @@ function Testimonials() {
               exit={{ opacity: 0, y: -16, filter: "blur(6px)" }}
               transition={{ duration: 0.6 }}
             >
-              <blockquote className="mx-auto mt-6 max-w-3xl font-serif text-2xl leading-snug text-white sm:text-3xl">{t.quote}</blockquote>
+              <blockquote className="mx-auto mt-6 max-w-3xl font-heading text-2xl leading-snug text-slate-900 sm:text-3xl">{t.quote}</blockquote>
               <figcaption className="mt-6 text-sm">
-                <span className="font-semibold text-gold-soft">{t.name}</span>
-                <span className="text-white/45"> · {t.role}</span>
+                <span className="font-semibold text-brand-dark">{t.name}</span>
+                <span className="text-slate-500"> · {t.role}</span>
               </figcaption>
             </motion.figure>
           </AnimatePresence>
@@ -112,7 +112,7 @@ function Testimonials() {
               type="button"
               onClick={() => setI(k)}
               aria-label={`Stimme ${k + 1} anzeigen`}
-              className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-gold" : "w-3 bg-white/20 hover:bg-white/40"}`}
+              className={`h-1.5 rounded-full transition-all ${k === i ? "w-8 bg-brand" : "w-3 bg-slate-200 hover:bg-slate-400"}`}
             />
           ))}
         </div>

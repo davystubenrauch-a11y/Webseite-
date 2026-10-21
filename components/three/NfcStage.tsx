@@ -45,6 +45,7 @@ export default function NfcStage({ className, look, particles = 260, cameraZ = 7
   return (
     <div ref={ref} className={className}>
       <Canvas
+        flat
         frameloop={inView ? "always" : "never"}
         dpr={[1, 1.75]}
         camera={{ position: [0, 0, cameraZ], fov: 35 }}
