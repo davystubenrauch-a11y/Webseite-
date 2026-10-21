@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { site } from "@/lib/site";
 
 export default function CopyPzn({ className = "" }: { className?: string }) {
@@ -9,7 +8,7 @@ export default function CopyPzn({ className = "" }: { className?: string }) {
   return (
     <button
       type="button"
-      className={`btn-glass ${className}`}
+      className={`btn-secondary ${className}`}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(site.pzn);
@@ -20,11 +19,7 @@ export default function CopyPzn({ className = "" }: { className?: string }) {
         }
       }}
     >
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span key={String(copied)} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -6 }} transition={{ duration: 0.2 }}>
-          {copied ? "Kopiert ✓" : `PZN ${site.pzn} kopieren`}
-        </motion.span>
-      </AnimatePresence>
+      {copied ? "PZN kopiert ✓" : `PZN ${site.pzn} kopieren`}
     </button>
   );
 }

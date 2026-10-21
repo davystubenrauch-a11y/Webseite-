@@ -34,8 +34,8 @@ const fragment = /* glsl */ `
 const PALETTES = {
   // Luminous motes: emerald, lime and a little gold dust.
   glow: [new THREE.Color("#2FA35B"), new THREE.Color("#6CC04A"), new THREE.Color("#E2C47A")],
-  // Spirulina powder: deep, matte greens.
-  powder: [new THREE.Color("#0E4D2C"), new THREE.Color("#1B6B3A"), new THREE.Color("#245E2A")],
+  // Spirulina flecks for light backgrounds: soft, matte greens.
+  powder: [new THREE.Color("#5FA65A"), new THREE.Color("#7DBE4A"), new THREE.Color("#3E9B4F")],
 };
 
 type Props = { count?: number; variant?: keyof typeof PALETTES; inner?: number; outer?: number; height?: number };
@@ -122,7 +122,7 @@ export default function AlgaeParticles({ count = 600, variant = "glow", inner = 
       if (data.pos[k + 1] > half) data.pos[k + 1] -= height;
       const p = data.life[i] / data.maxLife[i];
       const fade = Math.sin(Math.PI * p);
-      data.alpha[i] = fade * (glow ? 0.85 : 0.7);
+      data.alpha[i] = fade * (glow ? 0.85 : 0.5);
       data.size[i] = data.base[i] * (0.7 + fade * 0.4) * (glow ? 1 + Math.sin(t * 3 + i) * 0.15 : 1);
     }
     geometry.attributes.position.needsUpdate = true;

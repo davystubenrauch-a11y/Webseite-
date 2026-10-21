@@ -11,29 +11,26 @@ const notes = [
   {
     key: "holunder",
     name: "Holunder",
-    latin: "Sambucus nigra",
     color: "#6B3D8A",
-    tint: "rgba(107,61,138,0.32)",
+    bg: "#F3EEF6",
     text: "Dunkle, samtige Beerennoten bilden das Fundament – fruchtig, leicht herb und mit natürlicher Tiefe.",
-    tags: ["Beerig", "Samtig", "Tief"],
+    tags: ["Beerig", "Samtig"],
   },
   {
     key: "zitrus",
     name: "Zitrus",
-    latin: "Citrus",
-    color: "#E2B33A",
-    tint: "rgba(226,179,58,0.26)",
-    text: "Lebendige Zitrusnoten heben die Komposition an und sorgen für einen klaren, belebenden Abgang.",
-    tags: ["Frisch", "Hell", "Belebend"],
+    color: "#C97A0A",
+    bg: "#FBF4E3",
+    text: "Lebendige Zitrusnoten heben die Komposition an und sorgen für einen klaren, erfrischenden Abgang.",
+    tags: ["Frisch", "Hell"],
   },
   {
     key: "algen",
     name: "Algen",
-    latin: "Spirulina",
-    color: "#2FA35B",
-    tint: "rgba(47,163,91,0.3)",
+    color: "#2C7A3B",
+    bg: "#EEF6EB",
     text: "Die fermentierte Algenbasis liefert den Kern: natürliche B-Vitamine und ein breites Spektrum an Aminosäuren.",
-    tags: ["Fermentiert", "Vital", "Natürlich"],
+    tags: ["Fermentiert", "Natürlich"],
   },
 ];
 
@@ -41,7 +38,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 export default function Flavor() {
   const section = useRef<HTMLElement>(null);
-  const bar = useRef<HTMLSpanElement>(null);
   const driven = useRef(restPose()).current;
   const [active, setActive] = useState(0);
 
@@ -53,12 +49,9 @@ export default function Flavor() {
       end: "bottom bottom",
       scrub: true,
       onUpdate: (self) => {
-        const p = self.progress;
-        // One full turn per chapter, with a slight lean into each note.
-        driven.rotation = p * Math.PI * 2 * notes.length;
-        driven.tilt = Math.sin(p * Math.PI * notes.length) * 0.12;
-        if (bar.current) bar.current.style.transform = `scaleY(${p})`;
-        setActive(Math.min(notes.length - 1, Math.floor(p * notes.length)));
+        // One full turn per note.
+        driven.rotation = self.progress * Math.PI * 2 * notes.length;
+        setActive(Math.min(notes.length - 1, Math.floor(self.progress * notes.length)));
       },
     });
     return () => st.kill();
@@ -67,61 +60,49 @@ export default function Flavor() {
   const note = notes[active];
 
   return (
-    <section ref={section} id="geschmack" className="relative" style={{ height: `${notes.length * 100 + 60}vh` }}>
-      <div className="sticky top-0 flex h-[100svh] items-center overflow-hidden">
-        <motion.div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          animate={{ background: `radial-gradient(900px 600px at 50% 55%, ${note.tint}, transparent 70%)` }}
-          transition={{ duration: 1.2, ease }}
-        />
-
-        <div className="relative mx-auto grid w-full max-w-7xl items-center gap-6 px-5 sm:px-8 lg:grid-cols-[1fr_minmax(300px,0.9fr)_1fr]">
-          <div className="relative z-10">
-            <span className="eyebrow">Flavor Profile</span>
-            <h2 className="mt-5 font-display text-3xl font-semibold uppercase leading-tight tracking-tight text-white sm:text-4xl">
-              Fermentierte <br />
-              <span className="text-gold">Holunder-Zitrus-</span>
-              <br />
-              Algen-Basis
-            </h2>
-
-            <ol className="mt-10 flex gap-6 lg:flex-col lg:gap-4">
+    <section ref={section} id="geschmack" className="relative" style={{ height: `${notes.length * 90 + 60}vh` }}>
+      <motion.div
+        className="sticky top-0 flex h-[100svh] items-center overflow-hidden"
+        animate={{ backgroundColor: note.bg }}
+        transition={{ duration: 0.8, ease }}
+      >
+        <div className="container-page grid items-center gap-4 lg:grid-cols-[1fr_0.9fr_1fr]">
+          <div>
+            <span className="eyebrow">Geschmack</span>
+            <h2 className="h-section mt-4">Fermentierte Holunder-Zitrus-Algen-Basis</h2>
+            <ol className="mt-8 flex gap-2 lg:flex-col lg:items-start">
               {notes.map((n, i) => (
-                <li key={n.key} className="flex items-center gap-4">
-                  <span
-                    className="h-2.5 w-2.5 rounded-full transition-all duration-500"
-                    style={{ background: i === active ? n.color : "rgba(255,255,255,0.15)", boxShadow: i === active ? `0 0 16px ${n.color}` : "none" }}
-                  />
-                  <span className={`font-display text-xs font-semibold uppercase tracking-[0.3em] transition-colors ${i === active ? "text-white" : "text-white/35"}`}>
-                    0{i + 1} {n.name}
-                  </span>
+                <li
+                  key={n.key}
+                  className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors duration-300 ${i === active ? "bg-white shadow-card" : "text-muted"}`}
+                  style={i === active ? { color: n.color } : undefined}
+                >
+                  {i + 1}. {n.name}
                 </li>
               ))}
             </ol>
           </div>
 
-          <div className="relative h-[46svh] sm:h-[60svh] lg:h-[80svh]">
-            <LazyCanCanvas className="absolute -inset-x-16 inset-y-0" driven={driven} spin={0} accent={note.color} particles={380} drops={active !== 2} cameraZ={8.3} />
+          <div className="relative h-[38svh] sm:h-[50svh] lg:h-[74svh]">
+            <LazyCanCanvas className="absolute -inset-x-16 inset-y-0" driven={driven} spin={0} accent={note.color} drops={active !== 2} cameraZ={8.3} />
           </div>
 
           {/* All notes stay mounted and crossfade, so fast scrubbing never strands an exit. */}
-          <div className="relative z-10 grid min-h-[260px]">
+          <div className="grid min-h-[200px]">
             {notes.map((n, i) => (
               <motion.div
                 key={n.key}
                 aria-hidden={i !== active}
                 className="col-start-1 row-start-1"
                 initial={false}
-                animate={i === active ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: i < active ? -30 : 30, filter: "blur(8px)" }}
-                transition={{ duration: 0.7, ease }}
+                animate={i === active ? { opacity: 1, y: 0 } : { opacity: 0, y: i < active ? -20 : 20 }}
+                transition={{ duration: 0.5, ease }}
               >
-                <span className="font-serif text-lg italic text-white/45">{n.latin}</span>
-                <p className="font-display text-6xl font-semibold uppercase leading-none tracking-tight sm:text-7xl" style={{ color: n.color }}>
+                <p className="text-5xl font-extrabold tracking-tight sm:text-6xl" style={{ color: n.color }}>
                   {n.name}
                 </p>
-                <p className="mt-5 max-w-sm leading-relaxed text-white/70">{n.text}</p>
-                <ul className="mt-6 flex flex-wrap gap-2">
+                <p className="mt-4 max-w-sm leading-relaxed text-petrol-900/80">{n.text}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
                   {n.tags.map((t) => (
                     <li key={t} className="chip">
                       {t}
@@ -132,12 +113,7 @@ export default function Flavor() {
             ))}
           </div>
         </div>
-
-        {/* Scroll progress through the three notes */}
-        <div className="absolute right-6 top-1/2 hidden h-40 w-px -translate-y-1/2 bg-white/10 lg:block xl:right-24">
-          <span ref={bar} className="absolute inset-0 origin-top bg-gradient-to-b from-gold to-emerald-bright" style={{ transform: "scaleY(0)" }} />
-        </div>
-      </div>
+      </motion.div>
     </section>
   );
 }

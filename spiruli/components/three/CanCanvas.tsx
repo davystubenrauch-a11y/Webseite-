@@ -37,7 +37,7 @@ export default function CanCanvas({
   className,
   driven,
   spin,
-  particles = 520,
+  particles = 120,
   drops = true,
   cameraZ = 7,
   accent,
@@ -56,10 +56,9 @@ export default function CanCanvas({
         <Suspense fallback={null}>
           <Studio accent={accent} />
           <SpiruliCan driven={driven} spin={spin} interactive={interactive} />
-          <AlgaeParticles count={particles} />
-          <AlgaeParticles count={Math.round(particles * 0.35)} variant="powder" inner={1.1} outer={2.2} />
+          <AlgaeParticles count={particles} variant="powder" inner={1.0} outer={2.3} />
           {drops && <CitrusDrops />}
-          <ContactShadows position={[0, -1.68, 0]} opacity={0.55} scale={5} blur={2.6} far={2.2} color="#000000" />
+          <ContactShadows position={[0, -1.68, 0]} opacity={0.35} scale={5} blur={2.8} far={2.2} color="#000000" />
         </Suspense>
       </Canvas>
     </div>

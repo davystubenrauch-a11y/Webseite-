@@ -14,9 +14,9 @@ export type Nutrient = {
 };
 
 export const groups: Record<Group, { label: string; color: string }> = {
-  b: { label: "B-Komplex", color: "#E2C47A" },
-  vit: { label: "Vitamine", color: "#F2B54A" },
-  amino: { label: "Aminosäuren", color: "#6CC04A" },
+  b: { label: "B-Komplex", color: "#134A5A" },
+  vit: { label: "Vitamine", color: "#C97A0A" },
+  amino: { label: "Aminosäuren", color: "#2C7A3B" },
 };
 
 export const nutrients: Nutrient[] = [
