@@ -42,6 +42,7 @@ const vertex = /* glsl */ `
   uniform float uTime;
   uniform float uWave;
   uniform float uPixelRatio;
+  uniform float uPointScale;
   attribute float aRand;
   varying float vGlow;
   varying float vVisible;
@@ -54,7 +55,7 @@ const vertex = /* glsl */ `
     vMix = aRand;
     vec4 mv = modelViewMatrix * vec4(position, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = (1.4 + vGlow * 3.0 + aRand * 0.8) * uPixelRatio * (9.0 / -mv.z);
+    gl_PointSize = (1.4 + vGlow * 3.0 + aRand * 0.8) * uPixelRatio * uPointScale * (9.0 / -mv.z);
   }
 `;
 
@@ -73,7 +74,7 @@ const fragment = /* glsl */ `
   }
 `;
 
-function PointCloud({ density = 1 }: { density?: number }) {
+function PointCloud({ density = 1, pointScale = 1 }: { density?: number; pointScale?: number }) {
   const dpr = useThree((s) => s.viewport.dpr);
   const { geometry, material } = useMemo(() => {
     const pts: number[] = [];
@@ -85,7 +86,7 @@ function PointCloud({ density = 1 }: { density?: number }) {
     const m = new THREE.ShaderMaterial({
       vertexShader: vertex,
       fragmentShader: fragment,
-      uniforms: { uTime: { value: 0 }, uWave: { value: 0 }, uPixelRatio: { value: 1 } },
+      uniforms: { uTime: { value: 0 }, uWave: { value: 0 }, uPixelRatio: { value: 1 }, uPointScale: { value: 1 } },
       transparent: true,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
@@ -99,6 +100,7 @@ function PointCloud({ density = 1 }: { density?: number }) {
     // Scan wave: expands over 4.5 s, holds, then restarts.
     material.uniforms.uWave.value = Math.min((t % 9) * 2.2, 14);
     material.uniforms.uPixelRatio.value = dpr;
+    material.uniforms.uPointScale.value = pointScale;
   });
 
   return <points geometry={geometry} material={material} frustumCulled={false} />;
@@ -148,6 +150,18 @@ function Hotspots() {
   );
 }
 
+/** The scanned room without its own camera, for embedding in other scenes. */
+/** `pointScale` enlarges the points when the room is shown scaled down. */
+export function RoomModel({ density = 1, pointScale = 1 }: { density?: number; pointScale?: number }) {
+  return (
+    <>
+      <Wireframe />
+      <PointCloud density={density} pointScale={pointScale} />
+      <Hotspots />
+    </>
+  );
+}
+
 /** Camera glides along a smooth walkthrough path that loops through the room. */
 function WalkthroughCamera() {
   const curve = useMemo(
@@ -185,9 +199,7 @@ export default function RoomScan({ className }: { className?: string }) {
       >
         <Suspense fallback={null}>
           <fog attach="fog" args={["#0f172a", 8, 18]} />
-          <Wireframe />
-          <PointCloud density={mobile ? 0.55 : 1} />
-          <Hotspots />
+          <RoomModel density={mobile ? 0.55 : 1} />
           <WalkthroughCamera />
         </Suspense>
       </Canvas>

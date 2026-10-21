@@ -3,7 +3,10 @@ import Icon from "@/components/ui/Icon";
 import { nav, site, telHref } from "@/lib/site";
 import { services } from "@/lib/content";
 
-export default function Footer() {
+type NavItem = { id: string; label: string };
+
+/** `navItems`/`base` let other page variants point the quick links at their own sections. */
+export default function Footer({ navItems = nav, base = "/" }: { navItems?: readonly NavItem[]; base?: string }) {
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
@@ -29,9 +32,9 @@ export default function Footer() {
         </div>
 
         <FooterCol title="Navigation">
-          {nav.map((n) => (
+          {navItems.map((n) => (
             <li key={n.id}>
-              <a href={`/#${n.id}`} className="footer-link">{n.label}</a>
+              <a href={`${base}#${n.id}`} className="footer-link">{n.label}</a>
             </li>
           ))}
         </FooterCol>
@@ -39,7 +42,7 @@ export default function Footer() {
         <FooterCol title="Leistungen">
           {services.map((s) => (
             <li key={s.id}>
-              <a href="/#leistungen" className="footer-link">{s.title}</a>
+              <a href={`${base}#leistungen`} className="footer-link">{s.title}</a>
             </li>
           ))}
         </FooterCol>

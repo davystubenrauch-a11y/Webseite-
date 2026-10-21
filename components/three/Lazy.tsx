@@ -16,3 +16,4 @@ function Loader() {
 
 export const LazyNfcStage = dynamic(() => import("./NfcStage"), { ssr: false, loading: Loader });
 export const LazyRoomScan = dynamic(() => import("./RoomScan"), { ssr: false, loading: Loader });
+export const LazyShowcaseStage = dynamic(() => import("./ShowcaseStage"), { ssr: false, loading: Loader });
