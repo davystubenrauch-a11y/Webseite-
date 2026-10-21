@@ -1,0 +1,238 @@
+import type { RecipeDef } from '../types';
+
+export const reisGetreide: RecipeDef[] = [
+  {
+    slug: 'pilzrisotto',
+    title: 'Cremiges Pilzrisotto',
+    description: 'Geduld zahlt sich aus: Champignons, Parmesan und ein Schluck Weißwein machen es unwiderstehlich.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 40, difficulty: 2, servings: 3,
+    ingredients: [
+      ['risottoreis', 250, 'g'], ['champignons', 300, 'g'], ['zwiebel', 1], ['knoblauch', 1, 'Zehe'],
+      ['weisswein', 100, 'ml'], ['gemuesebruehe', 900, 'ml'], ['butter', 30, 'g'], ['parmesan', 50, 'g'],
+      ['thymian', 3, 'Zweig'], ['olivenoel', 2, 'EL'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Brühe erhitzen und warm halten. Pilze in Scheiben schneiden und im Öl scharf anbraten, salzen, herausnehmen.',
+      'Zwiebel und Knoblauch fein würfeln und im selben Topf glasig dünsten. Reis zugeben und 1 Minute mitrösten.',
+      'Mit Weißwein ablöschen. Dann nach und nach Brühe angießen und unter häufigem Rühren etwa 20 Minuten garen.',
+      'Pilze und Thymianblättchen unterheben, Topf vom Herd nehmen und Butter und Parmesan einrühren. 2 Minuten ruhen lassen.',
+    ],
+  },
+  {
+    slug: 'spanische-reispfanne',
+    title: 'Spanische Reispfanne mit Hähnchen',
+    description: 'Paella-Style für zuhause: Hähnchen, Chorizo, Paprika und Erbsen auf würzigem Safran-Paprika-Reis.',
+    category: 'reis_getreide', diet: 'fleisch', minutes: 45, difficulty: 2, servings: 4,
+    ingredients: [
+      ['reis', 300, 'g'], ['haehnchenschenkel', 500, 'g', 'ohne Knochen'], ['chorizo', 100, 'g'], ['paprika', 2],
+      ['zwiebel', 1], ['knoblauch', 2, 'Zehe'], ['erbsen_tk', 150, 'g'], ['paprikapulver', 2, 'TL'],
+      ['kurkuma', 1, 'TL'], ['huehnerbruehe', 800, 'ml'], ['zitrone', 1], ['olivenoel', 3, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Hähnchen in mundgerechte Stücke schneiden, salzen und im Öl in einer großen Pfanne rundum anbraten. Chorizo in Scheiben kurz mitbraten.',
+      'Zwiebel, Knoblauch und Paprika würfeln, zugeben und 5 Minuten braten.',
+      'Reis, Paprikapulver und Kurkuma unterrühren, mit der Brühe aufgießen.',
+      'Ohne Rühren bei mittlerer Hitze etwa 20 Minuten garen. Nach 15 Minuten die Erbsen darauf verteilen.',
+      'Mit Zitronenspalten servieren.',
+    ],
+  },
+  {
+    slug: 'gemuese-couscous-kichererbsen',
+    title: 'Gemüse-Couscous mit Kichererbsen',
+    description: 'Orientalisch gewürzt, in 20 Minuten fertig und herrlich bunt.',
+    category: 'reis_getreide', diet: 'vegan', minutes: 20, difficulty: 1, servings: 2,
+    ingredients: [
+      ['couscous', 150, 'g'], ['kichererbsen', 1, 'Dose'], ['zucchini', 1], ['paprika', 1], ['rote_zwiebel', 1],
+      ['kreuzkuemmel', 1, 'TL'], ['zimt', 1, 'Prise'], ['gemuesebruehe', 200, 'ml'], ['minze', 0.5, 'Bund'],
+      ['zitrone', 0.5], ['olivenoel', 3, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Couscous mit heißer Brühe übergießen und 5 Minuten quellen lassen, dann mit einer Gabel auflockern.',
+      'Gemüse würfeln und im Olivenöl 6 Minuten braten. Abgetropfte Kichererbsen, Kreuzkümmel und Zimt zugeben.',
+      'Gemüse unter den Couscous mischen, mit Zitronensaft, Salz und gehackter Minze abschmecken.',
+    ],
+  },
+  {
+    slug: 'bulgur-paprika-feta',
+    title: 'Bulgurpfanne mit Paprika und Feta',
+    description: 'Türkisch inspirierte Pfanne mit Tomatenmark, Paprika und cremigem Feta obendrauf.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 25, difficulty: 1, servings: 2,
+    ingredients: [
+      ['bulgur', 150, 'g'], ['paprika', 2], ['zwiebel', 1], ['tomatenmark', 2, 'EL'], ['gemuesebruehe', 350, 'ml'],
+      ['paprikapulver', 1, 'TL'], ['feta', 100, 'g'], ['petersilie', 0.5, 'Bund'], ['olivenoel', 2, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Zwiebel und Paprika würfeln und im Öl 5 Minuten anbraten.',
+      'Tomatenmark und Paprikapulver kurz anrösten, Bulgur zugeben und mit Brühe ablöschen.',
+      'Zugedeckt bei schwacher Hitze 12 Minuten quellen lassen.',
+      'Mit zerbröckeltem Feta und Petersilie servieren.',
+    ],
+  },
+  {
+    slug: 'buddha-bowl-erdnuss',
+    title: 'Buddha Bowl mit Erdnussdressing',
+    description: 'Reis, Ofen-Süßkartoffel, Kichererbsen und knackiges Gemüse mit cremigem Erdnussdressing.',
+    category: 'reis_getreide', diet: 'vegan', minutes: 35, difficulty: 1, servings: 2,
+    ingredients: [
+      ['basmati', 150, 'g'], ['suesskartoffel', 1], ['kichererbsen', 1, 'Dose'], ['karotte', 1], ['gurke', 0.5],
+      ['avocado', 1], ['erdnussbutter', 2, 'EL'], ['sojasauce', 1, 'EL'], ['limette', 1], ['ahornsirup', 1, 'TL'],
+      ['sesam', 1, 'EL'], ['oel', 2, 'EL'], ['paprikapulver', 1, 'TL'], ['salz', null],
+    ],
+    steps: [
+      'Backofen auf 210 °C vorheizen. Süßkartoffel würfeln, mit Kichererbsen, Öl, Paprika und Salz mischen und 25 Minuten rösten.',
+      'Reis nach Packungsangabe garen.',
+      'Erdnussbutter mit Sojasauce, Limettensaft, Ahornsirup und 3 EL warmem Wasser glatt rühren.',
+      'Karotte raspeln, Gurke und Avocado in Scheiben schneiden.',
+      'Alles in Schalen anrichten, mit Dressing beträufeln und mit Sesam bestreuen.',
+    ],
+  },
+  {
+    slug: 'gebratener-reis-ei',
+    title: 'Gebratener Reis mit Ei',
+    description: 'Perfekte Resteverwertung: Reis vom Vortag, Gemüse und Ei aus dem Wok.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 20, difficulty: 1, servings: 2,
+    ingredients: [
+      ['reis', 150, 'g', 'gekocht vom Vortag (ca. 400 g)'], ['eier', 3], ['erbsen_tk', 100, 'g'], ['karotte', 1],
+      ['fruehlingszwiebel', 3], ['knoblauch', 1, 'Zehe'], ['sojasauce', 3, 'EL'], ['sesamoel', 1, 'TL'], ['oel', 2, 'EL'],
+    ],
+    steps: [
+      'Karotte fein würfeln, Frühlingszwiebeln in Ringe schneiden, Knoblauch hacken.',
+      'Öl im Wok stark erhitzen, Karotte und Knoblauch 2 Minuten braten, Erbsen zugeben.',
+      'Gemüse an den Rand schieben, Eier in die Mitte geben und unter Rühren stocken lassen.',
+      'Kalten Reis zugeben und alles 4–5 Minuten kräftig braten. Mit Sojasauce, Sesamöl und Frühlingszwiebeln abschmecken.',
+    ],
+  },
+  {
+    slug: 'chili-sin-carne',
+    title: 'Chili sin Carne',
+    description: 'Bohnen, Mais und rote Linsen in einer rauchig-würzigen Sauce, dazu Reis.',
+    category: 'reis_getreide', diet: 'vegan', minutes: 40, difficulty: 1, servings: 4,
+    ingredients: [
+      ['reis', 250, 'g'], ['kidneybohnen', 1, 'Dose'], ['mais', 1, 'Dose'], ['rote_linsen', 100, 'g'],
+      ['gehackte_tomaten', 2, 'Dose'], ['zwiebel', 1], ['paprika', 1], ['knoblauch', 2, 'Zehe'],
+      ['kreuzkuemmel', 1, 'TL'], ['paprikapulver', 2, 'TL'], ['chiliflocken', 0.5, 'TL'], ['gemuesebruehe', 250, 'ml'],
+      ['oel', 2, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Zwiebel, Paprika und Knoblauch würfeln und im Öl anbraten. Gewürze kurz mitrösten.',
+      'Tomaten, Linsen und Brühe zugeben und 20 Minuten köcheln lassen.',
+      'Bohnen und Mais abspülen, zugeben und weitere 5 Minuten köcheln. Mit Salz abschmecken.',
+      'Inzwischen den Reis garen und zum Chili servieren.',
+    ],
+  },
+  {
+    slug: 'risi-e-bisi',
+    title: 'Risi e Bisi',
+    description: 'Venezianischer Reis mit Erbsen – irgendwo zwischen Risotto und Suppe, wunderbar mild.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 30, difficulty: 1, servings: 3,
+    ingredients: [
+      ['risottoreis', 200, 'g'], ['erbsen_tk', 300, 'g'], ['zwiebel', 1], ['butter', 30, 'g'],
+      ['gemuesebruehe', 1, 'l'], ['parmesan', 40, 'g'], ['petersilie', 0.5, 'Bund'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Zwiebel fein würfeln und in der Hälfte der Butter glasig dünsten.',
+      'Reis zugeben, kurz mitdünsten und mit der heißen Brühe aufgießen.',
+      'Etwa 15 Minuten köcheln lassen, dann die Erbsen zugeben und weitere 5 Minuten garen. Die Konsistenz soll leicht suppig sein.',
+      'Restliche Butter, Parmesan und Petersilie unterrühren und abschmecken.',
+    ],
+  },
+  {
+    slug: 'lachs-bowl',
+    title: 'Lachs-Bowl mit Gurke und Avocado',
+    description: 'Gebratener Lachs auf Reis mit knackigem Gemüse und Sesam-Soja-Dressing.',
+    category: 'reis_getreide', diet: 'fisch', minutes: 30, difficulty: 1, servings: 2,
+    ingredients: [
+      ['basmati', 150, 'g'], ['lachs', 250, 'g'], ['gurke', 0.5], ['avocado', 1], ['radieschen', 6],
+      ['fruehlingszwiebel', 2], ['sojasauce', 3, 'EL'], ['honig', 1, 'TL'], ['limette', 1], ['sesam', 1, 'EL'], ['oel', 1, 'EL'],
+    ],
+    steps: [
+      'Reis garen. Sojasauce, Honig und Limettensaft verrühren.',
+      'Lachs in Würfel schneiden und im Öl 3–4 Minuten rundum braten. Mit der Hälfte der Sauce glasieren.',
+      'Gurke, Avocado, Radieschen und Frühlingszwiebeln schneiden.',
+      'Reis in Schalen verteilen, Lachs und Gemüse darauf anrichten, mit restlicher Sauce und Sesam vollenden.',
+    ],
+  },
+  {
+    slug: 'quinoa-ofengemuese',
+    title: 'Quinoa mit Ofengemüse und Tahini',
+    description: 'Geröstetes Gemüse, nussige Quinoa und eine Zitronen-Tahini-Sauce.',
+    category: 'reis_getreide', diet: 'vegan', minutes: 40, difficulty: 1, servings: 2,
+    ingredients: [
+      ['quinoa', 150, 'g'], ['blumenkohl', 0.5], ['karotte', 2], ['rote_zwiebel', 1], ['kichererbsen', 1, 'Dose'],
+      ['tahini', 2, 'EL'], ['zitrone', 1], ['kreuzkuemmel', 1, 'TL'], ['olivenoel', 3, 'EL'], ['petersilie', 0.5, 'Bund'], ['salz', null],
+    ],
+    steps: [
+      'Ofen auf 220 °C vorheizen. Blumenkohl in Röschen teilen, Karotten in Stifte und Zwiebel in Spalten schneiden.',
+      'Gemüse und Kichererbsen mit Öl, Kreuzkümmel und Salz mischen und 25 Minuten rösten.',
+      'Quinoa gründlich abspülen und in der doppelten Menge Salzwasser 15 Minuten garen.',
+      'Tahini mit Zitronensaft und etwas Wasser cremig rühren. Alles anrichten und mit Petersilie bestreuen.',
+    ],
+  },
+  {
+    slug: 'kuerbisrisotto',
+    title: 'Kürbisrisotto mit Salbei',
+    description: 'Herbst im Teller: Hokkaido schmilzt ins Risotto, knuspriger Salbei obendrauf.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 45, difficulty: 2, servings: 3,
+    ingredients: [
+      ['risottoreis', 250, 'g'], ['kuerbis', 400, 'g'], ['zwiebel', 1], ['weisswein', 100, 'ml'],
+      ['gemuesebruehe', 900, 'ml'], ['parmesan', 50, 'g'], ['butter', 30, 'g'], ['salbei', 8, 'Blatt'],
+      ['olivenoel', 2, 'EL'], ['muskat', 1, 'Prise'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Kürbis entkernen und mit Schale in kleine Würfel schneiden. Zwiebel fein würfeln.',
+      'Zwiebel und Kürbis im Öl 5 Minuten andünsten, Reis zugeben und glasig werden lassen.',
+      'Mit Wein ablöschen und nach und nach die heiße Brühe unter Rühren zugeben, bis der Reis nach etwa 20 Minuten cremig ist.',
+      'Salbeiblätter in der Butter knusprig braten. Parmesan und Muskat ins Risotto rühren und mit der Salbeibutter servieren.',
+    ],
+  },
+  {
+    slug: 'rote-linsen-dal',
+    title: 'Rote-Linsen-Dal mit Reis',
+    description: 'Indisch gewürzte Linsen mit Kokosmilch – wärmend, günstig und in einem Topf gekocht.',
+    category: 'reis_getreide', diet: 'vegan', minutes: 35, difficulty: 1, servings: 4,
+    ingredients: [
+      ['rote_linsen', 250, 'g'], ['basmati', 250, 'g'], ['kokosmilch', 400, 'ml'], ['gehackte_tomaten', 1, 'Dose'],
+      ['zwiebel', 1], ['knoblauch', 2, 'Zehe'], ['ingwer', 20, 'g'], ['kurkuma', 1, 'TL'], ['garam_masala', 2, 'TL'],
+      ['kreuzkuemmel', 1, 'TL'], ['gemuesebruehe', 500, 'ml'], ['koriander', 0.5, 'Bund'], ['oel', 2, 'EL'], ['salz', null],
+    ],
+    steps: [
+      'Zwiebel, Knoblauch und Ingwer fein hacken und im Öl anschwitzen. Gewürze kurz mitrösten.',
+      'Linsen, Tomaten, Kokosmilch und Brühe zugeben und 20 Minuten sanft köcheln lassen, bis die Linsen zerfallen.',
+      'Parallel den Reis garen.',
+      'Dal mit Salz abschmecken und mit Koriander zum Reis servieren.',
+    ],
+  },
+  {
+    slug: 'haehnchen-teriyaki-reis',
+    title: 'Hähnchen-Teriyaki mit Reis',
+    description: 'Glänzend glasiertes Hähnchen mit hausgemachter Teriyakisauce und Brokkoli.',
+    category: 'reis_getreide', diet: 'fleisch', minutes: 30, difficulty: 1, servings: 2,
+    ingredients: [
+      ['reis', 150, 'g'], ['haehnchenbrust', 300, 'g'], ['brokkoli', 0.5], ['sojasauce', 4, 'EL'], ['honig', 2, 'EL'],
+      ['ingwer', 10, 'g'], ['knoblauch', 1, 'Zehe'], ['speisestaerke', 1, 'TL'], ['sesam', 1, 'EL'], ['oel', 1, 'EL'],
+    ],
+    steps: [
+      'Reis garen. Brokkoli in Röschen teilen und die letzten 4 Minuten über dem Reis dämpfen oder kurz blanchieren.',
+      'Sojasauce, Honig, geriebenen Ingwer, Knoblauch, Stärke und 4 EL Wasser verrühren.',
+      'Hähnchen in Streifen schneiden und im Öl 5 Minuten goldbraun braten.',
+      'Sauce zugeben und unter Rühren eindicken lassen, bis das Fleisch glänzt. Mit Reis, Brokkoli und Sesam servieren.',
+    ],
+  },
+  {
+    slug: 'polenta-pilzragout',
+    title: 'Cremige Polenta mit Pilzragout',
+    description: 'Weiche Parmesan-Polenta mit einem würzigen Ragout aus Champignons und Thymian.',
+    category: 'reis_getreide', diet: 'vegetarisch', minutes: 35, difficulty: 2, servings: 3,
+    ingredients: [
+      ['polenta', 200, 'g'], ['gemuesebruehe', 800, 'ml'], ['parmesan', 50, 'g'], ['butter', 30, 'g'],
+      ['champignons', 400, 'g'], ['zwiebel', 1], ['knoblauch', 1, 'Zehe'], ['thymian', 3, 'Zweig'],
+      ['sahne', 100, 'ml'], ['olivenoel', 2, 'EL'], ['salz', null], ['pfeffer', null],
+    ],
+    steps: [
+      'Brühe aufkochen, Polenta unter Rühren einrieseln lassen und bei kleiner Hitze 10–15 Minuten quellen lassen. Häufig rühren.',
+      'Pilze vierteln und im Öl kräftig anbraten. Zwiebel, Knoblauch und Thymian zugeben und 3 Minuten weiterbraten.',
+      'Sahne angießen, kurz einkochen lassen und abschmecken.',
+      'Butter und Parmesan in die Polenta rühren und mit dem Ragout servieren.',
+    ],
+  },
+];

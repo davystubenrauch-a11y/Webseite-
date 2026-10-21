@@ -55,7 +55,8 @@
     "lint": "expo lint",
     "test:db": "bash scripts/test-db.sh",
     "test": "jest",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "seed:generate": "tsx scripts/generate-seed.ts"
   },
   "private": true
 }

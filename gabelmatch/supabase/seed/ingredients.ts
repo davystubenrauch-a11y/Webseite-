@@ -1,0 +1,233 @@
+/**
+ * Zutatenkatalog für den Seed.
+ * Format: id → [Name DE, Name EN, Gang/Regal, Ernährungsklasse, Basiszutat?]
+ *  - Ernährungsklasse: 'v' vegan · 'veg' vegetarisch (Milch, Ei, Honig) · 'fi' Fisch · 'fl' Fleisch
+ *  - Basiszutaten (Salz, Pfeffer, Öl …) gelten im Vorrat immer als vorhanden.
+ */
+export type DietClass = 'v' | 'veg' | 'fi' | 'fl';
+export type Aisle =
+  | 'gemuese'
+  | 'obst'
+  | 'kraeuter'
+  | 'milch_eier'
+  | 'fleisch_fisch'
+  | 'nudeln_reis'
+  | 'konserven'
+  | 'backen'
+  | 'gewuerze'
+  | 'brot'
+  | 'sonstiges';
+
+export type IngredientDef = [de: string, en: string, aisle: Aisle, diet: DietClass, staple?: boolean];
+
+export const INGREDIENTS: Record<string, IngredientDef> = {
+  // Basiszutaten
+  salz: ['Salz', 'Salt', 'gewuerze', 'v', true],
+  pfeffer: ['Pfeffer', 'Pepper', 'gewuerze', 'v', true],
+  zucker: ['Zucker', 'Sugar', 'backen', 'v', true],
+  oel: ['Pflanzenöl', 'Vegetable oil', 'sonstiges', 'v', true],
+  olivenoel: ['Olivenöl', 'Olive oil', 'sonstiges', 'v', true],
+  wasser: ['Wasser', 'Water', 'sonstiges', 'v', true],
+
+  // Gemüse
+  zwiebel: ['Zwiebel', 'Onion', 'gemuese', 'v'],
+  rote_zwiebel: ['Rote Zwiebel', 'Red onion', 'gemuese', 'v'],
+  knoblauch: ['Knoblauch', 'Garlic', 'gemuese', 'v'],
+  karotte: ['Karotte', 'Carrot', 'gemuese', 'v'],
+  staudensellerie: ['Staudensellerie', 'Celery', 'gemuese', 'v'],
+  knollensellerie: ['Knollensellerie', 'Celeriac', 'gemuese', 'v'],
+  lauch: ['Lauch', 'Leek', 'gemuese', 'v'],
+  zucchini: ['Zucchini', 'Zucchini', 'gemuese', 'v'],
+  aubergine: ['Aubergine', 'Eggplant', 'gemuese', 'v'],
+  paprika: ['Paprika', 'Bell pepper', 'gemuese', 'v'],
+  tomate: ['Tomate', 'Tomato', 'gemuese', 'v'],
+  kirschtomaten: ['Kirschtomaten', 'Cherry tomatoes', 'gemuese', 'v'],
+  gurke: ['Salatgurke', 'Cucumber', 'gemuese', 'v'],
+  kartoffel: ['Kartoffeln', 'Potatoes', 'gemuese', 'v'],
+  suesskartoffel: ['Süßkartoffel', 'Sweet potato', 'gemuese', 'v'],
+  brokkoli: ['Brokkoli', 'Broccoli', 'gemuese', 'v'],
+  blumenkohl: ['Blumenkohl', 'Cauliflower', 'gemuese', 'v'],
+  spinat: ['Babyspinat', 'Baby spinach', 'gemuese', 'v'],
+  champignons: ['Champignons', 'Mushrooms', 'gemuese', 'v'],
+  kuerbis: ['Hokkaido-Kürbis', 'Hokkaido squash', 'gemuese', 'v'],
+  rote_bete: ['Rote Bete (vorgegart)', 'Beetroot (cooked)', 'gemuese', 'v'],
+  fruehlingszwiebel: ['Frühlingszwiebeln', 'Spring onions', 'gemuese', 'v'],
+  ingwer: ['Ingwer', 'Ginger', 'gemuese', 'v'],
+  chili: ['Chilischote', 'Chili pepper', 'gemuese', 'v'],
+  gruene_bohnen: ['Grüne Bohnen', 'Green beans', 'gemuese', 'v'],
+  zuckerschoten: ['Zuckerschoten', 'Snow peas', 'gemuese', 'v'],
+  pak_choi: ['Pak Choi', 'Pak choi', 'gemuese', 'v'],
+  avocado: ['Avocado', 'Avocado', 'gemuese', 'v'],
+  roemersalat: ['Römersalat', 'Romaine lettuce', 'gemuese', 'v'],
+  kopfsalat: ['Kopfsalat', 'Butter lettuce', 'gemuese', 'v'],
+  rucola: ['Rucola', 'Rocket', 'gemuese', 'v'],
+  radieschen: ['Radieschen', 'Radishes', 'gemuese', 'v'],
+  sauerkraut: ['Sauerkraut', 'Sauerkraut', 'konserven', 'v'],
+  weisskohl: ['Weißkohl', 'White cabbage', 'gemuese', 'v'],
+
+  // Obst
+  zitrone: ['Zitrone', 'Lemon', 'obst', 'v'],
+  limette: ['Limette', 'Lime', 'obst', 'v'],
+  apfel: ['Apfel', 'Apple', 'obst', 'v'],
+  banane: ['Banane', 'Banana', 'obst', 'v'],
+  beeren_tk: ['Beeren (TK)', 'Berries (frozen)', 'obst', 'v'],
+  sauerkirschen: ['Sauerkirschen (Glas)', 'Sour cherries (jar)', 'konserven', 'v'],
+  pflaumen: ['Pflaumen', 'Plums', 'obst', 'v'],
+  rosinen: ['Rosinen', 'Raisins', 'backen', 'v'],
+
+  // Kräuter
+  petersilie: ['Petersilie', 'Parsley', 'kraeuter', 'v'],
+  schnittlauch: ['Schnittlauch', 'Chives', 'kraeuter', 'v'],
+  basilikum: ['Basilikum', 'Basil', 'kraeuter', 'v'],
+  koriander: ['Koriander', 'Coriander', 'kraeuter', 'v'],
+  minze: ['Minze', 'Mint', 'kraeuter', 'v'],
+  dill: ['Dill', 'Dill', 'kraeuter', 'v'],
+  rosmarin: ['Rosmarin', 'Rosemary', 'kraeuter', 'v'],
+  thymian: ['Thymian', 'Thyme', 'kraeuter', 'v'],
+  salbei: ['Salbei', 'Sage', 'kraeuter', 'v'],
+
+  // Gewürze & Würzmittel
+  paprikapulver: ['Paprikapulver (edelsüß)', 'Sweet paprika', 'gewuerze', 'v'],
+  chiliflocken: ['Chiliflocken', 'Chili flakes', 'gewuerze', 'v'],
+  kreuzkuemmel: ['Kreuzkümmel', 'Cumin', 'gewuerze', 'v'],
+  currypulver: ['Currypulver', 'Curry powder', 'gewuerze', 'v'],
+  kurkuma: ['Kurkuma', 'Turmeric', 'gewuerze', 'v'],
+  garam_masala: ['Garam Masala', 'Garam masala', 'gewuerze', 'v'],
+  zimt: ['Zimt', 'Cinnamon', 'gewuerze', 'v'],
+  muskat: ['Muskatnuss', 'Nutmeg', 'gewuerze', 'v'],
+  oregano: ['Oregano (getrocknet)', 'Dried oregano', 'gewuerze', 'v'],
+  majoran: ['Majoran', 'Marjoram', 'gewuerze', 'v'],
+  kuemmel: ['Kümmel', 'Caraway', 'gewuerze', 'v'],
+  lorbeer: ['Lorbeerblatt', 'Bay leaf', 'gewuerze', 'v'],
+  gemuesebruehe: ['Gemüsebrühe', 'Vegetable stock', 'gewuerze', 'v'],
+  huehnerbruehe: ['Hühnerbrühe', 'Chicken stock', 'gewuerze', 'fl'],
+  rinderbruehe: ['Rinderbrühe', 'Beef stock', 'gewuerze', 'fl'],
+  sojasauce: ['Sojasauce', 'Soy sauce', 'sonstiges', 'v'],
+  senf: ['Senf', 'Mustard', 'sonstiges', 'v'],
+  ketchup: ['Ketchup', 'Ketchup', 'sonstiges', 'v'],
+  mayonnaise: ['Mayonnaise', 'Mayonnaise', 'sonstiges', 'veg'],
+  essig: ['Weißweinessig', 'White wine vinegar', 'sonstiges', 'v'],
+  balsamico: ['Balsamico', 'Balsamic vinegar', 'sonstiges', 'v'],
+  honig: ['Honig', 'Honey', 'sonstiges', 'veg'],
+  ahornsirup: ['Ahornsirup', 'Maple syrup', 'sonstiges', 'v'],
+  erdnussbutter: ['Erdnussbutter', 'Peanut butter', 'sonstiges', 'v'],
+  tahini: ['Tahini', 'Tahini', 'sonstiges', 'v'],
+  sesamoel: ['Sesamöl', 'Sesame oil', 'sonstiges', 'v'],
+  rote_currypaste: ['Rote Currypaste', 'Red curry paste', 'sonstiges', 'v'],
+  pesto: ['Basilikum-Pesto', 'Basil pesto', 'sonstiges', 'veg'],
+  weisswein: ['Weißwein', 'White wine', 'sonstiges', 'v'],
+  rotwein: ['Rotwein', 'Red wine', 'sonstiges', 'v'],
+  vanillezucker: ['Vanillezucker', 'Vanilla sugar', 'backen', 'v'],
+  puderzucker: ['Puderzucker', 'Icing sugar', 'backen', 'v'],
+
+  // Konserven & Hülsenfrüchte
+  passierte_tomaten: ['Passierte Tomaten', 'Tomato passata', 'konserven', 'v'],
+  gehackte_tomaten: ['Gehackte Tomaten (Dose)', 'Chopped tomatoes (can)', 'konserven', 'v'],
+  tomatenmark: ['Tomatenmark', 'Tomato paste', 'konserven', 'v'],
+  kokosmilch: ['Kokosmilch', 'Coconut milk', 'konserven', 'v'],
+  kichererbsen: ['Kichererbsen (Dose)', 'Chickpeas (can)', 'konserven', 'v'],
+  kidneybohnen: ['Kidneybohnen (Dose)', 'Kidney beans (can)', 'konserven', 'v'],
+  weisse_bohnen: ['Weiße Bohnen (Dose)', 'White beans (can)', 'konserven', 'v'],
+  mais: ['Mais (Dose)', 'Sweetcorn (can)', 'konserven', 'v'],
+  rote_linsen: ['Rote Linsen', 'Red lentils', 'konserven', 'v'],
+  tellerlinsen: ['Tellerlinsen', 'Brown lentils', 'konserven', 'v'],
+  oliven: ['Schwarze Oliven', 'Black olives', 'konserven', 'v'],
+  kapern: ['Kapern', 'Capers', 'konserven', 'v'],
+  gewuerzgurken: ['Gewürzgurken', 'Pickles', 'konserven', 'v'],
+  thunfisch: ['Thunfisch (Dose)', 'Tuna (can)', 'konserven', 'fi'],
+  apfelmus: ['Apfelmus', 'Apple sauce', 'konserven', 'v'],
+  erbsen_tk: ['Erbsen (TK)', 'Peas (frozen)', 'gemuese', 'v'],
+  spinat_tk: ['Blattspinat (TK)', 'Spinach (frozen)', 'gemuese', 'v'],
+
+  // Nudeln, Reis, Getreide
+  spaghetti: ['Spaghetti', 'Spaghetti', 'nudeln_reis', 'v'],
+  penne: ['Penne', 'Penne', 'nudeln_reis', 'v'],
+  fusilli: ['Fusilli', 'Fusilli', 'nudeln_reis', 'v'],
+  tagliatelle: ['Bandnudeln', 'Tagliatelle', 'nudeln_reis', 'veg'],
+  orecchiette: ['Orecchiette', 'Orecchiette', 'nudeln_reis', 'v'],
+  makkaroni: ['Makkaroni', 'Macaroni', 'nudeln_reis', 'v'],
+  lasagneplatten: ['Lasagneplatten', 'Lasagne sheets', 'nudeln_reis', 'v'],
+  suppennudeln: ['Suppennudeln', 'Soup noodles', 'nudeln_reis', 'v'],
+  spaetzle: ['Spätzle (Kühlregal)', 'Spaetzle (chilled)', 'nudeln_reis', 'veg'],
+  tortellini: ['Tortellini mit Käsefüllung', 'Cheese tortellini', 'nudeln_reis', 'veg'],
+  gnocchi: ['Gnocchi', 'Gnocchi', 'nudeln_reis', 'v'],
+  schupfnudeln: ['Schupfnudeln', 'Potato noodles', 'nudeln_reis', 'veg'],
+  reisnudeln: ['Reisbandnudeln', 'Rice noodles', 'nudeln_reis', 'v'],
+  mie_nudeln: ['Mie-Nudeln', 'Egg noodles', 'nudeln_reis', 'veg'],
+  reis: ['Langkornreis', 'Long-grain rice', 'nudeln_reis', 'v'],
+  basmati: ['Basmatireis', 'Basmati rice', 'nudeln_reis', 'v'],
+  risottoreis: ['Risottoreis', 'Risotto rice', 'nudeln_reis', 'v'],
+  milchreis: ['Milchreis', 'Pudding rice', 'nudeln_reis', 'v'],
+  couscous: ['Couscous', 'Couscous', 'nudeln_reis', 'v'],
+  bulgur: ['Bulgur', 'Bulgur', 'nudeln_reis', 'v'],
+  quinoa: ['Quinoa', 'Quinoa', 'nudeln_reis', 'v'],
+  polenta: ['Polenta (Maisgrieß)', 'Polenta', 'nudeln_reis', 'v'],
+  griess: ['Weichweizengrieß', 'Semolina', 'nudeln_reis', 'v'],
+  haferflocken: ['Haferflocken', 'Rolled oats', 'nudeln_reis', 'v'],
+
+  // Backen
+  mehl: ['Weizenmehl', 'Flour', 'backen', 'v'],
+  backpulver: ['Backpulver', 'Baking powder', 'backen', 'v'],
+  hefe: ['Trockenhefe', 'Dry yeast', 'backen', 'v'],
+  semmelbroesel: ['Semmelbrösel', 'Breadcrumbs', 'backen', 'v'],
+  speisestaerke: ['Speisestärke', 'Cornstarch', 'backen', 'v'],
+  walnuesse: ['Walnüsse', 'Walnuts', 'backen', 'v'],
+  pinienkerne: ['Pinienkerne', 'Pine nuts', 'backen', 'v'],
+  erdnuesse: ['Erdnüsse', 'Peanuts', 'backen', 'v'],
+  cashews: ['Cashewkerne', 'Cashews', 'backen', 'v'],
+  sesam: ['Sesam', 'Sesame seeds', 'backen', 'v'],
+
+  // Brot & Teig
+  baguette: ['Baguette', 'Baguette', 'brot', 'v'],
+  toastbrot: ['Toastbrot', 'Sandwich bread', 'brot', 'v'],
+  bauernbrot: ['Bauernbrot', 'Rye bread', 'brot', 'v'],
+  broetchen: ['Brötchen vom Vortag', 'Day-old bread rolls', 'brot', 'v'],
+  burgerbroetchen: ['Burgerbrötchen', 'Burger buns', 'brot', 'v'],
+  tortillas: ['Weizentortillas', 'Flour tortillas', 'brot', 'v'],
+  pita: ['Pitabrot', 'Pita bread', 'brot', 'v'],
+  flammkuchenteig: ['Flammkuchenteig (Kühlregal)', 'Tarte flambée dough', 'brot', 'v'],
+
+  // Milchprodukte & Eier
+  eier: ['Eier', 'Eggs', 'milch_eier', 'veg'],
+  milch: ['Milch', 'Milk', 'milch_eier', 'veg'],
+  haferdrink: ['Haferdrink', 'Oat milk', 'milch_eier', 'v'],
+  butter: ['Butter', 'Butter', 'milch_eier', 'veg'],
+  sahne: ['Sahne', 'Cream', 'milch_eier', 'veg'],
+  hafersahne: ['Hafer-Kochsahne', 'Oat cream', 'milch_eier', 'v'],
+  schmand: ['Schmand', 'Sour cream', 'milch_eier', 'veg'],
+  creme_fraiche: ['Crème fraîche', 'Crème fraîche', 'milch_eier', 'veg'],
+  quark: ['Magerquark', 'Quark', 'milch_eier', 'veg'],
+  joghurt: ['Griechischer Joghurt', 'Greek yogurt', 'milch_eier', 'veg'],
+  sojajoghurt: ['Sojajoghurt', 'Soy yogurt', 'milch_eier', 'v'],
+  parmesan: ['Parmesan', 'Parmesan', 'milch_eier', 'veg'],
+  mozzarella: ['Mozzarella', 'Mozzarella', 'milch_eier', 'veg'],
+  feta: ['Feta', 'Feta', 'milch_eier', 'veg'],
+  reibekaese: ['Geriebener Käse (Gouda)', 'Grated cheese (Gouda)', 'milch_eier', 'veg'],
+  bergkaese: ['Bergkäse', 'Mountain cheese', 'milch_eier', 'veg'],
+  cheddar: ['Cheddar', 'Cheddar', 'milch_eier', 'veg'],
+  ziegenkaese: ['Ziegenfrischkäse', 'Goat cheese', 'milch_eier', 'veg'],
+  halloumi: ['Halloumi', 'Halloumi', 'milch_eier', 'veg'],
+  frischkaese: ['Frischkäse', 'Cream cheese', 'milch_eier', 'veg'],
+  tofu: ['Tofu (natur)', 'Firm tofu', 'milch_eier', 'v'],
+  raeuchertofu: ['Räuchertofu', 'Smoked tofu', 'milch_eier', 'v'],
+
+  // Fleisch & Fisch
+  hackfleisch: ['Hackfleisch (gemischt)', 'Mixed minced meat', 'fleisch_fisch', 'fl'],
+  rinderhack: ['Rinderhackfleisch', 'Ground beef', 'fleisch_fisch', 'fl'],
+  haehnchenbrust: ['Hähnchenbrustfilet', 'Chicken breast', 'fleisch_fisch', 'fl'],
+  haehnchenschenkel: ['Hähnchenschenkel', 'Chicken thighs', 'fleisch_fisch', 'fl'],
+  speck: ['Speckwürfel', 'Diced bacon', 'fleisch_fisch', 'fl'],
+  schinken: ['Kochschinken', 'Cooked ham', 'fleisch_fisch', 'fl'],
+  bratwurst: ['Bratwurst', 'Bratwurst', 'fleisch_fisch', 'fl'],
+  wiener: ['Wiener Würstchen', 'Frankfurters', 'fleisch_fisch', 'fl'],
+  fleischwurst: ['Fleischwurst', 'Bologna sausage', 'fleisch_fisch', 'fl'],
+  chorizo: ['Chorizo', 'Chorizo', 'fleisch_fisch', 'fl'],
+  schnitzel: ['Schweineschnitzel', 'Pork escalope', 'fleisch_fisch', 'fl'],
+  geschnetzeltes: ['Schweinegeschnetzeltes', 'Sliced pork', 'fleisch_fisch', 'fl'],
+  rindergulasch: ['Rindergulasch', 'Beef stew meat', 'fleisch_fisch', 'fl'],
+  lachs: ['Lachsfilet', 'Salmon fillet', 'fleisch_fisch', 'fi'],
+  raeucherlachs: ['Räucherlachs', 'Smoked salmon', 'fleisch_fisch', 'fi'],
+  fischfilet: ['Weißes Fischfilet (z. B. Seelachs)', 'White fish fillet', 'fleisch_fisch', 'fi'],
+  garnelen: ['Garnelen', 'Prawns', 'fleisch_fisch', 'fi'],
+  fischstaebchen: ['Fischstäbchen', 'Fish fingers', 'fleisch_fisch', 'fi'],
+};
