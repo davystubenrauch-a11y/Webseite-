@@ -30,14 +30,13 @@ npm run lint     # TypeScript-Prüfung
 - Alle Canvases werden lazy geladen und pausieren außerhalb des Viewports.
 
 ## Startseite `/`
-Hauptdesign mit 3D-Erlebnissen (`components/v3/`, Seite `app/page.tsx`):
-- **Hero:** 3D-Animation (`components/three/TapStory.tsx`): Ein Smartphone tippt die NFC-Platte an, NFC-Wellen, die Google-Bewertung öffnet sich, fünf 3D-Sterne fliegen heraus. Die Schritt-Beschriftungen laufen synchron (`lib/story.ts`).
-- **NFC-Platte:** Scroll-gesteuerte Zerlegung in Frontplatte, NFC-Chip/Antenne und Rückplatte mit Beschriftungen (`components/three/ChipStage.tsx`), Farbwahl Weiß/Schwarz.
-- **Websites:** Vorher/Nachher-Regler (`components/v3/WebCompare.tsx`).
-- **Roomtour:** Begehbarer 3D-Beispielraum mit Scan-Effekt und Kamerafahrten (`components/three/RoomTour.tsx`).
-- Danach Ablauf, Preise, Team, FAQ, Anfrage. Weiches Scrollen über Lenis.
+Übersichtliches Hauptdesign (`components/home/`, Seite `app/page.tsx`):
+- **Hero:** große blaue Fläche mit Kernaussage, Preisen und der langsam drehenden 3D-Platte.
+- **Leistungen:** drei farbcodierte Karten (NFC grün, Website blau, Roomtour bernstein) mit ruhigen Illustrationen.
+- **NFC-Platte:** drei nummerierte Schritte plus 3D-Modell mit Farbwahl und „Aufbau zeigen“.
+- Danach Preise (Tabs), Über uns mit Kundenstimmen, FAQ und Anfrage.
 
-Frühere Varianten zum Vergleich: **/v1** (erste Version) und **/v2** (Bento-Layout).
+Weitere Varianten zum Vergleich: **/v1** (erste Version), **/v2** (Bento-Layout), **/v3** (viele 3D-Effekte).
 
 ## Designvariante `/v2`
 Alternative Gestaltung unter **/v2** mit denselben Inhalten, Preisen und demselben Anfrage-Assistenten (`components/v2/`):
