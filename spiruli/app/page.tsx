@@ -1,12 +1,15 @@
 import Nav from "@/components/ui/Nav";
 import ScrollStory from "@/components/ui/ScrollStory";
 import Hero from "@/components/sections/Hero";
-import Benefits from "@/components/sections/Benefits";
-import Story from "@/components/sections/Story";
-import Flavor from "@/components/sections/Flavor";
-import NutrientMatrix from "@/components/sections/NutrientMatrix";
-import Quality from "@/components/sections/Quality";
-import Bezug from "@/components/sections/Bezug";
+import Ticker from "@/components/sections/Ticker";
+import Manifest from "@/components/sections/Manifest";
+import Journey from "@/components/sections/Journey";
+import CanDetail from "@/components/sections/CanDetail";
+import Nutrients from "@/components/sections/Nutrients";
+import Makers from "@/components/sections/Makers";
+import Trust from "@/components/sections/Trust";
+import Faq from "@/components/sections/Faq";
+import FinalCta from "@/components/sections/FinalCta";
 import Footer from "@/components/sections/Footer";
 
 export default function Home() {
@@ -16,12 +19,15 @@ export default function Home() {
       <ScrollStory />
       <main>
         <Hero />
-        <Benefits />
-        <Story />
-        <Flavor />
-        <NutrientMatrix />
-        <Quality />
-        <Bezug />
+        <Ticker />
+        <Manifest />
+        <Journey />
+        <CanDetail />
+        <Nutrients />
+        <Makers />
+        <Trust />
+        <Faq />
+        <FinalCta />
       </main>
       <Footer />
     </>

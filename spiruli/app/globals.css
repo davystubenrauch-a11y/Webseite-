@@ -7,60 +7,71 @@
 }
 
 html {
-  background: #f7f5f0;
+  background: #fbf7ee;
   overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
   min-height: 100vh;
-  color: #0e2f3a;
-  background: #f7f5f0;
+  color: #12343f;
+  background: #fbf7ee;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background: rgba(62, 155, 79, 0.25);
+  background: #d4ee6f;
 }
 
 @layer components {
-  .container-page {
-    @apply mx-auto w-full max-w-6xl px-5 sm:px-8;
+  .wrap {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
   }
 
-  .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.14em] text-leaf-dark;
+  /* Big, tight display headlines. */
+  .display {
+    @apply font-extrabold leading-[0.9] tracking-[-0.035em];
   }
 
-  .h-section {
-    @apply text-3xl font-bold leading-tight tracking-tight text-petrol-900 sm:text-4xl lg:text-[2.75rem];
+  .kicker {
+    @apply inline-flex items-center gap-2 rounded-full border-2 border-ink px-3 py-1 text-xs font-bold uppercase tracking-[0.12em];
   }
 
-  .lead {
-    @apply text-lg leading-relaxed text-muted;
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink px-6 py-3.5 text-base font-bold transition-all duration-200;
+  }
+  .btn-ink {
+    @apply btn bg-ink text-cream shadow-[4px_4px_0_0_#A8CF3F] hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[6px_6px_0_0_#A8CF3F];
+  }
+  .btn-line {
+    @apply btn bg-transparent text-ink hover:bg-ink hover:text-cream;
   }
 
-  .card {
-    @apply rounded-2xl border border-sand-300/70 bg-white shadow-card;
+  .sticker {
+    @apply rounded-2xl border-2 border-ink bg-cream shadow-[5px_5px_0_0_#12343F];
   }
+}
 
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-petrol px-6 py-3.5 text-sm font-semibold text-white transition-colors duration-200 hover:bg-petrol-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-petrol;
-  }
+/* Paper grain for an authentic, printed feel on colour blocks. */
+.paper {
+  position: relative;
+  isolation: isolate;
+}
+.paper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='240'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.5 0 0 0 0 0.45 0 0 0 0 0.35 0 0 0 0.18 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
 
-  .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-petrol/25 bg-white px-6 py-3.5 text-sm font-semibold text-petrol transition-colors duration-200 hover:border-petrol hover:bg-petrol-50;
-  }
-
-  .chip {
-    @apply inline-flex items-center gap-2 rounded-full bg-white px-3.5 py-1.5 text-sm font-medium text-petrol-900 ring-1 ring-sand-300;
-  }
-
-  .fade-edges {
-    -webkit-mask-image: radial-gradient(closest-side, #000 75%, transparent);
-    mask-image: radial-gradient(closest-side, #000 75%, transparent);
-  }
+.fade-edges {
+  -webkit-mask-image: radial-gradient(closest-side, #000 78%, transparent);
+  mask-image: radial-gradient(closest-side, #000 78%, transparent);
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -9,12 +9,12 @@ export default function CanControls() {
   const side = useCan((s) => s.face.side);
 
   const btn = (active: boolean) =>
-    `rounded-full px-3.5 py-2 text-xs font-semibold transition-colors ${active ? "bg-petrol text-white" : "text-petrol-900/70 hover:text-petrol"}`;
+    `rounded-full px-3.5 py-2 text-sm font-bold transition-colors ${active ? "bg-ink text-lime" : "text-ink hover:bg-lime"}`;
 
   return (
-    <div className="flex items-center gap-1 rounded-full bg-white p-1 shadow-card ring-1 ring-sand-300" role="toolbar" aria-label="Dose steuern">
+    <div className="flex items-center gap-1 rounded-full border-2 border-ink bg-cream p-1 shadow-[3px_3px_0_0_#12343F]" role="toolbar" aria-label="Dose steuern">
       <button type="button" className={btn(autoSpin)} aria-pressed={autoSpin} onClick={() => canStore.set({ autoSpin: !autoSpin })}>
-        360° drehen
+        360°
       </button>
       <button
         type="button"
@@ -27,7 +27,7 @@ export default function CanControls() {
         {side === "front" ? "Rückseite" : "Vorderseite"}
       </button>
       <button type="button" className={btn(chilled)} aria-pressed={chilled} onClick={() => canStore.set({ chilled: !chilled })}>
-        Eiskalt
+        Eiskalt ❄
       </button>
     </div>
   );
