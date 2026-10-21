@@ -48,15 +48,15 @@ body {
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-ink-muted;
+    @apply inline-flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.2em] text-sage;
   }
   .eyebrow::before {
     content: "";
-    @apply h-px w-8 bg-taupe;
+    @apply h-1.5 w-1.5 rounded-full bg-sage;
   }
 
   .section-title {
-    @apply font-heading text-[2.25rem] font-medium leading-[1.12] tracking-[0.005em] text-ink sm:text-5xl lg:text-[3.5rem];
+    @apply font-heading text-[2rem] font-extrabold leading-[1.1] tracking-tight text-ink sm:text-[2.6rem];
   }
 
   /* Surfaces */
@@ -72,10 +72,10 @@ body {
 
   /* Buttons: calm, no shouting. */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-ink px-7 py-3.5 text-sm font-medium tracking-wide text-paper transition duration-300 hover:bg-sage-dark;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-paper transition duration-300 hover:bg-sage-dark;
   }
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-ink/15 px-7 py-3.5 text-sm font-medium tracking-wide text-ink transition duration-300 hover:border-ink/40;
+    @apply inline-flex items-center justify-center gap-2.5 rounded-full border border-ink/15 px-6 py-3.5 text-sm font-semibold text-ink transition duration-300 hover:border-ink/40;
   }
   .link-arrow {
     @apply inline-flex items-center gap-2 text-sm font-medium text-ink underline decoration-taupe/60 decoration-1 underline-offset-[6px] transition hover:decoration-ink;
@@ -154,7 +154,7 @@ input[type="range"].range::-moz-range-thumb {
 
 /* Legal pages typography. */
 .legal h2 {
-  @apply mt-12 font-heading text-2xl font-medium text-ink;
+  @apply mt-12 font-heading text-xl font-bold text-ink;
 }
 .legal p {
   @apply mt-3 leading-relaxed text-ink-muted;

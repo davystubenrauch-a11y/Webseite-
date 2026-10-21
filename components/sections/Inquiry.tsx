@@ -3,7 +3,8 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Icon from "@/components/ui/Icon";
-import Reveal, { SectionHead } from "@/components/ui/Reveal";
+import Reveal from "@/components/ui/Reveal";
+import Panel from "@/components/split/Panel";
 import { configStore, useConfig } from "@/lib/configStore";
 import { budgets, propertyTypes, serviceLabels, summarize, timelines, validate, type Errors, type Inquiry as Data } from "@/lib/inquiry";
 import { addOns, nfcProduct, themes, tourTiers, webTiers, type ServiceId, type Theme } from "@/lib/pricing";
@@ -120,109 +121,102 @@ export default function Inquiry() {
   };
 
   return (
-    <section id="anfrage" className="section relative bg-sand/60">
-            <div className="container-site">
-        <SectionHead
-          eyebrow="Anfrage"
-          title={
+    <Panel
+      id="anfrage"
+      className="bg-sand/60"
+      title="Erzählen Sie uns von Ihrem Vorhaben."
+      lead="In vier kurzen Schritten zu Ihrem Angebot. Unverbindlich, und wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen."
+    >
+      <div className="grid gap-4 2xl:grid-cols-[1fr_300px]">
+        <Reveal className="card overflow-hidden bg-white">
+          {status.kind === "sent" ? (
+            <Success status={status} onReset={reset} onMail={() => openMail(data)} name={data.name} />
+          ) : (
             <>
-              Erzählen Sie uns von <em className="italic text-sage">Ihrem Vorhaben.</em>
-            </>
-          }
-          lead="In vier kurzen Schritten zu Ihrem Angebot. Unverbindlich, und wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen."
-        />
-
-        <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_340px] lg:gap-8">
-          <Reveal className="card overflow-hidden bg-white">
-            {status.kind === "sent" ? (
-              <Success status={status} onReset={reset} onMail={() => openMail(data)} name={data.name} />
-            ) : (
-              <>
-                <Progress step={step} onJump={(i) => i < step && go(i)} />
-                <div className="relative min-h-[440px] overflow-hidden px-5 pb-6 pt-4 sm:px-10">
-                  <AnimatePresence mode="wait" custom={dir} initial={false}>
-                    <motion.div
-                      key={step}
-                      custom={dir}
-                      initial={{ opacity: 0, x: dir * 40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: dir * -40 }}
-                      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      {step === 0 && (
-                        <StepServices selected={data.services} onToggle={toggleService} error={errors.services} />
-                      )}
-                      {step === 1 && <StepDetails data={data} patch={patch} errors={errors} clearError={clearError} />}
-                      {step === 2 && <StepContact data={data} patch={patch} errors={errors} clearError={clearError} />}
-                      {step === 3 && <StepSummary data={data} onEdit={(i) => go(i)} />}
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-                <div className="flex items-center justify-between gap-3 border-t border-line px-5 py-5 sm:px-10">
-                  <button
-                    type="button"
-                    onClick={() => go(step - 1)}
-                    disabled={step === 0}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink disabled:pointer-events-none disabled:opacity-0"
+              <Progress step={step} onJump={(i) => i < step && go(i)} />
+              <div className="relative min-h-[440px] overflow-hidden px-5 pb-6 pt-4 sm:px-10">
+                <AnimatePresence mode="wait" custom={dir} initial={false}>
+                  <motion.div
+                    key={step}
+                    custom={dir}
+                    initial={{ opacity: 0, x: dir * 40 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: dir * -40 }}
+                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                   >
-                    <Icon name="back" className="h-4 w-4" /> Zurück
+                    {step === 0 && (
+                      <StepServices selected={data.services} onToggle={toggleService} error={errors.services} />
+                    )}
+                    {step === 1 && <StepDetails data={data} patch={patch} errors={errors} clearError={clearError} />}
+                    {step === 2 && <StepContact data={data} patch={patch} errors={errors} clearError={clearError} />}
+                    {step === 3 && <StepSummary data={data} onEdit={(i) => go(i)} />}
+                  </motion.div>
+                </AnimatePresence>
+              </div>
+              <div className="flex items-center justify-between gap-3 border-t border-line px-5 py-5 sm:px-10">
+                <button
+                  type="button"
+                  onClick={() => go(step - 1)}
+                  disabled={step === 0}
+                  className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink disabled:pointer-events-none disabled:opacity-0"
+                >
+                  <Icon name="back" className="h-4 w-4" /> Zurück
+                </button>
+                {status.kind === "error" && <p className="hidden text-sm text-google-red sm:block" role="alert">{status.message}</p>}
+                {step < 3 ? (
+                  <button type="button" onClick={() => go(step + 1)} className="btn-primary">
+                    Weiter <Icon name="arrow" className="h-4 w-4" />
                   </button>
-                  {status.kind === "error" && <p className="hidden text-sm text-google-red sm:block" role="alert">{status.message}</p>}
-                  {step < 3 ? (
-                    <button type="button" onClick={() => go(step + 1)} className="btn-primary">
-                      Weiter <Icon name="arrow" className="h-4 w-4" />
-                    </button>
-                  ) : (
-                    <button type="button" onClick={submit} disabled={status.kind === "sending"} className="btn-primary disabled:opacity-70">
-                      {status.kind === "sending" ? (
-                        <>
-                          <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" /> Wird gesendet…
-                        </>
-                      ) : (
-                        <>
-                          Anfrage absenden <Icon name="arrow" className="h-4 w-4" />
-                        </>
-                      )}
-                    </button>
-                  )}
-                </div>
-                {status.kind === "error" && <p className="px-5 pb-5 text-sm text-google-red sm:hidden" role="alert">{status.message}</p>}
-              </>
-            )}
-          </Reveal>
+                ) : (
+                  <button type="button" onClick={submit} disabled={status.kind === "sending"} className="btn-primary disabled:opacity-70">
+                    {status.kind === "sending" ? (
+                      <>
+                        <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/30 border-t-white" /> Wird gesendet…
+                      </>
+                    ) : (
+                      <>
+                        Anfrage absenden <Icon name="arrow" className="h-4 w-4" />
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+              {status.kind === "error" && <p className="px-5 pb-5 text-sm text-google-red sm:hidden" role="alert">{status.message}</p>}
+            </>
+          )}
+        </Reveal>
 
-          <Reveal delay={0.15} className="flex flex-col gap-4">
-            <div className="card p-6">
-              <p className="eyebrow">Direkter Draht</p>
-              <ul className="mt-5 space-y-4">
-                {site.founders.map((f) => (
-                  <li key={f.name}>
-                    <p className="font-heading text-lg font-medium text-ink">{f.name}</p>
-                    <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
-                      <Icon name="phone" className="h-4 w-4 text-brand" /> {f.phone}
-                    </a>
-                  </li>
-                ))}
-                <li>
-                  <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
-                    <Icon name="mail" className="h-4 w-4 text-brand" /> {site.email}
+        <Reveal delay={0.15} className="grid gap-4 sm:grid-cols-2 2xl:grid-cols-1 2xl:content-start">
+          <div className="card p-6">
+            <p className="eyebrow">Direkter Draht</p>
+            <ul className="mt-5 space-y-4">
+              {site.founders.map((f) => (
+                <li key={f.name}>
+                  <p className="font-heading text-base font-bold text-ink">{f.name}</p>
+                  <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
+                    <Icon name="phone" className="h-4 w-4 text-brand" /> {f.phone}
                   </a>
                 </li>
-                <li className="inline-flex items-center gap-2 text-sm text-ink-muted">
-                  <Icon name="pin" className="h-4 w-4 text-brand" /> {site.city}
-                </li>
-              </ul>
-            </div>
-            <div className="card p-6 text-sm leading-relaxed text-ink-muted">
-              <p className="flex items-center gap-2 font-semibold text-ink">
-                <Icon name="lock" className="h-4 w-4 text-brand" /> Ihre Daten sind sicher
-              </p>
-              <p className="mt-2">Verschlüsselte Übertragung, keine Weitergabe an Dritte. Wir nutzen Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
-            </div>
-          </Reveal>
-        </div>
+              ))}
+              <li>
+                <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
+                  <Icon name="mail" className="h-4 w-4 text-brand" /> {site.email}
+                </a>
+              </li>
+              <li className="inline-flex items-center gap-2 text-sm text-ink-muted">
+                <Icon name="pin" className="h-4 w-4 text-brand" /> {site.city}
+              </li>
+            </ul>
+          </div>
+          <div className="card p-6 text-sm leading-relaxed text-ink-muted">
+            <p className="flex items-center gap-2 font-semibold text-ink">
+              <Icon name="lock" className="h-4 w-4 text-brand" /> Ihre Daten sind sicher
+            </p>
+            <p className="mt-2">Verschlüsselte Übertragung, keine Weitergabe an Dritte. Wir nutzen Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
+          </div>
+        </Reveal>
       </div>
-    </section>
+    </Panel>
   );
 }
 
@@ -258,7 +252,7 @@ function Progress({ step, onJump }: { step: number; onJump: (i: number) => void 
 function StepTitle({ title, text }: { title: string; text: string }) {
   return (
     <div className="mb-7 mt-4">
-      <h3 className="font-heading text-3xl font-medium text-ink">{title}</h3>
+      <h3 className="font-heading text-2xl font-extrabold tracking-tight text-ink">{title}</h3>
       <p className="mt-1 text-sm text-ink-muted">{text}</p>
     </div>
   );
@@ -519,7 +513,7 @@ function Success({ status, onReset, onMail, name }: { status: Extract<Status, { 
           <motion.path d="M15 27l7 7 15-15" fill="none" stroke="#4A5D52" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.6 }} />
         </svg>
       </div>
-      <h3 className="mt-8 font-heading text-4xl font-medium text-ink">
+      <h3 className="mt-8 font-heading text-3xl font-extrabold tracking-tight text-ink">
         {status.viaMail ? "Fast geschafft" : "Vielen Dank"}
         {name ? `, ${name.split(" ")[0]}` : ""}!
       </h3>

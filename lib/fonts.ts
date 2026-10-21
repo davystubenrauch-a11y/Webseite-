@@ -1,10 +1,9 @@
-import { Cinzel, Inter, Playfair_Display } from "next/font/google";
+import { Cinzel, Cormorant_Garamond, Manrope } from "next/font/google";
 
-/** Display serif for headlines and the F&D monogram. */
-export const serif = Playfair_Display({
+/** Serif used only for the F&D monogram (and the name on the disc artwork). */
+export const serif = Cormorant_Garamond({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
+  weight: ["600", "700"],
   variable: "--font-serif",
   display: "swap",
 });
@@ -17,10 +16,10 @@ export const display = Cinzel({
   display: "swap",
 });
 
-/** Highly legible body and UI sans. */
-export const sans = Inter({
+/** Manrope for headlines and body text. */
+export const sans = Manrope({
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700", "800"],
   variable: "--font-sans",
   display: "swap",
 });

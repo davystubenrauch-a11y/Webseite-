@@ -21,21 +21,21 @@ npm run lint     # TypeScript-Prüfung
 | Nebennote | Taupe `#A39382` | Nummern, Trennlinien, Zitatzeichen |
 
 Google-Farben erscheinen ausschließlich auf dem NFC-Produkt selbst.
-Schriften: **Playfair Display** (Headlines), **Inter** (Fließtext), Cinzel nur im Logo-Schriftzug „SOLUTIONS“.
-Layout: 12-Spalten-Raster (`.grid-12`), Container `.container-site`, Sektionsabstand `.section` (96/128/160 px).
+Schriften: **Manrope** (Überschriften und Text), im Logo Cormorant Garamond (Monogramm) und Cinzel („SOLUTIONS“).
 Tokens: `tailwind.config.ts`, Komponentenklassen: `app/globals.css`.
 
-## Aufbau (`app/page.tsx`, Komponenten in `components/premium/`)
+## Aufbau (`app/page.tsx`, Komponenten in `components/split/`)
 
-1. **Hero:** Serif-Headline auf Mesh-Gradient, ruhige CTAs, drehbare 3D-NFC-Platte im Glasrahmen, Leiste „Funktioniert mit“.
-2. **Haltung:** kurzes Statement und drei Prinzipien.
-3. **Leistungen:** editoriale Liste im 12-Spalten-Raster.
-4. **NFC Review Disc:** dunkles Band, 3D-Modell mit Farbwahl und „Aufbau zeigen“ (Chip sichtbar), drei Schritte.
-5. **Ablauf:** vier Schritte.
-6. **Preise:** Tabs Website / Roomtour / NFC-Platte (NFC mit Mengenrechner).
-7. **Stimmen**, **Über uns**, **FAQ**.
-8. **Anfrage:** 4-Schritte-Assistent (`components/sections/Inquiry.tsx`) mit Validierung.
-9. **Footer** mit Kontakt, Impressum, Datenschutz.
+Geteilter Bildschirm: Links steht auf dem Desktop eine feste Spalte (`Sidebar.tsx`) mit Botschaft, Buttons, mitlaufendem Inhaltsverzeichnis und Kontakt. Rechts scrollen die Inhalte als nummerierte Panels (`Panel.tsx`):
+
+1. **Überblick:** 3D-NFC-Platte auf großer Fläche, drei Kennzahlen.
+2. **Leistungen:** Kacheln (NFC breit, Website und Roomtour nebeneinander).
+3. **NFC-Platte:** dunkle 3D-Bühne mit Farbwahl und „Aufbau zeigen“, drei Schritte.
+4. **Preise:** Tabs Website / Roomtour / NFC-Platte (NFC mit Mengenrechner).
+5. **Über uns:** Gründer, Prinzipien, Kundenstimmen.
+6. **FAQ**, 7. **Anfrage** (4-Schritte-Assistent), Footer.
+
+Auf dem Handy: Kopfleiste mit Menü (`MobileBar.tsx`), danach alle Bereiche untereinander.
 
 3D: `components/three/NfcProduct.tsx` (Platte aus zwei Acrylhälften mit Kupferantenne und NTAG-215-Chip), Artwork in `lib/drawNfc.ts`.
 
