@@ -58,7 +58,7 @@ export default function CanCanvas({
           <SpiruliCan driven={driven} spin={spin} interactive={interactive} />
           <AlgaeParticles count={particles} variant="powder" inner={1.0} outer={2.3} />
           {drops && <CitrusDrops />}
-          <ContactShadows position={[0, -1.68, 0]} opacity={0.35} scale={5} blur={2.8} far={2.2} color="#000000" />
+          <ContactShadows position={[0, -1.68, 0]} opacity={0.4} scale={5} blur={2.6} far={2.2} color="#000000" />
         </Suspense>
       </Canvas>
     </div>
