@@ -5,18 +5,18 @@ import * as THREE from "three";
 import { Canvas, useThree } from "@react-three/fiber";
 import { ContactShadows } from "@react-three/drei";
 import NfcProduct, { type ProductLook } from "./NfcProduct";
-import Particles from "./Particles";
 import Studio from "./Studio";
 import { useInView } from "./useInView";
 import { useConfig } from "@/lib/configStore";
 
 type Props = {
   className?: string;
-  /** Fixed look (hero). When omitted, the stage mirrors the configurator store. */
+  /** Fixed look. When omitted, the stage mirrors the configurator store. */
   look?: ProductLook;
-  particles?: number;
   cameraZ?: number;
   spin?: number;
+  /** Shadow tone: darker on light backgrounds, lighter on the dark band. */
+  shadow?: string;
 };
 
 function StoreProduct({ spin }: { spin?: number }) {
@@ -40,7 +40,7 @@ export function FitCamera({ z, halfWidth = 2.3 }: { z: number; halfWidth?: numbe
 }
 
 /** WebGL stage for the NFC review disc. Rendering pauses while scrolled out of view. */
-export default function NfcStage({ className, look, particles = 260, cameraZ = 7, spin }: Props) {
+export default function NfcStage({ className, look, cameraZ = 7, spin, shadow = "#3a3833" }: Props) {
   const [ref, inView] = useInView<HTMLDivElement>();
   return (
     <div ref={ref} className={className}>
@@ -56,8 +56,7 @@ export default function NfcStage({ className, look, particles = 260, cameraZ = 7
         <Suspense fallback={null}>
           <Studio />
           {look ? <NfcProduct {...look} spin={spin} /> : <StoreProduct spin={spin} />}
-          {particles > 0 && <Particles count={particles} radius={1.7} />}
-          <ContactShadows position={[0, -2.15, 0]} opacity={0.45} scale={8} blur={2.6} far={3} color="#000" />
+          <ContactShadows position={[0, -2.1, 0]} opacity={0.32} scale={8} blur={2.8} far={3} color={shadow} />
         </Suspense>
       </Canvas>
     </div>

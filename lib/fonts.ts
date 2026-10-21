@@ -1,9 +1,9 @@
-import { Cinzel, Cormorant_Garamond, Manrope } from "next/font/google";
+import { Cinzel, Inter, Playfair_Display } from "next/font/google";
 
-/** Editorial serif for headlines and the F&D monogram. */
-export const serif = Cormorant_Garamond({
+/** Display serif for headlines and the F&D monogram. */
+export const serif = Playfair_Display({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "600", "700"],
   style: ["normal", "italic"],
   variable: "--font-serif",
   display: "swap",
@@ -12,15 +12,15 @@ export const serif = Cormorant_Garamond({
 /** Roman capitals for the "SOLUTIONS" lettering, as on the business card. */
 export const display = Cinzel({
   subsets: ["latin"],
-  weight: ["500", "600"],
+  weight: ["500"],
   variable: "--font-display",
   display: "swap",
 });
 
-/** Clean UI sans. */
-export const sans = Manrope({
+/** Highly legible body and UI sans. */
+export const sans = Inter({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600"],
   variable: "--font-sans",
   display: "swap",
 });

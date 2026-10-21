@@ -1,33 +1,43 @@
 import type { Config } from "tailwindcss";
 
 /**
- * F&D Solutions palette: light slate surfaces, a clear blue accent,
- * per-service accent colours, and Google colours for the NFC product.
- * Navy and gold remain only for the logo on the business card.
+ * F&D Solutions palette (three main colours + one accent):
+ *  - paper  #F9F8F6  warm off-white background
+ *  - ink    #1C1B19  warm near-black for text and the dark band
+ *  - sage   #4A5D52  deep sage green, the single accent for actions and highlights
+ *  - taupe  #A39382  quiet secondary note (dividers, small details)
+ * Google colours appear only on the NFC product itself.
  */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}", "./lib/**/*.ts"],
   theme: {
     extend: {
       colors: {
-        navy: {
-          950: "#080d1a",
-          900: "#0f172a",
-          800: "#1e293b",
-          700: "#273449",
-          600: "#334155",
+        paper: "#F9F8F6",
+        sand: "#F2EFEA",
+        line: "#E4DED5",
+        ink: {
+          DEFAULT: "#1C1B19",
+          soft: "#3A3833",
+          muted: "#6B665E",
+          faint: "#9C968C",
         },
-        gold: {
-          DEFAULT: "#c5a059",
-          bright: "#d4af37",
-          soft: "#e6cf94",
-          deep: "#8a6a2e",
+        obsidian: "#121212",
+        sage: {
+          DEFAULT: "#4A5D52",
+          dark: "#3A4A41",
+          light: "#E7ECE6",
+          pale: "#F1F4F0",
         },
-        // Primary accent of the light theme.
+        taupe: {
+          DEFAULT: "#A39382",
+          light: "#ECE6DE",
+        },
+        // `brand` is the accent alias used by shared components (wizard, legal pages).
         brand: {
-          DEFAULT: "#2563eb",
-          dark: "#1d4ed8",
-          light: "#eff6ff",
+          DEFAULT: "#4A5D52",
+          dark: "#3A4A41",
+          light: "#E7ECE6",
         },
         google: {
           blue: "#4285F4",
@@ -38,36 +48,26 @@ const config: Config = {
       },
       fontFamily: {
         serif: ["var(--font-serif)", "Georgia", "serif"],
-        heading: ["var(--font-sans)", "system-ui", "sans-serif"],
+        heading: ["var(--font-serif)", "Georgia", "serif"],
         display: ["var(--font-display)", "var(--font-serif)", "serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
       boxShadow: {
-        ring: "0 0 0 4px rgba(37,99,235,0.15)",
+        soft: "0 1px 2px rgba(28,27,25,0.04), 0 24px 48px -32px rgba(28,27,25,0.18)",
+        lift: "0 1px 2px rgba(28,27,25,0.05), 0 32px 64px -36px rgba(28,27,25,0.28)",
+        ring: "0 0 0 4px rgba(74,93,82,0.14)",
+      },
+      maxWidth: {
+        site: "78rem",
       },
       keyframes: {
-        shimmer: {
-          "0%": { backgroundPosition: "0% 50%" },
-          "100%": { backgroundPosition: "200% 50%" },
-        },
-        marquee: {
-          "0%": { transform: "translateX(0)" },
-          "100%": { transform: "translateX(-50%)" },
-        },
-        float: {
-          "0%,100%": { transform: "translateY(0)" },
-          "50%": { transform: "translateY(-10px)" },
-        },
-        ping2: {
-          "0%": { transform: "scale(0.6)", opacity: "0.9" },
-          "100%": { transform: "scale(1.8)", opacity: "0" },
+        drift: {
+          "0%,100%": { transform: "translate3d(0,0,0) scale(1)" },
+          "50%": { transform: "translate3d(2%,-3%,0) scale(1.06)" },
         },
       },
       animation: {
-        shimmer: "shimmer 6s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        marquee: "marquee 40s linear infinite",
-        ping2: "ping2 2.4s cubic-bezier(0,0,0.2,1) infinite",
+        drift: "drift 24s ease-in-out infinite",
       },
     },
   },

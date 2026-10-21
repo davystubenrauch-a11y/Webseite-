@@ -19,11 +19,11 @@ export const site = {
 };
 
 export const nav = [
-  { id: "vision", label: "Vision" },
   { id: "leistungen", label: "Leistungen" },
-  { id: "konfigurator", label: "Konfigurator" },
-  { id: "referenzen", label: "Referenzen" },
-  { id: "anfrage", label: "Anfrage" },
+  { id: "nfc", label: "NFC-Platte" },
+  { id: "prozess", label: "Ablauf" },
+  { id: "preise", label: "Preise" },
+  { id: "team", label: "Über uns" },
 ] as const;
 
 /** Formats a phone number for a tel: link. */

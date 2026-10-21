@@ -1,8 +1,8 @@
-# F&D Solutions: Firmen-Website
+# F&D Solutions: Website
 
-Moderne, seriöse One-Page-Website für **F&D Solutions** (München): runde NFC Google Review Discs (Weiß/Schwarz), Webseiten-Erstellung ab 300 € und Roomtours ab 300 €.
+Website der Digitalagentur **F&D Solutions** (München): NFC Google Review Discs, Webseiten-Erstellung ab 300 € und Roomtours ab 300 €.
 
-**Stack:** Next.js 16 (App Router) · React 19 · Tailwind CSS · React Three Fiber + drei (three.js) · Framer Motion
+**Stack:** Next.js (App Router) · React · Tailwind CSS · React Three Fiber + drei (three.js) · Framer Motion
 
 ```bash
 npm install
@@ -11,41 +11,33 @@ npm run build && npm start
 npm run lint     # TypeScript-Prüfung
 ```
 
-## Aufbau
+## Gestaltung
 
-| Bereich | Datei | Inhalt |
+| Rolle | Farbe | Einsatz |
 |---|---|---|
-| Hero | `components/sections/Hero.tsx` | F&D-Logo, Slogan, CTAs, drehbare 3D-NFC-Platte |
-| Vision | `components/sections/About.tsx` | Werte + die Visitenkarte als neigbare 3D-Karte (klickbare Telefonnummern) |
-| Leistungen | `components/sections/Services.tsx` | 3 Showcase-Cards mit Live-Vorschauen (Tap-Animation, Browser-Mockup, 3D-Punktwolken-Roomtour) |
-| Konfigurator | `components/sections/Configurator.tsx` | NFC-Studio für die runde Review Disc (Farbe Weiß/Schwarz, Sprache, Firmenname, Menge, Preis) + Paket-Builder Web/Roomtour |
-| Referenzen | `components/sections/Trust.tsx` | Kennzahlen, Testimonials, Vertrauenssiegel |
-| Anfrage | `components/sections/Inquiry.tsx` | 4-Schritte-Wizard mit Validierung, Übersicht, Erfolgsmeldung |
-| Footer / Recht | `Footer.tsx`, `app/impressum`, `app/datenschutz` | Schnellnavigation, Kontakt, Social, Impressum, Datenschutz |
+| Hintergrund | Paper `#F9F8F6` | warmes Off-White statt Reinweiß |
+| Text / dunkles Band | Ink `#1C1B19` | warmes Tiefschwarz für Schrift, NFC-Sektion, Footer |
+| Akzent | Deep Sage `#4A5D52` | Hervorhebungen, aktive Zustände, Formular-Fokus |
+| Nebennote | Taupe `#A39382` | Nummern, Trennlinien, Zitatzeichen |
 
-### 3D
-- `components/three/NfcProduct.tsx`: runde NFC Review Disc (Ø 10 cm) aus zwei Acrylhälften, dazwischen Kupfer-Antenne + NTAG-215-Chip. „NFC-Chip zeigen“ öffnet die Explosionsansicht. Ziehen zum Drehen (mit Trägheit).
-- `lib/drawNfc.ts`: Canvas-Artwork (Google-Farbring, „Tap Here“, Wordmark, Sterne, Firmenname, Chip-Inlay), live neu gezeichnet.
-- `components/three/RoomScan.tsx`: KI-Raumscan als Punktwolke mit Scan-Welle und Kamerafahrt.
-- Alle Canvases werden lazy geladen und pausieren außerhalb des Viewports.
+Google-Farben erscheinen ausschließlich auf dem NFC-Produkt selbst.
+Schriften: **Playfair Display** (Headlines), **Inter** (Fließtext), Cinzel nur im Logo-Schriftzug „SOLUTIONS“.
+Layout: 12-Spalten-Raster (`.grid-12`), Container `.container-site`, Sektionsabstand `.section` (96/128/160 px).
+Tokens: `tailwind.config.ts`, Komponentenklassen: `app/globals.css`.
 
-## Startseite `/`
-Übersichtliches Hauptdesign (`components/home/`, Seite `app/page.tsx`):
-- **Hero:** große blaue Fläche mit Kernaussage, Preisen und der langsam drehenden 3D-Platte.
-- **Leistungen:** drei farbcodierte Karten (NFC grün, Website blau, Roomtour bernstein) mit ruhigen Illustrationen.
-- **NFC-Platte:** drei nummerierte Schritte plus 3D-Modell mit Farbwahl und „Aufbau zeigen“.
-- Danach Preise (Tabs), Über uns mit Kundenstimmen, FAQ und Anfrage.
+## Aufbau (`app/page.tsx`, Komponenten in `components/premium/`)
 
-Weitere Varianten zum Vergleich: **/v1** (erste Version), **/v2** (Bento-Layout), **/v3** (viele 3D-Effekte).
+1. **Hero:** Serif-Headline auf Mesh-Gradient, ruhige CTAs, drehbare 3D-NFC-Platte im Glasrahmen, Leiste „Funktioniert mit“.
+2. **Haltung:** kurzes Statement und drei Prinzipien.
+3. **Leistungen:** editoriale Liste im 12-Spalten-Raster.
+4. **NFC Review Disc:** dunkles Band, 3D-Modell mit Farbwahl und „Aufbau zeigen“ (Chip sichtbar), drei Schritte.
+5. **Ablauf:** vier Schritte.
+6. **Preise:** Tabs Website / Roomtour / NFC-Platte (NFC mit Mengenrechner).
+7. **Stimmen**, **Über uns**, **FAQ**.
+8. **Anfrage:** 4-Schritte-Assistent (`components/sections/Inquiry.tsx`) mit Validierung.
+9. **Footer** mit Kontakt, Impressum, Datenschutz.
 
-## Designvariante `/v2`
-Alternative Gestaltung unter **/v2** mit denselben Inhalten, Preisen und demselben Anfrage-Assistenten (`components/v2/`):
-Pill-Navigation, Bento-Hero mit 3D-Platte, Scroll-Showcase mit fest stehender 3D-Bühne (NFC-Platte → Laptop mit Beispiel-Website → Raumscan, `components/three/ShowcaseStage.tsx`), Ablauf in 4 Schritten, Preistabellen mit Tabs, Team-Karten und FAQ.
-
-## Farben
-Helles Design: Hintergrund `slate-50`, weiße Karten, Akzentblau `brand` (#2563eb) in `tailwind.config.ts`.
-Jede Leistung hat eine eigene Akzentfarbe (`lib/accents.ts`): NFC grün, Website blau, Roomtour bernstein.
-Navy und Gold gibt es nur noch auf der nachgebauten Visitenkarte.
+3D: `components/three/NfcProduct.tsx` (Platte aus zwei Acrylhälften mit Kupferantenne und NTAG-215-Chip), Artwork in `lib/drawNfc.ts`.
 
 ## Anfrage-Versand
 `app/api/inquiry/route.ts` validiert serverseitig (gleiches Schema wie der Client, `lib/inquiry.ts`), mit Honeypot und Rate-Limit. Versand über Umgebungsvariablen:
@@ -57,10 +49,10 @@ INQUIRY_FROM="F&D Solutions <anfrage@ihre-domain.de>"
 # oder
 INQUIRY_WEBHOOK_URL=https://...    # Make, Zapier, n8n, Formspree …
 ```
-Ohne Konfiguration öffnet der Wizard automatisch eine vorausgefüllte E-Mail an `fd.solutions@web.de`. Es geht also keine Anfrage verloren.
+Ohne Konfiguration öffnet der Assistent eine vorausgefüllte E-Mail an `fd.solutions@web.de`.
 
 ## Vor dem Livegang anpassen
 - `lib/site.ts`: **Postanschrift** (Pflicht fürs Impressum), Social-Links.
-- `lib/pricing.ts`: Einstiegspreise (Website und Roomtour je ab 300 €) sind vorgegeben, die höheren Pakete, Extras und der NFC-Preis sind **Platzhalter-Richtwerte**.
-- `lib/content.ts`: Die **Testimonials sind Platzhalter** und müssen durch echte, freigegebene Kundenstimmen ersetzt werden (erfundene Bewertungen sind nach UWG unzulässig).
+- `lib/pricing.ts`: Website und Roomtour je ab 300 € sind vorgegeben. Die höheren Pakete, die Extras und der NFC-Preis sind **Platzhalter-Richtwerte**.
+- `lib/content.ts`: Die **Kundenstimmen sind Platzhalter** und müssen durch echte, freigegebene Zitate ersetzt werden (erfundene Bewertungen sind nach UWG unzulässig).
 - `app/impressum`, `app/datenschutz`: Mustertexte, bitte rechtlich prüfen lassen.

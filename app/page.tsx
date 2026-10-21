@@ -1,29 +1,33 @@
 import Footer from "@/components/sections/Footer";
 import Inquiry from "@/components/sections/Inquiry";
-import Hero from "@/components/home/Hero";
-import NfcHowTo from "@/components/home/NfcHowTo";
-import ServiceCards from "@/components/home/ServiceCards";
-import { homeNav } from "@/components/home/nav";
-import Faq from "@/components/v2/Faq";
-import NavV2 from "@/components/v2/NavV2";
-import Pricing from "@/components/v2/Pricing";
-import Team from "@/components/v2/Team";
+import Faq from "@/components/premium/Faq";
+import Hero from "@/components/premium/Hero";
+import Nav from "@/components/premium/Nav";
+import NfcFeature from "@/components/premium/NfcFeature";
+import Pricing from "@/components/premium/Pricing";
+import Process from "@/components/premium/Process";
+import Services from "@/components/premium/Services";
+import Statement from "@/components/premium/Statement";
+import Team from "@/components/premium/Team";
+import Testimonials from "@/components/premium/Testimonials";
 
-// Main page: clear structure, colour-coded services, one calm 3D product.
 export default function Home() {
   return (
     <>
-      <NavV2 items={homeNav} />
+      <Nav />
       <main>
         <Hero />
-        <ServiceCards />
-        <NfcHowTo />
+        <Statement />
+        <Services />
+        <NfcFeature />
+        <Process />
         <Pricing />
+        <Testimonials />
         <Team />
         <Faq />
         <Inquiry />
       </main>
-      <Footer navItems={homeNav} />
+      <Footer />
     </>
   );
 }

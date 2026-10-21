@@ -2,10 +2,10 @@
 
 import { motion, type HTMLMotionProps } from "framer-motion";
 
-/** Butter-smooth fade/slide-in when the element scrolls into view. */
+/** Soft fade-in as the element scrolls into view. */
 export default function Reveal({
   delay = 0,
-  y = 28,
+  y = 18,
   children,
   ...rest
 }: HTMLMotionProps<"div"> & { delay?: number; y?: number }) {
@@ -13,8 +13,8 @@ export default function Reveal({
     <motion.div
       initial={{ opacity: 0, y }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
-      transition={{ duration: 0.9, delay, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 1, delay, ease: [0.16, 1, 0.3, 1] }}
       {...rest}
     >
       {children}
@@ -22,23 +22,25 @@ export default function Reveal({
   );
 }
 
-/** Section heading: eyebrow, serif title and optional lead paragraph. */
+/** Section heading: eyebrow, serif title and optional lead, always left-aligned. */
 export function SectionHead({
   eyebrow,
   title,
   lead,
-  center = false,
+  dark = false,
+  className = "",
 }: {
   eyebrow: string;
   title: React.ReactNode;
   lead?: React.ReactNode;
-  center?: boolean;
+  dark?: boolean;
+  className?: string;
 }) {
   return (
-    <Reveal className={center ? "mx-auto max-w-3xl text-center" : "max-w-3xl"}>
-      <span className={`eyebrow ${center ? "justify-center" : ""}`}>{eyebrow}</span>
-      <h2 className="section-title mt-5">{title}</h2>
-      {lead && <p className="mt-6 text-base leading-relaxed text-slate-600 sm:text-lg">{lead}</p>}
+    <Reveal className={className}>
+      <span className={`eyebrow ${dark ? "!text-paper/60" : ""}`}>{eyebrow}</span>
+      <h2 className={`section-title mt-6 ${dark ? "!text-paper" : ""}`}>{title}</h2>
+      {lead && <p className={`mt-6 max-w-xl text-base leading-[1.75] sm:text-lg ${dark ? "text-paper/65" : "text-ink-muted"}`}>{lead}</p>}
     </Reveal>
   );
 }

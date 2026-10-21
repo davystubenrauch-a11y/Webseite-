@@ -7,15 +7,20 @@ import { useId } from "react";
 export function Monogram({
   className = "",
   title = "F&D Solutions",
-  tone = "navy",
+  tone = "ink",
 }: {
   className?: string;
   title?: string;
-  /** navy on light backgrounds, gold on the dark business card. */
-  tone?: "navy" | "gold";
+  /** ink on light backgrounds, paper on dark ones, gold as on the business card. */
+  tone?: "ink" | "paper" | "gold";
 }) {
   const id = useId().replace(/:/g, "");
-  const stops = tone === "gold" ? ["#8a6a2e", "#d4af37", "#f6e7b0", "#c5a059", "#9c7a35"] : ["#0f172a", "#1e293b", "#334155", "#1e293b", "#0f172a"];
+  const stops =
+    tone === "gold"
+      ? ["#8a6a2e", "#d4af37", "#f6e7b0", "#c5a059", "#9c7a35"]
+      : tone === "paper"
+        ? ["#f9f8f6", "#f9f8f6", "#ffffff", "#f9f8f6", "#ece6de"]
+        : ["#1c1b19", "#1c1b19", "#3a3833", "#1c1b19", "#1c1b19"];
   return (
     <svg viewBox="0 0 220 132" className={className} role="img" aria-label={title}>
       <defs>
@@ -28,19 +33,23 @@ export function Monogram({
       <g fill={`url(#g${id})`} style={{ fontFamily: "var(--font-serif), Georgia, serif", fontWeight: 700 }}>
         <text x="8" y="112" fontSize="138">F</text>
         <text x="112" y="112" fontSize="138">D</text>
-        <text x="78" y="112" fontSize="74" stroke={tone === "gold" ? "#1f2633" : "#f8fafc"} strokeWidth="5" paintOrder="stroke">&amp;</text>
+        <text x="78" y="112" fontSize="74" stroke={tone === "gold" ? "#1f2633" : tone === "paper" ? "#1c1b19" : "#f9f8f6"} strokeWidth="5" paintOrder="stroke">&amp;</text>
       </g>
     </svg>
   );
 }
 
-/** Stacked lock-up: monogram over "SOLUTIONS" with a gold rule, as on the card. */
-export function LogoStacked({ className = "" }: { className?: string }) {
+/** Stacked lock-up: monogram over "SOLUTIONS", as on the business card. */
+export function LogoStacked({ className = "", tone = "ink" }: { className?: string; tone?: "ink" | "paper" }) {
   return (
     // The lettering scales with the container (cqw), so the lock-up keeps its proportions at any width.
     <div className={`flex flex-col items-center [container-type:inline-size] ${className}`}>
-      <Monogram className="h-auto w-[78%]" />
-      <span className="mt-1 whitespace-nowrap pl-[0.18em] font-display text-[12cqw] font-medium leading-none tracking-[0.18em] text-slate-700">SOLUTIONS</span>
+      <Monogram tone={tone} className="h-auto w-[78%]" />
+      <span
+        className={`mt-1 whitespace-nowrap pl-[0.18em] font-display text-[12cqw] font-medium leading-none tracking-[0.18em] ${tone === "paper" ? "text-paper/80" : "text-ink-soft"}`}
+      >
+        SOLUTIONS
+      </span>
     </div>
   );
 }
@@ -49,8 +58,8 @@ export function LogoStacked({ className = "" }: { className?: string }) {
 export function LogoInline({ className = "", href = "#top" }: { className?: string; href?: string }) {
   return (
     <a href={href} className={`group inline-flex items-center gap-3 ${className}`} aria-label="F&D Solutions – zur Startseite">
-      <Monogram className="h-9 w-auto transition-transform duration-500 group-hover:scale-105" />
-      <span className="hidden border-l border-slate-300 pl-3 font-display text-[13px] font-medium tracking-[0.3em] text-slate-700 sm:block">
+      <Monogram className="h-8 w-auto transition-transform duration-500 group-hover:scale-105" />
+      <span className="hidden border-l border-line pl-3 font-display text-[12px] font-medium tracking-[0.32em] text-ink-soft sm:block">
         SOLUTIONS
       </span>
     </a>

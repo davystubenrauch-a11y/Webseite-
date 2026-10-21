@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Icon from "@/components/ui/Icon";
 import Reveal, { SectionHead } from "@/components/ui/Reveal";
-import { accents } from "@/lib/accents";
 import { configStore, useConfig } from "@/lib/configStore";
 import { budgets, propertyTypes, serviceLabels, summarize, timelines, validate, type Errors, type Inquiry as Data } from "@/lib/inquiry";
 import { addOns, nfcProduct, themes, tourTiers, webTiers, type ServiceId, type Theme } from "@/lib/pricing";
@@ -121,22 +120,20 @@ export default function Inquiry() {
   };
 
   return (
-    <section id="anfrage" className="relative py-16 sm:py-24">
-      <div aria-hidden className="absolute left-1/2 top-40 -z-10 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-brand/[0.05] blur-[140px]" />
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <section id="anfrage" className="section relative bg-sand/60">
+            <div className="container-site">
         <SectionHead
-          center
           eyebrow="Anfrage"
           title={
             <>
-              Unverbindlich <span className="text-brand">anfragen.</span>
+              Erzählen Sie uns von <em className="italic text-sage">Ihrem Vorhaben.</em>
             </>
           }
-          lead="In vier kurzen Schritten zu Ihrem Angebot. Kostenlos, und wir melden uns innerhalb von 24 Stunden."
+          lead="In vier kurzen Schritten zu Ihrem Angebot. Unverbindlich, und wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen."
         />
 
-        <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_340px]">
-          <Reveal className="card card-hover overflow-hidden">
+        <div className="mt-16 grid gap-6 lg:grid-cols-[1fr_340px] lg:gap-8">
+          <Reveal className="card overflow-hidden bg-white">
             {status.kind === "sent" ? (
               <Success status={status} onReset={reset} onMail={() => openMail(data)} name={data.name} />
             ) : (
@@ -161,12 +158,12 @@ export default function Inquiry() {
                     </motion.div>
                   </AnimatePresence>
                 </div>
-                <div className="flex items-center justify-between gap-3 border-t border-slate-200 px-5 py-5 sm:px-10">
+                <div className="flex items-center justify-between gap-3 border-t border-line px-5 py-5 sm:px-10">
                   <button
                     type="button"
                     onClick={() => go(step - 1)}
                     disabled={step === 0}
-                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-slate-600 transition hover:text-slate-900 disabled:pointer-events-none disabled:opacity-0"
+                    className="inline-flex items-center gap-2 rounded-full px-4 py-3 text-sm font-semibold text-ink-muted transition hover:text-ink disabled:pointer-events-none disabled:opacity-0"
                   >
                     <Icon name="back" className="h-4 w-4" /> Zurück
                   </button>
@@ -200,24 +197,24 @@ export default function Inquiry() {
               <ul className="mt-5 space-y-4">
                 {site.founders.map((f) => (
                   <li key={f.name}>
-                    <p className="font-heading text-lg font-semibold text-slate-900">{f.name}</p>
-                    <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-slate-600 transition hover:text-brand">
+                    <p className="font-heading text-lg font-medium text-ink">{f.name}</p>
+                    <a href={telHref(f.phone)} className="mt-1 inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
                       <Icon name="phone" className="h-4 w-4 text-brand" /> {f.phone}
                     </a>
                   </li>
                 ))}
                 <li>
-                  <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-slate-600 transition hover:text-brand">
+                  <a href={`mailto:${site.email}`} className="inline-flex items-center gap-2 text-sm text-ink-muted transition hover:text-brand">
                     <Icon name="mail" className="h-4 w-4 text-brand" /> {site.email}
                   </a>
                 </li>
-                <li className="inline-flex items-center gap-2 text-sm text-slate-600">
+                <li className="inline-flex items-center gap-2 text-sm text-ink-muted">
                   <Icon name="pin" className="h-4 w-4 text-brand" /> {site.city}
                 </li>
               </ul>
             </div>
-            <div className="card p-6 text-sm leading-relaxed text-slate-600">
-              <p className="flex items-center gap-2 font-semibold text-slate-900">
+            <div className="card p-6 text-sm leading-relaxed text-ink-muted">
+              <p className="flex items-center gap-2 font-semibold text-ink">
                 <Icon name="lock" className="h-4 w-4 text-brand" /> Ihre Daten sind sicher
               </p>
               <p className="mt-2">Verschlüsselte Übertragung, keine Weitergabe an Dritte. Wir nutzen Ihre Angaben ausschließlich zur Bearbeitung Ihrer Anfrage.</p>
@@ -241,14 +238,14 @@ function Progress({ step, onJump }: { step: number; onJump: (i: number) => void 
             onClick={() => onJump(i)}
             aria-current={i === step ? "step" : undefined}
             className={`grid h-9 w-9 shrink-0 place-items-center rounded-full border text-xs font-bold transition ${
-              i < step ? "border-brand bg-brand text-slate-900" : i === step ? "border-brand text-brand shadow-ring" : "border-slate-200 text-slate-400"
+              i < step ? "border-brand bg-ink text-paper" : i === step ? "border-brand text-brand shadow-ring" : "border-line text-ink-faint"
             }`}
           >
             {i < step ? <Icon name="check" className="h-4 w-4" /> : i + 1}
           </button>
-          <span className={`hidden text-xs font-semibold uppercase tracking-[0.15em] md:block ${i === step ? "text-slate-900" : "text-slate-400"}`}>{label}</span>
+          <span className={`hidden text-xs font-semibold uppercase tracking-[0.15em] md:block ${i === step ? "text-ink" : "text-ink-faint"}`}>{label}</span>
           {i < STEPS.length - 1 && (
-            <span className="relative h-px flex-1 bg-slate-200">
+            <span className="relative h-px flex-1 bg-line">
               <motion.span className="absolute inset-y-0 left-0 bg-brand" animate={{ width: i < step ? "100%" : "0%" }} transition={{ duration: 0.5 }} />
             </span>
           )}
@@ -261,8 +258,8 @@ function Progress({ step, onJump }: { step: number; onJump: (i: number) => void 
 function StepTitle({ title, text }: { title: string; text: string }) {
   return (
     <div className="mb-7 mt-4">
-      <h3 className="font-heading text-3xl font-semibold text-slate-900">{title}</h3>
-      <p className="mt-1 text-sm text-slate-500">{text}</p>
+      <h3 className="font-heading text-3xl font-medium text-ink">{title}</h3>
+      <p className="mt-1 text-sm text-ink-muted">{text}</p>
     </div>
   );
 }
@@ -281,17 +278,17 @@ function StepServices({ selected, onToggle, error }: { selected: ServiceId[]; on
               onClick={() => onToggle(s)}
               aria-pressed={on}
               className={`group relative rounded-2xl border p-5 text-left transition duration-300 ${
-                on ? "border-brand bg-brand/10 shadow-ring" : "border-slate-200 bg-white hover:-translate-y-1 hover:border-brand/40"
+                on ? "border-brand bg-brand/10 shadow-ring" : "border-line bg-white hover:border-brand/40"
               }`}
             >
-              <span className={`absolute right-4 top-4 grid h-6 w-6 place-items-center rounded-full border transition ${on ? "border-brand bg-brand text-slate-900" : "border-slate-300"}`}>
+              <span className={`absolute right-4 top-4 grid h-6 w-6 place-items-center rounded-full border transition ${on ? "border-brand bg-ink text-paper" : "border-line"}`}>
                 {on && <Icon name="check" className="h-3.5 w-3.5" />}
               </span>
-              <span className={`grid h-12 w-12 place-items-center rounded-xl border ${accents[s].chip}`}>
+              <span className={`grid h-12 w-12 place-items-center rounded-xl border border-sage/20 bg-sage-light text-sage`}>
                 <Icon name={serviceIcons[s]} className="h-6 w-6" />
               </span>
-              <span className="mt-5 block font-semibold leading-snug text-slate-900">{serviceLabels[s]}</span>
-              <span className="mt-1 block text-xs text-slate-500">{serviceHints[s]}</span>
+              <span className="mt-5 block font-semibold leading-snug text-ink">{serviceLabels[s]}</span>
+              <span className="mt-1 block text-xs text-ink-muted">{serviceHints[s]}</span>
             </button>
           );
         })}
@@ -437,8 +434,8 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
         <Input label="Telefon" type="tel" autoComplete="tel" {...field("phone")} />
       </div>
       <div className="mt-6">
-        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-slate-500">Bevorzugter Kontaktweg</p>
-        <div className="inline-flex rounded-full border border-slate-200 bg-slate-100 p-1">
+        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.25em] text-ink-muted">Bevorzugter Kontaktweg</p>
+        <div className="inline-flex rounded-full border border-line bg-sand p-1">
           {(["email", "phone"] as const).map((p) => (
             <button
               key={p}
@@ -447,7 +444,7 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
                 clearError("phone");
                 patch({ contactPref: p });
               }}
-              className={`rounded-full px-5 py-2 text-sm font-semibold transition ${data.contactPref === p ? "bg-brand text-slate-900" : "text-slate-600 hover:text-slate-900"}`}
+              className={`rounded-full px-5 py-2 text-sm font-semibold transition ${data.contactPref === p ? "bg-ink text-paper" : "text-ink-muted hover:text-ink"}`}
             >
               {p === "email" ? "E-Mail" : "Rückruf"}
             </button>
@@ -456,7 +453,7 @@ function StepContact({ data, patch, errors, clearError }: StepProps) {
       </div>
       {/* Honeypot – hidden from humans. */}
       <input type="text" tabIndex={-1} autoComplete="off" value={data.website} onChange={(e) => patch({ website: e.target.value })} className="absolute -left-[9999px] h-0 w-0 opacity-0" aria-hidden />
-      <label className="mt-8 flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-slate-600">
+      <label className="mt-8 flex cursor-pointer items-start gap-3 text-sm leading-relaxed text-ink-muted">
         <input
           type="checkbox"
           checked={data.consent}
@@ -497,18 +494,18 @@ function StepSummary({ data, onEdit }: { data: Data; onEdit: (step: number) => v
   return (
     <div>
       <StepTitle title="Alles korrekt?" text="Prüfen Sie Ihre Angaben und senden Sie die Anfrage ab." />
-      <dl className="divide-y divide-slate-200 rounded-2xl border border-slate-200">
+      <dl className="divide-y divide-line rounded-2xl border border-line">
         {rows.map(([k, v, s]) => (
           <div key={k} className="flex flex-col gap-1 px-5 py-4 sm:flex-row sm:items-center sm:gap-6">
-            <dt className="w-28 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">{k}</dt>
-            <dd className="flex-1 text-sm text-slate-900">{v}</dd>
+            <dt className="w-28 shrink-0 text-xs font-semibold uppercase tracking-[0.2em] text-ink-muted">{k}</dt>
+            <dd className="flex-1 text-sm text-ink">{v}</dd>
             <button type="button" onClick={() => onEdit(s)} className="self-start text-xs font-semibold text-brand hover:text-brand sm:self-auto">
               Ändern
             </button>
           </div>
         ))}
       </dl>
-      {data.message && <p className="mt-4 rounded-2xl border border-slate-200 p-5 text-sm italic text-slate-600">„{data.message}“</p>}
+      {data.message && <p className="mt-4 rounded-2xl border border-line p-5 text-sm italic text-ink-muted">„{data.message}“</p>}
     </div>
   );
 }
@@ -517,17 +514,16 @@ function Success({ status, onReset, onMail, name }: { status: Extract<Status, { 
   return (
     <motion.div initial={{ opacity: 0, scale: 0.96 }} animate={{ opacity: 1, scale: 1 }} className="flex min-h-[560px] flex-col items-center justify-center px-6 py-16 text-center">
       <div className="relative grid h-24 w-24 place-items-center">
-        <span className="absolute inset-0 animate-ping2 rounded-full border border-brand/40" />
         <svg viewBox="0 0 52 52" className="h-24 w-24" aria-hidden>
-          <motion.circle cx="26" cy="26" r="24" fill="none" stroke="#16a34a" strokeWidth="2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.7 }} />
-          <motion.path d="M15 27l7 7 15-15" fill="none" stroke="#16a34a" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.6 }} />
+          <motion.circle cx="26" cy="26" r="24" fill="none" stroke="#4A5D52" strokeWidth="2" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.7 }} />
+          <motion.path d="M15 27l7 7 15-15" fill="none" stroke="#4A5D52" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 0.6 }} />
         </svg>
       </div>
-      <h3 className="mt-8 font-heading text-4xl font-semibold text-slate-900">
+      <h3 className="mt-8 font-heading text-4xl font-medium text-ink">
         {status.viaMail ? "Fast geschafft" : "Vielen Dank"}
         {name ? `, ${name.split(" ")[0]}` : ""}!
       </h3>
-      <p className="mt-4 max-w-md leading-relaxed text-slate-600">
+      <p className="mt-4 max-w-md leading-relaxed text-ink-muted">
         {status.viaMail
           ? "Wir haben Ihr E-Mail-Programm mit der fertigen Anfrage geöffnet. Bitte senden Sie die Nachricht dort noch ab."
           : "Ihre Anfrage ist bei uns eingegangen. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen."}
@@ -577,7 +573,7 @@ type InputProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "onChange"> 
 function Input({ label, error, onChange, ...rest }: InputProps) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">{label}</span>
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">{label}</span>
       <input {...rest} onChange={(e) => onChange(e.target.value)} aria-invalid={!!error} className={`input ${error ? "!border-[#ff8a80]/70" : ""}`} />
       <FieldError msg={error} />
     </label>
@@ -587,7 +583,7 @@ function Input({ label, error, onChange, ...rest }: InputProps) {
 function Select({ label, value, onChange, error, children }: { label: string; value: string; onChange: (v: string) => void; error?: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">{label}</span>
+      <span className="mb-2 block text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">{label}</span>
       <select value={value} onChange={(e) => onChange(e.target.value)} aria-invalid={!!error} className={`input select ${error ? "!border-[#ff8a80]/70" : ""}`}>
         {children}
       </select>
@@ -599,7 +595,7 @@ function Select({ label, value, onChange, error, children }: { label: string; va
 function Textarea({ label, value, onChange, error, placeholder }: { label: string; value: string; onChange: (v: string) => void; error?: string; placeholder?: string }) {
   return (
     <label className="block">
-      <span className="mb-2 flex justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+      <span className="mb-2 flex justify-between text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-muted">
         {label}
         <span className="normal-case tracking-normal">{value.length}/2000</span>
       </span>

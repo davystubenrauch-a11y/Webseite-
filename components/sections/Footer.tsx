@@ -3,97 +3,82 @@ import Icon from "@/components/ui/Icon";
 import { nav, site, telHref } from "@/lib/site";
 import { services } from "@/lib/content";
 
-type NavItem = { id: string; label: string };
-
-/** `navItems`/`base` let other page variants point the quick links at their own sections. */
-export default function Footer({
-  navItems = nav,
-  base = "/",
-  serviceAnchors = false,
-}: {
-  navItems?: readonly NavItem[];
-  base?: string;
-  /** Link each service to its own section (#nfc, #web, #roomtour) instead of #leistungen. */
-  serviceAnchors?: boolean;
-}) {
+/** Dark closing band: a quiet invitation, contact details and the legal links. */
+export default function Footer({ base = "/" }: { base?: string }) {
   return (
-    <footer className="relative border-t border-slate-200 bg-slate-50">
-      <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-16 sm:px-6 md:grid-cols-2 lg:grid-cols-[1.3fr_1fr_1fr_1.2fr] lg:px-8">
-        <div>
-          <div className="w-40">
-            <LogoStacked />
-          </div>
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-slate-500">NFC-Bewertungsplatten, Websites und Roomtours für Unternehmen. Persönlich betreut aus München.</p>
-          <div className="mt-6 flex gap-3">
-            {site.social.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-slate-200 px-4 py-2 text-xs font-semibold text-slate-600 transition hover:border-brand/50 hover:text-brand"
-              >
-                {s.label}
+    <footer className="bg-ink text-paper">
+      <div className="container-site pb-10 pt-24 sm:pt-32">
+        <div className="grid-12 gap-y-16">
+          <div className="col-span-4 sm:col-span-8 lg:col-span-6">
+            <p className="font-heading text-4xl font-medium leading-[1.15] sm:text-5xl">
+              Lassen Sie uns über <em className="italic text-taupe">Ihr Projekt</em> sprechen.
+            </p>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <a href={`${base}#anfrage`} className="inline-flex items-center justify-center gap-2.5 rounded-full bg-paper px-7 py-3.5 text-sm font-medium text-ink transition hover:bg-white">
+                Anfrage starten <Icon name="arrow" className="h-4 w-4" />
               </a>
-            ))}
+              <a href={`mailto:${site.email}`} className="inline-flex items-center justify-center rounded-full border border-paper/20 px-7 py-3.5 text-sm font-medium text-paper transition hover:border-paper/50">
+                {site.email}
+              </a>
+            </div>
+          </div>
+
+          <div className="col-span-2 sm:col-span-3 lg:col-span-2 lg:col-start-8">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/45">Seite</p>
+            <ul className="mt-6 space-y-3">
+              {nav.map((n) => (
+                <li key={n.id}>
+                  <a href={`${base}#${n.id}`} className="text-sm text-paper/70 transition hover:text-paper">
+                    {n.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="col-span-2 sm:col-span-5 lg:col-span-3">
+            <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-paper/45">Kontakt</p>
+            <ul className="mt-6 space-y-4 text-sm">
+              {site.founders.map((f) => (
+                <li key={f.name}>
+                  <a href={telHref(f.phone)} className="text-paper/70 transition hover:text-paper">
+                    {f.phone}
+                  </a>
+                  <span className="block text-xs text-paper/40">{f.name}</span>
+                </li>
+              ))}
+              <li className="text-paper/70">{site.city}</li>
+            </ul>
           </div>
         </div>
 
-        <FooterCol title="Navigation">
-          {navItems.map((n) => (
-            <li key={n.id}>
-              <a href={`${base}#${n.id}`} className="footer-link">{n.label}</a>
-            </li>
-          ))}
-        </FooterCol>
-
-        <FooterCol title="Leistungen">
-          {services.map((s) => (
-            <li key={s.id}>
-              <a href={`${base}#${serviceAnchors ? s.id : "leistungen"}`} className="footer-link">{s.title}</a>
-            </li>
-          ))}
-        </FooterCol>
-
-        <FooterCol title="Kontakt">
-          {site.founders.map((f) => (
-            <li key={f.name}>
-              <a href={telHref(f.phone)} className="footer-link inline-flex items-center gap-2">
-                <Icon name="phone" className="h-4 w-4 text-brand" /> {f.phone}
+        <div className="mt-24 flex flex-col gap-8 border-t border-paper/10 pt-10 sm:flex-row sm:items-end sm:justify-between">
+          <div className="w-28">
+            <LogoStacked tone="paper" />
+          </div>
+          <div className="flex flex-col gap-4 text-xs text-paper/45 sm:items-end">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {services.map((s) => (
+                <li key={s.id}>{s.title}</li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-x-6 gap-y-2">
+              <span>© {new Date().getFullYear()} {site.name}</span>
+              <a href="/impressum" className="transition hover:text-paper">
+                Impressum
               </a>
-              <span className="block pl-6 text-xs text-slate-400">{f.name}</span>
-            </li>
-          ))}
-          <li>
-            <a href={`mailto:${site.email}`} className="footer-link inline-flex items-center gap-2">
-              <Icon name="mail" className="h-4 w-4 text-brand" /> {site.email}
-            </a>
-          </li>
-          <li className="inline-flex items-center gap-2 text-sm text-slate-500">
-            <Icon name="pin" className="h-4 w-4 text-brand" /> {site.city}
-          </li>
-        </FooterCol>
-      </div>
-      <div className="border-t border-slate-200">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-6 text-xs text-slate-400 sm:flex-row sm:px-6 lg:px-8">
-          <p>© {new Date().getFullYear()} {site.name}. Alle Rechte vorbehalten.</p>
-          <div className="flex gap-6">
-            <a href="/impressum" className="transition hover:text-brand">Impressum</a>
-            <a href="/datenschutz" className="transition hover:text-brand">Datenschutz</a>
-            <a href="#top" className="transition hover:text-brand">Nach oben ↑</a>
+              <a href="/datenschutz" className="transition hover:text-paper">
+                Datenschutz
+              </a>
+              {site.social.map((s) => (
+                <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="transition hover:text-paper">
+                  {s.label}
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
     </footer>
-  );
-}
-
-function FooterCol({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <div>
-      <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-brand">{title}</p>
-      <ul className="mt-5 space-y-3">{children}</ul>
-    </div>
   );
 }
