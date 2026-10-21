@@ -11,13 +11,13 @@ type Props = { imageUrl: string | null; category: Category; style?: StyleProp<Im
 export function RecipeImage({ imageUrl, category, style }: Props) {
   const [failed, setFailed] = useState(false);
   const placeholder = CATEGORY_IMAGES[category];
-  const source = imageUrl && !failed ? { uri: imageUrl } : placeholder;
+  const remote = !!imageUrl && !failed;
   return (
     <Image
-      source={source}
-      placeholder={placeholder}
+      source={remote ? { uri: imageUrl } : placeholder}
+      placeholder={remote ? placeholder : undefined}
       contentFit="cover"
-      transition={200}
+      transition={remote ? 200 : 0}
       onError={() => setFailed(true)}
       accessibilityIgnoresInvertColors
       accessible={false}

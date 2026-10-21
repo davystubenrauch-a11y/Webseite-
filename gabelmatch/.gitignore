@@ -48,3 +48,6 @@ example
 # generated native projects (CNG)
 /ios
 /android
+
+# Google Play Service Account (niemals committen)
+google-play-service-account.json

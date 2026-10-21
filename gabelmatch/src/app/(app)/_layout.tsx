@@ -1,4 +1,3 @@
-import * as Notifications from 'expo-notifications';
 import { router, Stack, usePathname } from 'expo-router';
 import { useCallback, useEffect, useRef } from 'react';
 import { Platform } from 'react-native';
@@ -10,6 +9,7 @@ import { useJoinGroup } from '@/features/groups/api';
 import { CurrentGroupProvider, useCurrentGroup } from '@/features/groups/CurrentGroupProvider';
 import { useRealtimeSync } from '@/features/matches/useRealtimeSync';
 import { refreshPushToken } from '@/features/notifications/register';
+import { useNotificationTap } from '@/features/notifications/useNotificationTap';
 import { errorKey } from '@/lib/errors';
 import { haptics } from '@/lib/haptics';
 import { useI18n } from '@/lib/i18n';
@@ -72,11 +72,10 @@ function AppEffects({ userId }: { userId: string }) {
   );
 
   // 2) Tipp auf Push-Benachrichtigung
-  const lastResponse = Notifications.useLastNotificationResponse();
+  const tapped = useNotificationTap();
   useEffect(() => {
-    const data = lastResponse?.notification.request.content.data as { type?: string; matchId?: string } | undefined;
-    if (data?.type === 'match' && data.matchId) showMatch(data.matchId);
-  }, [lastResponse, showMatch]);
+    if (tapped?.type === 'match' && typeof tapped.matchId === 'string') showMatch(tapped.matchId);
+  }, [tapped, showMatch]);
 
   // 3) Push-Token aktuell halten
   useEffect(() => {

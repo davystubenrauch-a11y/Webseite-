@@ -20,6 +20,7 @@ const jobs = [
   { svg: art.adaptiveMonochrome, file: out('android-icon-monochrome.png'), w: 1024, h: 1024, transparent: true },
   { svg: art.splash, file: out('splash-icon.png'), w: 1024, h: 1024, transparent: true },
   { svg: art.favicon, file: out('favicon.png'), w: 48, h: 48 },
+  { svg: art.notificationIcon, file: out('notification-icon.png'), w: 96, h: 96, transparent: true },
 ];
 
 mkdirSync(out('categories'), { recursive: true });

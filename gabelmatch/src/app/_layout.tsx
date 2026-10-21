@@ -114,7 +114,9 @@ function RootNavigator({ ready }: { ready: boolean }) {
           <Stack.Screen name="onboarding" options={{ headerShown: false, animation: 'fade' }} />
         </Stack.Protected>
         <Stack.Protected guard={onboarded && !signedIn}>
-          <Stack.Screen name="(auth)" options={{ headerShown: false }} />
+          <Stack.Screen name="sign-in" options={{ headerShown: false, animation: 'fade' }} />
+          <Stack.Screen name="sign-up" options={{ title: t('auth.signUp') }} />
+          <Stack.Screen name="forgot-password" options={{ title: t('auth.resetTitle') }} />
         </Stack.Protected>
         <Stack.Protected guard={signedIn}>
           <Stack.Screen name="(app)" options={{ headerShown: false }} />

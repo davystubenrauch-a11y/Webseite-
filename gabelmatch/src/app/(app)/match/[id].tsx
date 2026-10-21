@@ -93,7 +93,7 @@ export default function MatchScreen() {
 
             <View style={styles.actions}>
               <Button label={t('match.toRecipe')} icon="book-outline" variant="secondary" onPress={openRecipe} />
-              <Button label={t('match.later')} variant="ghost" onPress={close} style={{ backgroundColor: 'transparent' }} />
+              <Button label={t('match.later')} variant="ghost" textColor={colors.onPrimary} onPress={close} />
             </View>
           </>
         )}

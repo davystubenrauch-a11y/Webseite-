@@ -30,14 +30,10 @@ export default function Onboarding() {
   const list = useRef<FlatList<Slide>>(null);
   const last = index === SLIDES.length - 1;
 
-  const onViewable = useRef(({ viewableItems }: { viewableItems: { index?: number | null }[] }) => {
-    const first = viewableItems[0];
-    if (first?.index != null) setIndex(first.index);
-  }).current;
-
   const next = () => {
-    if (last) complete();
-    else list.current?.scrollToIndex({ index: index + 1, animated: true });
+    if (last) return complete();
+    list.current?.scrollToOffset({ offset: width * (index + 1), animated: true });
+    setIndex(index + 1);
   };
 
   return (
@@ -53,8 +49,7 @@ export default function Onboarding() {
         bounces={false}
         showsHorizontalScrollIndicator={false}
         keyExtractor={(item) => item.key}
-        onViewableItemsChanged={onViewable}
-        viewabilityConfig={{ itemVisiblePercentThreshold: 60 }}
+        onMomentumScrollEnd={(event) => setIndex(Math.round(event.nativeEvent.contentOffset.x / width))}
         renderItem={({ item }) => (
           <View style={[styles.slide, { width }]}>
             <SlideArt art={item.art} />

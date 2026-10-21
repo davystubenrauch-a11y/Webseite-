@@ -19,9 +19,11 @@ type Props = {
   accessibilityHint?: string;
   style?: StyleProp<ViewStyle>;
   compact?: boolean;
+  /** überschreibt die Textfarbe (z. B. auf farbigem Hintergrund) */
+  textColor?: string;
 };
 
-export function Button({ label, onPress, variant = 'primary', icon, loading, disabled, accessibilityHint, style, compact }: Props) {
+export function Button({ label, onPress, variant = 'primary', icon, loading, disabled, accessibilityHint, style, compact, textColor }: Props) {
   const { colors } = useTheme();
   const palette = {
     primary: { bg: colors.primary, fg: colors.onPrimary, border: colors.primary },
@@ -29,6 +31,7 @@ export function Button({ label, onPress, variant = 'primary', icon, loading, dis
     ghost: { bg: 'transparent', fg: colors.primary, border: 'transparent' },
     danger: { bg: colors.danger, fg: colors.onDanger, border: colors.danger },
   }[variant];
+  if (textColor) palette.fg = textColor;
   const inactive = disabled || loading;
 
   return (

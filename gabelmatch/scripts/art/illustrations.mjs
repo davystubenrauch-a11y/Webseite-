@@ -180,3 +180,8 @@ export const splash = `<svg xmlns="http://www.w3.org/2000/svg" width="1024" heig
 </svg>`;
 
 export const favicon = icon;
+
+// Android-Benachrichtigungssymbol: weiße Silhouette auf transparentem Grund
+export const notificationIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 1024 1024">
+  <g transform="translate(512 512) scale(0.85) translate(-512 -540)">${iconArt('', '#FFFFFF', '#FFFFFF')}</g>
+</svg>`;
