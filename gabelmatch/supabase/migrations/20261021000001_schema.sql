@@ -76,7 +76,7 @@ create table public.groups (
 
 create table public.group_members (
   group_id   uuid not null references public.groups (id) on delete cascade,
-  user_id    uuid not null references auth.users (id) on delete cascade,
+  user_id    uuid not null references public.profiles (id) on delete cascade, -- Profil ermöglicht Embeds
   role       text not null default 'member' check (role in ('owner', 'member')),
   is_active  boolean not null default true,          -- „Ich esse heute mit“
   joined_at  timestamptz not null default now(),
