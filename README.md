@@ -39,9 +39,9 @@ Auf dem Handy: Kopfleiste mit Menü (`MobileBar.tsx`), danach alle Bereiche unte
 
 3D: `components/three/NfcProduct.tsx` (Platte aus zwei Acrylhälften mit Kupferantenne und NTAG-215-Chip), Artwork in `lib/drawNfc.ts`.
 
-## Eigenständige Version `standalone/index.html`
+## Eigenständige Version `public/standalone/index.html`
 Eine einzelne HTML-Datei ohne Build-Schritt (HTML, CSS, Vanilla JS, Three.js r128 per CDN), helles Farbschema mit blauem Akzent: Lade-Animation, 3D-Hintergrund (NFC-Platte mit Google-Design und F&D-Rückseite, Roomtour-Drahtmodell mit Raumwahl), NFC-Tap-Demo, Website-Mockup, Konfigurator und 4-Schritte-Anfrage.
-Einfach per Doppelklick im Browser öffnen oder auf einen beliebigen Webspace hochladen. Anfragen gehen ohne weitere Einrichtung per vorbereiteter E-Mail an `fd.solutions@web.de`. Mit einem Formular-Dienst (z. B. Formspree) trägt man dessen URL oben im Skript bei `FORM_ENDPOINT` ein.
+Online unter `/standalone/index.html` (z. B. `https://<ihr-projekt>.vercel.app/standalone/index.html`). Alternativ die Datei per Doppelklick im Browser öffnen oder auf einen beliebigen Webspace hochladen. Anfragen gehen ohne weitere Einrichtung per vorbereiteter E-Mail an `fd.solutions@web.de`. Mit einem Formular-Dienst (z. B. Formspree) trägt man dessen URL oben im Skript bei `FORM_ENDPOINT` ein.
 
 ## Anfrage-Versand
 `app/api/inquiry/route.ts` validiert serverseitig (gleiches Schema wie der Client, `lib/inquiry.ts`), mit Honeypot und Rate-Limit. Versand über Umgebungsvariablen:
