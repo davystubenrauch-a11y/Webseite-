@@ -28,7 +28,7 @@ function StoreProduct({ spin }: { spin?: number }) {
 }
 
 /** Pulls the camera back on narrow/tall canvases so the product always fits horizontally. */
-function FitCamera({ z, halfWidth = 2.3 }: { z: number; halfWidth?: number }) {
+export function FitCamera({ z, halfWidth = 2.3 }: { z: number; halfWidth?: number }) {
   const camera = useThree((s) => s.camera) as THREE.PerspectiveCamera;
   const { width, height } = useThree((s) => s.size);
   useEffect(() => {

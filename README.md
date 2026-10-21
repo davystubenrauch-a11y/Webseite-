@@ -29,6 +29,16 @@ npm run lint     # TypeScript-Prüfung
 - `components/three/RoomScan.tsx`: KI-Raumscan als Punktwolke mit Scan-Welle und Kamerafahrt.
 - Alle Canvases werden lazy geladen und pausieren außerhalb des Viewports.
 
+## Startseite `/`
+Hauptdesign mit 3D-Erlebnissen (`components/v3/`, Seite `app/page.tsx`):
+- **Hero:** 3D-Animation (`components/three/TapStory.tsx`): Ein Smartphone tippt die NFC-Platte an, NFC-Wellen, die Google-Bewertung öffnet sich, fünf 3D-Sterne fliegen heraus. Die Schritt-Beschriftungen laufen synchron (`lib/story.ts`).
+- **NFC-Platte:** Scroll-gesteuerte Zerlegung in Frontplatte, NFC-Chip/Antenne und Rückplatte mit Beschriftungen (`components/three/ChipStage.tsx`), Farbwahl Weiß/Schwarz.
+- **Websites:** Vorher/Nachher-Regler (`components/v3/WebCompare.tsx`).
+- **Roomtour:** Begehbarer 3D-Beispielraum mit Scan-Effekt und Kamerafahrten (`components/three/RoomTour.tsx`).
+- Danach Ablauf, Preise, Team, FAQ, Anfrage. Weiches Scrollen über Lenis.
+
+Frühere Varianten zum Vergleich: **/v1** (erste Version) und **/v2** (Bento-Layout).
+
 ## Designvariante `/v2`
 Alternative Gestaltung unter **/v2** mit denselben Inhalten, Preisen und demselben Anfrage-Assistenten (`components/v2/`):
 Pill-Navigation, Bento-Hero mit 3D-Platte, Scroll-Showcase mit fest stehender 3D-Bühne (NFC-Platte → Laptop mit Beispiel-Website → Raumscan, `components/three/ShowcaseStage.tsx`), Ablauf in 4 Schritten, Preistabellen mit Tabs, Team-Karten und FAQ.

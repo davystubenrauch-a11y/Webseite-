@@ -1,25 +1,34 @@
-import Nav from "@/components/ui/Nav";
-import Hero from "@/components/sections/Hero";
-import About from "@/components/sections/About";
-import Services from "@/components/sections/Services";
-import Configurator from "@/components/sections/Configurator";
-import Trust from "@/components/sections/Trust";
-import Inquiry from "@/components/sections/Inquiry";
 import Footer from "@/components/sections/Footer";
+import Inquiry from "@/components/sections/Inquiry";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import Faq from "@/components/v2/Faq";
+import NavV2 from "@/components/v2/NavV2";
+import Pricing from "@/components/v2/Pricing";
+import Process from "@/components/v2/Process";
+import Team from "@/components/v2/Team";
+import ChipReveal from "@/components/v3/ChipReveal";
+import HeroV3 from "@/components/v3/HeroV3";
+import RoomTourSection from "@/components/v3/RoomTourSection";
+import WebCompare from "@/components/v3/WebCompare";
+import { navV3 } from "@/components/v3/nav";
 
 export default function Home() {
   return (
     <>
-      <Nav />
-      <main className="relative z-10">
-        <Hero />
-        <About />
-        <Services />
-        <Configurator />
-        <Trust />
+      <SmoothScroll />
+      <NavV2 items={navV3} />
+      <main>
+        <HeroV3 />
+        <ChipReveal />
+        <WebCompare />
+        <RoomTourSection />
+        <Process />
+        <Pricing />
+        <Team />
+        <Faq />
         <Inquiry />
       </main>
-      <Footer />
+      <Footer navItems={navV3} serviceAnchors />
     </>
   );
 }

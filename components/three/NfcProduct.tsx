@@ -14,6 +14,13 @@ type Props = ProductLook & {
   exploded?: boolean;
   /** Idle spin speed in rad/s. */
   spin?: number;
+  /**
+   * External, per-frame control (e.g. scroll-scrubbed). When given, it drives the explode
+   * amount (0–1), yaw and tilt instead of the built-in spin and drag.
+   */
+  control?: { current: { explode: number; yaw: number; tilt: number } };
+  /** Disable the gentle up/down float and pointer tilt. */
+  still?: boolean;
 };
 
 const BEVEL = 0.014;
@@ -71,7 +78,7 @@ function bodyMaterial(theme: Theme) {
   });
 }
 
-export default function NfcProduct({ theme, lang, business, exploded = false, spin = 0.35 }: Props) {
+export default function NfcProduct({ theme, lang, business, exploded = false, spin = 0.35, control, still = false }: Props) {
   const fontsReady = useFontsReady();
   const half = DISC.depth / 2;
 
@@ -159,7 +166,11 @@ export default function NfcProduct({ theme, lang, business, exploded = false, sp
   useFrame((state, delta) => {
     const dt = Math.min(delta, 1 / 30);
     const d = drag.current;
-    if (!d.active) {
+    if (control) {
+      const c = control.current;
+      yaw.current = THREE.MathUtils.damp(yaw.current, c.yaw, 6, dt);
+      explode.current = THREE.MathUtils.damp(explode.current, c.explode, 8, dt);
+    } else if (!d.active) {
       if (exploded && Math.abs(d.velocity) < 0.05) {
         // Exploded view: settle at the nearest three-quarter angle so the layers separate visibly.
         const target = Math.round((yaw.current + 1.15) / (Math.PI * 2)) * Math.PI * 2 - 1.15;
@@ -169,13 +180,14 @@ export default function NfcProduct({ theme, lang, business, exploded = false, sp
       }
       d.velocity *= Math.pow(0.04, dt);
     }
-    explode.current = THREE.MathUtils.damp(explode.current, exploded ? 1 : 0, 5, dt);
+    if (!control) explode.current = THREE.MathUtils.damp(explode.current, exploded ? 1 : 0, 5, dt);
     const g = root.current;
     if (g) {
       g.rotation.y = yaw.current;
       // The exploded view tips the product forward so the separated layers read clearly.
-      g.rotation.x = THREE.MathUtils.damp(g.rotation.x, -state.pointer.y * 0.25 + explode.current * 0.3, 4, dt);
-      g.position.y = Math.sin(state.clock.elapsedTime * 1.1) * 0.06;
+      const tilt = control ? control.current.tilt : (still ? 0 : -state.pointer.y * 0.25) + explode.current * 0.3;
+      g.rotation.x = THREE.MathUtils.damp(g.rotation.x, tilt, 4, dt);
+      g.position.y = still ? 0 : Math.sin(state.clock.elapsedTime * 1.1) * 0.06;
     }
     const gap = explode.current * 0.95;
     if (frontLayer.current) frontLayer.current.position.z = gap;

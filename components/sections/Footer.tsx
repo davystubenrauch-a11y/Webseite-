@@ -6,7 +6,16 @@ import { services } from "@/lib/content";
 type NavItem = { id: string; label: string };
 
 /** `navItems`/`base` let other page variants point the quick links at their own sections. */
-export default function Footer({ navItems = nav, base = "/" }: { navItems?: readonly NavItem[]; base?: string }) {
+export default function Footer({
+  navItems = nav,
+  base = "/",
+  serviceAnchors = false,
+}: {
+  navItems?: readonly NavItem[];
+  base?: string;
+  /** Link each service to its own section (#nfc, #web, #roomtour) instead of #leistungen. */
+  serviceAnchors?: boolean;
+}) {
   return (
     <footer className="relative border-t border-slate-200 bg-slate-50">
       <div aria-hidden className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-slate-300 to-transparent" />
@@ -42,7 +51,7 @@ export default function Footer({ navItems = nav, base = "/" }: { navItems?: read
         <FooterCol title="Leistungen">
           {services.map((s) => (
             <li key={s.id}>
-              <a href={`${base}#leistungen`} className="footer-link">{s.title}</a>
+              <a href={`${base}#${serviceAnchors ? s.id : "leistungen"}`} className="footer-link">{s.title}</a>
             </li>
           ))}
         </FooterCol>

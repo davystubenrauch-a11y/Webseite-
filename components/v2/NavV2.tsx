@@ -6,7 +6,7 @@ import { Monogram } from "@/components/brand/Logo";
 import { navV2 } from "./nav";
 
 /** Floating pill navigation, centred at the top of the viewport. */
-export default function NavV2() {
+export default function NavV2({ items = navV2 }: { items?: readonly { id: string; label: string }[] }) {
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -30,7 +30,7 @@ export default function NavV2() {
           <span className="hidden text-sm font-bold tracking-tight text-slate-900 sm:block">Solutions</span>
         </a>
         <ul className="hidden items-center gap-1 md:flex">
-          {navV2.map((n) => (
+          {items.map((n) => (
             <li key={n.id}>
               <a href={`#${n.id}`} className="rounded-full px-3.5 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 hover:text-slate-900">
                 {n.label}
@@ -65,7 +65,7 @@ export default function NavV2() {
             exit={{ opacity: 0, y: -8 }}
             className="card mx-auto mt-2 max-w-4xl p-2 md:hidden"
           >
-            {navV2.map((n) => (
+            {items.map((n) => (
               <li key={n.id}>
                 <a href={`#${n.id}`} onClick={() => setOpen(false)} className="block rounded-2xl px-4 py-3 text-base font-semibold text-slate-800 hover:bg-slate-50">
                   {n.label}

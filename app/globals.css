@@ -145,3 +145,11 @@ input[type="range"].range::-moz-range-thumb {
     scroll-behavior: auto;
   }
 }
+
+/* Fine dot grid that fades towards the edges (hero backdrop). */
+.dot-grid {
+  background-image: radial-gradient(rgba(15, 23, 42, 0.12) 1px, transparent 1px);
+  background-size: 22px 22px;
+  -webkit-mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+  mask-image: radial-gradient(ellipse at 60% 40%, #000 20%, transparent 75%);
+}
