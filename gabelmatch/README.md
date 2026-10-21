@@ -69,7 +69,9 @@ npm install -g eas-cli      # oder jeweils `npx eas-cli@latest …`
    ```
    Den Connection String findest du unter **Project Settings → Database → Connection string (URI)**.
 
-   Variante B (ohne CLI): Im Dashboard **SQL Editor** öffnen und **nacheinander** den Inhalt dieser Dateien ausführen:
+   Variante B (am einfachsten, ohne CLI): Im Dashboard **SQL Editor → New query** den kompletten Inhalt von `supabase/setup-komplett.sql` einfügen und **Run** klicken – fertig (Schema, Sicherheitsregeln und alle Rezepte).
+
+   Variante C (einzeln): Im Dashboard **SQL Editor** öffnen und **nacheinander** den Inhalt dieser Dateien ausführen:
    1. `supabase/migrations/20261021000000_extensions.sql`
    2. `supabase/migrations/20261021000001_schema.sql`
    3. `supabase/migrations/20261021000002_logic.sql`

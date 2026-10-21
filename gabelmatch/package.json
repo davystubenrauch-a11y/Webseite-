@@ -65,7 +65,8 @@
     "store:check": "tsx scripts/check-store.ts",
     "check": "npm run typecheck && npm run lint && npm test && npm run store:check",
     "start:go": "expo start --go",
-    "start:tunnel": "expo start --go --tunnel"
+    "start:tunnel": "expo start --go --tunnel",
+    "setup:sql": "bash scripts/build-setup-sql.sh"
   },
   "private": true
 }
