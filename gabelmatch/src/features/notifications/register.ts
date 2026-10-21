@@ -1,4 +1,4 @@
-import Constants from 'expo-constants';
+import Constants, { ExecutionEnvironment } from 'expo-constants';
 import * as Device from 'expo-device';
 import * as Notifications from 'expo-notifications';
 import { Linking, Platform } from 'react-native';
@@ -9,7 +9,10 @@ import { supabase } from '@/lib/supabase';
 const TOKEN_KEY = 'gm.pushToken';
 const PROMPTED_KEY = 'gm.pushPrompted';
 
-if (Platform.OS !== 'web') {
+/** Läuft die App in Expo Go (statt in einem eigenen Build)? */
+export const isExpoGo = Constants.executionEnvironment === ExecutionEnvironment.StoreClient;
+
+if (Platform.OS !== 'web' && !(isExpoGo && Platform.OS === 'android')) {
   Notifications.setNotificationHandler({
     handleNotification: async () => ({
       shouldShowBanner: true,
@@ -23,6 +26,8 @@ if (Platform.OS !== 'web') {
 export type PushPermission = 'granted' | 'denied' | 'undetermined' | 'unsupported';
 
 export function pushSupported(): boolean {
+  // Expo Go auf Android unterstützt seit SDK 53 keine Remote-Push-Benachrichtigungen mehr
+  if (isExpoGo && Platform.OS === 'android') return false;
   return Platform.OS !== 'web' && Device.isDevice;
 }
 

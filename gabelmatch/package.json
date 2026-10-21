@@ -63,7 +63,9 @@
     "seed:generate": "tsx scripts/generate-seed.ts",
     "legal:export": "tsx scripts/export-legal.ts",
     "store:check": "tsx scripts/check-store.ts",
-    "check": "npm run typecheck && npm run lint && npm test && npm run store:check"
+    "check": "npm run typecheck && npm run lint && npm test && npm run store:check",
+    "start:go": "expo start --go",
+    "start:tunnel": "expo start --go --tunnel"
   },
   "private": true
 }

@@ -110,6 +110,27 @@ cp .env.example .env
 # .env öffnen und EXPO_PUBLIC_SUPABASE_URL + EXPO_PUBLIC_SUPABASE_ANON_KEY eintragen
 ```
 
+### Schritt 5b – Sofort ausprobieren mit Expo Go (ohne eigenen Build)
+
+Für einen ersten Test brauchst du weder Apple- noch Google-Entwicklerkonto:
+
+1. **Expo Go** aus dem App Store bzw. Google Play installieren (aktuelle Version, unterstützt SDK 58).
+2. Im Ordner `gabelmatch/`:
+   ```bash
+   npm run start:go          # gleiches WLAN wie das Handy
+   npm run start:tunnel      # falls Handy und Rechner nicht im selben Netz sind
+   ```
+3. QR-Code scannen – iPhone: mit der Kamera-App, Android: in Expo Go („Scan QR code“).
+
+Was in Expo Go funktioniert: Registrierung per E-Mail, Gruppen, Swipen, Echtzeit-Match zwischen zwei Handys, Filter, Vorrat, Rezepte, Einkaufsliste, Verlauf, Einstellungen, Haptik, Dunkelmodus, Login mit Google.
+
+Einschränkungen in Expo Go:
+- **Push-Benachrichtigungen** nur auf dem iPhone (Android-Expo-Go unterstützt keine Remote-Pushes mehr – die App blendet die Option dort automatisch aus). Der Match-Screen erscheint trotzdem live bei allen, solange die App offen ist.
+- **Mit Apple anmelden** funktioniert in Expo Go nur, wenn du in Supabase unter *Providers → Apple → Client IDs* zusätzlich `host.exp.Exponent` einträgst (nur für Tests, vor dem Launch wieder entfernen).
+- Die Links in Bestätigungs-E-Mails öffnen Expo Go nur, solange der Dev-Server läuft (Redirect-URL `exp://**` ist dafür in Schritt 2 freigegeben).
+
+Für Store-Builds und den vollständigen Funktionsumfang folgen die nächsten Schritte.
+
 ### Schritt 6 – Expo/EAS-Projekt verknüpfen
 
 ```bash
@@ -135,7 +156,7 @@ eas env:create --name EXPO_PUBLIC_SUPABASE_ANON_KEY --value DEIN-ANON-KEY       
 
 ### Schritt 8 – Testen auf echten Geräten (Development Build)
 
-Apple-Login, Push und Haptik funktionieren **nicht in Expo Go**. Deshalb einen Development Build erstellen:
+Für Tests mit allen Funktionen (Push auf Android, Apple-Login mit deiner Bundle-ID) einen Development Build erstellen:
 
 ```bash
 eas build --profile development --platform ios       # iPhone vorher registrieren: eas device:create
@@ -192,7 +213,8 @@ Standardmäßig sind Einladungslinks `gabelmatch://join/CODE` (funktionieren nur
 ## 2. Entwicklung & Tests
 
 ```bash
-npm start                 # Expo-Dev-Server (Development Build oder Expo Go für reine UI-Arbeit)
+npm start                 # Expo-Dev-Server für den Development Build
+npm run start:go          # Expo-Dev-Server für Expo Go (QR-Code scannen)
 npm run check             # Typecheck + Lint + Unit-Tests + Store-Textlimits
 npm run test:db           # Datenbank-Tests (Matching + RLS) gegen ein temporäres Postgres
 npm run seed:generate     # seed.sql aus supabase/seed/** neu erzeugen (mit Validierung)
