@@ -39,6 +39,10 @@ Auf dem Handy: Kopfleiste mit Menü (`MobileBar.tsx`), danach alle Bereiche unte
 
 3D: `components/three/NfcProduct.tsx` (Platte aus zwei Acrylhälften mit Kupferantenne und NTAG-215-Chip), Artwork in `lib/drawNfc.ts`.
 
+## Studio-Version `public/studio/index.html`
+Neueste Gestaltung nach den Vorbildern des Kunden (siehe `CLAUDE.md`): fette Anton-Schrift, Creme/Limette/Dunkel mit Farbwechsel beim Scrollen, 3D-NFC-Platte als Produktbild, Scroll-Zerlegung mit Beschriftungen, schwebende Bewertungen, Handy-Showcase, Roomtour-Kacheln mit 3D-Raum, Preise als „Karte“, Anfrage in 4 Schritten.
+Online unter `/studio/index.html`.
+
 ## Eigenständige Version `public/standalone/index.html`
 Eine einzelne HTML-Datei ohne Build-Schritt (HTML, CSS, Vanilla JS, Three.js r128 per CDN), helles Farbschema mit blauem Akzent: Lade-Animation, 3D-Hintergrund (NFC-Platte mit Google-Design und F&D-Rückseite, Roomtour-Drahtmodell mit Raumwahl), NFC-Tap-Demo, Website-Mockup, Konfigurator und 4-Schritte-Anfrage.
 Online unter `/standalone/index.html` (z. B. `https://<ihr-projekt>.vercel.app/standalone/index.html`). Alternativ die Datei per Doppelklick im Browser öffnen oder auf einen beliebigen Webspace hochladen. Anfragen gehen ohne weitere Einrichtung per vorbereiteter E-Mail an `fd.solutions@web.de`. Mit einem Formular-Dienst (z. B. Formspree) trägt man dessen URL oben im Skript bei `FORM_ENDPOINT` ein.
