@@ -29,8 +29,8 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
-- Preise: schlichte Paketkarten (Name, Preis, Häkchen-Liste, Button „Jetzt anfragen“ / bei NFC „Jetzt bestellen“). Bilder in den Preiskarten waren dem Kunden zu unübersichtlich.
-- Übersicht: direkt unter dem Hero drei große Zeilen (NFC-Platten / Websites / KI-Roomtours) mit Preis und Link.
+- Paketkarten: schlicht (Name, Preis, Häkchen-Liste, Button „Jetzt anfragen“ / bei NFC „Jetzt bestellen“). Bilder in den Preiskarten waren dem Kunden zu unübersichtlich.
+- Aufbau (vom Kunden gewünscht, „man muss wissen, was zu was gehört“): Hero mit Inhaltsleiste „Unsere Leistungen 01/02/03“ → je Leistung derselbe Ablauf: Kopf (Nummer 01–03 / 03, Titel, kurzer Text, Link „Preise & Pakete“) → Demo → **Pakete mit Anfrage-Button direkt in der Sektion** → Button „Weiter: nächste Leistung“. Keine separate Preis-Sektion, keine schwebenden Bewertungs-Chips und keine Zwischenliste unter dem Hero (wirkte wie ein Seitenende).
 - Roomtour: Ablauf „Fotos senden → Roomtour entsteht → Mehr Buchungen“ (KI-Roomtours entstehen aus Kundenfotos, Zielgruppe u. a. Airbnb/Ferienwohnungen). Video-Player mit Kapiteln (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Aktuell ein vom Kunden mit KI erstelltes Beispielvideo (Wohnung: Flur, Wohnzimmer, Balkon; farblich neutralisiert, leicht verlangsamt, feines Korn), deshalb gekennzeichnet als „KI-Roomtour · Beispiel“ und nicht als „gefilmt vor Ort“. Keine 3D-Modelle, keine fremden Videos. Ohne Datei ist der Player ausgeblendet.
 
 - Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
