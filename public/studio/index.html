@@ -112,12 +112,49 @@ img, svg, canvas { display: block; max-width: 100%; }
 /* ==========================================================================
    Intro
    ========================================================================== */
-.hero { padding: 132px 0 56px; }
-.hero__intro { display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px; align-items: end; }
-.hero h1 { margin-top: 22px; font-size: clamp(3.2rem, 7.4vw, 7.4rem); }
-.hero h1 .hl { display: inline-block; background: var(--ink); color: var(--cream); padding: 0 .1em; }
-.hero__sub { font-size: 18px; color: var(--muted); max-width: 440px; }
-.hero__cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+.hero { padding: 118px 0 64px; overflow: hidden; }
+.hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
+.hero h1 { margin-top: 22px; font-size: clamp(3.4rem, 7.6vw, 7.6rem); }
+.rot { display: inline-grid; vertical-align: top; overflow: hidden; justify-items: start; }
+.rot span { grid-area: 1 / 1; background: var(--ink); color: var(--cream); padding: 0 .1em; transform: translateY(105%); opacity: 0; transition: transform .7s var(--ease), opacity .7s var(--ease); }
+.rot span.on { transform: none; opacity: 1; }
+.rot span.out { transform: translateY(-105%); opacity: 0; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.hero__sub { margin-top: 24px; font-size: 18px; color: var(--muted); max-width: 470px; }
+.hero__cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
+.hero__facts { margin-top: 34px; list-style: none; display: flex; flex-wrap: wrap; gap: 28px; padding-top: 18px; border-top: 1px solid var(--line); font-size: 14px; }
+.hero__facts b { display: block; font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+/* Collage of the three products */
+.collage { position: relative; aspect-ratio: 1 / .92; }
+.hc { position: absolute; display: block; transition: transform .8s var(--ease); }
+.hc--tour { right: 0; top: 4%; width: 82%; }
+.hc__media { display: block; aspect-ratio: 16 / 10.5; border-radius: 18px; overflow: hidden; box-shadow: 0 40px 70px -40px rgba(17,17,16,.55); }
+.hc__media img { width: 100%; height: 100%; object-fit: cover; animation: kenburns 14s ease-in-out infinite alternate; }
+@keyframes kenburns { from { transform: scale(1.02) translate(0, 0); } to { transform: scale(1.12) translate(-3%, -2%); } }
+.hc--web { left: 0; top: 30%; width: 31%; }
+.hc__phone { position: relative; display: block; padding: 7px; border-radius: 28px; background: #121212; box-shadow: inset 0 0 0 1.5px #3a3a3a, 0 40px 60px -30px rgba(17,17,16,.6); }
+.hc__phone .screen { display: block; aspect-ratio: 9 / 19; border-radius: 22px; }
+.hc__island { position: absolute; top: 13px; left: 50%; width: 30%; height: 12px; margin-left: -15%; border-radius: 8px; background: #000; z-index: 3; }
+.hc--nfc { right: 6%; bottom: 0; width: 34%; }
+.disc-css { position: relative; display: grid; place-items: center; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(circle at 35% 30%, #fff, #e4e7eb); box-shadow: 0 34px 50px -22px rgba(17,17,16,.5), inset 0 -5px 10px rgba(0,0,0,.06); animation: discfloat 6s ease-in-out infinite alternate; }
+.disc-css::before { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: conic-gradient(from -90deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px)); mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 calc(100% - 6px)); }
+.disc-css > span { display: grid; justify-items: center; gap: 2px; color: #202124; }
+.disc-css small { font-size: 8px; font-weight: 700; letter-spacing: .3em; }
+.disc-css small.st { color: #fbbc05; font-size: 12px; letter-spacing: .1em; }
+.disc-css em { font-style: normal; font-size: clamp(15px, 1.9vw, 26px); font-weight: 500; letter-spacing: -.02em; }
+.disc-css i { font-style: normal; }
+@keyframes discfloat { from { transform: translateY(0) rotate(-6deg); } to { transform: translateY(-14px) rotate(4deg); } }
+.hc__tag { position: absolute; left: auto; right: 12px; bottom: 12px; white-space: nowrap; z-index: 4; display: inline-flex; align-items: center; gap: 8px; padding: 7px 11px; border-radius: 6px; background: var(--paper); color: var(--ink); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; box-shadow: 0 10px 24px -12px rgba(17,17,16,.4); transition: background-color .3s, color .3s; }
+.hc__tag b { font-family: var(--display); font-weight: 400; font-size: 13px; }
+.hc--nfc .hc__tag { right: auto; left: 50%; bottom: -10px; transform: translateX(-50%); }
+.hc--web .hc__tag { right: auto; left: 50%; bottom: -12px; transform: translateX(-50%); }
+.hc:hover .hc__tag { background: var(--ink); color: var(--paper); }
+/* Entrance */
+.collage .hc { opacity: 0; }
+.collage.in .hc { opacity: 1; animation: cardIn 1s var(--ease) both; }
+.collage.in .hc--web { animation-delay: .15s; }
+.collage.in .hc--nfc { animation-delay: .3s; }
+@keyframes cardIn { from { opacity: 0; translate: 0 40px; scale: .96; } to { opacity: 1; translate: 0 0; scale: 1; } }
 
 /* ==========================================================================
    Service panels: title, then visual left and buy box right
@@ -130,10 +167,16 @@ img, svg, canvas { display: block; max-width: 100%; }
 .panel__head p { justify-self: end; max-width: 420px; padding-bottom: 6px; font-size: 16px; opacity: .7; }
 .panel__grid { margin-top: 28px; display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 28px; align-items: stretch; }
 .panel__visual { position: relative; min-width: 0; }
-.nfc-stage { min-height: 520px; border-radius: 18px; background: radial-gradient(ellipse at 45% 55%, var(--paper), transparent 70%); }
+.nfc-stage { min-height: 560px; border-radius: 18px; background: radial-gradient(ellipse at 45% 55%, var(--paper), transparent 70%); }
 .nfc-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; touch-action: pan-y; }
 .stage-hint { position: absolute; left: 0; bottom: 6px; z-index: 2; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .5; pointer-events: none; }
 .callouts { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
+.stage-cap { position: absolute; left: 0; top: 4px; z-index: 4; display: flex; align-items: center; gap: 12px; max-width: 70%; font-size: 15px; font-weight: 600; }
+.stage-cap b { flex: none; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--ink); color: var(--paper); font-size: 13px; }
+.callout { transition: opacity .35s; }
+.callout.is-on .callout__text { color: var(--ink); }
+.callout.is-on .callout__dot { width: 12px; height: 12px; margin-left: -6px; }
+.callout.is-on .callout__line { height: 2px; }
 .callout { position: absolute; left: 0; top: 0; display: flex; align-items: center; opacity: 0; will-change: transform; }
 .callout__dot { width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px var(--accent); }
 .callout__line { height: 1px; background: var(--ink); }
@@ -414,8 +457,10 @@ img, svg, canvas { display: block; max-width: 100%; }
   .ask__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
-  .hero { padding: 108px 0 34px; }
-  .hero__intro { grid-template-columns: 1fr; gap: 20px; }
+  .hero { padding: 104px 0 40px; }
+  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
+  .hero__facts { gap: 18px; }
+  .hc__tag { font-size: 10px; padding: 6px 9px; }
   .panel { padding: 48px 0; }
   .panel__head { grid-template-columns: auto 1fr; gap: 6px 14px; }
   .panel__head p { grid-column: 1 / -1; justify-self: start; }
@@ -457,6 +502,8 @@ img, svg, canvas { display: block; max-width: 100%; }
   .review div { grid-template-columns: 1fr; gap: 2px; }
 }
 @media (prefers-reduced-motion: reduce) {
+  .hc__media img, .disc-css { animation: none; }
+  .collage .hc { opacity: 1; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
   .rv { opacity: 1; transform: none; }
@@ -490,16 +537,20 @@ img, svg, canvas { display: block; max-width: 100%; }
 
 <main id="top">
 
-  <!-- Intro -->
+  <!-- Intro: rotating promise left, a collage of the three products right -->
   <section class="hero" data-bg="#f3f0e8" data-ink="#111110">
-    <div class="wrap hero__intro">
-      <div>
+    <div class="wrap hero__grid">
+      <div class="hero__copy">
         <span class="kicker rv">F&amp;D Solutions · München</span>
-        <h1 class="display rv d1">Bewertungen.<br>Websites. <span class="hl">Roomtours.</span></h1>
+        <h1 class="display rv d1">Mehr<br><span class="rot" aria-hidden="true"><span class="on">Bewertungen.</span><span>Kunden.</span><span>Buchungen.</span></span><span class="sr-only">Bewertungen, Kunden und Buchungen.</span></h1>
+        <p class="hero__sub rv d2">NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours für Unternehmen, die online so stark sein wollen wie vor Ort.</p>
+        <div class="hero__cta rv d3"><a class="btn btn--solid" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#preise">Preise ansehen</a></div>
+        <ul class="hero__facts rv d3"><li><b>Festpreise</b>ab 300 €</li><li><b>Antwort</b>in 24 Stunden</li><li><b>Persönlich</b>aus München</li></ul>
       </div>
-      <div class="hero__side rv d2">
-        <p class="hero__sub">Drei Leistungen für Unternehmen, die online so stark sein wollen wie vor Ort. Fair zum Festpreis, persönlich aus München.</p>
-        <div class="hero__cta"><a class="btn btn--solid" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#preise">Preise</a></div>
+      <div class="collage" id="collage" aria-label="Unsere Leistungen">
+        <a class="hc hc--tour" href="#roomtour" data-depth="14"><span class="hc__media"><img src="/media/roomtour-villa.jpg" alt="Beispiel einer KI-Roomtour: Wohnzimmer mit Balkon"></span><span class="hc__tag"><b>03</b>KI-Roomtour</span></a>
+        <a class="hc hc--web" href="#web" data-depth="26"><span class="hc__phone"><span class="hc__island"></span><span class="screen" data-screen></span></span><span class="hc__tag"><b>02</b>Website</span></a>
+        <a class="hc hc--nfc" href="#nfc" data-depth="36"><span class="disc-css"><span><small>TAP HERE</small><em><i style="color:#4285f4">G</i><i style="color:#ea4335">o</i><i style="color:#fbbc05">o</i><i style="color:#4285f4">g</i><i style="color:#34a853">l</i><i style="color:#ea4335">e</i></em><small class="st">★★★★★</small></span></span><span class="hc__tag"><b>01</b>NFC-Platte</span></a>
       </div>
     </div>
   </section>
@@ -510,6 +561,7 @@ img, svg, canvas { display: block; max-width: 100%; }
       <div class="panel__head rv"><span class="panel__no">01</span><h2 class="display">NFC-Platten</h2><p>Antippen, bewerten, fertig: Ihre Kunden landen mit einem Tipp direkt bei Ihrer Google-Bewertung.</p></div>
       <div class="panel__grid">
         <div class="panel__visual nfc-stage rv" id="nfcStage">
+          <div class="stage-cap" aria-live="polite"><b id="nfcStepNo">1</b><span id="nfcCap">Antippen: Handy an die Platte halten.</span></div>
           <span class="stage-hint">Ziehen zum Drehen</span>
           <div class="callouts" id="callouts" aria-hidden="true">
             <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Frontplatte<small>Google-Design, auf Wunsch mit Firmennamen</small></span></div>
@@ -873,6 +925,25 @@ img, svg, canvas { display: block; max-width: 100%; }
     entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); rvIO.unobserve(e.target); } });
   }, { rootMargin: "0px 0px -8% 0px" });
   $$(".rv").forEach(function (el) { rvIO.observe(el); });
+
+  /* ---------------- Intro: rotating word and product collage ---------------- */
+  var rotWords = $$(".rot span"), rotI = 0;
+  if (!reduce && rotWords.length) setInterval(function () {
+    var cur = rotWords[rotI]; rotI = (rotI + 1) % rotWords.length;
+    cur.classList.remove("on"); cur.classList.add("out");
+    setTimeout(function () { cur.classList.remove("out"); }, 700);
+    rotWords[rotI].classList.add("on");
+  }, 2600);
+  var collage = $("#collage");
+  requestAnimationFrame(function () { collage.classList.add("in"); });
+  if (!reduce) collage.parentNode.addEventListener("pointermove", function (e) {
+    var r = collage.getBoundingClientRect();
+    var x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+    $$(".hc", collage).forEach(function (c) {
+      var d = Number(c.getAttribute("data-depth")) || 10;
+      c.style.transform = "translate(" + (-x * d).toFixed(1) + "px," + (-y * d).toFixed(1) + "px)";
+    });
+  });
 
   /* ---------------- Website showcase: one sample site in laptop + phone ---------------- */
   var SAMPLES = {
@@ -1260,21 +1331,21 @@ img, svg, canvas { display: block; max-width: 100%; }
 
   /* --- Disc built from layers (front cap, inlay with chip, back cap) --- */
   function buildDisc(theme) {
-    var R = 1.5, T = 0.07;
-    var edge = new THREE.MeshStandardMaterial({ color: theme === "black" ? 0x1a1a1c : 0xf2f1ee, roughness: .3, metalness: .05 });
-    var plain = new THREE.MeshStandardMaterial({ color: theme === "black" ? 0x1d1d1f : 0xeeeeea, roughness: .5 });
-    var front = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge, new THREE.MeshStandardMaterial({ map: tex(paintFront(theme === "black")), roughness: .35 }), plain]);
-    var back = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge, plain, new THREE.MeshStandardMaterial({ map: tex(paintBack), roughness: .45 })]);
-    var inlay = new THREE.Group();
-    var coil = new THREE.Mesh(new THREE.CircleGeometry(R * .98, 64), new THREE.MeshStandardMaterial({ map: tex(paintInlay, 512), transparent: true, side: THREE.DoubleSide, metalness: .4, roughness: .4, depthWrite: false }));
+    var R = 1.5, T = 0.07, dark = theme === "black";
+    // Each layer gets its own materials so it can be dimmed on its own.
+    var M = function (o) { return new THREE.MeshStandardMaterial(Object.assign({ transparent: true }, o)); };
+    var edge = function () { return M({ color: dark ? 0x1a1a1c : 0xf2f1ee, roughness: .3, metalness: .05 }); };
+    var plain = function () { return M({ color: dark ? 0x1d1d1f : 0xeeeeea, roughness: .5 }); };
+    var front = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge(), M({ map: tex(paintFront(dark)), roughness: .35 }), plain()]);
+    var back = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge(), plain(), M({ map: tex(paintBack), roughness: .45 })]);
+    var coil = new THREE.Mesh(new THREE.CircleGeometry(R * .98, 64), M({ map: tex(paintInlay, 512), side: THREE.DoubleSide, metalness: .4, roughness: .4, depthWrite: false }));
     coil.rotation.x = -Math.PI / 2;
-    var chip = new THREE.Mesh(new THREE.BoxGeometry(.24, .05, .24), new THREE.MeshStandardMaterial({ color: 0x151515, roughness: .3, metalness: .5 }));
+    var chip = new THREE.Mesh(new THREE.BoxGeometry(.34, .06, .34), M({ color: 0x151515, roughness: .3, metalness: .5 }));
     chip.position.y = .03;
-    inlay.add(coil, chip);
     var g = new THREE.Group();
     front.position.y = T / 2; back.position.y = -T / 2;
-    g.add(front, inlay, back);
-    return { group: g, front: front, back: back, inlay: inlay, chip: chip, T: T };
+    g.add(front, coil, chip, back);
+    return { group: g, front: front, back: back, coil: coil, chip: chip, T: T, parts: [[front], [chip], [coil], [back]] };
   }
 
   function lights(scene) {
@@ -1283,60 +1354,126 @@ img, svg, canvas { display: block; max-width: 100%; }
     var rim = new THREE.DirectionalLight(0xebe5d9, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
   }
 
-  /* --- NFC panel: the disc opens into its layers on a loop, drag to turn, colour follows the swatch --- */
+  /* --- NFC panel: a phone taps the disc, then the disc opens and walks through its layers --- */
   var nfcTheme = "white";
+  function paintPhone(ctx, s) {
+    var w = s, h = s * 2;
+    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, h);
+    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    var L = [["G", "#4285F4"], ["o", "#EA4335"], ["o", "#FBBC05"], ["g", "#4285F4"], ["l", "#34A853"], ["e", "#EA4335"]];
+    ctx.font = "500 " + w * .15 + "px Inter, sans-serif";
+    var total = L.reduce(function (a, l) { return a + ctx.measureText(l[0]).width; }, 0), x = (w - total) / 2;
+    ctx.textAlign = "left";
+    L.forEach(function (l) { ctx.fillStyle = l[1]; ctx.fillText(l[0], x, h * .22); x += ctx.measureText(l[0]).width; });
+    ctx.textAlign = "center"; ctx.fillStyle = "#202124";
+    ctx.font = "600 " + w * .075 + "px Inter, sans-serif"; ctx.fillText("Bewertung schreiben", w / 2, h * .36);
+    ctx.fillStyle = "#FBBC05"; ctx.font = w * .13 + "px sans-serif"; ctx.fillText("★★★★★", w / 2, h * .47);
+    ctx.fillStyle = "#f1f3f4"; ctx.fillRect(w * .1, h * .56, w * .8, h * .16);
+    ctx.fillStyle = "#1a73e8"; ctx.fillRect(w * .25, h * .8, w * .5, h * .07);
+    ctx.fillStyle = "#fff"; ctx.font = "600 " + w * .06 + "px Inter, sans-serif"; ctx.fillText("Posten", w / 2, h * .835);
+  }
   function initNfc() {
-    var host = $("#nfcStage"), labels = $$(".callout", host);
+    var host = $("#nfcStage"), labels = $$(".callout", host), cap = $("#nfcCap"), capNo = $("#nfcStepNo");
     var anchors = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
     var v = new THREE.Vector3();
     var drag = { active: false, last: 0, yaw: 0, vel: 0 };
+    var steps = [
+      ["1", "Antippen: Handy an die Platte halten."],
+      ["2", "Die Google-Bewertung öffnet sich sofort."],
+      ["3", "So ist die Platte aufgebaut:"],
+      ["4", "Fest verbunden, ohne Akku, ohne App."]
+    ];
+    var lastCap = "";
+    function setCap(i, extra) {
+      var text = extra || steps[i][1];
+      if (text === lastCap) return;
+      lastCap = text; capNo.textContent = steps[i][0]; cap.textContent = text;
+    }
     var s = stage(host, { fov: 30, resize: function (st) {
-      // Keep the disc plus label column in view at any panel width.
-      var half = st.w < 600 ? 2.5 : 3.6;
-      var z = Math.max(8, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
-      st.camera.position.set(0, z * .3, z);
-      st.camera.lookAt(0, -0.1, 0);
+      var half = st.w < 600 ? 2.7 : 3.9;
+      var z = Math.max(9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
+      st.camera.position.set(0, z * .42, z);
+      st.camera.lookAt(0, .35, 0);
     }, update: function (t, dt, st) {
-      // 9 s cycle: closed, opens, holds open with labels, closes again.
-      var c = t % 9;
-      var open = reduce ? 1 : smooth(1, 2.6, c) * (1 - smooth(7.2, 8.6, c));
-      if (!drag.active) { drag.yaw += drag.vel * dt; drag.vel *= Math.pow(.05, dt); }
+      var c = reduce ? 9 : t % 15;
       var narrow = st.w < 600;
-      [discs.white, discs.black].forEach(function (d) {
-        d.group.visible = d === discs[nfcTheme];
-        d.front.position.y = d.T / 2 + open * .95;
-        d.back.position.y = -d.T / 2 - open * .95;
-        d.group.position.set(narrow ? -0.55 : -0.9, (reduce ? 0 : Math.sin(t) * .04), 0);
-        d.group.rotation.set(.5 + open * .12, -.35 + (reduce ? 0 : Math.sin(t * .35) * .3) + drag.yaw, 0);
-        d.group.updateMatrixWorld();
+      if (!drag.active) { drag.yaw += drag.vel * dt; drag.vel *= Math.pow(.05, dt); }
+      // Phase 1: phone comes in, taps, waves go out, the review page lights up.
+      var phoneIn = smooth(.3, 1.5, c) * (1 - smooth(4.2, 5, c));
+      phone.visible = phoneIn > .01;
+      phone.position.set(lerp(2.2, -0.15, phoneIn) + (narrow ? .25 : -.6), lerp(3.4, 1.05, phoneIn), lerp(-.5, .55, phoneIn));
+      phone.rotation.set(lerp(-.3, .55, phoneIn), .2, lerp(.35, .06, phoneIn));
+      screen.material.opacity = smooth(1.9, 2.4, c);
+      rings.forEach(function (r, k) {
+        var on = smooth(1.5, 1.7, c) * (1 - smooth(3.8, 4.2, c));
+        var ph = ((c - 1.5 - k * .4) % 1.2 + 1.2) % 1.2 / 1.2;
+        r.scale.setScalar(1 + ph * 1.1);
+        r.material.opacity = (1 - ph) * .55 * on;
       });
+      // Phase 2: the disc opens and each layer is shown on its own.
+      var open = reduce ? 1 : smooth(5, 6.2, c) * (1 - smooth(13.2, 14.4, c));
+      var idx = c > 6.4 && c < 12.8 ? Math.floor((c - 6.4) / 1.6) : -1;
+      if (c < 1.8) setCap(0); else if (c < 5) setCap(1); else if (c < 13) setCap(2, idx >= 0 ? "So ist die Platte aufgebaut: " + ["Frontplatte", "NFC-Chip", "Kupferantenne", "Rückplatte"][idx] : null); else setCap(3);
       var d = discs[nfcTheme];
-      anchors[0].set(1.5, d.front.position.y + .04, 0);
-      anchors[1].set(0.12, 0.05, 0);
-      anchors[2].set(1.0, 0, .25);
-      anchors[3].set(1.5, d.back.position.y - .04, 0);
-      var colX = st.w - (narrow ? 112 : 220);
-      var prevY = -1e9, gapY = narrow ? 30 : 60;
+      [discs.white, discs.black].forEach(function (x) { x.group.visible = x === d; });
+      var lift = function (i) { return idx === i ? .12 : 0; };
+      d.front.position.y = d.T / 2 + open * 1.75 + lift(0);
+      d.chip.position.y = .03 + open * .78 + lift(1);
+      d.coil.position.y = -open * .18 + lift(2);
+      d.back.position.y = -d.T / 2 - open * 1.15 + lift(3);
+      d.parts.forEach(function (meshes, i) {
+        var o = idx < 0 ? 1 : (idx === i ? 1 : .22);
+        meshes.forEach(function (m) { (Array.isArray(m.material) ? m.material : [m.material]).forEach(function (mat) { mat.opacity = lerp(mat.opacity, o * (mat.userData.base || 1), 1 - Math.pow(.002, dt)); }); });
+      });
+      d.group.position.set(narrow ? -0.45 : -0.95, (reduce ? 0 : Math.sin(t) * .04), 0);
+      d.group.rotation.set(.38 + open * .1, -.3 + (reduce ? 0 : Math.sin(t * .3) * .25) + drag.yaw, 0);
+      d.group.updateMatrixWorld();
+      anchors[0].set(1.5, d.front.position.y, 0);
+      anchors[1].set(.17, d.chip.position.y, .17);
+      anchors[2].set(1.35, d.coil.position.y, 0);
+      anchors[3].set(1.5, d.back.position.y, 0);
+      var colX = st.w - (narrow ? 104 : 210), prevY = -1e9, gapY = narrow ? 28 : 44;
       labels.forEach(function (el, i) {
         v.copy(anchors[i]).applyMatrix4(d.group.matrixWorld).project(st.camera);
-        // The dot stays on its layer; only the text slides down if it would touch the label above.
         var x = (v.x + 1) / 2 * st.w, y = (1 - v.y) / 2 * st.h, ty = Math.max(y, prevY + gapY);
         prevY = ty;
         el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) translateY(-50%)";
         el.querySelector(".callout__text").style.transform = "translateY(" + (ty - y).toFixed(1) + "px)";
         el.querySelector(".callout__line").style.width = Math.max(20, colX - x).toFixed(0) + "px";
-        el.style.opacity = smooth(.55 + i * .08, .85 + i * .04, open).toFixed(2);
+        el.style.opacity = (smooth(.5, .9, open) * (idx < 0 || idx === i ? 1 : .28)).toFixed(2);
+        el.classList.toggle("is-on", idx === i);
       });
     } });
     if (!s) return;
     lights(s.scene);
     var discs = { white: buildDisc("white"), black: buildDisc("black") };
     s.scene.add(discs.white.group, discs.black.group);
+    // Phone with a Google review page on its screen.
+    var phone = new THREE.Group();
+    var body = new THREE.Mesh(new THREE.BoxGeometry(1.05, .08, 2.05), new THREE.MeshStandardMaterial({ color: 0x141414, roughness: .35, metalness: .4 }));
+    var pc = document.createElement("canvas"); pc.width = 256; pc.height = 512; paintPhone(pc.getContext("2d"), 256);
+    var ptex = new THREE.CanvasTexture(pc); ptex.encoding = THREE.sRGBEncoding;
+    var screen = new THREE.Mesh(new THREE.PlaneGeometry(.93, 1.86), new THREE.MeshBasicMaterial({ map: ptex, transparent: true, opacity: 0 }));
+    screen.rotation.x = -Math.PI / 2; screen.position.y = .045;
+    var glass = new THREE.Mesh(new THREE.PlaneGeometry(.93, 1.86), new THREE.MeshBasicMaterial({ color: 0x050505 }));
+    glass.rotation.x = -Math.PI / 2; glass.position.y = .042;
+    phone.add(body, glass, screen);
+    s.scene.add(phone);
+    // Waves that run out from the disc while the phone taps it.
+    var rings = [0, 1, 2].map(function () {
+      var r = new THREE.Mesh(new THREE.RingGeometry(1.52, 1.56, 96), new THREE.MeshBasicMaterial({ color: 0x111110, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
+      r.rotation.x = -Math.PI / 2; r.position.y = .06;
+      return r;
+    });
+    var ringHolder = new THREE.Group(); rings.forEach(function (r) { ringHolder.add(r); }); s.scene.add(ringHolder);
     var cv = s.renderer.domElement;
     cv.addEventListener("pointerdown", function (e) { drag.active = true; drag.last = e.clientX; cv.setPointerCapture(e.pointerId); cv.style.cursor = "grabbing"; });
     cv.addEventListener("pointermove", function (e) { if (!drag.active) return; var dx = e.clientX - drag.last; drag.last = e.clientX; drag.yaw += dx * .01; drag.vel = dx * .5; });
     var up = function () { drag.active = false; cv.style.cursor = ""; };
     cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+    // Keep the wave rings on the visible disc.
+    var baseUpdate = s.update;
+    s.update = function (t, dt, st) { baseUpdate(t, dt, st); ringHolder.position.copy(discs[nfcTheme].group.position); ringHolder.rotation.copy(discs[nfcTheme].group.rotation); };
   }
 
   if (THREE) {
