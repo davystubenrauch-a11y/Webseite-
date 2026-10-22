@@ -11,7 +11,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **QCLAY / CryptoHub:** Hintergrundfarbe wechselt beim Scrollen (Creme → Limette → Dunkel). Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
 ## Design-Regeln
-- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent Terrakotta `#f25c2a` (hell: `#ffd8c7`; Limette wurde vom Kunden abgelehnt). Google-Farben nur auf dem NFC-Produkt.
+- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent Himmelblau `#a8c4ff` (hell: `#e2eaff`; Limette und Orange/Terrakotta wurden vom Kunden abgelehnt). Google-Farben nur auf dem NFC-Produkt.
 - Schrift: Anton (Überschriften, Großbuchstaben) + Inter (Text).
 - Buttons eckig (Radius 6 px), Großbuchstaben, keine Leuchteffekte.
 
@@ -29,8 +29,10 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
-- Preise: Mini-Vorschau je Paket (Laptop mit Seitenumfang bzw. Roomtour-Player/360°/Home-Staging).
-- Roomtour: Video-Player mit Kapiteln für ein **echtes, selbst gefilmtes** Video (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Keine 3D-Modelle als Roomtour-Beispiel: der Kunde will klar zeigen, dass F&D echte Videos dreht. Ohne Datei zeigt der Player „folgt in Kürze“.
+- Preise: schlichte Paketkarten (Name, Preis, Häkchen-Liste, Button „Jetzt anfragen“ / bei NFC „Jetzt bestellen“). Bilder in den Preiskarten waren dem Kunden zu unübersichtlich.
+- Roomtour: Video-Player mit Kapiteln für ein **echtes, selbst gefilmtes** Video (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Keine 3D-Modelle als Roomtour-Beispiel: der Kunde will klar zeigen, dass F&D echte Videos dreht. Ohne Datei ist der Player ausgeblendet (kein Platzhalter).
+
+- Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
 
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.

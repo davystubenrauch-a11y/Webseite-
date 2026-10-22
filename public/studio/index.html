@@ -12,7 +12,7 @@
 <style>
 /* ==========================================================================
    Tokens
-   Cream, ink and one terracotta accent. Bold condensed display type (Anton) for
+   Cream, ink and one sky-blue accent. Bold condensed display type (Anton) for
    headlines, Inter for everything else. The page background morphs per section.
    ========================================================================== */
 :root {
@@ -20,8 +20,8 @@
   --paper: #faf9f5;
   --ink: #111110;
   --dark: #121212;
-  --accent: #f25c2a;
-  --accent-soft: #ffd8c7;
+  --accent: #a8c4ff;
+  --accent-soft: #e2eaff;
   --muted: rgba(17, 17, 16, 0.58);
   --line: rgba(17, 17, 16, 0.12);
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -280,11 +280,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .player__rec { display: flex; align-items: center; gap: 8px; }
 .player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .2; } }
-.player__empty { position: absolute; inset: 0; z-index: 2; display: none; place-content: center; text-align: center; color: var(--paper); background: #1c1c1c; }
-.player__empty small { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
-.player__empty b { display: block; margin-top: 10px; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
-.player--empty .player__empty { display: grid; }
-.player--empty ~ .chapters { display: none; }
+.player--empty, .player--empty ~ .chapters { display: none; }
 .player__title { position: absolute; z-index: 1; left: 22px; bottom: 76px; color: #fff; pointer-events: none; text-shadow: 0 2px 20px rgba(0,0,0,.35); }
 .player__title small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
 .player__title b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
@@ -319,72 +315,29 @@ img, svg, canvas { display: block; max-width: 100%; }
 .cats button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
 .menu { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .menu[hidden] { display: none; }
-.dish { display: flex; flex-direction: column; }
-.dish__img { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; display: grid; place-items: center; background: #e7e3d8; transition: transform .6s var(--ease); }
-.dish:hover .dish__img { transform: translateY(-6px); }
-.dish__img--dark { background: #1a1a1a; }
-.dish__img--accent { background: var(--accent); }
-.dish__no { position: absolute; left: 14px; top: 12px; font-family: var(--display); font-size: 16px; opacity: .55; }
-.dish__badge { position: absolute; right: 12px; top: 12px; padding: 5px 9px; border-radius: 4px; background: var(--ink); color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.dish h3 { margin-top: 18px; font-family: var(--display); font-weight: 400; font-size: 40px; line-height: .92; text-transform: uppercase; }
-.dish p { margin-top: 8px; font-size: 14px; color: var(--muted); min-height: 2.8em; }
-.dish__foot { margin-top: 16px; padding-top: 14px; border-top: 1.5px solid var(--ink); display: flex; justify-content: space-between; align-items: center; }
-.dish__price { font-family: var(--display); font-size: 30px; line-height: 1; }
-.dish__price small { font-family: var(--body); font-size: 12px; font-weight: 600; margin-right: 6px; opacity: .6; }
-.add { height: 38px; padding: 0 14px; border-radius: 6px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: background-color .3s, color .3s; }
-.add:hover, .add[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
+.pack { position: relative; display: flex; flex-direction: column; padding: 30px 28px 28px; border-radius: 16px; background: var(--paper); border: 1.5px solid var(--line); }
+.pack--best { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+.pack__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 30px; }
+.pack h3 { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: 1; text-transform: uppercase; }
+.pack__tag { padding: 6px 10px; border-radius: 4px; background: var(--accent); color: var(--ink); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.pack__swatch { width: 34px; height: 34px; border-radius: 50%; border: 1.5px solid var(--line); }
+.pack__price { margin-top: 22px; font-family: var(--display); font-size: 56px; line-height: 1; }
+.pack__price small { font-family: var(--body); font-size: 14px; font-weight: 600; margin-right: 8px; opacity: .6; }
+.pack__price--text { font-size: 34px; }
+.pack__lead { margin-top: 10px; font-size: 15px; opacity: .7; }
+.pack__list { margin: 22px 0 28px; padding-top: 20px; border-top: 1px solid currentColor; border-top-color: rgba(127,127,127,.3); list-style: none; display: grid; gap: 11px; font-size: 15px; }
+.pack__list li { position: relative; padding-left: 28px; }
+.pack__list li::before { content: ""; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111110' stroke-width='3'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 12px no-repeat; }
+.pack__btn { margin-top: auto; width: 100%; justify-content: center; background: var(--ink); color: var(--paper); }
+.pack__btn:hover { background: var(--accent); color: var(--ink); }
+.pack--best .pack__btn { background: var(--accent); color: var(--ink); }
+.pack--best .pack__btn:hover { background: var(--paper); }
+.pack__btn[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
+.cats-label { display: block; margin-bottom: 10px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .menu-note { margin-top: 26px; font-size: 13px; color: var(--muted); }
-/* Mini art inside menu images */
-.art-disc { width: 46%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; box-shadow: 0 30px 50px -24px rgba(0,0,0,.5); position: relative; }
-.art-disc::before { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: conic-gradient(from -90deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0 100%); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px)); mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px)); }
-.art-disc--white { background: radial-gradient(circle at 35% 30%, #fff, #e8ebee); color: #202124; }
-.art-disc--black { background: radial-gradient(circle at 35% 30%, #2b2c30, #08080a); color: #f1f3f4; }
-.art-disc b { font-size: clamp(16px, 2vw, 24px); font-weight: 500; letter-spacing: -.02em; }
-.art-disc b span:nth-child(1), .art-disc b span:nth-child(4) { color: #4285f4; }
-.art-disc b span:nth-child(2), .art-disc b span:nth-child(6) { color: #ea4335; }
-.art-disc b span:nth-child(3) { color: #fbbc05; }
-.art-disc b span:nth-child(5) { color: #34a853; }
-.art-disc small { display: block; font-size: 8px; font-weight: 700; letter-spacing: .3em; }
-
-/* Package previews inside the price cards */
-.mini { position: relative; width: 76%; }
-.mini__lid { border-radius: 10px 10px 4px 4px; background: #1b1b1b; padding: 2.4% 2.4% 3.2%; box-shadow: 0 30px 40px -26px rgba(17,17,16,.6); }
-.mini__base { height: 8px; margin: 0 -6%; border-radius: 0 0 10px 10px; background: linear-gradient(#d9d6cf, #b9b5ad); }
-.mini .screen { aspect-ratio: 16 / 10; border-radius: 4px; }
-.mini .page { position: absolute; inset: 0 0 auto 0; transition: transform 3s ease-in-out; }
-.dish:hover .mini .page { transform: translateY(var(--hover-travel, -40%)); }
-.pg-nav { display: flex; justify-content: space-between; align-items: center; padding: 3cqw 4cqw; }
-.pg-nav i { width: 14cqw; height: 3cqw; border-radius: 2cqw; background: #161412; }
-.pg-nav span { display: flex; gap: 2cqw; }
-.pg-nav span b { width: 7cqw; height: 2cqw; border-radius: 2cqw; background: #d9d4ca; }
-.pg-nav span b.on { background: var(--accent); }
-.pg-hero { margin: 0 4cqw; height: 34cqw; border-radius: 3cqw; background: #2a2622; position: relative; overflow: hidden; }
-.pg-hero::after { content: ""; position: absolute; left: 5cqw; bottom: 5cqw; width: 40cqw; height: 6cqw; border-radius: 2cqw; background: #fff; box-shadow: 0 8cqw 0 -1cqw var(--accent); }
-.pg-hero--anim::before { content: ""; position: absolute; right: -10cqw; top: -10cqw; width: 40cqw; height: 40cqw; border-radius: 50%; background: var(--accent); animation: orbit 6s ease-in-out infinite alternate; }
-@keyframes orbit { to { transform: translate(-14cqw, 10cqw) scale(.8); } }
-.pg-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3cqw; margin: 4cqw; }
-.pg-row b { height: 18cqw; border-radius: 2.4cqw; background: #ece8e0; }
-.pg-map { margin: 0 4cqw 4cqw; height: 22cqw; border-radius: 2.4cqw; background: repeating-linear-gradient(0deg, #e6e1d7 0 1px, transparent 1px 6cqw), repeating-linear-gradient(90deg, #e6e1d7 0 1px, #f3f0e8 1px 6cqw); position: relative; }
-.pg-map::after { content: ""; position: absolute; left: 48%; top: 30%; width: 5cqw; height: 5cqw; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); }
-.pg-stars { margin: 0 4cqw 4cqw; padding: 3cqw; border-radius: 2.4cqw; background: #161412; color: #f2a900; font-size: 4cqw; letter-spacing: .2em; }
-.pg-badge { position: absolute; right: 3cqw; top: 3cqw; z-index: 2; padding: 1.4cqw 2.4cqw; border-radius: 1.4cqw; background: var(--accent); color: #111; font-size: 3.4cqw; font-weight: 700; letter-spacing: .06em; }
-.pages-tag { position: absolute; left: 12px; bottom: 12px; padding: 5px 9px; border-radius: 4px; background: rgba(17,17,16,.85); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-/* Roomtour package previews */
-.tour-prev { position: relative; width: 78%; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: linear-gradient(#f4c9a8, #a9c7e0 70%); box-shadow: 0 30px 40px -26px rgba(17,17,16,.6); }
-.tour-prev::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; background: #e9e4da; }
-.tour-prev i { position: absolute; bottom: 28%; height: 34%; background: #fff; box-shadow: inset 0 -6px 0 rgba(0,0,0,.05); }
-.tour-prev i:nth-of-type(1) { left: 14%; width: 46%; }
-.tour-prev i:nth-of-type(2) { left: 46%; width: 34%; bottom: 52%; height: 22%; }
-.tour-prev i:nth-of-type(3) { left: 20%; width: 34%; bottom: 33%; height: 18%; background: rgba(120,170,200,.55); }
-.tour-prev em { position: absolute; left: 0; right: 0; bottom: 6%; margin: 0 auto; width: 60%; height: 10%; border-radius: 4px; background: #4fb3d9; }
-.tour-prev .ui { position: absolute; inset: auto 8px 8px 8px; display: flex; align-items: center; gap: 8px; }
-.tour-prev .ui b { width: 22px; height: 22px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 9px; }
-.tour-prev .ui span { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.5); position: relative; }
-.tour-prev .ui span::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 38%; background: var(--accent); }
-.tour-prev .deg { position: absolute; right: 8px; top: 8px; padding: 4px 7px; border-radius: 4px; background: rgba(17,17,16,.8); color: #fff; font-size: 10px; font-weight: 700; }
-.tour-prev .plan { position: absolute; left: 8px; top: 8px; width: 28%; aspect-ratio: 4 / 3; border-radius: 4px; background: rgba(255,255,255,.92); background-image: linear-gradient(#111 0 0), linear-gradient(#111 0 0), linear-gradient(#111 0 0); background-size: 1.5px 60%, 60% 1.5px, 1.5px 40%; background-position: 50% 0, 0 55%, 75% 100%; background-repeat: no-repeat; outline: 1.5px solid #111; outline-offset: -5px; }
-.tour-prev .split { position: absolute; inset: 0 50% 0 0; background: rgba(17,17,16,.15); border-right: 2px solid #fff; }
-.tour-prev .split::after { content: "VORHER"; position: absolute; left: 8px; top: 8px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
+/* Direct calls to action inside the service sections and on phones */
+.sec-cta { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; }
+.callbar { display: none; }
 
 /* ==========================================================================
    Team
@@ -475,6 +428,10 @@ img, svg, canvas { display: block; max-width: 100%; }
   .ask__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
+  .callbar { position: fixed; z-index: 40; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; padding: 8px; border-radius: 10px; background: var(--paper); box-shadow: 0 12px 30px -10px rgba(17,17,16,.35); transition: transform .4s var(--ease), opacity .4s; }
+  .callbar .btn { height: 48px; justify-content: center; }
+  .callbar.off { transform: translateY(140%); opacity: 0; pointer-events: none; }
+  .foot { padding-bottom: 96px; }
   .burger { display: block; }
   .nav__links {
     position: absolute; top: 72px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0;
@@ -535,11 +492,16 @@ img, svg, canvas { display: block; max-width: 100%; }
       <a href="#web">Websites</a>
       <a href="#roomtour">Roomtour</a>
       <a href="#preise">Preise</a>
-      <a class="btn" href="#anfrage">Anfragen</a>
+      <a class="btn" href="#anfrage">Jetzt anfragen</a>
     </nav>
     <button class="burger" id="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
   </div>
 </header>
+
+<div class="callbar" id="callbar">
+  <a class="btn btn--line" href="tel:+4915566456417">Anrufen</a>
+  <a class="btn btn--solid" href="#anfrage">Jetzt anfragen</a>
+</div>
 
 <main id="top">
 
@@ -551,8 +513,8 @@ img, svg, canvas { display: block; max-width: 100%; }
         <h1 class="display rv d1">Bewertungen<br>auf <span class="hl">Knopf&shy;druck.</span></h1>
         <p class="hero__sub rv d2">NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours. Für Unternehmen, die online so stark sein wollen wie vor Ort.</p>
         <div class="hero__cta rv d3">
-          <a class="btn btn--solid" href="#anfrage">Projekt starten <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
-          <a class="btn btn--line" href="#aufbau">So funktioniert's</a>
+          <a class="btn btn--solid" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+          <a class="btn btn--line" href="#preise">Preise ansehen</a>
         </div>
         <p class="hero__note rv d3"><b>Ab 300 €</b>Websites &amp; Roomtours</p>
       </div>
@@ -582,7 +544,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 3. Floating proof around a statement -->
-  <section class="float" data-bg="#f25c2a" data-ink="#111110">
+  <section class="float" data-bg="#a8c4ff" data-ink="#111110">
     <div class="floaters" id="floaters" aria-hidden="true">
       <div class="floater" style="--x:14%;--y:22%;--d:6s" data-depth="30"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#1d2b22">MK</span><i>★★★★★</i></div></div></div>
       <div class="floater floater--hide-sm" style="--x:30%;--y:12%;--d:8s" data-depth="18"><div class="floater__inner"><div class="bubble bubble--g" style="--s:58px"><span>G</span></div></div></div>
@@ -597,6 +559,7 @@ img, svg, canvas { display: block; max-width: 100%; }
       <h2 class="display rv">Mehr Sterne.<br>Mehr Vertrauen.<br>Mehr Kunden.</h2>
       <p class="rv d1">Wer vor Ort zufrieden ist, bewertet gerne, wenn es einfach ist. Mit der NFC-Platte dauert es Sekunden.</p>
       <div class="steps3 rv d2"><div><b>01</b>Antippen</div><div><b>02</b>Bewerten</div><div><b>03</b>Gefunden werden</div></div>
+      <div class="sec-cta rv d3" style="justify-content:center"><button class="btn btn--solid" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte">NFC-Platte bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
     </div>
   </section>
 
@@ -611,6 +574,7 @@ img, svg, canvas { display: block; max-width: 100%; }
         <div class="showcase__intro rv d1">
           <p>Maßgeschneidert statt Baukasten: eine Website, die am Schreibtisch und auf dem Handy überzeugt, schnell lädt und Besucher zur Anfrage führt.</p>
           <div class="showcase__price"><span class="muted" style="font-weight:600">ab</span><strong>300 €</strong></div>
+          <div class="sec-cta"><button class="btn btn--solid" type="button" data-add="Webentwicklung" data-detail="Website">Website anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="btn btn--line" href="#preise">Pakete vergleichen</a></div>
         </div>
       </div>
 
@@ -653,11 +617,11 @@ img, svg, canvas { display: block; max-width: 100%; }
     <div class="wrap">
       <div class="bento-head">
         <h2 class="display rv">Räume erleben,<br>bevor man sie betritt.</h2>
-        <p class="rv d1">Echte Videoaufnahmen, vor Ort gefilmt: Rundgänge in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. Kapitel anklicken springt direkt in den Raum.</p>
-      </div>
-      <div class="player rv" id="villa">
+        <p class="rv d1">Echte Videoaufnahmen, vor Ort gefilmt: Rundgänge in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. Wir filmen vor Ort und schneiden den Rundgang für Exposé, Website und Social Media.</p>
+      
+        <div class="sec-cta rv d2"><button class="btn btn--accent" type="button" data-add="KI Roomtour" data-detail="Roomtour">Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
+      <div class="player player--empty rv" id="villa">
         <div class="player__view"><video id="villaVideo" muted loop playsinline preload="metadata"></video></div>
-        <div class="player__empty"><small>Echte Videoaufnahme</small><b>Unser Villa-Rundgang<br>folgt in Kürze.</b></div>
         <div class="player__top"><span class="player__rec">Echte Aufnahme · gefilmt vor Ort</span><span>Villa-Roomtour</span></div>
         <div class="player__title"><small id="villaNo">Kapitel 1 / 6</small><b id="villaChapter">Ankunft</b></div>
         <div class="player__bar">
@@ -677,12 +641,12 @@ img, svg, canvas { display: block; max-width: 100%; }
         </div>
         <div class="tile rv d2">
           <h3>Walk&shy;through-<br>Video</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#f25c2a" stroke-width="2"><rect x="30" y="18" width="140" height="64" rx="8"/><path d="M92 38v24l20-12z" fill="#f25c2a"/></svg>
+          <svg viewBox="0 0 200 100" fill="none" stroke="#a8c4ff" stroke-width="2"><rect x="30" y="18" width="140" height="64" rx="8"/><path d="M92 38v24l20-12z" fill="#a8c4ff"/></svg>
           <p>Für Exposé, Website und Social Media.</p>
         </div>
         <div class="tile rv d1">
           <h3>Grundriss &amp;<br>Info-Punkte</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#faf9f5" stroke-width="2"><path d="M30 15h140v70H30zM100 15v40M100 55h70M30 50h40"/><circle cx="65" cy="32" r="5" fill="#f25c2a" stroke="none"/><circle cx="140" cy="70" r="5" fill="#f25c2a" stroke="none"/></svg>
+          <svg viewBox="0 0 200 100" fill="none" stroke="#faf9f5" stroke-width="2"><path d="M30 15h140v70H30zM100 15v40M100 55h70M30 50h40"/><circle cx="65" cy="32" r="5" fill="#a8c4ff" stroke="none"/><circle cx="140" cy="70" r="5" fill="#a8c4ff" stroke="none"/></svg>
           <p>Maße und Details direkt im Rundgang.</p>
         </div>
         <div class="tile tile--light rv d2">
@@ -699,70 +663,88 @@ img, svg, canvas { display: block; max-width: 100%; }
     <div class="wrap">
       <div class="menu-head">
         <div>
-          <span class="kicker rv">Die Karte</span>
+          <span class="kicker rv">Preise</span>
           <h2 class="display rv d1" style="margin-top:18px">Faire Fest&shy;preise.</h2>
         </div>
-        <div class="cats rv d2" role="tablist" aria-label="Kategorie">
+        <div class="rv d2"><span class="cats-label">Leistung wählen</span><div class="cats" role="tablist" aria-label="Leistung wählen">
           <button type="button" role="tab" aria-selected="true" aria-controls="menu-web" id="cat-web">Websites</button>
           <button type="button" role="tab" aria-selected="false" aria-controls="menu-tour" id="cat-tour" tabindex="-1">Roomtour</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="menu-nfc" id="cat-nfc" tabindex="-1">NFC</button>
-        </div>
+          <button type="button" role="tab" aria-selected="false" aria-controls="menu-nfc" id="cat-nfc" tabindex="-1">NFC-Platten</button>
+        </div></div>
       </div>
 
       <div class="menu" id="menu-web" role="tabpanel" aria-labelledby="cat-web">
-        <article class="dish">
-          <div class="dish__img"><span class="dish__no">01</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-20%"><div class="pg-nav"><i></i></div><div class="pg-hero"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">1 Seite</span></div>
-          <h3>Basis</h3><p>One-Pager mit Ihren Inhalten, für Handy optimiert, inkl. Impressum &amp; Datenschutz.</p>
-          <div class="dish__foot"><span class="dish__price">300 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Basis">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Basis</h3></div>
+          <p class="pack__price">300 €</p>
+          <p class="pack__lead">Die eigene Website für den Start.</p>
+          <ul class="pack__list"><li>Eine Seite (One-Pager)</li><li>Für Handy optimiert</li><li>Kontakt &amp; Anfahrt</li><li>Impressum &amp; Datenschutz</li></ul>
+          <button class="btn pack__btn" type="button" data-add="Webentwicklung" data-detail="Website · Basis">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-40%"><div class="pg-nav"><i></i><span><b class="on"></b><b></b><b></b><b></b><b></b></span></div><div class="pg-hero"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div><div class="pg-map"></div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">bis 5 Seiten</span></div>
-          <h3>Business</h3><p>Bis zu 5 Unterseiten, Google Maps &amp; Bewertungen eingebunden, SEO-Grundlagen.</p>
-          <div class="dish__foot"><span class="dish__price"><small>ab</small>690 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Business">+ Anfrage</button></div>
+        <article class="pack pack--best">
+          <div class="pack__top"><h3>Business</h3><span class="pack__tag">Empfehlung</span></div>
+          <p class="pack__price"><small>ab</small>690 €</p>
+          <p class="pack__lead">Für Betriebe, die gefunden werden wollen.</p>
+          <ul class="pack__list"><li>Bis zu 5 Unterseiten</li><li>Google Maps &amp; Bewertungen</li><li>SEO-Grundlagen</li><li>Alles aus Basis</li></ul>
+          <button class="btn pack__btn" type="button" data-add="Webentwicklung" data-detail="Website · Business">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-55%"><span class="pg-badge">CMS</span><div class="pg-nav"><i></i><span><b class="on"></b><b></b><b></b><b></b><b></b></span></div><div class="pg-hero pg-hero--anim"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div><div class="pg-map"></div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">bis 10 Seiten</span></div>
-          <h3>Premium</h3><p>Bis zu 10 Seiten, eigenes Design mit Animationen, Inhalte selbst bearbeitbar.</p>
-          <div class="dish__foot"><span class="dish__price"><small>ab</small>1.290 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Premium">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Premium</h3></div>
+          <p class="pack__price"><small>ab</small>1.290 €</p>
+          <p class="pack__lead">Der komplette Auftritt.</p>
+          <ul class="pack__list"><li>Bis zu 10 Unterseiten</li><li>Eigenes Design mit Animationen</li><li>Inhalte selbst bearbeitbar</li><li>Alles aus Business</li></ul>
+          <button class="btn pack__btn" type="button" data-add="Webentwicklung" data-detail="Website · Premium">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
       </div>
 
       <div class="menu" id="menu-tour" role="tabpanel" aria-labelledby="cat-tour" hidden>
-        <article class="dish">
-          <div class="dish__img"><span class="dish__no">01</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="deg">360°</span></div><span class="pages-tag">360°-Rundgang</span></div>
-          <h3>Basis</h3><p>Bis 80 m², 360°-Rundgang, Link für Website und Portale.</p>
-          <div class="dish__foot"><span class="dish__price">300 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Basis">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Basis</h3></div>
+          <p class="pack__price">300 €</p>
+          <p class="pack__lead">Für Wohnungen bis 80 m².</p>
+          <ul class="pack__list"><li>360°-Rundgang</li><li>Link für Website und Portale</li><li>Aufnahme vor Ort</li></ul>
+          <button class="btn pack__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour · Basis">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="plan"></span><div class="ui"><b>&#9654;</b><span></span></div></div><span class="pages-tag">Video + Grundriss</span></div>
-          <h3>Plus</h3><p>Bis 200 m², zusätzlich Walkthrough-Video, Grundriss und Info-Punkte.</p>
-          <div class="dish__foot"><span class="dish__price"><small>ab</small>490 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Plus">+ Anfrage</button></div>
+        <article class="pack pack--best">
+          <div class="pack__top"><h3>Plus</h3><span class="pack__tag">Empfehlung</span></div>
+          <p class="pack__price"><small>ab</small>490 €</p>
+          <p class="pack__lead">Für Häuser bis 200 m².</p>
+          <ul class="pack__list"><li>Walkthrough-Video</li><li>Grundriss &amp; Info-Punkte</li><li>Alles aus Basis</li></ul>
+          <button class="btn pack__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour · Plus">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="split"></span><div class="ui"><b>&#9654;</b><span></span></div></div><span class="pages-tag">Home-Staging</span></div>
-          <h3>Premium</h3><p>Gewerbe &amp; Hotel, KI-Home-Staging, Video für Social Media.</p>
-          <div class="dish__foot"><span class="dish__price"><small>ab</small>790 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Premium">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Premium</h3></div>
+          <p class="pack__price"><small>ab</small>790 €</p>
+          <p class="pack__lead">Für Gewerbe, Hotel und Villa.</p>
+          <ul class="pack__list"><li>KI-Home-Staging</li><li>Video für Social Media</li><li>Alles aus Plus</li></ul>
+          <button class="btn pack__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour · Premium">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
       </div>
 
       <div class="menu" id="menu-nfc" role="tabpanel" aria-labelledby="cat-nfc" hidden>
-        <article class="dish">
-          <div class="dish__img"><span class="dish__no">01</span><div class="art-disc art-disc--white"><div><small>TAP HERE</small><b><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></b></div></div></div>
-          <h3>Disc Weiß</h3><p>Runde Acryl-Platte, Ø 10 cm, Google-Ring, auf Wunsch mit Firmennamen.</p>
-          <div class="dish__foot"><span class="dish__price" style="font-size:22px">Auf Anfrage</span><button class="add" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Weiß">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Weiß</h3><span class="pack__swatch" style="background:#fff" aria-hidden="true"></span></div>
+          <p class="pack__price pack__price--text">Auf Anfrage</p>
+          <p class="pack__lead">Hell und freundlich, passt überall.</p>
+          <ul class="pack__list"><li>Rund, Ø 10 cm Acryl</li><li>NFC-Chip NTAG 215</li><li>Mit Ihrem Bewertungslink eingerichtet</li><li>Auf Wunsch mit Firmennamen</li></ul>
+          <button class="btn pack__btn" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Weiß">Jetzt bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><div class="art-disc art-disc--black"><div><small>TAP HERE</small><b><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></b></div></div></div>
-          <h3>Disc Schwarz</h3><p>Dieselbe Platte in Schwarz, edel auf heller Theke oder Tür.</p>
-          <div class="dish__foot"><span class="dish__price" style="font-size:22px">Auf Anfrage</span><button class="add" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Schwarz">+ Anfrage</button></div>
+        <article class="pack pack--best">
+          <div class="pack__top"><h3>Schwarz</h3><span class="pack__tag">Empfehlung</span></div>
+          <p class="pack__price pack__price--text">Auf Anfrage</p>
+          <p class="pack__lead">Edel auf heller Theke oder Tür.</p>
+          <ul class="pack__list"><li>Rund, Ø 10 cm Acryl</li><li>NFC-Chip NTAG 215</li><li>Mit Ihrem Bewertungslink eingerichtet</li><li>Auf Wunsch mit Firmennamen</li></ul>
+          <button class="btn pack__btn" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Schwarz">Jetzt bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
-        <article class="dish">
-          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div style="display:flex;gap:8px"><div class="art-disc art-disc--white" style="width:110px"><div><small>TAP</small></div></div><div class="art-disc art-disc--black" style="width:110px"><div><small>TAP</small></div></div></div></div>
-          <h3>Set für Filialen</h3><p>Mehrere Platten für Theke, Tische und Eingang, gemischt in Weiß und Schwarz.</p>
-          <div class="dish__foot"><span class="dish__price" style="font-size:22px">Auf Anfrage</span><button class="add" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platten · Set">+ Anfrage</button></div>
+        <article class="pack">
+          <div class="pack__top"><h3>Set</h3><span class="pack__swatch" style="background:linear-gradient(90deg,#fff 50%,#111 50%)" aria-hidden="true"></span></div>
+          <p class="pack__price pack__price--text">Auf Anfrage</p>
+          <p class="pack__lead">Für mehrere Tische oder Filialen.</p>
+          <ul class="pack__list"><li>Mehrere Platten</li><li>Weiß und Schwarz gemischt</li><li>Mengenpreis</li></ul>
+          <button class="btn pack__btn" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platten · Set">Jetzt bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
       </div>
-      <p class="menu-note">Alle Preise zzgl. MwSt. Das verbindliche Angebot erhalten Sie nach einem kurzen Gespräch.</p>
+      <p class="menu-note">Alle Preise zzgl. MwSt. Nach Ihrer Anfrage melden wir uns innerhalb von 24 Stunden mit einem verbindlichen Angebot.</p>
     </div>
   </section>
 
@@ -785,7 +767,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 8. Inquiry -->
-  <section class="ask" id="anfrage" data-bg="#f25c2a" data-ink="#111110">
+  <section class="ask" id="anfrage" data-bg="#a8c4ff" data-ink="#111110">
     <div class="wrap ask__grid">
       <div>
         <span class="kicker rv">Anfrage</span>
@@ -901,7 +883,7 @@ img, svg, canvas { display: block; max-width: 100%; }
         <div><b>Kontakt</b><a href="tel:+4915566456417">+49 155 66456417</a><a href="tel:+4917656612709">+49 176 56612709</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></div>
         <div><b>Rechtliches</b><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
       </div>
-      <a class="btn btn--accent" href="#anfrage">Projekt starten</a>
+      <a class="btn btn--accent" href="#anfrage">Jetzt anfragen</a>
     </div>
     <div class="wordmark" aria-hidden="true">F&amp;D Solutions<span>.</span></div>
     <div class="foot__base"><span>© <span id="year"></span> F&amp;D Solutions · München</span><span>Bewertungen · Websites · Roomtours</span></div>
@@ -1077,8 +1059,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   vid.poster = VILLA_POSTER;
   vid.addEventListener("loadedmetadata", function () { villa.dur = vid.duration; player.classList.remove("player--empty"); villaUI(); });
   vid.addEventListener("timeupdate", function () { villa.t = vid.currentTime; villaUI(); });
-  // No video uploaded yet: show a clean "coming soon" frame instead of a broken player.
-  vid.addEventListener("error", function () { player.classList.add("player--empty"); }, true);
+  // The player stays hidden until the video file actually loads.
   new IntersectionObserver(function (e) {
     if (!villa.playing) return;
     if (e[0].isIntersecting) vid.play().catch(function () {}); else vid.pause();
@@ -1086,6 +1067,15 @@ img, svg, canvas { display: block; max-width: 100%; }
   vid.src = VILLA_VIDEO_SRC;
   villaPlay(villa.playing);
   villaUI();
+
+  /* ---------------- Phone call bar: hidden on the hero and next to the form ---------------- */
+  var callbar = $("#callbar"), heroSec = $(".hero"), askSec = $("#anfrage"), seen = { hero: true, ask: false };
+  var callIO = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { seen[e.target === heroSec ? "hero" : "ask"] = e.isIntersecting; });
+    callbar.classList.toggle("off", seen.hero || seen.ask);
+  });
+  [heroSec, askSec].forEach(function (el) { callIO.observe(el); });
+  callbar.classList.add("off");
 
   /* ---------------- Price menu tabs + add to inquiry ---------------- */
   var cats = $$(".cats [role=tab]");
@@ -1111,8 +1101,12 @@ img, svg, canvas { display: block; max-width: 100%; }
       if (pick) pick.setAttribute("aria-checked", "true");
       var d = $("#details");
       if (d.value.indexOf(b.getAttribute("data-detail")) === -1) d.value = (d.value ? d.value + "\n" : "") + "Gewählt: " + b.getAttribute("data-detail");
-      b.setAttribute("aria-pressed", "true");
-      b.textContent = "✓ Übernommen";
+      // Price buttons confirm the choice; section buttons just jump to the form.
+      if (b.classList.contains("pack__btn")) {
+        if (!b.hasAttribute("data-label")) b.setAttribute("data-label", b.innerHTML);
+        b.setAttribute("aria-pressed", "true");
+        b.textContent = "✓ Übernommen";
+      }
       setErr("services", "");
       $("#anfrage").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
     });
@@ -1218,7 +1212,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   $("#resetBtn").addEventListener("click", function () {
     form.reset();
     $$(".pick").forEach(function (b) { b.setAttribute("aria-checked", "false"); });
-    $$(".add").forEach(function (b) { b.removeAttribute("aria-pressed"); b.textContent = "+ Anfrage"; });
+    $$(".pack__btn[data-label]").forEach(function (b) { b.removeAttribute("aria-pressed"); b.innerHTML = b.getAttribute("data-label"); });
     $$(".error").forEach(function (e) { e.textContent = ""; });
     $$(".field.invalid").forEach(function (f) { f.classList.remove("invalid"); });
     $("#done").hidden = true; form.hidden = false; show(1);
@@ -1344,7 +1338,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   function lights(scene) {
     scene.add(new THREE.HemisphereLight(0xffffff, 0xd8d3c4, 0.9));
     var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(3, 6, 4); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xffd8c7, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
+    var rim = new THREE.DirectionalLight(0xe2eaff, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
   }
 
   var pointer = { x: 0, y: 0 }, pointerT = { x: 0, y: 0 };
