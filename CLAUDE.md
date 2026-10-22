@@ -30,7 +30,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
 - Preise: schlichte Paketkarten (Name, Preis, Häkchen-Liste, Button „Jetzt anfragen“ / bei NFC „Jetzt bestellen“). Bilder in den Preiskarten waren dem Kunden zu unübersichtlich.
-- Roomtour: Video-Player mit Kapiteln für ein **echtes, selbst gefilmtes** Video (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Keine 3D-Modelle als Roomtour-Beispiel: der Kunde will klar zeigen, dass F&D echte Videos dreht. Ohne Datei ist der Player ausgeblendet (kein Platzhalter).
+- Roomtour: Video-Player mit Kapiteln (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Aktuell ein vom Kunden mit KI erstelltes Beispielvideo (Wohnung: Flur, Wohnzimmer, Balkon), deshalb gekennzeichnet als „KI-Roomtour · Beispiel“ und nicht als „gefilmt vor Ort“. Keine 3D-Modelle, keine fremden Videos. Ohne Datei ist der Player ausgeblendet.
 
 - Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
 
