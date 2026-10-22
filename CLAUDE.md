@@ -30,7 +30,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
 - Preise: Mini-Vorschau je Paket (Laptop mit Seitenumfang bzw. Roomtour-Player/360°/Home-Staging).
-- Roomtour: Villa-Player mit Kapiteln (3D-Animation als Beispiel). Echtes Video über `VILLA_VIDEO_SRC` im Skript einsetzen.
+- Roomtour: Video-Player mit Kapiteln für ein **echtes, selbst gefilmtes** Video (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Keine 3D-Modelle als Roomtour-Beispiel: der Kunde will klar zeigen, dass F&D echte Videos dreht. Ohne Datei zeigt der Player „folgt in Kürze“.
 
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.

@@ -280,6 +280,11 @@ img, svg, canvas { display: block; max-width: 100%; }
 .player__rec { display: flex; align-items: center; gap: 8px; }
 .player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .2; } }
+.player__empty { position: absolute; inset: 0; z-index: 2; display: none; place-content: center; text-align: center; color: var(--paper); background: #1c1c1c; }
+.player__empty small { font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+.player__empty b { display: block; margin-top: 10px; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
+.player--empty .player__empty { display: grid; }
+.player--empty ~ .chapters { display: none; }
 .player__title { position: absolute; z-index: 1; left: 22px; bottom: 76px; color: #fff; pointer-events: none; text-shadow: 0 2px 20px rgba(0,0,0,.35); }
 .player__title small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
 .player__title b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
@@ -648,12 +653,13 @@ img, svg, canvas { display: block; max-width: 100%; }
     <div class="wrap">
       <div class="bento-head">
         <h2 class="display rv">Räume erleben,<br>bevor man sie betritt.</h2>
-        <p class="rv d1">KI-gestützte Rundgänge und Walkthrough-Videos in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. So sieht ein Walkthrough aus: Kapitel anklicken springt direkt in den Raum.</p>
+        <p class="rv d1">Echte Videoaufnahmen, vor Ort gefilmt: Rundgänge in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. Kapitel anklicken springt direkt in den Raum.</p>
       </div>
       <div class="player rv" id="villa">
-        <div class="player__view" id="villaView"></div>
-        <div class="player__top"><span class="player__rec">Beispiel · 3D-Animation</span><span>Villa am See</span></div>
-        <div class="player__title"><small id="villaNo">Kapitel 1 / 6</small><b id="villaChapter">Anflug</b></div>
+        <div class="player__view"><video id="villaVideo" muted loop playsinline preload="metadata"></video></div>
+        <div class="player__empty"><small>Echte Videoaufnahme</small><b>Unser Villa-Rundgang<br>folgt in Kürze.</b></div>
+        <div class="player__top"><span class="player__rec">Echte Aufnahme · gefilmt vor Ort</span><span>Villa-Roomtour</span></div>
+        <div class="player__title"><small id="villaNo">Kapitel 1 / 6</small><b id="villaChapter">Ankunft</b></div>
         <div class="player__bar">
           <button class="player__btn" type="button" id="villaPlay" aria-label="Pause">
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/><path class="i-play" d="M4 2l10 6-10 6z" style="display:none"/></svg>
@@ -1007,44 +1013,45 @@ img, svg, canvas { display: block; max-width: 100%; }
   });
   showSample("cafe");
 
-  /* ---------------- Villa player: chapters, progress, optional real video ---------------- */
-  // Put a real roomtour film here (e.g. "/media/villa.mp4") and it replaces the 3D animation.
-  var VILLA_VIDEO_SRC = "";
-  var CHAPTERS = [["Anflug", 0], ["Wohnbereich", 2], ["Küche", 4], ["Terrasse & Pool", 6], ["Schlafzimmer", 8], ["Luftaufnahme", 10]];
-  var KEYS = 11;
-  var villa = { dur: 33, t: 0, playing: !reduce, video: null, chapter: -1 };
+  /* ---------------- Roomtour player: a real filmed video with chapters ---------------- */
+  // Own footage only. Chapters are fractions of the video length; adjust once the cut is final.
+  var VILLA_VIDEO_SRC = "/media/roomtour-villa.mp4";
+  var VILLA_POSTER = "/media/roomtour-villa.jpg";
+  var CHAPTERS = [["Ankunft", 0], ["Wohnbereich", .18], ["Küche", .36], ["Terrasse & Pool", .54], ["Schlafzimmer", .72], ["Lage", .88]];
+  var villa = { dur: 0, t: 0, playing: !reduce, chapter: -1 };
+  var player = $("#villa"), vid = $("#villaVideo");
   var vPlay = $("#villaPlay"), vTrack = $("#villaTrack"), vFill = $("#villaFill"), vTime = $("#villaTime"),
       vName = $("#villaChapter"), vNo = $("#villaNo"), vChapters = $("#villaChapters");
-  var fmt = function (x) { x = Math.floor(x); return Math.floor(x / 60) + ":" + ("0" + x % 60).slice(-2); };
-  CHAPTERS.forEach(function (c, i) {
+  var fmt = function (x) { x = Math.floor(x || 0); return Math.floor(x / 60) + ":" + ("0" + x % 60).slice(-2); };
+  CHAPTERS.forEach(function (c) {
     var b = document.createElement("button");
     b.type = "button"; b.textContent = c[0];
-    b.addEventListener("click", function () { villaSeek(c[1] / KEYS * villa.dur); villaPlay(true); });
+    b.addEventListener("click", function () { villaSeek(c[1] * villa.dur); villaPlay(true); });
     vChapters.appendChild(b);
     var m = document.createElement("span");
-    m.className = "player__mark"; m.style.left = (c[1] / KEYS * 100) + "%";
+    m.className = "player__mark"; m.style.left = (c[1] * 100) + "%";
     vTrack.appendChild(m);
   });
   var chapterButtons = $$("button", vChapters);
   function villaSeek(sec) {
-    villa.t = ((sec % villa.dur) + villa.dur) % villa.dur;
-    if (villa.video) villa.video.currentTime = villa.t;
+    if (!villa.dur) return;
+    vid.currentTime = villa.t = clamp(sec, 0, villa.dur - .1);
     villaUI();
   }
   function villaPlay(on) {
     villa.playing = on;
-    if (villa.video) { if (on) villa.video.play().catch(function () {}); else villa.video.pause(); }
+    if (on) vid.play().catch(function () {}); else vid.pause();
     vPlay.setAttribute("aria-label", on ? "Pause" : "Abspielen");
     $(".i-pause", vPlay).style.display = on ? "" : "none";
     $(".i-play", vPlay).style.display = on ? "none" : "";
   }
   function villaUI() {
-    var f = villa.t / villa.dur;
+    var f = villa.dur ? villa.t / villa.dur : 0;
     vFill.style.width = (f * 100).toFixed(2) + "%";
     vTrack.setAttribute("aria-valuenow", Math.round(f * 100));
     vTime.textContent = fmt(villa.t) + " / " + fmt(villa.dur);
     var ch = 0;
-    CHAPTERS.forEach(function (c, i) { if (f >= c[1] / KEYS - 1e-4) ch = i; });
+    CHAPTERS.forEach(function (c, i) { if (f >= c[1] - 1e-4) ch = i; });
     if (ch !== villa.chapter) {
       villa.chapter = ch;
       vName.textContent = CHAPTERS[ch][0];
@@ -1055,7 +1062,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   vPlay.addEventListener("click", function () { villaPlay(!villa.playing); });
   function trackSeek(e) {
     var r = vTrack.getBoundingClientRect();
-    villaSeek(clamp((e.clientX - r.left) / r.width, 0, 0.999) * villa.dur);
+    villaSeek(clamp((e.clientX - r.left) / r.width, 0, 1) * villa.dur);
   }
   vTrack.addEventListener("pointerdown", function (e) {
     vTrack.setPointerCapture(e.pointerId); trackSeek(e);
@@ -1064,19 +1071,19 @@ img, svg, canvas { display: block; max-width: 100%; }
     vTrack.addEventListener("pointermove", move); vTrack.addEventListener("pointerup", up);
   });
   vTrack.addEventListener("keydown", function (e) {
-    var n = e.key === "ArrowRight" ? 3 : e.key === "ArrowLeft" ? -3 : 0;
+    var n = e.key === "ArrowRight" ? 5 : e.key === "ArrowLeft" ? -5 : 0;
     if (n) { e.preventDefault(); villaSeek(villa.t + n); }
   });
-  if (VILLA_VIDEO_SRC) {
-    var vid = document.createElement("video");
-    vid.src = VILLA_VIDEO_SRC; vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = "metadata";
-    $("#villaView").appendChild(vid);
-    $(".player__rec").textContent = "Beispiel · Roomtour";
-    villa.video = vid;
-    vid.addEventListener("loadedmetadata", function () { villa.dur = vid.duration || villa.dur; villaUI(); });
-    vid.addEventListener("timeupdate", function () { villa.t = vid.currentTime; villaUI(); });
-    new IntersectionObserver(function (e) { if (villa.playing) { if (e[0].isIntersecting) vid.play().catch(function () {}); else vid.pause(); } }).observe(vid);
-  }
+  vid.poster = VILLA_POSTER;
+  vid.addEventListener("loadedmetadata", function () { villa.dur = vid.duration; player.classList.remove("player--empty"); villaUI(); });
+  vid.addEventListener("timeupdate", function () { villa.t = vid.currentTime; villaUI(); });
+  // No video uploaded yet: show a clean "coming soon" frame instead of a broken player.
+  vid.addEventListener("error", function () { player.classList.add("player--empty"); }, true);
+  new IntersectionObserver(function (e) {
+    if (!villa.playing) return;
+    if (e[0].isIntersecting) vid.play().catch(function () {}); else vid.pause();
+  }).observe(vid);
+  vid.src = VILLA_VIDEO_SRC;
   villaPlay(villa.playing);
   villaUI();
 
@@ -1218,7 +1225,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   });
 
   /* ======================================================================
-     3D (Three.js r128): hero disc, exploded disc, roomtour model
+     3D (Three.js r128): hero disc, exploded disc
      ====================================================================== */
   var THREE = window.THREE;
   var stages = [];
@@ -1420,124 +1427,9 @@ img, svg, canvas { display: block; max-width: 100%; }
     s.scene.add(disc.group);
   }
 
-  /* --- Villa walkthrough: a low-poly modern villa at sunset, filmed along a camera path --- */
-  function initVilla() {
-    if (villa.video) return;
-    var V = THREE.Vector3;
-    var cam = new THREE.CatmullRomCurve3([
-      new V(18, 9, 26), new V(10, 4, 16), new V(-1.5, 1.7, 3.4), new V(-3.6, 1.7, 0.6), new V(1.2, 1.8, 1.6), new V(4.6, 1.8, 3.4),
-      new V(6, 1.6, 9.5), new V(-3.5, 3.4, 11), new V(-1.2, 4.9, 0.9), new V(7, 6.5, 9), new V(0, 21, 19)
-    ], true);
-    var aim = new THREE.CatmullRomCurve3([
-      new V(0, 2, 2), new V(0, 1.5, 3), new V(-4, 1.2, -2), new V(2, 1.3, -1.5), new V(4, 1, -2.4), new V(2, .5, 8),
-      new V(-1, .4, 7), new V(-1.5, 4.5, -1), new V(-2.2, 3.9, -2.6), new V(0, 3, 0), new V(0, 0, 1.5)
-    ], true);
-    var look = new V();
-    var s = stage($("#villaView"), { fov: 50, update: function (t, dt, st) {
-      if (villa.playing) villa.t = (villa.t + dt) % villa.dur;
-      var u = villa.t / villa.dur;
-      cam.getPoint(u, st.camera.position);
-      aim.getPoint(u, look);
-      st.camera.lookAt(look);
-      water.material.emissiveIntensity = .25 + Math.sin(t * 2) * .05;
-      villaUI();
-    } });
-    if (!s) return;
-    var scene = s.scene;
-    s.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    s.renderer.toneMappingExposure = .95;
-
-    // Sunset sky + haze
-    var sky = document.createElement("canvas"); sky.width = 4; sky.height = 256;
-    var sg = sky.getContext("2d"), grd = sg.createLinearGradient(0, 0, 0, 256);
-    grd.addColorStop(0, "#4f6f99"); grd.addColorStop(.45, "#c99aa0"); grd.addColorStop(.7, "#f6b98a"); grd.addColorStop(1, "#f9d9b4");
-    sg.fillStyle = grd; sg.fillRect(0, 0, 4, 256);
-    var skyTex = new THREE.CanvasTexture(sky); skyTex.encoding = THREE.sRGBEncoding;
-    scene.background = skyTex;
-    scene.fog = new THREE.Fog(0xe9c3a2, 45, 140);
-
-    scene.add(new THREE.HemisphereLight(0xffe2c4, 0x4d5a44, .55));
-    var sun = new THREE.DirectionalLight(0xffb27a, .95); sun.position.set(-20, 12, 14); scene.add(sun);
-    var fill = new THREE.DirectionalLight(0x9fb7ff, .25); fill.position.set(15, 8, -10); scene.add(fill);
-    [[-3.5, 2.4, -1], [3.5, 2.4, -1.5], [-1.5, 5.4, -2]].forEach(function (p) {
-      var l = new THREE.PointLight(0xffc98a, .35, 8, 2); l.position.set(p[0], p[1], p[2]); scene.add(l);
-    });
-
-    var mats = {};
-    function mat(hex, o) { var k = hex + JSON.stringify(o || {}); return mats[k] || (mats[k] = new THREE.MeshStandardMaterial(Object.assign({ color: hex, roughness: .8 }, o))); }
-    function box(w, h, d, x, y, z, m) {
-      var b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), typeof m === "number" ? mat(m) : m);
-      b.position.set(x, y + h / 2, z); scene.add(b); return b;
-    }
-    var WALL = 0xe8e3d9, DARK = 0x2a2a2a;
-    var glass = new THREE.MeshStandardMaterial({ color: 0xbfd8e6, transparent: true, opacity: .22, roughness: .05, metalness: .2, depthWrite: false, side: THREE.DoubleSide });
-
-    // Ground, lake strip, hills
-    var ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), mat(0x74895c));
-    ground.rotation.x = -Math.PI / 2; scene.add(ground);
-    var lake = new THREE.Mesh(new THREE.PlaneGeometry(200, 40), mat(0x6f95ad, { roughness: .2, metalness: .3 }));
-    lake.rotation.x = -Math.PI / 2; lake.position.set(0, .02, 42); scene.add(lake);
-
-    // Ground floor: x -6..6, z -4..4
-    box(12.6, .2, 8.6, 0, 0, 0, 0xd9c4a3);
-    box(12, 3, .2, 0, .2, -3.9, WALL);
-    box(.2, 3, 8, -5.9, .2, 0, WALL);
-    box(.2, 3, 8, 5.9, .2, 0, WALL);
-    box(12, 2.8, .05, 0, .2, 3.95, glass);
-    for (var x = -6; x <= 6; x += 2) box(.08, 2.8, .1, x, .2, 3.95, DARK);
-    box(13.4, .3, 9.6, 0, 3.0, .4, 0xe9e5dc);
-    // Upper floor: x -5..2, z -4..1.5
-    box(7, 2.8, .2, -1.5, 3.3, -3.9, WALL);
-    box(.2, 2.8, 5.5, -4.9, 3.3, -1.25, WALL);
-    box(.2, 2.8, 5.5, 1.9, 3.3, -1.25, WALL);
-    box(7, 2.8, .05, -1.5, 3.3, 1.45, glass);
-    for (x = -5; x <= 2; x += 1.75) box(.08, 2.8, .1, x, 3.3, 1.45, DARK);
-    box(8.2, .3, 7, -1.5, 6.1, -1, 0xe9e5dc);
-    box(4.5, .9, .05, 4.2, 3.3, 3.9, glass); // roof terrace railing
-
-    // Living room
-    box(10, .02, 5, -1, .2, 0, 0xa98560);
-    box(3.6, .45, 1, -4, .2, -2.2, 0x8c8a84); box(3.6, .5, .3, -4, .65, -2.6, 0x8c8a84);
-    box(1, .45, 1.8, -5.3, .2, -1.1, 0x8c8a84);
-    box(3.2, .02, 2.4, -3.8, .22, -.6, 0xc9b9a0);
-    box(1.4, .35, .8, -3.8, .22, -.6, 0x6b4b34);
-    box(.12, 1.6, .12, -2, .2, -3.2, DARK); box(.6, .1, .6, -2, 1.8, -3.2, mat(0xfff1d8, { emissive: 0xffc98a, emissiveIntensity: .9 }));
-    // Kitchen
-    box(3.4, .95, 1.1, 3.6, .2, -1.2, 0xf6f4ef); box(3.6, .06, 1.3, 3.6, 1.15, -1.2, 0x2b2b2b);
-    box(4.4, .95, .7, 3.6, .2, -3.45, 0xf6f4ef); box(4.4, 1.1, .4, 3.6, 1.9, -3.6, 0xb08860);
-    [2.6, 3.6, 4.6].forEach(function (x) { box(.4, .7, .4, x, .2, -.2, DARK); box(.03, .7, .03, x, 2.2, -1.2, DARK); box(.22, .22, .22, x, 2.0, -1.2, mat(0xffe3b8, { emissive: 0xffb36b, emissiveIntensity: 1 })); });
-    // Bedroom
-    box(6.6, .02, 5, -1.5, 3.3, -1.3, 0xa98560);
-    box(2.2, .4, 2.6, -2.2, 3.32, -2.4, 0xece8df); box(2.2, .15, 1.6, -2.2, 3.72, -1.9, 0xd9d0c0);
-    box(.8, .2, .45, -2.7, 3.72, -3.4, 0xffffff); box(.8, .2, .45, -1.7, 3.72, -3.4, mat(0xf25c2a));
-    box(2.8, 1.1, .1, -2.2, 3.32, -3.75, 0x6b4b34);
-    box(.5, .45, .5, -.6, 3.32, -3.3, 0x6b4b34); box(.25, .25, .25, -.6, 3.77, -3.3, mat(0xfff1d8, { emissive: 0xffc98a, emissiveIntensity: 1 }));
-
-    // Deck + pool
-    box(16, .15, 6, 0, 0, 7.1, 0xa8774f);
-    for (x = -7.6; x < 8; x += .8) box(.03, .01, 6, x, .15, 7.1, 0x8a603d);
-    box(8.4, .05, 3.4, 2, .15, 7.6, 0xe9e4da);
-    var water = box(8, .06, 3, 2, .16, 7.6, new THREE.MeshStandardMaterial({ color: 0x48aed6, emissive: 0x2a8fbf, emissiveIntensity: .25, roughness: .1, metalness: .1 }));
-    [[-5, 6.5], [-3.6, 6.5]].forEach(function (p) { box(.8, .3, 2, p[0], .15, p[1], 0xf4f1ea); });
-
-    // Trees and hedges
-    function tree(x, z, k) {
-      box(.25 * k, 1.6 * k, .25 * k, x, 0, z, 0x5b4636);
-      var c = new THREE.Mesh(new THREE.IcosahedronGeometry(1.3 * k, 0), mat(0x5f7a4f, { flatShading: true }));
-      c.position.set(x, 2.4 * k, z); scene.add(c);
-    }
-    [[-11, -3, 1.3], [-12, 4, 1], [11, -4, 1.4], [12, 3, 1.1], [-8, -9, 1.6], [7, -10, 1.5], [-15, 10, 1.2], [15, 11, 1.3], [0, -12, 1.7]].forEach(function (p) { tree(p[0], p[1], p[2]); });
-    box(5, .8, .8, -11, 0, 9.5, 0x5f7a4f); box(5, .8, .8, 11, 0, 9.5, 0x5f7a4f);
-    // Distant hills
-    [[-40, -60, 22], [10, -70, 28], [50, -55, 20]].forEach(function (h) {
-      var m = new THREE.Mesh(new THREE.SphereGeometry(h[2], 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), mat(0x7f8f72));
-      m.position.set(h[0], -2, h[1]); m.scale.y = .45; scene.add(m);
-    });
-  }
-
   if (THREE) {
     try {
-      var go = function () { initHero(); initExplode(); initVilla(); loop(); };
+      var go = function () { initHero(); initExplode(); loop(); };
       // Draw the canvas artwork once the web fonts are ready (Anton on the disc back).
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
     } catch (err) { /* page stays fully usable without 3D */ }
