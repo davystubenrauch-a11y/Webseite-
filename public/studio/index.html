@@ -12,7 +12,7 @@
 <style>
 /* ==========================================================================
    Tokens
-   Cream, ink and one sky-blue accent. Bold condensed display type (Anton) for
+   Cream, ink and a quiet sand tone, nothing else. Bold condensed display type (Anton) for
    headlines, Inter for everything else. The page background morphs per section.
    ========================================================================== */
 :root {
@@ -20,8 +20,8 @@
   --paper: #faf9f5;
   --ink: #111110;
   --dark: #121212;
-  --accent: #a8c4ff;
-  --accent-soft: #e2eaff;
+  --accent: #d6ccb8;
+  --accent-soft: #ebe5d9;
   --muted: rgba(17, 17, 16, 0.58);
   --line: rgba(17, 17, 16, 0.12);
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -75,8 +75,8 @@ img, svg, canvas { display: block; max-width: 100%; }
 .btn--solid:hover { background: var(--accent); color: var(--ink); }
 .btn--line { border: 1.5px solid currentColor; }
 .btn--line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.btn--accent { background: var(--accent); color: var(--ink); }
-.btn--accent:hover { background: var(--paper); }
+.btn--accent { background: var(--paper); color: var(--ink); }
+.btn--accent:hover { background: var(--accent); }
 
 /* Reveal */
 .rv { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
@@ -115,11 +115,11 @@ img, svg, canvas { display: block; max-width: 100%; }
 .hero { min-height: 100svh; display: flex; align-items: center; padding: 110px 0 60px; }
 .hero__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
 .hero h1 { margin-top: 26px; font-size: clamp(3.6rem, 8.6vw, 8.6rem); }
-.hero h1 .hl { display: inline-block; background: var(--accent); padding: 0 .08em; }
+.hero h1 .hl { display: inline-block; background: var(--ink); color: var(--cream); padding: 0 .1em; }
 .hero__sub { margin-top: 26px; max-width: 470px; font-size: 18px; color: var(--muted); }
 .hero__cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__note { margin-top: 26px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.hero__note b { background: var(--ink); color: var(--accent); padding: 3px 8px; margin-right: 8px; font-weight: 700; }
+.hero__note b { background: var(--ink); color: var(--paper); padding: 3px 8px; margin-right: 8px; font-weight: 700; }
 .hero__stage { position: relative; aspect-ratio: 1 / 1; max-height: 78vh; width: 100%; }
 .hero__stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; }
 .hero__stage::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: 9%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(17,17,16,.28), transparent); z-index: 0; }
@@ -132,6 +132,21 @@ img, svg, canvas { display: block; max-width: 100%; }
 .tag--a { left: 2%; top: 18%; }
 .tag--b { right: 0; bottom: 5%; flex-direction: row-reverse; }
 .tag--b::before { width: 40px; }
+
+/* ==========================================================================
+   Offer index: three big rows
+   ========================================================================== */
+.index { padding: 20px 0 120px; }
+.index__row { display: grid; grid-template-columns: 70px 1.1fr 1.4fr auto; gap: 24px; align-items: center; padding: 26px 0; border-top: 1.5px solid var(--ink); transition: padding .4s var(--ease), background-color .4s, color .4s; }
+.index__row:last-child { border-bottom: 1.5px solid var(--ink); }
+.index__row b { font-family: var(--display); font-weight: 400; font-size: 22px; }
+.index__row span { font-family: var(--display); font-size: clamp(2.2rem, 4.6vw, 4.2rem); line-height: 1; text-transform: uppercase; }
+.index__row em { font-style: normal; font-size: 15px; color: var(--muted); }
+.index__row i { font-style: normal; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; display: flex; align-items: center; gap: 12px; }
+.index__row i::after { content: "→"; font-size: 20px; transition: transform .4s var(--ease); }
+.index__row:hover { background: var(--ink); color: var(--paper); padding-left: 18px; padding-right: 18px; }
+.index__row:hover em { color: rgba(250,249,245,.6); }
+.index__row:hover i::after { transform: translateX(6px); }
 
 /* ==========================================================================
    Exploded disc (pinned scroll)
@@ -173,14 +188,14 @@ img, svg, canvas { display: block; max-width: 100%; }
   background: var(--paper); border-radius: 999px; box-shadow: 0 18px 40px -18px rgba(17,17,16,.35);
   font-size: 13px; font-weight: 600; white-space: nowrap;
 }
-.chip-review i { font-style: normal; color: #f2b100; letter-spacing: .08em; }
+.chip-review i { font-style: normal; color: var(--ink); letter-spacing: .08em; }
 .avatar { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; font-size: 12px; font-weight: 700; color: var(--paper); }
-.bubble { display: grid; place-items: center; width: var(--s, 64px); height: var(--s, 64px); border-radius: 50%; background: var(--paper); box-shadow: 0 18px 40px -18px rgba(17,17,16,.35); font-weight: 700; }
+.bubble { display: grid; place-items: center; width: var(--s, 64px); height: var(--s, 64px); border-radius: 50%; background: var(--paper); color: var(--ink); box-shadow: 0 18px 40px -18px rgba(17,17,16,.35); font-weight: 700; }
 .bubble--g { font-size: 26px; font-weight: 500; }
-.bubble--g span:nth-child(1) { color: #4285f4; }
-.steps3 { margin-top: 48px; display: inline-grid; grid-template-columns: repeat(3, auto); gap: 0; border: 1.5px solid var(--ink); border-radius: 6px; overflow: hidden; }
+
+.steps3 { margin-top: 48px; display: inline-grid; grid-template-columns: repeat(3, auto); gap: 0; border: 1.5px solid currentColor; border-radius: 6px; overflow: hidden; }
 .steps3 div { padding: 14px 22px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.steps3 div + div { border-left: 1.5px solid var(--ink); }
+.steps3 div + div { border-left: 1.5px solid currentColor; }
 .steps3 b { font-family: var(--display); font-weight: 400; font-size: 18px; margin-right: 8px; }
 
 /* ==========================================================================
@@ -267,18 +282,19 @@ img, svg, canvas { display: block; max-width: 100%; }
 .showcase__list li span { display: block; font-weight: 500; color: var(--muted); }
 
 /* ==========================================================================
-   Roomtour: villa player + tiles (dark)
+   Roomtour: video player + photo-to-tour steps (dark)
    ========================================================================== */
 .bento-sec { padding: 140px 0; }
-.bento-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
+.bento-head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
+.bento-head .sec-cta { margin-top: 22px; }
 .bento-head h2 { font-size: clamp(3rem, 6.6vw, 6.4rem); }
 .bento-head p { font-size: 17px; opacity: .7; }
 .player { position: relative; margin-top: 56px; border-radius: 22px; overflow: hidden; background: #0b0b0b; aspect-ratio: 16 / 9; }
 .player__view, .player__view canvas, .player__view video { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; }
-.player::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 48%; background: linear-gradient(transparent, rgba(0,0,0,.5)); pointer-events: none; }
+.player::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 30%; background: linear-gradient(transparent, rgba(0,0,0,.42)); pointer-events: none; }
 .player__top { position: absolute; z-index: 1; left: 22px; right: 22px; top: 18px; display: flex; justify-content: space-between; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); pointer-events: none; }
 .player__rec { display: flex; align-items: center; gap: 8px; }
-.player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: blink 1.6s infinite; }
+.player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .2; } }
 .tour-stage { margin-top: 56px; }
 .tour-stage--empty { display: none; }
@@ -293,30 +309,30 @@ img, svg, canvas { display: block; max-width: 100%; }
 .tour-stage--portrait .tour-side .kicker, .tour-stage--portrait .tour-note { display: block; }
 .tour-stage--portrait .chapters { flex-direction: column; gap: 0; margin-top: 18px; border-top: 1px solid rgba(250,249,245,.22); }
 .tour-stage--portrait .chapters button { height: 58px; border: 0; border-bottom: 1px solid rgba(250,249,245,.22); border-radius: 0; text-align: left; font-family: var(--display); font-weight: 400; font-size: 26px; letter-spacing: .02em; color: rgba(250,249,245,.5); background: none; transition: color .3s, padding .3s; }
-.tour-stage--portrait .chapters button[aria-current="true"] { color: var(--accent); padding-left: 14px; background: none; }
+.tour-stage--portrait .chapters button[aria-current="true"] { color: var(--paper); padding-left: 14px; background: none; }
 .tour-note { margin-top: 18px; font-size: 14px; opacity: .6; }
-.player__title { position: absolute; z-index: 1; left: 22px; bottom: 76px; color: #fff; pointer-events: none; text-shadow: 0 2px 20px rgba(0,0,0,.35); }
+.player__title { position: absolute; z-index: 1; left: 22px; bottom: 68px; color: #fff; pointer-events: none; text-shadow: 0 2px 20px rgba(0,0,0,.35); }
 .player__title small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
-.player__title b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
+.player__title b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(22px, 2.4vw, 32px); line-height: .95; text-transform: uppercase; }
 .player__bar { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 14px 18px; color: #fff; }
 .player__btn { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #111; display: grid; place-items: center; }
 .player__btn svg { width: 16px; height: 16px; }
 .player__track { position: relative; flex: 1; height: 26px; cursor: pointer; }
 .player__track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; background: rgba(255,255,255,.3); border-radius: 2px; }
-.player__fill { position: absolute; left: 0; top: 50%; height: 3px; margin-top: -1.5px; width: 0; background: var(--accent); border-radius: 2px; }
+.player__fill { position: absolute; left: 0; top: 50%; height: 3px; margin-top: -1.5px; width: 0; background: #fff; border-radius: 2px; }
 .player__mark { position: absolute; top: 50%; width: 3px; height: 11px; margin: -5.5px 0 0 -1.5px; background: #fff; border-radius: 2px; }
 .player__time { flex: none; font-size: 12px; font-variant-numeric: tabular-nums; opacity: .85; }
 .chapters { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
 .chapters button { height: 34px; padding: 0 12px; border-radius: 6px; border: 1px solid rgba(250,249,245,.22); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--paper); transition: background-color .3s, color .3s, border-color .3s; }
-.chapters button[aria-current="true"] { background: var(--accent); border-color: var(--accent); color: var(--ink); }
-.bento { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.tile { position: relative; min-height: 220px; border-radius: 18px; background: #1c1c1c; padding: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
-.tile--light { background: var(--paper); color: var(--ink); }
-.tile--accent { background: var(--accent); color: var(--ink); }
-.tile h3 { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: .95; text-transform: uppercase; }
-.tile p { font-size: 14px; opacity: .72; }
-.tile svg { width: 100%; height: 90px; }
-.tile__price { font-family: var(--display); font-weight: 400; font-size: 64px; line-height: .9; }
+.chapters button[aria-current="true"] { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.flow { margin-top: 64px; list-style: none; display: grid; grid-template-columns: repeat(3, 1fr) 1fr; border-top: 1px solid rgba(250,249,245,.22); }
+.flow li { padding: 28px 28px 0 0; }
+.flow li + li { padding-left: 28px; border-left: 1px solid rgba(250,249,245,.22); }
+.flow b { font-family: var(--display); font-weight: 400; font-size: 18px; opacity: .5; }
+.flow h3 { margin-top: 14px; font-family: var(--display); font-weight: 400; font-size: 30px; line-height: 1; text-transform: uppercase; }
+.flow p { margin-top: 10px; font-size: 14px; opacity: .65; }
+.flow__price span { font-size: 13px; font-weight: 600; opacity: .6; }
+.flow__price strong { display: block; font-family: var(--display); font-weight: 400; font-size: 64px; line-height: 1; }
 
 /* ==========================================================================
    Prices as a menu
@@ -344,8 +360,8 @@ img, svg, canvas { display: block; max-width: 100%; }
 .pack__list li::before { content: ""; position: absolute; left: 0; top: 2px; width: 18px; height: 18px; border-radius: 50%; background: var(--accent) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111110' stroke-width='3'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 12px no-repeat; }
 .pack__btn { margin-top: auto; width: 100%; justify-content: center; background: var(--ink); color: var(--paper); }
 .pack__btn:hover { background: var(--accent); color: var(--ink); }
-.pack--best .pack__btn { background: var(--accent); color: var(--ink); }
-.pack--best .pack__btn:hover { background: var(--paper); }
+.pack--best .pack__btn { background: var(--paper); color: var(--ink); }
+.pack--best .pack__btn:hover { background: var(--accent); }
 .pack__btn[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
 .cats-label { display: block; margin-bottom: 10px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .menu-note { margin-top: 26px; font-size: 13px; color: var(--muted); }
@@ -388,7 +404,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .pick { text-align: left; padding: 16px; border-radius: 10px; border: 1.5px solid var(--line); transition: border-color .25s, background-color .25s; }
 .pick b { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; text-transform: uppercase; line-height: 1; }
 .pick span { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
-.pick[aria-checked="true"] { border-color: var(--ink); background: var(--accent); }
+.pick[aria-checked="true"] { border-color: var(--ink); background: var(--ink); color: var(--paper); }
 .grid2 { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .full { grid-column: 1 / -1; }
 .field label { display: block; margin-bottom: 7px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -436,12 +452,17 @@ img, svg, canvas { display: block; max-width: 100%; }
 @media (max-width: 1080px) {
   .devices { grid-template-columns: 1fr; }
   .notes { grid-template-columns: repeat(3, 1fr); }
-  .bento { grid-template-columns: repeat(2, 1fr); }
+  .flow { grid-template-columns: 1fr 1fr; }
+  .flow li:nth-child(3) { padding-left: 0; border-left: 0; }
   .team__grid { grid-template-columns: 1fr 1fr; }
   .team__grid > :first-child { grid-column: 1 / -1; }
   .ask__grid { grid-template-columns: 1fr; }
 }
 @media (max-width: 820px) {
+  .player__top > span + span { display: none; }
+  .index__row { grid-template-columns: 40px 1fr auto; gap: 6px 14px; }
+  .index__row em { grid-column: 2 / -1; grid-row: 2; }
+  .index__row i { font-size: 10px; }
   .callbar { color: var(--ink); position: fixed; z-index: 40; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; padding: 8px; border-radius: 10px; background: var(--paper); box-shadow: 0 12px 30px -10px rgba(17,17,16,.35); transition: transform .4s var(--ease), opacity .4s; }
   .callbar .btn { height: 48px; justify-content: center; }
   .callbar.off { transform: translateY(140%); opacity: 0; pointer-events: none; }
@@ -477,8 +498,9 @@ img, svg, canvas { display: block; max-width: 100%; }
   .tour-stage--portrait .chapters button { height: 48px; font-size: 20px; }
   .player__title { bottom: 70px; }
   .bento-head { grid-template-columns: 1fr; }
-  .bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .tile { min-height: 200px; }
+  .flow { grid-template-columns: 1fr; }
+  .flow li, .flow li + li { padding: 22px 0 0; border-left: 0; }
+  .flow li + li { margin-top: 22px; border-top: 1px solid rgba(250,249,245,.22); }
   .menu { grid-template-columns: 1fr; }
   .team__grid { grid-template-columns: 1fr; }
   .picks { grid-template-columns: 1fr; }
@@ -542,6 +564,15 @@ img, svg, canvas { display: block; max-width: 100%; }
     </div>
   </section>
 
+  <!-- 1b. The offer at a glance -->
+  <section class="index" data-bg="#f3f0e8" data-ink="#111110" aria-label="Leistungen">
+    <div class="wrap">
+      <a class="index__row rv" href="#aufbau"><b>01</b><span>NFC-Platten</span><em>Mehr Google-Bewertungen mit einem Antippen</em><i>Preis auf Anfrage</i></a>
+      <a class="index__row rv d1" href="#web"><b>02</b><span>Websites</span><em>Individuell gestaltet, für Handy und Desktop</em><i>ab 300 €</i></a>
+      <a class="index__row rv d2" href="#roomtour"><b>03</b><span>KI-Roomtours</span><em>Aus Ihren Fotos wird ein realistischer Video-Rundgang</em><i>ab 300 €</i></a>
+    </div>
+  </section>
+
   <!-- 2. The disc splits into its layers while scrolling -->
   <section class="explode" id="aufbau" data-bg="#f3f0e8" data-ink="#111110">
     <div class="explode__pin">
@@ -561,22 +592,22 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 3. Floating proof around a statement -->
-  <section class="float" data-bg="#a8c4ff" data-ink="#111110">
+  <section class="float" data-bg="#121212" data-ink="#faf9f5">
     <div class="floaters" id="floaters" aria-hidden="true">
-      <div class="floater" style="--x:14%;--y:22%;--d:6s" data-depth="30"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#1d2b22">MK</span><i>★★★★★</i></div></div></div>
-      <div class="floater floater--hide-sm" style="--x:30%;--y:12%;--d:8s" data-depth="18"><div class="floater__inner"><div class="bubble bubble--g" style="--s:58px"><span>G</span></div></div></div>
-      <div class="floater" style="--x:78%;--y:16%;--d:7s" data-depth="26"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#7a5c3e">SL</span><i>★★★★★</i></div></div></div>
+      <div class="floater" style="--x:14%;--y:22%;--d:6s" data-depth="30"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#3a3936">MK</span><i>★★★★★</i></div></div></div>
+      <div class="floater floater--hide-sm" style="--x:30%;--y:12%;--d:8s" data-depth="18"><div class="floater__inner"><div class="bubble" style="--s:58px;font-size:22px">★</div></div></div>
+      <div class="floater" style="--x:78%;--y:16%;--d:7s" data-depth="26"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#3a3936">SL</span><i>★★★★★</i></div></div></div>
       <div class="floater floater--hide-sm" style="--x:90%;--y:44%;--d:9s" data-depth="40"><div class="floater__inner"><div class="bubble" style="--s:74px;font-family:var(--display);font-size:22px">5,0</div></div></div>
       <div class="floater floater--hide-sm" style="--x:8%;--y:56%;--d:7.5s" data-depth="34"><div class="floater__inner"><div class="bubble" style="--s:66px;font-size:24px">✦</div></div></div>
-      <div class="floater" style="--x:22%;--y:84%;--d:6.5s" data-depth="22"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#33415c">JB</span><i>★★★★★</i></div></div></div>
-      <div class="floater floater--hide-sm" style="--x:70%;--y:86%;--d:8.5s" data-depth="28"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#9c3d2e">AT</span><i>★★★★★</i></div></div></div>
+      <div class="floater" style="--x:22%;--y:84%;--d:6.5s" data-depth="22"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#3a3936">JB</span><i>★★★★★</i></div></div></div>
+      <div class="floater floater--hide-sm" style="--x:70%;--y:86%;--d:8.5s" data-depth="28"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#3a3936">AT</span><i>★★★★★</i></div></div></div>
       <div class="floater floater--hide-sm" style="--x:56%;--y:8%;--d:7s" data-depth="16"><div class="floater__inner"><div class="bubble" style="--s:50px;font-size:13px;letter-spacing:.1em">NFC</div></div></div>
     </div>
     <div class="float__center">
       <h2 class="display rv">Mehr Sterne.<br>Mehr Vertrauen.<br>Mehr Kunden.</h2>
       <p class="rv d1">Wer vor Ort zufrieden ist, bewertet gerne, wenn es einfach ist. Mit der NFC-Platte dauert es Sekunden.</p>
       <div class="steps3 rv d2"><div><b>01</b>Antippen</div><div><b>02</b>Bewerten</div><div><b>03</b>Gefunden werden</div></div>
-      <div class="sec-cta rv d3" style="justify-content:center"><button class="btn btn--solid" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte">NFC-Platte bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+      <div class="sec-cta rv d3" style="justify-content:center"><button class="btn btn--accent" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte">NFC-Platte bestellen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
     </div>
   </section>
 
@@ -629,14 +660,16 @@ img, svg, canvas { display: block; max-width: 100%; }
     </div>
   </section>
 
-  <!-- 5. Roomtour bento (dark) -->
+  <!-- 5. KI-Roomtour (dark): photos in, realistic video tour out -->
   <section class="bento-sec" id="roomtour" data-bg="#121212" data-ink="#faf9f5">
     <div class="wrap">
       <div class="bento-head">
-        <h2 class="display rv">Räume erleben,<br>bevor man sie betritt.</h2>
-        <p class="rv d1">Fotorealistische Roomtour-Videos in Full HD für Immobilien, Hotels, Ferienwohnungen und Gewerbe: ein ruhiger Rundgang durch jeden Raum, fertig für Exposé, Website und Social Media.</p>
-      
-        <div class="sec-cta rv d2"><button class="btn btn--accent" type="button" data-add="KI Roomtour" data-detail="Roomtour">Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div></div>
+        <h2 class="display rv">Aus Fotos wird<br>eine Roomtour.</h2>
+        <div class="rv d1">
+          <p>Sie schicken uns Fotos Ihrer Ferienwohnung, Ihres Hotels oder Ihrer Immobilie. Wir machen daraus mit KI einen realistischen Video-Rundgang durch Ihre echten Räume. So sehen Gäste schon vor der Buchung, wie es sich dort lebt.</p>
+          <div class="sec-cta"><button class="btn btn--accent" type="button" data-add="KI Roomtour" data-detail="Roomtour">Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
+        </div>
+      </div>
       <div class="tour-stage tour-stage--empty" id="tourStage">
       <div class="player rv" id="villa">
         <div class="player__view"><video id="villaVideo" muted loop playsinline preload="metadata"></video></div>
@@ -647,7 +680,7 @@ img, svg, canvas { display: block; max-width: 100%; }
             <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/><path class="i-play" d="M4 2l10 6-10 6z" style="display:none"/></svg>
           </button>
           <div class="player__track" id="villaTrack" role="slider" tabindex="0" aria-label="Position im Rundgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="player__fill" id="villaFill"></div></div>
-          <span class="player__time" id="villaTime">0:00 / 0:09</span>
+          <span class="player__time" id="villaTime">0:00 / 0:11</span>
         </div>
       </div>
       <div class="tour-side rv d1">
@@ -656,28 +689,12 @@ img, svg, canvas { display: block; max-width: 100%; }
         <p class="tour-note">Hochkant für Instagram &amp; TikTok, quer für Exposé und Website.</p>
       </div>
       </div>
-      <div class="bento">
-        <div class="tile tile--accent rv d1">
-          <h3>360°-<br>Rundgang</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#111110" stroke-width="2"><ellipse cx="100" cy="50" rx="80" ry="22"/><ellipse cx="100" cy="50" rx="30" ry="40" stroke-dasharray="4 5"/><circle cx="100" cy="50" r="6" fill="#111110"/></svg>
-          <p>Frei bewegen, rund um die Uhr.</p>
-        </div>
-        <div class="tile rv d2">
-          <h3>Walk&shy;through-<br>Video</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#a8c4ff" stroke-width="2"><rect x="30" y="18" width="140" height="64" rx="8"/><path d="M92 38v24l20-12z" fill="#a8c4ff"/></svg>
-          <p>Für Exposé, Website und Social Media.</p>
-        </div>
-        <div class="tile rv d1">
-          <h3>Grundriss &amp;<br>Info-Punkte</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#faf9f5" stroke-width="2"><path d="M30 15h140v70H30zM100 15v40M100 55h70M30 50h40"/><circle cx="65" cy="32" r="5" fill="#a8c4ff" stroke="none"/><circle cx="140" cy="70" r="5" fill="#a8c4ff" stroke="none"/></svg>
-          <p>Maße und Details direkt im Rundgang.</p>
-        </div>
-        <div class="tile tile--light rv d2">
-          <h3>Ab</h3>
-          <span class="tile__price">300 €</span>
-          <p>Für Wohnungen, Häuser, Hotels und Gewerbe.</p>
-        </div>
-      </div>
+      <ol class="flow">
+        <li class="rv"><b>01</b><h3>Fotos senden</h3><p>Handyfotos von jedem Raum reichen. Je mehr Blickwinkel, desto genauer der Rundgang.</p></li>
+        <li class="rv d1"><b>02</b><h3>Roomtour entsteht</h3><p>Wir erstellen einen ruhigen, realistischen Rundgang, Raum für Raum, nah an der Wirklichkeit.</p></li>
+        <li class="rv d2"><b>03</b><h3>Mehr Buchungen</h3><p>Fertig für Airbnb, Booking.com, Ihre Website und Instagram.</p></li>
+        <li class="flow__price rv d3"><span>ab</span><strong>300 €</strong><p>Video in Full HD, auf Wunsch hochkant für Social Media.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -790,7 +807,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 8. Inquiry -->
-  <section class="ask" id="anfrage" data-bg="#a8c4ff" data-ink="#111110">
+  <section class="ask" id="anfrage" data-bg="#faf9f5" data-ink="#111110">
     <div class="wrap ask__grid">
       <div>
         <span class="kicker rv">Anfrage</span>
@@ -1363,7 +1380,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   function lights(scene) {
     scene.add(new THREE.HemisphereLight(0xffffff, 0xd8d3c4, 0.9));
     var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(3, 6, 4); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xe2eaff, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
+    var rim = new THREE.DirectionalLight(0xebe5d9, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
   }
 
   var pointer = { x: 0, y: 0 }, pointerT = { x: 0, y: 0 };

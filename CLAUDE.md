@@ -8,10 +8,10 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 ## Vorbilder (vom Kunden ausgewählt)
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
-- **QCLAY / CryptoHub:** Hintergrundfarbe wechselt beim Scrollen (Creme → Limette → Dunkel). Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
+- **QCLAY / CryptoHub:** Hintergrund wechselt beim Scrollen (hier nur Creme ↔ Dunkel). Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
 ## Design-Regeln
-- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent Himmelblau `#a8c4ff` (hell: `#e2eaff`; Limette und Orange/Terrakotta wurden vom Kunden abgelehnt). Google-Farben nur auf dem NFC-Produkt.
+- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent nur ein ruhiger Sandton `#d6ccb8` (hell: `#ebe5d9`). Bunte Akzente (Limette, Orange, Himmelblau) wurden abgelehnt: zu viele Farben, zu wenig seriös. Betonung über Schwarz/Weiß.. Google-Farben nur auf dem NFC-Produkt.
 - Schrift: Anton (Überschriften, Großbuchstaben) + Inter (Text).
 - Buttons eckig (Radius 6 px), Großbuchstaben, keine Leuchteffekte.
 
@@ -30,7 +30,8 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
 - Preise: schlichte Paketkarten (Name, Preis, Häkchen-Liste, Button „Jetzt anfragen“ / bei NFC „Jetzt bestellen“). Bilder in den Preiskarten waren dem Kunden zu unübersichtlich.
-- Roomtour: Video-Player mit Kapiteln (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Aktuell ein vom Kunden mit KI erstelltes Beispielvideo (Wohnung: Flur, Wohnzimmer, Balkon), deshalb gekennzeichnet als „KI-Roomtour · Beispiel“ und nicht als „gefilmt vor Ort“. Keine 3D-Modelle, keine fremden Videos. Ohne Datei ist der Player ausgeblendet.
+- Übersicht: direkt unter dem Hero drei große Zeilen (NFC-Platten / Websites / KI-Roomtours) mit Preis und Link.
+- Roomtour: Ablauf „Fotos senden → Roomtour entsteht → Mehr Buchungen“ (KI-Roomtours entstehen aus Kundenfotos, Zielgruppe u. a. Airbnb/Ferienwohnungen). Video-Player mit Kapiteln (`public/media/roomtour-villa.mp4`, Vorschaubild `roomtour-villa.jpg`). Aktuell ein vom Kunden mit KI erstelltes Beispielvideo (Wohnung: Flur, Wohnzimmer, Balkon; farblich neutralisiert, leicht verlangsamt, feines Korn), deshalb gekennzeichnet als „KI-Roomtour · Beispiel“ und nicht als „gefilmt vor Ort“. Keine 3D-Modelle, keine fremden Videos. Ohne Datei ist der Player ausgeblendet.
 
 - Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
 
