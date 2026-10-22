@@ -1356,21 +1356,67 @@ img, svg, canvas { display: block; max-width: 100%; }
 
   /* --- NFC panel: a phone taps the disc, then the disc opens and walks through its layers --- */
   var nfcTheme = "white";
-  function paintPhone(ctx, s) {
-    var w = s, h = s * 2;
+  // Screen of a current iPhone (Dynamic Island, rounded display) showing the Google review form.
+  function rrect(ctx, x, y, w, h, r) {
+    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
+  }
+  function paintPhone(ctx, w, h) {
+    ctx.clearRect(0, 0, w, h);
+    rrect(ctx, 0, 0, w, h, w * .16); ctx.save(); ctx.clip();
     ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, h);
-    ctx.textAlign = "center"; ctx.textBaseline = "middle";
+    // Status bar and Dynamic Island
+    ctx.fillStyle = "#000"; rrect(ctx, w * .33, h * .018, w * .34, h * .042, h * .021); ctx.fill();
+    ctx.font = "600 " + w * .052 + "px Inter, sans-serif"; ctx.textBaseline = "middle"; ctx.textAlign = "left";
+    ctx.fillText("9:41", w * .1, h * .04);
+    ctx.fillRect(w * .76, h * .032, w * .016, h * .016); ctx.fillRect(w * .785, h * .028, w * .016, h * .02); ctx.fillRect(w * .81, h * .024, w * .016, h * .024);
+    ctx.lineWidth = w * .006; ctx.strokeStyle = "#000"; rrect(ctx, w * .84, h * .03, w * .07, h * .02, w * .01); ctx.stroke(); ctx.fillRect(w * .846, h * .034, w * .05, h * .012);
+    // Browser address pill
+    ctx.fillStyle = "#f1f1f3"; rrect(ctx, w * .07, h * .085, w * .86, h * .05, h * .025); ctx.fill();
+    ctx.fillStyle = "#555"; ctx.font = "500 " + w * .042 + "px Inter, sans-serif"; ctx.textAlign = "center"; ctx.fillText("g.page/review", w / 2, h * .11);
+    // Google wordmark
     var L = [["G", "#4285F4"], ["o", "#EA4335"], ["o", "#FBBC05"], ["g", "#4285F4"], ["l", "#34A853"], ["e", "#EA4335"]];
-    ctx.font = "500 " + w * .15 + "px Inter, sans-serif";
+    ctx.font = "500 " + w * .14 + "px Inter, sans-serif"; ctx.textAlign = "left";
     var total = L.reduce(function (a, l) { return a + ctx.measureText(l[0]).width; }, 0), x = (w - total) / 2;
-    ctx.textAlign = "left";
     L.forEach(function (l) { ctx.fillStyle = l[1]; ctx.fillText(l[0], x, h * .22); x += ctx.measureText(l[0]).width; });
     ctx.textAlign = "center"; ctx.fillStyle = "#202124";
-    ctx.font = "600 " + w * .075 + "px Inter, sans-serif"; ctx.fillText("Bewertung schreiben", w / 2, h * .36);
-    ctx.fillStyle = "#FBBC05"; ctx.font = w * .13 + "px sans-serif"; ctx.fillText("★★★★★", w / 2, h * .47);
-    ctx.fillStyle = "#f1f3f4"; ctx.fillRect(w * .1, h * .56, w * .8, h * .16);
-    ctx.fillStyle = "#1a73e8"; ctx.fillRect(w * .25, h * .8, w * .5, h * .07);
-    ctx.fillStyle = "#fff"; ctx.font = "600 " + w * .06 + "px Inter, sans-serif"; ctx.fillText("Posten", w / 2, h * .835);
+    ctx.font = "700 " + w * .062 + "px Inter, sans-serif"; ctx.fillText("Café Isarblick", w / 2, h * .31);
+    ctx.fillStyle = "#5f6368"; ctx.font = "500 " + w * .045 + "px Inter, sans-serif"; ctx.fillText("Bewertung schreiben", w / 2, h * .35);
+    ctx.fillStyle = "#FBBC05"; ctx.font = w * .12 + "px sans-serif"; ctx.fillText("★★★★★", w / 2, h * .43);
+    ctx.strokeStyle = "#dadce0"; ctx.lineWidth = w * .006; rrect(ctx, w * .08, h * .49, w * .84, h * .17, w * .03); ctx.stroke();
+    ctx.fillStyle = "#3c4043"; ctx.textAlign = "left"; ctx.font = "400 " + w * .042 + "px Inter, sans-serif";
+    ctx.fillText("Super Service, gerne wieder!", w * .12, h * .53);
+    ctx.fillStyle = "#1a73e8"; rrect(ctx, w * .5, h * .7, w * .42, h * .055, h * .0275); ctx.fill();
+    ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.font = "600 " + w * .048 + "px Inter, sans-serif"; ctx.fillText("Posten", w * .71, h * .7275);
+    // Home indicator
+    ctx.fillStyle = "#111"; rrect(ctx, w * .34, h * .965, w * .32, h * .008, h * .004); ctx.fill();
+    ctx.restore();
+  }
+  function iphone() {
+    // Slim aluminium frame with rounded corners, black glass front, side buttons.
+    var W = .98, H = 2.04, R = .17, D = .075;
+    var shape = new THREE.Shape();
+    shape.moveTo(-W / 2 + R, -H / 2); shape.lineTo(W / 2 - R, -H / 2); shape.quadraticCurveTo(W / 2, -H / 2, W / 2, -H / 2 + R);
+    shape.lineTo(W / 2, H / 2 - R); shape.quadraticCurveTo(W / 2, H / 2, W / 2 - R, H / 2); shape.lineTo(-W / 2 + R, H / 2);
+    shape.quadraticCurveTo(-W / 2, H / 2, -W / 2, H / 2 - R); shape.lineTo(-W / 2, -H / 2 + R); shape.quadraticCurveTo(-W / 2, -H / 2, -W / 2 + R, -H / 2);
+    var geo = new THREE.ExtrudeGeometry(shape, { depth: D, bevelEnabled: true, bevelThickness: .012, bevelSize: .012, bevelSegments: 4, curveSegments: 24 });
+    geo.rotateX(-Math.PI / 2);
+    var glassMat = new THREE.MeshStandardMaterial({ color: 0x050506, roughness: .08, metalness: .2 });
+    var frameMat = new THREE.MeshStandardMaterial({ color: 0xb9bcc2, roughness: .28, metalness: .85 });
+    var body = new THREE.Mesh(geo, [glassMat, frameMat]);
+    var g = new THREE.Group(); g.add(body);
+    [[-.12, .13], [.12, .2]].forEach(function (b) {
+      var btn = new THREE.Mesh(new THREE.BoxGeometry(.02, .04, b[1]), frameMat);
+      btn.position.set(-W / 2 - .012, D / 2, b[0] - .35); g.add(btn);
+    });
+    var power = new THREE.Mesh(new THREE.BoxGeometry(.02, .04, .26), frameMat);
+    power.position.set(W / 2 + .012, D / 2, -.3); g.add(power);
+    var pc = document.createElement("canvas"); pc.width = 512; pc.height = 1080; paintPhone(pc.getContext("2d"), 512, 1080);
+    var ptex = new THREE.CanvasTexture(pc); ptex.encoding = THREE.sRGBEncoding; ptex.anisotropy = 4;
+    var screen = new THREE.Mesh(new THREE.PlaneGeometry(W - .07, (W - .07) * 1080 / 512), new THREE.MeshBasicMaterial({ map: ptex, transparent: true, opacity: 0 }));
+    screen.rotation.x = -Math.PI / 2; screen.position.y = D + .014;
+    g.add(screen);
+    return { group: g, screen: screen };
   }
   function initNfc() {
     var host = $("#nfcStage"), labels = $$(".callout", host), cap = $("#nfcCap"), capNo = $("#nfcStepNo");
@@ -1448,16 +1494,9 @@ img, svg, canvas { display: block; max-width: 100%; }
     lights(s.scene);
     var discs = { white: buildDisc("white"), black: buildDisc("black") };
     s.scene.add(discs.white.group, discs.black.group);
-    // Phone with a Google review page on its screen.
-    var phone = new THREE.Group();
-    var body = new THREE.Mesh(new THREE.BoxGeometry(1.05, .08, 2.05), new THREE.MeshStandardMaterial({ color: 0x141414, roughness: .35, metalness: .4 }));
-    var pc = document.createElement("canvas"); pc.width = 256; pc.height = 512; paintPhone(pc.getContext("2d"), 256);
-    var ptex = new THREE.CanvasTexture(pc); ptex.encoding = THREE.sRGBEncoding;
-    var screen = new THREE.Mesh(new THREE.PlaneGeometry(.93, 1.86), new THREE.MeshBasicMaterial({ map: ptex, transparent: true, opacity: 0 }));
-    screen.rotation.x = -Math.PI / 2; screen.position.y = .045;
-    var glass = new THREE.Mesh(new THREE.PlaneGeometry(.93, 1.86), new THREE.MeshBasicMaterial({ color: 0x050505 }));
-    glass.rotation.x = -Math.PI / 2; glass.position.y = .042;
-    phone.add(body, glass, screen);
+    // A current iPhone with the Google review page on its screen.
+    var ip = iphone(), phone = ip.group, screen = ip.screen;
+    phone.children.forEach(function (m) { m.position.multiplyScalar(1.7); m.scale.setScalar(1.7); }); // true-to-size next to the 10 cm disc
     s.scene.add(phone);
     // Waves that run out from the disc while the phone taps it.
     var rings = [0, 1, 2].map(function () {
