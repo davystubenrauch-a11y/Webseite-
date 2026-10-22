@@ -11,7 +11,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **QCLAY / CryptoHub:** Hintergrundfarbe wechselt beim Scrollen (Creme → Limette → Dunkel). Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
 ## Design-Regeln
-- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent Limette `#d4f25c`. Google-Farben nur auf dem NFC-Produkt.
+- Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent Terrakotta `#f25c2a` (hell: `#ffd8c7`; Limette wurde vom Kunden abgelehnt). Google-Farben nur auf dem NFC-Produkt.
 - Schrift: Anton (Überschriften, Großbuchstaben) + Inter (Text).
 - Buttons eckig (Radius 6 px), Großbuchstaben, keine Leuchteffekte.
 
@@ -26,6 +26,11 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - NFC: nur **runde** Acryl-Platten (Ø 10 cm), nur **Weiß und Schwarz**, Chip NTAG 215. Preis: auf Anfrage.
 - Websites ab 300 € (Basis), Roomtours ab 300 € (Basis). Höhere Pakete (690/1.290 €, 490/790 €) sind Platzhalter.
 - Kundenstimmen sind noch Platzhalter und müssen durch echte ersetzt werden.
+
+## Widgets (Stand jetzt)
+- Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
+- Preise: Mini-Vorschau je Paket (Laptop mit Seitenumfang bzw. Roomtour-Player/360°/Home-Staging).
+- Roomtour: Villa-Player mit Kapiteln (3D-Animation als Beispiel). Echtes Video über `VILLA_VIDEO_SRC` im Skript einsetzen.
 
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.

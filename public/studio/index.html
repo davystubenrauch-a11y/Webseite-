@@ -12,7 +12,7 @@
 <style>
 /* ==========================================================================
    Tokens
-   Cream, ink and one lime accent. Bold condensed display type (Anton) for
+   Cream, ink and one terracotta accent. Bold condensed display type (Anton) for
    headlines, Inter for everything else. The page background morphs per section.
    ========================================================================== */
 :root {
@@ -20,8 +20,8 @@
   --paper: #faf9f5;
   --ink: #111110;
   --dark: #121212;
-  --lime: #d4f25c;
-  --lime-soft: #e9f8b0;
+  --accent: #f25c2a;
+  --accent-soft: #ffd8c7;
   --muted: rgba(17, 17, 16, 0.58);
   --line: rgba(17, 17, 16, 0.12);
   --ease: cubic-bezier(.2, .7, .2, 1);
@@ -52,7 +52,7 @@ button, input, select, textarea { font: inherit; color: inherit; }
 button { background: none; border: 0; cursor: pointer; }
 fieldset { border: 0; min-width: 0; }
 img, svg, canvas { display: block; max-width: 100%; }
-::selection { background: var(--lime); color: var(--ink); }
+::selection { background: var(--accent); color: var(--ink); }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 
@@ -72,11 +72,11 @@ img, svg, canvas { display: block; max-width: 100%; }
 .btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
 .btn:hover svg { transform: translateX(4px); }
 .btn--solid { background: var(--ink); color: var(--paper); }
-.btn--solid:hover { background: var(--lime); color: var(--ink); }
+.btn--solid:hover { background: var(--accent); color: var(--ink); }
 .btn--line { border: 1.5px solid currentColor; }
 .btn--line:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-.btn--lime { background: var(--lime); color: var(--ink); }
-.btn--lime:hover { background: var(--paper); }
+.btn--accent { background: var(--accent); color: var(--ink); }
+.btn--accent:hover { background: var(--paper); }
 
 /* Reveal */
 .rv { opacity: 0; transform: translateY(30px); transition: opacity .9s var(--ease), transform .9s var(--ease); }
@@ -102,7 +102,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .nav__links a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 2px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .35s var(--ease); }
 .nav__links a:not(.btn):hover::after { transform: scaleX(1); }
 .nav__links .btn { height: 42px; padding: 0 18px; background: var(--page-ink); color: var(--page-bg); }
-.nav__links .btn:hover { background: var(--lime); color: var(--ink); }
+.nav__links .btn:hover { background: var(--accent); color: var(--ink); }
 .burger { display: none; width: 44px; height: 44px; position: relative; }
 .burger span { position: absolute; left: 11px; width: 22px; height: 2px; background: currentColor; transition: transform .3s var(--ease), top .3s var(--ease); }
 .burger span:first-child { top: 17px; } .burger span:last-child { top: 25px; }
@@ -115,11 +115,11 @@ img, svg, canvas { display: block; max-width: 100%; }
 .hero { min-height: 100svh; display: flex; align-items: center; padding: 110px 0 60px; }
 .hero__grid { display: grid; grid-template-columns: 1fr 1.05fr; gap: clamp(24px, 4vw, 64px); align-items: center; }
 .hero h1 { margin-top: 26px; font-size: clamp(3.6rem, 8.6vw, 8.6rem); }
-.hero h1 .hl { display: inline-block; background: var(--lime); padding: 0 .08em; }
+.hero h1 .hl { display: inline-block; background: var(--accent); padding: 0 .08em; }
 .hero__sub { margin-top: 26px; max-width: 470px; font-size: 18px; color: var(--muted); }
 .hero__cta { margin-top: 36px; display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__note { margin-top: 26px; font-size: 12px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
-.hero__note b { background: var(--ink); color: var(--lime); padding: 3px 8px; margin-right: 8px; font-weight: 700; }
+.hero__note b { background: var(--ink); color: var(--accent); padding: 3px 8px; margin-right: 8px; font-weight: 700; }
 .hero__stage { position: relative; aspect-ratio: 1 / 1; max-height: 78vh; width: 100%; }
 .hero__stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; }
 .hero__stage::after { content: ""; position: absolute; left: 18%; right: 18%; bottom: 9%; height: 9%; border-radius: 50%; background: radial-gradient(closest-side, rgba(17,17,16,.28), transparent); z-index: 0; }
@@ -148,7 +148,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .explode__steps span.on { background: var(--ink); }
 .callouts { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .callout { position: absolute; left: 0; top: 0; display: flex; align-items: center; opacity: 0; transition: opacity .4s var(--ease); will-change: transform; }
-.callout__dot { width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px var(--lime); }
+.callout__dot { width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px var(--accent); }
 .callout__line { height: 1px; background: var(--ink); }
 .callout__text { padding-left: 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; line-height: 1.35; }
 .callout__text small { display: block; max-width: 230px; white-space: normal; font-weight: 500; letter-spacing: .02em; text-transform: none; color: var(--muted); font-size: 12px; }
@@ -184,67 +184,123 @@ img, svg, canvas { display: block; max-width: 100%; }
 .steps3 b { font-family: var(--display); font-weight: 400; font-size: 18px; margin-right: 8px; }
 
 /* ==========================================================================
-   Websites: headline left, phone centre, copy right
+   Websites: laptop + phone showcase with switchable sample sites
    ========================================================================== */
-.gateway { padding: 140px 0; }
-.gateway__grid { display: grid; grid-template-columns: 1fr auto 1fr; gap: clamp(28px, 5vw, 80px); align-items: center; }
-.gateway h2 { font-size: clamp(3rem, 6.4vw, 6rem); }
-.gateway__copy p { font-size: 17px; color: var(--muted); }
-.gateway__list { margin-top: 24px; list-style: none; border-top: 1.5px solid var(--ink); }
-.gateway__list li { display: flex; justify-content: space-between; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--line); font-size: 14px; font-weight: 600; }
-.gateway__list li span { color: var(--muted); font-weight: 500; }
-.gateway__price { margin-top: 26px; display: flex; align-items: baseline; gap: 12px; }
-.gateway__price strong { font-family: var(--display); font-weight: 400; font-size: 54px; line-height: 1; }
-.phone-wrap { position: relative; }
-.phone {
-  position: relative; width: 290px; height: 590px; border-radius: 46px; background: #0d0d0d; padding: 12px;
-  box-shadow: 0 50px 90px -40px rgba(17,17,16,.6), inset 0 0 0 2px #2b2b2b;
+.showcase { padding: 140px 0; }
+.showcase__head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: end; }
+.showcase__head h2 { font-size: clamp(3rem, 6.4vw, 6rem); margin-top: 20px; }
+.showcase__intro p { font-size: 17px; color: var(--muted); max-width: 460px; }
+.showcase__price { margin-top: 20px; display: flex; align-items: baseline; gap: 10px; }
+.showcase__price strong { font-family: var(--display); font-weight: 400; font-size: 54px; line-height: 1; }
+.samples { margin-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.samples span { margin-right: 10px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+.samples button { height: 40px; padding: 0 16px; border-radius: 6px; border: 1.5px solid var(--ink); font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; transition: background-color .3s, color .3s; }
+.samples button[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+
+.devices { margin-top: 28px; padding: 30px 0 40px; display: grid; grid-template-columns: 1fr 230px; gap: 48px; align-items: center; }
+.devices__stage { position: relative; padding-bottom: 24px; }
+/* Laptop */
+.laptop { position: relative; width: 86%; }
+.laptop__lid { position: relative; border-radius: 18px 18px 6px 6px; background: #1b1b1b; padding: 2.2% 2.2% 3%; box-shadow: inset 0 0 0 1.5px #3a3a3a, 0 60px 80px -50px rgba(17,17,16,.55); }
+.laptop__cam { position: absolute; top: 1%; left: 50%; width: 6px; height: 6px; margin-left: -3px; border-radius: 50%; background: #333; }
+.laptop__base { position: relative; height: 16px; margin: 0 -7%; border-radius: 0 0 16px 16px; background: linear-gradient(#d9d6cf, #b9b5ad); box-shadow: 0 30px 40px -24px rgba(17,17,16,.5); }
+.laptop__base::before { content: ""; position: absolute; left: 50%; top: 0; width: 16%; height: 6px; margin-left: -8%; border-radius: 0 0 8px 8px; background: #a9a59c; }
+.screen { position: relative; overflow: hidden; background: #fff; container-type: inline-size; }
+.laptop .screen { aspect-ratio: 16 / 10; border-radius: 6px; }
+/* Phone */
+.mobile { position: absolute; right: 2%; bottom: 0; width: clamp(150px, 20%, 220px); border-radius: 32px; background: #121212; padding: 9px; box-shadow: inset 0 0 0 1.5px #3a3a3a, 0 50px 70px -36px rgba(17,17,16,.6); }
+.mobile .screen { aspect-ratio: 9 / 19.5; border-radius: 24px; }
+.mobile__island { position: absolute; top: 15px; left: 50%; width: 34%; height: 16px; margin-left: -17%; border-radius: 10px; background: #000; z-index: 3; }
+/* The sample page scrolls slowly inside both screens (pauses on hover). */
+.site { --c1: #3b2a20; --c2: #f2b46b; --c3: #f6efe6; position: absolute; inset: 0 0 auto 0; color: #161412; font-family: var(--body); animation: pageScroll 18s ease-in-out infinite alternate; }
+.screen:hover .site { animation-play-state: paused; }
+@keyframes pageScroll { 0%, 12% { transform: translateY(0); } 88%, 100% { transform: translateY(var(--travel, -42%)); } }
+.site__nav { display: flex; align-items: center; justify-content: space-between; padding: 3.2cqw 4cqw; font-size: 1.5cqw; font-weight: 700; }
+.site__logo { display: flex; align-items: center; gap: 1cqw; font-size: 1.8cqw; letter-spacing: .02em; }
+.site__logo i { width: 2.6cqw; height: 2.6cqw; border-radius: 50%; background: var(--c1); }
+.site__links { display: flex; gap: 2.4cqw; opacity: .7; }
+.site__cta { padding: 1cqw 1.8cqw; border-radius: .8cqw; background: var(--c1); color: #fff; }
+.site__hero { display: grid; grid-template-columns: 1fr 1fr; gap: 3cqw; padding: 2cqw 4cqw 4cqw; align-items: center; }
+.site__hero h4 { font-family: var(--display); font-weight: 400; text-transform: uppercase; font-size: 6.4cqw; line-height: .92; color: var(--c1); }
+.site__hero p { margin-top: 1.6cqw; font-size: 1.6cqw; line-height: 1.5; opacity: .7; }
+.site__btn { display: inline-block; margin-top: 2.4cqw; padding: 1.4cqw 2.4cqw; border-radius: .8cqw; background: var(--c2); color: #161412; font-size: 1.4cqw; font-weight: 700; letter-spacing: .06em; }
+.site__img { position: relative; aspect-ratio: 4 / 3; border-radius: 2cqw; overflow: hidden; background: var(--img); }
+.site__img b { position: absolute; left: 1.6cqw; bottom: 1.6cqw; padding: .8cqw 1.4cqw; border-radius: 99px; background: #fff; font-size: 1.3cqw; }
+.site__img b i { font-style: normal; color: #f2a900; }
+.site__band { margin: 0 4cqw; padding: 2.4cqw 3cqw; border-radius: 1.6cqw; background: var(--c3); display: flex; justify-content: space-between; align-items: center; font-size: 1.5cqw; font-weight: 600; }
+.site__band i { font-style: normal; color: #f2a900; letter-spacing: .1em; }
+.site__cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2cqw; padding: 3cqw 4cqw; }
+.site__cards div { border-radius: 1.6cqw; background: var(--c3); padding: 2cqw; }
+.site__cards div::before { content: ""; display: block; aspect-ratio: 16 / 10; border-radius: 1cqw; margin-bottom: 1.4cqw; background: var(--img2); }
+.site__cards b { display: block; font-size: 1.7cqw; }
+.site__cards span { font-size: 1.3cqw; opacity: .6; }
+.site__foot { margin: 0 4cqw 4cqw; padding: 3cqw; border-radius: 1.6cqw; background: var(--c1); color: #fff; display: flex; justify-content: space-between; align-items: center; font-size: 1.6cqw; }
+.site__foot span { padding: 1.2cqw 2cqw; border-radius: .8cqw; background: var(--c2); color: #161412; font-weight: 700; }
+/* Same markup, phone layout */
+@container (max-width: 380px) {
+  .site { --travel: -62%; }
+  .site__nav { padding: 18cqw 6cqw 4cqw; font-size: 4cqw; }
+  .site__logo { font-size: 5cqw; gap: 2cqw; }
+  .site__logo i { width: 6cqw; height: 6cqw; }
+  .site__links, .site__cta { display: none; }
+  .site__nav::after { content: ""; width: 7cqw; height: 1.2cqw; background: #161412; box-shadow: 0 2.4cqw 0 #161412; }
+  .site__hero { grid-template-columns: 1fr; padding: 2cqw 6cqw 6cqw; gap: 5cqw; }
+  .site__hero h4 { font-size: 15cqw; }
+  .site__hero p { font-size: 4.2cqw; margin-top: 3cqw; }
+  .site__btn { font-size: 3.8cqw; padding: 3.4cqw 5cqw; border-radius: 2cqw; margin-top: 5cqw; }
+  .site__img { border-radius: 5cqw; }
+  .site__img b { font-size: 3.4cqw; padding: 2cqw 3cqw; left: 3cqw; bottom: 3cqw; }
+  .site__band { margin: 0 6cqw; padding: 5cqw; border-radius: 4cqw; font-size: 3.8cqw; flex-direction: column; align-items: flex-start; gap: 1.6cqw; }
+  .site__cards { grid-template-columns: 1fr; gap: 4cqw; padding: 6cqw; }
+  .site__cards div { border-radius: 4cqw; padding: 4cqw; }
+  .site__cards b { font-size: 4.6cqw; } .site__cards span { font-size: 3.6cqw; }
+  .site__foot { margin: 0 6cqw 8cqw; padding: 6cqw; border-radius: 4cqw; font-size: 4cqw; flex-direction: column; gap: 4cqw; align-items: flex-start; }
+  .site__foot span { padding: 3cqw 5cqw; border-radius: 2cqw; }
 }
-.phone__island { position: absolute; top: 22px; left: 50%; width: 96px; height: 28px; margin-left: -48px; border-radius: 20px; background: #000; z-index: 3; }
-.phone__screen { position: relative; height: 100%; border-radius: 36px; overflow: hidden; background: #fff; }
-.phone__page { position: absolute; inset: 0 0 auto 0; transform: translateY(calc(var(--p, 0) * -300px)); transition: transform .2s linear; color: #111; }
-.mini-nav { display: flex; justify-content: space-between; align-items: center; padding: 54px 18px 12px; font-size: 11px; font-weight: 700; }
-.mini-nav i { width: 18px; height: 2px; background: #111; box-shadow: 0 5px 0 #111; font-style: normal; }
-.mini-hero { margin: 0 12px; height: 250px; border-radius: 20px; background: #1d2b22; color: #fff; padding: 18px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; position: relative; }
-.mini-hero::before { content: ""; position: absolute; right: -40px; top: -40px; width: 180px; height: 180px; border-radius: 50%; background: var(--lime); opacity: .9; }
-.mini-hero b { position: relative; font-family: var(--display); font-weight: 400; font-size: 32px; line-height: .95; text-transform: uppercase; }
-.mini-hero span { position: relative; margin-top: 10px; display: inline-block; width: fit-content; padding: 8px 12px; border-radius: 4px; background: var(--lime); color: #111; font-size: 10px; font-weight: 700; letter-spacing: .08em; }
-.mini-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 10px 12px 0; }
-.mini-row div { height: 120px; border-radius: 16px; background: #f1efe8; padding: 12px; font-size: 10px; font-weight: 700; }
-.mini-row div:nth-child(2) { background: #e6eadf; }
-.mini-stars { margin: 10px 12px 0; padding: 14px; border-radius: 16px; background: #111; color: #fff; font-size: 11px; }
-.mini-stars i { color: #f2b100; font-style: normal; letter-spacing: .1em; font-size: 14px; }
-.mini-cta { margin: 10px 12px 20px; height: 54px; border-radius: 12px; background: var(--lime); display: grid; place-items: center; font-size: 11px; font-weight: 700; letter-spacing: .1em; }
-.phone-chip { position: absolute; display: grid; place-items: center; width: 58px; height: 58px; border-radius: 16px; background: var(--paper); box-shadow: 0 20px 40px -20px rgba(17,17,16,.45); font-size: 22px; animation: bob 6s ease-in-out infinite alternate; }
-.phone-chip--1 { left: -46px; top: 90px; }
-.phone-chip--2 { right: -40px; top: 220px; animation-duration: 7.5s; background: var(--ink); color: var(--lime); font-family: var(--display); font-size: 18px; }
-.phone-chip--3 { left: -30px; bottom: 120px; animation-duration: 8s; }
+/* Leader-line notes next to the devices */
+.notes { list-style: none; display: grid; gap: 26px; }
+.notes li { position: relative; padding-left: 24px; font-size: 12px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
+.notes li::before { content: ""; position: absolute; left: 0; top: 2px; width: 10px; height: 10px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+.notes li span { display: block; margin-top: 4px; font-size: 13px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.showcase__list { margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1.5px solid var(--ink); }
+.showcase__list li { list-style: none; padding: 16px 16px 0 0; font-size: 14px; font-weight: 700; }
+.showcase__list li span { display: block; font-weight: 500; color: var(--muted); }
 
 /* ==========================================================================
-   Roomtour bento (dark)
+   Roomtour: villa player + tiles (dark)
    ========================================================================== */
 .bento-sec { padding: 140px 0; }
 .bento-head { display: grid; grid-template-columns: 1.3fr 1fr; gap: 40px; align-items: end; }
 .bento-head h2 { font-size: clamp(3rem, 6.6vw, 6.4rem); }
 .bento-head p { font-size: 17px; opacity: .7; }
-.bento { margin-top: 56px; display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 230px; gap: 14px; }
-.tile { position: relative; border-radius: 18px; background: #1c1c1c; padding: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
+.player { position: relative; margin-top: 56px; border-radius: 22px; overflow: hidden; background: #0b0b0b; aspect-ratio: 16 / 9; }
+.player__view, .player__view canvas, .player__view video { position: absolute; inset: 0; width: 100% !important; height: 100% !important; object-fit: cover; }
+.player::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 48%; background: linear-gradient(transparent, rgba(0,0,0,.5)); pointer-events: none; }
+.player__top { position: absolute; z-index: 1; left: 22px; right: 22px; top: 18px; display: flex; justify-content: space-between; gap: 12px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.35); pointer-events: none; }
+.player__rec { display: flex; align-items: center; gap: 8px; }
+.player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); animation: blink 1.6s infinite; }
+@keyframes blink { 50% { opacity: .2; } }
+.player__title { position: absolute; z-index: 1; left: 22px; bottom: 76px; color: #fff; pointer-events: none; text-shadow: 0 2px 20px rgba(0,0,0,.35); }
+.player__title small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; opacity: .8; }
+.player__title b { display: block; font-family: var(--display); font-weight: 400; font-size: clamp(30px, 4.4vw, 58px); line-height: .95; text-transform: uppercase; }
+.player__bar { position: absolute; z-index: 1; left: 0; right: 0; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 14px 18px; color: #fff; }
+.player__btn { flex: none; width: 40px; height: 40px; border-radius: 50%; background: #fff; color: #111; display: grid; place-items: center; }
+.player__btn svg { width: 16px; height: 16px; }
+.player__track { position: relative; flex: 1; height: 26px; cursor: pointer; }
+.player__track::before { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 3px; margin-top: -1.5px; background: rgba(255,255,255,.3); border-radius: 2px; }
+.player__fill { position: absolute; left: 0; top: 50%; height: 3px; margin-top: -1.5px; width: 0; background: var(--accent); border-radius: 2px; }
+.player__mark { position: absolute; top: 50%; width: 3px; height: 11px; margin: -5.5px 0 0 -1.5px; background: #fff; border-radius: 2px; }
+.player__time { flex: none; font-size: 12px; font-variant-numeric: tabular-nums; opacity: .85; }
+.chapters { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 6px; }
+.chapters button { height: 34px; padding: 0 12px; border-radius: 6px; border: 1px solid rgba(250,249,245,.22); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--paper); transition: background-color .3s, color .3s, border-color .3s; }
+.chapters button[aria-current="true"] { background: var(--accent); border-color: var(--accent); color: var(--ink); }
+.bento { margin-top: 14px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.tile { position: relative; min-height: 220px; border-radius: 18px; background: #1c1c1c; padding: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; gap: 14px; }
 .tile--light { background: var(--paper); color: var(--ink); }
-.tile--lime { background: var(--lime); color: var(--ink); }
+.tile--accent { background: var(--accent); color: var(--ink); }
 .tile h3 { font-family: var(--display); font-weight: 400; font-size: 28px; line-height: .95; text-transform: uppercase; }
 .tile p { font-size: 14px; opacity: .72; }
-.tile--room { grid-column: span 2; grid-row: span 2; padding: 0; }
-.tile--room canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; }
-.tile--room .tile__cap { position: absolute; left: 22px; right: 22px; bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; gap: 16px; pointer-events: none; }
-.tile--room .tile__cap h3 { font-size: 34px; }
-.rooms { display: flex; flex-wrap: wrap; gap: 6px; pointer-events: auto; }
-.rooms button { height: 32px; padding: 0 12px; border-radius: 4px; border: 1px solid rgba(250,249,245,.25); font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--paper); transition: background-color .3s, color .3s, border-color .3s; }
-.rooms button[aria-pressed="true"] { background: var(--lime); color: var(--ink); border-color: var(--lime); }
-.tile__rec { position: absolute; left: 22px; top: 20px; display: flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.tile__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--lime); animation: blink 1.6s infinite; }
-@keyframes blink { 50% { opacity: .2; } }
-.tile svg { width: 100%; height: 100px; }
-.tile--wide { grid-column: span 2; }
+.tile svg { width: 100%; height: 90px; }
 .tile__price { font-family: var(--display); font-weight: 400; font-size: 64px; line-height: .9; }
 
 /* ==========================================================================
@@ -262,24 +318,18 @@ img, svg, canvas { display: block; max-width: 100%; }
 .dish__img { position: relative; aspect-ratio: 4 / 3; border-radius: 14px; overflow: hidden; display: grid; place-items: center; background: #e7e3d8; transition: transform .6s var(--ease); }
 .dish:hover .dish__img { transform: translateY(-6px); }
 .dish__img--dark { background: #1a1a1a; }
-.dish__img--lime { background: var(--lime); }
+.dish__img--accent { background: var(--accent); }
 .dish__no { position: absolute; left: 14px; top: 12px; font-family: var(--display); font-size: 16px; opacity: .55; }
-.dish__badge { position: absolute; right: 12px; top: 12px; padding: 5px 9px; border-radius: 4px; background: var(--ink); color: var(--lime); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+.dish__badge { position: absolute; right: 12px; top: 12px; padding: 5px 9px; border-radius: 4px; background: var(--ink); color: var(--accent); font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
 .dish h3 { margin-top: 18px; font-family: var(--display); font-weight: 400; font-size: 40px; line-height: .92; text-transform: uppercase; }
 .dish p { margin-top: 8px; font-size: 14px; color: var(--muted); min-height: 2.8em; }
 .dish__foot { margin-top: 16px; padding-top: 14px; border-top: 1.5px solid var(--ink); display: flex; justify-content: space-between; align-items: center; }
 .dish__price { font-family: var(--display); font-size: 30px; line-height: 1; }
 .dish__price small { font-family: var(--body); font-size: 12px; font-weight: 600; margin-right: 6px; opacity: .6; }
 .add { height: 38px; padding: 0 14px; border-radius: 6px; background: var(--ink); color: var(--paper); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; transition: background-color .3s, color .3s; }
-.add:hover, .add[aria-pressed="true"] { background: var(--lime); color: var(--ink); }
+.add:hover, .add[aria-pressed="true"] { background: var(--accent); color: var(--ink); }
 .menu-note { margin-top: 26px; font-size: 13px; color: var(--muted); }
 /* Mini art inside menu images */
-.art-browser { width: 70%; border-radius: 8px; background: #fff; box-shadow: 0 20px 40px -20px rgba(0,0,0,.35); overflow: hidden; }
-.art-browser i { display: block; height: 14px; background: #ecebe6; }
-.art-browser div { padding: 10px; display: grid; gap: 6px; }
-.art-browser b { display: block; height: 46px; border-radius: 4px; background: #1d2b22; }
-.art-browser span { display: block; height: 8px; border-radius: 3px; background: #e8e6df; }
-.art-browser span:nth-child(3) { width: 60%; }
 .art-disc { width: 46%; aspect-ratio: 1; border-radius: 50%; display: grid; place-items: center; text-align: center; box-shadow: 0 30px 50px -24px rgba(0,0,0,.5); position: relative; }
 .art-disc::before { content: ""; position: absolute; inset: 7%; border-radius: 50%; background: conic-gradient(from -90deg, #ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0 100%); -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px)); mask: radial-gradient(farthest-side, transparent calc(100% - 5px), #000 calc(100% - 4px)); }
 .art-disc--white { background: radial-gradient(circle at 35% 30%, #fff, #e8ebee); color: #202124; }
@@ -291,6 +341,46 @@ img, svg, canvas { display: block; max-width: 100%; }
 .art-disc b span:nth-child(5) { color: #34a853; }
 .art-disc small { display: block; font-size: 8px; font-weight: 700; letter-spacing: .3em; }
 
+/* Package previews inside the price cards */
+.mini { position: relative; width: 76%; }
+.mini__lid { border-radius: 10px 10px 4px 4px; background: #1b1b1b; padding: 2.4% 2.4% 3.2%; box-shadow: 0 30px 40px -26px rgba(17,17,16,.6); }
+.mini__base { height: 8px; margin: 0 -6%; border-radius: 0 0 10px 10px; background: linear-gradient(#d9d6cf, #b9b5ad); }
+.mini .screen { aspect-ratio: 16 / 10; border-radius: 4px; }
+.mini .page { position: absolute; inset: 0 0 auto 0; transition: transform 3s ease-in-out; }
+.dish:hover .mini .page { transform: translateY(var(--hover-travel, -40%)); }
+.pg-nav { display: flex; justify-content: space-between; align-items: center; padding: 3cqw 4cqw; }
+.pg-nav i { width: 14cqw; height: 3cqw; border-radius: 2cqw; background: #161412; }
+.pg-nav span { display: flex; gap: 2cqw; }
+.pg-nav span b { width: 7cqw; height: 2cqw; border-radius: 2cqw; background: #d9d4ca; }
+.pg-nav span b.on { background: var(--accent); }
+.pg-hero { margin: 0 4cqw; height: 34cqw; border-radius: 3cqw; background: #2a2622; position: relative; overflow: hidden; }
+.pg-hero::after { content: ""; position: absolute; left: 5cqw; bottom: 5cqw; width: 40cqw; height: 6cqw; border-radius: 2cqw; background: #fff; box-shadow: 0 8cqw 0 -1cqw var(--accent); }
+.pg-hero--anim::before { content: ""; position: absolute; right: -10cqw; top: -10cqw; width: 40cqw; height: 40cqw; border-radius: 50%; background: var(--accent); animation: orbit 6s ease-in-out infinite alternate; }
+@keyframes orbit { to { transform: translate(-14cqw, 10cqw) scale(.8); } }
+.pg-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3cqw; margin: 4cqw; }
+.pg-row b { height: 18cqw; border-radius: 2.4cqw; background: #ece8e0; }
+.pg-map { margin: 0 4cqw 4cqw; height: 22cqw; border-radius: 2.4cqw; background: repeating-linear-gradient(0deg, #e6e1d7 0 1px, transparent 1px 6cqw), repeating-linear-gradient(90deg, #e6e1d7 0 1px, #f3f0e8 1px 6cqw); position: relative; }
+.pg-map::after { content: ""; position: absolute; left: 48%; top: 30%; width: 5cqw; height: 5cqw; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: var(--accent); }
+.pg-stars { margin: 0 4cqw 4cqw; padding: 3cqw; border-radius: 2.4cqw; background: #161412; color: #f2a900; font-size: 4cqw; letter-spacing: .2em; }
+.pg-badge { position: absolute; right: 3cqw; top: 3cqw; z-index: 2; padding: 1.4cqw 2.4cqw; border-radius: 1.4cqw; background: var(--accent); color: #111; font-size: 3.4cqw; font-weight: 700; letter-spacing: .06em; }
+.pages-tag { position: absolute; left: 12px; bottom: 12px; padding: 5px 9px; border-radius: 4px; background: rgba(17,17,16,.85); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+/* Roomtour package previews */
+.tour-prev { position: relative; width: 78%; aspect-ratio: 16 / 10; border-radius: 10px; overflow: hidden; background: linear-gradient(#f4c9a8, #a9c7e0 70%); box-shadow: 0 30px 40px -26px rgba(17,17,16,.6); }
+.tour-prev::before { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 42%; background: #e9e4da; }
+.tour-prev i { position: absolute; bottom: 28%; height: 34%; background: #fff; box-shadow: inset 0 -6px 0 rgba(0,0,0,.05); }
+.tour-prev i:nth-of-type(1) { left: 14%; width: 46%; }
+.tour-prev i:nth-of-type(2) { left: 46%; width: 34%; bottom: 52%; height: 22%; }
+.tour-prev i:nth-of-type(3) { left: 20%; width: 34%; bottom: 33%; height: 18%; background: rgba(120,170,200,.55); }
+.tour-prev em { position: absolute; left: 0; right: 0; bottom: 6%; margin: 0 auto; width: 60%; height: 10%; border-radius: 4px; background: #4fb3d9; }
+.tour-prev .ui { position: absolute; inset: auto 8px 8px 8px; display: flex; align-items: center; gap: 8px; }
+.tour-prev .ui b { width: 22px; height: 22px; border-radius: 50%; background: #fff; display: grid; place-items: center; font-size: 9px; }
+.tour-prev .ui span { flex: 1; height: 3px; border-radius: 2px; background: rgba(255,255,255,.5); position: relative; }
+.tour-prev .ui span::after { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 38%; background: var(--accent); }
+.tour-prev .deg { position: absolute; right: 8px; top: 8px; padding: 4px 7px; border-radius: 4px; background: rgba(17,17,16,.8); color: #fff; font-size: 10px; font-weight: 700; }
+.tour-prev .plan { position: absolute; left: 8px; top: 8px; width: 28%; aspect-ratio: 4 / 3; border-radius: 4px; background: rgba(255,255,255,.92); background-image: linear-gradient(#111 0 0), linear-gradient(#111 0 0), linear-gradient(#111 0 0); background-size: 1.5px 60%, 60% 1.5px, 1.5px 40%; background-position: 50% 0, 0 55%, 75% 100%; background-repeat: no-repeat; outline: 1.5px solid #111; outline-offset: -5px; }
+.tour-prev .split { position: absolute; inset: 0 50% 0 0; background: rgba(17,17,16,.15); border-right: 2px solid #fff; }
+.tour-prev .split::after { content: "VORHER"; position: absolute; left: 8px; top: 8px; color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .1em; }
+
 /* ==========================================================================
    Team
    ========================================================================== */
@@ -298,11 +388,11 @@ img, svg, canvas { display: block; max-width: 100%; }
 .team__grid { display: grid; grid-template-columns: 1.2fr 1fr 1fr; gap: 18px; align-items: stretch; }
 .team h2 { font-size: clamp(3rem, 6vw, 5.6rem); }
 .founder { border-radius: 18px; background: var(--paper); padding: 26px; display: flex; flex-direction: column; justify-content: space-between; gap: 40px; border: 1px solid var(--line); }
-.founder__init { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 26px; background: var(--ink); color: var(--lime); }
-.founder:nth-child(3) .founder__init { background: var(--lime); color: var(--ink); }
+.founder__init { width: 72px; height: 72px; border-radius: 50%; display: grid; place-items: center; font-family: var(--display); font-size: 26px; background: var(--ink); color: var(--accent); }
+.founder:nth-child(3) .founder__init { background: var(--accent); color: var(--ink); }
 .founder h3 { font-family: var(--display); font-weight: 400; font-size: 34px; line-height: .95; text-transform: uppercase; }
 .founder p { font-size: 14px; color: var(--muted); }
-.founder a { display: inline-flex; margin-top: 14px; font-size: 14px; font-weight: 700; border-bottom: 2px solid var(--lime); }
+.founder a { display: inline-flex; margin-top: 14px; font-size: 14px; font-weight: 700; border-bottom: 2px solid var(--accent); }
 
 /* ==========================================================================
    Inquiry
@@ -326,7 +416,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .pick { text-align: left; padding: 16px; border-radius: 10px; border: 1.5px solid var(--line); transition: border-color .25s, background-color .25s; }
 .pick b { display: block; font-family: var(--display); font-weight: 400; font-size: 22px; text-transform: uppercase; line-height: 1; }
 .pick span { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
-.pick[aria-checked="true"] { border-color: var(--ink); background: var(--lime); }
+.pick[aria-checked="true"] { border-color: var(--ink); background: var(--accent); }
 .grid2 { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .full { grid-column: 1 / -1; }
 .field label { display: block; margin-bottom: 7px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
@@ -346,7 +436,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .review dt { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
 .done { text-align: center; padding: 30px 0 6px; }
 .done[hidden] { display: none; }
-.done__mark { width: 84px; height: 84px; margin: 0 auto; border-radius: 50%; background: var(--lime); display: grid; place-items: center; }
+.done__mark { width: 84px; height: 84px; margin: 0 auto; border-radius: 50%; background: var(--accent); display: grid; place-items: center; }
 .done__mark svg { width: 38px; height: 38px; }
 .done h3 { margin-top: 22px; font-family: var(--display); font-weight: 400; font-size: 44px; line-height: .95; text-transform: uppercase; }
 .done p { margin: 12px auto 0; max-width: 400px; color: var(--muted); }
@@ -365,15 +455,15 @@ img, svg, canvas { display: block; max-width: 100%; }
 .foot__cols div { display: grid; gap: 8px; align-content: start; }
 .foot__cols b { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; opacity: .5; margin-bottom: 4px; }
 .wordmark { margin-top: 70px; font-family: var(--display); text-transform: uppercase; font-size: clamp(3.4rem, 13.4vw, 13rem); line-height: .8; letter-spacing: -.005em; white-space: nowrap; }
-.wordmark span { color: var(--lime); }
+.wordmark span { color: var(--accent); }
 .foot__base { margin-top: 26px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-size: 12px; opacity: .55; }
 
 /* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1080px) {
-  .gateway__grid { grid-template-columns: 1fr 1fr; }
-  .gateway__copy { grid-column: 1 / -1; }
+  .devices { grid-template-columns: 1fr; }
+  .notes { grid-template-columns: repeat(3, 1fr); }
   .bento { grid-template-columns: repeat(2, 1fr); }
   .team__grid { grid-template-columns: 1fr 1fr; }
   .team__grid > :first-child { grid-column: 1 / -1; }
@@ -399,15 +489,17 @@ img, svg, canvas { display: block; max-width: 100%; }
   .explode__copy h2 { font-size: 3rem; }
   .callout__text { font-size: 9.5px; }
   .callout__text small { display: none; }
-  .gateway__grid { grid-template-columns: 1fr; justify-items: center; text-align: left; }
-  .gateway__grid > * { width: 100%; }
-  .phone-wrap { width: auto; }
-  .phone { width: 250px; height: 510px; }
+  .showcase__head { grid-template-columns: 1fr; }
+  .laptop { width: 92%; }
+  .mobile { right: 0; bottom: -18px; width: 30%; border-radius: 22px; padding: 6px; }
+  .mobile .screen { border-radius: 17px; }
+  .notes { grid-template-columns: 1fr; }
+  .showcase__list { grid-template-columns: 1fr 1fr; }
+  .player { aspect-ratio: 4 / 5; }
+  .player__title { bottom: 70px; }
   .bento-head { grid-template-columns: 1fr; }
   .bento { grid-template-columns: 1fr; grid-auto-rows: auto; }
   .tile { min-height: 200px; }
-  .tile--room, .tile--wide { grid-column: auto; grid-row: auto; }
-  .tile--room { min-height: 420px; }
   .menu { grid-template-columns: 1fr; }
   .team__grid { grid-template-columns: 1fr; }
   .picks { grid-template-columns: 1fr; }
@@ -485,7 +577,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 3. Floating proof around a statement -->
-  <section class="float" data-bg="#d4f25c" data-ink="#111110">
+  <section class="float" data-bg="#f25c2a" data-ink="#111110">
     <div class="floaters" id="floaters" aria-hidden="true">
       <div class="floater" style="--x:14%;--y:22%;--d:6s" data-depth="30"><div class="floater__inner"><div class="chip-review"><span class="avatar" style="background:#1d2b22">MK</span><i>★★★★★</i></div></div></div>
       <div class="floater floater--hide-sm" style="--x:30%;--y:12%;--d:8s" data-depth="18"><div class="floater__inner"><div class="bubble bubble--g" style="--s:58px"><span>G</span></div></div></div>
@@ -503,41 +595,51 @@ img, svg, canvas { display: block; max-width: 100%; }
     </div>
   </section>
 
-  <!-- 4. Websites: headline / phone / copy -->
-  <section class="gateway" id="web" data-bg="#faf9f5" data-ink="#111110">
-    <div class="wrap gateway__grid">
-      <div class="rv">
-        <span class="kicker">Webseiten-Erstellung</span>
-        <h2 class="display" style="margin-top:20px">Websites,<br>die ver&shy;kaufen.</h2>
+  <!-- 4. Websites: laptop + phone showcase -->
+  <section class="showcase" id="web" data-bg="#faf9f5" data-ink="#111110">
+    <div class="wrap">
+      <div class="showcase__head">
+        <div class="rv">
+          <span class="kicker">Webseiten-Erstellung</span>
+          <h2 class="display">Websites,<br>die ver&shy;kaufen.</h2>
+        </div>
+        <div class="showcase__intro rv d1">
+          <p>Maßgeschneidert statt Baukasten: eine Website, die am Schreibtisch und auf dem Handy überzeugt, schnell lädt und Besucher zur Anfrage führt.</p>
+          <div class="showcase__price"><span class="muted" style="font-weight:600">ab</span><strong>300 €</strong></div>
+        </div>
       </div>
-      <div class="phone-wrap rv d1" id="phoneWrap">
-        <div class="phone">
-          <div class="phone__island"></div>
-          <div class="phone__screen">
-            <div class="phone__page" id="phonePage">
-              <div class="mini-nav"><span>CAFÉ ISARBLICK</span><i></i></div>
-              <div class="mini-hero"><b>Frühstück<br>an der Isar.</b><span>TISCH RESERVIEREN</span></div>
-              <div class="mini-row"><div>SPEISEKARTE</div><div>ÜBER UNS</div></div>
-              <div class="mini-stars"><i>★★★★★</i><br>„Bestes Frühstück im Viertel.“</div>
-              <div class="mini-row"><div>ÖFFNUNGSZEITEN</div><div>ANFAHRT</div></div>
-              <div class="mini-cta">JETZT ANRUFEN</div>
-            </div>
+
+      <div class="samples rv" role="tablist" aria-label="Beispiel-Branche">
+        <span>Beispiel ansehen</span>
+        <button type="button" role="tab" aria-selected="true" data-sample="cafe">Café</button>
+        <button type="button" role="tab" aria-selected="false" data-sample="handwerk" tabindex="-1">Handwerk</button>
+        <button type="button" role="tab" aria-selected="false" data-sample="immo" tabindex="-1">Immobilien</button>
+      </div>
+
+      <div class="devices rv d1">
+        <div class="devices__stage">
+          <div class="laptop">
+            <div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div>
+            <div class="laptop__base"></div>
+          </div>
+          <div class="mobile">
+            <span class="mobile__island"></span>
+            <div class="screen" data-screen></div>
           </div>
         </div>
-        <div class="phone-chip phone-chip--1">⚡</div>
-        <div class="phone-chip phone-chip--2">SEO</div>
-        <div class="phone-chip phone-chip--3">📱</div>
-      </div>
-      <div class="gateway__copy rv d2">
-        <p>Maßgeschneidert statt Baukasten: eine Website, die auf dem Handy genauso überzeugt wie am Schreibtisch, schnell lädt und Besucher zur Anfrage führt.</p>
-        <ul class="gateway__list">
-          <li>Individuelles Design <span>kein Template</span></li>
-          <li>Für Smartphone optimiert <span>mobile first</span></li>
-          <li>Kontakt &amp; Google Maps <span>inklusive</span></li>
-          <li>Impressum &amp; Datenschutz <span>inklusive</span></li>
+        <ul class="notes">
+          <li>Ein Design, jedes Gerät<span>Laptop und Handy zeigen dieselbe Seite, automatisch angepasst.</span></li>
+          <li>Ihre Bewertungen<span>Google-Sterne direkt auf der Startseite.</span></li>
+          <li>Ein klarer nächster Schritt<span>Anrufen, reservieren oder anfragen mit einem Klick.</span></li>
         </ul>
-        <div class="gateway__price"><span class="muted" style="font-weight:600">ab</span><strong>300 €</strong></div>
       </div>
+
+      <ul class="showcase__list rv">
+        <li>Individuelles Design <span>kein Template</span></li>
+        <li>Für Smartphone optimiert <span>mobile first</span></li>
+        <li>Kontakt &amp; Google Maps <span>inklusive</span></li>
+        <li>Impressum &amp; Datenschutz <span>inklusive</span></li>
+      </ul>
     </div>
   </section>
 
@@ -546,34 +648,35 @@ img, svg, canvas { display: block; max-width: 100%; }
     <div class="wrap">
       <div class="bento-head">
         <h2 class="display rv">Räume erleben,<br>bevor man sie betritt.</h2>
-        <p class="rv d1">KI-gestützte Rundgänge und Walkthrough-Videos in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. Probieren Sie es aus: Ziehen dreht das Modell.</p>
+        <p class="rv d1">KI-gestützte Rundgänge und Walkthrough-Videos in hoher Auflösung für Immobilien, Hotels, Ferienwohnungen und Gewerbe. So sieht ein Walkthrough aus: Kapitel anklicken springt direkt in den Raum.</p>
       </div>
-      <div class="bento">
-        <div class="tile tile--room rv" id="roomStage">
-          <span class="tile__rec">Beispielraum</span>
-          <div class="tile__cap">
-            <h3>3D-Rundgang</h3>
-            <div class="rooms" role="group" aria-label="Bereich wählen">
-              <button type="button" data-room="0" aria-pressed="true">Alles</button>
-              <button type="button" data-room="1" aria-pressed="false">Wohnen</button>
-              <button type="button" data-room="2" aria-pressed="false">Küche</button>
-              <button type="button" data-room="3" aria-pressed="false">Schlafen</button>
-            </div>
-          </div>
+      <div class="player rv" id="villa">
+        <div class="player__view" id="villaView"></div>
+        <div class="player__top"><span class="player__rec">Beispiel · 3D-Animation</span><span>Villa am See</span></div>
+        <div class="player__title"><small id="villaNo">Kapitel 1 / 6</small><b id="villaChapter">Anflug</b></div>
+        <div class="player__bar">
+          <button class="player__btn" type="button" id="villaPlay" aria-label="Pause">
+            <svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/><path class="i-play" d="M4 2l10 6-10 6z" style="display:none"/></svg>
+          </button>
+          <div class="player__track" id="villaTrack" role="slider" tabindex="0" aria-label="Position im Rundgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div class="player__fill" id="villaFill"></div></div>
+          <span class="player__time" id="villaTime">0:00 / 0:33</span>
         </div>
-        <div class="tile tile--lime rv d1">
+      </div>
+      <div class="chapters" id="villaChapters" role="group" aria-label="Kapitel"></div>
+      <div class="bento">
+        <div class="tile tile--accent rv d1">
           <h3>360°-<br>Rundgang</h3>
           <svg viewBox="0 0 200 100" fill="none" stroke="#111110" stroke-width="2"><ellipse cx="100" cy="50" rx="80" ry="22"/><ellipse cx="100" cy="50" rx="30" ry="40" stroke-dasharray="4 5"/><circle cx="100" cy="50" r="6" fill="#111110"/></svg>
           <p>Frei bewegen, rund um die Uhr.</p>
         </div>
         <div class="tile rv d2">
           <h3>Walk&shy;through-<br>Video</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#d4f25c" stroke-width="2"><rect x="30" y="18" width="140" height="64" rx="8"/><path d="M92 38v24l20-12z" fill="#d4f25c"/></svg>
+          <svg viewBox="0 0 200 100" fill="none" stroke="#f25c2a" stroke-width="2"><rect x="30" y="18" width="140" height="64" rx="8"/><path d="M92 38v24l20-12z" fill="#f25c2a"/></svg>
           <p>Für Exposé, Website und Social Media.</p>
         </div>
         <div class="tile rv d1">
           <h3>Grundriss &amp;<br>Info-Punkte</h3>
-          <svg viewBox="0 0 200 100" fill="none" stroke="#faf9f5" stroke-width="2"><path d="M30 15h140v70H30zM100 15v40M100 55h70M30 50h40"/><circle cx="65" cy="32" r="5" fill="#d4f25c" stroke="none"/><circle cx="140" cy="70" r="5" fill="#d4f25c" stroke="none"/></svg>
+          <svg viewBox="0 0 200 100" fill="none" stroke="#faf9f5" stroke-width="2"><path d="M30 15h140v70H30zM100 15v40M100 55h70M30 50h40"/><circle cx="65" cy="32" r="5" fill="#f25c2a" stroke="none"/><circle cx="140" cy="70" r="5" fill="#f25c2a" stroke="none"/></svg>
           <p>Maße und Details direkt im Rundgang.</p>
         </div>
         <div class="tile tile--light rv d2">
@@ -602,17 +705,17 @@ img, svg, canvas { display: block; max-width: 100%; }
 
       <div class="menu" id="menu-web" role="tabpanel" aria-labelledby="cat-web">
         <article class="dish">
-          <div class="dish__img"><span class="dish__no">01</span><div class="art-browser"><i></i><div><b></b><span></span><span></span></div></div></div>
+          <div class="dish__img"><span class="dish__no">01</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-20%"><div class="pg-nav"><i></i></div><div class="pg-hero"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">1 Seite</span></div>
           <h3>Basis</h3><p>One-Pager mit Ihren Inhalten, für Handy optimiert, inkl. Impressum &amp; Datenschutz.</p>
           <div class="dish__foot"><span class="dish__price">300 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Basis">+ Anfrage</button></div>
         </article>
         <article class="dish">
-          <div class="dish__img dish__img--lime"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><div class="art-browser"><i></i><div><b></b><span></span><span></span></div></div></div>
+          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-40%"><div class="pg-nav"><i></i><span><b class="on"></b><b></b><b></b><b></b><b></b></span></div><div class="pg-hero"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div><div class="pg-map"></div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">bis 5 Seiten</span></div>
           <h3>Business</h3><p>Bis zu 5 Unterseiten, Google Maps &amp; Bewertungen eingebunden, SEO-Grundlagen.</p>
           <div class="dish__foot"><span class="dish__price"><small>ab</small>690 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Business">+ Anfrage</button></div>
         </article>
         <article class="dish">
-          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div class="art-browser"><i></i><div><b style="background:#d4f25c"></b><span></span><span></span></div></div></div>
+          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div class="mini"><div class="mini__lid"><div class="screen"><div class="page" style="--hover-travel:-55%"><span class="pg-badge">CMS</span><div class="pg-nav"><i></i><span><b class="on"></b><b></b><b></b><b></b><b></b></span></div><div class="pg-hero pg-hero--anim"></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-row"><b></b><b></b><b></b></div><div class="pg-stars">★★★★★</div><div class="pg-map"></div></div></div></div><div class="mini__base"></div></div><span class="pages-tag">bis 10 Seiten</span></div>
           <h3>Premium</h3><p>Bis zu 10 Seiten, eigenes Design mit Animationen, Inhalte selbst bearbeitbar.</p>
           <div class="dish__foot"><span class="dish__price"><small>ab</small>1.290 €</span><button class="add" type="button" data-add="Webentwicklung" data-detail="Website · Premium">+ Anfrage</button></div>
         </article>
@@ -620,17 +723,17 @@ img, svg, canvas { display: block; max-width: 100%; }
 
       <div class="menu" id="menu-tour" role="tabpanel" aria-labelledby="cat-tour" hidden>
         <article class="dish">
-          <div class="dish__img"><span class="dish__no">01</span><svg viewBox="0 0 200 140" width="60%" fill="none" stroke="#111110" stroke-width="2"><path d="M100 20 30 55l70 35 70-35z"/><path d="M30 55v40l70 35V90M170 55v40l-70 35"/></svg></div>
+          <div class="dish__img"><span class="dish__no">01</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="deg">360°</span></div><span class="pages-tag">360°-Rundgang</span></div>
           <h3>Basis</h3><p>Bis 80 m², 360°-Rundgang, Link für Website und Portale.</p>
           <div class="dish__foot"><span class="dish__price">300 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Basis">+ Anfrage</button></div>
         </article>
         <article class="dish">
-          <div class="dish__img dish__img--lime"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><svg viewBox="0 0 200 140" width="60%" fill="none" stroke="#111110" stroke-width="2"><path d="M100 20 30 55l70 35 70-35z"/><path d="M30 55v40l70 35V90M170 55v40l-70 35"/><path d="M84 52v20l18-10z" fill="#111110"/></svg></div>
+          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><span class="dish__badge">Empfehlung</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="plan"></span><div class="ui"><b>&#9654;</b><span></span></div></div><span class="pages-tag">Video + Grundriss</span></div>
           <h3>Plus</h3><p>Bis 200 m², zusätzlich Walkthrough-Video, Grundriss und Info-Punkte.</p>
           <div class="dish__foot"><span class="dish__price"><small>ab</small>490 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Plus">+ Anfrage</button></div>
         </article>
         <article class="dish">
-          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><svg viewBox="0 0 200 140" width="60%" fill="none" stroke="#d4f25c" stroke-width="2"><path d="M100 20 30 55l70 35 70-35z"/><path d="M30 55v40l70 35V90M170 55v40l-70 35"/><circle cx="100" cy="55" r="8" fill="#d4f25c"/></svg></div>
+          <div class="dish__img dish__img--dark"><span class="dish__no" style="color:#faf9f5">03</span><div class="tour-prev"><i></i><i></i><i></i><em></em><span class="split"></span><div class="ui"><b>&#9654;</b><span></span></div></div><span class="pages-tag">Home-Staging</span></div>
           <h3>Premium</h3><p>Gewerbe &amp; Hotel, KI-Home-Staging, Video für Social Media.</p>
           <div class="dish__foot"><span class="dish__price"><small>ab</small>790 €</span><button class="add" type="button" data-add="KI Roomtour" data-detail="Roomtour · Premium">+ Anfrage</button></div>
         </article>
@@ -643,7 +746,7 @@ img, svg, canvas { display: block; max-width: 100%; }
           <div class="dish__foot"><span class="dish__price" style="font-size:22px">Auf Anfrage</span><button class="add" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Weiß">+ Anfrage</button></div>
         </article>
         <article class="dish">
-          <div class="dish__img dish__img--lime"><span class="dish__no">02</span><div class="art-disc art-disc--black"><div><small>TAP HERE</small><b><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></b></div></div></div>
+          <div class="dish__img dish__img--accent"><span class="dish__no">02</span><div class="art-disc art-disc--black"><div><small>TAP HERE</small><b><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></b></div></div></div>
           <h3>Disc Schwarz</h3><p>Dieselbe Platte in Schwarz, edel auf heller Theke oder Tür.</p>
           <div class="dish__foot"><span class="dish__price" style="font-size:22px">Auf Anfrage</span><button class="add" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Schwarz">+ Anfrage</button></div>
         </article>
@@ -676,7 +779,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 8. Inquiry -->
-  <section class="ask" id="anfrage" data-bg="#d4f25c" data-ink="#111110">
+  <section class="ask" id="anfrage" data-bg="#f25c2a" data-ink="#111110">
     <div class="wrap ask__grid">
       <div>
         <span class="kicker rv">Anfrage</span>
@@ -792,7 +895,7 @@ img, svg, canvas { display: block; max-width: 100%; }
         <div><b>Kontakt</b><a href="tel:+4915566456417">+49 155 66456417</a><a href="tel:+4917656612709">+49 176 56612709</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></div>
         <div><b>Rechtliches</b><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
       </div>
-      <a class="btn btn--lime" href="#anfrage">Projekt starten</a>
+      <a class="btn btn--accent" href="#anfrage">Projekt starten</a>
     </div>
     <div class="wordmark" aria-hidden="true">F&amp;D Solutions<span>.</span></div>
     <div class="foot__base"><span>© <span id="year"></span> F&amp;D Solutions · München</span><span>Bewertungen · Websites · Roomtours</span></div>
@@ -858,13 +961,124 @@ img, svg, canvas { display: block; max-width: 100%; }
     });
   });
 
-  /* ---------------- Phone: page scrolls with the section ---------------- */
-  var phonePage = $("#phonePage"), web = $("#web");
-  function onScrollPhone() {
-    var r = web.getBoundingClientRect();
-    var p = clamp((window.innerHeight - r.top) / (window.innerHeight + r.height), 0, 1);
-    phonePage.style.setProperty("--p", smooth(0.25, 0.8, p).toFixed(3));
+  /* ---------------- Website showcase: one sample site in laptop + phone ---------------- */
+  var SAMPLES = {
+    cafe: { name: "Café Isarblick", links: ["Karte", "Über uns", "Kontakt"], cta: "Reservieren",
+      h: "Frühstück<br>an der Isar.", p: "Hausgemachte Kuchen, Siebträger-Kaffee und ein Platz in der Sonne, täglich ab 8 Uhr.", btn: "Tisch reservieren",
+      badge: "<i>★</i> 4,9 · 212 Bewertungen", band: "Heute geöffnet · 8 – 18 Uhr",
+      cards: [["Frühstück", "ab 9,50 €"], ["Kuchen", "hausgemacht"], ["Kaffee", "Siebträger"]], foot: ["Tisch für heute?", "Anrufen"],
+      vars: "--c1:#3b2a20;--c2:#f2b46b;--c3:#f6efe6;--img:radial-gradient(circle at 34% 42%,#f7e2c2 0 13%,#e9cfa6 13.5% 16%,transparent 16.5%),radial-gradient(circle at 66% 60%,#4a2c1b 0 9%,#fff 9.5% 15%,transparent 15.5%),linear-gradient(135deg,#a8744d,#5a3a26);--img2:linear-gradient(135deg,#ecc896,#b9835a)" },
+    handwerk: { name: "Schreinerei Huber", links: ["Leistungen", "Projekte", "Kontakt"], cta: "Angebot",
+      h: "Möbel<br>nach Maß.", p: "Küchen, Einbauschränke und Treppen aus unserem Meisterbetrieb in Dachau.", btn: "Projekt anfragen",
+      badge: "<i>★</i> 5,0 · 87 Bewertungen", band: "Meisterbetrieb seit 1987",
+      cards: [["Küchen", "nach Maß"], ["Schränke", "Einbau"], ["Treppen", "Massivholz"]], foot: ["Kostenloses Aufmaß vor Ort", "Termin"],
+      vars: "--c1:#1f3a2e;--c2:#e0b26a;--c3:#eef0ea;--img:linear-gradient(transparent 62%,#efe9de 62% 66%,transparent 66%),repeating-linear-gradient(100deg,#c8955f 0 9px,#b9844f 9px 14px,#d6a772 14px 24px);--img2:repeating-linear-gradient(95deg,#d2a26c 0 7px,#c08a55 7px 12px)" },
+    immo: { name: "Seeblick Immobilien", links: ["Angebote", "Verkaufen", "Team"], cta: "Bewertung",
+      h: "Zuhause<br>am See.", p: "Häuser und Wohnungen rund um den Starnberger See, diskret verkauft und mit Roomtour präsentiert.", btn: "Immobilie bewerten",
+      badge: "<i>★</i> 4,8 · 140 Bewertungen", band: "Kostenlose Wertermittlung in 48 Stunden",
+      cards: [["Villa Tutzing", "8 Zimmer"], ["Seehaus Berg", "5 Zimmer"], ["Penthouse", "4 Zimmer"]], foot: ["Roomtour ansehen", "Termin"],
+      vars: "--c1:#1d2f45;--c2:#9cc9e3;--c3:#eef3f6;--img:linear-gradient(#cfe3ee 0 50%,#6f9bb3 50% 66%,#87a173 66%);--img2:linear-gradient(#d9e8f0 0 55%,#7fa4b9 55% 70%,#93ab7f 70%)" }
+  };
+  function siteHTML(d) {
+    var cards = d.cards.map(function (c) { return "<div><b>" + c[0] + "</b><span>" + c[1] + "</span></div>"; }).join("");
+    return '<div class="site" style="' + d.vars + '">' +
+      '<div class="site__nav"><span class="site__logo"><i></i>' + d.name + '</span><span class="site__links"><span>' + d.links.join("</span><span>") + '</span></span><span class="site__cta">' + d.cta + '</span></div>' +
+      '<div class="site__hero"><div><h4>' + d.h + '</h4><p>' + d.p + '</p><span class="site__btn">' + d.btn + '</span></div><div class="site__img"><b>' + d.badge + '</b></div></div>' +
+      '<div class="site__band"><span>' + d.band + '</span><i>★★★★★</i></div>' +
+      '<div class="site__cards">' + cards + '</div>' +
+      '<div class="site__foot"><b>' + d.foot[0] + '</b><span>' + d.foot[1] + '</span></div></div>';
   }
+  var screens = $$("[data-screen]"), sampleTabs = $$("[data-sample]");
+  function showSample(key) {
+    screens.forEach(function (sc) { sc.innerHTML = siteHTML(SAMPLES[key]); });
+    sampleTabs.forEach(function (b) {
+      var on = b.getAttribute("data-sample") === key;
+      b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1;
+    });
+  }
+  sampleTabs.forEach(function (b, i) {
+    b.addEventListener("click", function () { showSample(b.getAttribute("data-sample")); });
+    b.addEventListener("keydown", function (e) {
+      var n = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+      if (!n) return;
+      var next = sampleTabs[(i + n + sampleTabs.length) % sampleTabs.length];
+      next.focus(); next.click();
+    });
+  });
+  showSample("cafe");
+
+  /* ---------------- Villa player: chapters, progress, optional real video ---------------- */
+  // Put a real roomtour film here (e.g. "/media/villa.mp4") and it replaces the 3D animation.
+  var VILLA_VIDEO_SRC = "";
+  var CHAPTERS = [["Anflug", 0], ["Wohnbereich", 2], ["Küche", 4], ["Terrasse & Pool", 6], ["Schlafzimmer", 8], ["Luftaufnahme", 10]];
+  var KEYS = 11;
+  var villa = { dur: 33, t: 0, playing: !reduce, video: null, chapter: -1 };
+  var vPlay = $("#villaPlay"), vTrack = $("#villaTrack"), vFill = $("#villaFill"), vTime = $("#villaTime"),
+      vName = $("#villaChapter"), vNo = $("#villaNo"), vChapters = $("#villaChapters");
+  var fmt = function (x) { x = Math.floor(x); return Math.floor(x / 60) + ":" + ("0" + x % 60).slice(-2); };
+  CHAPTERS.forEach(function (c, i) {
+    var b = document.createElement("button");
+    b.type = "button"; b.textContent = c[0];
+    b.addEventListener("click", function () { villaSeek(c[1] / KEYS * villa.dur); villaPlay(true); });
+    vChapters.appendChild(b);
+    var m = document.createElement("span");
+    m.className = "player__mark"; m.style.left = (c[1] / KEYS * 100) + "%";
+    vTrack.appendChild(m);
+  });
+  var chapterButtons = $$("button", vChapters);
+  function villaSeek(sec) {
+    villa.t = ((sec % villa.dur) + villa.dur) % villa.dur;
+    if (villa.video) villa.video.currentTime = villa.t;
+    villaUI();
+  }
+  function villaPlay(on) {
+    villa.playing = on;
+    if (villa.video) { if (on) villa.video.play().catch(function () {}); else villa.video.pause(); }
+    vPlay.setAttribute("aria-label", on ? "Pause" : "Abspielen");
+    $(".i-pause", vPlay).style.display = on ? "" : "none";
+    $(".i-play", vPlay).style.display = on ? "none" : "";
+  }
+  function villaUI() {
+    var f = villa.t / villa.dur;
+    vFill.style.width = (f * 100).toFixed(2) + "%";
+    vTrack.setAttribute("aria-valuenow", Math.round(f * 100));
+    vTime.textContent = fmt(villa.t) + " / " + fmt(villa.dur);
+    var ch = 0;
+    CHAPTERS.forEach(function (c, i) { if (f >= c[1] / KEYS - 1e-4) ch = i; });
+    if (ch !== villa.chapter) {
+      villa.chapter = ch;
+      vName.textContent = CHAPTERS[ch][0];
+      vNo.textContent = "Kapitel " + (ch + 1) + " / " + CHAPTERS.length;
+      chapterButtons.forEach(function (b, i) { b.setAttribute("aria-current", String(i === ch)); });
+    }
+  }
+  vPlay.addEventListener("click", function () { villaPlay(!villa.playing); });
+  function trackSeek(e) {
+    var r = vTrack.getBoundingClientRect();
+    villaSeek(clamp((e.clientX - r.left) / r.width, 0, 0.999) * villa.dur);
+  }
+  vTrack.addEventListener("pointerdown", function (e) {
+    vTrack.setPointerCapture(e.pointerId); trackSeek(e);
+    var move = function (ev) { trackSeek(ev); };
+    var up = function () { vTrack.removeEventListener("pointermove", move); vTrack.removeEventListener("pointerup", up); };
+    vTrack.addEventListener("pointermove", move); vTrack.addEventListener("pointerup", up);
+  });
+  vTrack.addEventListener("keydown", function (e) {
+    var n = e.key === "ArrowRight" ? 3 : e.key === "ArrowLeft" ? -3 : 0;
+    if (n) { e.preventDefault(); villaSeek(villa.t + n); }
+  });
+  if (VILLA_VIDEO_SRC) {
+    var vid = document.createElement("video");
+    vid.src = VILLA_VIDEO_SRC; vid.muted = true; vid.loop = true; vid.playsInline = true; vid.preload = "metadata";
+    $("#villaView").appendChild(vid);
+    $(".player__rec").textContent = "Beispiel · Roomtour";
+    villa.video = vid;
+    vid.addEventListener("loadedmetadata", function () { villa.dur = vid.duration || villa.dur; villaUI(); });
+    vid.addEventListener("timeupdate", function () { villa.t = vid.currentTime; villaUI(); });
+    new IntersectionObserver(function (e) { if (villa.playing) { if (e[0].isIntersecting) vid.play().catch(function () {}); else vid.pause(); } }).observe(vid);
+  }
+  villaPlay(villa.playing);
+  villaUI();
 
   /* ---------------- Price menu tabs + add to inquiry ---------------- */
   var cats = $$(".cats [role=tab]");
@@ -1123,7 +1337,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   function lights(scene) {
     scene.add(new THREE.HemisphereLight(0xffffff, 0xd8d3c4, 0.9));
     var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(3, 6, 4); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xe9f8b0, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
+    var rim = new THREE.DirectionalLight(0xffd8c7, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
   }
 
   var pointer = { x: 0, y: 0 }, pointerT = { x: 0, y: 0 };
@@ -1206,70 +1420,129 @@ img, svg, canvas { display: block; max-width: 100%; }
     s.scene.add(disc.group);
   }
 
-  function initRoom() {
-    var host = $("#roomStage");
-    var focus = [{ x: .55, y: -.6 }, { x: .4, y: .5 }, { x: .4, y: -.95 }, { x: .75, y: 2.6 }], room = 0;
-    var s = stage(host, { fov: 35, update: function (t, dt) {
-      if (!drag.active) drag.y += (reduce ? 0 : .12) * dt * (room === 0 ? 1 : 0);
-      var f = focus[room], k = 1 - Math.pow(.06, dt);
-      rot.x = lerp(rot.x, f.x, k); rot.y = lerp(rot.y, f.y + drag.y, k);
-      cube.rotation.set(rot.x, rot.y, 0);
-      rooms.forEach(function (r, i) { if (r) { r.material.color.set(i === room ? 0xd4f25c : 0xfaf9f5); r.material.opacity = i === room ? 1 : .25; } });
-      marker.position.copy(path.getPointAt((t * .06) % 1));
-      cloud.material.opacity = .45 + Math.sin(t * 1.4) * .15;
+  /* --- Villa walkthrough: a low-poly modern villa at sunset, filmed along a camera path --- */
+  function initVilla() {
+    if (villa.video) return;
+    var V = THREE.Vector3;
+    var cam = new THREE.CatmullRomCurve3([
+      new V(18, 9, 26), new V(10, 4, 16), new V(-1.5, 1.7, 3.4), new V(-3.6, 1.7, 0.6), new V(1.2, 1.8, 1.6), new V(4.6, 1.8, 3.4),
+      new V(6, 1.6, 9.5), new V(-3.5, 3.4, 11), new V(-1.2, 4.9, 0.9), new V(7, 6.5, 9), new V(0, 21, 19)
+    ], true);
+    var aim = new THREE.CatmullRomCurve3([
+      new V(0, 2, 2), new V(0, 1.5, 3), new V(-4, 1.2, -2), new V(2, 1.3, -1.5), new V(4, 1, -2.4), new V(2, .5, 8),
+      new V(-1, .4, 7), new V(-1.5, 4.5, -1), new V(-2.2, 3.9, -2.6), new V(0, 3, 0), new V(0, 0, 1.5)
+    ], true);
+    var look = new V();
+    var s = stage($("#villaView"), { fov: 50, update: function (t, dt, st) {
+      if (villa.playing) villa.t = (villa.t + dt) % villa.dur;
+      var u = villa.t / villa.dur;
+      cam.getPoint(u, st.camera.position);
+      aim.getPoint(u, look);
+      st.camera.lookAt(look);
+      water.material.emissiveIntensity = .25 + Math.sin(t * 2) * .05;
+      villaUI();
     } });
     if (!s) return;
-    s.camera.position.set(0, .3, 7.2);
-    var cube = new THREE.Group(), rot = { x: .55, y: -.6 };
-    function box(w, h, d, x, y, z, color, op) {
-      var e = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(w, h, d)), new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: op }));
-      e.position.set(x, y, z); cube.add(e); return e;
-    }
-    box(3.2, 1.6, 2.4, 0, 0, 0, 0xd4f25c, .9);
-    var rooms = [null, box(1.6, 1.6, 1.2, -.8, 0, -.6, 0xfaf9f5, .25), box(1.6, 1.6, 1.2, .8, 0, -.6, 0xfaf9f5, .25), box(3.2, 1.6, 1.2, 0, 0, .6, 0xfaf9f5, .25)];
-    var grid = new THREE.GridHelper(3.2, 16, 0x3a3a3a, 0x2a2a2a); grid.position.y = -.8; grid.scale.z = .75; cube.add(grid);
-    var pts = [];
-    for (var i = 0; i < 1600; i++) {
-      var f = Math.random();
-      if (f < .4) pts.push((Math.random() - .5) * 3.2, -.8, (Math.random() - .5) * 2.4);
-      else if (f < .7) pts.push((Math.random() - .5) * 3.2, (Math.random() - .5) * 1.6, -1.2);
-      else pts.push(-1.6, (Math.random() - .5) * 1.6, (Math.random() - .5) * 2.4);
-    }
-    var cg = new THREE.BufferGeometry(); cg.setAttribute("position", new THREE.Float32BufferAttribute(pts, 3));
-    var cloud = new THREE.Points(cg, new THREE.PointsMaterial({ color: 0xd4f25c, size: .025, transparent: true, opacity: .5, depthWrite: false }));
-    cube.add(cloud);
-    var path = new THREE.CatmullRomCurve3([new THREE.Vector3(-1.1, -.55, .9), new THREE.Vector3(-.9, -.55, -.8), new THREE.Vector3(.9, -.55, -.8), new THREE.Vector3(1.1, -.55, .8)], true);
-    var pl = new THREE.Line(new THREE.BufferGeometry().setFromPoints(path.getPoints(120)), new THREE.LineDashedMaterial({ color: 0xfaf9f5, dashSize: .06, gapSize: .05 }));
-    pl.computeLineDistances(); cube.add(pl);
-    var marker = new THREE.Mesh(new THREE.SphereGeometry(.06, 16, 16), new THREE.MeshBasicMaterial({ color: 0xd4f25c }));
-    cube.add(marker);
-    cube.position.y = .25;
-    s.scene.add(cube);
+    var scene = s.scene;
+    s.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    s.renderer.toneMappingExposure = .95;
 
-    var drag = { active: false, last: 0, y: 0 }, cv = s.renderer.domElement;
-    cv.style.touchAction = "pan-y";
-    cv.addEventListener("pointerdown", function (e) { drag.active = true; drag.last = e.clientX; cv.setPointerCapture(e.pointerId); });
-    cv.addEventListener("pointermove", function (e) { if (!drag.active) return; drag.y += (e.clientX - drag.last) * .01; drag.last = e.clientX; });
-    var up = function () { drag.active = false; };
-    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
-    $$("[data-room]").forEach(function (b) {
-      b.addEventListener("click", function () {
-        room = Number(b.getAttribute("data-room")); drag.y = 0;
-        $$("[data-room]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
-      });
+    // Sunset sky + haze
+    var sky = document.createElement("canvas"); sky.width = 4; sky.height = 256;
+    var sg = sky.getContext("2d"), grd = sg.createLinearGradient(0, 0, 0, 256);
+    grd.addColorStop(0, "#4f6f99"); grd.addColorStop(.45, "#c99aa0"); grd.addColorStop(.7, "#f6b98a"); grd.addColorStop(1, "#f9d9b4");
+    sg.fillStyle = grd; sg.fillRect(0, 0, 4, 256);
+    var skyTex = new THREE.CanvasTexture(sky); skyTex.encoding = THREE.sRGBEncoding;
+    scene.background = skyTex;
+    scene.fog = new THREE.Fog(0xe9c3a2, 45, 140);
+
+    scene.add(new THREE.HemisphereLight(0xffe2c4, 0x4d5a44, .55));
+    var sun = new THREE.DirectionalLight(0xffb27a, .95); sun.position.set(-20, 12, 14); scene.add(sun);
+    var fill = new THREE.DirectionalLight(0x9fb7ff, .25); fill.position.set(15, 8, -10); scene.add(fill);
+    [[-3.5, 2.4, -1], [3.5, 2.4, -1.5], [-1.5, 5.4, -2]].forEach(function (p) {
+      var l = new THREE.PointLight(0xffc98a, .35, 8, 2); l.position.set(p[0], p[1], p[2]); scene.add(l);
+    });
+
+    var mats = {};
+    function mat(hex, o) { var k = hex + JSON.stringify(o || {}); return mats[k] || (mats[k] = new THREE.MeshStandardMaterial(Object.assign({ color: hex, roughness: .8 }, o))); }
+    function box(w, h, d, x, y, z, m) {
+      var b = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), typeof m === "number" ? mat(m) : m);
+      b.position.set(x, y + h / 2, z); scene.add(b); return b;
+    }
+    var WALL = 0xe8e3d9, DARK = 0x2a2a2a;
+    var glass = new THREE.MeshStandardMaterial({ color: 0xbfd8e6, transparent: true, opacity: .22, roughness: .05, metalness: .2, depthWrite: false, side: THREE.DoubleSide });
+
+    // Ground, lake strip, hills
+    var ground = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), mat(0x74895c));
+    ground.rotation.x = -Math.PI / 2; scene.add(ground);
+    var lake = new THREE.Mesh(new THREE.PlaneGeometry(200, 40), mat(0x6f95ad, { roughness: .2, metalness: .3 }));
+    lake.rotation.x = -Math.PI / 2; lake.position.set(0, .02, 42); scene.add(lake);
+
+    // Ground floor: x -6..6, z -4..4
+    box(12.6, .2, 8.6, 0, 0, 0, 0xd9c4a3);
+    box(12, 3, .2, 0, .2, -3.9, WALL);
+    box(.2, 3, 8, -5.9, .2, 0, WALL);
+    box(.2, 3, 8, 5.9, .2, 0, WALL);
+    box(12, 2.8, .05, 0, .2, 3.95, glass);
+    for (var x = -6; x <= 6; x += 2) box(.08, 2.8, .1, x, .2, 3.95, DARK);
+    box(13.4, .3, 9.6, 0, 3.0, .4, 0xe9e5dc);
+    // Upper floor: x -5..2, z -4..1.5
+    box(7, 2.8, .2, -1.5, 3.3, -3.9, WALL);
+    box(.2, 2.8, 5.5, -4.9, 3.3, -1.25, WALL);
+    box(.2, 2.8, 5.5, 1.9, 3.3, -1.25, WALL);
+    box(7, 2.8, .05, -1.5, 3.3, 1.45, glass);
+    for (x = -5; x <= 2; x += 1.75) box(.08, 2.8, .1, x, 3.3, 1.45, DARK);
+    box(8.2, .3, 7, -1.5, 6.1, -1, 0xe9e5dc);
+    box(4.5, .9, .05, 4.2, 3.3, 3.9, glass); // roof terrace railing
+
+    // Living room
+    box(10, .02, 5, -1, .2, 0, 0xa98560);
+    box(3.6, .45, 1, -4, .2, -2.2, 0x8c8a84); box(3.6, .5, .3, -4, .65, -2.6, 0x8c8a84);
+    box(1, .45, 1.8, -5.3, .2, -1.1, 0x8c8a84);
+    box(3.2, .02, 2.4, -3.8, .22, -.6, 0xc9b9a0);
+    box(1.4, .35, .8, -3.8, .22, -.6, 0x6b4b34);
+    box(.12, 1.6, .12, -2, .2, -3.2, DARK); box(.6, .1, .6, -2, 1.8, -3.2, mat(0xfff1d8, { emissive: 0xffc98a, emissiveIntensity: .9 }));
+    // Kitchen
+    box(3.4, .95, 1.1, 3.6, .2, -1.2, 0xf6f4ef); box(3.6, .06, 1.3, 3.6, 1.15, -1.2, 0x2b2b2b);
+    box(4.4, .95, .7, 3.6, .2, -3.45, 0xf6f4ef); box(4.4, 1.1, .4, 3.6, 1.9, -3.6, 0xb08860);
+    [2.6, 3.6, 4.6].forEach(function (x) { box(.4, .7, .4, x, .2, -.2, DARK); box(.03, .7, .03, x, 2.2, -1.2, DARK); box(.22, .22, .22, x, 2.0, -1.2, mat(0xffe3b8, { emissive: 0xffb36b, emissiveIntensity: 1 })); });
+    // Bedroom
+    box(6.6, .02, 5, -1.5, 3.3, -1.3, 0xa98560);
+    box(2.2, .4, 2.6, -2.2, 3.32, -2.4, 0xece8df); box(2.2, .15, 1.6, -2.2, 3.72, -1.9, 0xd9d0c0);
+    box(.8, .2, .45, -2.7, 3.72, -3.4, 0xffffff); box(.8, .2, .45, -1.7, 3.72, -3.4, mat(0xf25c2a));
+    box(2.8, 1.1, .1, -2.2, 3.32, -3.75, 0x6b4b34);
+    box(.5, .45, .5, -.6, 3.32, -3.3, 0x6b4b34); box(.25, .25, .25, -.6, 3.77, -3.3, mat(0xfff1d8, { emissive: 0xffc98a, emissiveIntensity: 1 }));
+
+    // Deck + pool
+    box(16, .15, 6, 0, 0, 7.1, 0xa8774f);
+    for (x = -7.6; x < 8; x += .8) box(.03, .01, 6, x, .15, 7.1, 0x8a603d);
+    box(8.4, .05, 3.4, 2, .15, 7.6, 0xe9e4da);
+    var water = box(8, .06, 3, 2, .16, 7.6, new THREE.MeshStandardMaterial({ color: 0x48aed6, emissive: 0x2a8fbf, emissiveIntensity: .25, roughness: .1, metalness: .1 }));
+    [[-5, 6.5], [-3.6, 6.5]].forEach(function (p) { box(.8, .3, 2, p[0], .15, p[1], 0xf4f1ea); });
+
+    // Trees and hedges
+    function tree(x, z, k) {
+      box(.25 * k, 1.6 * k, .25 * k, x, 0, z, 0x5b4636);
+      var c = new THREE.Mesh(new THREE.IcosahedronGeometry(1.3 * k, 0), mat(0x5f7a4f, { flatShading: true }));
+      c.position.set(x, 2.4 * k, z); scene.add(c);
+    }
+    [[-11, -3, 1.3], [-12, 4, 1], [11, -4, 1.4], [12, 3, 1.1], [-8, -9, 1.6], [7, -10, 1.5], [-15, 10, 1.2], [15, 11, 1.3], [0, -12, 1.7]].forEach(function (p) { tree(p[0], p[1], p[2]); });
+    box(5, .8, .8, -11, 0, 9.5, 0x5f7a4f); box(5, .8, .8, 11, 0, 9.5, 0x5f7a4f);
+    // Distant hills
+    [[-40, -60, 22], [10, -70, 28], [50, -55, 20]].forEach(function (h) {
+      var m = new THREE.Mesh(new THREE.SphereGeometry(h[2], 16, 8, 0, Math.PI * 2, 0, Math.PI / 2), mat(0x7f8f72));
+      m.position.set(h[0], -2, h[1]); m.scale.y = .45; scene.add(m);
     });
   }
 
   if (THREE) {
     try {
-      var go = function () { initHero(); initExplode(); initRoom(); loop(); };
+      var go = function () { initHero(); initExplode(); initVilla(); loop(); };
       // Draw the canvas artwork once the web fonts are ready (Anton on the disc back).
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
     } catch (err) { /* page stays fully usable without 3D */ }
   }
 
-  window.addEventListener("scroll", onScrollPhone, { passive: true });
-  onScrollPhone();
 })();
 </script>
 </body>
