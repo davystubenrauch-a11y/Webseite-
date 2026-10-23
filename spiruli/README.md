@@ -13,23 +13,22 @@ npm run build && npm start
 
 When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
 
+## Concept
+
+Bold colour fields in the drink's palette: algae green, lime, elderberry magenta, citrus and cream. Tone-on-tone botanical wallpaper (`components/ui/Pattern.tsx`), extra-wide Archivo Black headlines and small dense uppercase copy.
+
+**One 3D can for the whole page.** `components/stage/CanStage.tsx` renders the can in a fixed layer above the sections. Each section declares where the can should be through its `data-can` attribute: position, scale and rotation. Scrolling interpolates between those poses, so the can flies, spins and tilts from section to section. On phones, side poses move the can to the screen edge so it never covers content.
+
 ## Sections
 
-1. **Hero (lime):** giant "Natürliche Energie." headline with the 3D can floating between the words. Ingredient illustrations drift with the pointer, and a rotating "Dreh mich!" sticker invites visitors to drag the can.
-2. **Ticker:** tilted band with the key facts.
-3. **Manifest:** the product statement in large type; its words ink in as you scroll.
-4. **Zutaten:** horizontal ingredient journey (Holunder, Zitrus, Spirulina, Fermentation). It is pinned and scrolled sideways on desktop and swipeable on mobile.
-5. **Die Dose:** the 3D can with four callouts (vegan, B vitamins, amino acids, PZN), plus spin/back/"Eiskalt" controls.
-6. **Nährstoffe:** vitamin accordion with the EU claims, and an amino-acid chip cloud with filters (Essentiell, BCAA).
-7. **Wer dahinter steckt:** biotechnologists, therapists, master brewers.
-8. **Geprüft & gelistet:** PZN ticket with a scannable barcode and check-digit maths, plus the SGS Fresenius stamp.
-9. **FAQ** and a final **"Frag in deiner Apotheke"** call to action.
-
-The 3D can (`components/three/SpiruliCan.tsx`) uses the real artwork, unwrapped from the product photo by `scripts/bake-label.py` into `public/label/`.
-
-## Design
-
-Colour blocks taken from the ingredients: lime, elderberry, citrus and algae on cream, anchored by the can's petrol (`tailwind.config.ts`). Bricolage Grotesque for text, Caveat for handwritten notes, Josefin Sans for the SPIRULI wordmark. Ink outlines and offset "sticker" shadows give the page a printed, crafted feel.
+1. **Hero:** giant "SPIRULI" over the can.
+2. **Ein neuer Blick auf Energie:** the can tilts in from the right.
+3. **Aus der Alge / In die Dose:** text split around the can.
+4. **Zutaten:** cream list beside an elderberry field.
+5. **Was drin steckt:** vitamin tiles with EU claims and amino-acid pills.
+6. **Team:** "Jahre Forschung. Drei Disziplinen."
+7. **Apothekenqualität:** PZN with a scannable barcode, and SGS Fresenius.
+8. **Probier's aus:** ordering steps and calls to action.
 
 ## Updating the can artwork
 

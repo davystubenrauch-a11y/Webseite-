@@ -8,7 +8,7 @@ export default function CopyPzn({ className = "" }: { className?: string }) {
   return (
     <button
       type="button"
-      className={`btn-line ${className}`}
+      className={className}
       onClick={async () => {
         try {
           await navigator.clipboard.writeText(site.pzn);

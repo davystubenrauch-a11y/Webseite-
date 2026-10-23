@@ -1,9 +1,9 @@
 import type { Metadata, Viewport } from "next";
-import { display, hand, sans } from "@/lib/fonts";
+import { archivo, display } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SPIRULI® – Natürliche Energie aus Holunder, Zitrus & Algen",
+  title: "SPIRULI® – Natürliche Energie",
   description:
     "Das vegane & natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren. Fermentierte Holunder-Zitrus-Algen-Basis. In der Apotheke: PZN 11110571.",
   openGraph: {
@@ -15,12 +15,12 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#D4EE6F",
+  themeColor: "#1E6B3B",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${sans.variable} ${hand.variable} ${display.variable}`}>
+    <html lang="de" className={`${archivo.variable} ${display.variable}`}>
       <body className="font-sans">{children}</body>
     </html>
   );
