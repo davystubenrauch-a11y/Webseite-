@@ -17,7 +17,7 @@ const TOP = BODY_H / 2;
  * Scroll-driven offsets written by GSAP each frame; added on top of the
  * interactive pose so scrolling and dragging compose.
  */
-export type Driven = { rotation: number; x: number; y: number; scale: number; tilt: number };
+export type Driven = { rotation: number; x: number; y: number; scale: number; tilt: number; pitch?: number };
 export const restPose = (): Driven => ({ rotation: 0, x: 0, y: 0, scale: 1, tilt: 0 });
 
 type Props = {
@@ -316,7 +316,7 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
       group.current.position.x = d.x;
       group.current.scale.setScalar(d.scale);
       group.current.rotation.z = Math.sin(t * 0.5) * 0.025 + d.tilt;
-      tiltGroup.current.rotation.x = s.tiltX + 0.08;
+      tiltGroup.current.rotation.x = s.tiltX + 0.08 + (d.pitch ?? 0);
       tiltGroup.current.rotation.y = s.tiltY;
     }
   });
