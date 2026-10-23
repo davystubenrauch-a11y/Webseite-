@@ -40,7 +40,7 @@ Pipeline to re-render after a design change:
 2. `node scripts/label-export/export.mjs OUT 3`: paints the full label with `lib/drawLabel.ts` at 6144 px (wordmark, copy, band, badges, seal and back panel are vector art) and writes `label-color.png` and `label-pbr.png`.
 3. Render with Blender (the `bpy` package, Python 3.11):
    `python3.11 scripts/render_can.py -- --label OUT/label-color.png --pbr OUT/label-pbr.png --out FRAMES --frames 60 --size 800x1600 --samples 64`.
-   Use `--mode still` for a 4K hero image.
+   Use `--mode still` for a 4K hero image (`public/renders/spiruli-4k.jpg`).
 4. `python3 scripts/pack-frames.py FRAMES`: crops the frames and writes WebP files to `public/can/`.
 
 For a sharper swoosh, use a higher-resolution source image or the designer's artwork in step 1.
