@@ -30,9 +30,13 @@ Bold colour fields in the drink's palette: algae green, lime, elderberry magenta
 7. **Apothekenqualität:** PZN with a scannable barcode, and SGS Fresenius.
 8. **Probier's aus:** ordering steps and calls to action.
 
-## Updating the can artwork
+## The can
 
-Replace `public/spiruli-can.jpg` with a straight-on photo or render of the can. Adjust `CX`, `R`, `TOP` and `BOTTOM` in `scripts/bake-label.py` to the can's position in the image, then run `python3 scripts/bake-label.py` (needs Pillow and NumPy). A high-resolution flat label file from the designer gives the sharpest result.
+`components/three/SpiruliCan.tsx` builds the can in code: a detailed lathe-turned shoulder with a rolled rim and recessed lid, a domed base, a pull tab, and polished aluminium lit by a contrasty studio (`Studio.tsx`).
+
+The label (`lib/drawLabel.ts`) is painted at runtime at 4096 px around the can on desktop. Lacquer gradient, wordmark (letters drawn as paths), copy, gold band, badges, embossed "Premium Formula" seal and PZN line are crisp vector art. Only the painted swoosh comes from the product photo: `scripts/bake-label.py` extracts it, upscales it and unwraps it into `public/label/swoosh*.webp`.
+
+For a sharper swoosh, replace `public/spiruli-can.jpg` with a higher-resolution image (or the designer's artwork). Adjust `CX`, `R`, `TOP` and `BOTTOM` in the script, then run `python3 scripts/bake-label.py` (needs Pillow and NumPy).
 
 ## Before launch
 

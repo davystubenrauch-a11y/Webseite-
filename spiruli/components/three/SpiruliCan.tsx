@@ -35,7 +35,8 @@ function useFontsReady() {
       document.fonts.load(`300 100px ${display.style.fontFamily}`),
       document.fonts.load(`600 40px ${display.style.fontFamily}`),
       document.fonts.load(`700 40px ${sans.style.fontFamily}`),
-      document.fonts.load(`500 40px ${sans.style.fontFamily}`),
+      document.fonts.load(`600 40px ${sans.style.fontFamily}`),
+      document.fonts.load(`800 40px ${sans.style.fontFamily}`),
     ])
       .catch(() => undefined)
       .finally(() => alive && setReady(true));
@@ -55,13 +56,13 @@ function loadImage(src: string) {
   });
 }
 
-/** Front artwork baked from the product photo (scripts/bake-label.py). */
+/** Painted swoosh baked from the product photo (scripts/bake-label.py). */
 function useFrontArt() {
   const [art, setArt] = useState<FrontArt | null>(null);
   useEffect(() => {
     let alive = true;
-    Promise.all([loadImage("/label/front.webp"), loadImage("/label/front-pbr.webp")])
-      .then(([color, pbr]) => alive && setArt({ color, pbr, width: color.naturalWidth }))
+    Promise.all([loadImage("/label/swoosh.webp"), loadImage("/label/swoosh-pbr.webp")])
+      .then(([color, pbr]) => alive && setArt({ color, pbr, width: (color.naturalWidth * LABEL_H) / color.naturalHeight }))
       .catch(() => undefined);
     return () => {
       alive = false;
@@ -73,15 +74,20 @@ function useFrontArt() {
 function useLabelTextures(ready: boolean, front: FrontArt | null) {
   const { gl } = useThree();
   const tex = useMemo(() => {
-    const make = () => {
+    // The colour map carries all the fine print, so it gets 2× resolution
+    // (4096 px around the can) on larger screens; the PBR map stays at 1×.
+    const max = gl.capabilities.maxTextureSize / LABEL_W;
+    const colorScale = Math.min(max, window.innerWidth < 768 ? 1.5 : 2);
+    const make = (scale: number) => {
       const c = document.createElement("canvas");
-      c.width = LABEL_W;
-      c.height = LABEL_H;
+      c.width = Math.round(LABEL_W * scale);
+      c.height = Math.round(LABEL_H * scale);
       return new THREE.CanvasTexture(c);
     };
-    const color = make();
+    const color = make(colorScale);
     color.colorSpace = THREE.SRGBColorSpace;
-    const pbr = make();
+    color.userData.scale = colorScale;
+    const pbr = make(1);
     const aniso = gl.capabilities.getMaxAnisotropy();
     color.anisotropy = pbr.anisotropy = aniso;
     const drops = new THREE.CanvasTexture(makeCondensation());
@@ -92,7 +98,7 @@ function useLabelTextures(ready: boolean, front: FrontArt | null) {
 
   useEffect(() => {
     const fonts = { display: display.style.fontFamily, sans: sans.style.fontFamily };
-    paintLabel((tex.color.image as HTMLCanvasElement).getContext("2d")!, "color", fonts, front);
+    paintLabel((tex.color.image as HTMLCanvasElement).getContext("2d")!, "color", fonts, front, tex.color.userData.scale);
     paintLabel((tex.pbr.image as HTMLCanvasElement).getContext("2d")!, "pbr", fonts, front);
     tex.color.needsUpdate = true;
     tex.pbr.needsUpdate = true;
@@ -109,7 +115,7 @@ function useLabelTextures(ready: boolean, front: FrontArt | null) {
   return tex;
 }
 
-function lathe(points: [number, number][], segments = 128) {
+function lathe(points: [number, number][], segments = 192) {
   return new THREE.LatheGeometry(
     points.map(([r, y]) => new THREE.Vector2(r, y)),
     segments,
@@ -152,32 +158,42 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
 
   const geo = useMemo(
     () => ({
-      body: new THREE.CylinderGeometry(CAN_R, CAN_R, BODY_H, 160, 1, true, Math.PI, Math.PI * 2),
+      body: new THREE.CylinderGeometry(CAN_R, CAN_R, BODY_H, 256, 1, true, Math.PI, Math.PI * 2),
+      // Domed base with a standing ring.
       bottom: lathe([
-        [0, -TOP - 0.07],
-        [0.2, -TOP - 0.075],
-        [0.36, -TOP - 0.09],
-        [0.43, -TOP - 0.1],
-        [0.47, -TOP - 0.1],
-        [0.53, -TOP - 0.085],
-        [0.565, -TOP - 0.05],
+        [0, -TOP - 0.03],
+        [0.2, -TOP - 0.036],
+        [0.35, -TOP - 0.052],
+        [0.42, -TOP - 0.078],
+        [0.445, -TOP - 0.093],
+        [0.47, -TOP - 0.097],
+        [0.5, -TOP - 0.09],
+        [0.54, -TOP - 0.074],
+        [0.565, -TOP - 0.048],
         [0.578, -TOP - 0.02],
         [CAN_R, -TOP],
       ]),
-      // Short neck: on the photo the label runs almost up to the rim.
+      // Shoulder, neck, rolled rim and the recessed lid panel.
       shoulder: lathe([
         [CAN_R, TOP],
-        [0.578, TOP + 0.02],
-        [0.565, TOP + 0.045],
-        [0.54, TOP + 0.07],
-        [0.525, TOP + 0.085],
-        [0.524, TOP + 0.1],
-        [0.533, TOP + 0.112],
-        [0.526, TOP + 0.124],
-        [0.51, TOP + 0.12],
-        [0.504, TOP + 0.1],
-        [0.498, TOP + 0.088],
-        [0, TOP + 0.088],
+        [0.579, TOP + 0.02],
+        [0.572, TOP + 0.05],
+        [0.556, TOP + 0.085],
+        [0.535, TOP + 0.115],
+        [0.515, TOP + 0.14],
+        [0.506, TOP + 0.156],
+        [0.507, TOP + 0.166],
+        [0.512, TOP + 0.174],
+        [0.514, TOP + 0.182],
+        [0.51, TOP + 0.19],
+        [0.502, TOP + 0.193],
+        [0.495, TOP + 0.188],
+        [0.492, TOP + 0.176],
+        [0.489, TOP + 0.152],
+        [0.48, TOP + 0.138],
+        [0.468, TOP + 0.14],
+        [0.455, TOP + 0.145],
+        [0, TOP + 0.145],
       ]),
       tab: makeTabShape(),
     }),
@@ -187,12 +203,14 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
   const alu = useMemo(
     () =>
       new THREE.MeshPhysicalMaterial({
-        color: "#e6e9ec",
+        // Polished aluminium: bright, low roughness, slightly brushed.
+        color: "#f1f3f5",
         metalness: 1,
-        roughness: 0.38,
-        anisotropy: 0.4,
-        clearcoat: 0,
-        envMapIntensity: 0.9,
+        roughness: 0.13,
+        anisotropy: 0.55,
+        clearcoat: 0.3,
+        clearcoatRoughness: 0.05,
+        envMapIntensity: 1.7,
         side: THREE.DoubleSide,
       }),
     [],
@@ -308,7 +326,7 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
     labelMat.clearcoatNormalScale.setScalar(s.wet * 0.6);
     labelMat.clearcoatRoughness = 0.45 - s.wet * 0.35;
     labelMat.clearcoat = 0.12 + s.wet * 0.6;
-    alu.roughness = 0.38 + s.wet * 0.1;
+    alu.roughness = 0.13 + s.wet * 0.12;
 
     const d = driven ?? restPose();
     if (group.current && tiltGroup.current) {
@@ -354,12 +372,12 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
         <mesh geometry={geo.bottom} material={alu} />
         <mesh geometry={geo.shoulder} material={alu} />
         {/* Pull tab and rivet */}
-        <mesh geometry={geo.tab} material={alu} position={[0, TOP + 0.095, 0.02]} rotation={[-Math.PI / 2, 0, 0]} />
-        <mesh material={alu} position={[0, TOP + 0.098, 0.06]}>
-          <cylinderGeometry args={[0.035, 0.04, 0.02, 24]} />
+        <mesh geometry={geo.tab} material={alu} position={[0, TOP + 0.152, 0.02]} rotation={[-Math.PI / 2, 0, 0]} />
+        <mesh material={alu} position={[0, TOP + 0.155, 0.06]}>
+          <cylinderGeometry args={[0.035, 0.04, 0.02, 32]} />
         </mesh>
         {/* Score line of the opening */}
-        <mesh position={[0, TOP + 0.09, 0.25]} rotation={[-Math.PI / 2, 0, 0]}>
+        <mesh position={[0, TOP + 0.147, 0.25]} rotation={[-Math.PI / 2, 0, 0]}>
           <torusGeometry args={[0.13, 0.004, 8, 64, Math.PI * 1.2]} />
           <meshStandardMaterial color="#8d9398" metalness={1} roughness={0.4} />
         </mesh>
