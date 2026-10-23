@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<title>SPIRULI Dose – Mockup</title>
+<style>
+  html, body { margin: 0; height: 100%; overflow: hidden; }
+  body { background: radial-gradient(120% 90% at 50% 35%, #fbf9ef 0%, #eef5d6 55%, #d9e9b0 100%); }
+  canvas { display: block; }
+</style>
+<script type="importmap">
+  { "imports": {
+      "three": "../spiruli/node_modules/three/build/three.module.js",
+      "three/addons/": "../spiruli/node_modules/three/examples/jsm/"
+  } }
+</script>
+</head>
+<body>
+<script type="module">
+// Product mockup of the 200 ml slim can with label.png wrapped around it.
+// ?view=hero | front | left | right | back
+import * as THREE from "three";
+import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
+
+const view = new URLSearchParams(location.search).get("view") || "hero";
+
+// 1 unit = 50 mm. Can: Ø 53 mm, label 95 mm high.
+const R = 0.53;
+const BODY = 1.9;
+const TOP = BODY / 2;
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.NeutralToneMapping;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+document.body.appendChild(renderer.domElement);
+
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(), 0.04).texture;
+scene.environmentIntensity = 0.9;
+
+const camera = new THREE.PerspectiveCamera(view === "hero" ? 26 : 22, innerWidth / innerHeight, 0.1, 100);
+camera.position.set(0, view === "hero" ? 0.3 : 0.12, view === "hero" ? 9 : 7.4);
+camera.lookAt(0, -0.05, 0);
+
+const key = new THREE.DirectionalLight("#fff6e6", 2.2);
+key.position.set(3, 5, 4);
+key.castShadow = true;
+key.shadow.mapSize.set(2048, 2048);
+key.shadow.camera.left = key.shadow.camera.bottom = -4;
+key.shadow.camera.right = key.shadow.camera.top = 4;
+key.shadow.radius = 6;
+scene.add(key);
+const rim = new THREE.DirectionalLight("#e8ffd0", 1.4);
+rim.position.set(-4, 2, -3);
+scene.add(rim);
+
+const floor = new THREE.Mesh(new THREE.PlaneGeometry(30, 30), new THREE.ShadowMaterial({ opacity: 0.18 }));
+floor.rotation.x = -Math.PI / 2;
+floor.position.y = -TOP - 0.13;
+floor.receiveShadow = true;
+scene.add(floor);
+
+const tex = await new THREE.TextureLoader().loadAsync("label.png");
+tex.colorSpace = THREE.SRGBColorSpace;
+tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
+
+const labelMat = new THREE.MeshPhysicalMaterial({
+  map: tex,
+  roughness: 0.38,
+  metalness: 0.15,
+  clearcoat: 0.7,
+  clearcoatRoughness: 0.12,
+});
+const alu = new THREE.MeshPhysicalMaterial({ color: "#dfe3e6", metalness: 1, roughness: 0.22, side: THREE.DoubleSide });
+
+const lathe = (pts) => new THREE.LatheGeometry(pts.map(([r, y]) => new THREE.Vector2(r, y)), 128);
+
+function makeCan() {
+  const g = new THREE.Group();
+  const body = new THREE.Mesh(new THREE.CylinderGeometry(R, R, BODY, 160, 1, true, Math.PI, Math.PI * 2), labelMat);
+  const bottom = new THREE.Mesh(
+    lathe([[0, -TOP - 0.08], [0.25, -TOP - 0.09], [0.38, -TOP - 0.12], [0.42, -TOP - 0.13], [0.47, -TOP - 0.12], [0.51, -TOP - 0.07], [0.528, -TOP - 0.02], [R, -TOP]]),
+    alu,
+  );
+  // Slim-can neck: tapers in to a smaller lid.
+  const neck = new THREE.Mesh(
+    lathe([[R, TOP], [0.528, TOP + 0.04], [0.5, TOP + 0.1], [0.46, TOP + 0.16], [0.445, TOP + 0.2], [0.444, TOP + 0.225], [0.452, TOP + 0.24], [0.444, TOP + 0.255], [0.43, TOP + 0.25], [0.425, TOP + 0.225], [0.42, TOP + 0.215], [0, TOP + 0.215]]),
+    alu,
+  );
+  const tab = new THREE.Mesh(new THREE.CapsuleGeometry(0.07, 0.16, 6, 16), alu);
+  tab.scale.set(1, 1, 0.12);
+  tab.rotation.x = -Math.PI / 2;
+  tab.position.set(0, TOP + 0.222, 0.04);
+  for (const m of [body, bottom, neck, tab]) {
+    m.castShadow = true;
+    g.add(m);
+  }
+  return g;
+}
+
+const cans = {
+  hero: [
+    { rot: 0, pos: [0, 0, 0.6], scale: 1.08 },
+    { rot: 1.25, pos: [-1.5, 0, -0.4], scale: 1 },
+    { rot: -1.25, pos: [1.5, 0, -0.4], scale: 1 },
+  ],
+  front: [{ rot: 0, pos: [0, 0, 0] }],
+  left: [{ rot: Math.PI / 2, pos: [0, 0, 0] }],
+  right: [{ rot: -Math.PI / 2, pos: [0, 0, 0] }],
+  back: [{ rot: Math.PI, pos: [0, 0, 0] }],
+}[view];
+
+for (const c of cans) {
+  const can = makeCan();
+  can.rotation.y = c.rot;
+  can.position.set(...c.pos);
+  can.scale.setScalar(c.scale ?? 1);
+  scene.add(can);
+}
+
+renderer.render(scene, camera);
+window.done = true;
+</script>
+</body>
+</html>
