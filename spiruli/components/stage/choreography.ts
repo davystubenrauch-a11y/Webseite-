@@ -5,16 +5,16 @@ import { useEffect, useRef } from "react";
 /**
  * Pose of the can for a section, read from its data-can attribute.
  * x, y: position as a fraction of the half viewport (y up), s: scale,
- * ry / rx / rz: rotation in radians (spin, pitch, roll).
+ * ry / rx / rz: rotation in radians (spin, pitch, roll), o: opacity.
  */
 /**
  * Pose of the can for a section, read from its data-can attribute.
  * x, y: position as a fraction of the half viewport (y up), s: scale,
- * ry / rx / rz: rotation in radians (spin, pitch, roll).
+ * ry / rx / rz: rotation in radians (spin, pitch, roll), o: opacity.
  */
-export type Pose = { x: number; y: number; s: number; ry: number; rx: number; rz: number };
-export const ZERO: Pose = { x: 0, y: 0, s: 1, ry: 0, rx: 0, rz: 0 };
-export const KEYS = ["x", "y", "s", "ry", "rx", "rz"] as const;
+export type Pose = { x: number; y: number; s: number; ry: number; rx: number; rz: number; o: number };
+export const ZERO: Pose = { x: 0, y: 0, s: 1, ry: 0, rx: 0, rz: 0, o: 1 };
+export const KEYS = ["x", "y", "s", "ry", "rx", "rz", "o"] as const;
 
 const ease = (t: number) => t * t * (3 - 2 * t);
 

@@ -4,6 +4,8 @@ import CanSequence from "@/components/stage/CanSequence";
 import Hero from "@/components/sections/Hero";
 import Angle from "@/components/sections/Angle";
 import Split from "@/components/sections/Split";
+import Ticker from "@/components/sections/Ticker";
+import Detail from "@/components/sections/Detail";
 import Zutaten from "@/components/sections/Zutaten";
 import Naehrstoffe from "@/components/sections/Naehrstoffe";
 import Team from "@/components/sections/Team";
@@ -20,8 +22,10 @@ export default function Home() {
       <CanSequence />
       <main>
         <Hero />
+        <Ticker />
         <Angle />
         <Split />
+        <Detail />
         <Zutaten />
         <Naehrstoffe />
         <Team />

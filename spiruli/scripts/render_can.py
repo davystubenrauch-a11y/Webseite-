@@ -93,13 +93,17 @@ def label_material(color_path, pbr_path):
     pbr.image = bpy.data.images.load(pbr_path)
     pbr.image.colorspace_settings.name = "Non-Color"
     sep = nt.nodes.new("ShaderNodeSeparateColor")
-    nt.links.new(col.outputs["Color"], bsdf.inputs["Base Color"])
+    # A touch more saturation: the lacquer reads richer, like the print.
+    hsv = nt.nodes.new("ShaderNodeHueSaturation")
+    hsv.inputs["Saturation"].default_value = 1.15
+    nt.links.new(col.outputs["Color"], hsv.inputs["Color"])
+    nt.links.new(hsv.outputs["Color"], bsdf.inputs["Base Color"])
     nt.links.new(pbr.outputs["Color"], sep.inputs["Color"])
     nt.links.new(sep.outputs["Green"], bsdf.inputs["Roughness"])
     nt.links.new(sep.outputs["Blue"], bsdf.inputs["Metallic"])
     # Satin lacquer: a thin, slightly rough clear coat.
-    bsdf.inputs["Coat Weight"].default_value = 0.12
-    bsdf.inputs["Coat Roughness"].default_value = 0.22
+    bsdf.inputs["Coat Weight"].default_value = 0.3
+    bsdf.inputs["Coat Roughness"].default_value = 0.16
     # Fine paint orange-peel.
     noise = nt.nodes.new("ShaderNodeTexNoise")
     noise.inputs["Scale"].default_value = 900
@@ -204,7 +208,7 @@ def scene(a):
     # Standard keeps the label's sRGB colours true to the artwork.
     sc.view_settings.view_transform = "Standard"
     sc.view_settings.look = "None"
-    sc.view_settings.exposure = -0.35
+    sc.view_settings.exposure = -0.45
     w, h = (int(x) for x in a.size.split("x"))
     sc.render.resolution_x, sc.render.resolution_y = w, h
     sc.render.resolution_percentage = 100
@@ -215,7 +219,7 @@ def scene(a):
     world = bpy.data.worlds.new("World")
     sc.world = world
     world.use_nodes = True
-    world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.16, 0.17, 0.18, 1)
+    world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.035, 0.07, 0.075, 1)
     world.node_tree.nodes["Background"].inputs["Strength"].default_value = 1
 
     alu = aluminium()

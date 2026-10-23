@@ -45,6 +45,7 @@ export default function CanSequence() {
     let raf = 0;
     let last = performance.now();
     let drawn = -1;
+    let ready = false;
     const start = last;
     const tick = (now: number) => {
       const dt = Math.min((now - last) / 1000, 1 / 30);
@@ -69,12 +70,14 @@ export default function CanSequence() {
         ctx.clearRect(0, 0, el.width, el.height);
         ctx.drawImage(img, 0, 0);
         drawn = pick;
+        ready = true;
       }
 
       const vw = window.innerWidth;
       const vh = window.innerHeight;
       const h = vh * HEIGHT_VH * current.s;
       el.style.height = `${h}px`;
+      el.style.opacity = ready ? String(Math.max(0, Math.min(1, current.o))) : "0";
       // Pitch has no image equivalent; a slight vertical squash suggests it.
       const pitch = Math.cos(Math.min(Math.abs(current.rx + pointer.y * 0.15), 1.2) * 0.35);
       el.style.transform =
@@ -91,7 +94,7 @@ export default function CanSequence() {
 
   return (
     <div aria-hidden className="pointer-events-none fixed inset-0 z-30 overflow-hidden">
-      <canvas ref={canvas} className="absolute left-1/2 top-1/2 w-auto max-w-none will-change-transform" />
+      <canvas ref={canvas} className="absolute left-1/2 top-1/2 w-auto max-w-none opacity-0 will-change-transform" />
     </div>
   );
 }

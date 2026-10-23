@@ -16,12 +16,12 @@ export type FrontArt = { color: CanvasImageSource; pbr: CanvasImageSource; width
 /** Front centre and the lacquer gradient sampled from the product photo. */
 const FX = LABEL_W / 2;
 const LACQUER: [number, string][] = [
-  [0, "#2a8389"],
-  [0.3, "#22706f"],
-  [0.55, "#165b61"],
-  [0.72, "#113d44"],
-  [0.88, "#0b2b2f"],
-  [1, "#082023"],
+  [0, "#1b8d93"],
+  [0.25, "#147b81"],
+  [0.45, "#0d6168"],
+  [0.62, "#08444a"],
+  [0.8, "#052e32"],
+  [1, "#032124"],
 ];
 
 export type Mode = "color" | "pbr";
@@ -33,7 +33,7 @@ export type LabelFonts = { display: string; sans: string };
  * scripts/render_can.py reads roughness from G and metalness from B.
  */
 const INKS = {
-  petrol: { color: "#165b61", rough: 0.36, metal: 0.55 },
+  petrol: { color: "#0e676d", rough: 0.34, metal: 0.3 },
   gold: { color: "#d8b66a", rough: 0.3, metal: 0.6 },
   green: { color: "#5fb548", rough: 0.45, metal: 0.2 },
   white: { color: "#f3efe6", rough: 0.55, metal: 0 },
@@ -230,10 +230,10 @@ const LETTERS: Record<string, Letter> = {
 /** Pale satin gold of the wordmark, with a soft sheen along the word. */
 function lightGold(ctx: CanvasRenderingContext2D, length: number) {
   const g = ctx.createLinearGradient(0, 0, length, 0);
-  g.addColorStop(0, "#cdb06c");
-  g.addColorStop(0.35, "#ecd697");
-  g.addColorStop(0.6, "#d9bd78");
-  g.addColorStop(1, "#e6cf8e");
+  g.addColorStop(0, "#d1a94f");
+  g.addColorStop(0.35, "#f2d382");
+  g.addColorStop(0.6, "#dcb560");
+  g.addColorStop(1, "#ecc96f");
   return g;
 }
 
@@ -260,7 +260,7 @@ function wordmark(ctx: CanvasRenderingContext2D, mode: Mode) {
       : [
           [lightGold(ctx, bottom - top), outer],
           ["#174f57", outer - 20],
-          ["#48a243", 8],
+          ["#3fae3a", 8],
         ];
   for (const [style, lw] of passes) {
     let x = outer / 2;
@@ -459,11 +459,11 @@ export function paintLabel(ctx: CanvasRenderingContext2D, mode: Mode, fonts: Lab
   // Gold band, wrapping all the way round.
   if (mode === "color") {
     const g = ctx.createLinearGradient(0, BAND_Y, 0, BAND_Y + BAND_H);
-    g.addColorStop(0, "#9c8250");
-    g.addColorStop(0.12, "#d9b56a");
-    g.addColorStop(0.45, "#f0d797");
-    g.addColorStop(0.6, "#d5b064");
-    g.addColorStop(1, "#8f7542");
+    g.addColorStop(0, "#94742f");
+    g.addColorStop(0.12, "#d9ad4f");
+    g.addColorStop(0.45, "#f5d47f");
+    g.addColorStop(0.6, "#d8a948");
+    g.addColorStop(1, "#86682a");
     ctx.fillStyle = g;
   } else {
     ctx.fillStyle = ink(mode, "gold");

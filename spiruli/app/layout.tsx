@@ -21,6 +21,10 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="de" className={`${archivo.variable} ${display.variable}`}>
+      <head>
+        {/* The can's front frame is the first thing on screen. */}
+        <link rel="preload" as="image" href="/can/frame-000.webp" />
+      </head>
       <body className="font-sans">{children}</body>
     </html>
   );

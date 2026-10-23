@@ -18,6 +18,7 @@ const config: Config = {
       },
       keyframes: {
         spin: { to: { transform: "rotate(360deg)" } },
+        marquee: { to: { transform: "translateX(-50%)" } },
       },
       animation: {
         "spin-slow": "spin 16s linear infinite",
