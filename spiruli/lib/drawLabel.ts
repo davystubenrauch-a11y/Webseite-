@@ -22,8 +22,8 @@ export type LabelFonts = { display: string; sans: string };
  * three.js reads roughness from G and metalness from B.
  */
 const INKS = {
-  petrol: { color: "#153e51", rough: 0.45, metal: 0.1 },
-  gold: { color: "#d8b66a", rough: 0.22, metal: 0.65 },
+  petrol: { color: "#153e51", rough: 0.62, metal: 0.05 },
+  gold: { color: "#d8b66a", rough: 0.4, metal: 0.55 },
   green: { color: "#5fb548", rough: 0.35, metal: 0.5 },
   white: { color: "#f3efe6", rough: 0.55, metal: 0 },
 } as const;

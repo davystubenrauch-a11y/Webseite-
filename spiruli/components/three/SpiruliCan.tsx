@@ -189,10 +189,10 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
       new THREE.MeshPhysicalMaterial({
         color: "#e6e9ec",
         metalness: 1,
-        roughness: 0.2,
-        anisotropy: 0.6,
-        clearcoat: 0.2,
-        envMapIntensity: 1.6,
+        roughness: 0.38,
+        anisotropy: 0.4,
+        clearcoat: 0,
+        envMapIntensity: 0.9,
         side: THREE.DoubleSide,
       }),
     [],
@@ -206,17 +206,17 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
         // colours; scene lights only add shape and highlights on top.
         emissive: new THREE.Color("#ffffff"),
         emissiveMap: label.color,
-        emissiveIntensity: 0.55,
+        emissiveIntensity: 0.52,
         toneMapped: false,
         roughnessMap: label.pbr,
         metalnessMap: label.pbr,
         roughness: 1,
         metalness: 1,
-        clearcoat: 0.55,
-        clearcoatRoughness: 0.14,
+        clearcoat: 0.12,
+        clearcoatRoughness: 0.45,
         clearcoatNormalMap: label.drops,
         clearcoatNormalScale: new THREE.Vector2(0, 0),
-        envMapIntensity: 1,
+        envMapIntensity: 0.45,
       }),
     [label],
   );
@@ -306,8 +306,9 @@ export default function SpiruliCan({ driven, spin = 0.5, interactive = true }: P
     // Condensation beads up or evaporates gradually.
     s.wet = THREE.MathUtils.damp(s.wet, chilled ? 1 : 0, 1.4, dt);
     labelMat.clearcoatNormalScale.setScalar(s.wet * 0.6);
-    labelMat.clearcoatRoughness = 0.14 - s.wet * 0.06;
-    alu.roughness = 0.2 + s.wet * 0.1;
+    labelMat.clearcoatRoughness = 0.45 - s.wet * 0.35;
+    labelMat.clearcoat = 0.12 + s.wet * 0.6;
+    alu.roughness = 0.38 + s.wet * 0.1;
 
     const d = driven ?? restPose();
     if (group.current && tiltGroup.current) {
