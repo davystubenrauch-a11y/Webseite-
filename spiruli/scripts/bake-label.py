@@ -16,8 +16,8 @@ SRC = Path("public/spiruli-can.jpg")
 OUT = Path("public/label")
 
 # Can geometry in the photo (pixels), measured from the petrol body.
-CX, R = 464.5, 193.5
-TOP, BOTTOM = 130, 1105
+CX, R = 461.0, 197.0
+TOP, BOTTOM = 140, 1097
 
 # Label texture: full circumference is 2048 px wide (must match lib/drawLabel.ts).
 LABEL_W, LABEL_H = 2048, 1640
@@ -81,6 +81,10 @@ pbr = np.dstack([np.zeros_like(rough), rough, np.clip(metal, 0, 1), alpha])
 img = Image.fromarray((pbr * 255).round().astype(np.uint8), "RGBA").filter(ImageFilter.SMOOTH)
 img.save(OUT / "front-pbr.webp", quality=90, method=6)
 
-# Sample of the flattened petrol for the procedural back of the label.
-pet = out[(np.abs(theta) < 0.4)[None, :].repeat(LABEL_H, 0) & (out.max(2) < 0.35) & (out[..., 2] > out[..., 0])]
-print("front", width, "x", LABEL_H, "petrol #%02x%02x%02x" % tuple((np.median(pet, 0) * 255).astype(int)))
+# Vertical colour profile of the plain lacquer (median of the outer columns,
+# away from the logo) so the procedural back can continue the gradient.
+edge = (np.abs(theta) > np.radians(55)) & (np.abs(theta) < np.radians(72))
+prof = np.median(out[:, edge], axis=1)
+stops = [(round(i / 10, 2), "#%02x%02x%02x" % tuple((prof[min(LABEL_H - 1, int(i / 10 * LABEL_H))] * 255).astype(int))) for i in range(11)]
+print("front", width, "x", LABEL_H)
+print("lacquer stops", stops)

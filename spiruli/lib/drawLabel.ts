@@ -7,8 +7,8 @@ import { code39 } from "./code39";
 export const LABEL_W = 2048;
 export const LABEL_H = 1640;
 /** Gold band, in label pixels (from the photo). */
-const BAND_Y = 1463;
-const BAND_H = 94;
+const BAND_Y = 1477;
+const BAND_H = 92;
 
 /** Front artwork unwrapped from the product photo by scripts/bake-label.py. */
 export type FrontArt = { color: CanvasImageSource; pbr: CanvasImageSource; width: number };
@@ -142,7 +142,19 @@ export function paintLabel(ctx: CanvasRenderingContext2D, mode: Mode, fonts: Lab
   const H = LABEL_H;
   ctx.save();
   ctx.clearRect(0, 0, W, H);
-  ctx.fillStyle = ink(mode, "petrol");
+  if (mode === "color") {
+    // Teal lacquer gradient sampled from the can photo (scripts/bake-label.py).
+    const lacquer = ctx.createLinearGradient(0, 0, 0, H);
+    lacquer.addColorStop(0, "#267e83");
+    lacquer.addColorStop(0.3, "#22706f");
+    lacquer.addColorStop(0.55, "#165b61");
+    lacquer.addColorStop(0.72, "#14373f");
+    lacquer.addColorStop(0.88, "#10282a");
+    lacquer.addColorStop(1, "#0d2022");
+    ctx.fillStyle = lacquer;
+  } else {
+    ctx.fillStyle = ink(mode, "petrol");
+  }
   ctx.fillRect(0, 0, W, H);
 
   // Gold band, wrapping all the way round.
