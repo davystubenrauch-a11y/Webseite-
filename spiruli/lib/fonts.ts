@@ -8,13 +8,10 @@ export const archivo = Archivo({
   display: "swap",
 });
 
-/** Geometric face of the SPIRULI wordmark; used on the can label. */
+/** Geometric face of the SPIRULI wordmark (navigation logo). */
 export const display = Josefin_Sans({
   subsets: ["latin"],
   weight: ["300", "600"],
   variable: "--font-display",
   display: "swap",
 });
-
-/** The can label paints with this sans. */
-export const sans = archivo;

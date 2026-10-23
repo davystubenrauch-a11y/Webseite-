@@ -19,9 +19,9 @@ const LACQUER: [number, string][] = [
   [0, "#2a8389"],
   [0.3, "#22706f"],
   [0.55, "#165b61"],
-  [0.72, "#14373f"],
-  [0.88, "#10282a"],
-  [1, "#0d2022"],
+  [0.72, "#113d44"],
+  [0.88, "#0b2b2f"],
+  [1, "#082023"],
 ];
 
 export type Mode = "color" | "pbr";
@@ -30,11 +30,11 @@ export type LabelFonts = { display: string; sans: string };
 /**
  * Inks used on the label. In "pbr" mode each ink is painted as
  * (0, roughness, metalness) so the same layout drives the PBR maps:
- * three.js reads roughness from G and metalness from B.
+ * scripts/render_can.py reads roughness from G and metalness from B.
  */
 const INKS = {
-  petrol: { color: "#165b61", rough: 0.6, metal: 0.05 },
-  gold: { color: "#d8b66a", rough: 0.32, metal: 0.8 },
+  petrol: { color: "#165b61", rough: 0.36, metal: 0.55 },
+  gold: { color: "#d8b66a", rough: 0.3, metal: 0.6 },
   green: { color: "#5fb548", rough: 0.45, metal: 0.2 },
   white: { color: "#f3efe6", rough: 0.55, metal: 0 },
 } as const;
@@ -227,11 +227,21 @@ const LETTERS: Record<string, Letter> = {
   },
 };
 
+/** Pale satin gold of the wordmark, with a soft sheen along the word. */
+function lightGold(ctx: CanvasRenderingContext2D, length: number) {
+  const g = ctx.createLinearGradient(0, 0, length, 0);
+  g.addColorStop(0, "#cdb06c");
+  g.addColorStop(0.35, "#ecd697");
+  g.addColorStop(0.6, "#d9bd78");
+  g.addColorStop(1, "#e6cf8e");
+  return g;
+}
+
 /** Vertical SPIRULI wordmark, reading bottom to top: gold outline, lacquer core, green centre line. */
 function wordmark(ctx: CanvasRenderingContext2D, mode: Mode) {
   const word = "SPIRULI";
-  const outer = 36; // outer width of a letter stroke
-  const cap = 185 - outer; // skeleton cap height
+  const outer = 40; // outer width of a letter stroke
+  const cap = 200 - outer; // skeleton cap height
   const top = 236;
   const bottom = 1172;
   const widths = [...word].map((c) => LETTERS[c].w * cap + outer);
@@ -246,11 +256,11 @@ function wordmark(ctx: CanvasRenderingContext2D, mode: Mode) {
   ctx.lineCap = "butt";
   const passes: [string | CanvasGradient, number][] =
     mode === "pbr"
-      ? [[ink(mode, "gold"), outer], [ink(mode, "petrol"), outer - 18], [ink(mode, "green"), 5]]
+      ? [[ink(mode, "gold"), outer], [ink(mode, "petrol"), outer - 20], [ink(mode, "green"), 8]]
       : [
-          [goldFill(ctx, mode, 0, bottom - top), outer],
-          ["#174f57", outer - 18],
-          ["#3f9a3e", 5.5],
+          [lightGold(ctx, bottom - top), outer],
+          ["#174f57", outer - 20],
+          ["#48a243", 8],
         ];
   for (const [style, lw] of passes) {
     let x = outer / 2;
@@ -303,7 +313,8 @@ function seal(ctx: CanvasRenderingContext2D, mode: Mode, fonts: LabelFonts) {
         const a = start + dir * (i - (text.length - 1) / 2) * step;
         ctx.save();
         ctx.rotate(a);
-        ctx.translate(0, -dir * R * 0.8);
+        ctx.translate(0, -R * 0.8);
+        // Bottom text reads left to right, upright.
         if (dir === -1) ctx.rotate(Math.PI);
         ctx.fillText(ch, 0, 0);
         ctx.restore();
@@ -355,7 +366,7 @@ function fitText(ctx: CanvasRenderingContext2D, text: string, x: number, y: numb
 
 function badge(ctx: CanvasRenderingContext2D, mode: Mode, fonts: LabelFonts, x: number, kind: "V" | "B11" | "B12") {
   const y = BAND_Y + BAND_H / 2;
-  const r = 53;
+  const r = 58;
   const dark = mode === "pbr" ? ink(mode, "petrol") : "#1d2b25";
   if (mode === "color") {
     const g = ctx.createRadialGradient(x - r * 0.3, y - r * 0.4, r * 0.1, x, y, r);

@@ -82,7 +82,7 @@ Image.fromarray((np.clip(rgba, 0, 1) * 255).round().astype(np.uint8), "RGBA").sa
 
 # PBR: gold foil is metallic, the green brushwork a satin ink.
 rough = 0.5 + gold * (0.32 - 0.5)
-metal = 0.15 + gold * (0.8 - 0.15)
+metal = 0.15 + gold * (0.55 - 0.15)
 pbr = np.dstack([np.zeros_like(rough), rough, metal, alpha])
 Image.fromarray((pbr * 255).round().astype(np.uint8), "RGBA").save(OUT / "swoosh-pbr.webp", quality=90, method=6)
 

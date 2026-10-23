@@ -32,11 +32,18 @@ Bold colour fields in the drink's palette: algae green, lime, elderberry magenta
 
 ## The can
 
-`components/three/SpiruliCan.tsx` builds the can in code: a detailed lathe-turned shoulder with a rolled rim and recessed lid, a domed base, a pull tab, and polished aluminium lit by a contrasty studio (`Studio.tsx`).
+The can on the page is photoreal: a 360° turntable pre-rendered with Blender Cycles and played back as an image sequence (`components/stage/CanSequence.tsx`, 60 frames in `public/can/`). Scrolling picks the frame and moves, scales and tilts the image between the per-section poses.
 
-The label (`lib/drawLabel.ts`) is painted at runtime at 4096 px around the can on desktop. Lacquer gradient, wordmark (letters drawn as paths), copy, gold band, badges, embossed "Premium Formula" seal and PZN line are crisp vector art. Only the painted swoosh comes from the product photo: `scripts/bake-label.py` extracts it, upscales it and unwraps it into `public/label/swoosh*.webp`.
+Pipeline to re-render after a design change:
 
-For a sharper swoosh, replace `public/spiruli-can.jpg` with a higher-resolution image (or the designer's artwork). Adjust `CX`, `R`, `TOP` and `BOTTOM` in the script, then run `python3 scripts/bake-label.py` (needs Pillow and NumPy).
+1. `python3 scripts/bake-label.py`: extracts the painted swoosh from `public/spiruli-can.jpg` into `public/label/`.
+2. `node scripts/label-export/export.mjs OUT 3`: paints the full label with `lib/drawLabel.ts` at 6144 px (wordmark, copy, band, badges, seal and back panel are vector art) and writes `label-color.png` and `label-pbr.png`.
+3. Render with Blender (the `bpy` package, Python 3.11):
+   `python3.11 scripts/render_can.py -- --label OUT/label-color.png --pbr OUT/label-pbr.png --out FRAMES --frames 60 --size 800x1600 --samples 64`.
+   Use `--mode still` for a 4K hero image.
+4. `python3 scripts/pack-frames.py FRAMES`: crops the frames and writes WebP files to `public/can/`.
+
+For a sharper swoosh, use a higher-resolution source image or the designer's artwork in step 1.
 
 ## Before launch
 
