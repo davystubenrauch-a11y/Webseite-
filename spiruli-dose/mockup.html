@@ -5,7 +5,7 @@
 <title>SPIRULI Dose – Mockup</title>
 <style>
   html, body { margin: 0; height: 100%; overflow: hidden; }
-  body { background: radial-gradient(120% 90% at 50% 35%, #fbf9ef 0%, #eef5d6 55%, #d9e9b0 100%); }
+  body { background: radial-gradient(70% 60% at 50% 40%, #fbfaf3 0%, #e9f1dc 55%, #cfdfbd 100%); }
   canvas { display: block; }
 </style>
 <script type="importmap">
@@ -18,11 +18,13 @@
 <body>
 <script type="module">
 // Product mockup of the 200 ml slim can with label.png wrapped around it.
-// ?view=hero | front | left | right | back
+// ?view=hero | front | left | right | back   (&wet=0 to hide condensation)
 import * as THREE from "three";
 import { RoomEnvironment } from "three/addons/environments/RoomEnvironment.js";
 
-const view = new URLSearchParams(location.search).get("view") || "hero";
+const params = new URLSearchParams(location.search);
+const view = params.get("view") || "hero";
+const wet = params.get("wet") !== "0";
 
 // 1 unit = 50 mm. Can: Ø 53 mm, label 95 mm high.
 const R = 0.53;
@@ -42,8 +44,14 @@ scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnviron
 scene.environmentIntensity = 0.9;
 
 const camera = new THREE.PerspectiveCamera(view === "hero" ? 26 : 22, innerWidth / innerHeight, 0.1, 100);
-camera.position.set(0, view === "hero" ? 0.3 : 0.12, view === "hero" ? 9 : 7.4);
-camera.lookAt(0, -0.05, 0);
+if (view === "hero") {
+  // Slightly raised, to see the props on the table.
+  camera.position.set(0.1, 1.25, 8.4);
+  camera.lookAt(0.15, -0.3, 0.2);
+} else {
+  camera.position.set(0, 0.12, 7.4);
+  camera.lookAt(0, -0.05, 0);
+}
 
 const key = new THREE.DirectionalLight("#fff6e6", 2.2);
 key.position.set(3, 5, 4);
@@ -67,12 +75,46 @@ const tex = await new THREE.TextureLoader().loadAsync("label.png");
 tex.colorSpace = THREE.SRGBColorSpace;
 tex.anisotropy = renderer.capabilities.getMaxAnisotropy();
 
+// Condensation: hemispherical droplets as a clearcoat normal map.
+function condensation(size = 1024) {
+  let seed = 3;
+  const rand = () => ((seed = (seed * 16807) % 2147483647) - 1) / 2147483646;
+  const c = document.createElement("canvas");
+  c.width = c.height = size;
+  const ctx = c.getContext("2d");
+  const img = ctx.createImageData(size, size);
+  const d = img.data;
+  for (let i = 0; i < d.length; i += 4) { d[i] = 128; d[i + 1] = 128; d[i + 2] = 255; d[i + 3] = 255; }
+  const drop = (cx, cy, rx, ry) => {
+    for (let y = Math.max(0, cy - ry | 0); y <= Math.min(size - 1, cy + ry); y++)
+      for (let x = Math.max(0, cx - rx | 0); x <= Math.min(size - 1, cx + rx); x++) {
+        const nx = (x - cx) / rx, ny = -(y - cy) / ry, q = nx * nx + ny * ny;
+        if (q >= 1) continue;
+        const k = ((y | 0) * size + (x | 0)) * 4;
+        d[k] = (nx * 0.5 + 0.5) * 255; d[k + 1] = (ny * 0.5 + 0.5) * 255; d[k + 2] = (Math.sqrt(1 - q) * 0.5 + 0.5) * 255;
+      }
+  };
+  for (let i = 0; i < 7000; i++) { const r = 0.8 + rand() * 1.5; drop(rand() * size, rand() * size, r, r); }
+  for (let i = 0; i < 900; i++) { const r = 2.5 + rand() ** 2 * 8; drop(rand() * size, rand() * size, r, r * 1.1); }
+  for (let i = 0; i < 10; i++) {
+    const x = rand() * size; let y = rand() * size * 0.5; const end = y + 120 + rand() * 300;
+    while (y < end) { const w = 2 + rand() * 2.5; drop(x, y, w, w * 1.6); y += w * 1.6; }
+    drop(x, end, 9, 12);
+  }
+  ctx.putImageData(img, 0, 0);
+  const t = new THREE.CanvasTexture(c);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping;
+  t.repeat.set(3, 2);
+  return t;
+}
+
 const labelMat = new THREE.MeshPhysicalMaterial({
   map: tex,
-  roughness: 0.38,
-  metalness: 0.15,
-  clearcoat: 0.7,
-  clearcoatRoughness: 0.12,
+  roughness: 0.55,
+  metalness: 0.05,
+  clearcoat: wet ? 0.9 : 0.35,
+  clearcoatRoughness: wet ? 0.08 : 0.25,
+  ...(wet ? { clearcoatNormalMap: condensation(), clearcoatNormalScale: new THREE.Vector2(0.7, 0.7) } : {}),
 });
 const alu = new THREE.MeshPhysicalMaterial({ color: "#dfe3e6", metalness: 1, roughness: 0.22, side: THREE.DoubleSide });
 
@@ -101,11 +143,105 @@ function makeCan() {
   return g;
 }
 
+// --- Props: lemon slices, elderberries, leaves --------------------------------
+const FLOOR = -TOP - 0.13;
+
+function lemonTexture() {
+  const c = document.createElement("canvas");
+  c.width = c.height = 512;
+  const g = c.getContext("2d");
+  const m = 256;
+  g.fillStyle = "#E9B21C"; g.beginPath(); g.arc(m, m, 250, 0, Math.PI * 2); g.fill();
+  g.fillStyle = "#FFF6D8"; g.beginPath(); g.arc(m, m, 226, 0, Math.PI * 2); g.fill();
+  for (let k = 0; k < 10; k++) {
+    const a0 = (k / 10) * Math.PI * 2 + 0.05, a1 = ((k + 1) / 10) * Math.PI * 2 - 0.05;
+    const grd = g.createRadialGradient(m, m, 10, m, m, 210);
+    grd.addColorStop(0, "#FFF2A8"); grd.addColorStop(1, "#F7D44A");
+    g.fillStyle = grd;
+    g.beginPath(); g.moveTo(m + Math.cos((a0 + a1) / 2) * 16, m + Math.sin((a0 + a1) / 2) * 16);
+    g.arc(m, m, 208, a0, a1); g.closePath(); g.fill();
+  }
+  // Pulp vesicles and white membranes for a natural look.
+  for (let i = 0; i < 1600; i++) {
+    const a = Math.random() * Math.PI * 2, r = 20 + Math.random() * 185;
+    g.fillStyle = `rgba(255,${235 + Math.random() * 20 | 0},${150 + Math.random() * 60 | 0},${0.25 + Math.random() * 0.35})`;
+    g.beginPath();
+    g.ellipse(m + Math.cos(a) * r, m + Math.sin(a) * r, 3 + Math.random() * 4, 1.5 + Math.random() * 2, a, 0, Math.PI * 2);
+    g.fill();
+  }
+  g.strokeStyle = "rgba(255,250,232,0.9)";
+  g.lineWidth = 5;
+  for (let k = 0; k < 10; k++) {
+    const a = (k / 10) * Math.PI * 2;
+    g.beginPath(); g.moveTo(m + Math.cos(a) * 14, m + Math.sin(a) * 14); g.lineTo(m + Math.cos(a) * 212, m + Math.sin(a) * 212); g.stroke();
+  }
+  const t = new THREE.CanvasTexture(c);
+  t.colorSpace = THREE.SRGBColorSpace;
+  return t;
+}
+
+function lemonSlice(r = 0.3) {
+  const face = new THREE.MeshPhysicalMaterial({ map: lemonTexture(), roughness: 0.35, clearcoat: 0.8, clearcoatRoughness: 0.15 });
+  const rind = new THREE.MeshPhysicalMaterial({ color: "#E9B21C", roughness: 0.5 });
+  const m = new THREE.Mesh(new THREE.CylinderGeometry(r, r, 0.05, 64), [rind, face, face]);
+  m.castShadow = true;
+  return m;
+}
+
+function berries(n = 14) {
+  const g = new THREE.Group();
+  const mat = new THREE.MeshPhysicalMaterial({ color: "#2A0F33", roughness: 0.25, clearcoat: 1, clearcoatRoughness: 0.1, sheen: 0.4, sheenColor: new THREE.Color("#7a4a90") });
+  const geo = new THREE.SphereGeometry(0.05, 24, 16);
+  let s = 11;
+  const rand = () => ((s = (s * 16807) % 2147483647) - 1) / 2147483646;
+  for (let i = 0; i < n; i++) {
+    const b = new THREE.Mesh(geo, mat);
+    const a = rand() * Math.PI * 2, d = Math.sqrt(rand()) * 0.22;
+    b.position.set(Math.cos(a) * d, 0.05 + (i > n - 4 ? 0.07 : 0), Math.sin(a) * d);
+    b.scale.setScalar(0.85 + rand() * 0.3);
+    b.castShadow = true;
+    g.add(b);
+  }
+  return g;
+}
+
+function leafMesh(len = 0.55) {
+  const sh = new THREE.Shape();
+  sh.moveTo(0, 0);
+  sh.bezierCurveTo(len * 0.3, len * 0.22, len * 0.75, len * 0.18, len, 0);
+  sh.bezierCurveTo(len * 0.75, -len * 0.18, len * 0.3, -len * 0.22, 0, 0);
+  const m = new THREE.Mesh(
+    new THREE.ExtrudeGeometry(sh, { depth: 0.006, bevelEnabled: false }),
+    new THREE.MeshPhysicalMaterial({ color: "#5E9E3A", roughness: 0.45, clearcoat: 0.5, side: THREE.DoubleSide }),
+  );
+  m.rotation.x = -Math.PI / 2;
+  m.castShadow = m.receiveShadow = true;
+  return m;
+}
+
+if (view === "hero") {
+  const l1 = lemonSlice(0.32);
+  l1.position.set(-1.25, FLOOR + 0.025, 1.25);
+  scene.add(l1);
+  const l2 = lemonSlice(0.3);
+  l2.position.set(-0.85, FLOOR + 0.22, 1.45);
+  l2.rotation.set(1.15, 0.3, 0.2); // leaning slice
+  scene.add(l2);
+  const b = berries(16);
+  b.position.set(0.95, FLOOR, 1.35);
+  scene.add(b);
+  for (const [x, z, r, len] of [[1.25, 1.2, 0.6, 0.6], [0.75, 1.55, 2.3, 0.5], [-1.55, 0.95, -0.6, 0.55]]) {
+    const lf = leafMesh(len);
+    lf.position.set(x, FLOOR + 0.004, z);
+    lf.rotation.z = r;
+    scene.add(lf);
+  }
+}
+
 const cans = {
   hero: [
-    { rot: 0, pos: [0, 0, 0.6], scale: 1.08 },
-    { rot: 1.25, pos: [-1.5, 0, -0.4], scale: 1 },
-    { rot: -1.25, pos: [1.5, 0, -0.4], scale: 1 },
+    { rot: 0, pos: [-0.15, 0, 0.45], scale: 1.08 },
+    { rot: -1.4, pos: [1.35, 0, -0.55], scale: 1 },
   ],
   front: [{ rot: 0, pos: [0, 0, 0] }],
   left: [{ rot: Math.PI / 2, pos: [0, 0, 0] }],

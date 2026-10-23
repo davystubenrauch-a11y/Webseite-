@@ -1,10 +1,13 @@
 # SPIRULI® – Dosen-Design (200 ml Slim-Dose)
 
-Neues Etikett-Design für die SPIRULI-Dose, angelehnt an die bisherige grüne Dose:
-- vertikales Script-Logo
-- blaues Band mit den Badges Vitamin B11, Vegan und Vitamin B12
+Version 2: ein ruhiges, hochwertiges Health-Drink-Design.
+- **Farben:** weicher Verlauf von Creme über Mint zu tiefem Algengrün.
+- **Logo:** einfarbiges Script-Logo „Spiruli®“, senkrecht wie auf der bisherigen Dose.
+- **Illustrationen:** feine Linien – Holunder, Zitrone, Spirulina-Faden.
+- **Schrift:** edle Serifenschrift (Fraunces) mit klarer Sans (Manrope).
+- **Badges:** minimalistisch, Vitamin B11 · Vegan · Vitamin B12.
 
-Neu daran: frisches Limettengrün, eine algengrüne „Flüssigkeits“-Welle mit Spirulina-Fäden, Zutaten-Illustrationen und klar gegliederte Seiten.
+Die erste, buntere Version liegt in `v1/`.
 
 ## Dateien
 
@@ -13,21 +16,21 @@ Neu daran: frisches Limettengrün, eine algengrüne „Flüssigkeits“-Welle mi
 | `label.svg` | Druckvorlage als Vektor, Schriften eingebettet (166,5 × 95 mm) |
 | `label-print.png` | Etikett als Bild, 6660 × 3800 px (ca. 1000 dpi) |
 | `label.png` | Etikett, 3330 × 1900 px (Textur für das Mockup) |
-| `mockup-hero.png` | Präsentation: drei Dosen (links, vorne, rechts) |
+| `mockup-hero.png` | Präsentation: zwei Dosen mit Kondenswasser, Zitronenscheiben, Holunder und Blättern |
 | `mockup-front/left/right/back.png` | Einzelansichten |
 
 ## Aufbau rund um die Dose
 
-- **Vorderseite:** Script-Logo „Spiruli®“, „Health & Vitality“, „Natürliche Energie“, Badges B11 · Vegan · B12
-- **Linke Seite:** „Algen-Fitness-Getränk“, Beschreibung, Zutaten Holunder · Zitrus · Algen
-- **Rechte Seite:** „100 % pflanzlich“-Stempel, SGS-Fresenius-Hinweis, „18+ Aminosäuren“
+- **Vorderseite:** Script-Logo, „Health & Vitality“, Botanik, „Natürliche Energie“, Badges B11 · Vegan · B12
+- **Linke Seite:** „Natürliche Energie aus der Alge.“, Produktbeschreibung, „Fermentiert aus“ Holunder · Zitrus · Spirulina
+- **Rechte Seite:** „Was drin ist“ (B-Komplex, Vitamin C & Folsäure, 18+ Aminosäuren, vegan), SGS-Fresenius-Hinweis, PZN
 - **Rückseite (Naht):** Pflichtangaben und PZN-Barcode (Code 39, scannbar)
 
 ## Vor dem Druck
 
 - Text in eckigen Klammern ist Platzhalter: Zutaten, Nährwerte, Füllmenge, Hersteller und Pfand-Logo (DPG). Diese Angaben müssen aus Rezeptur und Analyse ergänzt werden.
 - Maße (Ø 53 mm, Druckhöhe 95 mm) sind angenommen. Bitte die Stanzkontur (Dieline) des Dosenherstellers verwenden und das Design darauf anpassen.
-- Für die Druckerei Schriften in Pfade umwandeln (z. B. in Illustrator). Die Schriften liegen in `fonts/`: Yellowtail und Bricolage Grotesque, beide Open Font License.
+- Für die Druckerei Schriften in Pfade umwandeln (z. B. in Illustrator). Die Schriften liegen in `fonts/`: Yellowtail, Fraunces und Manrope, alle Open Font License.
 - Der SGS-Fresenius-Hinweis ist reiner Text, kein Logo. Das offizielle Prüfzeichen nur mit Lizenz verwenden.
 
 ## Neu erzeugen
