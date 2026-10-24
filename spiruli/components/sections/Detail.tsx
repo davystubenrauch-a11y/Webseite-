@@ -15,7 +15,7 @@ export default function Detail() {
     <section
       id="dose"
       data-can='{"x":0,"y":0.1,"s":0.6,"ry":7.5,"rx":0,"rz":0,"o":0}'
-      className="relative overflow-hidden bg-[#0d2a2c] text-lime"
+      className="relative overflow-hidden bg-[#203b3d] text-lime"
     >
       <div className="wrap relative pt-24">
         <p className="micro text-lime/70">Die Dose im Detail</p>
@@ -36,8 +36,8 @@ export default function Detail() {
           className="absolute inset-0 h-full w-full object-cover"
         />
         {/* Soft fade into the section colour at the edges. */}
-        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#0d2a2c_95%)]" />
-        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#0d2a2c] to-transparent" />
+        <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_50%,#203b3d_95%)]" />
+        <div aria-hidden className="pointer-events-none absolute inset-x-0 bottom-0 h-1/4 bg-gradient-to-t from-[#203b3d] to-transparent" />
         <ul className="hidden md:block">
           {pins.map((p) => (
             <li key={p.title} className="absolute" style={{ left: `${p.x}%`, top: `${p.y}%` }}>
@@ -65,6 +65,8 @@ export default function Detail() {
         ))}
       </ul>
       <div className="hidden h-20 md:block" />
+      {/* Second anchor: keep the flying can hidden until the next section is close. */}
+      <div aria-hidden data-can='{"x":0.5,"y":-1.6,"s":0.9,"ry":6.4,"rx":0,"rz":0,"o":0}' className="absolute bottom-[25%] h-px w-px" />
     </section>
   );
 }
