@@ -4,11 +4,10 @@ import { Suspense, useEffect, useMemo, useRef } from "react";
 import { Canvas, useFrame, useLoader, useThree } from "@react-three/fiber";
 import { useEnvironment } from "@react-three/drei";
 import * as THREE from "three";
-import { KEYS, ZERO, useChoreography, type Pose } from "./choreography";
 
 /**
- * Real-time can, drawn at full screen resolution so it stays sharp at any
- * size and can tumble freely. It matches the Blender render
+ * Real-time can for the hero, drawn at full screen resolution so it stays
+ * sharp at any size. Scroll progress (0–1, written by the hero) turns it once. It matches the Blender render
  * (scripts/render_can.py): same lathe profiles, the same 4096 px label with
  * its PBR map, and the Blender studio captured as an HDRI for reflections.
  */
@@ -30,9 +29,8 @@ const BOTTOM: [number, number][] = [
 const lathe = (pts: [number, number][], y0: number) =>
   new THREE.LatheGeometry(pts.map(([r, h]) => new THREE.Vector2(r, y0 + h)), 256);
 
-function Can({ target }: { target: React.MutableRefObject<Pose> }) {
+function Can({ progress }: { progress: React.MutableRefObject<number> }) {
   const group = useRef<THREE.Group>(null);
-  const viewport = useThree((s) => s.viewport);
   const gl = useThree((s) => s.gl);
   const [color, pbr] = useLoader(THREE.TextureLoader, ["/label/can-color.webp", "/label/can-pbr.webp"]);
 
@@ -45,14 +43,16 @@ function Can({ target }: { target: React.MutableRefObject<Pose> }) {
       metalnessMap: pbr,
       roughness: 1,
       metalness: 1,
-      clearcoat: 0.3,
-      clearcoatRoughness: 0.16,
+      clearcoat: 0.06,
+      clearcoatRoughness: 0.5,
+      envMapIntensity: 0.55,
     });
     const alu = new THREE.MeshPhysicalMaterial({
       color: "#e8eaec",
       metalness: 1,
-      roughness: 0.2,
-      anisotropy: 0.35,
+      roughness: 0.34,
+      anisotropy: 0.3,
+      envMapIntensity: 0.75,
       side: THREE.DoubleSide,
     });
     const tab = new THREE.Shape();
@@ -70,8 +70,8 @@ function Can({ target }: { target: React.MutableRefObject<Pose> }) {
     };
   }, [color, pbr, gl]);
 
-  const current = useRef<Pose>({ ...ZERO, y: 1.6, s: 0.8 });
   const pointer = useRef({ x: 0, y: 0 });
+  const spin = useRef(0);
   useEffect(() => {
     const move = (e: PointerEvent) => {
       pointer.current.x = e.clientX / window.innerWidth - 0.5;
@@ -82,19 +82,14 @@ function Can({ target }: { target: React.MutableRefObject<Pose> }) {
   }, []);
 
   useFrame((state, delta) => {
-    const dt = Math.min(delta, 1 / 30);
-    const c = current.current;
-    for (const k of KEYS) c[k] = THREE.MathUtils.damp(c[k], target.current[k], 4.5, dt);
-    const t = state.clock.elapsedTime;
     const g = group.current;
     if (!g) return;
-    g.position.set((c.x * viewport.width) / 2, (c.y * viewport.height) / 2 + Math.sin(t * 1.1) * 0.04, 0);
-    g.scale.setScalar(c.s);
-    // Spin (with a slow idle turn), pitch toward/away from the viewer, roll.
-    g.rotation.set(c.rx + pointer.current.y * 0.15, c.ry + t * 0.18 + pointer.current.x * 0.5, -c.rz + Math.sin(t * 0.5) * 0.025, "YXZ");
-    g.visible = c.o > 0.01;
-    parts.label.opacity = parts.alu.opacity = c.o;
-    parts.label.transparent = parts.alu.transparent = c.o < 0.999;
+    const dt = Math.min(delta, 1 / 30);
+    const t = state.clock.elapsedTime;
+    // One full turn over the hero, eased; the front faces you at start and end.
+    spin.current = THREE.MathUtils.damp(spin.current, progress.current * Math.PI * 2, 6, dt);
+    g.rotation.set(0.12 + pointer.current.y * 0.08, spin.current + pointer.current.x * 0.3, -0.06, "YXZ");
+    g.position.y = Math.sin(t * 0.9) * 0.05;
   });
 
   return (
@@ -123,25 +118,17 @@ function Studio() {
   return null;
 }
 
-/** One can for the whole page, in a fixed layer that floats over the sections. */
-export default function CanStage() {
-  const target = useChoreography();
+export default function CanStage({ progress, className }: { progress: React.MutableRefObject<number>; className?: string }) {
   return (
-    <div aria-hidden className="pointer-events-none fixed inset-0 z-30">
+    <div aria-hidden className={className}>
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [0, 0, 10], fov: 30 }}
-        gl={{
-          antialias: true,
-          alpha: true,
-          // Linear like the Blender render; a little brighter, since real time has no bounce light.
-          toneMapping: THREE.LinearToneMapping,
-          toneMappingExposure: 1.0,
-        }}
+        camera={{ position: [0, 0.1, 8.6], fov: 30 }}
+        gl={{ antialias: true, alpha: true, toneMapping: THREE.LinearToneMapping, toneMappingExposure: 1.0 }}
       >
         <Suspense fallback={null}>
           <Studio />
-          <Can target={target} />
+          <Can progress={progress} />
         </Suspense>
       </Canvas>
     </div>

@@ -1,62 +1,82 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Pattern from "@/components/ui/Pattern";
-import Stamp from "@/components/ui/Stamp";
+import { useEffect, useRef, useState } from "react";
+import LazyCanStage from "@/components/stage/LazyCanStage";
 
-const ease = [0.22, 1, 0.36, 1] as const;
+/** Three lines the hero walks through while the can makes one turn. */
+const beats = [
+  { kicker: "Spirulina-Erfrischungsgetränk", title: ["Der", "Balancer."], text: "Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina. Made in Germany." },
+  { kicker: "Zwei Algen, ein Name", title: ["Spirulina", "trifft Rotalge."], text: "Spirulina platensis und Lithothamnium calcareum – daher der Name SPIRULI." },
+  { kicker: "200 ml Dose", title: ["Leicht", "und spritzig."], text: "Rund 22 kcal pro 100 ml, gesüßt mit Agavensirup, mit natürlichen B-Vitaminen und Aminosäuren." },
+];
 
 export default function Hero() {
+  const section = useRef<HTMLElement>(null);
+  const progress = useRef(0);
+  const [beat, setBeat] = useState(0);
+
+  useEffect(() => {
+    const update = () => {
+      const el = section.current;
+      if (!el) return;
+      const r = el.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)));
+      progress.current = p;
+      setBeat(Math.min(beats.length - 1, Math.floor(p * beats.length * 0.999)));
+    };
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
+    return () => {
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
+    };
+  }, []);
+
   return (
-    <section
-      id="top"
-      data-can='{"x":0,"y":-0.3,"s":0.92,"ry":0,"rx":0.06,"rz":0}'
-      className="relative flex min-h-[100svh] flex-col overflow-hidden bg-algae pt-20 text-lime"
-    >
-      <Pattern color="#237A45" />
-      <div className="wrap relative flex flex-1 flex-col">
-        <div className="dotted mt-2 text-lime/60" />
-        <p className="micro mt-6 text-center text-lime/80">Fermentiertes Algen-Getränk · Holunder · Zitrus · Spirulina</p>
+    <section ref={section} id="top" className="relative h-[280vh] bg-petrol-deep text-cream">
+      <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden">
+        {/* A soft studio light behind the can, like a product shot. */}
+        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_70%_at_68%_45%,#16686d_0%,#0a3134_60%,#071f21_100%)]" />
 
-        <h1 className="mt-4 text-center">
-          <span className="block overflow-hidden">
-            <motion.span
-              className="mega block text-[18vw] text-lime xl:text-[16.5rem]"
-              initial={{ y: "100%" }}
-              animate={{ y: "0%" }}
-              transition={{ duration: 1.1, ease }}
-            >
-              Spiruli
-            </motion.span>
-          </span>
-          <motion.span
-            className="mega mt-2 block text-[6.4vw] text-lime-soft lg:text-[5.2rem]"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease, delay: 0.25 }}
-          >
-            Natürliche Energie
-          </motion.span>
-        </h1>
+        <div className="wrap relative grid flex-1 items-center gap-4 pt-16 md:grid-cols-[1fr_0.9fr]">
+          <div className="relative order-2 min-h-[16rem] md:order-1 md:min-h-[24rem]">
+            {beats.map((b, i) => (
+              <div
+                key={b.kicker}
+                aria-hidden={i !== beat}
+                className={`absolute inset-x-0 top-0 transition-all duration-700 ${
+                  i === beat ? "translate-y-0 opacity-100" : i < beat ? "-translate-y-6 opacity-0" : "translate-y-6 opacity-0"
+                }`}
+              >
+                <p className="label text-leaf">{b.kicker}</p>
+                {i === 0 ? (
+                  <h1 className="headline mt-4 text-[15vw] md:text-[7.5vw]">
+                    {b.title[0]} <br />
+                    {b.title[1]}
+                  </h1>
+                ) : (
+                  <h2 className="headline mt-4 text-[13vw] md:text-[6.5vw]">
+                    {b.title[0]} <br />
+                    {b.title[1]}
+                  </h2>
+                )}
+                <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/80">{b.text}</p>
+              </div>
+            ))}
+          </div>
+          <div className="relative order-1 h-[46svh] md:order-2 md:h-[82svh]">
+            <LazyCanStage progress={progress} className="absolute inset-0" />
+          </div>
+        </div>
 
-        {/* Room for the can, which floats in from the stage above the page. */}
-        <div className="min-h-[26svh] flex-1" />
-
-        <div className="flex items-end justify-between gap-6 pb-8">
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6, duration: 0.8 }} className="max-w-[17rem]">
-            <p className="micro text-lime">
-              Das vegane &amp; natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren.
-            </p>
-            <a href="#kaufen" className="pill mt-4 bg-lime text-ink">
-              Jetzt probieren →
-            </a>
-          </motion.div>
-          <Stamp
-            text="VEGAN · FERMENTIERT · NATÜRLICH · "
-            color="#D7F25A"
-            className="w-24 sm:w-28"
-            center={<span className="mega block text-2xl leading-none">Neu</span>}
-          />
+        <div className="wrap relative flex items-center justify-between pb-6 text-sm text-cream/70">
+          <div className="flex gap-2" aria-hidden>
+            {beats.map((_, i) => (
+              <span key={i} className={`h-1 w-8 rounded-full transition-colors ${i <= beat ? "bg-cream" : "bg-cream/25"}`} />
+            ))}
+          </div>
+          <span>Scrollen – die Dose dreht sich</span>
         </div>
       </div>
     </section>

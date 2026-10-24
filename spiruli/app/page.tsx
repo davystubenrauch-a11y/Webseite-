@@ -1,15 +1,12 @@
 import Nav from "@/components/ui/Nav";
 import ScrollStory from "@/components/ui/ScrollStory";
-import LazyCanStage from "@/components/stage/LazyCanStage";
 import Hero from "@/components/sections/Hero";
-import Angle from "@/components/sections/Angle";
-import Split from "@/components/sections/Split";
-import Ticker from "@/components/sections/Ticker";
-import Detail from "@/components/sections/Detail";
+import Name from "@/components/sections/Name";
 import Zutaten from "@/components/sections/Zutaten";
-import Naehrstoffe from "@/components/sections/Naehrstoffe";
-import Team from "@/components/sections/Team";
+import Naehrwerte from "@/components/sections/Naehrwerte";
+import Momente from "@/components/sections/Momente";
 import Qualitaet from "@/components/sections/Qualitaet";
+import Faq from "@/components/sections/Faq";
 import Kaufen from "@/components/sections/Kaufen";
 import Footer from "@/components/sections/Footer";
 
@@ -18,18 +15,14 @@ export default function Home() {
     <>
       <Nav />
       <ScrollStory />
-      {/* One real-time 3D can travels through every section; poses live on each section's data-can. */}
-      <LazyCanStage />
       <main>
         <Hero />
-        <Ticker />
-        <Angle />
-        <Split />
-        <Detail />
+        <Name />
         <Zutaten />
-        <Naehrstoffe />
-        <Team />
+        <Naehrwerte />
+        <Momente />
         <Qualitaet />
+        <Faq />
         <Kaufen />
       </main>
       <Footer />

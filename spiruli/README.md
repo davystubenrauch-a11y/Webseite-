@@ -15,20 +15,17 @@ When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
 
 ## Concept
 
-Bold colour fields in the drink's palette: algae green, lime, elderberry magenta, citrus and cream. Tone-on-tone botanical wallpaper (`components/ui/Pattern.tsx`), extra-wide Archivo Black headlines and small dense uppercase copy.
-
-**One 3D can for the whole page.** `components/stage/CanStage.tsx` renders the can in a fixed layer above the sections. Each section declares where the can should be through its `data-can` attribute: position, scale and rotation. Scrolling interpolates between those poses, so the can flies, spins and tilts from section to section. On phones, side poses move the can to the screen edge so it never covers content.
+The page is built on the drink's real facts: "Der Balancer. Made in Germany.", the name from Spirulina + Lithothamnium, the ingredient list and the nutrition panel (`lib/site.ts`). It uses the colours of the can (petrol, cream, a touch of algae green) and one 3D moment: the can turns once while the hero is pinned.
 
 ## Sections
 
-1. **Hero:** giant "SPIRULI" over the can.
-2. **Ein neuer Blick auf Energie:** the can tilts in from the right.
-3. **Aus der Alge / In die Dose:** text split around the can.
-4. **Zutaten:** cream list beside an elderberry field.
-5. **Was drin steckt:** vitamin tiles with EU claims and amino-acid pills.
-6. **Team:** "Jahre Forschung. Drei Disziplinen."
-7. **Apothekenqualität:** PZN with a scannable barcode, and SGS Fresenius.
-8. **Probier's aus:** ordering steps and calls to action.
+1. **Hero:** pinned. The satin 3D can makes one full turn while three statements change.
+2. **Name:** SPIRU (Spirulina platensis) + LI (Lithothamnium calcareum).
+3. **Zutaten:** all nine ingredients in label order, next to the 4K render.
+4. **Nährwerte:** label-style nutrition panel (per 100 ml and per 200 ml can) and a vitamin accordion with EU claims.
+5. **Momente:** when people drink it.
+6. **Qualität:** PZN with barcode, Made in Germany, elderberries, SGS Fresenius.
+7. **Fragen** and **Kaufen**.
 
 ## The can
 

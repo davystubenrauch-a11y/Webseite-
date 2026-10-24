@@ -3,58 +3,46 @@
 @tailwind utilities;
 
 html {
-  background: #1e6b3b;
+  background: #f4efe3;
   overflow-x: clip;
   scroll-behavior: smooth;
 }
 
 body {
-  color: #10331f;
-  background: #1e6b3b;
+  color: #13201f;
+  background: #f4efe3;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background: #d7f25a;
-  color: #10331f;
+  background: #0f5257;
+  color: #f4efe3;
 }
 
 @layer components {
   .wrap {
-    @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
+    @apply mx-auto w-full max-w-[84rem] px-5 sm:px-8 lg:px-12;
   }
 
-  /* Extra-wide black display type. */
-  .mega {
-    font-stretch: 125%;
-    font-weight: 900;
-    line-height: 0.86;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-
-  /* Small, dense uppercase copy blocks. */
-  .micro {
-    font-stretch: 100%;
-    font-size: 0.72rem;
-    font-weight: 800;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .pill {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-[0.7rem] font-extrabold uppercase tracking-wide transition-transform duration-200 hover:-translate-y-0.5;
+  /* Wide, heavy headline type; sentence case reads warmer than all caps. */
+  .headline {
     font-stretch: 112%;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
   }
 
-  .dotted {
-    background-image: radial-gradient(currentColor 1.1px, transparent 1.3px);
-    background-size: 7px 3px;
-    background-repeat: repeat-x;
-    background-position: left center;
-    height: 3px;
+  .label {
+    font-stretch: 100%;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md px-5 py-3 text-sm font-bold transition-colors duration-200;
   }
 }
 
