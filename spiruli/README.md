@@ -32,18 +32,20 @@ Bold colour fields in the drink's palette: algae green, lime, elderberry magenta
 
 ## The can
 
-The can on the page is photoreal: a 360° turntable pre-rendered with Blender Cycles and played back as an image sequence (`components/stage/CanSequence.tsx`, 60 frames in `public/can/`). Scrolling picks the frame and moves, scales and tilts the image between the per-section poses.
+The can is drawn in real time (`components/stage/CanStage.tsx`, three.js), so it stays sharp at any screen size and tumbles freely as you scroll. To look like the Blender render, it uses:
+- the same lathe profiles as `scripts/render_can.py`;
+- the full label at 4096 px with its PBR map (`public/label/can-color.webp`, `can-pbr.webp`);
+- the Blender studio captured as an HDRI (`public/env/studio.hdr`) for the reflections.
 
-Pipeline to re-render after a design change:
+Each section sets the can's pose through its `data-can` attribute: position, scale, spin (`ry`), pitch (`rx`), roll (`rz`) and opacity (`o`).
 
-1. `python3 scripts/bake-label.py`: extracts the painted swoosh from `public/spiruli-can.jpg` into `public/label/`.
-2. `node scripts/label-export/export.mjs OUT 3`: paints the full label with `lib/drawLabel.ts` at 6144 px (wordmark, copy, band, badges, seal and back panel are vector art) and writes `label-color.png` and `label-pbr.png`.
-3. Render with Blender (the `bpy` package, Python 3.11):
-   `python3.11 scripts/render_can.py -- --label OUT/label-color.png --pbr OUT/label-pbr.png --out FRAMES --frames 60 --size 800x1600 --samples 64`.
-   Use `--mode still` for a 4K hero image (`public/renders/spiruli-4k.jpg`).
-4. `python3 scripts/pack-frames.py FRAMES`: crops the frames and writes WebP files to `public/can/`.
+Pipeline after a design change:
 
-For a sharper swoosh, use a higher-resolution source image or the designer's artwork in step 1.
+1. `python3 scripts/bake-label.py`: extracts the painted swoosh from `public/spiruli-can.jpg`.
+2. `node scripts/label-export/export.mjs OUT 2`: paints the label with `lib/drawLabel.ts` at 4096 px. Save `label-color.png` as `public/label/can-color.webp` (saturation +15 %) and `label-pbr.png` (scaled to 2048 px) as `can-pbr.webp`.
+3. Optional: Blender (`bpy`, Python 3.11):
+   - `scripts/render_can.py -- --mode env` re-captures the studio HDRI;
+   - `--mode still` renders the 4K product image `public/renders/spiruli-4k.jpg`.
 
 ## Before launch
 

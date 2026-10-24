@@ -6,6 +6,7 @@ Photoreal render of the SPIRULI can with Blender Cycles (bpy).
 
 turntable: transparent PNG frames of a 360° turn, front facing camera at frame 0
 still:     a single 4K (3840 × 2160) hero shot
+env:       equirectangular HDR of the studio lights, for the real-time can
 
 The can shape matches components/three/SpiruliCan.tsx (radius 0.58, label
 height 2.92), so label artwork painted by lib/drawLabel.ts fits exactly.
@@ -277,6 +278,24 @@ def main():
             sc.render.filepath = f"{a.out}/frame-{i:03d}.png"
             bpy.ops.render.render(write_still=True)
             print("frame", i, flush=True)
+    elif a.mode == "env":
+        # Equirectangular HDR of the studio (softboxes + world, no can) for
+        # the real-time can's reflections. Centre of the image faces +X,
+        # which is what three.js expects for equirectangular maps.
+        for ob in bpy.data.objects:
+            if ob.type == "MESH":
+                is_box = ob.name in ("Key", "StripL", "StripR", "Top", "Fill")
+                ob.visible_camera = is_box
+                ob.hide_render = not is_box
+        sc.render.film_transparent = False
+        cam.data.type = "PANO"
+        cam.data.panorama_type = "EQUIRECTANGULAR"
+        cam.location = (0, 0, 0)
+        cam.rotation_euler = (math.radians(90), 0, math.radians(-90))
+        sc.render.image_settings.file_format = "HDR"
+        sc.render.image_settings.color_mode = "RGB"
+        sc.render.filepath = f"{a.out}/studio.hdr"
+        bpy.ops.render.render(write_still=True)
     else:
         sc.render.film_transparent = False
         sc.world.node_tree.nodes["Background"].inputs["Color"].default_value = (0.02, 0.06, 0.065, 1)

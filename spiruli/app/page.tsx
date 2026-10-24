@@ -1,6 +1,6 @@
 import Nav from "@/components/ui/Nav";
 import ScrollStory from "@/components/ui/ScrollStory";
-import CanSequence from "@/components/stage/CanSequence";
+import LazyCanStage from "@/components/stage/LazyCanStage";
 import Hero from "@/components/sections/Hero";
 import Angle from "@/components/sections/Angle";
 import Split from "@/components/sections/Split";
@@ -18,8 +18,8 @@ export default function Home() {
     <>
       <Nav />
       <ScrollStory />
-      {/* One photoreal can travels through every section; poses live on each section's data-can. */}
-      <CanSequence />
+      {/* One real-time 3D can travels through every section; poses live on each section's data-can. */}
+      <LazyCanStage />
       <main>
         <Hero />
         <Ticker />

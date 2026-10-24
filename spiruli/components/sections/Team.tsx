@@ -11,7 +11,7 @@ export default function Team() {
   return (
     <section
       id="team"
-      data-can='{"x":0.72,"y":0.25,"s":0.62,"ry":10.4,"rx":-0.2,"rz":-0.6}'
+      data-can='{"x":0.72,"y":0.25,"s":0.62,"ry":10.4,"rx":-0.95,"rz":-0.5}'
       className="relative min-h-[100svh] overflow-hidden bg-citrus text-ink"
     >
       <Pattern color="#EDA717" />

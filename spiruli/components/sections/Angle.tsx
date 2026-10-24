@@ -4,7 +4,7 @@ import Pattern from "@/components/ui/Pattern";
 export default function Angle() {
   return (
     <section
-      data-can='{"x":0.58,"y":0.02,"s":1.0,"ry":2.6,"rx":0.35,"rz":-0.5}'
+      data-can='{"x":0.58,"y":0.02,"s":1.0,"ry":2.6,"rx":0.75,"rz":-0.55}'
       className="relative flex min-h-[100svh] items-center overflow-hidden bg-algae text-lime"
     >
       <Pattern color="#237A45" />

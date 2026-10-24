@@ -22,8 +22,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className={`${archivo.variable} ${display.variable}`}>
       <head>
-        {/* The can's front frame is the first thing on screen. */}
-        <link rel="preload" as="image" href="/can/frame-000.webp" />
+        {/* The can's label and studio light are needed first. */}
+        <link rel="preload" as="image" href="/label/can-color.webp" />
+        <link rel="preload" as="fetch" href="/env/studio.hdr" crossOrigin="anonymous" />
       </head>
       <body className="font-sans">{children}</body>
     </html>
