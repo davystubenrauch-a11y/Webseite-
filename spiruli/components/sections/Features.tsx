@@ -3,36 +3,48 @@ const features = [
     no: "01",
     title: "Spirulina",
     latin: "Spirulina platensis",
-    text: "Die Mikroalge ist der Kern von SPIRULI. Sie bringt natürliche B-Vitamine und Aminosäuren mit – schmecken tut man sie kaum.",
-    tags: ["B-Vitamine", "Aminosäuren", "Mikroalge"],
+    text: "Die Mikroalge ist der Kern von SPIRULI. Sie bringt natürliche B-Vitamine und Aminosäuren mit – schmecken tut man sie kaum. Dazu kommt die Rotalge Lithothamnium: das LI im Namen.",
+    tags: ["B-Vitamine", "Aminosäuren", "Zwei Algen"],
     img: "/photos/spirulina.webp",
-    alt: "Spirulina-Presslinge und Pulver auf Stein",
+    alt: "Spirulina-Pulver und Presslinge mit Minze auf Schiefer",
     cls: "bg-algae text-mist",
     accent: "text-fresh",
     tag: "border-mist/25",
   },
   {
     no: "02",
-    title: "Holunder & Zitrone",
-    latin: "Sambucus nigra · Citrus",
-    text: "Holunder gibt den beerigen, samtigen Grundton – laut Hersteller pestizidfrei aus Mitteleuropa. Zitrone und Orange sorgen für den frischen Abgang.",
-    tags: ["Fruchtig", "Spritzig", "Gesüßt mit Agave"],
+    title: "Holunder",
+    latin: "Sambucus nigra",
+    text: "Gibt den beerigen, samtigen Grundton. Die Beeren sind laut Hersteller pestizidfrei und stammen aus Mitteleuropa.",
+    tags: ["Beerig", "Samtig", "Aus Mitteleuropa"],
     img: "/photos/holunder.webp",
-    alt: "Holunderbeeren und Zitronenscheiben auf Schiefer",
+    alt: "Dunkle Beeren und Fruchtstücke vor dunklem Hintergrund",
     cls: "bg-berry text-mist",
     accent: "text-[#e7b8dc]",
     tag: "border-mist/25",
   },
   {
     no: "03",
-    title: "Natürlich & vegan",
-    latin: "Lithothamnium calcareum",
-    text: "Dazu die Rotalge – das LI in SPIRULI. Kein Pulver, kein Smoothie: neun Zutaten, vegan und glutenfrei, rund 22 kcal pro 100 ml.",
-    tags: ["Vegan", "Glutenfrei", "22 kcal / 100 ml"],
-    img: "/photos/blatt.webp",
-    alt: "Frisches grünes Blatt und Spirulina auf hellem Stein",
-    cls: "bg-paper text-ink",
-    accent: "text-teal",
+    title: "Zitrone",
+    latin: "Citrus limon",
+    text: "Frische Säure für einen klaren, spritzigen Abgang – zusammen mit einem Schuss Kohlensäure.",
+    tags: ["Frisch", "Spritzig", "Vitamin C"],
+    img: "/photos/zitrone.webp",
+    alt: "Zitronenscheiben mit Blättern auf dunklem Stein",
+    cls: "bg-citrus text-ink",
+    accent: "text-[#a88a0c]",
+    tag: "border-ink/20",
+  },
+  {
+    no: "04",
+    title: "Orange",
+    latin: "Citrus sinensis",
+    text: "Rundet ab und nimmt der Zitrone die Spitze. Gesüßt wird nur mit Agavensirup – rund 22 kcal pro 100 ml, vegan und glutenfrei.",
+    tags: ["Fruchtig", "Agavensirup", "22 kcal / 100 ml"],
+    img: "/photos/orange.webp",
+    alt: "Orangenspalten mit Blättern auf dunklem Stein",
+    cls: "bg-[#f6dcc2] text-ink",
+    accent: "text-[#c8611b]",
     tag: "border-ink/20",
   },
 ];
@@ -48,7 +60,7 @@ export default function Features() {
         <article key={f.no} className={`relative flex items-center overflow-hidden py-20 lg:sticky lg:top-0 lg:min-h-[100svh] lg:py-24 ${f.cls}`} style={{ zIndex: i + 1 }}>
           <div className={`wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
             <div data-reveal className="overflow-hidden rounded-[2rem]">
-              <img data-zoom src={f.img} alt={f.alt} loading="lazy" className="aspect-[4/5] max-h-[72svh] w-full object-cover" />
+              <img data-zoom src={f.img} alt={f.alt} loading="lazy" className="aspect-[3/4] max-h-[76svh] w-full object-cover" />
             </div>
             <div>
               <p data-reveal className={`font-display text-8xl font-extrabold sm:text-9xl ${f.accent}`}>{f.no}</p>

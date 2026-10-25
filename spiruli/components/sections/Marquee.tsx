@@ -1,4 +1,4 @@
-const words = ["Spirulina", "Holunder", "Zitrone", "Rotalge", "Orange", "Vegan", "Made in Germany"];
+const words = ["Spirulina", "Holunder", "Zitrone", "Orange", "Rotalge", "Vegan", "Made in Germany"];
 
 /** Steady, CSS-only ingredient band. */
 export default function Marquee() {
