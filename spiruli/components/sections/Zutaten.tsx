@@ -1,27 +1,27 @@
 import { ingredients } from "@/lib/site";
 
 const stars = [
-  { img: "/props/berries-a.webp", name: "Holunder", text: "Beerig und samtig – der Grundgeschmack. Laut Hersteller pestizidfrei aus Mitteleuropa." },
-  { img: "/props/lemon-a.webp", name: "Zitrone & Orange", text: "Frische Säure für einen klaren, spritzigen Abgang." },
-  { img: "", name: "Spirulina", text: "Die Mikroalge liefert natürliche B-Vitamine und Aminosäuren." },
+  { img: "/props/berries-a.webp", tint: "bg-berry", name: "Holunder", text: "Beerig und samtig – der Grundgeschmack. Laut Hersteller pestizidfrei aus Mitteleuropa." },
+  { img: "/props/lemon-a.webp", tint: "bg-citrus", name: "Zitrone & Orange", text: "Frische Säure für einen klaren, spritzigen Abgang." },
+  { img: "", tint: "bg-sage", name: "Spirulina", text: "Die Mikroalge liefert natürliche B-Vitamine und Aminosäuren." },
 ];
 
-/** Cream panel: three star ingredients with their renders, then the full list. */
+/** Light panel: three star ingredients on their own tinted cards, then the full list. */
 export default function Zutaten() {
   return (
-    <section id="zutaten" className="bg-cream py-28 text-ink sm:py-36">
+    <section id="zutaten" className="bg-paper py-28 text-ink sm:py-36">
       <div className="wrap">
-        <p data-reveal className="eyebrow text-night/60">
+        <p data-reveal className="eyebrow text-teal">
           Zutaten
         </p>
         <h2 data-reveal className="display mt-6 max-w-4xl text-6xl sm:text-8xl">
-          Neun Zutaten. <em>Nichts zu verstecken.</em>
+          Neun Zutaten. <em className="text-teal">Nichts zu verstecken.</em>
         </h2>
 
-        <div className="mt-20 grid gap-12 md:grid-cols-3">
+        <div className="mt-16 grid gap-5 md:grid-cols-3">
           {stars.map((s, i) => (
-            <div key={s.name} data-reveal style={{ ["--d" as string]: `${i * 0.12}s` }}>
-              <div className="grid h-48 place-items-center">
+            <div key={s.name} data-reveal className={`rounded-3xl p-8 pb-10 ${s.tint}`} style={{ ["--d" as string]: `${i * 0.12}s` }}>
+              <div className="grid h-56 place-items-center">
                 {s.img ? (
                   <img src={s.img} alt="" loading="lazy" className="max-h-full w-auto max-w-[70%] object-contain drop-shadow-[0_25px_25px_rgba(19,43,46,0.25)]" />
                 ) : (

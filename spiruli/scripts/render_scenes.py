@@ -39,6 +39,7 @@ def args():
     p.add_argument("--frames", type=int, default=192)
     p.add_argument("--first", type=int, default=0)
     p.add_argument("--last", type=int, default=-1)
+    p.add_argument("--bg", default="214043", help="sRGB hex the set should come out as on the page")
     a = p.parse_args(sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else [])
     a.mode_can = a.mode
     return a
@@ -92,25 +93,53 @@ def condensation(strength=1.0):
     b.inputs["Coat Roughness"].default_value = 0.06
 
 
-def studio_set(color=(0.02, 0.07, 0.075)):
-    """Glossy petrol floor that fades into a plain world of the same colour,
-    so the set has no visible horizon and the video blends into the page."""
+def srgb_to_linear(hex_):
+    def ch(c):
+        c = int(hex_[c:c + 2], 16) / 255
+        return c / 12.92 if c <= 0.04045 else ((c + 0.055) / 1.055) ** 2.4
+    return tuple(ch(i) for i in (0, 2, 4))
+
+
+def studio_set(hex_="214043"):
+    """Glossy floor that fades into a plain backdrop of the page colour, so the
+    set has no visible horizon and the video blends into the page. The camera
+    sees the backdrop at exactly `hex_` (Standard view, exposure -0.45); light
+    bounced from it onto the can stays dimmer, so a pale set doesn't flatten it.
+    "none" keeps render_can's shadow catcher and renders transparent instead,
+    to be laid over any page colour afterwards (scripts/flatten.py)."""
+    if hex_ == "none":
+        return
     ground = next(o for o in bpy.data.objects if getattr(o, "is_shadow_catcher", False))
     bpy.data.objects.remove(ground)
     floor_z = -rc.TOP - 0.097
     for name in ("Key", "StripL", "StripR", "Fill"):
         bpy.data.objects[name].location.z += 2.4
-    world = bpy.context.scene.world
-    world.node_tree.nodes["Background"].inputs["Color"].default_value = (*color, 1)
+    seen = tuple(c / 2 ** -0.45 for c in srgb_to_linear(hex_))
+    lit = tuple(min(c, 0.8) * 0.35 for c in seen)
+    albedo = tuple(min(c, 0.85) * 0.7 for c in seen)
+
+    wt = bpy.context.scene.world.node_tree
+    wbg = wt.nodes["Background"]
+    wbg.inputs["Color"].default_value = (*lit, 1)
+    cam_bg = wt.nodes.new("ShaderNodeBackground")
+    cam_bg.inputs["Color"].default_value = (*seen, 1)
+    lp = wt.nodes.new("ShaderNodeLightPath")
+    wmix = wt.nodes.new("ShaderNodeMixShader")
+    wout = wt.nodes["World Output"]
+    wt.links.new(lp.outputs["Is Camera Ray"], wmix.inputs["Fac"])
+    wt.links.new(wbg.outputs[0], wmix.inputs[1])
+    wt.links.new(cam_bg.outputs[0], wmix.inputs[2])
+    wt.links.new(wmix.outputs[0], wout.inputs["Surface"])
+
     bpy.ops.mesh.primitive_plane_add(size=80, location=(0, 0, floor_z))
     floor = bpy.context.object
     m = bpy.data.materials.new("Set")
     nt = m.node_tree
     out = nt.nodes["Material Output"]
     b = nt.nodes["Principled BSDF"]
-    b.inputs["Base Color"].default_value = (*color, 1)
-    b.inputs["Roughness"].default_value = 0.22
-    # Fade to the world colour with distance from the can.
+    b.inputs["Base Color"].default_value = (*albedo, 1)
+    b.inputs["Roughness"].default_value = 0.45
+    # Fade to the backdrop colour with distance from the can (camera rays only).
     tc = nt.nodes.new("ShaderNodeTexCoord")
     dist = nt.nodes.new("ShaderNodeVectorMath")
     dist.operation = "LENGTH"
@@ -119,10 +148,15 @@ def studio_set(color=(0.02, 0.07, 0.075)):
     fade.inputs["From Min"].default_value = 2.5
     fade.inputs["From Max"].default_value = 9
     nt.links.new(dist.outputs["Value"], fade.inputs["Value"])
+    flp = nt.nodes.new("ShaderNodeLightPath")
+    only_cam = nt.nodes.new("ShaderNodeMath")
+    only_cam.operation = "MULTIPLY"
+    nt.links.new(fade.outputs[0], only_cam.inputs[0])
+    nt.links.new(flp.outputs["Is Camera Ray"], only_cam.inputs[1])
     bg = nt.nodes.new("ShaderNodeEmission")
-    bg.inputs["Color"].default_value = (*color, 1)
+    bg.inputs["Color"].default_value = (*seen, 1)
     mix = nt.nodes.new("ShaderNodeMixShader")
-    nt.links.new(fade.outputs[0], mix.inputs["Fac"])
+    nt.links.new(only_cam.outputs[0], mix.inputs["Fac"])
     nt.links.new(b.outputs["BSDF"], mix.inputs[1])
     nt.links.new(bg.outputs["Emission"], mix.inputs[2])
     nt.links.new(mix.outputs["Shader"], out.inputs["Surface"])
@@ -130,8 +164,8 @@ def studio_set(color=(0.02, 0.07, 0.075)):
 
 
 def video(a, sc, can, cam):
-    studio_set()
-    sc.render.film_transparent = False
+    studio_set(a.bg)
+    sc.render.film_transparent = a.bg == "none"
     cam.data.lens = 50
     cam.location = (0, -10.5, 0.55)
     aim(cam, (0, 0, 0.05))
@@ -151,8 +185,8 @@ def video(a, sc, can, cam):
 
 
 def macro(a, sc, can, cam):
-    studio_set()
-    sc.render.film_transparent = False
+    studio_set(a.bg)
+    sc.render.film_transparent = a.bg == "none"
     cam.data.dof.use_dof = True
     cam.data.dof.aperture_fstop = 2.2
     shots = [
@@ -214,7 +248,7 @@ def flatlay(a, sc, can, cam):
     ground = next(o for o in bpy.data.objects if getattr(o, "is_shadow_catcher", False))
     bpy.data.objects.remove(ground)
     floor_z = slate()
-    sc.render.film_transparent = False
+    sc.render.film_transparent = a.bg == "none"
     # Lay the can on its side, label facing up, slightly diagonal.
     can.rotation_euler = (math.radians(90), 0, math.radians(-8))
     can.location = (0, 0, 0)
@@ -241,8 +275,8 @@ def flatlay(a, sc, can, cam):
 
 def packshot(a, sc, can, cam):
     """Wide studio shot: the can large on the right, room for text on the left."""
-    studio_set()
-    sc.render.film_transparent = False
+    studio_set(a.bg)
+    sc.render.film_transparent = a.bg == "none"
     can.rotation_euler = (0, 0, math.radians(-25))
     can.location = (1.9, 0, 0)
     cam.data.lens = 55

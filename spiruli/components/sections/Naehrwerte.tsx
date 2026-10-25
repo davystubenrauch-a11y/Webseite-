@@ -10,7 +10,7 @@ const vitamins = nutrients.filter((n) => n.group !== "amino");
 export default function Naehrwerte() {
   const [open, setOpen] = useState("B12");
   return (
-    <section id="naehrwerte" className="bg-night-deep py-28 sm:py-36">
+    <section id="naehrwerte" className="bg-set py-28 text-cream sm:py-36">
       <div className="wrap grid gap-16 lg:grid-cols-2 [&>*]:min-w-0">
         <div>
           <p data-reveal className="eyebrow text-gold">

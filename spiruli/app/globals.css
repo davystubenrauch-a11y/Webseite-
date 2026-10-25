@@ -3,13 +3,13 @@
 @tailwind utilities;
 
 html {
-  background: #0c1f21;
+  background: #ece6da;
   scroll-behavior: smooth;
 }
 
 body {
-  color: #f2ede2;
-  background: #0c1f21;
+  color: #132b2e;
+  background: #ece6da;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
@@ -70,7 +70,9 @@ body {
     transform: none;
     transition: none;
   }
-  .animate-marquee {
+  .animate-marquee,
+  .animate-float,
+  .animate-float-slow {
     animation: none;
   }
 }

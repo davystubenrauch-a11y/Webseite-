@@ -7,7 +7,7 @@ const lines = [
 /** The idea in three lines, revealed one after another. */
 export default function Statement() {
   return (
-    <section id="geschmack" className="bg-night-deep py-28 sm:py-40">
+    <section id="geschmack" className="bg-set py-28 text-cream sm:py-40">
       <div className="wrap">
         <p data-reveal className="eyebrow text-gold">
           Spirulina-Erfrischungsgetränk

@@ -7,12 +7,12 @@ const shots = [
 /** Three macro renders of the can, with slow zoom-in reveals. */
 export default function Details() {
   return (
-    <section className="bg-night-deep pb-28 sm:pb-40">
+    <section className="bg-set pb-28 text-cream sm:pb-40">
       <div className="wrap">
         <div className="grid gap-5 md:grid-cols-3">
           {shots.map((s, i) => (
             <figure key={s.src} data-reveal style={{ ["--d" as string]: `${i * 0.12}s` }}>
-              <div className="overflow-hidden rounded-xl bg-set">
+              <div className="overflow-hidden rounded-2xl bg-sand">
                 <img data-zoom src={s.src} alt={s.title} loading="lazy" className="aspect-[4/5] w-full object-cover" />
               </div>
               <figcaption className="mt-5">

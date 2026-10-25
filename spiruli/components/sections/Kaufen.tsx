@@ -5,16 +5,16 @@ import { site } from "@/lib/site";
 /** Closing: how to get it, with the PZN as a scannable card. */
 export default function Kaufen() {
   return (
-    <section id="kaufen" className="bg-set py-28 sm:py-36">
+    <section id="kaufen" className="bg-teal py-28 text-cream sm:py-36">
       <div className="wrap grid items-center gap-16 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <p data-reveal className="eyebrow text-gold">
+          <p data-reveal className="eyebrow text-gold-soft">
             Probieren
           </p>
           <h2 data-reveal className="display mt-6 text-6xl sm:text-8xl">
             Frag in deiner <em className="text-gold-soft">Apotheke.</em>
           </h2>
-          <p data-reveal className="mt-8 max-w-md text-lg leading-relaxed text-cream/80">
+          <p data-reveal className="mt-8 max-w-md text-lg leading-relaxed text-cream/85">
             SPIRULI ist unter der Pharmazentralnummer {site.pzn} bei der IFA GmbH gelistet – jede Apotheke in Deutschland kann es bestellen. Der
             Qualitätsschutzprozess wird von SGS Fresenius analysiert und zertifiziert.
           </p>
