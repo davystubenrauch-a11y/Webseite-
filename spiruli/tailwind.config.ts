@@ -17,6 +17,12 @@ const config: Config = {
         citrus: "#f1e7a6",
         gold: "#c9a35a",
       },
+      keyframes: {
+        marquee: { to: { transform: "translateX(-50%)" } },
+      },
+      animation: {
+        marquee: "marquee 38s linear infinite",
+      },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

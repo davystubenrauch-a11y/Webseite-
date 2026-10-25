@@ -3,8 +3,9 @@ import Reveal from "@/components/ui/Reveal";
 import FloatingCan from "@/components/can/FloatingCan";
 import Hero from "@/components/sections/Hero";
 import Intro from "@/components/sections/Intro";
-import Welcome from "@/components/sections/Welcome";
-import Zutaten from "@/components/sections/Zutaten";
+import Marquee from "@/components/sections/Marquee";
+import Features from "@/components/sections/Features";
+import Balancer from "@/components/sections/Balancer";
 import Naehrwerte from "@/components/sections/Naehrwerte";
 import Faq from "@/components/sections/Faq";
 import Kaufen from "@/components/sections/Kaufen";
@@ -19,8 +20,9 @@ export default function Home() {
       <main>
         <Hero />
         <Intro />
-        <Welcome />
-        <Zutaten />
+        <Marquee />
+        <Features />
+        <Balancer />
         <Naehrwerte />
         <Faq />
         <Kaufen />

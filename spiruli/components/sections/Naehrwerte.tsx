@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { nutrition } from "@/lib/site";
+import { ingredients, nutrition } from "@/lib/site";
 import { nutrients } from "@/lib/nutrients";
 
 const vitamins = nutrients.filter((n) => n.group !== "amino");
@@ -23,6 +23,23 @@ export default function Naehrwerte() {
             Rund 43 kcal pro Dose. Dazu natürliche B-Vitamine aus der Alge, Vitamin C aus der Zitrone und Aminosäuren – unter anderem Tryptophan, Asparaginsäure
             und Threonin.
           </p>
+          {/* The gold band from the can. */}
+          <div data-reveal className="mt-10 flex max-w-lg items-center justify-around rounded-full bg-gold px-4 py-3 text-ink">
+            {[
+              ["V", "Vegan"],
+              ["B11", "12 mg"],
+              ["B12", "2 µg"],
+            ].map(([k, v]) => (
+              <div key={k} className="grid h-20 w-20 place-items-center rounded-full border-2 border-ink/80 bg-[#d9b872] text-center leading-none sm:h-24 sm:w-24">
+                <div>
+                  <p className="font-display text-2xl font-extrabold sm:text-3xl">{k}</p>
+                  <p className="mt-1 text-[0.7rem] font-semibold">{v}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          <p className="mt-3 max-w-lg text-xs text-ink/45">Angaben laut Dose.</p>
+
           <div data-reveal className="mt-10 max-w-lg rounded-3xl border border-line bg-mist p-4 sm:p-6">
             <div className="flex items-end justify-between border-b border-ink/30 pb-3">
               <p className="font-display text-2xl font-extrabold">Nährwerte</p>
@@ -65,6 +82,21 @@ export default function Naehrwerte() {
             })}
           </ul>
         </div>
+      </div>
+
+      <div className="wrap mt-24">
+        <h3 data-reveal className="headline text-4xl sm:text-5xl">
+          Alle <span className="text-teal">9 Zutaten</span>
+        </h3>
+        <ol data-reveal className="mt-8 grid border-t border-line sm:grid-cols-2 lg:grid-cols-3">
+          {ingredients.map((ing, i) => (
+            <li key={ing.name} className="flex items-baseline gap-4 border-b border-line py-4 sm:pr-6">
+              <span className="w-6 text-sm tabular-nums text-ink/40">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-medium">{ing.name}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-6 text-sm text-ink/60">Vegan · glutenfrei · mit Kohlensäure · gesüßt mit Agavensirup</p>
       </div>
     </section>
   );
