@@ -2,9 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Width / height of the can frames in public/can (printed by scripts/pack-spin.py). */
+/* Width / height of the cut-out can photo in public/can. */
 :root {
-  --can-aspect: 316 / 880;
+  --can-aspect: 606 / 1557;
 }
 
 html {

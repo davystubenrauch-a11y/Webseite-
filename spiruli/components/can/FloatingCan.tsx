@@ -2,66 +2,29 @@
 
 import { useEffect, useRef } from "react";
 
-/** Pre-rendered half turn of the can (scripts/render_scenes.py --mode spin). */
-export const FRAMES = 96;
-const src = (i: number) => `/can/spin-${String(i).padStart(2, "0")}.webp`;
-
+const SRC = "/can/spiruli.webp";
 const clamp = (v: number) => Math.min(1, Math.max(0, v));
 const ease = (t: number) => t * t * (3 - 2 * t);
 
 /**
- * One can for the whole page. It sits in the hero slot, glides into the intro
- * frame as you scroll, then travels with that section. Position and tilt are
- * eased towards the scroll target every frame, and the spin runs on time plus
- * smoothed scroll, so it never jumps with the scroll wheel.
+ * One can for the whole page: the cut-out product photo. It sits in the hero
+ * slot, glides into the intro frame as you scroll, then travels with that
+ * section. Position and tilt are eased towards the scroll target every frame,
+ * and a soft light band sweeps across the aluminium as it moves.
  */
 export default function FloatingCan() {
-  const canvas = useRef<HTMLCanvasElement>(null);
+  const box = useRef<HTMLDivElement>(null);
+  const shine = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const cv = canvas.current!;
-    const ctx = cv.getContext("2d")!;
-    const imgs: (HTMLImageElement | null)[] = Array(FRAMES).fill(null);
+    const el = box.current!;
+    const sh = shine.current!;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    let alive = true;
-
-    const load = (i: number) =>
-      new Promise<void>((res) => {
-        const im = new Image();
-        im.src = src(i);
-        im.decode().then(
-          () => {
-            imgs[i] = im;
-            res();
-          },
-          () => res(),
-        );
-      });
-    load(0).then(async () => {
-      cv.style.opacity = "1";
-      for (let i = 1; i < FRAMES && alive; i += 4) await Promise.all([i, i + 1, i + 2, i + 3].filter((k) => k < FRAMES).map(load));
-    });
-
-    let shown = -1;
-    const draw = (i: number) => {
-      // Fall back to the nearest decoded frame while the rest are loading.
-      let k = i;
-      while (!imgs[k] && k > 0) k--;
-      const im = imgs[k];
-      if (!im || k === shown) return;
-      if (cv.width !== im.naturalWidth) {
-        cv.width = im.naturalWidth;
-        cv.height = im.naturalHeight;
-      }
-      ctx.clearRect(0, 0, cv.width, cv.height);
-      ctx.drawImage(im, 0, 0);
-      shown = k;
-    };
-
     let p = 0;
     let sm = window.scrollY;
     let raf = 0;
     const t0 = performance.now();
+
     const tick = (now: number) => {
       const a = document.querySelector<HTMLElement>('[data-can-slot="hero"]');
       const b = document.querySelector<HTMLElement>('[data-can-slot="intro"]');
@@ -80,32 +43,40 @@ export default function FloatingCan() {
         const s = h / rb.height;
         const t = (now - t0) / 1000;
         const bob = still ? 0 : Math.sin(t * 1.3) * 7 * (1 - e);
-        const tilt = Math.sin(Math.PI * e) * -16 + (still ? 0 : Math.sin(t * 0.9) * 1.5 * (1 - e));
-        cv.style.width = `${rb.width}px`;
-        cv.style.height = `${rb.height}px`;
+        const tilt = Math.sin(Math.PI * e) * -14 + (still ? 0 : Math.sin(t * 0.9) * 1.2 * (1 - e));
         // Scale and tilt about the centre; shift so the scaled can lands on (x, y).
         const ox = x - (rb.width * (1 - s)) / 2;
         const oy = y + bob - (rb.height * (1 - s)) / 2;
-        cv.style.transform = `translate3d(${ox}px, ${oy}px, 0) scale(${s}) rotate(${tilt}deg)`;
-        cv.style.visibility = y > innerHeight || y + h < 0 ? "hidden" : "visible";
-        const f = still ? 0 : Math.floor(t * 7 + sm * 0.06) % FRAMES;
-        draw((f + FRAMES) % FRAMES);
+        el.style.width = `${rb.width}px`;
+        el.style.height = `${rb.height}px`;
+        el.style.transform = `translate3d(${ox}px, ${oy}px, 0) scale(${s}) rotate(${tilt}deg)`;
+        el.style.visibility = y > innerHeight || y + h < 0 ? "hidden" : "visible";
+        // Light band: drifts slowly on its own and follows the scroll.
+        const pos = still ? 50 : 50 + Math.sin(t * 0.35 + sm * 0.004) * 60;
+        sh.style.backgroundPosition = `${pos}% 0`;
       }
       raf = requestAnimationFrame(tick);
     };
     raf = requestAnimationFrame(tick);
-    return () => {
-      alive = false;
-      cancelAnimationFrame(raf);
-    };
+    return () => cancelAnimationFrame(raf);
   }, []);
 
   return (
-    <canvas
-      ref={canvas}
-      role="img"
-      aria-label="Die SPIRULI Dose"
-      className="pointer-events-none fixed left-0 top-0 z-30 origin-center opacity-0 transition-opacity duration-700 will-change-transform"
-    />
+    <div ref={box} className="pointer-events-none fixed left-0 top-0 z-30 origin-center will-change-transform">
+      <img src={SRC} alt="SPIRULI Dose" className="h-full w-full" fetchPriority="high" />
+      <div
+        ref={shine}
+        aria-hidden
+        className="absolute inset-0 mix-blend-soft-light"
+        style={{
+          backgroundImage: "linear-gradient(100deg, transparent 38%, rgba(255,255,255,0.55) 50%, transparent 62%)",
+          backgroundSize: "260% 100%",
+          WebkitMaskImage: `url(${SRC})`,
+          maskImage: `url(${SRC})`,
+          WebkitMaskSize: "100% 100%",
+          maskSize: "100% 100%",
+        }}
+      />
+    </div>
   );
 }

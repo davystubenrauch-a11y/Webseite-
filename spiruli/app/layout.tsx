@@ -22,7 +22,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="de" className={`${display.variable} ${sans.variable}`}>
       <head>
-        <link rel="preload" as="image" href="/can/spin-00.webp" />
+        <link rel="preload" as="image" href="/can/spiruli.webp" />
       </head>
       <body className="font-sans">{children}</body>
     </html>
