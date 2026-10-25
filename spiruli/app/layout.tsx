@@ -23,9 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${archivo.variable} ${display.variable}`}>
       <head>
         {/* The can's label and studio light are needed first. */}
-        <link rel="preload" as="image" href="/label/can-color.webp" />
-        <link rel="preload" as="image" href="/renders/hero-can.webp" />
-        <link rel="preload" as="fetch" href="/env/studio.hdr" crossOrigin="anonymous" />
+        <link rel="preload" as="image" href="/can/frame-000.webp" />
       </head>
       <body className="font-sans">{children}</body>
     </html>

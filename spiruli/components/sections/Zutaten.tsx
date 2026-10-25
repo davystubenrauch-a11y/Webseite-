@@ -1,3 +1,5 @@
+import CanPose from "@/components/stage/CanPose";
+import Floaters from "@/components/ui/Floaters";
 import { ingredients } from "@/lib/site";
 
 const facts = ["Vegan", "Glutenfrei", "Mit Kohlensäure", "Gesüßt mit Agavensirup"];
@@ -5,16 +7,22 @@ const facts = ["Vegan", "Glutenfrei", "Mit Kohlensäure", "Gesüßt mit Agavensi
 /** The real ingredient list in label order, next to the can render. */
 export default function Zutaten() {
   return (
-    <section id="zutaten" className="bg-cream-warm py-24 sm:py-32">
-      <div className="wrap grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
-        <div data-reveal className="relative overflow-hidden rounded-2xl bg-petrol-deep">
-          <img
-            src="/renders/spiruli-4k-1920.jpg"
-            alt="SPIRULI Dose, 200 ml"
-            loading="lazy"
-            className="aspect-[4/5] w-full object-cover object-center"
-          />
-        </div>
+    <section id="zutaten" className="relative overflow-hidden bg-cream-warm py-24 sm:py-32">
+      <CanPose at="0%" pose={{ x: -0.45, y: 0, s: 1, ry: 9.4, rz: -0.08 }} />
+      <CanPose at="55%" pose={{ x: -0.45, y: 0, s: 1, ry: 10.6, rz: 0.06, o: 1 }} />
+      <CanPose at="85%" pose={{ x: -0.5, y: 0.2, s: 0.9, ry: 11.2, rz: -0.2, o: 0 }} />
+      <Floaters
+        className="hidden lg:block"
+        items={[
+          { src: "lemon-a", x: 10, y: 24, size: 10, depth: 0.3, spin: 40, rotate: 15 },
+          { src: "berries-b", x: 40, y: 70, size: 12, depth: -0.2, spin: -20 },
+          { src: "leaf-b", x: 38, y: 18, size: 9, depth: 0.15, spin: 25 },
+          { src: "lemon-b", x: 6, y: 80, size: 8, depth: 0.45, spin: -30, blur: true },
+        ]}
+      />
+      <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
+        {/* The flying can sits here. */}
+        <div className="hidden min-h-[70vh] lg:block" />
 
         <div>
           <p data-reveal className="label text-petrol">

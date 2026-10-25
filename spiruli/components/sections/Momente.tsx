@@ -4,18 +4,30 @@ const moments = [
   { time: "18:30", title: "Nach dem Training", text: "Kalt aus dem Kühlschrank – vegan, mit Aminosäuren aus der Alge." },
 ];
 
+import CanPose from "@/components/stage/CanPose";
+import Floaters from "@/components/ui/Floaters";
+
 /** When people drink it: a simple day line on petrol. */
 export default function Momente() {
   return (
-    <section className="bg-petrol text-cream">
-      <div className="wrap py-24 sm:py-32">
+    <section className="relative overflow-hidden bg-petrol text-cream">
+      <CanPose at="0%" pose={{ x: 0.62, y: 0.05, s: 0.85, ry: 14, rz: 0.22, o: 1 }} />
+      <CanPose at="45%" pose={{ x: 0.62, y: 0, s: 0.85, ry: 15, rz: 0.1, o: 1 }} />
+      <CanPose at="90%" pose={{ x: 0.66, y: 0.2, s: 0.8, ry: 15.6, rz: 0.3, o: 0 }} />
+      <Floaters
+        items={[
+          { src: "leaf-a", x: 86, y: 20, size: 9, depth: 0.25, spin: 30 },
+          { src: "lemon-a", x: 92, y: 78, size: 8, depth: -0.15, spin: -25, rotate: 30 },
+        ]}
+      />
+      <div className="wrap relative py-24 sm:py-32">
         <p data-reveal className="label text-leaf">
           Wann SPIRULI passt
         </p>
         <h2 data-reveal className="headline mt-4 max-w-3xl text-5xl sm:text-6xl">
           Für den Alltag gemacht, nicht fürs Regal.
         </h2>
-        <ol data-reveal-stagger className="mt-16 grid gap-10 border-t border-cream/20 pt-10 md:grid-cols-3">
+        <ol data-reveal-stagger className="mt-16 grid gap-10 border-t border-cream/20 pt-10 md:w-[62%] md:grid-cols-3">
           {moments.map((m) => (
             <li key={m.time}>
               <p className="font-display text-4xl font-light tracking-wider text-cream/60">{m.time}</p>

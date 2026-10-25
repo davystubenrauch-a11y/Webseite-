@@ -2,6 +2,8 @@ import Nav from "@/components/ui/Nav";
 import ScrollStory from "@/components/ui/ScrollStory";
 import Hero from "@/components/sections/Hero";
 import Name from "@/components/sections/Name";
+import Band from "@/components/sections/Band";
+import CanSequence from "@/components/stage/CanSequence";
 import Zutaten from "@/components/sections/Zutaten";
 import Naehrwerte from "@/components/sections/Naehrwerte";
 import Momente from "@/components/sections/Momente";
@@ -15,9 +17,12 @@ export default function Home() {
     <>
       <Nav />
       <ScrollStory />
+      {/* One photoreal can (Blender turntable) travels through the page; poses come from <CanPose> anchors. */}
+      <CanSequence />
       <main>
         <Hero />
         <Name />
+        <Band />
         <Zutaten />
         <Naehrwerte />
         <Momente />

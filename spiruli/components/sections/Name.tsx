@@ -1,7 +1,10 @@
+import CanPose from "@/components/stage/CanPose";
+
 /** How the name is built: SPIRU from Spirulina, LI from Lithothamnium. */
 export default function Name() {
   return (
-    <section className="border-b border-cream-line bg-cream py-24 sm:py-32">
+    <section className="relative bg-cream py-24 sm:py-32">
+      <CanPose at="0%" pose={{ x: 0.62, y: -0.02, s: 0.9, ry: 6.6, rz: 0.32 }} />
       <div className="wrap">
         <p data-reveal className="label text-petrol">
           Woher der Name kommt

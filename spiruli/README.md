@@ -15,34 +15,40 @@ When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
 
 ## Concept
 
-The page is built on the drink's real facts: "Der Balancer. Made in Germany.", the name from Spirulina + Lithothamnium, the ingredient list and the nutrition panel (`lib/site.ts`). It uses the colours of the can (petrol, cream, a touch of algae green) and one 3D moment: the can turns once while the hero is pinned.
+The page is built on the drink's real facts: "Der Balancer. Made in Germany.", the name from Spirulina + Lithothamnium, the ingredient list and the nutrition panel (`lib/site.ts`). It uses the colours of the can: petrol, cream, a touch of algae green.
+
+**Movement:**
+- One photoreal can travels through the page and turns as you scroll.
+- Rendered ingredients float around it at different depths.
+- A band of ingredient words slides with the scroll.
 
 ## Sections
 
-1. **Hero:** pinned. The satin 3D can makes one full turn while three statements change.
+1. **Hero:** pinned. The can makes one turn while three statements change.
 2. **Name:** SPIRU (Spirulina platensis) + LI (Lithothamnium calcareum).
-3. **Zutaten:** all nine ingredients in label order, next to the 4K render.
-4. **Nährwerte:** label-style nutrition panel (per 100 ml and per 200 ml can) and a vitamin accordion with EU claims.
-5. **Momente:** when people drink it.
-6. **Qualität:** PZN with barcode, Made in Germany, elderberries, SGS Fresenius.
-7. **Fragen** and **Kaufen**.
+3. **Band:** ingredient words sliding sideways.
+4. **Zutaten:** all nine ingredients in label order. The can and props float on the left.
+5. **Nährwerte:** label-style nutrition panel (per 100 ml and per can) and a vitamin accordion with EU claims.
+6. **Momente:** when people drink it.
+7. **Qualität:** PZN with barcode, Made in Germany, elderberries, SGS Fresenius.
+8. **Fragen** and **Kaufen**.
 
 ## The can
 
-The can is drawn in real time (`components/stage/CanStage.tsx`, three.js), so it stays sharp at any screen size and tumbles freely as you scroll. To look like the Blender render, it uses:
-- the same lathe profiles as `scripts/render_can.py`;
-- the full label at 4096 px with its PBR map (`public/label/can-color.webp`, `can-pbr.webp`);
-- the Blender studio captured as an HDRI (`public/env/studio.hdr`) for the reflections.
+The can is a 60-frame 360° turntable rendered with Blender Cycles (`public/can/`). `components/stage/CanSequence.tsx` plays it back: scroll picks the frame and moves, scales and tilts the image. Each section places `<CanPose>` anchors (`components/stage/CanPose.tsx`) with position, scale, spin, roll and opacity. On phones, the can only appears in the hero.
 
-Each section sets the can's pose through its `data-can` attribute: position, scale, spin (`ry`), pitch (`rx`), roll (`rz`) and opacity (`o`).
+The label covers the whole can: the front design is repeated on the back.
 
 Pipeline after a design change:
 
 1. `python3 scripts/bake-label.py`: extracts the painted swoosh from `public/spiruli-can.jpg`.
-2. `node scripts/label-export/export.mjs OUT 2`: paints the label with `lib/drawLabel.ts` at 4096 px. Save `label-color.png` as `public/label/can-color.webp` (saturation +15 %) and `label-pbr.png` (scaled to 2048 px) as `can-pbr.webp`.
-3. Optional: Blender (`bpy`, Python 3.11):
-   - `scripts/render_can.py -- --mode env` re-captures the studio HDRI;
-   - `--mode still` renders the 4K product image `public/renders/spiruli-4k.jpg`.
+2. `node scripts/label-export/export.mjs OUT 3`: paints the 6144 px label with `lib/drawLabel.ts`.
+3. Render with Blender (the `bpy` package, Python 3.11):
+   `python3.11 scripts/render_can.py -- --label OUT/label-color.png --pbr OUT/label-pbr.png --out FRAMES --frames 60 --size 1000x2000 --samples 48`.
+   This takes about 2.5 min per frame on 4 CPU cores. Use `--first`/`--last` to split the work.
+4. `python3 scripts/pack-frames.py FRAMES --height 1800`: writes WebP files to `public/can/`.
+
+The ingredient props (`public/props/`) come from `scripts/render_props.py`.
 
 ## Before launch
 

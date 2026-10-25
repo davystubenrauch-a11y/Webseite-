@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "@/lib/site";
+import CanPose from "@/components/stage/CanPose";
 
 const faqs = [
   { q: "Wie schmeckt SPIRULI?", a: "Fruchtig nach Holunder, frisch durch Zitrone und Orange, leicht spritzig. Die Alge schmeckt man kaum – am besten gut gekühlt." },
@@ -14,7 +15,8 @@ const faqs = [
 export default function Faq() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="fragen" className="border-t border-cream-line bg-cream-warm py-24 sm:py-32">
+    <section id="fragen" className="relative border-t border-cream-line bg-cream-warm py-24 sm:py-32">
+      <CanPose at="40%" pose={{ x: 0.45, y: -1.5, s: 1, ry: 17.5, rz: -0.08, o: 0 }} />
       <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.5fr]">
         <div>
           <p className="label text-petrol">Fragen</p>

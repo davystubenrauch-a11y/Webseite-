@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import LazyCanStage from "@/components/stage/LazyCanStage";
+import CanPose from "@/components/stage/CanPose";
+import Floaters from "@/components/ui/Floaters";
 
 /** Three lines the hero walks through while the can makes one turn. */
 const beats = [
@@ -12,7 +13,6 @@ const beats = [
 
 export default function Hero() {
   const section = useRef<HTMLElement>(null);
-  const progress = useRef(0);
   const [beat, setBeat] = useState(0);
 
   useEffect(() => {
@@ -21,7 +21,6 @@ export default function Hero() {
       if (!el) return;
       const r = el.getBoundingClientRect();
       const p = Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)));
-      progress.current = p;
       setBeat(Math.min(beats.length - 1, Math.floor(p * beats.length * 0.999)));
     };
     update();
@@ -35,9 +34,20 @@ export default function Hero() {
 
   return (
     <section ref={section} id="top" className="relative h-[280vh] bg-petrol-deep text-cream">
+      <CanPose at="0%" pose={{ x: 0.36, y: -0.04, s: 0.95, ry: 0, rz: -0.06 }} />
+      <CanPose at="30%" pose={{ x: 0.3, y: -0.03, s: 1.02, ry: 2.4, rz: 0.18 }} />
+      <CanPose at="62%" pose={{ x: 0.36, y: -0.03, s: 0.95, ry: 4.6, rz: -0.12 }} />
       <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden">
         {/* A soft studio light behind the can, like a product shot. */}
         <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_70%_at_68%_45%,#16686d_0%,#0a3134_60%,#071f21_100%)]" />
+        <Floaters
+          items={[
+            { src: "lemon-a", x: 56, y: 22, size: 9, depth: 0.25, spin: 30, rotate: -10 },
+            { src: "berries-a", x: 88, y: 72, size: 12, depth: -0.18, spin: -15 },
+            { src: "leaf-a", x: 92, y: 18, size: 8, depth: 0.12, spin: 20, blur: true },
+            { src: "lemon-b", x: 60, y: 84, size: 7, depth: 0.35, spin: -40, blur: true },
+          ]}
+        />
 
         <div className="wrap relative grid flex-1 items-center gap-4 pt-16 md:grid-cols-[1fr_0.9fr]">
           <div className="relative order-2 min-h-[16rem] md:order-1 md:min-h-[24rem]">
@@ -65,9 +75,8 @@ export default function Hero() {
               </div>
             ))}
           </div>
-          <div className="relative order-1 h-[46svh] md:order-2 md:h-[82svh]">
-            <LazyCanStage progress={progress} className="absolute inset-0" />
-          </div>
+          {/* Space for the flying can (components/stage/CanSequence.tsx). */}
+          <div className="order-1 h-[46svh] md:order-2 md:h-[82svh]" />
         </div>
 
         <div className="wrap relative flex items-center justify-between pb-6 text-sm text-cream/70">
@@ -76,7 +85,7 @@ export default function Hero() {
               <span key={i} className={`h-1 w-8 rounded-full transition-colors ${i <= beat ? "bg-cream" : "bg-cream/25"}`} />
             ))}
           </div>
-          <span>Scrollen – die Dose dreht sich</span>
+          <span>Scrollen</span>
         </div>
       </div>
     </section>

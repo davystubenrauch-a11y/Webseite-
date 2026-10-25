@@ -103,8 +103,8 @@ def label_material(color_path, pbr_path):
     nt.links.new(sep.outputs["Green"], bsdf.inputs["Roughness"])
     nt.links.new(sep.outputs["Blue"], bsdf.inputs["Metallic"])
     # Satin lacquer: a thin, slightly rough clear coat.
-    bsdf.inputs["Coat Weight"].default_value = 0.3
-    bsdf.inputs["Coat Roughness"].default_value = 0.16
+    bsdf.inputs["Coat Weight"].default_value = 0.12
+    bsdf.inputs["Coat Roughness"].default_value = 0.32
     # Fine paint orange-peel.
     noise = nt.nodes.new("ShaderNodeTexNoise")
     noise.inputs["Scale"].default_value = 900
@@ -122,7 +122,7 @@ def aluminium():
     b = nt.nodes["Principled BSDF"]
     b.inputs["Base Color"].default_value = (0.91, 0.92, 0.93, 1)
     b.inputs["Metallic"].default_value = 1
-    b.inputs["Roughness"].default_value = 0.2
+    b.inputs["Roughness"].default_value = 0.3
     b.inputs["Anisotropic"].default_value = 0.35
     # Circular brushing on lid and base.
     noise = nt.nodes.new("ShaderNodeTexNoise")

@@ -1,5 +1,6 @@
 import PznBarcode from "@/components/ui/PznBarcode";
 import { site } from "@/lib/site";
+import CanPose from "@/components/stage/CanPose";
 
 const points = [
   { title: "Made in Germany", text: "Hergestellt in Deutschland." },
@@ -10,7 +11,8 @@ const points = [
 /** Quality: the PZN listing and the checks behind the can. */
 export default function Qualitaet() {
   return (
-    <section id="qualitaet" className="bg-cream py-24 sm:py-32">
+    <section id="qualitaet" className="relative bg-cream py-24 sm:py-32">
+      <CanPose at="0%" pose={{ x: 0.9, y: 0.3, s: 0.7, ry: 16.5, rz: 0.5, o: 0 }} />
       <div className="wrap grid gap-14 lg:grid-cols-[1.1fr_1fr]">
         <div>
           <p data-reveal className="label text-petrol">

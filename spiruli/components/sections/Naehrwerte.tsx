@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { nutrition } from "@/lib/site";
 import { nutrients } from "@/lib/nutrients";
+import CanPose from "@/components/stage/CanPose";
 
 const vitamins = nutrients.filter((n) => n.group !== "amino");
 
@@ -10,7 +11,9 @@ const vitamins = nutrients.filter((n) => n.group !== "amino");
 export default function Naehrwerte() {
   const [open, setOpen] = useState("B12");
   return (
-    <section id="naehrwerte" className="bg-cream py-24 sm:py-32">
+    <section id="naehrwerte" className="relative bg-cream py-24 sm:py-32">
+      <CanPose at="0%" pose={{ x: -0.7, y: 0.4, s: 0.7, ry: 12, rz: -0.4, o: 0 }} />
+      <CanPose at="70%" pose={{ x: 0.8, y: -0.2, s: 0.8, ry: 13, rz: 0.3, o: 0 }} />
       <div className="wrap grid gap-14 lg:grid-cols-2">
         <div>
           <p data-reveal className="label text-petrol">
