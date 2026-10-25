@@ -1,46 +1,37 @@
 import CopyPzn from "@/components/ui/CopyPzn";
+import PznBarcode from "@/components/ui/PznBarcode";
 import { site } from "@/lib/site";
-import CanPose from "@/components/stage/CanPose";
-import Floaters from "@/components/ui/Floaters";
 
-/** Closing call to action on petrol, with the can render. */
+/** Closing: how to get it, with the PZN as a scannable card. */
 export default function Kaufen() {
   return (
-    <section id="kaufen" className="relative overflow-hidden bg-petrol-deep text-cream">
-      <CanPose at="0%" pose={{ x: 0.45, y: 0, s: 1, ry: 18.85, rz: -0.08, o: 1 }} />
-      <Floaters
-        items={[
-          { src: "berries-a", x: 64, y: 24, size: 11, depth: 0.2, spin: -20 },
-          { src: "lemon-b", x: 88, y: 76, size: 9, depth: -0.2, spin: 35 },
-          { src: "leaf-b", x: 92, y: 26, size: 8, depth: 0.3, spin: 20, blur: true },
-        ]}
-      />
-      <div className="wrap relative grid items-center gap-10 py-24 sm:py-28 lg:grid-cols-[1.2fr_1fr]">
+    <section id="kaufen" className="bg-set py-28 sm:py-36">
+      <div className="wrap grid items-center gap-16 lg:grid-cols-[1.2fr_1fr]">
         <div>
-          <p className="label text-leaf">Probieren</p>
-          <h2 className="headline mt-4 text-6xl sm:text-7xl">
-            Frag in deiner <br />
-            Apotheke.
+          <p data-reveal className="eyebrow text-gold">
+            Probieren
+          </p>
+          <h2 data-reveal className="display mt-6 text-6xl sm:text-8xl">
+            Frag in deiner <em className="text-gold-soft">Apotheke.</em>
           </h2>
-          <ol className="mt-10 space-y-3 text-lg">
-            <li>
-              <span className="mr-3 font-bold text-leaf">1</span>Apotheke besuchen oder anrufen
-            </li>
-            <li>
-              <span className="mr-3 font-bold text-leaf">2</span>PZN {site.pzn} nennen
-            </li>
-            <li>
-              <span className="mr-3 font-bold text-leaf">3</span>Kalt stellen und genießen
-            </li>
-          </ol>
-          <div className="mt-10 flex flex-wrap gap-3">
-            <CopyPzn className="btn bg-cream text-petrol-deep hover:bg-white" />
-            <a href={`mailto:${site.email}?subject=${encodeURIComponent("Händleranfrage SPIRULI")}`} className="btn border border-cream/40 text-cream hover:bg-cream/10">
+          <p data-reveal className="mt-8 max-w-md text-lg leading-relaxed text-cream/80">
+            SPIRULI ist unter der Pharmazentralnummer {site.pzn} bei der IFA GmbH gelistet – jede Apotheke in Deutschland kann es bestellen. Der
+            Qualitätsschutzprozess wird von SGS Fresenius analysiert und zertifiziert.
+          </p>
+          <div data-reveal className="mt-10 flex flex-wrap gap-3">
+            <CopyPzn className="btn bg-cream text-ink hover:bg-gold-soft" />
+            <a href={`mailto:${site.email}?subject=${encodeURIComponent("Händleranfrage SPIRULI")}`} className="btn border border-cream/30 text-cream hover:border-cream">
               Händleranfrage
             </a>
           </div>
         </div>
-        <div className="h-[50vh] lg:h-[70vh]" />
+        <div data-reveal className="rounded-2xl bg-cream p-8 text-ink shadow-[0_40px_80px_-40px_rgba(0,0,0,0.6)]">
+          <p className="eyebrow text-ink/50">Pharmazentralnummer</p>
+          <p className="display mt-3 text-7xl">{site.pzn}</p>
+          <PznBarcode pzn={site.pzn} className="mt-8 h-20 w-full text-ink" />
+          <p className="mt-2 text-center text-sm font-semibold tracking-[0.3em]">PZN - {site.pzn}</p>
+          <p className="mt-6 text-sm text-ink/60">In der Apotheke zeigen oder die Nummer nennen.</p>
+        </div>
       </div>
     </section>
   );

@@ -1,29 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { archivo, display } from "@/lib/fonts";
+import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
   title: "SPIRULI® – Der Balancer",
   description:
-    "Das vegane & natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren. Fermentierte Holunder-Zitrus-Algen-Basis. In der Apotheke: PZN 11110571.",
+    "Das vegane & natürliche Mehrwertgetränk mit Spirulina, Holunder und Zitrone. Spritzig, leicht, Made in Germany. In der Apotheke: PZN 11110571.",
   openGraph: {
     title: "SPIRULI® – Der Balancer",
-    description: "Das vegane & natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren.",
+    description: "Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina.",
     type: "website",
-    images: ["/spiruli-can.jpg"],
+    images: ["/media/poster.jpg"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0A3134",
+  themeColor: "#214043",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${archivo.variable} ${display.variable}`}>
+    <html lang="de" className={`${serif.variable} ${sans.variable} ${display.variable}`}>
       <head>
-        {/* The can's label and studio light are needed first. */}
-        <link rel="preload" as="image" href="/can/frame-000.webp" />
+        <link rel="preload" as="image" href="/media/poster.jpg" />
       </head>
       <body className="font-sans">{children}</body>
     </html>

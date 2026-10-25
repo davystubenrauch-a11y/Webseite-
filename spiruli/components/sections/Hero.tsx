@@ -1,91 +1,42 @@
-"use client";
-
-import { useEffect, useRef, useState } from "react";
-import CanPose from "@/components/stage/CanPose";
-import Floaters from "@/components/ui/Floaters";
-
-/** Three lines the hero walks through while the can makes one turn. */
-const beats = [
-  { kicker: "Spirulina-Erfrischungsgetränk", title: ["Der", "Balancer."], text: "Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina. Made in Germany." },
-  { kicker: "Zwei Algen, ein Name", title: ["Spirulina", "trifft Rotalge."], text: "Spirulina platensis und Lithothamnium calcareum – daher der Name SPIRULI." },
-  { kicker: "200 ml Dose", title: ["Leicht", "und spritzig."], text: "Rund 22 kcal pro 100 ml, gesüßt mit Agavensirup, mit natürlichen B-Vitaminen und Aminosäuren." },
-];
-
+/** Full-bleed studio video of the can (scripts/render_scenes.py --mode video), looping. */
 export default function Hero() {
-  const section = useRef<HTMLElement>(null);
-  const [beat, setBeat] = useState(0);
-
-  useEffect(() => {
-    const update = () => {
-      const el = section.current;
-      if (!el) return;
-      const r = el.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, -r.top / (r.height - window.innerHeight)));
-      setBeat(Math.min(beats.length - 1, Math.floor(p * beats.length * 0.999)));
-    };
-    update();
-    window.addEventListener("scroll", update, { passive: true });
-    window.addEventListener("resize", update);
-    return () => {
-      window.removeEventListener("scroll", update);
-      window.removeEventListener("resize", update);
-    };
-  }, []);
-
   return (
-    <section ref={section} id="top" className="relative h-[280vh] bg-petrol-deep text-cream">
-      <CanPose at="0%" pose={{ x: 0.36, y: -0.04, s: 0.95, ry: 0, rz: -0.06 }} />
-      <CanPose at="30%" pose={{ x: 0.3, y: -0.03, s: 1.02, ry: 2.4, rz: 0.18 }} />
-      <CanPose at="62%" pose={{ x: 0.36, y: -0.03, s: 0.95, ry: 4.6, rz: -0.12 }} />
-      <div className="sticky top-0 flex h-[100svh] flex-col overflow-hidden">
-        {/* A soft studio light behind the can, like a product shot. */}
-        <div aria-hidden className="absolute inset-0 bg-[radial-gradient(60%_70%_at_68%_45%,#16686d_0%,#0a3134_60%,#071f21_100%)]" />
-        <Floaters
-          items={[
-            { src: "lemon-a", x: 56, y: 22, size: 9, depth: 0.25, spin: 30, rotate: -10 },
-            { src: "berries-a", x: 88, y: 72, size: 12, depth: -0.18, spin: -15 },
-            { src: "leaf-a", x: 92, y: 18, size: 8, depth: 0.12, spin: 20, blur: true },
-            { src: "lemon-b", x: 60, y: 84, size: 7, depth: 0.35, spin: -40, blur: true },
-          ]}
-        />
+    <section id="top" className="relative h-[100svh] min-h-[560px] overflow-hidden bg-set">
+      <video
+        className="absolute inset-0 h-full w-full object-cover"
+        poster="/media/poster.jpg"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        aria-label="Die SPIRULI Dose dreht sich langsam im Studiolicht"
+      >
+        <source src="/media/can-loop.webm" type="video/webm" />
+        <source src="/media/can-loop.mp4" type="video/mp4" />
+      </video>
+      {/* Hide the floor glare at the edges and blend into the page. */}
+      <div aria-hidden className="absolute inset-0 bg-[radial-gradient(75%_70%_at_50%_42%,transparent_55%,#214043_100%)]" />
+      <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-transparent to-night-deep" />
 
-        <div className="wrap relative grid flex-1 items-center gap-4 pt-16 md:grid-cols-[1fr_0.9fr]">
-          <div className="relative order-2 min-h-[16rem] md:order-1 md:min-h-[24rem]">
-            {beats.map((b, i) => (
-              <div
-                key={b.kicker}
-                aria-hidden={i !== beat}
-                className={`absolute inset-x-0 top-0 transition-all duration-700 ${
-                  i === beat ? "translate-y-0 opacity-100" : i < beat ? "-translate-y-6 opacity-0" : "translate-y-6 opacity-0"
-                }`}
-              >
-                <p className="label text-leaf">{b.kicker}</p>
-                {i === 0 ? (
-                  <h1 className="headline mt-4 text-[15vw] md:text-[7.5vw]">
-                    {b.title[0]} <br />
-                    {b.title[1]}
-                  </h1>
-                ) : (
-                  <h2 className="headline mt-4 text-[13vw] md:text-[6.5vw]">
-                    {b.title[0]} <br />
-                    {b.title[1]}
-                  </h2>
-                )}
-                <p className="mt-6 max-w-md text-lg leading-relaxed text-cream/80">{b.text}</p>
-              </div>
-            ))}
+      <div className="wrap relative flex h-full flex-col justify-end pb-10 sm:pb-14">
+        <div className="grid items-end gap-8 md:grid-cols-[1.3fr_1fr]">
+          <h1 className="display text-[19vw] text-cream md:text-[9.5vw]">
+            Der <em className="text-gold-soft">Balancer.</em>
+          </h1>
+          <div className="max-w-sm pb-3 md:justify-self-end">
+            <p className="text-lg leading-relaxed text-cream/80">
+              Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina. Made in Germany.
+            </p>
+            <div className="mt-6 flex gap-3">
+              <a href="#kaufen" className="btn bg-cream text-ink hover:bg-gold-soft">
+                Jetzt probieren
+              </a>
+              <a href="#geschmack" className="btn border border-cream/30 text-cream hover:border-cream">
+                Entdecken
+              </a>
+            </div>
           </div>
-          {/* Space for the flying can (components/stage/CanSequence.tsx). */}
-          <div className="order-1 h-[46svh] md:order-2 md:h-[82svh]" />
-        </div>
-
-        <div className="wrap relative flex items-center justify-between pb-6 text-sm text-cream/70">
-          <div className="flex gap-2" aria-hidden>
-            {beats.map((_, i) => (
-              <span key={i} className={`h-1 w-8 rounded-full transition-colors ${i <= beat ? "bg-cream" : "bg-cream/25"}`} />
-            ))}
-          </div>
-          <span>Scrollen</span>
         </div>
       </div>
     </section>

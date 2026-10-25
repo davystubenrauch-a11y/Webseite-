@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { site } from "@/lib/site";
-import CanPose from "@/components/stage/CanPose";
 
 const faqs = [
   { q: "Wie schmeckt SPIRULI?", a: "Fruchtig nach Holunder, frisch durch Zitrone und Orange, leicht spritzig. Die Alge schmeckt man kaum – am besten gut gekühlt." },
@@ -15,21 +14,21 @@ const faqs = [
 export default function Faq() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="fragen" className="relative border-t border-cream-line bg-cream-warm py-24 sm:py-32">
-      <CanPose at="40%" pose={{ x: 0.45, y: -1.5, s: 1, ry: 17.5, rz: -0.08, o: 0 }} />
-      <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.5fr]">
-        <div>
-          <p className="label text-petrol">Fragen</p>
-          <h2 className="headline mt-4 text-5xl text-petrol-deep sm:text-6xl">Kurz gefragt.</h2>
-        </div>
-        <ul className="border-t border-ink/20">
+    <section id="fragen" className="bg-cream py-28 text-ink sm:py-36">
+      <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.6fr]">
+        <h2 data-reveal className="display text-6xl sm:text-7xl">
+          Kurz <em>gefragt.</em>
+        </h2>
+        <ul className="border-t border-cream-line">
           {faqs.map((f, i) => (
-            <li key={f.q} className="border-b border-ink/20">
-              <button type="button" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i} className="flex w-full items-center justify-between gap-6 py-5 text-left">
-                <span className="text-xl font-bold">{f.q}</span>
-                <span className={`text-2xl transition-transform ${open === i ? "rotate-45" : ""}`}>+</span>
+            <li key={f.q} className="border-b border-cream-line">
+              <button type="button" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i} className="flex w-full items-center justify-between gap-6 py-6 text-left">
+                <span className="text-xl font-medium">{f.q}</span>
+                <span className={`text-2xl text-ink/50 transition-transform duration-300 ${open === i ? "rotate-45" : ""}`}>+</span>
               </button>
-              {open === i && <p className="max-w-2xl pb-6 text-lg leading-relaxed text-ink/75">{f.a}</p>}
+              <div className={`grid transition-all duration-500 ${open === i ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"}`}>
+                <p className="max-w-2xl overflow-hidden text-lg leading-relaxed text-ink/70">{f.a}</p>
+              </div>
             </li>
           ))}
         </ul>

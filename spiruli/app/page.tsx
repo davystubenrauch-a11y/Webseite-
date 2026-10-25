@@ -1,13 +1,12 @@
 import Nav from "@/components/ui/Nav";
-import ScrollStory from "@/components/ui/ScrollStory";
+import Reveal from "@/components/ui/Reveal";
 import Hero from "@/components/sections/Hero";
-import Name from "@/components/sections/Name";
-import Band from "@/components/sections/Band";
-import CanSequence from "@/components/stage/CanSequence";
+import Statement from "@/components/sections/Statement";
+import Details from "@/components/sections/Details";
 import Zutaten from "@/components/sections/Zutaten";
+import Marquee from "@/components/sections/Marquee";
+import Packshot from "@/components/sections/Packshot";
 import Naehrwerte from "@/components/sections/Naehrwerte";
-import Momente from "@/components/sections/Momente";
-import Qualitaet from "@/components/sections/Qualitaet";
 import Faq from "@/components/sections/Faq";
 import Kaufen from "@/components/sections/Kaufen";
 import Footer from "@/components/sections/Footer";
@@ -16,17 +15,15 @@ export default function Home() {
   return (
     <>
       <Nav />
-      <ScrollStory />
-      {/* One photoreal can (Blender turntable) travels through the page; poses come from <CanPose> anchors. */}
-      <CanSequence />
+      <Reveal />
       <main>
         <Hero />
-        <Name />
-        <Band />
+        <Statement />
+        <Details />
         <Zutaten />
+        <Marquee />
+        <Packshot />
         <Naehrwerte />
-        <Momente />
-        <Qualitaet />
         <Faq />
         <Kaufen />
       </main>

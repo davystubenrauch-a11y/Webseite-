@@ -249,4 +249,5 @@ def main():
     render(a, "leaf-b", lambda: leaf((0, 0, 0), (math.radians(60), math.radians(-20), math.radians(-35)), 1.8), (0, -9, 2), (0, 0, 0))
 
 
-main()
+if __name__ == "__main__":
+    main()

@@ -1,10 +1,19 @@
-import { Archivo, Josefin_Sans } from "next/font/google";
+import { Instrument_Serif, Inter_Tight, Josefin_Sans } from "next/font/google";
 
-/** Variable Archivo: extra-wide black for headlines, normal width for text. */
-export const archivo = Archivo({
+/** Elegant display serif for the big statements. */
+export const serif = Instrument_Serif({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
+  weight: "400",
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
+});
+
+/** Clean grotesque for text and UI. */
+export const sans = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-sans",
   display: "swap",
 });
 

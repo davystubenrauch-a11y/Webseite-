@@ -1,24 +1,28 @@
 import type { Config } from "tailwindcss";
 
-/** Taken from the can: petrol lacquer, its deep shadow, the gold band, the green brushwork. */
+/** The studio set of the can video (#214043) and the can's gold and cream. */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        petrol: { DEFAULT: "#0f5257", deep: "#0a3134", night: "#071f21", soft: "#d7e6e3" },
-        cream: { DEFAULT: "#f4efe3", warm: "#ebe3d1", line: "#d8cdb5" },
-        ink: "#13201f",
-        gold: "#c9993f",
-        leaf: "#8dbb3c",
-        berry: "#5b2e6e",
+        set: "#214043",
+        night: { DEFAULT: "#132b2e", deep: "#0c1f21" },
+        cream: { DEFAULT: "#f2ede2", warm: "#e8e0cf", line: "#d6cab2" },
+        ink: "#132b2e",
+        gold: { DEFAULT: "#cfae68", soft: "#e6d3a3" },
+        leaf: "#9bc55a",
       },
       fontFamily: {
-        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        serif: ["var(--font-serif)", "Georgia", "serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "system-ui", "sans-serif"],
       },
       keyframes: {
         marquee: { to: { transform: "translateX(-50%)" } },
+      },
+      animation: {
+        marquee: "marquee 40s linear infinite",
       },
     },
   },

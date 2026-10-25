@@ -1,54 +1,53 @@
-import CanPose from "@/components/stage/CanPose";
-import Floaters from "@/components/ui/Floaters";
 import { ingredients } from "@/lib/site";
 
-const facts = ["Vegan", "Glutenfrei", "Mit Kohlensäure", "Gesüßt mit Agavensirup"];
+const stars = [
+  { img: "/props/berries-a.webp", name: "Holunder", text: "Beerig und samtig – der Grundgeschmack. Laut Hersteller pestizidfrei aus Mitteleuropa." },
+  { img: "/props/lemon-a.webp", name: "Zitrone & Orange", text: "Frische Säure für einen klaren, spritzigen Abgang." },
+  { img: "", name: "Spirulina", text: "Die Mikroalge liefert natürliche B-Vitamine und Aminosäuren." },
+];
 
-/** The real ingredient list in label order, next to the can render. */
+/** Cream panel: three star ingredients with their renders, then the full list. */
 export default function Zutaten() {
   return (
-    <section id="zutaten" className="relative overflow-hidden bg-cream-warm py-24 sm:py-32">
-      <CanPose at="0%" pose={{ x: -0.45, y: 0, s: 1, ry: 9.4, rz: -0.08 }} />
-      <CanPose at="55%" pose={{ x: -0.45, y: 0, s: 1, ry: 10.6, rz: 0.06, o: 1 }} />
-      <CanPose at="85%" pose={{ x: -0.5, y: 0.2, s: 0.9, ry: 11.2, rz: -0.2, o: 0 }} />
-      <Floaters
-        className="hidden lg:block"
-        items={[
-          { src: "lemon-a", x: 10, y: 24, size: 10, depth: 0.3, spin: 40, rotate: 15 },
-          { src: "berries-b", x: 40, y: 70, size: 12, depth: -0.2, spin: -20 },
-          { src: "leaf-b", x: 38, y: 18, size: 9, depth: 0.15, spin: 25 },
-          { src: "lemon-b", x: 6, y: 80, size: 8, depth: 0.45, spin: -30, blur: true },
-        ]}
-      />
-      <div className="wrap relative grid items-center gap-14 lg:grid-cols-[1fr_1.1fr]">
-        {/* The flying can sits here. */}
-        <div className="hidden min-h-[70vh] lg:block" />
+    <section id="zutaten" className="bg-cream py-28 text-ink sm:py-36">
+      <div className="wrap">
+        <p data-reveal className="eyebrow text-night/60">
+          Zutaten
+        </p>
+        <h2 data-reveal className="display mt-6 max-w-4xl text-6xl sm:text-8xl">
+          Neun Zutaten. <em>Nichts zu verstecken.</em>
+        </h2>
 
-        <div>
-          <p data-reveal className="label text-petrol">
-            Zutaten
-          </p>
-          <h2 data-reveal className="headline mt-4 text-5xl text-petrol-deep sm:text-6xl">
-            Neun Zutaten. <br />
-            Nichts zu verstecken.
-          </h2>
-          <ol data-reveal-stagger className="mt-10 border-t border-cream-line">
-            {ingredients.map((ing, i) => (
-              <li key={ing.name} className="flex items-baseline gap-5 border-b border-cream-line py-3.5">
-                <span className="w-6 text-sm font-semibold tabular-nums text-ink/40">{String(i + 1).padStart(2, "0")}</span>
-                <span className="flex-1 text-lg font-semibold">{ing.name}</span>
-                {ing.note && <span className="text-right text-sm text-ink/55">{ing.note}</span>}
-              </li>
-            ))}
-          </ol>
-          <ul className="mt-8 flex flex-wrap gap-2">
-            {facts.map((f) => (
-              <li key={f} className="rounded-md border border-petrol/30 px-3 py-1.5 text-sm font-semibold text-petrol">
-                {f}
-              </li>
-            ))}
-          </ul>
+        <div className="mt-20 grid gap-12 md:grid-cols-3">
+          {stars.map((s, i) => (
+            <div key={s.name} data-reveal style={{ ["--d" as string]: `${i * 0.12}s` }}>
+              <div className="grid h-48 place-items-center">
+                {s.img ? (
+                  <img src={s.img} alt="" loading="lazy" className="max-h-full w-auto max-w-[70%] object-contain drop-shadow-[0_25px_25px_rgba(19,43,46,0.25)]" />
+                ) : (
+                  // Spirulina has no prop render: a deep algae-green disc with its Latin name.
+                  <span className="grid h-40 w-40 place-items-center rounded-full bg-[radial-gradient(circle_at_35%_30%,#4f8a3a,#1d4a2a_70%)] text-center font-serif text-lg italic text-cream shadow-[0_25px_40px_-15px_rgba(19,43,46,0.5)]">
+                    Spirulina
+                    <br />
+                    platensis
+                  </span>
+                )}
+              </div>
+              <h3 className="display mt-6 text-4xl">{s.name}</h3>
+              <p className="mt-3 max-w-xs leading-relaxed text-ink/70">{s.text}</p>
+            </div>
+          ))}
         </div>
+
+        <ol data-reveal className="mt-24 grid border-t border-cream-line sm:grid-cols-2 lg:grid-cols-3">
+          {ingredients.map((ing, i) => (
+            <li key={ing.name} className="flex items-baseline gap-4 border-b border-cream-line py-4 sm:pr-6">
+              <span className="w-6 text-sm tabular-nums text-ink/40">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-medium">{ing.name}</span>
+            </li>
+          ))}
+        </ol>
+        <p className="mt-6 text-sm text-ink/60">Vegan · glutenfrei · mit Kohlensäure · gesüßt mit Agavensirup</p>
       </div>
     </section>
   );
