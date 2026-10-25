@@ -28,8 +28,7 @@ export default function Intro() {
         <div data-reveal className="order-3 max-w-md lg:justify-self-end" style={{ ["--d" as string]: "0.1s" }}>
           <p className="label text-ink/55">Das Getränk</p>
           <p className="mt-4 text-xl leading-relaxed">
-            Zwei Algen geben SPIRULI seinen Namen: <b>SPIRU</b>lina platensis und <b>LI</b>thothamnium calcareum. Dazu Holunder, Zitrone, Orange und ein Schuss
-            Kohlensäure.
+            SPIRULI verbindet die Mikroalge <b>Spirulina</b> mit Holunder, Zitrone, Orange und einem Schuss Kohlensäure.
           </p>
           <p className="mt-4 leading-relaxed text-ink/65">Kein Smoothie, kein Pulver – eine leichte Erfrischung, die man trinkt, weil sie schmeckt. Am besten gut gekühlt.</p>
           <a href="#shop" className="btn mt-8 bg-ink text-mist hover:bg-teal">

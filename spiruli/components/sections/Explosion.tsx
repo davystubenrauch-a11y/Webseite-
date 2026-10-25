@@ -11,11 +11,10 @@ import { onFrame } from "@/lib/ticker";
  */
 const parts = [
   { src: "/float/pulver.webp", name: "Spirulina", note: "Die Mikroalge – B-Vitamine & Aminosäuren", x: -28, y: -26, w: 15, rot: -8 },
-  { src: "/float/algenbund.webp", name: "Rotalge", note: "Lithothamnium calcareum – das LI im Namen", x: 28, y: -26, w: 15, rot: 14 },
   { src: "/float/holunder.webp", name: "Holunder", note: "Die Basis – fruchtig und samtig", x: -33, y: 15, w: 14, rot: 0 },
-  { src: "/float/zitrone.webp", name: "Zitrone", note: "Frische Säure, klarer Abgang", x: 32, y: 14, w: 6.5, rot: 22 },
-  { src: "/float/orange.webp", name: "Orange", note: "Rund und fruchtig", x: -15, y: 22, w: 6.5, rot: -30 },
-  { src: "", name: "Kohlensäure", note: "Ein Schuss – spritzig, nicht scharf", x: 16, y: 22, w: 7, rot: 0 },
+  { src: "/float/zitrone.webp", name: "Zitrone", note: "Frische Säure, klarer Abgang", x: 28, y: -22, w: 6.5, rot: 22 },
+  { src: "/float/orange.webp", name: "Orange", note: "Rund und fruchtig", x: 31, y: 14, w: 6.5, rot: -30 },
+  { src: "", name: "Kohlensäure", note: "Ein Schuss – spritzig, nicht scharf", x: -14, y: 28, w: 7, rot: 0 },
 ];
 
 const clamp = (v: number) => Math.min(1, Math.max(0, v));

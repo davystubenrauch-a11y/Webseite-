@@ -15,7 +15,6 @@ export const ingredients = [
   { name: "Agavensirup", note: "sanfte Süße" },
   { name: "Spirulina-Extrakt", note: "Spirulina platensis, die Mikroalge" },
   { name: "Kohlensäure", note: "spritzig" },
-  { name: "Extrakt von Lithothamnium calcareum", note: "die Rotalge" },
   { name: "Holunderbeersaftkonzentrat", note: "der Geschmack" },
   { name: "Zitronensaftkonzentrat", note: "" },
   { name: "Fermentiertes Gerstenmalz", note: "liefert vegane Milchsäure" },

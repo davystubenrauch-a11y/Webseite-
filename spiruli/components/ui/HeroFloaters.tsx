@@ -13,7 +13,7 @@ const items = [
   { src: "/float/orange.webp", x: 78, y: 50, w: 7.5, depth: 0.9, rot: 28, front: true },
   { src: "/float/tabletten.webp", x: 28, y: 62, w: 5, depth: 0.8, rot: -12, front: true },
   { src: "/float/blatt.webp", x: 66, y: 12, w: 12, depth: 0.45, rot: -28, front: false },
-  { src: "/float/algenbund.webp", x: 4, y: 44, w: 12, depth: 0.3, rot: 35, front: false },
+  { src: "/float/pulver.webp", x: 4, y: 44, w: 10, depth: 0.3, rot: 0, front: false },
   { src: "/float/presslinge.webp", x: 88, y: 18, w: 5, depth: 0.25, rot: 10, front: false },
 ];
 
