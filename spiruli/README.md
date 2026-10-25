@@ -1,42 +1,20 @@
-# SPIRULI® — Landing Page
+# SPIRULI® – Landingpage
 
-Landing page for **SPIRULI® Health & Vitality**: a vegan, fermented functional beverage on a Holunder-Zitrus-Algen base.
+Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
-**Stack:** Next.js (App Router) · Tailwind CSS · React Three Fiber + drei · GSAP ScrollTrigger · Framer Motion
+## Aufbau
+Hero → Getränk (Dose landet im Rahmen) → „Alles drin.“ (Dose zerfällt in ihre Zutaten) → Zutaten (Fotokarten) → Shop
+→ So entsteht SPIRULI → Analytisch nachgewiesen → Vier Gründe → Nährwerte & Zutaten → Fragen + Wo kaufen (Shop, Apotheke/PZN) → Footer.
+Weiches Scrollen mit Lenis; Scroll-Animationen laufen über eine gemeinsame Schleife (`lib/ticker.ts`), nur solange ihr Abschnitt sichtbar ist.
+Lade-Intro (`Preloader.tsx`). Shop mit 12er/24er-Tray (2,95 € je Dose) und Warenkorb (`lib/cart.tsx`, `components/shop/`); Bestellungen gehen bis zur Anbindung eines Zahlungsanbieters per E-Mail raus.
 
-```bash
-cd spiruli
-npm install
-npm run dev     # http://localhost:3000
-npm run build && npm start
-```
+## Die Dose
+`components/can/FloatingCan.tsx` zeigt eine einzige Dose (`public/can/spiruli.webp`, freigestelltes Produktfoto).
+Sie richtet sich nach den Platzhaltern `CanSlot name="hero"` und `name="intro"`, gleitet beim Scrollen gedämpft
+von einem zum anderen und bekommt einen wandernden Lichtreflex. Neues Foto: freistellen (z. B. mit `rembg`),
+als WebP mit Transparenz speichern und `--can-aspect` in `app/globals.css` auf Breite / Höhe setzen.
 
-When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
+`scripts/render_*.py` (Blender-Renderings) und `scripts/label-export/` sind ältere Werkzeuge für das 3D-Modell und das Etikett.
 
-## Concept
-
-Bold colour fields in the drink's palette: algae green, lime, elderberry magenta, citrus and cream. Tone-on-tone botanical wallpaper (`components/ui/Pattern.tsx`), extra-wide Archivo Black headlines and small dense uppercase copy.
-
-**One 3D can for the whole page.** `components/stage/CanStage.tsx` renders the can in a fixed layer above the sections. Each section declares where the can should be through its `data-can` attribute: position, scale and rotation. Scrolling interpolates between those poses, so the can flies, spins and tilts from section to section. On phones, side poses move the can to the screen edge so it never covers content.
-
-## Sections
-
-1. **Hero:** giant "SPIRULI" over the can.
-2. **Ein neuer Blick auf Energie:** the can tilts in from the right.
-3. **Aus der Alge / In die Dose:** text split around the can.
-4. **Zutaten:** cream list beside an elderberry field.
-5. **Was drin steckt:** vitamin tiles with EU claims and amino-acid pills.
-6. **Team:** "Jahre Forschung. Drei Disziplinen."
-7. **Apothekenqualität:** PZN with a scannable barcode, and SGS Fresenius.
-8. **Probier's aus:** ordering steps and calls to action.
-
-## Updating the can artwork
-
-Replace `public/spiruli-can.jpg` with a straight-on photo or render of the can. Adjust `CX`, `R`, `TOP` and `BOTTOM` in `scripts/bake-label.py` to the can's position in the image, then run `python3 scripts/bake-label.py` (needs Pillow and NumPy). A high-resolution flat label file from the designer gives the sharpest result.
-
-## Before launch
-
-- `lib/site.ts`: contact email (placeholder `info@spiruli.de`).
-- Footer: link Impressum and Datenschutz.
-- Health claims in `lib/nutrients.ts` follow the EU register (VO (EU) Nr. 432/2012). They may only be used if a can supplies a significant amount of the nutrient (for beverages, ≥ 7.5 % NRV per 100 ml). Verify each one against the lab analysis.
-- Story and flavor copy is a draft. Have it reviewed by the brand team.
+## Platzhalter
+E-Mail (`lib/site.ts`), Impressum/Datenschutz, Nährwerte prüfen (B12 auf der Dose 2 µg vs. Herstellerangabe 0,45 µg/100 ml).

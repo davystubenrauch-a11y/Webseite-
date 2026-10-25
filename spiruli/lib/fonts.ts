@@ -1,20 +1,17 @@
-import { Archivo, Josefin_Sans } from "next/font/google";
+import { Bricolage_Grotesque, Inter_Tight } from "next/font/google";
 
-/** Variable Archivo: extra-wide black for headlines, normal width for text. */
-export const archivo = Archivo({
+/** Characterful, slightly organic grotesque for the big headlines. */
+export const display = Bricolage_Grotesque({
   subsets: ["latin"],
-  axes: ["wdth"],
-  variable: "--font-archivo",
-  display: "swap",
-});
-
-/** Geometric face of the SPIRULI wordmark; used on the can label. */
-export const display = Josefin_Sans({
-  subsets: ["latin"],
-  weight: ["300", "600"],
+  weight: ["400", "600", "800"],
   variable: "--font-display",
   display: "swap",
 });
 
-/** The can label paints with this sans. */
-export const sans = archivo;
+/** Clean grotesque for text and UI. */
+export const sans = Inter_Tight({
+  subsets: ["latin"],
+  weight: ["400", "500", "600"],
+  variable: "--font-sans",
+  display: "swap",
+});

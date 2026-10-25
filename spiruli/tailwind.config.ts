@@ -1,26 +1,33 @@
 import type { Config } from "tailwindcss";
 
-/** Flat, saturated colour fields taken from the drink: algae, lime, elderberry, citrus. */
+/** Light, algae-tinted page; deep algae green and the can's teal for contrast. */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        algae: { DEFAULT: "#1E6B3B", tone: "#237A45", deep: "#14502B" },
-        lime: { DEFAULT: "#D7F25A", tone: "#CBE84B", soft: "#EAF8A6" },
-        berry: { DEFAULT: "#9B2F7A", tone: "#AE3A8A" },
-        citrus: { DEFAULT: "#F5B423", tone: "#EDA717" },
-        cream: { DEFAULT: "#F4EEDF", tone: "#ECE4CF" },
-        ink: "#10331F",
-      },
-      fontFamily: {
-        sans: ["var(--font-archivo)", "system-ui", "sans-serif"],
+        mist: "#eef0ea",
+        paper: "#f8f9f5",
+        line: "#d5dacd",
+        ink: "#0d2621",
+        algae: { DEFAULT: "#12473c", deep: "#0a2a24" },
+        teal: "#11717a",
+        fresh: "#b5d66a",
+        berry: "#4a2b44",
+        citrus: "#f1e7a6",
+        gold: "#c9a35a",
       },
       keyframes: {
-        spin: { to: { transform: "rotate(360deg)" } },
+        marquee: { to: { transform: "translateX(-50%)" } },
+        bob: { "50%": { transform: "translateY(-12px) rotate(3deg)" } },
       },
       animation: {
-        "spin-slow": "spin 16s linear infinite",
+        marquee: "marquee 38s linear infinite",
+        bob: "bob 6s ease-in-out infinite",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "system-ui", "sans-serif"],
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
     },
   },

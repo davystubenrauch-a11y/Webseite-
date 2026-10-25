@@ -2,22 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Width / height of the cut-out can photo in public/can. */
+:root {
+  --can-aspect: 606 / 1557;
+}
+
 html {
-  background: #1e6b3b;
-  overflow-x: clip;
-  scroll-behavior: smooth;
+  background: #eef0ea;
 }
 
 body {
-  color: #10331f;
-  background: #1e6b3b;
+  color: #0d2621;
+  background: #eef0ea;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
 }
 
 ::selection {
-  background: #d7f25a;
-  color: #10331f;
+  background: #b5d66a;
+  color: #0d2621;
 }
 
 @layer components {
@@ -25,46 +28,102 @@ body {
     @apply mx-auto w-full max-w-[90rem] px-5 sm:px-8 lg:px-12;
   }
 
-  /* Extra-wide black display type. */
-  .mega {
-    font-stretch: 125%;
-    font-weight: 900;
-    line-height: 0.86;
-    letter-spacing: -0.02em;
-    text-transform: uppercase;
-  }
-
-  /* Small, dense uppercase copy blocks. */
-  .micro {
-    font-stretch: 100%;
-    font-size: 0.72rem;
+  .headline {
+    font-family: var(--font-display);
     font-weight: 800;
-    line-height: 1.35;
-    letter-spacing: 0.02em;
+    line-height: 0.86;
+    letter-spacing: -0.045em;
     text-transform: uppercase;
   }
 
-  .pill {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-4 py-2 text-[0.7rem] font-extrabold uppercase tracking-wide transition-transform duration-200 hover:-translate-y-0.5;
-    font-stretch: 112%;
+  .label {
+    @apply text-[0.7rem] font-semibold uppercase tracking-[0.2em];
   }
 
-  .dotted {
-    background-image: radial-gradient(currentColor 1.1px, transparent 1.3px);
-    background-size: 7px 3px;
-    background-repeat: repeat-x;
-    background-position: left center;
-    height: 3px;
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[color,background-color,border-color,transform] duration-300 ease-out;
   }
 }
 
+/* Reveal: elements fade and rise once when they enter the viewport (see Reveal.tsx). */
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 1s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--d, 0s);
+}
+[data-reveal].is-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Split headlines: each line rises out of its own mask. */
+[data-reveal].split {
+  opacity: 1;
+  transform: none;
+}
+.split > span {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.split > span > span {
+  display: block;
+  transform: translateY(110%);
+  transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: calc(var(--i) * 0.09s + var(--d, 0s));
+}
+.split.is-in > span > span {
+  transform: none;
+}
+
+/* Lenis */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+/* Hero ingredients fly in one after another, once the preloader lifts. */
+html:not(.is-ready) .floater {
+  animation-play-state: paused;
+}
+.floater {
+  animation: float-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(0.5s + var(--i) * 0.09s);
+}
+@keyframes float-in {
+  from {
+    opacity: 0;
+    transform: scale(0.4) translateY(80px);
+  }
+}
+
+/* Images settle from a slow zoom. */
+[data-zoom] {
+  transform: scale(1.12);
+  transition: transform 2.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.is-in [data-zoom] {
+  transform: scale(1);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  [data-reveal],
+  [data-zoom],
+  .split > span > span {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .animate-marquee,
+  .animate-bob,
+  .floater {
+    animation: none;
   }
 }

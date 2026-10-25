@@ -1,34 +1,44 @@
 import Nav from "@/components/ui/Nav";
-import ScrollStory from "@/components/ui/ScrollStory";
-import LazyCanStage from "@/components/stage/LazyCanStage";
+import Reveal from "@/components/ui/Reveal";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import Preloader from "@/components/ui/Preloader";
+import FloatingCan from "@/components/can/FloatingCan";
+import CartDrawer from "@/components/shop/CartDrawer";
+import Shop from "@/components/shop/Shop";
 import Hero from "@/components/sections/Hero";
-import Angle from "@/components/sections/Angle";
-import Split from "@/components/sections/Split";
-import Zutaten from "@/components/sections/Zutaten";
-import Naehrstoffe from "@/components/sections/Naehrstoffe";
-import Team from "@/components/sections/Team";
-import Qualitaet from "@/components/sections/Qualitaet";
-import Kaufen from "@/components/sections/Kaufen";
+import Intro from "@/components/sections/Intro";
+import Explosion from "@/components/sections/Explosion";
+import Features from "@/components/sections/Features";
+import Prozess from "@/components/sections/Prozess";
+import Analytik from "@/components/sections/Analytik";
+import Gruende from "@/components/sections/Gruende";
+import Naehrwerte from "@/components/sections/Naehrwerte";
+import Faq from "@/components/sections/Faq";
 import Footer from "@/components/sections/Footer";
+import { CartProvider } from "@/lib/cart";
 
 export default function Home() {
   return (
-    <>
+    <CartProvider>
       <Nav />
-      <ScrollStory />
-      {/* One 3D can travels through every section; poses live on each section's data-can. */}
-      <LazyCanStage />
+      <Reveal />
+      <SmoothScroll />
+      <Preloader />
+      <FloatingCan />
+      <CartDrawer />
       <main>
         <Hero />
-        <Angle />
-        <Split />
-        <Zutaten />
-        <Naehrstoffe />
-        <Team />
-        <Qualitaet />
-        <Kaufen />
+        <Intro />
+        <Explosion />
+        <Features />
+        <Shop />
+        <Prozess />
+        <Analytik />
+        <Gruende />
+        <Naehrwerte />
+        <Faq />
       </main>
       <Footer />
-    </>
+    </CartProvider>
   );
 }
