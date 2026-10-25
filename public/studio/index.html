@@ -8,298 +8,307 @@
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   F&D Solutions — design v5
-   Three product worlds (black for NFC, sand for websites, film for roomtours) on a
-   clean white page. One typeface, Manrope, from regular text to heavy headlines.
+   F&D Solutions — design v6
+   A classic, complete service page: white and light grey sections, one confident
+   royal blue for actions, Plus Jakarta Sans throughout, small product previews.
    ========================================================================== */
 :root {
-  --ivory: #f3f2ef;
+  --brand: #2341d6;
+  --brand-2: #1a33b0;
+  --brand-soft: #eef1fd;
+  --ink: #10131a;
+  --navy: #10131a;
   --white: #ffffff;
-  --navy: #0d0d0d;
-  --navy-2: #222222;
-  --ink: #0d0d0d;
   --paper: #ffffff;
-  --muted: rgba(13, 13, 13, .58);
-  --line: rgba(13, 13, 13, .12);
-  --stone: #e7dcc8;
-  --sand: #e9e1d2;
-  --accent: #e7dcc8;
-  --display: 'Manrope', -apple-system, sans-serif;
-  --serif: 'Manrope', -apple-system, sans-serif;
-  --body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
+  --alt: #f5f6f8;
+  --muted: #5b6170;
+  --line: #e3e6ec;
+  --accent: #2341d6;
+  --stone: #eef1fd;
+  --display: 'Plus Jakarta Sans', -apple-system, sans-serif;
+  --body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
-  --gutter: clamp(20px, 4.5vw, 64px);
+  --gutter: clamp(20px, 4vw, 56px);
+  --radius: 16px;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--body); font-size: 16px; line-height: 1.6; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+html { scroll-behavior: smooth; scroll-padding-top: 84px; -webkit-text-size-adjust: 100%; }
+body { font-family: var(--body); font-size: 16px; line-height: 1.65; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, svg, video, canvas { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
 input, select, textarea { font: inherit; color: inherit; }
 fieldset { border: 0; min-width: 0; }
-:focus-visible { outline: 2px solid currentColor; outline-offset: 3px; }
-::selection { background: var(--stone); color: var(--ink); }
-.wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; }
+::selection { background: var(--brand); color: #fff; }
+.wrap { width: 100%; max-width: 1240px; margin: 0 auto; padding: 0 var(--gutter); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.dark { background: var(--navy); color: var(--white); --line: rgba(255, 255, 255, .14); --muted: rgba(255, 255, 255, .6); }
-.sand { background: var(--sand); }
-
-/* Type */
-.display { font-family: var(--display); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
-.display em, .serif { font-style: normal; color: var(--muted); }
-.dark .display em { color: rgba(255,255,255,.55); }
-.label { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.label b { font-weight: 800; font-size: 13px; padding: 4px 9px; border-radius: 999px; background: currentColor; }
-.label b span { color: var(--white); mix-blend-mode: normal; }
-.label::after { content: ""; width: 40px; height: 1px; background: currentColor; opacity: .5; }
-.lead { font-size: 19px; line-height: 1.55; color: var(--muted); max-width: 520px; }
-
-/* Buttons: one solid, one quiet; arrow slides on hover */
-.btn { display: inline-flex; align-items: center; justify-content: center; gap: 12px; height: 54px; padding: 0 26px; border-radius: 999px; font-size: 13px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background-color .35s var(--ease), color .35s var(--ease), border-color .35s; }
-.btn svg { width: 16px; height: 16px; transition: transform .35s var(--ease); }
-.btn:hover svg { transform: translateX(4px); }
-.btn--solid { background: var(--navy); color: var(--white); }
-.btn--solid:hover { background: var(--navy-2); }
-.dark .btn--solid, .btn--light { background: var(--white); color: var(--navy); }
-.dark .btn--solid:hover, .btn--light:hover { background: var(--stone); }
-.btn--line { border: 1px solid currentColor; }
-.btn--line:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
-.dark .btn--line:hover { background: var(--white); color: var(--navy); border-color: var(--white); }
-.btn--accent { background: var(--white); color: var(--navy); }
-.link { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 600; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
-
-/* Reveal */
-.rv { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+.sec { padding: clamp(72px, 9vw, 120px) 0; }
+.sec--alt { background: var(--alt); }
+.sec--dark { background: var(--ink); color: #fff; --muted: rgba(255,255,255,.66); --line: rgba(255,255,255,.14); }
+.eyebrow { display: inline-flex; align-items: center; gap: 8px; padding: 6px 12px; border-radius: 999px; background: var(--brand-soft); color: var(--brand); font-size: 13px; font-weight: 700; }
+.sec--dark .eyebrow { background: rgba(255,255,255,.1); color: #fff; }
+.display { font-family: var(--display); font-weight: 800; letter-spacing: -.035em; line-height: 1.08; }
+.display em { font-style: normal; color: var(--brand); }
+.sec--dark .display em { color: #9fb0ff; }
+h2.display { font-size: clamp(2rem, 3.8vw, 3.2rem); }
+.head { max-width: 720px; }
+.head--center { margin: 0 auto; text-align: center; }
+.head h2 { margin-top: 16px; }
+.head p { margin-top: 16px; font-size: 18px; color: var(--muted); }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 52px; padding: 0 24px; border-radius: 12px; font-size: 15px; font-weight: 700; white-space: nowrap; transition: background-color .3s, color .3s, border-color .3s, transform .3s var(--ease), box-shadow .3s; }
+.btn svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+.btn--solid { background: var(--brand); color: #fff; box-shadow: 0 10px 24px -12px rgba(35,65,214,.7); }
+.btn--solid:hover { background: var(--brand-2); transform: translateY(-1px); }
+.btn--line { border: 1.5px solid var(--line); background: #fff; color: var(--ink); }
+.btn--line:hover { border-color: var(--ink); }
+.btn--light, .btn--accent { background: #fff; color: var(--ink); }
+.link { display: inline-flex; align-items: center; gap: 6px; font-weight: 700; color: var(--brand); }
+.link::after { content: "→"; transition: transform .3s var(--ease); }
+.link:hover::after { transform: translateX(3px); }
+.rv { opacity: 0; transform: translateY(22px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
 .rv.in { opacity: 1; transform: none; }
 .rv.d1 { transition-delay: .08s; } .rv.d2 { transition-delay: .16s; } .rv.d3 { transition-delay: .24s; }
 .w { display: inline-block; overflow: hidden; vertical-align: bottom; padding-bottom: .1em; margin-bottom: -.1em; }
-.w > i { display: inline-block; font-style: inherit; transform: translateY(108%); transition: transform 1s var(--ease); transition-delay: calc(var(--i) * 55ms); }
+.w > i { display: inline-block; font-style: inherit; transform: translateY(108%); transition: transform .9s var(--ease); transition-delay: calc(var(--i) * 45ms); }
 .words-in .w > i { transform: none; }
+.check { list-style: none; display: grid; gap: 10px; }
+.check li { position: relative; padding-left: 30px; }
+.check li::before { content: ""; position: absolute; left: 0; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232341d6' stroke-width='3.2'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 11px no-repeat; }
 
 /* ==========================================================================
-   Navigation: transparent over the intro, ivory once you scroll
+   Header
    ========================================================================== */
-.nav { position: fixed; inset: 0 0 auto 0; z-index: 50; color: var(--white); transition: background-color .5s var(--ease), color .5s var(--ease), box-shadow .5s; }
-.nav.scrolled { background: rgba(245, 242, 236, .9); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); color: var(--ink); box-shadow: 0 1px 0 var(--line); }
-.nav__bar { display: flex; align-items: center; justify-content: space-between; height: 80px; transition: height .5s var(--ease); }
-.nav.scrolled .nav__bar { height: 66px; }
-.logo { display: flex; align-items: center; gap: 12px; }
-.logo__mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; border: 1px solid currentColor; font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: -.02em; }
-.logo__word { font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -.03em; }
-.nav__links { display: flex; align-items: center; gap: 34px; font-size: 14px; font-weight: 500; }
-.nav__links a:not(.btn) { position: relative; padding: 4px 0; opacity: .85; }
-.nav__links a:not(.btn)::after { content: ""; position: absolute; left: 0; right: 0; bottom: -2px; height: 1px; background: currentColor; transform: scaleX(0); transform-origin: left; transition: transform .4s var(--ease); }
-.nav__links a:not(.btn):hover { opacity: 1; }
-.nav__links a:not(.btn):hover::after { transform: scaleX(1); }
-.nav__links .btn { height: 44px; padding: 0 20px; background: var(--white); color: var(--navy); }
-.nav.scrolled .nav__links .btn { background: var(--navy); color: var(--white); }
+.nav { position: fixed; inset: 0 0 auto 0; z-index: 50; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s, box-shadow .3s; }
+.nav.scrolled { border-bottom-color: var(--line); box-shadow: 0 6px 24px -18px rgba(16,19,26,.35); }
+.nav__bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 74px; }
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo__mark { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 11px; background: var(--brand); color: #fff; font-weight: 800; font-size: 13px; letter-spacing: -.02em; }
+.logo__word { font-weight: 800; font-size: 18px; letter-spacing: -.03em; }
+.nav__links { display: flex; align-items: center; gap: 28px; font-size: 15px; font-weight: 600; }
+.nav__links a:not(.btn) { color: #3a3f4b; transition: color .2s; }
+.nav__links a:not(.btn):hover { color: var(--brand); }
+.nav__tel { font-weight: 700; color: var(--ink) !important; }
+.nav__links .btn { height: 44px; padding: 0 18px; background: var(--brand); color: #fff; border-radius: 10px; }
 .burger { display: none; width: 44px; height: 44px; position: relative; }
-.burger span { position: absolute; left: 11px; right: 11px; height: 1.5px; background: currentColor; transition: transform .3s, top .3s; }
+.burger span { position: absolute; left: 11px; right: 11px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s, top .3s; }
 .burger span:first-child { top: 17px; } .burger span:last-child { top: 25px; }
 .nav.open .burger span:first-child { top: 21px; transform: rotate(45deg); }
 .nav.open .burger span:last-child { top: 21px; transform: rotate(-45deg); }
 
 /* ==========================================================================
-   Intro (night blue): promise left, the product working right
+   Hero: clear promise left, three small live previews right
    ========================================================================== */
-.hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 110px; overflow: hidden;
-  background: radial-gradient(ellipse 50% 60% at 72% 46%, #1d2d4a 0%, transparent 70%), linear-gradient(180deg, #0b1424, #0a1220); }
-.hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: center; flex: 1; }
-.hero h1 { margin-top: 26px; font-size: clamp(3rem, 6.2vw, 6.4rem); }
-.rot { display: inline-grid; vertical-align: bottom; overflow: hidden; justify-items: start; font-size: 1.1em; line-height: 1; padding-bottom: .08em; color: var(--stone); }
-.rot span { grid-area: 1 / 1; transform: translateY(105%); opacity: 0; transition: transform .8s var(--ease), opacity .8s var(--ease); }
+.hero { padding: 140px 0 70px; background: radial-gradient(ellipse 60% 70% at 85% 30%, #eef1fd, transparent 65%), #fff; }
+.hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; }
+.hero h1 { margin-top: 18px; font-size: clamp(2.5rem, 4.8vw, 4.2rem); }
+.rot { display: inline-grid; vertical-align: bottom; overflow: hidden; justify-items: start; color: var(--brand); }
+.rot span { grid-area: 1 / 1; transform: translateY(105%); opacity: 0; transition: transform .7s var(--ease), opacity .7s var(--ease); }
 .rot span.on { transform: none; opacity: 1; }
 .rot span.out { transform: translateY(-105%); opacity: 0; }
-.hero .lead { margin-top: 26px; }
-.hero__cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
-.hero__stage { position: relative; aspect-ratio: 1 / 1; max-height: 74vh; justify-self: end; width: 100%; }
-.hero__stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; touch-action: pan-y; }
-.stage-cap { position: absolute; z-index: 4; display: flex; align-items: center; gap: 12px; font-size: 14px; font-weight: 500; }
-.stage-cap b { flex: none; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; border: 1px solid currentColor; font-size: 12px; font-weight: 600; }
-.hero .stage-cap { right: 4%; top: 12%; }
-.facts { margin-top: 48px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
-.facts li { list-style: none; padding: 22px 0 30px; display: flex; flex-direction: column; gap: 2px; }
-.facts li + li { padding-left: 26px; border-left: 1px solid var(--line); }
-.facts b { font-family: var(--display); font-weight: 600; font-size: 20px; letter-spacing: -.02em; }
-.facts span { font-size: 13px; color: var(--muted); }
+.hero__sub { margin-top: 20px; font-size: 19px; color: var(--muted); max-width: 540px; }
+.hero__cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
+.hero__trust { margin-top: 30px; list-style: none; display: flex; flex-wrap: wrap; gap: 10px 22px; font-size: 14px; font-weight: 600; color: #3a3f4b; }
+.hero__trust li { display: flex; align-items: center; gap: 8px; }
+.hero__trust li::before { content: ""; width: 18px; height: 18px; border-radius: 50%; background: var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232341d6' stroke-width='3.2'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 11px no-repeat; }
+/* Preview tiles */
+.previews { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1.15fr 1fr; gap: 14px; height: clamp(420px, 40vw, 520px); }
+.pv { position: relative; border-radius: var(--radius); overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; box-shadow: 0 24px 50px -30px rgba(16,19,26,.45); transition: transform .5s var(--ease), box-shadow .5s; isolation: isolate; }
+.pv:hover { transform: translateY(-4px); box-shadow: 0 30px 60px -30px rgba(16,19,26,.55); }
+.pv--nfc { grid-column: 1 / -1; background: radial-gradient(ellipse 60% 80% at 60% 40%, #2a2f3d, #10131a 75%); color: #fff; }
+.pv--web { background: linear-gradient(160deg, #f1f3f8, #dfe4f0); }
+.pv--tour { background: #111; color: #fff; }
+.pv__media { position: absolute; inset: 0; z-index: -1; }
+.pv--nfc .pv__media { left: 34%; }
+.pv--nfc canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; }
+.pv--tour video { width: 100%; height: 100%; object-fit: cover; }
+.pv--tour .pv__media::after { content: ""; position: absolute; inset: 0; background: linear-gradient(transparent 40%, rgba(0,0,0,.7)); }
+.pv__label { padding: 18px 20px; display: grid; gap: 2px; }
+.pv--nfc .pv__label { max-width: 40%; height: 100%; align-content: end; }
+.pv__label small { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; opacity: .7; }
+.pv__label b { font-size: 19px; font-weight: 800; letter-spacing: -.02em; line-height: 1.2; }
+.pv__label span { font-size: 13px; opacity: .75; }
+.mini-laptop { position: absolute; left: 12%; right: 12%; top: 14%; }
+.mini-laptop .laptop__lid { border-radius: 10px 10px 4px 4px; }
+.mini-laptop .laptop__base { height: 9px; }
+.pv--web .pv__label { background: linear-gradient(transparent, rgba(223,228,240,.95) 40%); padding-top: 34px; }
+.pv .stage-cap { display: none; }
+
+/* Trust bar */
+.trustbar { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #fff; }
+.trustbar ul { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); }
+.trustbar li { padding: 24px 22px; display: flex; align-items: center; gap: 14px; }
+.trustbar li + li { border-left: 1px solid var(--line); }
+.trustbar svg { flex: none; width: 34px; height: 34px; padding: 8px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); }
+.trustbar b { display: block; font-size: 15px; }
+.trustbar span { font-size: 13px; color: var(--muted); }
 
 /* ==========================================================================
-   Statement that fills in while scrolling
+   Services overview
    ========================================================================== */
-.statement { padding: clamp(110px, 14vw, 190px) 0 clamp(70px, 9vw, 120px); }
-.statement p { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 4.2vw, 4rem); line-height: 1.12; letter-spacing: -.03em; max-width: 1100px; }
-.statement p span { color: rgba(11, 20, 36, .16); transition: color .5s; }
-.statement p span.lit { color: var(--ink); }
-.statement p em { font-family: var(--serif); font-style: italic; font-weight: 400; }
-.services { margin-top: 64px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); }
-.services a { padding: 26px 26px 6px 0; display: grid; gap: 6px; transition: color .3s; }
-.services a + a { padding-left: 26px; border-left: 1px solid var(--line); }
-.services small { font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--muted); }
-.services b { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.03em; }
-.services span { font-size: 15px; color: var(--muted); }
-.services i { font-style: normal; font-size: 13px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; margin-top: 10px; }
-.services i::after { content: " →"; transition: margin .3s; }
-.services a:hover i::after { margin-left: 6px; }
+.cards3 { margin-top: 52px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.svc-card { display: flex; flex-direction: column; padding: 30px; border-radius: var(--radius); background: #fff; box-shadow: 0 1px 0 var(--line), 0 18px 40px -32px rgba(16,19,26,.35); transition: transform .4s var(--ease), box-shadow .4s; }
+.svc-card:hover { transform: translateY(-4px); box-shadow: 0 1px 0 var(--line), 0 28px 50px -30px rgba(16,19,26,.4); }
+.svc-card__icon { width: 52px; height: 52px; border-radius: 14px; background: var(--brand-soft); color: var(--brand); display: grid; place-items: center; }
+.svc-card__icon svg { width: 26px; height: 26px; }
+.svc-card h3 { margin-top: 22px; font-size: 22px; font-weight: 800; letter-spacing: -.02em; }
+.svc-card > p { margin-top: 10px; color: var(--muted); }
+.svc-card .check { margin: 20px 0 24px; font-size: 15px; }
+.svc-card__foot { margin-top: auto; padding-top: 18px; border-top: 1px solid var(--line); display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.svc-card__price { font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
+.svc-card__price small { font-size: 13px; font-weight: 600; color: var(--muted); margin-right: 4px; }
 
 /* ==========================================================================
-   Service sections: number + title, visual and details side by side
+   Service details: visual + text side by side
    ========================================================================== */
-.svc { padding: clamp(90px, 11vw, 150px) 0; }
-.svc__head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
-.svc__head h2 { margin-top: 22px; font-size: clamp(2.8rem, 5.6vw, 5.4rem); }
-.svc__head .lead { justify-self: end; }
-.svc__body { margin-top: clamp(40px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
-.svc--rev .svc__body { grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr); }
-.svc--rev .svc__visual { order: 2; }
-.svc__visual { position: relative; min-width: 0; }
-
-/* Details column: hairline spec list, price, actions */
-.specs { border-top: 1px solid var(--ink); }
-.dark .specs { border-top-color: var(--white); }
-.specs div { display: grid; grid-template-columns: 150px 1fr; gap: 18px; padding: 15px 0; border-bottom: 1px solid var(--line); font-size: 15px; }
-.specs dt { font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); padding-top: 2px; }
-.order { margin-top: 30px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 24px; }
-.price { font-family: var(--display); font-weight: 700; font-size: 52px; line-height: 1; letter-spacing: -.04em; }
-.price small { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 24px; letter-spacing: 0; margin-right: 8px; color: var(--muted); }
-.price--text { font-size: 34px; }
+.detail { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.detail--rev .detail__visual { order: 2; }
+.detail__visual { position: relative; min-width: 0; }
+.detail__text h2 { margin-top: 16px; }
+.detail__text > p { margin-top: 16px; font-size: 17px; color: var(--muted); }
+.detail__text .check { margin-top: 24px; }
+.specs { margin-top: 26px; border-radius: 12px; background: var(--alt); padding: 6px 20px; }
+.sec--alt .specs { background: #fff; }
+.specs div { display: grid; grid-template-columns: 130px 1fr; gap: 14px; padding: 12px 0; font-size: 15px; }
+.specs div + div { border-top: 1px solid var(--line); }
+.specs dt { color: var(--muted); font-weight: 600; }
+.specs dd { font-weight: 600; }
+.order { margin-top: 26px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+.price { font-size: 32px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.price small { font-size: 15px; font-weight: 600; color: var(--muted); margin-right: 6px; }
+.price--text { font-size: 24px; }
 .order__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 18px; }
-.swatches { margin-top: 26px; display: flex; gap: 10px; }
-.swatches button { display: inline-flex; align-items: center; gap: 10px; height: 46px; padding: 0 20px 0 10px; border-radius: 999px; border: 1px solid var(--line); font-size: 14px; font-weight: 600; transition: border-color .3s; }
-.swatches button[aria-checked="true"] { border-color: var(--ink); }
-.swatches i { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(11,20,36,.2); }
-
-/* Steps strip */
-.steps { margin-top: clamp(56px, 7vw, 90px); display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); counter-reset: s; }
-.steps li { list-style: none; padding: 28px 28px 0 0; }
-.steps li + li { padding-left: 28px; border-left: 1px solid var(--line); }
-.steps small { font-family: var(--serif); font-style: italic; font-size: 30px; color: var(--muted); line-height: 1; }
-.steps h3 { margin-top: 14px; font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: -.03em; }
-.steps p { margin-top: 8px; font-size: 15px; color: var(--muted); max-width: 320px; }
-
-/* 01 NFC: stage with layer labels */
-.nfc-stage { min-height: 600px; }
+.swatches { margin-top: 22px; display: flex; gap: 10px; }
+.swatches button { display: inline-flex; align-items: center; gap: 10px; height: 44px; padding: 0 18px 0 8px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font-size: 14px; font-weight: 700; transition: border-color .3s; }
+.swatches button[aria-checked="true"] { border-color: var(--brand); }
+.swatches i { width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(16,19,26,.2); }
+.nfc-stage { min-height: 520px; border-radius: var(--radius); background: radial-gradient(ellipse 60% 60% at 45% 50%, #fff, #eef1f6 80%); }
 .nfc-stage canvas { position: absolute; inset: 0; width: 100% !important; height: 100% !important; cursor: grab; touch-action: pan-y; }
-.nfc-stage .stage-cap { left: 0; top: 0; }
-.stage-hint { position: absolute; left: 0; bottom: 0; z-index: 2; font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); pointer-events: none; }
+.stage-cap { position: absolute; z-index: 4; display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; }
+.stage-cap b { flex: none; display: grid; place-items: center; width: 26px; height: 26px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 12px; }
+.nfc-stage .stage-cap { left: 20px; top: 18px; }
+.stage-hint { position: absolute; left: 20px; bottom: 16px; z-index: 2; font-size: 12px; font-weight: 600; color: var(--muted); pointer-events: none; }
 .callouts { position: absolute; inset: 0; pointer-events: none; z-index: 3; }
 .callout { position: absolute; left: 0; top: 0; display: flex; align-items: center; opacity: 0; will-change: transform; transition: opacity .35s; }
-.callout__dot { width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px rgba(205,189,159,.55); }
+.callout__dot { width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--brand); box-shadow: 0 0 0 4px rgba(35,65,214,.2); }
 .callout__line { height: 1px; background: var(--ink); }
-.callout__text { padding-left: 12px; font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; line-height: 1.35; }
-.callout__text small { display: block; max-width: 190px; white-space: normal; font-weight: 500; letter-spacing: .02em; text-transform: none; color: var(--muted); font-size: 12px; }
+.callout__text { padding-left: 10px; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; line-height: 1.35; }
+.callout__text small { display: block; max-width: 180px; white-space: normal; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--muted); font-size: 12px; }
 .callout.is-on .callout__dot { width: 12px; height: 12px; margin-left: -6px; }
-.callout.is-on .callout__line { height: 2px; }
-
-/* 02 Websites (night blue) */
-.dark .samples span { color: var(--muted); }
-.samples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 26px; }
-.samples span { margin-right: 10px; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
-.samples button { height: 40px; padding: 0 18px; border-radius: 999px; border: 1px solid var(--line); font-size: 13px; font-weight: 600; transition: background-color .3s, color .3s, border-color .3s; }
-.samples button[aria-selected="true"] { background: var(--white); color: var(--navy); border-color: var(--white); }
-
-/* 03 Roomtours */
-.svc .tour-stage { margin-top: 0; }
-.chapters { margin-top: 14px; display: flex; flex-wrap: wrap; gap: 8px; }
-.chapters button { height: 36px; padding: 0 16px; border-radius: 999px; border: 1px solid var(--line); font-size: 12px; font-weight: 600; letter-spacing: .04em; transition: background-color .3s, color .3s; }
-.chapters button[aria-current="true"] { background: var(--ink); color: var(--white); border-color: var(--ink); }
-
-/* ==========================================================================
-   How we work: four steps along a line that draws in
-   ========================================================================== */
-.process { padding: clamp(90px, 11vw, 150px) 0; background: var(--white); }
-.process__head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; align-items: end; }
-.process__head h2 { margin-top: 22px; font-size: clamp(2.6rem, 5vw, 4.8rem); }
-.process__list { position: relative; margin-top: 72px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; list-style: none; }
-.process__list::before { content: ""; position: absolute; left: 0; right: 0; top: 23px; height: 1px; background: var(--ink); transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease) .2s; }
-.process__list.in::before { transform: scaleX(1); }
-.process__list li { position: relative; padding-top: 70px; }
-.process__list li::before { content: attr(data-n); position: absolute; left: 0; top: 0; display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: var(--white); border: 1px solid var(--ink); font-family: var(--serif); font-style: italic; font-size: 20px; }
-.process__list h3 { font-family: var(--display); font-weight: 700; font-size: 24px; letter-spacing: -.03em; }
-.process__list p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+.callout.is-on .callout__line { height: 2px; background: var(--brand); }
+.samples { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-bottom: 18px; }
+.samples span { margin-right: 6px; font-size: 14px; font-weight: 600; color: var(--muted); }
+.samples button { height: 38px; padding: 0 16px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font-size: 14px; font-weight: 700; transition: background-color .3s, color .3s, border-color .3s; }
+.samples button[aria-selected="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+.devices { position: relative; }
+.devices__stage { position: relative; padding-bottom: 26px; }
+.chapters { margin-top: 12px; display: flex; flex-wrap: wrap; gap: 8px; }
+.chapters button { height: 36px; padding: 0 14px; border-radius: 999px; border: 1.5px solid var(--line); background: #fff; font-size: 13px; font-weight: 700; transition: background-color .3s, color .3s, border-color .3s; }
+.chapters button[aria-current="true"] { background: var(--brand); color: #fff; border-color: var(--brand); }
+.svc .tour-stage, .tour-stage { margin-top: 0; }
+.mini-steps { margin-top: 24px; list-style: none; display: grid; gap: 14px; }
+.mini-steps li { display: grid; grid-template-columns: 34px 1fr; gap: 14px; align-items: start; }
+.mini-steps b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--brand); color: #fff; font-size: 14px; }
+.mini-steps strong { display: block; font-size: 16px; }
+.mini-steps span { font-size: 14px; color: var(--muted); }
 
 /* ==========================================================================
-   Prices: tabs as text, columns divided by hairlines, one highlighted
+   Why us, process
    ========================================================================== */
-.prices { padding: clamp(90px, 11vw, 150px) 0; }
-.price-head { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 28px; }
-.price-head h2 { margin-top: 22px; font-size: clamp(2.6rem, 5vw, 4.8rem); }
-.price-tabs { display: flex; gap: 30px; border-bottom: 1px solid var(--line); }
-.price-tabs button { position: relative; padding: 0 0 14px; font-size: 15px; font-weight: 600; color: var(--muted); transition: color .3s; }
-.price-tabs button b { font-family: var(--serif); font-style: italic; font-weight: 400; margin-right: 6px; }
-.price-tabs button::after { content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--ink); transform: scaleX(0); transition: transform .4s var(--ease); }
-.price-tabs button[aria-selected="true"] { color: var(--ink); }
-.price-tabs button[aria-selected="true"]::after { transform: scaleX(1); }
-.menu { margin-top: 48px; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--ink); }
+.why { margin-top: 52px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 22px; }
+.why div { padding: 26px; border-radius: var(--radius); background: rgba(255,255,255,.06); }
+.why svg { width: 42px; height: 42px; padding: 10px; border-radius: 12px; background: rgba(159,176,255,.16); color: #9fb0ff; }
+.why h3 { margin-top: 18px; font-size: 18px; font-weight: 800; letter-spacing: -.01em; }
+.why p { margin-top: 8px; font-size: 15px; color: var(--muted); }
+.flowline { position: relative; margin-top: 56px; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 26px; }
+.flowline::before { content: ""; position: absolute; left: 24px; right: 24px; top: 23px; height: 2px; background: var(--brand-soft); }
+.flowline::after { content: ""; position: absolute; left: 24px; right: 24px; top: 23px; height: 2px; background: var(--brand); transform: scaleX(0); transform-origin: left; transition: transform 1.6s var(--ease) .2s; }
+.flowline.in::after { transform: scaleX(1); }
+.flowline li { position: relative; z-index: 1; }
+.flowline li > b { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; background: #fff; border: 2px solid var(--brand); color: var(--brand); font-weight: 800; }
+.flowline h3 { margin-top: 18px; font-size: 18px; font-weight: 800; }
+.flowline p { margin-top: 6px; font-size: 15px; color: var(--muted); }
+
+/* ==========================================================================
+   Prices
+   ========================================================================== */
+.price-tabs { margin: 36px auto 0; display: flex; justify-content: center; gap: 6px; padding: 6px; width: max-content; max-width: 100%; border-radius: 14px; background: #fff; box-shadow: 0 1px 0 var(--line), 0 10px 30px -24px rgba(16,19,26,.4); }
+.price-tabs button { height: 44px; padding: 0 18px; border-radius: 10px; font-size: 15px; font-weight: 700; color: var(--muted); transition: background-color .3s, color .3s; }
+.price-tabs button b { font-weight: 800; margin-right: 4px; }
+.price-tabs button[aria-selected="true"] { background: var(--brand); color: #fff; }
+.menu { margin-top: 36px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; align-items: stretch; }
 .menu[hidden] { display: none; }
-.pack { display: flex; flex-direction: column; padding: 34px 32px 34px; }
-.pack + .pack { border-left: 1px solid var(--line); }
-.pack--best { background: var(--navy); color: var(--white); --line: rgba(255,253,249,.16); --muted: rgba(255,253,249,.62); }
+.pack { position: relative; display: flex; flex-direction: column; padding: 30px; border-radius: var(--radius); background: #fff; box-shadow: 0 1px 0 var(--line), 0 18px 40px -32px rgba(16,19,26,.35); }
+.pack--best { background: var(--ink); color: #fff; --muted: rgba(255,255,255,.66); --line: rgba(255,255,255,.14); transform: translateY(-8px); }
 .pack__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; min-height: 30px; }
-.pack h3 { font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.03em; }
-.pack__tag { padding: 6px 12px; border-radius: 999px; background: var(--stone); color: var(--navy); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; }
-.pack__swatch { width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(11,20,36,.2); }
-.pack__price { margin-top: 26px; font-family: var(--display); font-weight: 700; font-size: 50px; line-height: 1; letter-spacing: -.04em; }
-.pack__price small { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 22px; letter-spacing: 0; margin-right: 8px; color: var(--muted); }
-.pack__price--text { font-size: 32px; }
+.pack h3 { font-size: 20px; font-weight: 800; }
+.pack__tag { padding: 5px 11px; border-radius: 999px; background: var(--brand); color: #fff; font-size: 12px; font-weight: 700; }
+.pack__swatch { width: 28px; height: 28px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(16,19,26,.2); }
+.pack__price { margin-top: 20px; font-size: 40px; font-weight: 800; letter-spacing: -.03em; line-height: 1; }
+.pack__price small { font-size: 15px; font-weight: 600; color: var(--muted); margin-right: 6px; }
+.pack__price--text { font-size: 28px; }
 .pack__lead { margin-top: 10px; font-size: 15px; color: var(--muted); }
-.pack__list { margin: 24px 0 30px; padding-top: 22px; border-top: 1px solid var(--line); list-style: none; display: grid; gap: 12px; font-size: 15px; }
-.pack__list li { position: relative; padding-left: 26px; }
-.pack__list li::before { content: ""; position: absolute; left: 2px; top: 7px; width: 12px; height: 7px; border-left: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); }
-.pack__btn { margin-top: auto; width: 100%; background: var(--navy); color: var(--white); }
-.pack__btn:hover { background: var(--navy-2); }
-.pack--best .pack__btn { background: var(--white); color: var(--navy); }
-.pack--best .pack__btn:hover { background: var(--stone); }
-.pack__btn[aria-pressed="true"] { background: var(--stone); color: var(--navy); }
-.menu-note { margin-top: 24px; font-size: 13px; color: var(--muted); }
+.pack__list { margin: 22px 0 28px; padding-top: 20px; border-top: 1px solid var(--line); list-style: none; display: grid; gap: 11px; font-size: 15px; }
+.pack__list li { position: relative; padding-left: 28px; }
+.pack__list li::before { content: ""; position: absolute; left: 0; top: 4px; width: 18px; height: 18px; border-radius: 50%; background: var(--brand-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232341d6' stroke-width='3.2'%3E%3Cpath d='m6 12 4 4 8-8'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.pack__btn { margin-top: auto; width: 100%; background: var(--brand); color: #fff; }
+.pack__btn:hover { background: var(--brand-2); }
+.pack--best .pack__btn { background: #fff; color: var(--ink); }
+.pack__btn[aria-pressed="true"] { background: #16a34a; color: #fff; }
+.menu-note { margin-top: 26px; text-align: center; font-size: 14px; color: var(--muted); }
 
 /* ==========================================================================
-   Founders (night blue)
+   Team, FAQ
    ========================================================================== */
-.team { padding: clamp(90px, 11vw, 150px) 0; }
-.team__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(32px, 6vw, 96px); align-items: end; }
-.team h2 { margin-top: 22px; font-size: clamp(2.6rem, 5vw, 4.8rem); }
-.team .lead { margin-top: 22px; }
-.founders { border-top: 1px solid var(--white); }
-.founder { display: grid; grid-template-columns: 64px 1fr auto; gap: 22px; align-items: center; padding: 26px 0; border-bottom: 1px solid var(--line); }
-.founder__init { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; border: 1px solid var(--line); font-family: var(--serif); font-style: italic; font-size: 24px; }
-.founder h3 { font-family: var(--display); font-weight: 700; font-size: 28px; letter-spacing: -.03em; line-height: 1.05; }
+.team__grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.founders { display: grid; gap: 16px; }
+.founder { display: grid; grid-template-columns: 64px 1fr auto; gap: 18px; align-items: center; padding: 22px; border-radius: var(--radius); background: #fff; box-shadow: 0 1px 0 var(--line), 0 18px 40px -32px rgba(16,19,26,.35); }
+.founder__init { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--brand); color: #fff; font-weight: 800; font-size: 20px; }
+.founder h3 { font-size: 19px; font-weight: 800; }
 .founder p { font-size: 14px; color: var(--muted); }
-.founder a { font-size: 15px; font-weight: 600; border-bottom: 1px solid currentColor; }
-
-/* ==========================================================================
-   FAQ
-   ========================================================================== */
-.faq { padding: clamp(90px, 11vw, 150px) 0; }
-.faq__grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: clamp(32px, 6vw, 96px); }
-.faq h2 { margin-top: 22px; font-size: clamp(2.6rem, 5vw, 4.8rem); }
-.faq__list { border-top: 1px solid var(--ink); }
-.faq details { border-bottom: 1px solid var(--line); }
-.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; font-family: var(--display); font-weight: 600; font-size: 21px; letter-spacing: -.02em; }
+.founder a { font-weight: 700; color: var(--brand); }
+.faq__list { margin: 44px auto 0; max-width: 860px; display: grid; gap: 12px; }
+.faq details { border-radius: 14px; background: #fff; box-shadow: 0 1px 0 var(--line), 0 14px 30px -28px rgba(16,19,26,.35); }
+.faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 24px; font-size: 17px; font-weight: 700; }
 .faq summary::-webkit-details-marker { display: none; }
-.faq summary i { flex: none; position: relative; width: 18px; height: 18px; }
-.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1.5px; background: currentColor; transition: transform .35s var(--ease); }
+.faq summary i { flex: none; position: relative; width: 28px; height: 28px; border-radius: 50%; background: var(--brand-soft); }
+.faq summary i::before, .faq summary i::after { content: ""; position: absolute; left: 8px; right: 8px; top: 13px; height: 2px; background: var(--brand); transition: transform .3s var(--ease); }
 .faq summary i::after { transform: rotate(90deg); }
 .faq details[open] summary i::after { transform: rotate(0); }
-.faq details p { padding: 0 40px 26px 0; color: var(--muted); max-width: 680px; }
+.faq details p { padding: 0 24px 22px; color: var(--muted); }
 
+/* ==========================================================================
+   Contact
+   ========================================================================== */
+.ask__grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: clamp(32px, 6vw, 80px); align-items: start; }
+.ask__direct { margin-top: 30px; display: grid; gap: 12px; }
+.ask__direct a { display: flex; align-items: center; gap: 14px; padding: 16px 18px; border-radius: 14px; background: #fff; box-shadow: 0 1px 0 var(--line); font-weight: 700; }
+.ask__direct a svg { flex: none; width: 38px; height: 38px; padding: 9px; border-radius: 10px; background: var(--brand-soft); color: var(--brand); }
+.ask__direct a span { display: block; font-weight: 500; font-size: 14px; color: var(--muted); }
+.form-card { background: #fff; border-radius: 20px; padding: clamp(24px, 3.5vw, 40px); box-shadow: 0 1px 0 var(--line), 0 30px 70px -40px rgba(16,19,26,.45); }
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.foot { padding: 70px 0 calc(28px + env(safe-area-inset-bottom)); background: var(--ink); color: #fff; --muted: rgba(255,255,255,.6); --line: rgba(255,255,255,.12); }
+.foot__grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; }
+.foot__brand p { margin-top: 16px; max-width: 320px; color: var(--muted); font-size: 15px; }
+.foot__grid b { display: block; margin-bottom: 12px; font-size: 14px; }
+.foot__grid div a { display: block; padding: 4px 0; font-size: 15px; color: var(--muted); }
+.foot__grid div a:hover { color: #fff; }
+.foot__base { margin-top: 50px; padding-top: 22px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 14px; color: var(--muted); }
+.callbar { display: none; }
 /* ==========================================================================
    Inquiry
    ========================================================================== */
-.ask { padding: clamp(90px, 11vw, 150px) 0; background: var(--white); }
-.ask__grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: clamp(32px, 6vw, 90px); align-items: start; }
-.ask h2 { margin-top: 22px; font-size: clamp(2.8rem, 5.6vw, 5.4rem); }
-.ask .lead { margin-top: 22px; }
-.ask__direct { margin-top: 36px; border-top: 1px solid var(--ink); }
-.ask__direct a { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 1px solid var(--line); font-weight: 600; }
-.ask__direct a span { font-weight: 400; color: var(--muted); }
-.form-card { background: var(--ivory); border-radius: 18px; padding: clamp(24px, 3.5vw, 46px); }
+
 .bar { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
 .bar span { height: 3px; background: var(--line); transition: background-color .4s var(--ease); }
-.bar span.on { background: var(--ink); }
+.bar span.on { background: var(--brand); }
 .bar-label { margin-top: 12px; display: flex; justify-content: space-between; font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .step { margin-top: 28px; }
 .step[hidden] { display: none; }
@@ -309,7 +318,7 @@ fieldset { border: 0; min-width: 0; }
 .pick { text-align: left; padding: 18px; border-radius: 12px; border: 1px solid var(--line); background: var(--white); transition: border-color .25s, background-color .25s, color .25s; }
 .pick b { display: block; font-family: var(--display); font-weight: 700; font-size: 19px; letter-spacing: -.02em; line-height: 1.1; }
 .pick span { display: block; margin-top: 6px; font-size: 12px; color: var(--muted); }
-.pick[aria-checked="true"] { border-color: var(--navy); background: var(--navy); color: var(--white); }
+.pick[aria-checked="true"] { border-color: var(--brand); background: var(--brand); color: #fff; }
 .pick[aria-checked="true"] span { color: rgba(255,253,249,.65); }
 .grid2 { margin-top: 22px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .full { grid-column: 1 / -1; }
@@ -339,23 +348,6 @@ fieldset { border: 0; min-width: 0; }
 .spin { width: 16px; height: 16px; border-radius: 50%; border: 2px solid rgba(255,253,249,.35); border-top-color: var(--white); animation: spin .8s linear infinite; }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-.foot { padding: 90px 0 calc(28px + env(safe-area-inset-bottom)); overflow: hidden; }
-.foot__top { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 40px; }
-.foot__cta h2 { font-size: clamp(2.2rem, 4.4vw, 4rem); max-width: 640px; }
-.foot__cta .btn { margin-top: 28px; }
-.foot__cols { display: flex; flex-wrap: wrap; gap: 54px; font-size: 14px; }
-.foot__cols div { display: grid; gap: 8px; align-content: start; }
-.foot__cols b { font-size: 11px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
-.foot__cols a { opacity: .85; } .foot__cols a:hover { opacity: 1; }
-.wordmark { margin-top: 90px; font-family: var(--display); font-weight: 700; font-size: clamp(3rem, 12.2vw, 12rem); line-height: .82; letter-spacing: -.055em; white-space: nowrap; }
-.wordmark span { color: var(--stone); }
-.foot__base { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 10px; font-size: 13px; color: var(--muted); }
-
-.devices { position: relative; }
-.devices__stage { position: relative; padding-bottom: 28px; }
 /* ==========================================================================
    Websites: laptop + phone showcase with switchable sample sites
    ========================================================================== */
@@ -421,7 +413,6 @@ fieldset { border: 0; min-width: 0; }
 }
 /* Leader-line notes next to the devices */
 
-
 /* ==========================================================================
    Roomtour: video player + photo-to-tour steps (dark)
    ========================================================================== */
@@ -460,171 +451,79 @@ fieldset { border: 0; min-width: 0; }
 .player__time { flex: none; font-size: 12px; font-variant-numeric: tabular-nums; opacity: .85; }
 
 
-/* Phone call bar */
-.callbar { display: none; }
-
 /* ==========================================================================
    Responsive
    ========================================================================== */
 @media (max-width: 1080px) {
-  .svc__body, .svc--rev .svc__body { grid-template-columns: 1fr; }
-  .svc--rev .svc__visual { order: 0; }
-  .process__list { grid-template-columns: 1fr 1fr; row-gap: 46px; }
-  .process__list::before { display: none; }
-  .team__grid, .faq__grid, .ask__grid { grid-template-columns: 1fr; }
+  .nav__tel { display: none; }
+  .hero__grid, .detail, .team__grid, .ask__grid { grid-template-columns: 1fr; }
+  .detail--rev .detail__visual { order: 0; }
+  .cards3, .menu { grid-template-columns: 1fr 1fr; }
+  .why { grid-template-columns: 1fr 1fr; }
+  .trustbar ul { grid-template-columns: 1fr 1fr; }
+  .trustbar li:nth-child(3) { border-left: 0; }
+  .trustbar li:nth-child(n+3) { border-top: 1px solid var(--line); }
+  .foot__grid { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 820px) {
   .burger { display: block; }
-  .nav { color: var(--white); }
-  .nav.open, .nav.scrolled { background: var(--ivory); color: var(--ink); }
-  .nav__links { position: absolute; top: 66px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--gutter) 24px; background: var(--ivory); color: var(--ink); border-bottom: 1px solid var(--line); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .3s, transform .3s, visibility .3s; }
+  .nav__links { position: absolute; top: 74px; left: 0; right: 0; flex-direction: column; align-items: stretch; gap: 0; padding: 6px var(--gutter) 22px; background: #fff; border-bottom: 1px solid var(--line); opacity: 0; visibility: hidden; transform: translateY(-8px); transition: opacity .3s, transform .3s, visibility .3s; }
   .nav.open .nav__links { opacity: 1; visibility: visible; transform: none; }
-  .nav__links a:not(.btn) { padding: 16px 0; font-family: var(--display); font-weight: 700; font-size: 26px; letter-spacing: -.03em; border-bottom: 1px solid var(--line); opacity: 1; }
-  .nav__links a:not(.btn)::after { display: none; }
-  .nav__links .btn { margin-top: 18px; height: 52px; background: var(--navy); color: var(--white); }
-  .nav__bar, .nav.scrolled .nav__bar { height: 66px; }
-  .hero { padding-top: 96px; min-height: auto; }
-  .hero__grid { grid-template-columns: 1fr; }
-  .hero__stage { max-height: 380px; margin-top: 8px; }
-  .hero .stage-cap { left: 0; right: auto; top: 0; }
-  .facts { grid-template-columns: 1fr 1fr; margin-top: 20px; }
-  .facts li:nth-child(3) { padding-left: 0; border-left: 0; }
-  .facts li:nth-child(n+3) { border-top: 1px solid var(--line); }
-  .services, .steps { grid-template-columns: 1fr; }
-  .services a + a, .steps li + li { padding-left: 0; border-left: 0; border-top: 1px solid var(--line); }
-  .steps li { padding: 22px 0; }
-  .svc__head, .process__head { grid-template-columns: 1fr; gap: 18px; }
-  .svc__head .lead { justify-self: start; }
-  .specs div { grid-template-columns: 112px 1fr; gap: 12px; padding: 12px 0; font-size: 14px; }
-  .specs dt { font-size: 10.5px; }
-  .price { font-size: 44px; } .price--text { font-size: 30px; }
-  .order { flex-direction: column; align-items: stretch; }
-  .order__actions .btn { width: 100%; }
+  .nav__links a:not(.btn) { padding: 15px 0; font-size: 18px; border-bottom: 1px solid var(--line); }
+  .nav__links .btn { margin-top: 16px; height: 50px; }
+  .hero { padding: 108px 0 50px; }
+  .previews { height: 460px; grid-template-rows: 1.2fr 1fr; }
+  .pv--nfc .pv__media { left: 30%; }
+  .pv__label b { font-size: 16px; }
+  .cards3, .menu, .why { grid-template-columns: 1fr; }
+  .pack--best { transform: none; }
+  .flowline { grid-template-columns: 1fr; gap: 22px; }
+  .flowline::before, .flowline::after { display: none; }
+  .flowline li { display: grid; grid-template-columns: 48px 1fr; gap: 0 16px; }
+  .flowline li > b { grid-row: 1 / 3; }
+  .flowline h3 { margin-top: 2px; }
+  .specs div { grid-template-columns: 110px 1fr; }
   .nfc-stage { min-height: 380px; }
   .callout__text { font-size: 9.5px; }
   .callout__text small { display: none; }
-  .process__list { grid-template-columns: 1fr; }
-  .menu { grid-template-columns: 1fr; }
-  .pack + .pack { border-left: 0; border-top: 1px solid var(--line); }
-  .price-tabs { gap: 18px; overflow-x: auto; }
-  .price-tabs button { white-space: nowrap; font-size: 14px; }
+  .price-tabs { width: 100%; }
+  .price-tabs button { flex: 1; padding: 0 8px; font-size: 13px; }
+  .price-tabs button b { display: none; }
   .founder { grid-template-columns: 52px 1fr; }
-  .founder__init { width: 52px; height: 52px; }
-  .founder a { grid-column: 2; justify-self: start; }
-  .picks { grid-template-columns: 1fr; }
-  .grid2 { grid-template-columns: 1fr; }
+  .founder__init { width: 52px; height: 52px; font-size: 17px; }
+  .founder a { grid-column: 2; }
+  .foot__grid { grid-template-columns: 1fr; gap: 26px; }
+  .picks, .grid2 { grid-template-columns: 1fr; }
   .review div { grid-template-columns: 1fr; gap: 2px; }
-  .callbar { position: fixed; z-index: 45; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; padding: 8px; border-radius: 999px; background: var(--white); color: var(--ink); box-shadow: 0 12px 30px -10px rgba(11,20,36,.4); transition: transform .4s var(--ease), opacity .4s; }
+  .callbar { position: fixed; z-index: 45; left: 12px; right: 12px; bottom: 12px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 8px; padding: 8px; border-radius: 16px; background: #fff; box-shadow: 0 12px 30px -10px rgba(16,19,26,.4); transition: transform .4s var(--ease), opacity .4s; }
   .callbar .btn { height: 48px; }
   .callbar.off { transform: translateY(140%); opacity: 0; pointer-events: none; }
-  .foot { padding-bottom: 96px; }
+  .foot { padding-bottom: 100px; }
+}
+@media (max-width: 480px) {
+  .trustbar ul { grid-template-columns: 1fr; }
+  .trustbar li { border-left: 0 !important; }
+  .trustbar li + li { border-top: 1px solid var(--line); }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
   .rv, .w > i { opacity: 1; transform: none; }
 }
-
-/* ==========================================================================
-   v5: one typeface, no italics
-   ========================================================================== */
-.label b { font-weight: 800; font-size: 13px; letter-spacing: .06em; background: none; padding: 0; border-radius: 0; }
-.steps small, .price small, .pack__price small, .founder__init, .price-tabs button b { font-style: normal; font-weight: 700; }
-.price small, .pack__price small { font-size: 16px; }
-.steps small { font-size: 14px; letter-spacing: .1em; }
-.rot { color: inherit; font-size: 1em; }
-.rot span { color: var(--muted); }
-.dark .rot span { color: rgba(255,255,255,.55); }
-
-/* ==========================================================================
-   Intro: short line on top, then the three offers as large living stages
-   ========================================================================== */
-.top { padding: 112px 0 30px; }
-.top__row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
-.top h1 { margin-top: 18px; font-size: clamp(2.6rem, 5.6vw, 5.6rem); white-space: nowrap; }
-.top__side p { font-size: 18px; color: var(--muted); max-width: 440px; }
-.top__side .btn { margin-top: 22px; }
-.trio { display: flex; gap: 10px; height: min(78vh, 760px); min-height: 560px; padding: 0 10px 10px; }
-.stage3 { position: relative; flex: 1; min-width: 0; border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; transition: flex-grow .8s var(--ease); isolation: isolate; }
-.trio:hover .stage3 { flex-grow: .8; }
-.trio .stage3:hover { flex-grow: 1.6; }
-.stage3__visual { position: absolute; inset: 0; z-index: -1; }
-.stage3__body { padding: 30px; display: grid; gap: 10px; }
-.stage3__no { font-size: 13px; font-weight: 800; letter-spacing: .14em; opacity: .7; }
-.stage3 h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 3vw, 3rem); letter-spacing: -.045em; line-height: 1; }
-.stage3 p { font-size: 16px; opacity: .78; max-width: 360px; }
-.stage3__foot { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
-.stage3__price { font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
-.stage3__price small { font-weight: 600; font-size: 13px; opacity: .7; margin-right: 4px; }
-.stage3__links { display: flex; gap: 8px; }
-.stage3__links .btn { height: 46px; padding: 0 20px; }
-/* 01 NFC stage: black, the iPhone taps the disc */
-.stage3--nfc { background: radial-gradient(ellipse 80% 60% at 50% 38%, #2a2a2a, #0d0d0d 70%); color: #fff; }
-.stage3--nfc .stage3__visual canvas { position: absolute; inset: 0 0 34% 0; width: 100% !important; height: 66% !important; }
-.stage3--nfc .stage-cap { left: 30px; top: 30px; font-size: 13px; }
-/* 02 Website stage: sand, a laptop in perspective */
-.stage3--web { background: linear-gradient(170deg, #efe8db, #ddd2bf); color: var(--ink); }
-.tilt { position: absolute; left: 50%; top: 13%; width: 118%; transform: translateX(-46%) perspective(1600px) rotateX(18deg) rotateY(-24deg) rotateZ(4deg); transform-origin: center; transition: transform 1s var(--ease); }
-.stage3--web:hover .tilt { transform: translateX(-46%) perspective(1600px) rotateX(10deg) rotateY(-14deg) rotateZ(2deg); }
-.tilt .laptop { width: 100%; }
-.stage3--web .stage3__body { background: linear-gradient(transparent, rgba(233,225,210,.96) 38%); padding-top: 70px; }
-/* 03 Roomtour stage: the film itself */
-.stage3--tour { background: #111; color: #fff; }
-.stage3--tour video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
-.stage3--tour .stage3__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.82)); }
-.stage3 .btn--line { border-color: currentColor; }
-.stage3--web .btn--solid { background: var(--ink); color: #fff; }
-.tag-ki { position: absolute; right: 22px; top: 22px; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
-
-/* Detail sections take the colour world of their stage */
-.svc { padding: clamp(90px, 10vw, 140px) 0; }
-#nfc.dark { background: #0d0d0d; }
-#nfc .callout__dot { background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.18); }
-#nfc .callout__line { background: rgba(255,255,255,.8); }
-#nfc .swatches button { border-color: rgba(255,255,255,.2); }
-#nfc .swatches button[aria-checked="true"] { border-color: #fff; }
-#web.sand { background: var(--sand); color: var(--ink); }
-#web .samples button { border-color: rgba(13,13,13,.2); }
-#web .samples button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
-.prices { background: var(--ivory); }
-.nav { color: var(--ink); }
-.nav__links .btn { background: var(--ink); color: #fff; }
-.nav.scrolled { background: rgba(255,255,255,.9); }
-.callout__text small { color: rgba(255,255,255,.6); }
-
-@media (max-width: 1080px) {
-  .trio { flex-direction: column; height: auto; }
-  .stage3 { min-height: 520px; }
-  .trio:hover .stage3, .trio .stage3:hover { flex-grow: 1; }
-  .top__row { grid-template-columns: 1fr; gap: 16px; }
-}
-@media (max-width: 820px) {
-  .nav { color: var(--ink); }
-  .top h1 { white-space: normal; font-size: 2.6rem; }
-  .top { padding: 96px 0 22px; }
-  .trio { padding: 0 8px 8px; gap: 8px; }
-  .stage3 { min-height: 480px; border-radius: 18px; }
-  .stage3__body { padding: 22px; }
-  .stage3--nfc .stage-cap { left: 22px; top: 22px; }
-  .stage3--nfc { min-height: 640px; }
-  .stage3--nfc .stage3__visual canvas { inset: 40px 0 auto 0; height: 300px !important; }
-}
 </style>
 </head>
 <body>
-<a class="sr-only" href="#nfc">Zum Inhalt springen</a>
 <header class="nav" id="nav">
   <div class="wrap nav__bar">
-    <a class="logo" href="#top" aria-label="F&amp;D Solutions – nach oben">
-      <span class="logo__mark">F&amp;D</span>
-      <span class="logo__word">Solutions</span>
-    </a>
+    <a class="logo" href="#top" aria-label="F&amp;D Solutions – nach oben"><span class="logo__mark">F&amp;D</span><span class="logo__word">Solutions</span></a>
     <nav class="nav__links" id="navLinks" aria-label="Hauptnavigation">
-      <a href="#nfc">NFC-Platten</a>
-      <a href="#web">Websites</a>
-      <a href="#roomtour">KI-Roomtours</a>
+      <a href="#leistungen">Leistungen</a>
+      <a href="#ablauf">Ablauf</a>
       <a href="#preise">Preise</a>
-      <a class="btn" href="#anfrage">Anfragen</a>
+      <a href="#ueber-uns">Über uns</a>
+      <a href="#faq">FAQ</a>
+      <a class="nav__tel" href="tel:+4915566456417">+49 155 66456417</a>
+      <a class="btn" href="#anfrage">Kostenlos anfragen</a>
     </nav>
     <button class="burger" id="burger" type="button" aria-label="Menü öffnen" aria-expanded="false" aria-controls="navLinks"><span></span><span></span></button>
   </div>
@@ -636,122 +535,93 @@ fieldset { border: 0; min-width: 0; }
 
 <main id="top">
 
-  <!-- Intro: one line, then the three offers as living stages -->
-  <section class="top">
-    <div class="wrap top__row">
-      <div><span class="label rv">F&amp;D Solutions · München</span><h1 class="display rv d1">Mehr <span class="rot" aria-hidden="true"><span class="on">Bewertungen.</span><span>Kunden.</span><span>Buchungen.</span></span><span class="sr-only">Bewertungen, Kunden und Buchungen.</span></h1></div>
-      <div class="top__side rv d1"><p>NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours. Persönlich umgesetzt, zum Festpreis, Antwort in 24 Stunden.</p><a class="btn btn--solid" href="#anfrage">Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <span class="eyebrow rv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg> Digitalagentur aus München</span>
+        <h1 class="display rv d1">Mehr <span class="rot" aria-hidden="true"><span class="on">Bewertungen,</span><span>Kunden,</span><span>Buchungen,</span></span><span class="sr-only">Bewertungen, Kunden, Buchungen,</span><br>weniger Aufwand.</h1>
+        <p class="hero__sub rv d2">Wir bringen Ihr Unternehmen online nach vorne: mit NFC-Platten für Google-Bewertungen, professionellen Websites und KI-Roomtours. Zum Festpreis, persönlich betreut.</p>
+        <div class="hero__cta rv d3"><a class="btn btn--solid" href="#anfrage">Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#leistungen">Leistungen ansehen</a></div>
+        <ul class="hero__trust rv d3"><li>Festpreise ab 300 €</li><li>Antwort in 24 Stunden</li><li>Kein Abo</li></ul>
+      </div>
+      <div class="previews rv d1" aria-label="Vorschau unserer Leistungen">
+        <a class="pv pv--nfc" href="#nfc"><div class="pv__media" id="heroStage"><div class="stage-cap"><b>1</b><span></span></div></div><div class="pv__label"><small>NFC-Platten</small><b>Google-Bewertungen per Antippen</b><span>Preis auf Anfrage</span></div></a>
+        <a class="pv pv--web" href="#web"><div class="pv__media"><div class="mini-laptop"><div class="laptop"><div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div><div class="laptop__base"></div></div></div></div><div class="pv__label"><small>Websites</small><b>Individuell gebaut</b><span>ab 300 €</span></div></a>
+        <a class="pv pv--tour" href="#roomtour"><div class="pv__media"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div><div class="pv__label"><small>KI-Roomtours</small><b>Aus Fotos wird ein Rundgang</b><span>ab 300 €</span></div></a>
+      </div>
     </div>
   </section>
-  <div class="trio" aria-label="Unsere drei Leistungen">
-    <article class="stage3 stage3--nfc">
-      <div class="stage3__visual" id="heroStage"><div class="stage-cap" aria-live="polite"><b>1</b><span>Handy an die Platte halten</span></div></div>
-      <div class="stage3__body">
-        <span class="stage3__no">01 · NFC-PLATTEN</span>
-        <h2>Bewertungen per Antippen.</h2>
-        <p>Handy an die Platte halten, Google-Bewertung öffnet sich. Für Theke, Tisch und Tür.</p>
-        <div class="stage3__foot"><span class="stage3__price">Preis auf Anfrage</span><span class="stage3__links"><a class="btn btn--line" href="#nfc">Ansehen</a><button class="btn btn--light" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte">Anfragen</button></span></div>
-      </div>
-    </article>
-    <article class="stage3 stage3--web">
-      <div class="stage3__visual"><div class="tilt"><div class="laptop"><div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div><div class="laptop__base"></div></div></div></div>
-      <div class="stage3__body">
-        <span class="stage3__no">02 · WEBSITES</span>
-        <h2>Websites, die verkaufen.</h2>
-        <p>Individuell gestaltet, schnell und auf jedem Handy perfekt. Mit klarem Weg zur Anfrage.</p>
-        <div class="stage3__foot"><span class="stage3__price"><small>ab</small>300 €</span><span class="stage3__links"><a class="btn btn--line" href="#web">Ansehen</a><button class="btn btn--solid" type="button" data-add="Webentwicklung" data-detail="Website">Anfragen</button></span></div>
-      </div>
-    </article>
-    <article class="stage3 stage3--tour">
-      <div class="stage3__visual"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div>
-      <span class="tag-ki">KI-Roomtour · Beispiel</span>
-      <div class="stage3__body">
-        <span class="stage3__no">03 · KI-ROOMTOURS</span>
-        <h2>Aus Fotos wird ein Rundgang.</h2>
-        <p>Sie schicken Fotos, wir machen daraus ein realistisches Video. Für Airbnb, Hotel und Immobilie.</p>
-        <div class="stage3__foot"><span class="stage3__price"><small>ab</small>300 €</span><span class="stage3__links"><a class="btn btn--line" href="#roomtour">Ansehen</a><button class="btn btn--light" type="button" data-add="KI Roomtour" data-detail="Roomtour">Anfragen</button></span></div>
-      </div>
-    </article>
+
+  <!-- Trust bar -->
+  <div class="trustbar">
+    <ul class="wrap">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5A7 7 0 1 0 17 17.5M4 10h9M4 14h9"/></svg><div><b>Festpreise</b><span>Sie wissen vorher, was es kostet</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><div><b>Antwort in 24 Stunden</b><span>persönlich, nicht automatisch</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><div><b>Ein Ansprechpartner</b><span>von Anfrage bis Übergabe</span></div></li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6v6c0 5 3.5 8 8 9 4.5-1 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/></svg><div><b>Kein Abo</b><span>keine Vertragsbindung</span></div></li>
+    </ul>
   </div>
 
-  <!-- 01 NFC -->
-  <section class="svc dark" id="nfc">
+  <!-- Services overview -->
+  <section class="sec sec--alt" id="leistungen">
     <div class="wrap">
-      <div class="svc__head">
-        <div><span class="label rv"><b>01</b>NFC-Platten</span><h2 class="display">So funktioniert <em>die Platte.</em></h2></div>
-        <p class="lead rv d1">Ihre Kunden halten das Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Ohne App, ohne Suchen, in Sekunden.</p>
-      </div>
-      <div class="svc__body">
-        <div class="svc__visual nfc-stage rv" id="nfcStage">
-          <div class="stage-cap" aria-live="polite"><b id="nfcStepNo">1</b><span id="nfcCap">Eine Platte, Ø 10 cm</span></div>
-          <span class="stage-hint">Ziehen zum Drehen</span>
-          <div class="callouts" id="callouts" aria-hidden="true">
-              <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Frontplatte<small>Google-Design, auf Wunsch mit Firmennamen</small></span></div>
-              <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">NFC-Chip<small>NTAG 215, Link zu Ihrer Bewertungsseite</small></span></div>
-              <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Kupferantenne<small>Überträgt beim Antippen</small></span></div>
-              <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Rückplatte<small>Acryl, robust und pflegeleicht</small></span></div>
-          </div>
-        </div>
-        <div class="rv d1">
-          <dl class="specs"><div><dt>Form</dt><dd>Rund, Ø 10 cm</dd></div><div><dt>Material</dt><dd>Acryl, robust und pflegeleicht</dd></div><div><dt>Chip</dt><dd>NFC, NTAG 215</dd></div><div><dt>Handy</dt><dd>iPhone und Android, ohne App</dd></div><div><dt>Beschriftung</dt><dd>Auf Wunsch mit Firmennamen</dd></div></dl>
-          <div class="swatches" role="radiogroup" aria-label="Farbe wählen"><button type="button" role="radio" aria-checked="true" data-color="Weiß"><i style="background:#fff"></i>Weiß</button><button type="button" role="radio" aria-checked="false" data-color="Schwarz"><i style="background:#111"></i>Schwarz</button></div>
-          <div class="order"><p class="price price--text">Preis auf Anfrage</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Weiß">NFC-Platte anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="nfc">Alle Preise</a></div></div>
-        </div>
-      </div>
-      <ol class="steps">
-        <li class="rv"><small>1</small><h3>Antippen</h3><p>Handy an die Platte halten. Funktioniert mit iPhone und Android.</p></li>
-        <li class="rv d1"><small>2</small><h3>Bewerten</h3><p>Ihre Google-Bewertungsseite öffnet sich sofort, ganz ohne Suchen.</p></li>
-        <li class="rv d2"><small>3</small><h3>Gefunden werden</h3><p>Mehr Sterne bringen mehr Vertrauen und mehr neue Kunden.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- 02 Websites (night blue) -->
-  <section class="svc svc--rev sand" id="web">
-    <div class="wrap">
-      <div class="svc__head">
-        <div><span class="label rv"><b>02</b>Websites</span><h2 class="display">Ihre Website, <em>individuell gebaut.</em></h2></div>
-        <p class="lead rv d1">Maßgeschneidert statt Baukasten: schnell, auf jedem Handy perfekt und mit einem klaren Weg zur Anfrage. Klicken Sie sich durch die Beispiele.</p>
-      </div>
-      <div class="svc__body">
-        <div class="svc__visual rv">
-          <div class="samples" role="tablist" aria-label="Beispiel-Branche">
-            <span>Beispiel</span>
-            <button type="button" role="tab" aria-selected="true" data-sample="cafe">Café</button>
-            <button type="button" role="tab" aria-selected="false" data-sample="handwerk" tabindex="-1">Handwerk</button>
-            <button type="button" role="tab" aria-selected="false" data-sample="immo" tabindex="-1">Immobilien</button>
-          </div>
-          <div class="devices">
-            <div class="devices__stage">
-              <div class="laptop">
-                <div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div>
-                <div class="laptop__base"></div>
-              </div>
-              <div class="mobile">
-                <span class="mobile__island"></span>
-                <div class="screen" data-screen></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="rv d1">
-          <dl class="specs"><div><dt>Design</dt><dd>Individuell, kein Baukasten</dd></div><div><dt>Geräte</dt><dd>Handy, Tablet und Desktop</dd></div><div><dt>Umfang</dt><dd>1 bis 10 Seiten, je nach Paket</dd></div><div><dt>Inklusive</dt><dd>Kontaktformular, Google Maps, Impressum &amp; Datenschutz</dd></div><div><dt>Extras</dt><dd>SEO-Grundlagen, Google-Bewertungen eingebunden</dd></div></dl>
-          <div class="order"><p class="price"><small>ab</small>300 €</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="Webentwicklung" data-detail="Website">Website anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="web">Alle Preise</a></div></div>
-        </div>
+      <div class="head head--center"><span class="eyebrow rv">Unsere Leistungen</span><h2 class="display">Drei Leistungen. <em>Ein Ziel: mehr Kunden.</em></h2><p class="rv d1">Einzeln oder kombiniert, immer zum Festpreis und persönlich umgesetzt.</p></div>
+      <div class="cards3">
+        <article class="svc-card rv"><span class="svc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 9a5 5 0 0 1 0 6M11.5 7a8 8 0 0 1 0 10M14.5 9.5a3.5 3.5 0 0 1 0 5"/></svg></span><h3>NFC-Platten für Google-Bewertungen</h3><p>Ihre Kunden halten das Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite.</p><ul class="check"><li>Rund, Ø 10 cm, Weiß oder Schwarz</li><li>Für iPhone und Android, ohne App</li><li>Mit Ihrem Bewertungslink eingerichtet</li></ul><div class="svc-card__foot"><span class="svc-card__price">Preis auf Anfrage</span><a class="link" href="#nfc">Details</a></div></article>
+        <article class="svc-card rv d1"><span class="svc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 20h20M7 8h6M7 11h10"/></svg></span><h3>Websites, die Kunden bringen</h3><p>Individuell gestaltet, schnell und auf jedem Handy perfekt, mit klarem Weg zur Anfrage.</p><ul class="check"><li>Eigenes Design, kein Baukasten</li><li>Kontakt, Google Maps, Bewertungen</li><li>Impressum &amp; Datenschutz inklusive</li></ul><div class="svc-card__foot"><span class="svc-card__price"><small>ab</small>300 €</span><a class="link" href="#web">Details</a></div></article>
+        <article class="svc-card rv d2"><span class="svc-card__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg></span><h3>KI-Roomtours aus Ihren Fotos</h3><p>Aus Ihren Fotos entsteht ein realistischer Video-Rundgang durch Ihre Räume, ideal für Ferienwohnung und Immobilie.</p><ul class="check"><li>Video in Full HD</li><li>Für Airbnb, Booking.com, Website</li><li>Quer- oder Hochformat</li></ul><div class="svc-card__foot"><span class="svc-card__price"><small>ab</small>300 €</span><a class="link" href="#roomtour">Details</a></div></article>
       </div>
     </div>
   </section>
 
-  <!-- 03 KI-Roomtours -->
-  <section class="svc" id="roomtour">
-    <div class="wrap">
-      <div class="svc__head">
-        <div><span class="label rv"><b>03</b>KI-Roomtours</span><h2 class="display">Vom Foto <em>zum Rundgang.</em></h2></div>
-        <p class="lead rv d1">Sie schicken uns Fotos Ihrer Ferienwohnung, Ihres Hotels oder Ihrer Immobilie. Wir machen daraus einen realistischen Video-Rundgang durch Ihre echten Räume, damit Gäste vor der Buchung sehen, wie es sich dort lebt.</p>
+  <!-- NFC detail -->
+  <section class="sec" id="nfc">
+    <div class="wrap detail">
+      <div class="detail__visual nfc-stage rv" id="nfcStage">
+        <div class="stage-cap" aria-live="polite"><b id="nfcStepNo">1</b><span id="nfcCap">Eine Platte, Ø 10 cm</span></div>
+        <span class="stage-hint">Ziehen zum Drehen</span>
+        <div class="callouts" id="callouts" aria-hidden="true">
+            <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Frontplatte<small>Google-Design, auf Wunsch mit Firmennamen</small></span></div>
+            <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">NFC-Chip<small>NTAG 215, Link zu Ihrer Bewertungsseite</small></span></div>
+            <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Kupferantenne<small>Überträgt beim Antippen</small></span></div>
+            <div class="callout"><span class="callout__dot"></span><span class="callout__line"></span><span class="callout__text">Rückplatte<small>Acryl, robust und pflegeleicht</small></span></div>
+          </div>
       </div>
-      <div class="svc__body">
-        <div class="svc__visual rv">
-          <div class="tour-stage tour-stage--empty" id="tourStage">
+      <div class="detail__text">
+        <span class="eyebrow rv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8.5 9a5 5 0 0 1 0 6M11.5 7a8 8 0 0 1 0 10M14.5 9.5a3.5 3.5 0 0 1 0 5"/></svg> NFC-Platten</span>
+        <h2 class="display">Mehr Google-Bewertungen <em>mit einem Antippen.</em></h2>
+        <p class="rv d1">Zufriedene Kunden bewerten gerne, wenn es einfach ist. Mit unserer NFC-Platte auf Theke, Tisch oder Tür dauert es nur Sekunden.</p>
+        <ul class="mini-steps rv d1"><li><b>1</b><div><strong>Antippen</strong><span>Handy an die Platte halten</span></div></li><li><b>2</b><div><strong>Bewerten</strong><span>Google-Bewertungsseite öffnet sich sofort</span></div></li><li><b>3</b><div><strong>Gefunden werden</strong><span>mehr Sterne, mehr Vertrauen, mehr Kunden</span></div></li></ul>
+        <div class="rv d2"><dl class="specs"><div><dt>Form</dt><dd>Rund, Ø 10 cm, Acryl</dd></div><div><dt>Chip</dt><dd>NFC, NTAG 215</dd></div><div><dt>Handy</dt><dd>iPhone und Android, ohne App</dd></div><div><dt>Beschriftung</dt><dd>Auf Wunsch mit Firmennamen</dd></div></dl>
+        <div class="swatches" role="radiogroup" aria-label="Farbe wählen"><button type="button" role="radio" aria-checked="true" data-color="Weiß"><i style="background:#fff"></i>Weiß</button><button type="button" role="radio" aria-checked="false" data-color="Schwarz"><i style="background:#111"></i>Schwarz</button></div>
+        <div class="order"><p class="price price--text">Preis auf Anfrage</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte · Weiß">NFC-Platte anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="nfc">Alle Pakete</a></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Website detail -->
+  <section class="sec sec--alt" id="web">
+    <div class="wrap detail detail--rev">
+      <div class="detail__visual rv">
+        <div class="samples" role="tablist" aria-label="Beispiel-Branche"><span>Beispiel:</span><button type="button" role="tab" aria-selected="true" data-sample="cafe">Café</button><button type="button" role="tab" aria-selected="false" data-sample="handwerk" tabindex="-1">Handwerk</button><button type="button" role="tab" aria-selected="false" data-sample="immo" tabindex="-1">Immobilien</button></div>
+        <div class="devices"><div class="devices__stage"><div class="laptop"><div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div><div class="laptop__base"></div></div><div class="mobile"><span class="mobile__island"></span><div class="screen" data-screen></div></div></div></div>
+      </div>
+      <div class="detail__text">
+        <span class="eyebrow rv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M2 20h20M7 8h6M7 11h10"/></svg> Websites</span>
+        <h2 class="display">Eine Website, <em>die für Sie verkauft.</em></h2>
+        <p class="rv d1">Maßgeschneidert statt Baukasten: Ihre Website lädt schnell, sieht auf jedem Handy gut aus und führt Besucher direkt zur Anfrage.</p>
+        <ul class="check rv d1"><li>Individuelles Design passend zu Ihrem Unternehmen</li><li>Für Handy, Tablet und Desktop optimiert</li><li>Kontaktformular, Google Maps und Bewertungen eingebunden</li><li>SEO-Grundlagen, Impressum und Datenschutz inklusive</li></ul>
+        <div class="rv d2"><div class="order"><p class="price"><small>ab</small>300 €</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="Webentwicklung" data-detail="Website">Website anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="web">Alle Pakete</a></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Roomtour detail -->
+  <section class="sec" id="roomtour">
+    <div class="wrap detail">
+      <div class="detail__visual rv">
+        <div class="tour-stage tour-stage--empty" id="tourStage">
       <div class="player rv" id="villa">
         <div class="player__view"><video id="villaVideo" muted loop playsinline preload="metadata"></video></div>
         <div class="player__top"><span class="player__rec">KI-Roomtour · Beispiel</span><span>Wohnung mit Balkon</span></div>
@@ -764,32 +634,53 @@ fieldset { border: 0; min-width: 0; }
           <span class="player__time" id="villaTime">0:00 / 0:11</span>
         </div>
       </div>
-      <div class="chapters" id="villaChapters" role="group" aria-label="Kapitel"></div>
-          </div>
-        </div>
-        <div class="rv d1">
-          <dl class="specs"><div><dt>Grundlage</dt><dd>Ihre Fotos, pro Raum mehrere Blickwinkel</dd></div><div><dt>Ergebnis</dt><dd>Realistischer Video-Rundgang, Raum für Raum</dd></div><div><dt>Format</dt><dd>Full HD, quer oder hochkant</dd></div><div><dt>Einsatz</dt><dd>Airbnb, Booking.com, Website, Instagram</dd></div></dl>
-          <div class="order"><p class="price"><small>ab</small>300 €</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour">Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="tour">Alle Preise</a></div></div>
+        <div class="chapters" id="villaChapters" role="group" aria-label="Kapitel"></div>
         </div>
       </div>
-      <ol class="steps">
-        <li class="rv"><small>1</small><h3>Fotos senden</h3><p>Handyfotos von jedem Raum reichen. Je mehr Blickwinkel, desto genauer der Rundgang.</p></li>
-        <li class="rv d1"><small>2</small><h3>Roomtour entsteht</h3><p>Wir erstellen einen ruhigen, realistischen Rundgang, nah an Ihren echten Räumen.</p></li>
-        <li class="rv d2"><small>3</small><h3>Mehr Buchungen</h3><p>Fertig für Ihr Inserat, Ihre Website und Social Media.</p></li>
+      <div class="detail__text">
+        <span class="eyebrow rv"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="m16 10 6-3v10l-6-3"/></svg> KI-Roomtours</span>
+        <h2 class="display">Aus Ihren Fotos <em>wird ein Rundgang.</em></h2>
+        <p class="rv d1">Gäste und Käufer wollen sehen, wie es sich dort lebt. Wir machen aus Ihren Fotos einen realistischen Video-Rundgang durch Ihre echten Räume.</p>
+        <ul class="mini-steps rv d1"><li><b>1</b><div><strong>Fotos senden</strong><span>Handyfotos von jedem Raum reichen</span></div></li><li><b>2</b><div><strong>Roomtour entsteht</strong><span>realistisch, Raum für Raum, zur Freigabe</span></div></li><li><b>3</b><div><strong>Mehr Buchungen</strong><span>für Inserat, Website und Social Media</span></div></li></ul>
+        <div class="rv d2"><div class="order"><p class="price"><small>ab</small>300 €</p><div class="order__actions"><button class="btn btn--solid buy__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour">Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button><a class="link buy__link" href="#preise" data-tab="tour">Alle Pakete</a></div></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why us -->
+  <section class="sec sec--dark">
+    <div class="wrap">
+      <div class="head"><span class="eyebrow rv">Warum F&amp;D Solutions</span><h2 class="display">Seriös, schnell <em>und persönlich.</em></h2></div>
+      <div class="why">
+        <div class="rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 6.5A7 7 0 1 0 17 17.5M4 10h9M4 14h9"/></svg><h3>Faire Festpreise</h3><p>Sie bekommen vorher ein klares Angebot. Keine versteckten Kosten, kein Abo.</p></div>
+        <div class="rv d1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg><h3>Schnelle Umsetzung</h3><p>Antwort in 24 Stunden und ein fester Zeitplan, den wir mit Ihnen abstimmen.</p></div>
+        <div class="rv d2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><h3>Persönliche Betreuung</h3><p>Zwei Gründer aus München statt Callcenter. Sie sprechen immer mit uns direkt.</p></div>
+        <div class="rv d3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1 6.2L12 17.3 6.5 20.2l1-6.2L3 9.6l6.2-.9z"/></svg><h3>Alles aus einer Hand</h3><p>Bewertungen, Website und Roomtour passen zusammen und werden von uns abgestimmt.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="sec" id="ablauf">
+    <div class="wrap">
+      <div class="head head--center"><span class="eyebrow rv">Ablauf</span><h2 class="display">In vier Schritten <em>zum Ergebnis.</em></h2></div>
+      <ol class="flowline rv">
+        <li><b>1</b><h3>Anfrage</h3><p>Formular ausfüllen oder anrufen. Unverbindlich und in zwei Minuten erledigt.</p></li>
+        <li><b>2</b><h3>Kostenloses Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden und klären Ihre Wünsche.</p></li>
+        <li><b>3</b><h3>Festpreis-Angebot</h3><p>Sie bekommen ein klares Angebot und entscheiden in Ruhe.</p></li>
+        <li><b>4</b><h3>Umsetzung &amp; Übergabe</h3><p>Wir setzen um, Sie geben frei. Auch danach sind wir für Sie da.</p></li>
       </ol>
     </div>
   </section>
 
   <!-- Prices -->
-  <section class="prices" id="preise">
+  <section class="sec sec--alt" id="preise">
     <div class="wrap">
-      <div class="price-head">
-        <div><span class="label rv">Preise &amp; Pakete</span><h2 class="display">Faire <em>Festpreise.</em></h2></div>
-        <div class="price-tabs rv d1" role="tablist" aria-label="Leistung wählen">
-          <button type="button" role="tab" aria-selected="true" aria-controls="menu-nfc" id="tab-nfc" data-key="nfc"><b>01</b>NFC-Platten</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="menu-web" id="tab-web" data-key="web" tabindex="-1"><b>02</b>Websites</button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="menu-tour" id="tab-tour" data-key="tour" tabindex="-1"><b>03</b>KI-Roomtours</button>
-        </div>
+      <div class="head head--center"><span class="eyebrow rv">Preise</span><h2 class="display">Transparente <em>Festpreise.</em></h2><p class="rv d1">Wählen Sie eine Leistung. Alle Preise zzgl. MwSt.</p></div>
+      <div class="price-tabs rv d1" role="tablist" aria-label="Leistung wählen">
+        <button type="button" role="tab" aria-selected="true" aria-controls="menu-nfc" id="tab-nfc" data-key="nfc">NFC-Platten</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="menu-web" id="tab-web" data-key="web" tabindex="-1">Websites</button>
+        <button type="button" role="tab" aria-selected="false" aria-controls="menu-tour" id="tab-tour" data-key="tour" tabindex="-1">KI-Roomtours</button>
       </div>
       <div class="menu" id="menu-nfc" role="tabpanel" aria-labelledby="tab-nfc">
         <article class="pack">
@@ -860,39 +751,47 @@ fieldset { border: 0; min-width: 0; }
           <button class="btn pack__btn" type="button" data-add="KI Roomtour" data-detail="Roomtour · Premium">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
         </article>
       </div>
-      <p class="menu-note">Alle Preise zzgl. MwSt. Einmalige Festpreise, kein Abo. Nach Ihrer Anfrage melden wir uns innerhalb von 24 Stunden.</p>
+      <p class="menu-note">Einmalige Festpreise, kein Abo. Nach Ihrer Anfrage melden wir uns innerhalb von 24 Stunden.</p>
     </div>
   </section>
 
-  <!-- Founders -->
-  <section class="team dark">
+  <!-- About -->
+  <section class="sec" id="ueber-uns">
     <div class="wrap team__grid">
-      <div>
-        <span class="label rv">Über uns</span>
-        <h2 class="display">Zwei Gründer. <em>Kein Callcenter.</em></h2>
-        <p class="lead rv d1">Bei uns sprechen Sie direkt mit den Menschen, die Ihr Projekt umsetzen. Aus München, persönlich erreichbar.</p>
-      </div>
+      <div class="head"><span class="eyebrow rv">Über uns</span><h2 class="display">Zwei Gründer. <em>Kein Callcenter.</em></h2><p class="rv d1">F&amp;D Solutions sind Florian Dressler und Davy Stubenrauch aus München. Wir setzen jedes Projekt selbst um und sind für Sie direkt erreichbar, vom ersten Gespräch bis lange nach der Übergabe.</p></div>
       <div class="founders rv d1">
-        <div class="founder"><span class="founder__init">FD</span><div><h3>Florian Dressler</h3><p>Co-Founder</p></div><a href="tel:+4915566456417">+49 155 66456417</a></div>
-        <div class="founder"><span class="founder__init">DS</span><div><h3>Davy Stubenrauch</h3><p>Co-Founder</p></div><a href="tel:+4917656612709">+49 176 56612709</a></div>
+        <div class="founder"><span class="founder__init">FD</span><div><h3>Florian Dressler</h3><p>Co-Founder · München</p></div><a href="tel:+4915566456417">+49 155 66456417</a></div>
+        <div class="founder"><span class="founder__init">DS</span><div><h3>Davy Stubenrauch</h3><p>Co-Founder · München</p></div><a href="tel:+4917656612709">+49 176 56612709</a></div>
       </div>
     </div>
   </section>
 
-  <!-- Inquiry -->
-  <section class="ask" id="anfrage">
+  <!-- FAQ -->
+  <section class="sec sec--alt faq" id="faq">
+    <div class="wrap">
+      <div class="head head--center"><span class="eyebrow rv">FAQ</span><h2 class="display">Häufige <em>Fragen.</em></h2></div>
+      <div class="faq__list rv d1">
+        <details><summary>Wie funktioniert die NFC-Platte?<i></i></summary><p>Im Acryl steckt ein NFC-Chip mit dem Link zu Ihrer Google-Bewertungsseite. Ihre Kunden halten ihr Handy an die Platte, und die Seite öffnet sich sofort. Das klappt mit iPhone und Android, ohne App und ohne Akku.</p></details>
+        <details><summary>Was kostet eine Website?<i></i></summary><p>Die Basis-Website (One-Pager) kostet 300 €. Größere Seiten richten sich nach dem Umfang. Nach einem kurzen Gespräch bekommen Sie einen Festpreis, bevor wir anfangen.</p></details>
+        <details><summary>Wie entsteht eine KI-Roomtour?<i></i></summary><p>Sie schicken uns Fotos jedes Raumes, am besten aus mehreren Blickwinkeln. Daraus erstellen wir einen Video-Rundgang, der Ihre echten Räume zeigt. Sie bekommen das Video zur Freigabe, bevor es online geht.</p></details>
+        <details><summary>Gibt es laufende Kosten oder ein Abo?<i></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
+        <details><summary>Wie schnell geht es los?<i></i></summary><p>Wir melden uns innerhalb von 24 Stunden. Den genauen Zeitplan besprechen wir im ersten Gespräch.</p></details>
+        <details><summary>Arbeiten Sie nur in München?<i></i></summary><p>Wir sitzen in München und betreuen Kunden in der Region gerne persönlich. Websites und KI-Roomtours setzen wir auch deutschlandweit um.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="sec" id="anfrage">
     <div class="wrap ask__grid">
       <div>
-        <span class="label rv">Anfrage</span>
-        <h2 class="display">Lassen Sie uns <em>starten.</em></h2>
-        <p class="lead rv d1">Vier kurze Schritte, unverbindlich. Wir melden uns innerhalb von 24 Stunden persönlich.</p>
+        <div class="head"><span class="eyebrow rv">Kontakt</span><h2 class="display">Kostenlos <em>anfragen.</em></h2><p class="rv d1">Vier kurze Schritte, unverbindlich. Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p></div>
         <div class="ask__direct rv d2">
-          <a href="tel:+4915566456417">Florian <span>+49 155 66456417</span></a>
-          <a href="tel:+4917656612709">Davy <span>+49 176 56612709</span></a>
-          <a href="mailto:fd.solutions@web.de">E-Mail <span>fd.solutions@web.de</span></a>
+          <a href="tel:+4915566456417"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div>Florian Dressler<span>+49 155 66456417</span></div></a>
+          <a href="tel:+4917656612709"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><div>Davy Stubenrauch<span>+49 176 56612709</span></div></a>
+          <a href="mailto:fd.solutions@web.de"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><div>E-Mail<span>fd.solutions@web.de</span></div></a>
         </div>
       </div>
-
       <div class="form-card rv d1">
         <form id="wizard" novalidate>
           <div class="bar" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></div>
@@ -987,18 +886,15 @@ fieldset { border: 0; min-width: 0; }
   </section>
 </main>
 
-<footer class="foot dark">
+<footer class="foot">
   <div class="wrap">
-    <div class="foot__top">
-      <div class="foot__cta"><h2 class="display">Bereit für mehr <em>Kunden?</em></h2><a class="btn btn--solid" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
-      <div class="foot__cols">
-        <div><b>Leistungen</b><a href="#nfc">NFC-Platten</a><a href="#web">Websites</a><a href="#roomtour">KI-Roomtours</a></div>
-        <div><b>Kontakt</b><a href="tel:+4915566456417">+49 155 66456417</a><a href="tel:+4917656612709">+49 176 56612709</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></div>
-        <div><b>Rechtliches</b><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
-      </div>
+    <div class="foot__grid">
+      <div class="foot__brand"><a class="logo" href="#top"><span class="logo__mark">F&amp;D</span><span class="logo__word">Solutions</span></a><p>NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours aus München. Festpreise, persönliche Betreuung.</p></div>
+      <div><b>Leistungen</b><a href="#nfc">NFC-Platten</a><a href="#web">Websites</a><a href="#roomtour">KI-Roomtours</a><a href="#preise">Preise</a></div>
+      <div><b>Kontakt</b><a href="tel:+4915566456417">+49 155 66456417</a><a href="tel:+4917656612709">+49 176 56612709</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></div>
+      <div><b>Rechtliches</b><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
     </div>
-    <div class="wordmark" aria-hidden="true">F&amp;D Solutions<span>.</span></div>
-    <div class="foot__base"><span>© <span id="year"></span> F&amp;D Solutions · München</span><span>NFC-Platten · Websites · KI-Roomtours</span></div>
+    <div class="foot__base"><span>© <span id="year"></span> F&amp;D Solutions · München</span><span>Alle Preise zzgl. MwSt.</span></div>
   </div>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
@@ -1036,33 +932,10 @@ fieldset { border: 0; min-width: 0; }
   }, { rootMargin: "0px 0px -8% 0px" });
   $$(".rv").forEach(function (el) { rvIO.observe(el); });
 
-  /* ---------------- Navigation turns solid after the intro ---------------- */
+  /* ---------------- Header gets a line once you scroll ---------------- */
   var navEl = $("#nav");
-  function navState() { navEl.classList.toggle("scrolled", window.scrollY > 40); }
+  function navState() { navEl.classList.toggle("scrolled", window.scrollY > 10); }
   window.addEventListener("scroll", navState, { passive: true }); navState();
-
-  /* ---------------- Statement fills in word by word while scrolling ---------------- */
-  var fill = $(".fill");
-  if (fill) {
-    var parts = [];
-    Array.prototype.slice.call(fill.childNodes).forEach(function (node) {
-      if (node.nodeType === 3) node.textContent.split(/(\s+)/).forEach(function (t) {
-        if (!t) return;
-        if (/^\s+$/.test(t)) { parts.push(document.createTextNode(t)); return; }
-        var sp = document.createElement("span"); sp.textContent = t; parts.push(sp);
-      });
-      else { var wrapEl = document.createElement("span"); wrapEl.appendChild(node.cloneNode(true)); parts.push(wrapEl); }
-    });
-    fill.textContent = ""; parts.forEach(function (p) { fill.appendChild(p); });
-    var words = $$("span", fill).filter(function (x) { return x.parentNode === fill; });
-    var fillUpdate = function () {
-      var r = fill.getBoundingClientRect();
-      var p = reduce ? 1 : clamp((innerHeight * .85 - r.top) / (r.height + innerHeight * .35), 0, 1);
-      var n = Math.round(p * words.length);
-      words.forEach(function (w, i) { w.classList.toggle("lit", i < n); });
-    };
-    window.addEventListener("scroll", fillUpdate, { passive: true }); fillUpdate();
-  }
 
   /* ---------------- Headlines rise in word by word ---------------- */
   var wordIO = new IntersectionObserver(function (es) {
@@ -1219,7 +1092,7 @@ fieldset { border: 0; min-width: 0; }
   villaUI();
 
   /* ---------------- Phone call bar: hidden on the hero and next to the form ---------------- */
-  var callbar = $("#callbar"), heroSec = $(".trio"), askSec = $("#anfrage"), seen = { hero: true, ask: false };
+  var callbar = $("#callbar"), heroSec = $(".hero"), askSec = $("#anfrage"), seen = { hero: true, ask: false };
   var callIO = new IntersectionObserver(function (es) {
     es.forEach(function (e) { seen[e.target === heroSec ? "hero" : "ask"] = e.isIntersecting; });
     callbar.classList.toggle("off", seen.hero || seen.ask);
@@ -1468,7 +1341,7 @@ fieldset { border: 0; min-width: 0; }
   function paintBack(ctx, s) {
     ctx.fillStyle = "#ececea"; ctx.fillRect(0, 0, s, s);
     ctx.fillStyle = "#111110"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.font = s * .2 + "px Manrope, Inter, sans-serif"; ctx.fillText("F&D", s / 2, s * .48);
+    ctx.font = s * .2 + "px 'Plus Jakarta Sans', Inter, sans-serif"; ctx.fillText("F&D", s / 2, s * .48);
     ctx.font = "700 " + s * .04 + "px Inter, sans-serif"; ctx.fillText("S O L U T I O N S", s / 2, s * .63);
   }
   function paintInlay(ctx, s) {
@@ -1593,8 +1466,8 @@ fieldset { border: 0; min-width: 0; }
       lastCap = text; capNo.textContent = steps[i][0]; cap.textContent = text;
     }
     var s = stage(host, { fov: 30, resize: function (st) {
-      var half = tap ? (st.w < 500 ? 2.3 : 3.3) : (st.w < 600 ? 2.7 : 3.9);
-      var z = Math.max(tap ? (st.w < 500 ? 6 : 8.5) : 9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
+      var half = tap ? 2.7 : (st.w < 600 ? 2.7 : 3.9);
+      var z = Math.max(tap ? 8.5 : 9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
       st.camera.position.set(0, z * .42, z);
       st.camera.lookAt(0, tap ? .55 : .35, 0);
     }, update: function (t, dt, st) {
@@ -1678,7 +1551,7 @@ fieldset { border: 0; min-width: 0; }
   if (THREE) {
     try {
       var go = function () { initNfc($("#heroStage"), "tap"); initNfc($("#nfcStage"), "layers"); loop(); };
-      // Draw the canvas artwork once the web fonts are ready (Manrope on the disc back).
+      // Draw the canvas artwork once the web fonts are ready (Plus Jakarta Sans on the disc back).
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
     } catch (err) { /* page stays fully usable without 3D */ }
   }

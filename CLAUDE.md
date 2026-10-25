@@ -10,11 +10,12 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
 - **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
-## Design-Regeln (Version 5)
-- Konzept: Man kommt auf die Seite und sieht **sofort die drei Angebote als große, lebendige Bühnen nebeneinander** (01 NFC schwarz mit 3D-iPhone, das auf die Platte tippt; 02 Websites sandfarben mit Laptop in Perspektive; 03 KI-Roomtours mit laufendem Video). Jede Bühne: Name, ein Satz, Preis, „Ansehen“ + „Anfragen“. Hover vergrößert die Bühne.
-- Danach je Leistung ein Detailbereich in derselben Farbwelt (NFC schwarz, Websites sand, Roomtours weiß): Modell + kurze Details + Preis + Button. Dann Preise (Reiter), Gründer, Anfrage, Footer. Kein Schnickschnack drumherum (kein Statement-Text, kein Ablauf, keine FAQ, keine Karten mit Rand).
-- Schrift: nur **Manrope** (800 für Überschriften, enge Laufweite; Akzent = zweiter Teil der Überschrift in Grau). Bricolage/Instrument Serif und Anton wurden abgelehnt.
-- Farben: Weiß, Schwarz `#0d0d0d`, Sand `#e9e1d2`; Google-Farben nur am NFC-Produkt. Abgelehnt: Limette, Orange, Himmelblau, Nachtblau/Elfenbein-Look, Scroll-Farbwechsel.
+## Design-Regeln (Version 6, klassische vollständige Dienstleistungsseite)
+- Kunde will: übersichtlich, seriös, alles drin, was eine Dienstleistungsseite braucht; 3D/Vorschauen nur **klein**.
+- Aufbau: Header (Leistungen, Ablauf, Preise, Über uns, FAQ, Telefon, Button) → Hero (links Versprechen + 2 Buttons + 3 Häkchen, rechts drei kleine Vorschau-Kacheln: NFC-3D, Mini-Laptop, Roomtour-Video) → Vertrauensleiste (4 Punkte) → Leistungsübersicht (3 Karten) → Detail NFC / Websites / KI-Roomtours (abwechselnd links/rechts, Häkchen, Preis, Button) → Warum wir (dunkel, 4 Punkte) → Ablauf (4 Schritte) → Preise (Reiter) → Über uns → FAQ → Kontakt mit Formular → Footer.
+- Farben: Weiß, Hellgrau `#f5f6f8`, Dunkel `#10131a`, ein Markenblau `#2341d6` für Buttons und Akzentwörter. Google-Farben nur am NFC-Produkt.
+- Schrift: **Plus Jakarta Sans** durchgehend (800 für Überschriften).
+- Abgelehnt: große Vollbild-Bühnen, Kästen mit Rand um alles im „KI-Look“, Scroll-Farbwechsel, Limette/Orange/Himmelblau, Nachtblau-Elfenbein, Anton/Bricolage/Manrope-Varianten.
 
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
 - Gold oder dunkles Navy-Gold-Schema
