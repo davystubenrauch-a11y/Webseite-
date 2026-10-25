@@ -8,12 +8,12 @@ import { useEffect, useRef } from "react";
  * front: drawn above the can; the rest sit behind the headline, softly blurred.
  */
 const items = [
-  { src: "/float/zitrone.webp", x: 14, y: 22, w: 13, depth: 1, rot: -18, front: true },
-  { src: "/float/orange.webp", x: 79, y: 58, w: 11, depth: 0.9, rot: 14, front: true },
-  { src: "/float/minze.webp", x: 70, y: 16, w: 9, depth: 0.45, rot: 20, front: false },
-  { src: "/float/blatt.webp", x: 22, y: 66, w: 8, depth: 0.35, rot: -30, front: false },
-  { src: "/float/zitrone.webp", x: 88, y: 30, w: 6, depth: 0.25, rot: 120, front: false },
-  { src: "/float/orange.webp", x: 6, y: 50, w: 5.5, depth: 0.2, rot: -60, front: false },
+  { src: "/float/zitrone.webp", x: 15, y: 18, w: 7, depth: 1, rot: -24, front: true },
+  { src: "/float/orange.webp", x: 78, y: 50, w: 7.5, depth: 0.9, rot: 28, front: true },
+  { src: "/float/tabletten.webp", x: 28, y: 62, w: 5, depth: 0.8, rot: -12, front: true },
+  { src: "/float/blatt.webp", x: 66, y: 12, w: 12, depth: 0.45, rot: -28, front: false },
+  { src: "/float/algenbund.webp", x: 4, y: 44, w: 12, depth: 0.3, rot: 35, front: false },
+  { src: "/float/presslinge.webp", x: 88, y: 18, w: 5, depth: 0.25, rot: 10, front: false },
 ];
 
 export default function HeroFloaters() {

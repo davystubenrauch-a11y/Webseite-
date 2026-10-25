@@ -4,8 +4,9 @@ Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
 ## Aufbau
 Hero („Grüne Balance“, Dose steigt ein, freigestellte Zutaten schweben mit Maus-/Scroll-Parallaxe) → Getränk (Dose landet im Rahmen)
-→ Manifest (Text füllt sich Wort für Wort, angepinnt) → Laufband → Zutaten (übereinander gleitende Fotokarten)
-→ Vier Gründe (angepinnt, läuft seitwärts) → Der Balancer → Nährwerte (Kacheln) → Fragen → Apotheke/PZN → Footer.
+→ Manifest (Text füllt sich Wort für Wort) → „Alles drin.“ (angepinnt: die Dose zerfällt beim Scrollen in ihre Zutaten, mit Beschriftungen)
+→ Laufband → Zutaten (übereinander gleitende Fotokarten) → Vier Gründe (läuft seitwärts) → „Der Balancer“ (Zoom durch den Schriftzug ins Foto)
+→ Nährwerte (dunkle Kacheln) → Fragen → Finale (Zutaten kreisen um die Dose, PZN) → Footer.
 Weiches Scrollen mit Lenis. Freigestellte Zutaten liegen in `public/float/`, Fotos in `public/photos/`.
 
 ## Die Dose

@@ -1,6 +1,8 @@
 "use client";
 
 import { useState } from "react";
+import CountUp from "@/components/ui/CountUp";
+import Drift from "@/components/ui/Drift";
 import Split from "@/components/ui/Split";
 import { ingredients, nutrition } from "@/lib/site";
 import { nutrients } from "@/lib/nutrients";
@@ -14,22 +16,24 @@ export default function Naehrwerte() {
   const current = vitamins.find((v) => v.symbol === open) ?? vitamins[0];
 
   return (
-    <section id="naehrwerte" className="relative z-10 bg-paper py-24 sm:py-32">
-      <div className="wrap">
+    <section id="naehrwerte" className="relative z-10 overflow-hidden bg-ink py-24 text-mist sm:py-32">
+      <Drift src="/float/tabletten.webp" className="-right-6 top-24 w-40 rotate-12 sm:w-56" speed={0.15} />
+      <Drift src="/float/presslinge.webp" className="-left-10 top-[45%] w-32 -rotate-12 opacity-80 sm:w-44" speed={-0.1} />
+      <div className="wrap relative">
         <div className="grid items-end gap-8 lg:grid-cols-2">
           <div>
-            <p data-reveal className="label text-teal">
+            <p data-reveal className="label text-fresh">
               Nährwerte
             </p>
-            <Split className="headline mt-6 text-6xl sm:text-8xl" lines={["Leicht,", <span key="b" className="text-teal">nicht leer.</span>]} />
+            <Split className="headline mt-6 text-6xl sm:text-8xl" lines={["Leicht,", <span key="b" className="text-fresh">nicht leer.</span>]} />
           </div>
-          <p data-reveal className="max-w-md text-lg leading-relaxed text-ink/70 lg:justify-self-end">
+          <p data-reveal className="max-w-md text-lg leading-relaxed text-mist/70 lg:justify-self-end">
             Natürliche B-Vitamine aus der Alge, Vitamin C aus der Zitrone und Aminosäuren – unter anderem Tryptophan, Asparaginsäure und Threonin.
           </p>
         </div>
 
         <div className="mt-14 grid gap-4 lg:grid-cols-12 [&>*]:min-w-0">
-          <div data-reveal className={`${card} border border-line bg-mist lg:col-span-5 lg:row-span-2`}>
+          <div data-reveal className={`${card} bg-paper text-ink lg:col-span-5 lg:row-span-2`}>
             <div className="flex items-end justify-between border-b border-ink/30 pb-3">
               <p className="font-display text-2xl font-extrabold">Nährwerte</p>
               <p className="text-xs text-ink/55">je 100 ml · je Dose</p>
@@ -66,14 +70,16 @@ export default function Naehrwerte() {
             </div>
           </div>
 
-          <div data-reveal className={`${card} flex flex-col justify-between bg-algae text-mist lg:col-span-3`} style={{ ["--d" as string]: "0.16s" }}>
-            <p className="label text-fresh">Pro Dose</p>
-            <p className="mt-10 font-display text-7xl font-extrabold leading-none">43</p>
-            <p className="mt-2 text-mist/70">kcal bei 200 ml</p>
+          <div data-reveal className={`${card} flex flex-col justify-between bg-fresh text-ink lg:col-span-3`} style={{ ["--d" as string]: "0.16s" }}>
+            <p className="label text-ink/60">Pro Dose</p>
+            <p className="mt-10 font-display text-8xl font-extrabold leading-none">
+              <CountUp to={43} />
+            </p>
+            <p className="mt-2 text-ink/70">kcal bei 200 ml</p>
           </div>
 
-          <div data-reveal className={`${card} border border-line bg-mist lg:col-span-7`}>
-            <p className="label text-ink/55">Vitamine aus Alge und Frucht</p>
+          <div data-reveal className={`${card} bg-algae text-mist lg:col-span-7`}>
+            <p className="label text-fresh">Vitamine aus Alge und Frucht</p>
             <div className="mt-5 flex flex-wrap gap-2">
               {vitamins.map((v) => (
                 <button
@@ -82,7 +88,7 @@ export default function Naehrwerte() {
                   onClick={() => setOpen(v.symbol)}
                   aria-pressed={open === v.symbol}
                   className={`rounded-full px-4 py-2 font-display text-lg font-extrabold transition-colors ${
-                    open === v.symbol ? "bg-ink text-mist" : "bg-paper text-ink hover:bg-line"
+                    open === v.symbol ? "bg-fresh text-ink" : "bg-mist/10 text-mist hover:bg-mist/20"
                   }`}
                 >
                   {v.symbol}
@@ -91,12 +97,12 @@ export default function Naehrwerte() {
             </div>
             <div className="mt-6 min-h-[7rem]">
               <p className="font-medium">{current.name}</p>
-              <p className="mt-2 text-ink/70">{current.text}</p>
-              {current.claims && <p className="mt-2 text-sm text-algae">Trägt bei zu: {current.claims.join(" · ")}.</p>}
+              <p className="mt-2 text-mist/75">{current.text}</p>
+              {current.claims && <p className="mt-2 text-sm text-fresh">Trägt bei zu: {current.claims.join(" · ")}.</p>}
             </div>
           </div>
 
-          <div data-reveal className={`${card} border border-line bg-mist lg:col-span-12`}>
+          <div data-reveal className={`${card} bg-paper text-ink lg:col-span-12`}>
             <div className="flex flex-wrap items-baseline justify-between gap-4">
               <p className="font-display text-2xl font-extrabold">
                 Alle <span className="text-teal">9 Zutaten</span>
