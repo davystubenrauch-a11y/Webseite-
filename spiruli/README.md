@@ -4,7 +4,7 @@ Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
 ## Aufbau
 Hero → Getränk (Dose landet im Rahmen) → „Alles drin.“ (Dose zerfällt in ihre Zutaten) → Zutaten (Fotokarten) → Shop
-→ So entsteht SPIRULI → Analytisch nachgewiesen → Vier Gründe → Nährwerte → Fragen → Apotheke/PZN → Footer.
+→ So entsteht SPIRULI → Analytisch nachgewiesen → Vier Gründe → Nährwerte & Zutaten → Fragen + Wo kaufen (Shop, Apotheke/PZN) → Footer.
 Weiches Scrollen mit Lenis; Scroll-Animationen laufen über eine gemeinsame Schleife (`lib/ticker.ts`), nur solange ihr Abschnitt sichtbar ist.
 Lade-Intro (`Preloader.tsx`). Shop mit 12er/24er-Tray (2,95 € je Dose) und Warenkorb (`lib/cart.tsx`, `components/shop/`); Bestellungen gehen bis zur Anbindung eines Zahlungsanbieters per E-Mail raus.
 

@@ -14,7 +14,6 @@ import Analytik from "@/components/sections/Analytik";
 import Gruende from "@/components/sections/Gruende";
 import Naehrwerte from "@/components/sections/Naehrwerte";
 import Faq from "@/components/sections/Faq";
-import Kaufen from "@/components/sections/Kaufen";
 import Footer from "@/components/sections/Footer";
 import { CartProvider } from "@/lib/cart";
 
@@ -38,7 +37,6 @@ export default function Home() {
         <Gruende />
         <Naehrwerte />
         <Faq />
-        <Kaufen />
       </main>
       <Footer />
     </CartProvider>
