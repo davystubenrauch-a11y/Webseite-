@@ -10,12 +10,11 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
 - **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
-## Design-Regeln (Version 6, klassische vollständige Dienstleistungsseite)
-- Kunde will: übersichtlich, seriös, alles drin, was eine Dienstleistungsseite braucht; 3D/Vorschauen nur **klein**.
-- Aufbau: Header (Leistungen, Ablauf, Preise, Über uns, FAQ, Telefon, Button) → Hero (links Versprechen + 2 Buttons + 3 Häkchen, rechts drei kleine Vorschau-Kacheln: NFC-3D, Mini-Laptop, Roomtour-Video) → Vertrauensleiste (4 Punkte) → Leistungsübersicht (3 Karten) → Detail NFC / Websites / KI-Roomtours (abwechselnd links/rechts, Häkchen, Preis, Button) → Warum wir (dunkel, 4 Punkte) → Ablauf (4 Schritte) → Preise (Reiter) → Über uns → FAQ → Kontakt mit Formular → Footer.
-- Farben: Weiß, Hellgrau `#f5f6f8`, Dunkel `#10131a`, ein Markenblau `#2341d6` für Buttons und Akzentwörter. Google-Farben nur am NFC-Produkt.
-- Schrift: **Plus Jakarta Sans** durchgehend (800 für Überschriften).
-- Abgelehnt: große Vollbild-Bühnen, Kästen mit Rand um alles im „KI-Look“, Scroll-Farbwechsel, Limette/Orange/Himmelblau, Nachtblau-Elfenbein, Anton/Bricolage/Manrope-Varianten.
+## Design-Regeln (Version 7)
+- Farben: Waldgrün `#133024`, Creme `#f3eee4`, Papier `#faf7f1`, Sand `#e4d5b7`, Salbei `#b8c9b1`. Google-Farben nur am NFC-Produkt/Demo.
+- Schrift: **Fraunces** (Serif, kursive Akzentwörter) für Überschriften + **DM Sans** für Text.
+- Aufbau: Hero (links Versprechen + Buttons + Liste 01–03 mit Preis; rechts Live-Demo: Handy mit Google-Eintrag „Trattoria am Isartor“, NFC-Platte, Gast tippt, Bewertung zählt 4,1 → 4,7, neue Rezensionen erscheinen; „Beispielhafte Darstellung“) → Laufband Branchen → „Drei Leistungen. Klar erklärt.“ → drei Kapitel, die sich beim Scrollen übereinanderschieben (01 NFC Papier mit 3D-Schichten, 02 Websites grün mit Laptop/Handy, 03 Roomtours Sand mit „Ihre Fotos“ → Video) → Ablauf (grün) → Preise (Reiter) → Über uns (grün) → FAQ → Kontakt → Footer (grün).
+- Abgelehnt: alle früheren Varianten (Anton, Bricolage, Manrope, Plus Jakarta/Blau, Nachtblau/Elfenbein, Karten mit Rand, Vollbild-Bühnen, Scroll-Farbwechsel).
 
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
 - Gold oder dunkles Navy-Gold-Schema
@@ -25,7 +24,8 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - Mehrere Komplett-Neugestaltungen hintereinander: lieber gezielt an der bestehenden Version weiterarbeiten
 
 ## Fakten zum Angebot
-- NFC: nur **runde** Acryl-Platten (Ø 10 cm), nur **Weiß und Schwarz**, Chip NTAG 215. Preis: auf Anfrage.
+- NFC: nur **runde** Acryl-Platten (Ø 10 cm), nur **Weiß und Schwarz**, Chip NTAG 215. **Nicht personalisiert** (kein Logo/Name), nur der Chip wird mit dem Google-Profil des Kunden verknüpft. Typisch: Sets mit 5 oder 6 Platten für Restaurants. Preis: auf Anfrage.
+- Roomtours: Kunde schickt nur Fotos (Airbnb, Wohnung), wir erstellen daraus die komplette Video-Roomtour.
 - Websites ab 300 € (Basis), Roomtours ab 300 € (Basis). Höhere Pakete (690/1.290 €, 490/790 €) sind Platzhalter.
 - Kundenstimmen sind noch Platzhalter und müssen durch echte ersetzt werden.
 
