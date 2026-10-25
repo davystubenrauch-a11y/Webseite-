@@ -15,7 +15,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **Keine Kästen, keine abgerundeten Module, keine Ränder um Bereiche** („sieht nach KI aus“). Randlose Flächen, Haarlinien, eckige Buttons.
 - Schrift: **Space Grotesk** (Überschriften) + Inter (Text).
 - Aufbau: Hero (schwarz, riesige Typo „Bewertungen. Websites. Roomtours.“, Text, Buttons, Leiste 01–03) → **Scroll-Story im Vollbild** (links Text der Leistung, rechts blaue Bühne: 01 iPhone tippt auf NFC-Platte (3D), 02 Laptop/Handy, 03 „Ihre Fotos →“ + Roomtour-Video; Wechsel beim Scrollen, Reiter 01/02/03) → Ablauf → Preise (Spalten, Empfehlung blau) → Über uns (blau) → FAQ → Kontakt (schwarz) → Footer (blau).
-- Kunde schickt noch eigene Fotos (Platten, Restaurant, Gründer, Logo) – einbauen, sobald da.
+- Produktfoto der weißen Platte vom Kunden: `public/media/nfc-front.jpg` (Textur der 3D-Platte), `nfc-front-black.jpg` (daraus abgeleitete schwarze Variante), `nfc-platte.png` (freigestellt, schwebt im Hero). Weitere Fotos (Restaurant, Gründer, Logo) folgen.
 - Abgelehnt: Grün/Creme, Fraunces, Plus Jakarta/Königsblau, Manrope, Bricolage, Anton, Nachtblau/Elfenbein, Limette, Orange, Himmelblau, Karten mit Rand, Vollbild-Bühnen nebeneinander, Scroll-Farbwechsel.
 
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
