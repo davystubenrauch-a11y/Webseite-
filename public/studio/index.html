@@ -32,7 +32,7 @@
   --max: 1320px;
 
   /* set by JS from the section in view */
-  --page-bg: var(--cream);
+  --page-bg: #e8e5de;
   --page-ink: var(--ink);
 }
 
@@ -446,7 +446,7 @@ img, svg, canvas { display: block; max-width: 100%; }
 .display { line-height: .98; font-variation-settings: "opsz" 96; }
 .display em, .display .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
 .panel__head h2 { font-size: clamp(2.6rem, 4.6vw, 4.4rem); }
-.panel__no { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 34px; opacity: .55; letter-spacing: 0; }
+.panel__no { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 46px; opacity: .55; letter-spacing: 0; }
 .buy__price { font-size: 44px; } .buy__price--text { font-size: 30px; }
 .pack h3 { font-size: 28px; } .pack__price { font-size: 46px; }
 .founder h3, .step h3 { font-size: 30px; } .done h3 { font-size: 38px; }
@@ -520,6 +520,51 @@ img, svg, canvas { display: block; max-width: 100%; }
   *, *::before, *::after { animation: none !important; transition-duration: .001ms !important; }
   .rv { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   Design v3: a calm canvas with distinct section cards (no colour morph)
+   ========================================================================== */
+.hero, .panel, .menu-sec, .team, .ask, .foot { position: relative; margin: 12px; border-radius: 28px; overflow: hidden; isolation: isolate; }
+.panel + .panel { border-top: 0; }
+.grain::after, .hero::after, .on-dark::after, .foot::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); opacity: .09; mix-blend-mode: overlay; }
+/* Floating pill navigation */
+.nav { top: 22px; left: 50%; right: auto; width: min(1220px, calc(100% - 48px)); transform: translateX(-50%); border-radius: 16px; background: rgba(251,250,247,.86); border: 1px solid rgba(17,17,16,.08); box-shadow: 0 14px 40px -24px rgba(17,17,16,.45); color: var(--ink); }
+.nav .wrap { max-width: none; padding: 0 10px 0 20px; }
+.nav__bar { height: 62px; }
+.logo__mark { background: var(--ink); color: var(--paper); }
+.nav__links .btn { background: var(--ink); color: var(--paper); }
+/* Intro card: dark stage with spotlight */
+.hero { background: radial-gradient(ellipse 55% 65% at 76% 48%, #2a2825, transparent 70%), #111110; color: var(--paper); padding-top: 128px; }
+/* 01 NFC: bright product card */
+#nfc { background: radial-gradient(ellipse 60% 70% at 32% 55%, #ffffff, #f4f1ea 75%); color: var(--ink); }
+/* 02 Websites: warm sand card, layout mirrored */
+#web { background: linear-gradient(160deg, #e3dccd, #efe9de 60%, #e6dfd1); color: var(--ink); }
+.panel--flip .panel__grid { grid-template-columns: 340px minmax(0, 1fr); }
+.panel--flip .buy { order: -1; }
+/* 03 Roomtour: cinematic card, blurred film still behind */
+#roomtour { background: #0e0e0d; color: var(--paper); }
+#roomtour::before { content: ""; position: absolute; inset: -40px; z-index: -2; background: linear-gradient(rgba(10,10,9,.78), rgba(10,10,9,.9)), url("/media/roomtour-villa.jpg") center / cover; filter: blur(28px) saturate(.9); }
+/* Prices, team, inquiry, footer */
+.menu-sec { background: #fbfaf7; }
+.team { background: #e3dccd; }
+.ask { background: #fbfaf7; }
+.foot { background: #111110; color: var(--paper); }
+.panel__head { position: relative; }
+.panel__head > * { position: relative; z-index: 1; }
+.panel__head p { position: relative; }
+/* Buy boxes get a soft lift */
+.buy { box-shadow: 0 30px 60px -30px rgba(17,17,16,.45); }
+.panel--flip .buy { background: #111110; }
+@media (max-width: 820px) {
+  .hero, .panel, .menu-sec, .team, .ask, .foot { margin: 8px; border-radius: 20px; }
+  .nav { top: 10px; width: calc(100% - 20px); border-radius: 14px; }
+  .nav .wrap { padding: 0 6px 0 14px; }
+  .nav__bar { height: 56px; }
+  .nav__links { top: 64px; border-radius: 14px; background: #fbfaf7; }
+  .panel--flip .panel__grid { grid-template-columns: 1fr; }
+  .panel--flip .buy { order: 0; }
+  .hero { padding-top: 96px; }
+}
 </style>
 </head>
 <body>
@@ -573,7 +618,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   <!-- 01 NFC -->
   <section class="panel" id="nfc" data-bg="#f3f0e8" data-ink="#111110">
     <div class="wrap">
-      <div class="panel__head rv"><span class="panel__no">01</span><h2 class="display">NFC-Platten</h2><p>Antippen, bewerten, fertig: Ihre Kunden landen mit einem Tipp direkt bei Ihrer Google-Bewertung.</p></div>
+      <div class="panel__head rv" data-no="01"><span class="panel__no">01</span><h2 class="display">NFC-Platten</h2><p>Antippen, bewerten, fertig: Ihre Kunden landen mit einem Tipp direkt bei Ihrer Google-Bewertung.</p></div>
       <div class="panel__grid">
         <div class="panel__visual nfc-stage rv" id="nfcStage">
           <div class="stage-cap" aria-live="polite"><b id="nfcStepNo">1</b><span id="nfcCap">Eine Platte, Ø 10 cm</span></div>
@@ -598,9 +643,9 @@ img, svg, canvas { display: block; max-width: 100%; }
   </section>
 
   <!-- 02 Websites -->
-  <section class="panel" id="web" data-bg="#faf9f5" data-ink="#111110">
+  <section class="panel panel--flip" id="web" data-bg="#faf9f5" data-ink="#111110">
     <div class="wrap">
-      <div class="panel__head rv"><span class="panel__no">02</span><h2 class="display">Websites</h2><p>Individuell gestaltet, schnell und für jedes Handy gemacht. Klicken Sie sich durch die Beispiele.</p></div>
+      <div class="panel__head rv" data-no="02"><span class="panel__no">02</span><h2 class="display">Websites</h2><p>Individuell gestaltet, schnell und für jedes Handy gemacht. Klicken Sie sich durch die Beispiele.</p></div>
       <div class="panel__grid">
         <div class="panel__visual rv">
           <div class="samples" role="tablist" aria-label="Beispiel-Branche">
@@ -637,7 +682,7 @@ img, svg, canvas { display: block; max-width: 100%; }
   <!-- 03 KI-Roomtours -->
   <section class="panel on-dark" id="roomtour" data-bg="#121212" data-ink="#faf9f5">
     <div class="wrap">
-      <div class="panel__head rv"><span class="panel__no">03</span><h2 class="display">KI-Roomtours</h2><p>Aus Ihren Fotos wird ein realistischer Video-Rundgang, damit Gäste vor der Buchung sehen, wie es sich dort lebt.</p></div>
+      <div class="panel__head rv" data-no="03"><span class="panel__no">03</span><h2 class="display">KI-Roomtours</h2><p>Aus Ihren Fotos wird ein realistischer Video-Rundgang, damit Gäste vor der Buchung sehen, wie es sich dort lebt.</p></div>
       <div class="panel__grid">
         <div class="panel__visual rv">
           <div class="tour-stage tour-stage--empty" id="tourStage">
@@ -922,18 +967,6 @@ img, svg, canvas { display: block; max-width: 100%; }
   }
   burger.addEventListener("click", function () { setMenu(!nav.classList.contains("open")); });
   $$("#navLinks a").forEach(function (a) { a.addEventListener("click", function () { setMenu(false); }); });
-
-  /* ---------------- Background colour follows the section in view ---------------- */
-  var themeIO = new IntersectionObserver(function (entries) {
-    entries.forEach(function (e) {
-      if (!e.isIntersecting) return;
-      document.body.style.setProperty("--page-bg", e.target.getAttribute("data-bg"));
-      document.body.style.setProperty("--page-ink", e.target.getAttribute("data-ink"));
-      var meta = $('meta[name="theme-color"]');
-      if (meta) meta.setAttribute("content", e.target.getAttribute("data-bg"));
-    });
-  }, { rootMargin: "-50% 0px -50% 0px" });
-  $$("[data-bg]").forEach(function (sec) { themeIO.observe(sec); });
 
   /* ---------------- Reveal ---------------- */
   var rvIO = new IntersectionObserver(function (entries) {

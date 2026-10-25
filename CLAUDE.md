@@ -8,9 +8,10 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 ## Vorbilder (vom Kunden ausgewählt)
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
-- **QCLAY / CryptoHub:** Hintergrund wechselt beim Scrollen (hier nur Creme ↔ Dunkel). Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
+- **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
 ## Design-Regeln
+- Layout-Stil: ruhige Fläche `#e8e5de`, jede Sektion ist eine eigene abgerundete Karte (Radius 28 px, 12 px Abstand) mit eigener Tönung: Intro dunkel mit Spotlight, 01 NFC hell, 02 Websites Sand (Kaufbox links, gespiegelt), 03 Roomtour dunkel mit unscharfem Video-Standbild, Preise/Anfrage hell, Team Sand, Footer dunkel. Feines Korn auf dunklen Karten. Schwebende Pill-Navigation. **Kein Farbwechsel des Seitenhintergrunds beim Scrollen.**
 - Farben: Creme `#f3f0e8`, Papier `#faf9f5`, Tiefschwarz `#111110`, Dunkel `#121212`, Akzent nur ein ruhiger Sandton `#d6ccb8` (hell: `#ebe5d9`). Bunte Akzente (Limette, Orange, Himmelblau) wurden abgelehnt: zu viele Farben, zu wenig seriös. Betonung über Schwarz/Weiß.. Google-Farben nur auf dem NFC-Produkt.
 - Schrift: **Bricolage Grotesque** 700 für Überschriften (normale Groß-/Kleinschreibung, enge Laufweite -0,035em) + **Instrument Serif kursiv** für einzelne Akzentwörter (z. B. „Mehr *Kunden.*“, „Alle Preise *auf einen Blick.*“) + Inter für Text. Anton wurde vom Kunden als zu basic abgelehnt. Überschriften steigen Wort für Wort ein.
 - Buttons eckig (Radius 6 px), Großbuchstaben, keine Leuchteffekte.
