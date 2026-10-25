@@ -35,7 +35,7 @@ export default function Footer() {
         <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
           <div>
             <p className="font-display text-2xl font-extrabold">Der Balancer.</p>
-            <p className="mt-3 max-w-xs text-mist/60">Spirulina-Erfrischungsgetränk mit Holunder und Zitrone. Vegan, Made in Germany.</p>
+            <p className="mt-3 max-w-xs text-mist/60">Das vegane & natürliche Mehrwertgetränk auf Holunder-Zitrus-Algen-Basis. Made in Germany.</p>
           </div>
           {cols.map((c) => (
             <nav key={c.title} aria-label={c.title}>

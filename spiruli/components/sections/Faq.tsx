@@ -9,7 +9,7 @@ const faqs = [
   { q: "Wie schmeckt SPIRULI?", a: "Fruchtig nach Holunder, frisch durch Zitrone und Orange, leicht spritzig. Die Alge schmeckt man kaum – am besten gut gekühlt." },
   { q: "Ist SPIRULI vegan und glutenfrei?", a: "Ja. Die Milchsäure stammt aus fermentiertem Gerstenmalz und ist vegan; laut Hersteller ist das Getränk trotzdem glutenfrei." },
   { q: "Wie viel Zucker ist drin?", a: "Rund 3,6 g Zucker pro 100 ml aus Agavensirup und Fruchtsaft – etwa 7 g pro Dose." },
-  { q: "Ist das ein Medikament?", a: "Nein. SPIRULI ist ein Erfrischungsgetränk. Die PZN sorgt nur dafür, dass Apotheken es eindeutig bestellen können." },
+  { q: "Ist das ein Medikament?", a: "Nein. SPIRULI ist ein Nahrungsergänzungsmittel in der Dose – ein fermentiertes, verzehrfertiges Getränk. Die PZN sorgt dafür, dass jede Apotheke es eindeutig bestellen kann." },
   { q: "Wo bekomme ich SPIRULI?", a: `In der Apotheke über die PZN ${site.pzn} sowie im Handel. Für Händler und Praxen gibt es eine eigene Anfrage.` },
 ];
 

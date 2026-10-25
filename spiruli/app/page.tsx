@@ -6,6 +6,8 @@ import Hero from "@/components/sections/Hero";
 import Intro from "@/components/sections/Intro";
 import Explosion from "@/components/sections/Explosion";
 import Manifest from "@/components/sections/Manifest";
+import Prozess from "@/components/sections/Prozess";
+import Analytik from "@/components/sections/Analytik";
 import Gruende from "@/components/sections/Gruende";
 import Marquee from "@/components/sections/Marquee";
 import Features from "@/components/sections/Features";
@@ -29,6 +31,8 @@ export default function Home() {
         <Explosion />
         <Marquee />
         <Features />
+        <Prozess />
+        <Analytik />
         <Gruende />
         <Balancer />
         <Naehrwerte />

@@ -3,8 +3,8 @@
 import { useEffect, useRef } from "react";
 
 const text =
-  "SPIRULI ist kein Energy-Drink und kein grüner Smoothie. Es ist eine leichte Erfrischung mit zwei Algen, echter Frucht und natürlichen B-Vitaminen – für Tage, die mehr verlangen als Wasser.";
-const highlight = new Set(["zwei", "Algen,", "echter", "Frucht", "B-Vitaminen"]);
+  "SPIRULI ist kein Energy-Drink und kein grüner Smoothie. Es ist das vegane, natürliche Mehrwertgetränk auf Holunder-Zitrus-Algen-Basis – mit Vitaminen der B-Gruppe und Aminosäuren aus rein pflanzlicher Herkunft.";
+const highlight = new Set(["Mehrwertgetränk", "Holunder-Zitrus-Algen-Basis", "B-Gruppe", "Aminosäuren", "pflanzlicher"]);
 
 /** Pinned statement whose words light up one by one as you scroll through it. */
 export default function Manifest() {

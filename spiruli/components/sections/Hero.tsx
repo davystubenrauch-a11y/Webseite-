@@ -22,12 +22,12 @@ export default function Hero() {
         <p className="label absolute bottom-6 left-12 hidden items-center gap-3 text-ink/50 lg:flex">
           <span className="block h-px w-10 bg-ink/40" /> Scrollen
         </p>
-        <p className="label absolute bottom-6 right-12 hidden text-ink/50 lg:block">Spirulina-Erfrischungsgetränk · 200 ml</p>
+        <p className="label absolute bottom-6 right-12 hidden text-ink/50 lg:block">Holunder · Zitrus · Alge · 200 ml</p>
       </div>
 
       <div className="wrap pb-6">
         <p data-reveal className="mx-auto max-w-md text-center text-ink/70">
-          Spirulina, Holunder und Zitrone – spritzig, vegan und leicht. <span className="text-ink">Der Balancer.</span> Made in Germany.
+          Das vegane & natürliche Mehrwertgetränk auf Holunder-Zitrus-Algen-Basis. <span className="text-ink">Der Balancer.</span> Made in Germany.
         </p>
         <ul className="mt-8 grid grid-cols-2 border-l border-t border-line text-sm sm:grid-cols-5">
           {facts.map((f, i) => (
