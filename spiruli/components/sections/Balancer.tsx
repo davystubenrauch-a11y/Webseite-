@@ -1,10 +1,11 @@
+import CountUp from "@/components/ui/CountUp";
 import Split from "@/components/ui/Split";
 
 const stats = [
-  { n: "22", u: "kcal / 100 ml" },
-  { n: "9", u: "Zutaten" },
-  { n: "2", u: "Algen" },
-  { n: "0", u: "Pulver" },
+  { n: 22, u: "kcal / 100 ml" },
+  { n: 9, u: "Zutaten" },
+  { n: 2, u: "Algen" },
+  { n: 0, u: "Pulver" },
 ];
 
 /** Dark brand moment: the line and numbers next to the full product photo. */
@@ -29,7 +30,9 @@ export default function Balancer() {
           <dl data-reveal className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl bg-mist/15 sm:grid-cols-4">
             {stats.map((s) => (
               <div key={s.u} className="bg-algae-deep p-5">
-                <dt className="font-display text-5xl font-extrabold text-fresh">{s.n}</dt>
+                <dt className="font-display text-5xl font-extrabold text-fresh">
+                  <CountUp to={s.n} />
+                </dt>
                 <dd className="mt-1 text-sm text-mist/70">{s.u}</dd>
               </div>
             ))}

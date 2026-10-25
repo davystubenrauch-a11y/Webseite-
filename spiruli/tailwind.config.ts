@@ -19,9 +19,11 @@ const config: Config = {
       },
       keyframes: {
         marquee: { to: { transform: "translateX(-50%)" } },
+        bob: { "50%": { transform: "translateY(-12px) rotate(3deg)" } },
       },
       animation: {
         marquee: "marquee 38s linear infinite",
+        bob: "bob 6s ease-in-out infinite",
       },
       fontFamily: {
         display: ["var(--font-display)", "system-ui", "sans-serif"],

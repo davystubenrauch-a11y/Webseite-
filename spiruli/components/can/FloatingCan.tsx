@@ -42,14 +42,17 @@ export default function FloatingCan() {
         const h = ra.height + (rb.height - ra.height) * e;
         const s = h / rb.height;
         const t = (now - t0) / 1000;
+        // Entrance: the can rises into place on load.
+        const k = still ? 1 : 1 - Math.pow(1 - Math.min(1, Math.max(0, (t - 0.15) / 1.6)), 4);
         const bob = still ? 0 : Math.sin(t * 1.3) * 7 * (1 - e);
         const tilt = Math.sin(Math.PI * e) * -14 + (still ? 0 : Math.sin(t * 0.9) * 1.2 * (1 - e));
         // Scale and tilt about the centre; shift so the scaled can lands on (x, y).
         const ox = x - (rb.width * (1 - s)) / 2;
-        const oy = y + bob - (rb.height * (1 - s)) / 2;
+        const oy = y + bob + (1 - k) * innerHeight * 0.6 - (rb.height * (1 - s)) / 2;
         el.style.width = `${rb.width}px`;
         el.style.height = `${rb.height}px`;
-        el.style.transform = `translate3d(${ox}px, ${oy}px, 0) scale(${s}) rotate(${tilt}deg)`;
+        el.style.transform = `translate3d(${ox}px, ${oy}px, 0) scale(${s}) rotate(${tilt + (1 - k) * 10}deg)`;
+        el.style.opacity = String(k);
         el.style.visibility = y > innerHeight || y + h < 0 ? "hidden" : "visible";
         // Light band: drifts slowly on its own and follows the scroll.
         const pos = still ? 50 : 50 + Math.sin(t * 0.35 + sm * 0.004) * 60;

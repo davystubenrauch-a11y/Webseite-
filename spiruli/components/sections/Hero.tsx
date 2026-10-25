@@ -1,5 +1,6 @@
 import CanSlot from "@/components/can/CanSlot";
 import Badge from "@/components/ui/Badge";
+import HeroFloaters from "@/components/ui/HeroFloaters";
 import Split from "@/components/ui/Split";
 import { site } from "@/lib/site";
 
@@ -10,6 +11,7 @@ export default function Hero() {
   return (
     <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden pt-16 sm:pt-20">
       <div className="relative flex flex-1 items-center justify-center">
+        <HeroFloaters />
         <Split
           as="h1"
           className="headline pointer-events-none select-none text-center text-[20.5vw] sm:text-[19vw] lg:text-[15.5vw]"

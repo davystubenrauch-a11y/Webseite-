@@ -4,6 +4,8 @@ import SmoothScroll from "@/components/ui/SmoothScroll";
 import FloatingCan from "@/components/can/FloatingCan";
 import Hero from "@/components/sections/Hero";
 import Intro from "@/components/sections/Intro";
+import Manifest from "@/components/sections/Manifest";
+import Gruende from "@/components/sections/Gruende";
 import Marquee from "@/components/sections/Marquee";
 import Features from "@/components/sections/Features";
 import Balancer from "@/components/sections/Balancer";
@@ -22,8 +24,10 @@ export default function Home() {
       <main>
         <Hero />
         <Intro />
+        <Manifest />
         <Marquee />
         <Features />
+        <Gruende />
         <Balancer />
         <Naehrwerte />
         <Faq />

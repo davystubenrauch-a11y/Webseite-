@@ -3,7 +3,10 @@
 Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
 ## Aufbau
-Hero („Grüne Balance“, Dose vor der Überschrift) → Getränk (Dose landet im Rahmen) → Der Balancer (dunkel) → Zutaten (Foto + Karten) → Nährwerte → Fragen → Apotheke/PZN → Footer.
+Hero („Grüne Balance“, Dose steigt ein, freigestellte Zutaten schweben mit Maus-/Scroll-Parallaxe) → Getränk (Dose landet im Rahmen)
+→ Manifest (Text füllt sich Wort für Wort, angepinnt) → Laufband → Zutaten (übereinander gleitende Fotokarten)
+→ Vier Gründe (angepinnt, läuft seitwärts) → Der Balancer → Nährwerte (Kacheln) → Fragen → Apotheke/PZN → Footer.
+Weiches Scrollen mit Lenis. Freigestellte Zutaten liegen in `public/float/`, Fotos in `public/photos/`.
 
 ## Die Dose
 `components/can/FloatingCan.tsx` zeigt eine einzige Dose (`public/can/spiruli.webp`, freigestelltes Produktfoto).
