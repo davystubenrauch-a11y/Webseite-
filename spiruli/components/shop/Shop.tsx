@@ -57,7 +57,7 @@ export default function Shop() {
                   <span className="font-display text-4xl font-extrabold">{euro(trayPrice(p))}</span>
                   {p.discount > 0 && <span className="text-ink/45 line-through">{euro(listPrice(p))}</span>}
                 </span>
-                <span className="mt-1 block text-xs text-ink/50">{euro(Math.round((trayPrice(p) * 100) / (p.cans * 0.2)) / 100)} / l</span>
+                <span className="mt-1 block text-xs text-ink/50">{euro(Math.round(Math.round(trayPrice(p) * 1000) / (p.cans * 2)) / 100)} / l</span>
               </label>
             ))}
           </fieldset>
