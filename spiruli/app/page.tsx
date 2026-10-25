@@ -1,35 +1,44 @@
 import Nav from "@/components/ui/Nav";
-import ScrollStory from "@/components/ui/ScrollStory";
+import Reveal from "@/components/ui/Reveal";
+import SmoothScroll from "@/components/ui/SmoothScroll";
+import Preloader from "@/components/ui/Preloader";
+import FloatingCan from "@/components/can/FloatingCan";
+import CartDrawer from "@/components/shop/CartDrawer";
+import Shop from "@/components/shop/Shop";
 import Hero from "@/components/sections/Hero";
-import Ticker from "@/components/sections/Ticker";
-import Manifest from "@/components/sections/Manifest";
-import Journey from "@/components/sections/Journey";
-import CanDetail from "@/components/sections/CanDetail";
-import Nutrients from "@/components/sections/Nutrients";
-import Makers from "@/components/sections/Makers";
-import Trust from "@/components/sections/Trust";
+import Intro from "@/components/sections/Intro";
+import Explosion from "@/components/sections/Explosion";
+import Features from "@/components/sections/Features";
+import Prozess from "@/components/sections/Prozess";
+import Analytik from "@/components/sections/Analytik";
+import Gruende from "@/components/sections/Gruende";
+import Naehrwerte from "@/components/sections/Naehrwerte";
 import Faq from "@/components/sections/Faq";
-import FinalCta from "@/components/sections/FinalCta";
 import Footer from "@/components/sections/Footer";
+import { CartProvider } from "@/lib/cart";
 
 export default function Home() {
   return (
-    <>
+    <CartProvider>
       <Nav />
-      <ScrollStory />
+      <Reveal />
+      <SmoothScroll />
+      <Preloader />
+      <FloatingCan />
+      <CartDrawer />
       <main>
         <Hero />
-        <Ticker />
-        <Manifest />
-        <Journey />
-        <CanDetail />
-        <Nutrients />
-        <Makers />
-        <Trust />
+        <Intro />
+        <Explosion />
+        <Features />
+        <Shop />
+        <Prozess />
+        <Analytik />
+        <Gruende />
+        <Naehrwerte />
         <Faq />
-        <FinalCta />
       </main>
       <Footer />
-    </>
+    </CartProvider>
   );
 }

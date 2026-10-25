@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head><meta charset="utf-8" /><link rel="stylesheet" href="fonts.css" /></head>
+<body>
+<script type="module">
+// Paints the label with lib/drawLabel.ts (compiled to js/) and hands the PNGs back.
+import { paintLabel, LABEL_W, LABEL_H } from "./js/drawLabel.js";
+const load = (src) => new Promise((res, rej) => { const i = new Image(); i.onload = () => res(i); i.onerror = rej; i.src = src; });
+const scale = Number(new URLSearchParams(location.search).get("scale") || 3);
+await Promise.all(["300 100px 'Josefin Sans'", "600 40px 'Josefin Sans'", "600 40px Archivo", "700 40px Archivo", "800 40px Archivo"].map((f) => document.fonts.load(f)));
+const [color, pbr] = await Promise.all([load("swoosh.webp"), load("swoosh-pbr.webp")]);
+const front = { color, pbr, width: (color.naturalWidth * LABEL_H) / color.naturalHeight };
+const fonts = { display: "'Josefin Sans'", sans: "Archivo" };
+const out = {};
+for (const mode of ["color", "pbr"]) {
+  const c = document.createElement("canvas");
+  c.width = LABEL_W * scale;
+  c.height = LABEL_H * scale;
+  paintLabel(c.getContext("2d"), mode, fonts, front, scale);
+  out[mode] = c.toDataURL("image/png");
+}
+window.result = out;
+</script>
+</body>
+</html>

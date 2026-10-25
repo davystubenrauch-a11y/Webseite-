@@ -1,43 +1,20 @@
-# SPIRULI® — Landing Page
+# SPIRULI® – Landingpage
 
-Landing page for **SPIRULI® Health & Vitality**: a vegan, fermented functional beverage on a Holunder-Zitrus-Algen base.
+Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
-**Stack:** Next.js (App Router) · Tailwind CSS · React Three Fiber + drei · GSAP ScrollTrigger · Framer Motion
+## Aufbau
+Hero → Getränk (Dose landet im Rahmen) → „Alles drin.“ (Dose zerfällt in ihre Zutaten) → Zutaten (Fotokarten) → Shop
+→ So entsteht SPIRULI → Analytisch nachgewiesen → Vier Gründe → Nährwerte & Zutaten → Fragen + Wo kaufen (Shop, Apotheke/PZN) → Footer.
+Weiches Scrollen mit Lenis; Scroll-Animationen laufen über eine gemeinsame Schleife (`lib/ticker.ts`), nur solange ihr Abschnitt sichtbar ist.
+Lade-Intro (`Preloader.tsx`). Shop mit 12er/24er-Tray (2,95 € je Dose) und Warenkorb (`lib/cart.tsx`, `components/shop/`); Bestellungen gehen bis zur Anbindung eines Zahlungsanbieters per E-Mail raus.
 
-```bash
-cd spiruli
-npm install
-npm run dev     # http://localhost:3000
-npm run build && npm start
-```
+## Die Dose
+`components/can/FloatingCan.tsx` zeigt eine einzige Dose (`public/can/spiruli.webp`, freigestelltes Produktfoto).
+Sie richtet sich nach den Platzhaltern `CanSlot name="hero"` und `name="intro"`, gleitet beim Scrollen gedämpft
+von einem zum anderen und bekommt einen wandernden Lichtreflex. Neues Foto: freistellen (z. B. mit `rembg`),
+als WebP mit Transparenz speichern und `--can-aspect` in `app/globals.css` auf Breite / Höhe setzen.
 
-When deploying (e.g. Vercel), set the project root directory to `spiruli/`.
+`scripts/render_*.py` (Blender-Renderings) und `scripts/label-export/` sind ältere Werkzeuge für das 3D-Modell und das Etikett.
 
-## Sections
-
-1. **Hero (lime):** giant "Natürliche Energie." headline with the 3D can floating between the words. Ingredient illustrations drift with the pointer, and a rotating "Dreh mich!" sticker invites visitors to drag the can.
-2. **Ticker:** tilted band with the key facts.
-3. **Manifest:** the product statement in large type; its words ink in as you scroll.
-4. **Zutaten:** horizontal ingredient journey (Holunder, Zitrus, Spirulina, Fermentation). It is pinned and scrolled sideways on desktop and swipeable on mobile.
-5. **Die Dose:** the 3D can with four callouts (vegan, B vitamins, amino acids, PZN), plus spin/back/"Eiskalt" controls.
-6. **Nährstoffe:** vitamin accordion with the EU claims, and an amino-acid chip cloud with filters (Essentiell, BCAA).
-7. **Wer dahinter steckt:** biotechnologists, therapists, master brewers.
-8. **Geprüft & gelistet:** PZN ticket with a scannable barcode and check-digit maths, plus the SGS Fresenius stamp.
-9. **FAQ** and a final **"Frag in deiner Apotheke"** call to action.
-
-The 3D can (`components/three/SpiruliCan.tsx`) uses the real artwork, unwrapped from the product photo by `scripts/bake-label.py` into `public/label/`.
-
-## Design
-
-Colour blocks taken from the ingredients: lime, elderberry, citrus and algae on cream, anchored by the can's petrol (`tailwind.config.ts`). Bricolage Grotesque for text, Caveat for handwritten notes, Josefin Sans for the SPIRULI wordmark. Ink outlines and offset "sticker" shadows give the page a printed, crafted feel.
-
-## Updating the can artwork
-
-Replace `public/spiruli-can.jpg` with a straight-on photo or render of the can. Adjust `CX`, `R`, `TOP` and `BOTTOM` in `scripts/bake-label.py` to the can's position in the image, then run `python3 scripts/bake-label.py` (needs Pillow and NumPy). A high-resolution flat label file from the designer gives the sharpest result.
-
-## Before launch
-
-- `lib/site.ts`: contact email (placeholder `info@spiruli.de`).
-- Footer: link Impressum and Datenschutz.
-- Health claims in `lib/nutrients.ts` follow the EU register (VO (EU) Nr. 432/2012). They may only be used if a can supplies a significant amount of the nutrient (for beverages, ≥ 7.5 % NRV per 100 ml). Verify each one against the lab analysis.
-- Story and flavor copy is a draft. Have it reviewed by the brand team.
+## Platzhalter
+E-Mail (`lib/site.ts`), Impressum/Datenschutz, Nährwerte prüfen (B12 auf der Dose 2 µg vs. Herstellerangabe 0,45 µg/100 ml).

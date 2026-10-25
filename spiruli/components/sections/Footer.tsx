@@ -1,27 +1,64 @@
-import Logo from "@/components/ui/Logo";
 import { site } from "@/lib/site";
+
+const cols = [
+  {
+    title: "Entdecken",
+    links: [
+      ["Das Getränk", "#getraenk"],
+      ["Zutaten", "#zutaten"],
+      ["Nährwerte", "#naehrwerte"],
+      ["Fragen", "#fragen"],
+    ],
+  },
+  {
+    title: "Kaufen",
+    links: [
+      [`PZN ${site.pzn}`, "#kaufen"],
+      ["Händleranfrage", `mailto:${site.email}`],
+    ],
+  },
+  {
+    // Placeholders: link the legal pages before launch.
+    title: "Rechtliches",
+    links: [
+      ["Impressum", "#"],
+      ["Datenschutz", "#"],
+      ["Kontakt", `mailto:${site.email}`],
+    ],
+  },
+];
 
 export default function Footer() {
   return (
-    <footer className="border-t-2 border-ink bg-cream">
-      <div className="wrap py-12">
-        <p aria-hidden className="select-none text-center font-display text-[18vw] font-semibold leading-none tracking-[0.08em] text-ink lg:text-[14rem]">
-          SPIRULI
-        </p>
-        <div className="mt-10 flex flex-col items-start justify-between gap-6 border-t-2 border-ink pt-8 md:flex-row md:items-center">
-          <Logo />
-          <p className="font-semibold">Vegan · Fermentiert · PZN {site.pzn}</p>
-          <nav className="flex gap-6 font-semibold">
-            {/* Placeholders: link the legal pages before launch. */}
-            <a href="#" className="hover:underline">Impressum</a>
-            <a href="#" className="hover:underline">Datenschutz</a>
-            <a href={`mailto:${site.email}`} className="hover:underline">Kontakt</a>
-          </nav>
+    <footer className="overflow-hidden bg-algae-deep text-mist">
+      <div className="wrap pt-20">
+        <div className="grid gap-12 lg:grid-cols-[1.4fr_repeat(3,1fr)]">
+          <div>
+            <p className="font-display text-2xl font-extrabold">Der Balancer.</p>
+            <p className="mt-3 max-w-xs text-mist/60">Das vegane & natürliche Mehrwertgetränk auf Holunder-Zitrus-Algen-Basis. Made in Germany.</p>
+          </div>
+          {cols.map((c) => (
+            <nav key={c.title} aria-label={c.title}>
+              <p className="label text-fresh">{c.title}</p>
+              <ul className="mt-5 space-y-3 text-mist/70">
+                {c.links.map(([label, href]) => (
+                  <li key={label}>
+                    <a href={href} className="transition-colors hover:text-mist">
+                      {label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
-        <p className="mt-6 text-sm text-ink/60">
-          © {new Date().getFullYear()} SPIRULI®. Funktionelle Getränke sind kein Ersatz für eine ausgewogene, abwechslungsreiche Ernährung und eine
-          gesunde Lebensweise.
+        <p aria-hidden className="headline mt-20 select-none whitespace-nowrap text-center text-[25vw] leading-[0.75] text-mist/[0.08]">
+          Spiruli
         </p>
+        <div className="flex flex-col justify-between gap-2 border-t border-mist/10 py-6 text-sm text-mist/45 sm:flex-row">
+          <p>© {new Date().getFullYear()} SPIRULI®. Alle Rechte vorbehalten.</p>
+          <p>PZN {site.pzn} · SGS Fresenius geprüft</p>
+        </div>
       </div>
     </footer>
   );

@@ -1,26 +1,29 @@
 import type { Metadata, Viewport } from "next";
-import { display, hand, sans } from "@/lib/fonts";
+import { display, sans } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SPIRULI® – Natürliche Energie aus Holunder, Zitrus & Algen",
+  title: "SPIRULI® – Der Balancer",
   description:
-    "Das vegane & natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren. Fermentierte Holunder-Zitrus-Algen-Basis. In der Apotheke: PZN 11110571.",
+    "Das vegane Erfrischungsgetränk mit Spirulina, Holunder und Zitrone. Spritzig, leicht, Made in Germany. In der Apotheke: PZN 11110571.",
   openGraph: {
-    title: "SPIRULI® – Natürliche Energie",
-    description: "Das vegane & natürliche Mehrwertgetränk mit natürlichen B-Vitaminen und essentiellen Aminosäuren.",
+    title: "SPIRULI® – Der Balancer",
+    description: "Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina.",
     type: "website",
     images: ["/spiruli-can.jpg"],
   },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#D4EE6F",
+  themeColor: "#eef0ea",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de" className={`${sans.variable} ${hand.variable} ${display.variable}`}>
+    <html lang="de" className={`${display.variable} ${sans.variable}`}>
+      <head>
+        <link rel="preload" as="image" href="/can/spiruli.webp" />
+      </head>
       <body className="font-sans">{children}</body>
     </html>
   );
