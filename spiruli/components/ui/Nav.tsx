@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useCart } from "@/lib/cart";
 
 const links = [
   { href: "#getraenk", label: "Getränk" },
+  { href: "#shop", label: "Shop" },
   { href: "#zutaten", label: "Zutaten" },
   { href: "#naehrwerte", label: "Nährwerte" },
   { href: "#fragen", label: "Fragen" },
@@ -15,6 +17,7 @@ export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState("");
+  const { cans, setOpen: openCart } = useCart();
 
   useEffect(() => {
     let last = window.scrollY;
@@ -62,9 +65,25 @@ export default function Nav() {
         <button type="button" onClick={() => setOpen((v) => !v)} aria-expanded={open} className="text-sm font-medium md:hidden">
           {open ? "Schließen" : "Menü"}
         </button>
-        <a href="#kaufen" className="btn group justify-self-end bg-fresh !px-5 !py-2.5 text-ink hover:bg-ink hover:text-mist">
-          Wo kaufen? <span className="transition-transform duration-300 group-hover:translate-x-0.5">→</span>
-        </a>
+        <div className="flex items-center gap-2 justify-self-end">
+          <a href="#shop" className="btn hidden bg-fresh !px-5 !py-2.5 text-ink hover:bg-ink hover:text-mist sm:inline-flex">
+            Jetzt kaufen
+          </a>
+          <button
+            type="button"
+            onClick={() => openCart(true)}
+            aria-label={`Warenkorb, ${cans} Dosen`}
+            className="relative grid h-10 w-10 place-items-center rounded-full border border-ink/20 transition-colors hover:bg-ink hover:text-mist"
+          >
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="1.8">
+              <path d="M5 8h14l-1.2 11.2a2 2 0 0 1-2 1.8H8.2a2 2 0 0 1-2-1.8L5 8Z" />
+              <path d="M9 8V6a3 3 0 0 1 6 0v2" />
+            </svg>
+            {cans > 0 && (
+              <span className="absolute -right-1 -top-1 grid h-5 min-w-5 place-items-center rounded-full bg-teal px-1 text-[0.65rem] font-semibold text-mist">{cans}</span>
+            )}
+          </button>
+        </div>
       </div>
       {open && (
         <nav className="wrap flex flex-col pb-4 md:hidden">

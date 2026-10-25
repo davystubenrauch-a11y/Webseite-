@@ -60,7 +60,7 @@ export default function Explosion() {
   }, []);
 
   return (
-    <section ref={section} data-cursor="Scrollen" className="relative z-10 h-[320vh] bg-algae-deep text-mist">
+    <section ref={section} className="relative z-10 h-[320vh] bg-algae-deep text-mist">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Rings behind the can. */}
         <svg aria-hidden viewBox="0 0 600 600" className="absolute left-1/2 top-1/2 w-[110vmin] -translate-x-1/2 -translate-y-1/2 text-fresh/[0.08]">

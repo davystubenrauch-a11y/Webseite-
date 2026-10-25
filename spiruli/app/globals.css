@@ -89,21 +89,6 @@ html.lenis body {
   scroll-behavior: auto !important;
 }
 
-/* Custom pointer (Cursor.tsx). */
-html.has-cursor,
-html.has-cursor a,
-html.has-cursor button {
-  cursor: none;
-}
-.cursor {
-  box-shadow: 0 0 0 1px rgba(13, 38, 33, 0.35);
-  transition: background-color 0.3s;
-}
-.cursor.is-link {
-  background: transparent;
-  box-shadow: 0 0 0 1.5px #b5d66a;
-}
-
 /* Hero ingredients fly in one after another, once the preloader lifts. */
 html:not(.is-ready) .floater {
   animation-play-state: paused;

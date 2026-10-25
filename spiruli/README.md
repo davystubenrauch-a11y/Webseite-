@@ -3,13 +3,10 @@
 Next.js 16 + Tailwind, helles Design mit Algen-Farben und Bricolage Grotesque.
 
 ## Aufbau
-Hero („Grüne Balance“, Dose steigt ein, freigestellte Zutaten schweben mit Maus-/Scroll-Parallaxe) → Getränk (Dose landet im Rahmen)
-→ Manifest (drei kurze Aussagen über bildschirmfüllenden Zutatenfotos, angepinnt) → „Alles drin.“ (angepinnt: die Dose zerfällt beim Scrollen in ihre Zutaten, mit Beschriftungen)
-→ Laufband → Zutaten (übereinander gleitende Fotokarten) → So entsteht SPIRULI (Schritte leuchten auf)
-→ Analytisch nachgewiesen (25 Nährstoffe als gegenläufige Bänder) → Vier Gründe (läuft seitwärts) → „Der Balancer“ (Zoom durch den Schriftzug ins Foto)
-→ Nährwerte (dunkle Kacheln) → Fragen → Finale (Zutaten kreisen um die Dose, PZN) → Footer.
-Weiches Scrollen mit Lenis; alle Scroll-Animationen laufen über eine gemeinsame Schleife (`lib/ticker.ts`) und nur, solange ihr Abschnitt sichtbar ist.
-Lade-Intro (`Preloader.tsx`), eigener Mauszeiger mit magnetischen Buttons und kippenden Fotos (`Cursor.tsx`, `data-cursor`, `data-tilt`). Freigestellte Zutaten liegen in `public/float/`, Fotos in `public/photos/`.
+Hero → Getränk (Dose landet im Rahmen) → „Alles drin.“ (Dose zerfällt in ihre Zutaten) → Zutaten (Fotokarten) → Shop
+→ So entsteht SPIRULI → Analytisch nachgewiesen → Vier Gründe → Nährwerte → Fragen → Apotheke/PZN → Footer.
+Weiches Scrollen mit Lenis; Scroll-Animationen laufen über eine gemeinsame Schleife (`lib/ticker.ts`), nur solange ihr Abschnitt sichtbar ist.
+Lade-Intro (`Preloader.tsx`). Shop mit 12er/24er-Tray (2,95 € je Dose) und Warenkorb (`lib/cart.tsx`, `components/shop/`); Bestellungen gehen bis zur Anbindung eines Zahlungsanbieters per E-Mail raus.
 
 ## Die Dose
 `components/can/FloatingCan.tsx` zeigt eine einzige Dose (`public/can/spiruli.webp`, freigestelltes Produktfoto).

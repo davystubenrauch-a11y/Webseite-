@@ -32,8 +32,8 @@ export default function Intro() {
             Kohlensäure.
           </p>
           <p className="mt-4 leading-relaxed text-ink/65">Kein Smoothie, kein Pulver – eine leichte Erfrischung, die man trinkt, weil sie schmeckt. Am besten gut gekühlt.</p>
-          <a href="#zutaten" className="btn mt-8 bg-ink text-mist hover:bg-teal">
-            Zutaten ansehen →
+          <a href="#shop" className="btn mt-8 bg-ink text-mist hover:bg-teal">
+            Jetzt kaufen · ab 35,40 €
           </a>
         </div>
       </div>
