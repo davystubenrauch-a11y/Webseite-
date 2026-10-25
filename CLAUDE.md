@@ -10,11 +10,11 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
 - **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
-## Design-Regeln (Version 4, „hochwertige Dienstleistungsseite“)
-- Farben: Elfenbein `#f5f2ec` (Grundfläche), Warmweiß `#fffdf9`, Nachtblau `#0b1424` (dunkle Sektionen, Text), Akzent Stein/Sand `#cdbd9f` (nur kursive Akzentwörter auf Dunkel, Häkchen, Hervorhebungen). Google-Farben nur auf dem NFC-Produkt. Abgelehnt: Limette, Orange, Himmelblau, Scroll-Farbwechsel, Karten mit Rand um jedes Modul (wirkte „nach KI“).
-- Layout: Sektionen randlos über die volle Breite, abwechselnd hell/nachtblau; Gliederung nur über feine Haarlinien, keine Kästen. Buttons als Pillen (Nachtblau bzw. Weiß auf Dunkel).
-- Schrift: **Bricolage Grotesque** 700 (enge Laufweite) für Überschriften + **Instrument Serif kursiv** für Akzentwörter + Inter für Text. Überschriften steigen Wort für Wort ein.
-- Aufbau: Intro (Nachtblau, links „Mehr *Kunden.* für Ihr Unternehmen.“, rechts 3D-iPhone tippt auf NFC-Platte, unten 4 Fakten) → Satz „Drei Leistungen, ein Ziel …“, der sich beim Scrollen einfärbt, + 3 Leistungs-Links → 01 NFC (3D-Schichten + Details/Farbwahl/Preis/Button + 3 Schritte) → 02 Websites (Nachtblau, Laptop/Handy + Details/Preis/Button) → 03 KI-Roomtours (Video + Details/Preis/Button + 3 Schritte) → Ablauf (4 Schritte an einer Linie) → Preise (Reiter, Spalten mit Haarlinien, Empfehlung nachtblau) → Gründer (Nachtblau) → FAQ → Anfrage → Footer.
+## Design-Regeln (Version 5)
+- Konzept: Man kommt auf die Seite und sieht **sofort die drei Angebote als große, lebendige Bühnen nebeneinander** (01 NFC schwarz mit 3D-iPhone, das auf die Platte tippt; 02 Websites sandfarben mit Laptop in Perspektive; 03 KI-Roomtours mit laufendem Video). Jede Bühne: Name, ein Satz, Preis, „Ansehen“ + „Anfragen“. Hover vergrößert die Bühne.
+- Danach je Leistung ein Detailbereich in derselben Farbwelt (NFC schwarz, Websites sand, Roomtours weiß): Modell + kurze Details + Preis + Button. Dann Preise (Reiter), Gründer, Anfrage, Footer. Kein Schnickschnack drumherum (kein Statement-Text, kein Ablauf, keine FAQ, keine Karten mit Rand).
+- Schrift: nur **Manrope** (800 für Überschriften, enge Laufweite; Akzent = zweiter Teil der Überschrift in Grau). Bricolage/Instrument Serif und Anton wurden abgelehnt.
+- Farben: Weiß, Schwarz `#0d0d0d`, Sand `#e9e1d2`; Google-Farben nur am NFC-Produkt. Abgelehnt: Limette, Orange, Himmelblau, Nachtblau/Elfenbein-Look, Scroll-Farbwechsel.
 
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
 - Gold oder dunkles Navy-Gold-Schema

@@ -5,37 +5,37 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>F&amp;D Solutions · NFC-Platten, Websites und KI-Roomtours aus München</title>
 <meta name="description" content="F&amp;D Solutions aus München: NFC-Platten für Google-Bewertungen, Websites ab 300 € und KI-Roomtours ab 300 €. Festpreise, persönliche Betreuung, Antwort in 24 Stunden.">
-<meta name="theme-color" content="#0b1424">
+<meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500..800&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   F&D Solutions — design v4
-   Warm ivory and deep night blue, full-bleed sections, hairlines instead of boxes.
-   Bricolage Grotesque for headlines, Instrument Serif italic for accents, Inter for text.
+   F&D Solutions — design v5
+   Three product worlds (black for NFC, sand for websites, film for roomtours) on a
+   clean white page. One typeface, Manrope, from regular text to heavy headlines.
    ========================================================================== */
 :root {
-  --ivory: #f5f2ec;
-  --white: #fffdf9;
-  --navy: #0b1424;
-  --navy-2: #13213a;
-  --ink: #0b1424;
-  --paper: #fffdf9;
-  --muted: rgba(11, 20, 36, .62);
-  --line: rgba(11, 20, 36, .13);
-  --stone: #cdbd9f;
-  --mist: #aebdd1;
-  --accent: #cdbd9f;
-  --display: 'Bricolage Grotesque', 'Inter', sans-serif;
-  --serif: 'Instrument Serif', Georgia, serif;
-  --body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --ivory: #f3f2ef;
+  --white: #ffffff;
+  --navy: #0d0d0d;
+  --navy-2: #222222;
+  --ink: #0d0d0d;
+  --paper: #ffffff;
+  --muted: rgba(13, 13, 13, .58);
+  --line: rgba(13, 13, 13, .12);
+  --stone: #e7dcc8;
+  --sand: #e9e1d2;
+  --accent: #e7dcc8;
+  --display: 'Manrope', -apple-system, sans-serif;
+  --serif: 'Manrope', -apple-system, sans-serif;
+  --body: 'Manrope', -apple-system, BlinkMacSystemFont, sans-serif;
   --ease: cubic-bezier(.22, 1, .36, 1);
   --gutter: clamp(20px, 4.5vw, 64px);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: 80px; -webkit-text-size-adjust: 100%; }
-body { font-family: var(--body); font-size: 16px; line-height: 1.6; color: var(--ink); background: var(--ivory); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+body { font-family: var(--body); font-size: 16px; line-height: 1.6; color: var(--ink); background: var(--white); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
 img, svg, video, canvas { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -45,14 +45,16 @@ fieldset { border: 0; min-width: 0; }
 ::selection { background: var(--stone); color: var(--ink); }
 .wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 var(--gutter); }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
-.dark { background: var(--navy); color: var(--white); --line: rgba(255, 253, 249, .14); --muted: rgba(255, 253, 249, .62); }
+.dark { background: var(--navy); color: var(--white); --line: rgba(255, 255, 255, .14); --muted: rgba(255, 255, 255, .6); }
+.sand { background: var(--sand); }
 
 /* Type */
-.display { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; line-height: .98; font-variation-settings: "opsz" 96; }
-.display em, .serif { font-family: var(--serif); font-style: italic; font-weight: 400; letter-spacing: -.01em; }
-.dark .display em { color: var(--stone); }
+.display { font-family: var(--display); font-weight: 800; letter-spacing: -.045em; line-height: 1; }
+.display em, .serif { font-style: normal; color: var(--muted); }
+.dark .display em { color: rgba(255,255,255,.55); }
 .label { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; }
-.label b { font-family: var(--serif); font-style: italic; font-weight: 400; font-size: 20px; letter-spacing: 0; text-transform: none; }
+.label b { font-weight: 800; font-size: 13px; padding: 4px 9px; border-radius: 999px; background: currentColor; }
+.label b span { color: var(--white); mix-blend-mode: normal; }
 .label::after { content: ""; width: 40px; height: 1px; background: currentColor; opacity: .5; }
 .lead { font-size: 19px; line-height: 1.55; color: var(--muted); max-width: 520px; }
 
@@ -107,7 +109,7 @@ fieldset { border: 0; min-width: 0; }
 .hero { position: relative; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; padding-top: 110px; overflow: hidden;
   background: radial-gradient(ellipse 50% 60% at 72% 46%, #1d2d4a 0%, transparent 70%), linear-gradient(180deg, #0b1424, #0a1220); }
 .hero__grid { display: grid; grid-template-columns: 1.05fr 1fr; gap: 24px; align-items: center; flex: 1; }
-.hero h1 { margin-top: 26px; font-size: clamp(2.8rem, 5vw, 5.3rem); }
+.hero h1 { margin-top: 26px; font-size: clamp(3rem, 6.2vw, 6.4rem); }
 .rot { display: inline-grid; vertical-align: bottom; overflow: hidden; justify-items: start; font-size: 1.1em; line-height: 1; padding-bottom: .08em; color: var(--stone); }
 .rot span { grid-area: 1 / 1; transform: translateY(105%); opacity: 0; transition: transform .8s var(--ease), opacity .8s var(--ease); }
 .rot span.on { transform: none; opacity: 1; }
@@ -522,6 +524,91 @@ fieldset { border: 0; min-width: 0; }
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; }
   .rv, .w > i { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   v5: one typeface, no italics
+   ========================================================================== */
+.label b { font-weight: 800; font-size: 13px; letter-spacing: .06em; background: none; padding: 0; border-radius: 0; }
+.steps small, .price small, .pack__price small, .founder__init, .price-tabs button b { font-style: normal; font-weight: 700; }
+.price small, .pack__price small { font-size: 16px; }
+.steps small { font-size: 14px; letter-spacing: .1em; }
+.rot { color: inherit; font-size: 1em; }
+.rot span { color: var(--muted); }
+.dark .rot span { color: rgba(255,255,255,.55); }
+
+/* ==========================================================================
+   Intro: short line on top, then the three offers as large living stages
+   ========================================================================== */
+.top { padding: 112px 0 30px; }
+.top__row { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: end; }
+.top h1 { margin-top: 18px; font-size: clamp(2.6rem, 5.6vw, 5.6rem); white-space: nowrap; }
+.top__side p { font-size: 18px; color: var(--muted); max-width: 440px; }
+.top__side .btn { margin-top: 22px; }
+.trio { display: flex; gap: 10px; height: min(78vh, 760px); min-height: 560px; padding: 0 10px 10px; }
+.stage3 { position: relative; flex: 1; min-width: 0; border-radius: 22px; overflow: hidden; display: flex; flex-direction: column; justify-content: flex-end; transition: flex-grow .8s var(--ease); isolation: isolate; }
+.trio:hover .stage3 { flex-grow: .8; }
+.trio .stage3:hover { flex-grow: 1.6; }
+.stage3__visual { position: absolute; inset: 0; z-index: -1; }
+.stage3__body { padding: 30px; display: grid; gap: 10px; }
+.stage3__no { font-size: 13px; font-weight: 800; letter-spacing: .14em; opacity: .7; }
+.stage3 h2 { font-family: var(--display); font-weight: 800; font-size: clamp(2rem, 3vw, 3rem); letter-spacing: -.045em; line-height: 1; }
+.stage3 p { font-size: 16px; opacity: .78; max-width: 360px; }
+.stage3__foot { margin-top: 8px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; }
+.stage3__price { font-weight: 800; font-size: 20px; letter-spacing: -.02em; }
+.stage3__price small { font-weight: 600; font-size: 13px; opacity: .7; margin-right: 4px; }
+.stage3__links { display: flex; gap: 8px; }
+.stage3__links .btn { height: 46px; padding: 0 20px; }
+/* 01 NFC stage: black, the iPhone taps the disc */
+.stage3--nfc { background: radial-gradient(ellipse 80% 60% at 50% 38%, #2a2a2a, #0d0d0d 70%); color: #fff; }
+.stage3--nfc .stage3__visual canvas { position: absolute; inset: 0 0 34% 0; width: 100% !important; height: 66% !important; }
+.stage3--nfc .stage-cap { left: 30px; top: 30px; font-size: 13px; }
+/* 02 Website stage: sand, a laptop in perspective */
+.stage3--web { background: linear-gradient(170deg, #efe8db, #ddd2bf); color: var(--ink); }
+.tilt { position: absolute; left: 50%; top: 13%; width: 118%; transform: translateX(-46%) perspective(1600px) rotateX(18deg) rotateY(-24deg) rotateZ(4deg); transform-origin: center; transition: transform 1s var(--ease); }
+.stage3--web:hover .tilt { transform: translateX(-46%) perspective(1600px) rotateX(10deg) rotateY(-14deg) rotateZ(2deg); }
+.tilt .laptop { width: 100%; }
+.stage3--web .stage3__body { background: linear-gradient(transparent, rgba(233,225,210,.96) 38%); padding-top: 70px; }
+/* 03 Roomtour stage: the film itself */
+.stage3--tour { background: #111; color: #fff; }
+.stage3--tour video { width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
+.stage3--tour .stage3__visual::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.05) 30%, rgba(0,0,0,.82)); }
+.stage3 .btn--line { border-color: currentColor; }
+.stage3--web .btn--solid { background: var(--ink); color: #fff; }
+.tag-ki { position: absolute; right: 22px; top: 22px; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px); }
+
+/* Detail sections take the colour world of their stage */
+.svc { padding: clamp(90px, 10vw, 140px) 0; }
+#nfc.dark { background: #0d0d0d; }
+#nfc .callout__dot { background: #fff; box-shadow: 0 0 0 4px rgba(255,255,255,.18); }
+#nfc .callout__line { background: rgba(255,255,255,.8); }
+#nfc .swatches button { border-color: rgba(255,255,255,.2); }
+#nfc .swatches button[aria-checked="true"] { border-color: #fff; }
+#web.sand { background: var(--sand); color: var(--ink); }
+#web .samples button { border-color: rgba(13,13,13,.2); }
+#web .samples button[aria-selected="true"] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.prices { background: var(--ivory); }
+.nav { color: var(--ink); }
+.nav__links .btn { background: var(--ink); color: #fff; }
+.nav.scrolled { background: rgba(255,255,255,.9); }
+.callout__text small { color: rgba(255,255,255,.6); }
+
+@media (max-width: 1080px) {
+  .trio { flex-direction: column; height: auto; }
+  .stage3 { min-height: 520px; }
+  .trio:hover .stage3, .trio .stage3:hover { flex-grow: 1; }
+  .top__row { grid-template-columns: 1fr; gap: 16px; }
+}
+@media (max-width: 820px) {
+  .nav { color: var(--ink); }
+  .top h1 { white-space: normal; font-size: 2.6rem; }
+  .top { padding: 96px 0 22px; }
+  .trio { padding: 0 8px 8px; gap: 8px; }
+  .stage3 { min-height: 480px; border-radius: 18px; }
+  .stage3__body { padding: 22px; }
+  .stage3--nfc .stage-cap { left: 22px; top: 22px; }
+  .stage3--nfc { min-height: 640px; }
+  .stage3--nfc .stage3__visual canvas { inset: 40px 0 auto 0; height: 300px !important; }
+}
 </style>
 </head>
 <body>
@@ -536,7 +623,6 @@ fieldset { border: 0; min-width: 0; }
       <a href="#nfc">NFC-Platten</a>
       <a href="#web">Websites</a>
       <a href="#roomtour">KI-Roomtours</a>
-      <a href="#ablauf">Ablauf</a>
       <a href="#preise">Preise</a>
       <a class="btn" href="#anfrage">Anfragen</a>
     </nav>
@@ -550,47 +636,49 @@ fieldset { border: 0; min-width: 0; }
 
 <main id="top">
 
-  <!-- Intro -->
-  <section class="hero dark">
-    <div class="wrap hero__grid">
-      <div>
-        <span class="label rv">F&amp;D Solutions · München</span>
-        <h1 class="display rv d1">Mehr <span class="rot serif" aria-hidden="true"><span class="on">Bewertungen.</span><span>Kunden.</span><span>Buchungen.</span></span><span class="sr-only">Bewertungen, Kunden und Buchungen.</span><br>für Ihr Unternehmen.</h1>
-        <p class="lead rv d2">NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours: alles, damit Ihr Unternehmen online so überzeugt wie vor Ort.</p>
-        <div class="hero__cta rv d3"><a class="btn btn--solid" href="#anfrage">Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#nfc">Leistungen ansehen</a></div>
-      </div>
-      <div class="hero__stage rv d1" id="heroStage">
-        <div class="stage-cap" aria-live="polite"><b>1</b><span>Handy an die Platte halten</span></div>
-      </div>
-    </div>
-    <div class="wrap">
-      <ul class="facts rv">
-        <li><b>Festpreise</b><span>ab 300 €, kein Abo</span></li>
-        <li><b>24 Stunden</b><span>bis zur persönlichen Antwort</span></li>
-        <li><b>Aus München</b><span>zwei Gründer, ein Ansprechpartner</span></li>
-        <li><b>3 Leistungen</b><span>aus einer Hand</span></li>
-      </ul>
+  <!-- Intro: one line, then the three offers as living stages -->
+  <section class="top">
+    <div class="wrap top__row">
+      <div><span class="label rv">F&amp;D Solutions · München</span><h1 class="display rv d1">Mehr <span class="rot" aria-hidden="true"><span class="on">Bewertungen.</span><span>Kunden.</span><span>Buchungen.</span></span><span class="sr-only">Bewertungen, Kunden und Buchungen.</span></h1></div>
+      <div class="top__side rv d1"><p>NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours. Persönlich umgesetzt, zum Festpreis, Antwort in 24 Stunden.</p><a class="btn btn--solid" href="#anfrage">Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
-
-  <!-- Statement + the three services -->
-  <section class="statement">
-    <div class="wrap">
-      <span class="label rv">Was wir machen</span>
-      <p class="fill" style="margin-top:28px">Drei Leistungen, ein Ziel: dass Kunden Sie <em>finden</em>, Ihnen <em>vertrauen</em> und bei Ihnen <em>kaufen</em>. Persönlich umgesetzt, zum Festpreis.</p>
-      <nav class="services" aria-label="Leistungen">
-        <a class="rv" href="#nfc"><small>01</small><b>NFC-Platten</b><span>Google-Bewertungen per Antippen</span><i>Preis auf Anfrage</i></a>
-        <a class="rv d1" href="#web"><small>02</small><b>Websites</b><span>Individuell gestaltet, für jedes Handy</span><i>ab 300 €</i></a>
-        <a class="rv d2" href="#roomtour"><small>03</small><b>KI-Roomtours</b><span>Video-Rundgang aus Ihren Fotos</span><i>ab 300 €</i></a>
-      </nav>
-    </div>
-  </section>
+  <div class="trio" aria-label="Unsere drei Leistungen">
+    <article class="stage3 stage3--nfc">
+      <div class="stage3__visual" id="heroStage"><div class="stage-cap" aria-live="polite"><b>1</b><span>Handy an die Platte halten</span></div></div>
+      <div class="stage3__body">
+        <span class="stage3__no">01 · NFC-PLATTEN</span>
+        <h2>Bewertungen per Antippen.</h2>
+        <p>Handy an die Platte halten, Google-Bewertung öffnet sich. Für Theke, Tisch und Tür.</p>
+        <div class="stage3__foot"><span class="stage3__price">Preis auf Anfrage</span><span class="stage3__links"><a class="btn btn--line" href="#nfc">Ansehen</a><button class="btn btn--light" type="button" data-add="NFC Google Review Cards" data-detail="NFC-Platte">Anfragen</button></span></div>
+      </div>
+    </article>
+    <article class="stage3 stage3--web">
+      <div class="stage3__visual"><div class="tilt"><div class="laptop"><div class="laptop__lid"><span class="laptop__cam"></span><div class="screen" data-screen></div></div><div class="laptop__base"></div></div></div></div>
+      <div class="stage3__body">
+        <span class="stage3__no">02 · WEBSITES</span>
+        <h2>Websites, die verkaufen.</h2>
+        <p>Individuell gestaltet, schnell und auf jedem Handy perfekt. Mit klarem Weg zur Anfrage.</p>
+        <div class="stage3__foot"><span class="stage3__price"><small>ab</small>300 €</span><span class="stage3__links"><a class="btn btn--line" href="#web">Ansehen</a><button class="btn btn--solid" type="button" data-add="Webentwicklung" data-detail="Website">Anfragen</button></span></div>
+      </div>
+    </article>
+    <article class="stage3 stage3--tour">
+      <div class="stage3__visual"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></div>
+      <span class="tag-ki">KI-Roomtour · Beispiel</span>
+      <div class="stage3__body">
+        <span class="stage3__no">03 · KI-ROOMTOURS</span>
+        <h2>Aus Fotos wird ein Rundgang.</h2>
+        <p>Sie schicken Fotos, wir machen daraus ein realistisches Video. Für Airbnb, Hotel und Immobilie.</p>
+        <div class="stage3__foot"><span class="stage3__price"><small>ab</small>300 €</span><span class="stage3__links"><a class="btn btn--line" href="#roomtour">Ansehen</a><button class="btn btn--light" type="button" data-add="KI Roomtour" data-detail="Roomtour">Anfragen</button></span></div>
+      </div>
+    </article>
+  </div>
 
   <!-- 01 NFC -->
-  <section class="svc" id="nfc">
+  <section class="svc dark" id="nfc">
     <div class="wrap">
       <div class="svc__head">
-        <div><span class="label rv"><b>01</b>NFC-Platten</span><h2 class="display">Bewertungen <em>per Antippen.</em></h2></div>
+        <div><span class="label rv"><b>01</b>NFC-Platten</span><h2 class="display">So funktioniert <em>die Platte.</em></h2></div>
         <p class="lead rv d1">Ihre Kunden halten das Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Ohne App, ohne Suchen, in Sekunden.</p>
       </div>
       <div class="svc__body">
@@ -619,10 +707,10 @@ fieldset { border: 0; min-width: 0; }
   </section>
 
   <!-- 02 Websites (night blue) -->
-  <section class="svc svc--rev dark" id="web">
+  <section class="svc svc--rev sand" id="web">
     <div class="wrap">
       <div class="svc__head">
-        <div><span class="label rv"><b>02</b>Websites</span><h2 class="display">Websites, <em>die verkaufen.</em></h2></div>
+        <div><span class="label rv"><b>02</b>Websites</span><h2 class="display">Ihre Website, <em>individuell gebaut.</em></h2></div>
         <p class="lead rv d1">Maßgeschneidert statt Baukasten: schnell, auf jedem Handy perfekt und mit einem klaren Weg zur Anfrage. Klicken Sie sich durch die Beispiele.</p>
       </div>
       <div class="svc__body">
@@ -658,7 +746,7 @@ fieldset { border: 0; min-width: 0; }
   <section class="svc" id="roomtour">
     <div class="wrap">
       <div class="svc__head">
-        <div><span class="label rv"><b>03</b>KI-Roomtours</span><h2 class="display">Aus Fotos wird <em>eine Roomtour.</em></h2></div>
+        <div><span class="label rv"><b>03</b>KI-Roomtours</span><h2 class="display">Vom Foto <em>zum Rundgang.</em></h2></div>
         <p class="lead rv d1">Sie schicken uns Fotos Ihrer Ferienwohnung, Ihres Hotels oder Ihrer Immobilie. Wir machen daraus einen realistischen Video-Rundgang durch Ihre echten Räume, damit Gäste vor der Buchung sehen, wie es sich dort lebt.</p>
       </div>
       <div class="svc__body">
@@ -688,22 +776,6 @@ fieldset { border: 0; min-width: 0; }
         <li class="rv"><small>1</small><h3>Fotos senden</h3><p>Handyfotos von jedem Raum reichen. Je mehr Blickwinkel, desto genauer der Rundgang.</p></li>
         <li class="rv d1"><small>2</small><h3>Roomtour entsteht</h3><p>Wir erstellen einen ruhigen, realistischen Rundgang, nah an Ihren echten Räumen.</p></li>
         <li class="rv d2"><small>3</small><h3>Mehr Buchungen</h3><p>Fertig für Ihr Inserat, Ihre Website und Social Media.</p></li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- How we work -->
-  <section class="process" id="ablauf">
-    <div class="wrap">
-      <div class="process__head">
-        <div><span class="label rv">Ablauf</span><h2 class="display">So einfach <em>arbeiten wir.</em></h2></div>
-        <p class="lead rv d1">Ein Ansprechpartner von der ersten Nachricht bis zur Übergabe. Sie wissen vorher, was es kostet und wann es fertig ist.</p>
-      </div>
-      <ol class="process__list rv">
-        <li data-n="1"><h3>Anfrage</h3><p>Formular ausfüllen oder anrufen. Dauert zwei Minuten und ist unverbindlich.</p></li>
-        <li data-n="2"><h3>Kostenloses Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden und klären, was Sie brauchen.</p></li>
-        <li data-n="3"><h3>Festpreis-Angebot</h3><p>Sie bekommen ein klares Angebot. Keine versteckten Kosten, kein Abo.</p></li>
-        <li data-n="4"><h3>Umsetzung &amp; Übergabe</h3><p>Wir setzen um, Sie prüfen, wir übergeben. Danach sind wir weiter für Sie da.</p></li>
       </ol>
     </div>
   </section>
@@ -803,20 +875,6 @@ fieldset { border: 0; min-width: 0; }
       <div class="founders rv d1">
         <div class="founder"><span class="founder__init">FD</span><div><h3>Florian Dressler</h3><p>Co-Founder</p></div><a href="tel:+4915566456417">+49 155 66456417</a></div>
         <div class="founder"><span class="founder__init">DS</span><div><h3>Davy Stubenrauch</h3><p>Co-Founder</p></div><a href="tel:+4917656612709">+49 176 56612709</a></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="faq">
-    <div class="wrap faq__grid">
-      <div><span class="label rv">Fragen</span><h2 class="display">Gut zu <em>wissen.</em></h2></div>
-      <div class="faq__list rv d1">
-        <details><summary>Wie funktioniert die NFC-Platte?<i></i></summary><p>Im Acryl steckt ein NFC-Chip mit dem Link zu Ihrer Google-Bewertungsseite. Ihre Kunden halten ihr Handy an die Platte, und die Seite öffnet sich sofort. Das klappt mit iPhone und Android, ohne App und ohne Akku.</p></details>
-        <details><summary>Was kostet eine Website?<i></i></summary><p>Die Basis-Website (One-Pager) kostet 300 €. Größere Seiten richten sich nach dem Umfang. Nach einem kurzen Gespräch bekommen Sie einen Festpreis, bevor wir anfangen.</p></details>
-        <details><summary>Wie entsteht eine KI-Roomtour?<i></i></summary><p>Sie schicken uns Fotos jedes Raumes, am besten aus mehreren Blickwinkeln. Daraus erstellen wir einen Video-Rundgang, der Ihre echten Räume zeigt. Sie bekommen das Video zur Freigabe, bevor es online geht.</p></details>
-        <details><summary>Gibt es laufende Kosten oder ein Abo?<i></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
-        <details><summary>Wie schnell geht es los?<i></i></summary><p>Wir melden uns innerhalb von 24 Stunden. Den genauen Zeitplan besprechen wir im ersten Gespräch.</p></details>
       </div>
     </div>
   </section>
@@ -1161,7 +1219,7 @@ fieldset { border: 0; min-width: 0; }
   villaUI();
 
   /* ---------------- Phone call bar: hidden on the hero and next to the form ---------------- */
-  var callbar = $("#callbar"), heroSec = $(".hero"), askSec = $("#anfrage"), seen = { hero: true, ask: false };
+  var callbar = $("#callbar"), heroSec = $(".trio"), askSec = $("#anfrage"), seen = { hero: true, ask: false };
   var callIO = new IntersectionObserver(function (es) {
     es.forEach(function (e) { seen[e.target === heroSec ? "hero" : "ask"] = e.isIntersecting; });
     callbar.classList.toggle("off", seen.hero || seen.ask);
@@ -1410,7 +1468,7 @@ fieldset { border: 0; min-width: 0; }
   function paintBack(ctx, s) {
     ctx.fillStyle = "#ececea"; ctx.fillRect(0, 0, s, s);
     ctx.fillStyle = "#111110"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.font = "700 " + s * .2 + "px 'Bricolage Grotesque', Inter, sans-serif"; ctx.fillText("F&D", s / 2, s * .48);
+    ctx.font = s * .2 + "px Manrope, Inter, sans-serif"; ctx.fillText("F&D", s / 2, s * .48);
     ctx.font = "700 " + s * .04 + "px Inter, sans-serif"; ctx.fillText("S O L U T I O N S", s / 2, s * .63);
   }
   function paintInlay(ctx, s) {
@@ -1535,8 +1593,8 @@ fieldset { border: 0; min-width: 0; }
       lastCap = text; capNo.textContent = steps[i][0]; cap.textContent = text;
     }
     var s = stage(host, { fov: 30, resize: function (st) {
-      var half = tap ? 2.7 : (st.w < 600 ? 2.6 : 3.1);
-      var z = Math.max(tap ? 8.5 : 9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
+      var half = tap ? (st.w < 500 ? 2.3 : 3.3) : (st.w < 600 ? 2.7 : 3.9);
+      var z = Math.max(tap ? (st.w < 500 ? 6 : 8.5) : 9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
       st.camera.position.set(0, z * .42, z);
       st.camera.lookAt(0, tap ? .55 : .35, 0);
     }, update: function (t, dt, st) {
@@ -1620,7 +1678,7 @@ fieldset { border: 0; min-width: 0; }
   if (THREE) {
     try {
       var go = function () { initNfc($("#heroStage"), "tap"); initNfc($("#nfcStage"), "layers"); loop(); };
-      // Draw the canvas artwork once the web fonts are ready (Bricolage on the disc back).
+      // Draw the canvas artwork once the web fonts are ready (Manrope on the disc back).
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
     } catch (err) { /* page stays fully usable without 3D */ }
   }
