@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Split from "@/components/ui/Split";
 import { site } from "@/lib/site";
 
 const faqs = [
@@ -14,11 +15,14 @@ const faqs = [
 export default function Faq() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="fragen" className="py-24 sm:py-32">
+    <section id="fragen" className="relative z-10 bg-mist py-24 sm:py-32">
       <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.6fr]">
-        <h2 data-reveal className="headline text-6xl sm:text-7xl">
-          Kurz <span className="text-teal">gefragt.</span>
-        </h2>
+        <div>
+          <p data-reveal className="label text-teal">
+            Fragen
+          </p>
+          <Split className="headline mt-6 text-6xl sm:text-7xl" lines={["Kurz", <span key="b" className="text-teal">gefragt.</span>]} />
+        </div>
         <ul className="border-t border-line">
           {faqs.map((f, i) => (
             <li key={f.q} className="border-b border-line">

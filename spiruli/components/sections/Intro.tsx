@@ -1,3 +1,4 @@
+import Split from "@/components/ui/Split";
 import CanSlot from "@/components/can/CanSlot";
 
 /** The can lands in a framed card, with the name on the left and the story on the right. */
@@ -7,11 +8,7 @@ export default function Intro() {
       <div className="wrap grid items-center gap-12 lg:grid-cols-[1fr_auto_1fr] lg:gap-16">
         <div data-reveal className="order-2 lg:order-1">
           <p className="label text-teal">Spirulina-Erfrischungsgetränk</p>
-          <h2 className="headline mt-4 text-6xl sm:text-7xl">
-            Spiruli
-            <br />
-            <span className="text-teal">Holunder</span>
-          </h2>
+          <Split className="headline mt-4 text-6xl sm:text-7xl" lines={["Spiruli", <span key="b" className="text-teal">Holunder</span>]} />
           <dl className="mt-8 grid max-w-xs grid-cols-2 gap-y-3 text-sm">
             <dt className="text-ink/55">Inhalt</dt>
             <dd>200 ml Dose</dd>
@@ -36,7 +33,7 @@ export default function Intro() {
           </p>
           <p className="mt-4 leading-relaxed text-ink/65">Kein Smoothie, kein Pulver – eine leichte Erfrischung, die man trinkt, weil sie schmeckt. Am besten gut gekühlt.</p>
           <a href="#zutaten" className="btn mt-8 bg-ink text-mist hover:bg-teal">
-            Zutaten ansehen
+            Zutaten ansehen →
           </a>
         </div>
       </div>

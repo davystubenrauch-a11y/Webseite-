@@ -1,3 +1,5 @@
+import Split from "@/components/ui/Split";
+
 const features = [
   {
     no: "01",
@@ -58,18 +60,25 @@ export default function Features() {
     <section id="zutaten" className="relative">
       {features.map((f, i) => (
         <article key={f.no} className={`relative flex items-center overflow-hidden py-20 lg:sticky lg:top-0 lg:min-h-[100svh] lg:py-24 ${f.cls}`} style={{ zIndex: i + 1 }}>
-          <div className={`wrap grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
-            <div data-reveal className="overflow-hidden rounded-[2rem]">
+          {/* Oversized name in the background. */}
+          <p aria-hidden className="headline pointer-events-none absolute -bottom-[0.12em] left-1/2 -translate-x-1/2 whitespace-nowrap text-[22vw] opacity-[0.06]">
+            {f.title}
+          </p>
+          <div className={`wrap relative grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            <div data-reveal className="relative overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)]">
               <img data-zoom src={f.img} alt={f.alt} loading="lazy" className="aspect-[3/4] max-h-[76svh] w-full object-cover" />
+              <span className="label absolute left-5 top-5 rounded-full bg-black/35 px-3 py-1.5 text-white backdrop-blur-sm">Zutat {f.no}</span>
             </div>
             <div>
-              <p data-reveal className={`font-display text-8xl font-extrabold sm:text-9xl ${f.accent}`}>{f.no}</p>
-              <p data-reveal className="mt-6 text-sm italic opacity-70">
+              <div data-reveal className="flex items-center gap-4">
+                <p className={`font-display text-2xl font-extrabold ${f.accent}`}>{f.no}</p>
+                <span className="h-px w-16 bg-current opacity-30" />
+                <p className="text-sm opacity-60">von 0{features.length}</p>
+              </div>
+              <p data-reveal className="mt-10 text-sm italic opacity-70">
                 {f.latin}
               </p>
-              <h2 data-reveal className="headline mt-3 text-6xl sm:text-8xl">
-                {f.title}
-              </h2>
+              <Split className="headline mt-3 text-6xl sm:text-8xl" lines={[f.title]} />
               <p data-reveal className="mt-6 max-w-lg text-lg leading-relaxed opacity-80">
                 {f.text}
               </p>
