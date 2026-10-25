@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { DEPOSIT_PER_CAN, PRICE_PER_CAN, euro, products, trayPrice, useCart, type ProductId } from "@/lib/cart";
+import { PRICE_PER_CAN, euro, listPrice, products, trayPrice, useCart, type ProductId } from "@/lib/cart";
 
 /** Shop: pick a 12 or 24 tray, set the quantity, add to cart. */
 export default function Shop() {
@@ -48,12 +48,16 @@ export default function Shop() {
                 className={`relative cursor-pointer rounded-3xl border-2 p-6 transition-colors ${pick === p.id ? "border-ink bg-white" : "border-line bg-mist hover:border-ink/40"}`}
               >
                 <input type="radio" name="tray" value={p.id} checked={pick === p.id} onChange={() => setPick(p.id)} className="sr-only" />
-                {p.id === "tray-24" && <span className="label absolute right-4 top-4 rounded-full bg-fresh px-2.5 py-1 text-ink">Beliebt</span>}
+                {p.discount > 0 && <span className="label absolute right-4 top-4 rounded-full bg-fresh px-2.5 py-1 text-ink">−{p.discount * 100} %</span>}
                 <span className="block font-display text-2xl font-extrabold">{p.name}</span>
                 <span className="mt-1 block text-sm text-ink/60">
-                  {p.cans} × {euro(PRICE_PER_CAN)} · {p.note}
+                  {p.cans} Dosen · {p.discount > 0 ? `nur ${euro(trayPrice(p) / p.cans)} je Dose` : p.note}
                 </span>
-                <span className="mt-5 block font-display text-4xl font-extrabold">{euro(trayPrice(p.cans))}</span>
+                <span className="mt-5 flex items-baseline gap-3">
+                  <span className="font-display text-4xl font-extrabold">{euro(trayPrice(p))}</span>
+                  {p.discount > 0 && <span className="text-ink/45 line-through">{euro(listPrice(p))}</span>}
+                </span>
+                <span className="mt-1 block text-xs text-ink/50">{euro(Math.round((trayPrice(p) * 100) / (p.cans * 0.2)) / 100)} / l</span>
               </label>
             ))}
           </fieldset>
@@ -78,12 +82,12 @@ export default function Shop() {
               }}
               className="btn flex-1 bg-ink py-4 text-base text-mist hover:bg-teal"
             >
-              In den Warenkorb · {euro(trayPrice(product.cans) * qty)}
+              In den Warenkorb · {euro(trayPrice(product) * qty)}
             </button>
           </div>
 
           <p className="mt-5 text-sm text-ink/55">
-            Inkl. MwSt., zzgl. {euro(DEPOSIT_PER_CAN)} Pfand je Dose und Versand. Grundpreis {euro(PRICE_PER_CAN * 5)} / l.
+            {euro(PRICE_PER_CAN)} je Dose, im 24er Tray 10 % günstiger. Preise inkl. MwSt., zzgl. Versand.
           </p>
           <ul className="mt-8 grid grid-cols-2 gap-3 border-t border-line pt-6 text-sm sm:grid-cols-3">
             {["Vegan & glutenfrei", "Analysiert von SGS Fresenius", "Auch in der Apotheke"].map((t) => (

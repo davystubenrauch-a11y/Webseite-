@@ -2,18 +2,21 @@
 
 import { createContext, useContext, useEffect, useMemo, useState } from "react";
 
-/** Price per can and the deposit on single-use cans in Germany (shown separately). */
+/** Price per can; the 24 tray is 10 % off. No deposit is charged. */
 export const PRICE_PER_CAN = 2.95;
-export const DEPOSIT_PER_CAN = 0.25;
 
 export const products = [
-  { id: "tray-12", name: "12er Tray", cans: 12, note: "Zum Kennenlernen" },
-  { id: "tray-24", name: "24er Tray", cans: 24, note: "Für den Vorrat" },
+  { id: "tray-12", name: "12er Tray", cans: 12, discount: 0, note: "Zum Kennenlernen" },
+  { id: "tray-24", name: "24er Tray", cans: 24, discount: 0.1, note: "Für den Vorrat" },
 ] as const;
+export type Product = (typeof products)[number];
 export type ProductId = (typeof products)[number]["id"];
 
 export const euro = (v: number) => v.toLocaleString("de-DE", { style: "currency", currency: "EUR" });
-export const trayPrice = (cans: number) => Math.round(cans * PRICE_PER_CAN * 100) / 100;
+const cents = (v: number) => Math.round(v * 100) / 100;
+/** Price of one tray before and after its discount. */
+export const listPrice = (p: Product) => cents(p.cans * PRICE_PER_CAN);
+export const trayPrice = (p: Product) => cents(p.cans * PRICE_PER_CAN * (1 - p.discount));
 
 type Cart = {
   items: Partial<Record<ProductId, number>>;
@@ -56,7 +59,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
       open,
       setOpen,
       cans,
-      subtotal: Math.round(cans * PRICE_PER_CAN * 100) / 100,
+      subtotal: cents(products.reduce((sum, p) => sum + (items[p.id] ?? 0) * trayPrice(p), 0)),
       add: (id, qty) => setItems((it) => ({ ...it, [id]: Math.min(20, (it[id] ?? 0) + qty) })),
       set: (id, qty) => setItems((it) => ({ ...it, [id]: Math.max(0, Math.min(20, qty)) })),
     };

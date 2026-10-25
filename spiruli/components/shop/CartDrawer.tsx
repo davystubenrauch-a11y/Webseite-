@@ -1,13 +1,12 @@
 "use client";
 
 import { useEffect } from "react";
-import { DEPOSIT_PER_CAN, euro, products, trayPrice, useCart } from "@/lib/cart";
+import { euro, products, trayPrice, useCart } from "@/lib/cart";
 import { site } from "@/lib/site";
 
 /** Slide-in cart. Until a payment provider is connected, the order is sent as an e-mail. */
 export default function CartDrawer() {
   const { items, set, open, setOpen, cans, subtotal } = useCart();
-  const deposit = Math.round(cans * DEPOSIT_PER_CAN * 100) / 100;
   const lines = products.filter((p) => (items[p.id] ?? 0) > 0);
 
   useEffect(() => {
@@ -20,9 +19,9 @@ export default function CartDrawer() {
     "Hallo SPIRULI-Team,",
     "",
     "ich möchte bestellen:",
-    ...lines.map((p) => `- ${items[p.id]} × ${p.name} (${p.cans} Dosen) = ${euro(trayPrice(p.cans) * (items[p.id] ?? 0))}`),
+    ...lines.map((p) => `- ${items[p.id]} × ${p.name} (${p.cans} Dosen) = ${euro(trayPrice(p) * (items[p.id] ?? 0))}`),
     "",
-    `Waren: ${euro(subtotal)} · Pfand: ${euro(deposit)} · zzgl. Versand`,
+    `Summe: ${euro(subtotal)} · zzgl. Versand`,
     "",
     "Name:",
     "Lieferadresse:",
@@ -62,7 +61,9 @@ export default function CartDrawer() {
                   <img src="/can/spiruli.webp" alt="" className="h-20" />
                   <div className="flex-1">
                     <p className="font-semibold">SPIRULI · {p.name}</p>
-                    <p className="text-sm text-ink/60">{p.cans} Dosen à 200 ml</p>
+                    <p className="text-sm text-ink/60">
+                      {p.cans} Dosen à 200 ml{p.discount > 0 ? ` · −${p.discount * 100} %` : ""}
+                    </p>
                     <div className="mt-3 flex items-center justify-between">
                       <div className="flex items-center rounded-full border border-line bg-white text-sm">
                         <button type="button" aria-label="Weniger" onClick={() => set(p.id, (items[p.id] ?? 0) - 1)} className="h-9 w-9">
@@ -73,7 +74,7 @@ export default function CartDrawer() {
                           +
                         </button>
                       </div>
-                      <p className="font-semibold tabular-nums">{euro(trayPrice(p.cans) * (items[p.id] ?? 0))}</p>
+                      <p className="font-semibold tabular-nums">{euro(trayPrice(p) * (items[p.id] ?? 0))}</p>
                     </div>
                   </div>
                 </li>
@@ -90,16 +91,12 @@ export default function CartDrawer() {
                 <dd className="tabular-nums">{euro(subtotal)}</dd>
               </div>
               <div className="flex justify-between text-ink/60">
-                <dt>Pfand ({euro(DEPOSIT_PER_CAN)} je Dose)</dt>
-                <dd className="tabular-nums">{euro(deposit)}</dd>
-              </div>
-              <div className="flex justify-between text-ink/60">
                 <dt>Versand</dt>
                 <dd>wird mitgeteilt</dd>
               </div>
               <div className="flex justify-between border-t border-line pt-3 text-base font-semibold">
                 <dt>Summe</dt>
-                <dd className="tabular-nums">{euro(subtotal + deposit)}</dd>
+                <dd className="tabular-nums">{euro(subtotal)}</dd>
               </div>
             </dl>
             <a
