@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 import Split from "@/components/ui/Split";
 
 const steps = [
@@ -30,17 +31,15 @@ export default function Prozess() {
   useEffect(() => {
     const ol = list.current!;
     const items = Array.from(ol.querySelectorAll<HTMLLIElement>("li"));
-    let raf = 0;
     const tick = () => {
       const r = ol.getBoundingClientRect();
       const mark = innerHeight * 0.6;
       const p = Math.min(1, Math.max(0, (mark - r.top) / r.height));
       fill.current!.style.transform = `scaleY(${p})`;
       items.forEach((li) => li.classList.toggle("is-on", li.getBoundingClientRect().top < mark));
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(ol, tick);
+    return stop;
   }, []);
 
   return (

@@ -16,8 +16,16 @@ export default function Reveal() {
       },
       { rootMargin: "0px 0px -12% 0px" },
     );
-    document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
-    return () => io.disconnect();
+    // Start once the preloader has lifted, so the hero lines play in view.
+    const start = () => document.querySelectorAll("[data-reveal]").forEach((el) => io.observe(el));
+    const html = document.documentElement;
+    const mo = new MutationObserver(() => html.classList.contains("is-ready") && (mo.disconnect(), start()));
+    if (html.classList.contains("is-ready")) start();
+    else mo.observe(html, { attributes: true, attributeFilter: ["class"] });
+    return () => {
+      mo.disconnect();
+      io.disconnect();
+    };
   }, []);
   return null;
 }

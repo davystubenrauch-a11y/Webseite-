@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 import Badge from "@/components/ui/Badge";
 import CountUp from "@/components/ui/CountUp";
 
@@ -19,7 +20,6 @@ export default function Analytik() {
 
   useEffect(() => {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-    let raf = 0;
     let x = 0;
     let last = window.scrollY;
     let v = 0;
@@ -34,10 +34,9 @@ export default function Analytik() {
         const off = (x * (1 + i * 0.25)) % half;
         b.style.transform = `translate3d(${i % 2 ? off - half : -off}px, 0, 0)`;
       });
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(bands.current[0]!.parentElement!.parentElement!, tick);
+    return stop;
   }, []);
 
   return (

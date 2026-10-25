@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 
 const text =
   "SPIRULI ist kein Energy-Drink und kein grüner Smoothie. Es ist das vegane, natürliche Mehrwertgetränk auf Holunder-Zitrus-Algen-Basis – mit Vitaminen der B-Gruppe und Aminosäuren aus rein pflanzlicher Herkunft.";
@@ -18,7 +19,6 @@ export default function Manifest() {
       spans.forEach((s) => (s.style.opacity = "1"));
       return;
     }
-    let raf = 0;
     const tick = () => {
       const r = el.getBoundingClientRect();
       if (r.bottom > 0 && r.top < innerHeight) {
@@ -26,10 +26,9 @@ export default function Manifest() {
         const lit = p * (spans.length + 4);
         spans.forEach((s, i) => (s.style.opacity = String(0.14 + 0.86 * Math.min(1, Math.max(0, lit - i)))));
       }
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(el, tick);
+    return stop;
   }, []);
 
   return (

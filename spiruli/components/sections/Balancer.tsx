@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 import CountUp from "@/components/ui/CountUp";
 
 const stats = [
@@ -29,7 +30,6 @@ export default function Balancer() {
     const el = section.current!;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let p = still ? 1 : 0;
-    let raf = 0;
     const tick = () => {
       const r = el.getBoundingClientRect();
       const goal = still ? 1 : clamp(-r.top / (r.height - innerHeight));
@@ -47,14 +47,13 @@ export default function Balancer() {
       const c = clamp((p - 0.62) / 0.15);
       copy.current!.style.opacity = String(c);
       copy.current!.style.transform = `translateY(${(1 - c) * 40}px)`;
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(el, tick);
+    return stop;
   }, []);
 
   return (
-    <section ref={section} className="relative z-10 h-[300vh] bg-algae-deep text-mist">
+    <section ref={section} data-cursor="Scrollen" className="relative z-10 h-[300vh] bg-algae-deep text-mist">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         <img
           ref={photo}

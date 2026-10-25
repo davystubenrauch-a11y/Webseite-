@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 
 /**
  * Cut-out ingredients around the can. They fly in on load, drift with the
@@ -25,7 +26,6 @@ export default function HeroFloaters() {
     let my = 0;
     let tx = 0;
     let ty = 0;
-    let raf = 0;
     const move = (e: PointerEvent) => {
       tx = e.clientX / innerWidth - 0.5;
       ty = e.clientY / innerHeight - 0.5;
@@ -44,11 +44,10 @@ export default function HeroFloaters() {
         const y = my * 30 * it.depth - s * (0.35 + it.depth * 0.5);
         el.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${it.rot + s * 0.04 * it.depth * dirX}deg)`;
       });
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
+    const stop = onFrame(document.getElementById("top"), tick);
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
       window.removeEventListener("pointermove", move);
     };
   }, []);

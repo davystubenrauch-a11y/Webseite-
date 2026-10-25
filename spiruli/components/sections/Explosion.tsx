@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 
 /**
  * "Was in der Dose steckt": the section pins, and as you scroll the
@@ -30,7 +31,6 @@ export default function Explosion() {
     const el = section.current!;
     const still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     let p = still ? 1 : 0;
-    let raf = 0;
     const tick = () => {
       const r = el.getBoundingClientRect();
       const target = still ? 1 : clamp(-r.top / (r.height - innerHeight));
@@ -54,14 +54,13 @@ export default function Explosion() {
         if (lt > 0.5) landed++;
       });
       if (counter.current) counter.current.textContent = String(landed);
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(el, tick);
+    return stop;
   }, []);
 
   return (
-    <section ref={section} className="relative z-10 h-[320vh] bg-algae-deep text-mist">
+    <section ref={section} data-cursor="Scrollen" className="relative z-10 h-[320vh] bg-algae-deep text-mist">
       <div className="sticky top-0 h-[100svh] overflow-hidden">
         {/* Rings behind the can. */}
         <svg aria-hidden viewBox="0 0 600 600" className="absolute left-1/2 top-1/2 w-[110vmin] -translate-x-1/2 -translate-y-1/2 text-fresh/[0.08]">

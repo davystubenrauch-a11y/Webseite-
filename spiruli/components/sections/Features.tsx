@@ -65,9 +65,11 @@ export default function Features() {
             {f.title}
           </p>
           <div className={`wrap relative grid items-center gap-10 lg:grid-cols-2 lg:gap-20 ${i % 2 ? "lg:[&>*:first-child]:order-2" : ""}`}>
+            <div data-tilt data-cursor={f.title} className="transition-transform duration-500 ease-out">
             <div data-reveal className="relative overflow-hidden rounded-[2rem] shadow-[0_40px_80px_-40px_rgba(0,0,0,0.55)]">
               <img data-zoom src={f.img} alt={f.alt} loading="lazy" className="aspect-[3/4] max-h-[76svh] w-full object-cover" />
               <span className="label absolute left-5 top-5 rounded-full bg-black/35 px-3 py-1.5 text-white backdrop-blur-sm">Zutat {f.no}</span>
+            </div>
             </div>
             <div>
               <div data-reveal className="flex items-center gap-4">

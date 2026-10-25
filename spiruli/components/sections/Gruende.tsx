@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { onFrame } from "@/lib/ticker";
 import CountUp from "@/components/ui/CountUp";
 import PznBarcode from "@/components/ui/PznBarcode";
 import { site } from "@/lib/site";
@@ -80,21 +81,19 @@ export default function Gruende() {
     const el = section.current!;
     const tr = track.current!;
     const mq = window.matchMedia("(min-width: 1024px)");
-    let raf = 0;
     const tick = () => {
       if (mq.matches) {
         const r = el.getBoundingClientRect();
         const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
         tr.style.transform = `translate3d(${-p * (tr.scrollWidth - innerWidth)}px, 0, 0)`;
       } else tr.style.transform = "";
-      raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+    const stop = onFrame(el, tick);
+    return stop;
   }, []);
 
   return (
-    <section ref={section} className="relative z-10 bg-mist lg:h-[400vh]">
+    <section ref={section} data-cursor="Scrollen" className="relative z-10 bg-mist lg:h-[400vh]">
       <div className="lg:sticky lg:top-0 lg:flex lg:h-[100svh] lg:flex-col lg:justify-center lg:overflow-hidden">
         <div className="wrap pb-10 pt-24 lg:pt-20">
           <p className="label text-teal">Warum SPIRULI</p>

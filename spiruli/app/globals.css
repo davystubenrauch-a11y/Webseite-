@@ -41,7 +41,7 @@ body {
   }
 
   .btn {
-    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-colors duration-300;
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-[color,background-color,border-color,transform] duration-300 ease-out;
   }
 }
 
@@ -89,7 +89,25 @@ html.lenis body {
   scroll-behavior: auto !important;
 }
 
-/* Hero ingredients fly in one after another. */
+/* Custom pointer (Cursor.tsx). */
+html.has-cursor,
+html.has-cursor a,
+html.has-cursor button {
+  cursor: none;
+}
+.cursor {
+  box-shadow: 0 0 0 1px rgba(13, 38, 33, 0.35);
+  transition: background-color 0.3s;
+}
+.cursor.is-link {
+  background: transparent;
+  box-shadow: 0 0 0 1.5px #b5d66a;
+}
+
+/* Hero ingredients fly in one after another, once the preloader lifts. */
+html:not(.is-ready) .floater {
+  animation-play-state: paused;
+}
 .floater {
   animation: float-in 1.4s cubic-bezier(0.16, 1, 0.3, 1) both;
   animation-delay: calc(0.5s + var(--i) * 0.09s);

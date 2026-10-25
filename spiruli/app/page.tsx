@@ -1,6 +1,8 @@
 import Nav from "@/components/ui/Nav";
 import Reveal from "@/components/ui/Reveal";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import Preloader from "@/components/ui/Preloader";
+import Cursor from "@/components/ui/Cursor";
 import FloatingCan from "@/components/can/FloatingCan";
 import Hero from "@/components/sections/Hero";
 import Intro from "@/components/sections/Intro";
@@ -23,6 +25,8 @@ export default function Home() {
       <Nav />
       <Reveal />
       <SmoothScroll />
+      <Preloader />
+      <Cursor />
       <FloatingCan />
       <main>
         <Hero />
