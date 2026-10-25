@@ -14,9 +14,9 @@ export type FrontArt = { color: CanvasImageSource; pbr: CanvasImageSource; width
 /** Front centre and the lacquer gradient sampled from the product photo. */
 const FX = LABEL_W / 2;
 const LACQUER: [number, string][] = [
-  [0, "#1b8d93"],
-  [0.25, "#147b81"],
-  [0.45, "#0d6168"],
+  [0, "#157a80"],
+  [0.25, "#11717a"],
+  [0.45, "#0c5d64"],
   [0.62, "#08444a"],
   [0.8, "#052e32"],
   [1, "#032124"],
@@ -189,7 +189,7 @@ function wordmark(ctx: CanvasRenderingContext2D, mode: Mode) {
       : [
           [lightGold(ctx, bottom - top), outer],
           ["#174f57", outer - 20],
-          ["#3fae3a", 8],
+          ["#3f9a3e", 5],
         ];
   for (const [style, lw] of passes) {
     let x = outer / 2;
@@ -295,7 +295,7 @@ function fitText(ctx: CanvasRenderingContext2D, text: string, x: number, y: numb
 
 function badge(ctx: CanvasRenderingContext2D, mode: Mode, fonts: LabelFonts, x: number, kind: "V" | "B11" | "B12") {
   const y = BAND_Y + BAND_H / 2;
-  const r = 58;
+  const r = 64;
   const dark = mode === "pbr" ? ink(mode, "petrol") : "#1d2b25";
   if (mode === "color") {
     const g = ctx.createRadialGradient(x - r * 0.3, y - r * 0.4, r * 0.1, x, y, r);
@@ -387,11 +387,11 @@ export function paintLabel(ctx: CanvasRenderingContext2D, mode: Mode, fonts: Lab
   // Gold band, wrapping all the way round.
   if (mode === "color") {
     const g = ctx.createLinearGradient(0, BAND_Y, 0, BAND_Y + BAND_H);
-    g.addColorStop(0, "#94742f");
-    g.addColorStop(0.12, "#d9ad4f");
-    g.addColorStop(0.45, "#f5d47f");
-    g.addColorStop(0.6, "#d8a948");
-    g.addColorStop(1, "#86682a");
+    g.addColorStop(0, "#9c8048");
+    g.addColorStop(0.12, "#c9a660");
+    g.addColorStop(0.45, "#dcbf80");
+    g.addColorStop(0.6, "#c9a35a");
+    g.addColorStop(1, "#8f7542");
     ctx.fillStyle = g;
   } else {
     ctx.fillStyle = ink(mode, "gold");

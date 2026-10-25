@@ -230,11 +230,20 @@ def scene(a):
     bpy.context.collection.objects.link(can)
     body = lathe("Body", [(R, 0), (R, BODY_H)], -TOP, uv_v=[0.0, 1.0])
     body.data.materials.append(lab)
-    top = lathe("Top", SHOULDER, TOP)
+    # The print runs over the shoulder and the lower curve, as on the real
+    # can; only the rolled rim, lid and base ring stay bare aluminium. Those
+    # printed parts sample the label's top / bottom row (plain lacquer).
+    neck = 6  # SHOULDER index where the rolled rim begins
+    foot = 8  # BOTTOM index where the print starts
+    shoulder = lathe("Shoulder", SHOULDER[: neck + 1], TOP, uv_v=[0.997] * (neck + 1))
+    shoulder.data.materials.append(lab)
+    top = lathe("Top", SHOULDER[neck:], TOP)
     top.data.materials.append(alu)
-    bot = lathe("Bottom", BOTTOM, -TOP)
+    heel = lathe("Heel", BOTTOM[foot:], -TOP, uv_v=[0.003] * (len(BOTTOM) - foot))
+    heel.data.materials.append(lab)
+    bot = lathe("Bottom", BOTTOM[: foot + 1], -TOP)
     bot.data.materials.append(alu)
-    parts = [body, top, bot] + tab(alu)
+    parts = [body, shoulder, top, heel, bot] + tab(alu)
     for p in parts:
         p.parent = can
 
