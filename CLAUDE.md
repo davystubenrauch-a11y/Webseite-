@@ -10,11 +10,13 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
 - **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
-## Design-Regeln (Version 7)
-- Farben: Waldgrün `#133024`, Creme `#f3eee4`, Papier `#faf7f1`, Sand `#e4d5b7`, Salbei `#b8c9b1`. Google-Farben nur am NFC-Produkt/Demo.
-- Schrift: **Fraunces** (Serif, kursive Akzentwörter) für Überschriften + **DM Sans** für Text.
-- Aufbau: Hero (links Versprechen + Buttons + Liste 01–03 mit Preis; rechts Live-Demo: Handy mit Google-Eintrag „Trattoria am Isartor“, NFC-Platte, Gast tippt, Bewertung zählt 4,1 → 4,7, neue Rezensionen erscheinen; „Beispielhafte Darstellung“) → Laufband Branchen → „Drei Leistungen. Klar erklärt.“ → drei Kapitel, die sich beim Scrollen übereinanderschieben (01 NFC Papier mit 3D-Schichten, 02 Websites grün mit Laptop/Handy, 03 Roomtours Sand mit „Ihre Fotos“ → Video) → Ablauf (grün) → Preise (Reiter) → Über uns (grün) → FAQ → Kontakt → Footer (grün).
-- Abgelehnt: alle früheren Varianten (Anton, Bricolage, Manrope, Plus Jakarta/Blau, Nachtblau/Elfenbein, Karten mit Rand, Vollbild-Bühnen, Scroll-Farbwechsel).
+## Design-Regeln (Version 8, vom Kunden per Auswahl festgelegt)
+- Farben: **Schwarz `#07080b`, Weiß, Dunkelblau `#0d1b3d`**, heller Blau-Akzent `#8fa8ff` nur für zweite Überschriftenzeile/Häkchen. Google-Farben nur am NFC-Produkt.
+- **Keine Kästen, keine abgerundeten Module, keine Ränder um Bereiche** („sieht nach KI aus“). Randlose Flächen, Haarlinien, eckige Buttons.
+- Schrift: **Space Grotesk** (Überschriften) + Inter (Text).
+- Aufbau: Hero (schwarz, riesige Typo „Bewertungen. Websites. Roomtours.“, Text, Buttons, Leiste 01–03) → **Scroll-Story im Vollbild** (links Text der Leistung, rechts blaue Bühne: 01 iPhone tippt auf NFC-Platte (3D), 02 Laptop/Handy, 03 „Ihre Fotos →“ + Roomtour-Video; Wechsel beim Scrollen, Reiter 01/02/03) → Ablauf → Preise (Spalten, Empfehlung blau) → Über uns (blau) → FAQ → Kontakt (schwarz) → Footer (blau).
+- Kunde schickt noch eigene Fotos (Platten, Restaurant, Gründer, Logo) – einbauen, sobald da.
+- Abgelehnt: Grün/Creme, Fraunces, Plus Jakarta/Königsblau, Manrope, Bricolage, Anton, Nachtblau/Elfenbein, Limette, Orange, Himmelblau, Karten mit Rand, Vollbild-Bühnen nebeneinander, Scroll-Farbwechsel.
 
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
 - Gold oder dunkles Navy-Gold-Schema
