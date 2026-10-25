@@ -1,44 +1,33 @@
-/** Full-bleed studio video of the can (scripts/render_scenes.py --mode video), looping. */
+import CanSlot from "@/components/can/CanSlot";
+import { site } from "@/lib/site";
+
+const facts = ["Vegan", "Vitamin B11 · 12 mg", "Vitamin B12 · 2 µg", "SGS Fresenius geprüft", `PZN ${site.pzn}`];
+
+/** Big two-line statement with the can standing in front of it. */
 export default function Hero() {
   return (
-    <section id="top" className="relative h-[100svh] min-h-[560px] overflow-hidden bg-sand">
-      <video
-        className="absolute inset-0 h-full w-full object-cover"
-        poster="/media/poster.jpg"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-label="Die SPIRULI Dose dreht sich langsam im Studiolicht"
-      >
-        <source src="/media/can-loop.webm" type="video/webm" />
-        <source src="/media/can-loop.mp4" type="video/mp4" />
-      </video>
-      {/* The video's backdrop is exactly bg-sand; fade the can's foot for the headline. */}
-      <div aria-hidden className="absolute inset-x-0 bottom-0 h-1/3 bg-gradient-to-b from-sand/0 to-sand" />
-      <img aria-hidden src="/props/berries-a.webp" alt="" className="animate-float pointer-events-none absolute left-[8%] top-[18%] hidden w-[11vw] max-w-44 -rotate-12 drop-shadow-[0_30px_25px_rgba(19,43,46,0.22)] md:block" />
-      <img aria-hidden src="/props/lemon-a.webp" alt="" className="animate-float-slow pointer-events-none absolute right-[9%] top-[30%] hidden w-[9vw] max-w-36 rotate-12 drop-shadow-[0_30px_25px_rgba(19,43,46,0.22)] md:block" />
+    <section id="top" className="relative flex min-h-[100svh] flex-col overflow-hidden pt-16 sm:pt-20">
+      <div className="relative flex flex-1 items-center justify-center">
+        <h1 className="headline pointer-events-none select-none text-center text-[20.5vw] sm:text-[19vw] lg:text-[15.5vw]">
+          <span data-reveal className="block">Grüne</span>
+          <span data-reveal className="block text-teal" style={{ ["--d" as string]: "0.1s" }}>
+            Balance
+          </span>
+        </h1>
+        <CanSlot name="hero" className="absolute left-1/2 top-1/2 h-[46svh] max-h-[720px] sm:h-[64svh] -translate-x-1/2 -translate-y-1/2" />
+      </div>
 
-      <div className="wrap relative flex h-full flex-col justify-end pb-10 sm:pb-14">
-        <div className="grid items-end gap-8 md:grid-cols-[1.3fr_1fr]">
-          <h1 className="display text-[19vw] text-ink md:text-[9.5vw]">
-            Der <em className="text-teal">Balancer.</em>
-          </h1>
-          <div className="max-w-sm pb-3 md:justify-self-end">
-            <p className="text-lg leading-relaxed text-ink/75">
-              Spritzig, leicht und vegan – mit Holunder, Zitrone und der Mikroalge Spirulina. Made in Germany.
-            </p>
-            <div className="mt-6 flex gap-3">
-              <a href="#kaufen" className="btn bg-ink text-cream hover:bg-teal">
-                Jetzt probieren
-              </a>
-              <a href="#geschmack" className="btn border border-ink/25 text-ink hover:border-ink">
-                Entdecken
-              </a>
-            </div>
-          </div>
-        </div>
+      <div className="wrap pb-6">
+        <p data-reveal className="mx-auto max-w-md text-center text-ink/70">
+          Spirulina, Holunder und Zitrone – spritzig, vegan und leicht. <span className="text-ink">Der Balancer.</span> Made in Germany.
+        </p>
+        <ul className="mt-8 grid grid-cols-2 border-l border-t border-line text-sm sm:grid-cols-5">
+          {facts.map((f, i) => (
+            <li key={f} className={`border-b border-r border-line px-4 py-4 text-center font-medium ${i === 4 ? "col-span-2 sm:col-span-1" : ""}`}>
+              {f}
+            </li>
+          ))}
+        </ul>
       </div>
     </section>
   );

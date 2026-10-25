@@ -39,6 +39,7 @@ def args():
     p.add_argument("--frames", type=int, default=192)
     p.add_argument("--first", type=int, default=0)
     p.add_argument("--last", type=int, default=-1)
+    p.add_argument("--lens", type=float, default=80)
     p.add_argument("--bg", default="214043", help="sRGB hex the set should come out as on the page")
     a = p.parse_args(sys.argv[sys.argv.index("--") + 1 :] if "--" in sys.argv else [])
     a.mode_can = a.mode
@@ -184,6 +185,24 @@ def video(a, sc, can, cam):
         print("frame", i, flush=True)
 
 
+def spin(a, sc, can, cam):
+    """Transparent portrait turntable for the scroll-following can on the page:
+    half a turn (the design repeats on the back), no set, no bob."""
+    sc.render.film_transparent = True
+    ground = next(o for o in bpy.data.objects if getattr(o, "is_shadow_catcher", False))
+    ground.hide_render = True
+    cam.data.lens = a.lens
+    cam.location = (0, -10.5, 0.9)
+    aim(cam, (0, 0, 0.0))
+    n = a.frames
+    last = n - 1 if a.last < 0 else a.last
+    for i in range(a.first, last + 1):
+        can.rotation_euler = (0, 0, -math.pi * i / n)
+        sc.render.filepath = f"{a.out}/spin-{i:04d}.png"
+        bpy.ops.render.render(write_still=True)
+        print("frame", i, flush=True)
+
+
 def macro(a, sc, can, cam):
     studio_set(a.bg)
     sc.render.film_transparent = a.bg == "none"
@@ -294,7 +313,7 @@ def main():
     a = args()
     sc, can, cam = rc.scene(a)
     sc.view_settings.exposure = -0.45
-    {"video": video, "macro": macro, "flatlay": flatlay, "packshot": packshot}[a.mode](a, sc, can, cam)
+    {"video": video, "spin": spin, "macro": macro, "flatlay": flatlay, "packshot": packshot}[a.mode](a, sc, can, cam)
 
 
 main()

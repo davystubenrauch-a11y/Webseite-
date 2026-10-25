@@ -1,11 +1,10 @@
 import Nav from "@/components/ui/Nav";
 import Reveal from "@/components/ui/Reveal";
+import FloatingCan from "@/components/can/FloatingCan";
 import Hero from "@/components/sections/Hero";
-import Statement from "@/components/sections/Statement";
-import Details from "@/components/sections/Details";
+import Intro from "@/components/sections/Intro";
+import Welcome from "@/components/sections/Welcome";
 import Zutaten from "@/components/sections/Zutaten";
-import Marquee from "@/components/sections/Marquee";
-import Packshot from "@/components/sections/Packshot";
 import Naehrwerte from "@/components/sections/Naehrwerte";
 import Faq from "@/components/sections/Faq";
 import Kaufen from "@/components/sections/Kaufen";
@@ -16,13 +15,12 @@ export default function Home() {
     <>
       <Nav />
       <Reveal />
+      <FloatingCan />
       <main>
         <Hero />
-        <Statement />
-        <Details />
+        <Intro />
+        <Welcome />
         <Zutaten />
-        <Marquee />
-        <Packshot />
         <Naehrwerte />
         <Faq />
         <Kaufen />

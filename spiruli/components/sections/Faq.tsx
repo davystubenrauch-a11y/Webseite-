@@ -14,14 +14,14 @@ const faqs = [
 export default function Faq() {
   const [open, setOpen] = useState(0);
   return (
-    <section id="fragen" className="bg-sage py-28 text-ink sm:py-36">
+    <section id="fragen" className="py-24 sm:py-32">
       <div className="wrap grid gap-12 lg:grid-cols-[1fr_1.6fr]">
-        <h2 data-reveal className="display text-6xl sm:text-7xl">
-          Kurz <em className="text-teal">gefragt.</em>
+        <h2 data-reveal className="headline text-6xl sm:text-7xl">
+          Kurz <span className="text-teal">gefragt.</span>
         </h2>
-        <ul className="border-t border-ink/15">
+        <ul className="border-t border-line">
           {faqs.map((f, i) => (
-            <li key={f.q} className="border-b border-ink/15">
+            <li key={f.q} className="border-b border-line">
               <button type="button" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i} className="flex w-full items-center justify-between gap-6 py-6 text-left">
                 <span className="text-xl font-medium">{f.q}</span>
                 <span className={`text-2xl text-ink/50 transition-transform duration-300 ${open === i ? "rotate-45" : ""}`}>+</span>

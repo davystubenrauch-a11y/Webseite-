@@ -1,38 +1,25 @@
 import type { Config } from "tailwindcss";
 
-/** Light warm sand (the can video's backdrop) with the can's petrol, teal and gold;
- * pale ingredient tints for the cards. */
+/** Light, algae-tinted page; deep algae green and the can's teal for contrast. */
 const config: Config = {
   content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        set: "#214043",
-        sand: "#ece6da",
-        paper: "#f7f4ee",
+        mist: "#eef0ea",
+        paper: "#f8f9f5",
+        line: "#d5dacd",
+        ink: "#0d2621",
+        algae: { DEFAULT: "#12473c", deep: "#0a2a24" },
         teal: "#11717a",
-        sage: "#dde4d0",
-        berry: "#e6dbe4",
-        citrus: "#f2ebc9",
-        night: { DEFAULT: "#132b2e", deep: "#0c1f21" },
-        cream: { DEFAULT: "#f2ede2", warm: "#e8e0cf", line: "#d6cab2" },
-        ink: "#132b2e",
-        gold: { DEFAULT: "#cfae68", soft: "#e6d3a3", deep: "#97773a" },
-        leaf: "#9bc55a",
+        fresh: "#b5d66a",
+        berry: "#4a2b44",
+        citrus: "#f1e7a6",
+        gold: "#c9a35a",
       },
       fontFamily: {
-        serif: ["var(--font-serif)", "Georgia", "serif"],
-        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-display)", "system-ui", "sans-serif"],
-      },
-      keyframes: {
-        marquee: { to: { transform: "translateX(-50%)" } },
-        float: { "50%": { translate: "0 -14px" } },
-      },
-      animation: {
-        marquee: "marquee 40s linear infinite",
-        float: "float 6s ease-in-out infinite",
-        "float-slow": "float 8s ease-in-out -2s infinite",
+        sans: ["var(--font-sans)", "system-ui", "sans-serif"],
       },
     },
   },
