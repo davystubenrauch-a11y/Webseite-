@@ -666,6 +666,90 @@ body { background: #fff; }
 .plain { margin-top: 26px; list-style: none; font-size: 17px; line-height: 1.5; }
 .plain li { position: relative; padding: 7px 0 7px 24px; }
 .plain li::before { content: "–"; position: absolute; left: 0; top: 7px; color: var(--navy-ink); font-weight: 600; }
+
+/* ==========================================================================
+   Apple-like finish: system font, soft rounded shapes, pill buttons,
+   #f5f5f7 surfaces and #1d1d1f text.
+   ========================================================================== */
+:root {
+  --display: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Inter", "Helvetica Neue", sans-serif;
+  --body: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Helvetica Neue", sans-serif;
+  --ink: #1d1d1f; --soft: #f5f5f7; --muted: #6e6e73;
+}
+body { color: #1d1d1f; letter-spacing: -.01em; }
+.display { font-weight: 600; letter-spacing: -.03em; line-height: 1.05; }
+.label { font-family: var(--body); font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.label::before { display: none; }
+.lead { color: #6e6e73; }
+.svc__no { font-family: var(--body); font-size: 15px; letter-spacing: 0; }
+
+/* Pill buttons */
+.btn { border-radius: 980px; font-family: var(--body); font-weight: 500; letter-spacing: 0; font-size: 16px; height: 50px; padding: 0 24px; }
+.btn--line { border: 1px solid rgba(0,0,0,.18); }
+.nav__links .btn { border-radius: 980px; height: 36px; padding: 0 16px; font-size: 14px; }
+.nav__links { font-family: var(--body); font-size: 14px; font-weight: 400; }
+.nav { background: rgba(255,255,255,.72); -webkit-backdrop-filter: saturate(180%) blur(20px); backdrop-filter: saturate(180%) blur(20px); }
+.nav__bar { height: 56px; }
+.logo { font-family: var(--body); font-weight: 600; font-size: 19px; letter-spacing: -.02em; }
+.link { font-family: var(--body); font-weight: 500; border-bottom: 0; color: var(--navy-ink); }
+.link::after { content: " ›"; }
+
+/* Soft rounded media */
+.hc__media, .player, .hc--tour .hc__media { border-radius: 22px !important; overflow: hidden; }
+.hc__tag { border-radius: 980px; font-family: var(--body); font-weight: 500; letter-spacing: 0; padding: 8px 14px; }
+.hc__phone { border-radius: 34px; }
+.samples button, .chapters button, .swatches button { border-radius: 980px; font-family: var(--body); font-weight: 500; }
+.toast { border-radius: 18px; }
+.fly img { border-radius: 10px; }
+.devices__stage .laptop__lid { border-radius: 18px 18px 6px 6px; }
+
+/* Content: tiles in #f5f5f7 like Apple's product pages */
+.svc__visual { border-radius: 0; }
+#nfc .svc__visual, #roomtour .svc__visual, #web .svc__visual { margin: 24px; border-radius: 30px; min-height: 600px; }
+#nfc, #roomtour { background: #fff; }
+#nfc .svc__visual, #roomtour .svc__visual { background: var(--soft) !important; }
+#web .svc__visual { background: var(--soft) !important; }
+.stage-num { display: none; }
+.plain li::before { content: ""; top: 17px; width: 6px; height: 6px; border-radius: 50%; background: var(--navy-ink); }
+
+/* Prices as rounded tiles */
+.price-tabs { border: 0; gap: 6px; padding: 4px; border-radius: 980px; background: var(--soft); display: inline-flex; margin-top: 40px; }
+.price-tabs button { padding: 10px 20px; border-radius: 980px; font-family: var(--body); font-size: 15px; font-weight: 500; }
+.price-tabs button::after { display: none; }
+.price-tabs button[aria-selected="true"] { background: #fff; color: var(--ink); box-shadow: 0 2px 8px rgba(0,0,0,.08); }
+.menu { margin-top: 30px; gap: 20px; }
+.pack, .pack + .pack { padding: 34px; border: 0; border-radius: 28px; background: #fff; }
+.sec--grey .pack { background: #fff; }
+.pack--best { background: var(--navy-ink); }
+.pack h3, .pack__price { font-family: var(--display); }
+.pack__tag { border-radius: 980px; }
+.pack__btn { border-radius: 980px; }
+
+/* Forms and contact */
+.form-card { border-radius: 28px; }
+.input, .select, .textarea, .pick { border-radius: 12px !important; }
+.pick { border-radius: 16px !important; }
+.ask__direct, .founders, .faq__list, .howto { border-top-color: rgba(0,0,0,.12) !important; }
+.howto b { font-family: var(--display); font-weight: 600; }
+.faq summary { font-family: var(--body); font-weight: 500; font-size: 19px; }
+.callbar { border-radius: 980px; left: 12px; right: 12px; bottom: 12px; padding: 6px; gap: 6px; }
+.callbar .btn { height: 46px; }
+.foot.blue { background: var(--soft); color: var(--ink); --muted: #6e6e73; --line: rgba(0,0,0,.12); }
+.foot.blue .display em, .foot .wordmark span { color: var(--navy-ink); }
+.foot .btn--solid { background: var(--navy-ink); color: #fff; }
+.wordmark { font-family: var(--display); font-weight: 600; letter-spacing: -.05em; }
+
+@media (max-width: 1080px) {
+  #nfc .svc__visual, #roomtour .svc__visual, #web .svc__visual { margin: 12px; border-radius: 24px; min-height: 440px; }
+}
+@media (max-width: 820px) {
+  .callbar { left: 10px; right: 10px; bottom: 10px; }
+  .menu { gap: 14px; }
+  .pack, .pack + .pack { padding: 28px; }
+  .pack--best { margin: 0; }
+}
+.pack.pack--best, .sec--grey .pack.pack--best { background: var(--navy-ink); color: #fff; }
+.wordmark { font-size: clamp(3rem, 11.5vw, 11rem); }
 </style>
 </head>
 <body>
