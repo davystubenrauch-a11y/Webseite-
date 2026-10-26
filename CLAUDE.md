@@ -52,13 +52,16 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 - Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
 
-## Untere Bereiche (Stand 26.10.)
-- Ablauf als Schritt-Leiste: runde Icon-Punkte, Linie füllt sich beim Scrollen in Marineblau.
-- Über uns: Gründer-Karten mit Monogramm-Kreis (Cormorant), Anruf-Button, darunter drei Versprechen (24 h, Festpreis, 1 Ansprechpartner).
-- FAQ: linke Spalte klebt beim Scrollen, mit Kontaktkarte „Ihre Frage ist nicht dabei?“.
-- Kontakt: direkte Wege als weiße Karten mit Icon. Footer-CTA als hellgraue Kachel.
-- iPad-Sicherheit: NFC-Kachel zeigt `nfc-platte.png`, bis WebGL zeichnet; Referenz-Bilder ohne lazy-loading.
+## NFC-Platte & Animation (Stand 26.10., v24)
+- Die Platte ist jetzt eine **Vektorgrafik** (`<symbol id="disc">` oben im `<body>`), nachgebaut nach dem Produktfoto: Google-Farbring, „TAP HERE“, NFC-Symbol, Google-Schriftzug, 5 Sterne, „Review Us On“. Gestochen scharf, Weiß oder Schwarz (`.disc--black`). Das Foto wird nicht mehr verwendet (wirkte dem Kunden nicht hochwertig).
+- NFC-Szene ohne WebGL/Three.js (lief auf dem iPad nicht): CSS-iPhone tippt auf die liegende Platte → Wellen → NFC-Banner → Google-Seite „Bewertung schreiben“, Sterne füllen sich, Text tippt, „Danke!“. Phasen-Klassen `p1`–`p6` am `#nfcStage`, gesteuert per JS-Zeitplan.
+
+## Untere Bereiche (Stand 26.10., v24 – „mehr Wow“)
+- Ablauf: Scroll-Story – links die 4 Schritte groß, rechts ein klebendes Handy mit Chat, der sich zum gelesenen Schritt füllt (Anfrage → Anruf → Angebot-PDF → „Alles verknüpft“).
+- Über uns: großes Statement, Wörter leuchten beim Scrollen nacheinander auf; Gründer-Karten + drei Versprechen.
+- Laufschrift „Mehr Bewertungen ✦ Mehr Kunden ✦ Mehr Buchungen“ (riesig, bewegt sich mit dem Scrollen, kippt leicht je nach Tempo) vor dem Kontakt.
+- Footer: „Bereit für mehr Kunden?“ zentral, ringsum schwebende Elemente (Platten, Bewertungskarte, SPIRULI, Roomtour, Buchung), folgen der Maus; magnetischer Button; Wortmarke gleitet ein.
 
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.
-- Three.js r128 per CDN in den eigenständigen Seiten.
+- `public/studio/index.html` braucht kein Three.js mehr (alles CSS/SVG).

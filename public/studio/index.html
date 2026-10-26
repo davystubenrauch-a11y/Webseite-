@@ -120,7 +120,7 @@ h2.display { font-size: clamp(2.1rem, 3.9vw, 3rem); }
 .hc__phone .screen { display: block; aspect-ratio: 9 / 19; border-radius: 27px; }
 .hc__island { position: absolute; top: 13px; left: 50%; width: 30%; height: 12px; margin-left: -15%; border-radius: 8px; background: #000; z-index: 3; }
 .hc--nfc { right: 6%; bottom: 0; width: 34%; }
-.hc--nfc img { width: 100%; border-radius: 50%; box-shadow: var(--shadow-lg); animation: float 7s ease-in-out infinite alternate; }
+.disc--float { animation: float 7s ease-in-out infinite alternate; }
 @keyframes float { from { transform: translateY(0) rotate(-5deg); } to { transform: translateY(-14px) rotate(4deg); } }
 .hc__tag { position: absolute; right: 14px; bottom: 14px; z-index: 4; display: inline-flex; gap: 6px; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); font-size: 12px; font-weight: 500; white-space: nowrap; box-shadow: var(--shadow-sm); transition: background-color .3s, color .3s; }
 .hc__tag b { font-weight: 600; color: var(--accent); }
@@ -147,7 +147,6 @@ h2.display { font-size: clamp(2.1rem, 3.9vw, 3rem); }
 .svc__visual::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; background: radial-gradient(380px circle at var(--mx, 50%) var(--my, 50%), rgba(255,255,255,.75), transparent 60%); opacity: 0; transition: opacity .5s; }
 .svc__visual:hover::after { opacity: 1; }
 .svc__visual > *:not(canvas) { position: relative; z-index: 2; }
-#nfcStage canvas { position: absolute !important; inset: 0; width: 100% !important; height: 100% !important; z-index: 0; cursor: grab; touch-action: pan-y; }
 .svc h2 { margin-top: 14px; font-size: clamp(2rem, 3.2vw, 2.75rem); }
 .svc .lead { margin-top: 18px; font-size: 17px; }
 .plain { margin-top: 24px; list-style: none; display: grid; gap: 10px; font-size: 16px; color: var(--ink-2); }
@@ -166,10 +165,10 @@ h2.display { font-size: clamp(2.1rem, 3.9vw, 3rem); }
 .stage-cap { position: absolute !important; z-index: 3; left: 24px; bottom: 22px; display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--ink-2); }
 .stage-cap b { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 600; }
 .stage-num { display: none; }
-.toast { position: absolute !important; z-index: 3; right: 20px; top: 20px; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; padding: 12px 16px 12px 12px; border-radius: var(--r-md); background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: 13px; box-shadow: var(--shadow-sm); animation: toast 6.5s var(--ease) infinite; }
+.toast { position: absolute !important; z-index: 4; left: 20px; top: 20px; max-width: 46%; display: grid; grid-template-columns: 34px 1fr; gap: 10px; align-items: center; padding: 12px 16px 12px 12px; border-radius: var(--r-md); background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); font-size: 13px; box-shadow: var(--shadow-sm); opacity: 0; transform: translateY(10px); transition: opacity .6s var(--ease), transform .6s var(--ease); }
+.p6 .toast { opacity: 1; transform: none; }
 .toast i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #1a73e8; color: #fff; font-style: normal; font-weight: 600; }
 .toast b { display: block; color: #fbbc05; letter-spacing: 1px; }
-@keyframes toast { 0%, 32% { opacity: 0; transform: translateY(10px); } 40%, 85% { opacity: 1; transform: none; } 95%, 100% { opacity: 0; transform: translateY(-6px); } }
 #webStage > div { width: 86%; }
 .samples { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; margin-bottom: 22px; }
 .samples span { margin-right: 6px; font-size: 13px; color: var(--muted); }
@@ -196,12 +195,6 @@ h2.display { font-size: clamp(2.1rem, 3.9vw, 3rem); }
 .sec__head { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: end; }
 .sec__head h2 { margin-top: 14px; }
 .sec__head .lead { font-size: 17px; }
-/* process */
-.howto { margin-top: 64px; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
-.howto li { padding-top: 22px; border-top: 1px solid var(--hair); }
-.howto b { font-size: 13px; font-weight: 600; color: var(--accent); }
-.howto h3 { margin-top: 12px; font-size: 19px; font-weight: 600; letter-spacing: -.02em; }
-.howto p { margin-top: 6px; font-size: 15px; color: var(--muted); }
 /* prices */
 .price-tabs { margin-top: 48px; display: inline-flex; gap: 2px; padding: 4px; border-radius: 999px; background: #e8e8ed; }
 .price-tabs button { height: 36px; padding: 0 18px; border-radius: 999px; font-size: 14px; font-weight: 500; color: var(--ink-2); transition: background-color .25s, color .25s, box-shadow .25s; }
@@ -435,21 +428,8 @@ a.devices:hover { transform: translateY(-4px); }
 @media (max-width: 820px) { .logo__svg { height: 26px; } }
 
 /* ---------- Lower sections: more presence ---------- */
-.stage-fallback { position: absolute !important; z-index: 0 !important; width: 46%; max-width: 260px; border-radius: 50%; box-shadow: var(--shadow-lg); animation: float 7s ease-in-out infinite alternate; }
-.gl-on .stage-fallback { display: none; }
 .screen.shot img { position: absolute; inset: 0; }
 .screen.shot { position: relative; }
-/* process track */
-.track { position: relative; margin-top: 72px; list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
-.track::before, .track::after { content: ""; position: absolute; left: 28px; right: calc((100% - 60px) / 4 - 28px); top: 27px; height: 2px; border-radius: 2px; background: #e8e8ed; }
-.track::after { background: var(--accent); transform-origin: 0 50%; transform: scaleX(var(--fill, 0)); transition: transform .2s linear; }
-.track__step { position: relative; z-index: 1; padding: 0 8px 0 0; }
-.track__dot { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--surface); color: var(--accent); box-shadow: 0 0 0 6px var(--page), var(--shadow-sm); transition: background-color .4s, color .4s; }
-.track__dot svg { width: 22px; height: 22px; }
-.track__step.is-done .track__dot { background: var(--accent); color: #fff; }
-.track__step small { display: block; margin-top: 22px; font-size: 13px; font-weight: 600; color: var(--accent); }
-.track__step h3 { margin-top: 4px; font-size: 21px; font-weight: 600; letter-spacing: -.02em; }
-.track__step p { margin-top: 6px; font-size: 15px; color: var(--muted); max-width: 240px; }
 /* about */
 #ueber-uns { background: linear-gradient(180deg, var(--page), var(--tile)); }
 .founders { display: grid; gap: 14px; }
@@ -480,25 +460,165 @@ a.devices:hover { transform: translateY(-4px); }
 .ask__direct i svg { width: 20px; height: 20px; }
 .ad__t { display: grid; font-weight: 600; color: var(--ink) !important; }
 .ad__t small { font-size: 14px; font-weight: 400; color: var(--muted); }
-/* footer cta */
-.cta-tile { flex: 1 1 520px; padding: 48px; border-radius: var(--r-xl); background: radial-gradient(70% 90% at 90% 10%, rgba(20,39,92,.12), transparent 60%), var(--tile); }
-.cta-tile h2 { font-size: clamp(2rem, 3.6vw, 3rem); }
 @media (max-width: 1080px) {
-  .track { grid-template-columns: 1fr 1fr; row-gap: 40px; }
-  .track::before, .track::after { display: none; }
   .faq__side { position: static; }
 }
 @media (max-width: 820px) {
-  .track { grid-template-columns: 1fr; }
   .person { grid-template-columns: 56px 1fr; }
   .person__mono { width: 56px; height: 56px; font-size: 22px; }
   .person__call { grid-column: 1 / -1; }
   .promise { grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
   .promise li { padding: 14px; } .promise b { font-size: 19px; }
-  .cta-tile { padding: 28px; }
 }
 
+/* ---------- NFC plate (vector) + tap scene ---------- */
+.disc { --disc-bg: #fff; --disc-ink: #202124; --edge: #dedee3; display: block; aspect-ratio: 1; border-radius: 50%;
+  box-shadow: 0 1px 0 var(--edge), 0 2px 0 var(--edge), 0 3px 0 var(--edge), 0 4px 0 color-mix(in srgb, var(--edge) 80%, #000), 0 24px 40px -10px rgba(0,0,0,.28), inset 0 0 0 1px rgba(0,0,0,.05); }
+.disc svg { display: block; width: 100%; height: 100%; }
+.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; --edge: #2a2a2e; }
+.tap { min-height: 500px; perspective: 1100px; }
+.tap > * { position: absolute !important; }
+.tap__disc { left: 9%; bottom: 11%; width: min(52%, 300px); transform: rotateX(54deg) rotateZ(-14deg); transform-style: preserve-3d; transition: transform 1s var(--ease); }
+.p1:not(.p3) .tap__disc { transform: rotateX(54deg) rotateZ(-14deg) translateZ(-6px); }
+.tap__rings, .tap__rings i { position: absolute; inset: 0; border-radius: 50%; }
+.tap__rings i { border: 2px solid var(--accent); opacity: 0; }
+.p1:not(.p3) .tap__rings i { animation: ring 1.3s var(--ease) infinite; }
+.p1:not(.p3) .tap__rings i:nth-child(2) { animation-delay: .35s; } .p1:not(.p3) .tap__rings i:nth-child(3) { animation-delay: .7s; }
+@keyframes ring { from { opacity: .7; transform: scale(1); } to { opacity: 0; transform: scale(1.55); } }
+.iph { right: 12%; top: 7%; width: min(36%, 200px); aspect-ratio: 71.5 / 149.6; padding: 2.6%; border-radius: 15% / 7.2%; container-type: inline-size;
+  background: linear-gradient(135deg, #e9e9ee, #a1a1a8 40%, #d7d7dc 60%, #8d8d93); box-shadow: inset 0 0 0 1px rgba(255,255,255,.6), 0 40px 60px -20px rgba(0,0,0,.35), 0 12px 24px -8px rgba(0,0,0,.18);
+  transform: translate(0, 0) rotate(9deg); transition: transform 1.1s var(--ease); z-index: 3 !important; }
+.p1 .iph { transform: translate(-58%, 16%) rotate(-14deg) scale(.95); }
+.p3 .iph { transform: translate(-6%, -2%) rotate(0deg) scale(1.04); }
+.iph__screen { position: relative; height: 100%; border-radius: 12.5% / 6%; overflow: hidden; background: #000; }
+.iph__island { position: absolute; z-index: 9; top: 2.2%; left: 50%; width: 32%; height: 4%; margin-left: -16%; border-radius: 99px; background: #000; }
+.scr { position: absolute; inset: 0; transition: opacity .6s var(--ease); }
+.scr--lock { display: grid; align-content: start; justify-items: center; padding-top: 22%; color: #fff; background: radial-gradient(120% 70% at 20% 0%, #6b80c4, transparent 60%), radial-gradient(120% 80% at 100% 100%, #1d2f66, transparent 60%), #2b3b74; }
+.scr--lock b { font-size: 22cqw; font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.scr--lock small { order: -1; font-size: 6cqw; opacity: .85; margin-bottom: 2%; }
+.scr__nfc { position: absolute; z-index: 8; left: 5%; right: 5%; top: 9%; display: flex; gap: 6cqw; align-items: center; padding: 5cqw; border-radius: 9cqw; background: rgba(250,250,252,.94); color: #1d1d1f; box-shadow: 0 8px 20px rgba(0,0,0,.25); transform: translateY(-160%); transition: transform .6s var(--ease); }
+.p2:not(.p3) .scr__nfc { transform: none; }
+.scr__nfc i { flex: none; display: grid; place-items: center; width: 14cqw; height: 14cqw; border-radius: 4cqw; background: #fff; box-shadow: 0 0 0 1px #e3e3e8; font: 700 9cqw/1 Arial, sans-serif; font-style: normal; color: #4285F4; }
+.scr__nfc b { display: block; font-size: 5.6cqw; } .scr__nfc span { font-size: 5.2cqw; color: #555; }
+.scr--rev { opacity: 0; background: #fff; color: #202124; padding: 20% 7% 0; font-size: 5.6cqw; }
+.p3 .scr--rev { opacity: 1; }
+.gr__head { display: flex; align-items: center; gap: 4cqw; padding-bottom: 5cqw; border-bottom: 1px solid #eee; font-weight: 600; }
+.gr__g { font: 700 8cqw/1 Arial, sans-serif; color: #4285F4; }
+.gr__biz { display: flex; gap: 4cqw; align-items: center; margin-top: 7cqw; }
+.gr__biz i { display: grid; place-items: center; width: 13cqw; height: 13cqw; border-radius: 50%; background: #e8710a; color: #fff; font-style: normal; font-weight: 600; }
+.gr__biz b { display: block; font-size: 6.2cqw; } .gr__biz small { font-size: 4.8cqw; color: #70757a; }
+.gr__stars { display: flex; justify-content: space-between; margin: 9cqw 2cqw 0; }
+.gr__stars svg { width: 15cqw; height: 15cqw; fill: #dadce0; transition: fill .25s, transform .4s var(--ease); }
+.p4 .gr__stars svg { fill: #FBBC05; transform: scale(1.12); }
+.gr__stars svg:nth-child(2) { transition-delay: .18s; } .gr__stars svg:nth-child(3) { transition-delay: .36s; } .gr__stars svg:nth-child(4) { transition-delay: .54s; } .gr__stars svg:nth-child(5) { transition-delay: .72s; }
+.gr__text { margin-top: 8cqw; min-height: 24cqw; padding: 4cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.2cqw; line-height: 1.35; }
+.gr__text span { display: inline; background: linear-gradient(#fff, #fff) right / 100% 100% no-repeat; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.gr__text span { clip-path: inset(0 100% 0 0); transition: clip-path 1s steps(18); }
+.p5 .gr__text span { clip-path: inset(0); }
+.gr__post { display: block; width: fit-content; margin: 6cqw 0 0 auto; padding: 3cqw 7cqw; border-radius: 99px; background: #1a73e8; color: #fff; font-weight: 600; transition: transform .2s; }
+.p6 .gr__post { transform: scale(.92); }
+.gr__done { position: absolute; inset: 0; display: grid; place-content: center; justify-items: center; gap: 2cqw; background: #fff; opacity: 0; transition: opacity .5s .25s var(--ease); }
+.p6 .gr__done { opacity: 1; }
+.gr__done i { display: grid; place-items: center; width: 24cqw; height: 24cqw; margin-bottom: 4cqw; border-radius: 50%; background: #34A853; color: #fff; transform: scale(.4); transition: transform .7s .3s cubic-bezier(.3,1.6,.5,1); }
+.p6 .gr__done i { transform: none; }
+.gr__done svg { width: 50%; }
+.gr__done b { font-size: 9cqw; } .gr__done small { font-size: 5.4cqw; color: #70757a; }
+
+/* ---------- Ablauf: chat story ---------- */
+.story { margin-top: 64px; display: grid; grid-template-columns: 1fr minmax(320px, 400px); gap: 96px; align-items: start; }
+.story__steps { list-style: none; }
+.story__steps li { min-height: 46vh; padding: 8px 0 0 28px; border-left: 2px solid var(--line); opacity: .28; transition: opacity .5s var(--ease), border-color .5s; }
+.story__steps li:last-child { min-height: 0; padding-bottom: 8px; }
+.story__steps li.on, .story__steps li.past { border-color: var(--accent); }
+.story__steps li.on { opacity: 1; } .story__steps li.past { opacity: .5; }
+.story__steps small { font-size: 14px; font-weight: 600; color: var(--accent); }
+.story__steps h3 { margin-top: 6px; font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 600; letter-spacing: -.035em; line-height: 1.05; }
+.story__steps p { margin-top: 12px; max-width: 420px; font-size: 17px; color: var(--muted); }
+.story__phone { position: sticky; top: 112px; padding: 10px; border-radius: 48px; background: #f2f2f5; box-shadow: inset 0 0 0 1px #e1e1e6, var(--shadow-lg); }
+.chat { height: min(600px, 72vh); border-radius: 38px; overflow: hidden; background: var(--surface); display: flex; flex-direction: column; }
+.chat__top { display: flex; align-items: center; gap: 12px; padding: 30px 20px 14px; border-bottom: 1px solid var(--line); background: rgba(250,250,252,.9); }
+.chat__av { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; font-family: "Cormorant Garamond", Georgia, serif; font-size: 15px; font-weight: 600; }
+.chat__top b { display: block; font-size: 15px; } .chat__top small { font-size: 12px; color: #34A853; }
+.chat__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 16px; overflow: hidden; }
+.msg { max-width: 82%; padding: 10px 14px; border-radius: 20px 20px 20px 6px; background: #e9e9ee; font-size: 14.5px; line-height: 1.4; display: none; }
+.msg--me { align-self: flex-end; border-radius: 20px 20px 6px 20px; background: var(--accent); color: #fff; }
+.msg.show { display: block; animation: pop .55s var(--ease) both; }
+.msg--doc.show, .msg--ok.show { display: flex; }
+@keyframes pop { from { opacity: 0; transform: translateY(14px) scale(.96); } }
+.msg--typing { padding: 12px 14px; }
+.msg--typing.show { display: inline-flex; gap: 4px; }
+.msg--typing i { width: 7px; height: 7px; border-radius: 50%; background: #9a9aa0; animation: dot 1s infinite; }
+.msg--typing i:nth-child(2) { animation-delay: .15s; } .msg--typing i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 50% { transform: translateY(-4px); opacity: .5; } }
+.msg--call { font-size: 13px; color: var(--muted); background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
+.msg--doc { gap: 12px; align-items: center; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.msg--doc i { display: grid; place-items: center; width: 40px; height: 48px; border-radius: 8px; background: #ffeceb; color: #d93025; font-size: 11px; font-weight: 700; font-style: normal; }
+.msg--doc b, .msg--ok b { display: block; font-size: 14px; } .msg--doc small, .msg--ok small { font-size: 12.5px; color: var(--muted); }
+.msg--ok { flex-direction: column; background: #e6f4ea; }
+.msg--ok b { color: #137333; }
+
+/* ---------- Über uns: statement ---------- */
+.about { grid-template-columns: 1fr; gap: 40px; align-items: start; }
+.statement { max-width: 1000px; font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 600; letter-spacing: -.03em; line-height: 1.22; }
+.statement span { color: #c7c7cc; transition: color .4s; }
+.statement span.lit { color: var(--ink); }
+.about .founders { grid-template-columns: 1fr 1fr; }
+.about .promise { grid-column: 1 / -1; }
+
+/* ---------- Big moving line ---------- */
+.bigline { overflow: hidden; padding: 56px 0; background: var(--page); }
+.bigline__track { display: inline-flex; align-items: center; gap: .35em; white-space: nowrap; font-size: clamp(3.4rem, 9vw, 8.5rem); font-weight: 600; letter-spacing: -.045em; line-height: 1; will-change: transform; }
+.bigline__track .o { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+.bigline__track b { font-size: .4em; color: var(--accent); }
+
+/* ---------- Footer: floating pieces ---------- */
+.orbit { --px: 0; --py: 0; position: relative; height: 600px; margin-bottom: 96px; border-radius: 40px; background: radial-gradient(50% 60% at 50% 50%, #fff, transparent 75%), var(--tile); overflow: hidden; display: grid; place-items: center; }
+.orbit__core { position: relative; z-index: 2; max-width: 520px; padding: 0 24px; text-align: center; }
+.orbit__core h2 { margin-top: 14px; font-size: clamp(2.4rem, 5vw, 4.2rem); }
+.orbit__core p { margin-top: 16px; font-size: 17px; color: var(--muted); }
+.orbit__core .btn { margin-top: 28px; transition: transform .3s var(--ease), background-color .2s; }
+.fl { position: absolute; z-index: 1; display: block; opacity: 0; transform: translate(calc(var(--px) * var(--d) * 46px), calc(var(--py) * var(--d) * 46px)) scale(.6); transition: opacity 1s var(--ease), transform 1.2s var(--ease); }
+.orbit.in .fl { opacity: 1; transform: translate(calc(var(--px) * var(--d) * 46px), calc(var(--py) * var(--d) * 46px)); }
+.fl > * { animation: drift 8s ease-in-out infinite alternate; }
+.fl:nth-of-type(2n) > * { animation-duration: 10s; animation-direction: alternate-reverse; }
+@keyframes drift { from { translate: 0 -8px; rotate: -2deg; } to { translate: 0 10px; rotate: 2deg; } }
+.orbit.in .fl--b { transition-delay: .1s; } .orbit.in .fl--c { transition-delay: .2s; } .orbit.in .fl--d { transition-delay: .3s; } .orbit.in .fl--e { transition-delay: .4s; } .orbit.in .fl--f { transition-delay: .5s; }
+.fl--a { left: 7%; top: 12%; width: 150px; }
+.fl--b { right: 6%; top: 10%; }
+.fl--c { left: 5%; bottom: 10%; width: 230px; }
+.fl--d { right: 7%; bottom: 12%; width: 220px; }
+.fl--e { left: 27%; bottom: 5%; }
+.fl--f { right: 28%; top: 5%; width: 84px; }
+.fl img { display: block; width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; border-radius: 16px; box-shadow: var(--shadow-lg); }
+.fl--d i { position: absolute; left: 50%; top: 50%; display: grid; place-items: center; width: 44px; height: 44px; margin: -22px; border-radius: 50%; background: rgba(255,255,255,.9); font-style: normal; font-size: 14px; color: var(--accent); }
+.fl__card { display: grid; gap: 2px; padding: 14px 18px; border-radius: 18px; background: var(--surface); box-shadow: var(--shadow-lg); font-size: 14px; max-width: 230px; }
+.fl__card small { font-size: 12px; color: var(--muted); }
+.fl__stars { color: #FBBC05; letter-spacing: 2px; }
+.fl__card--row { display: flex; gap: 12px; align-items: center; }
+.fl__card--row b { display: block; font-size: 14px; }
+.fl__ok { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #e6f4ea; color: #137333; font-style: normal; font-weight: 700; }
+.wordmark.rv { transform: translateY(40px); transition-duration: 1.4s; }
+
+/* ---------- FAQ: answers glide in ---------- */
+.faq details[open] p { animation: pop .5s var(--ease) both; }
+
 /* ---------- Responsive ---------- */
+@media (max-width: 1080px) {
+  .story { grid-template-columns: 1fr; gap: 48px; }
+  .story__steps li { min-height: 0; padding-bottom: 28px; opacity: 1; }
+  .story__phone { position: relative; top: 0; max-width: 400px; width: 100%; margin: 0 auto; }
+  .fl--e, .fl--f { display: none; }
+}
+@media (max-width: 820px) {
+  .tap { min-height: 430px; }
+  .about .founders { grid-template-columns: 1fr; }
+  .orbit { height: 620px; border-radius: 28px; margin-bottom: 64px; }
+  .orbit__core { margin-top: -40px; }
+  .fl--a { width: 96px; left: 4%; top: 4%; } .fl--b { right: 3%; top: 3%; } .fl--b .fl__card { max-width: 180px; padding: 10px 14px; font-size: 12px; }
+  .fl--c { width: 140px; left: 3%; bottom: 4%; } .fl--d { width: 140px; right: 3%; bottom: 4%; }
+  .bigline { padding: 32px 0; }
+}
+
 @media (max-width: 1080px) {
   .hero { padding: 132px 0 96px; }
   .hero__grid, .svc, .about, .faq__grid, .ask__grid, .sec__head { grid-template-columns: 1fr; gap: 40px; }
@@ -551,6 +671,24 @@ a.devices:hover { transform: translateY(-4px); }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
+  <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
+  <symbol id="disc" viewBox="-100 -100 200 200">
+    <circle r="99.5" style="fill:var(--disc-bg,#fff)"/>
+    <g fill="none" stroke-width="5.5"><circle r="83" stroke="#FBBC05" stroke-dasharray="130.4 400"/><circle r="83" stroke="#34A853" stroke-dasharray="130.4 400" transform="rotate(90)"/><circle r="83" stroke="#4285F4" stroke-dasharray="130.4 400" transform="rotate(180)"/><circle r="83" stroke="#EA4335" stroke-dasharray="130.4 400" transform="rotate(270)"/></g>
+    <g style="fill:var(--disc-ink,#202124);stroke:var(--disc-ink,#202124)" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" text-anchor="middle">
+      <text y="-55" font-size="10.5" font-weight="600" stroke="none" letter-spacing=".4">TAP HERE</text>
+      <g fill="none" stroke-width="1.3"><path d="M-27 -38v-8h8M19 -46h8v8M27 -8v8h-8M-19 0h-8v-8"/><rect x="-10" y="-36" width="17" height="29" rx="3"/><path d="M-4.5 -32h6"/><circle cx="-1.5" cy="-11" r="1.6"/><path d="M-15 -30a9 9 0 0 1 6-7M-19 -31a14 14 0 0 1 10-11"/></g>
+      <text x="16" y="-30" font-size="9" font-weight="600" stroke="none">NFC</text>
+      <text y="30" font-size="36" font-weight="500" stroke="none" letter-spacing="-1.2"><tspan fill="#4285F4" style="fill:#4285F4">G</tspan><tspan style="fill:#EA4335">o</tspan><tspan style="fill:#FBBC05">o</tspan><tspan style="fill:#4285F4">g</tspan><tspan style="fill:#34A853">l</tspan><tspan style="fill:#EA4335">e</tspan></text>
+      <g style="fill:#FBBC05" stroke="none"><use href="#discStar" x="-28" y="48"/><use href="#discStar" x="-14" y="48"/><use href="#discStar" x="0" y="48"/><use href="#discStar" x="14" y="48"/><use href="#discStar" x="28" y="48"/></g>
+      <text y="70" font-size="11" font-weight="500" stroke="none">Review Us On</text>
+    </g>
+    <circle r="99.5" fill="url(#discSheen)"/>
+  </symbol>
+</defs></svg>
+
 <header class="nav" id="nav">
   <div class="wrap nav__bar">
     <a class="logo" href="#top" aria-label="F&amp;D Solutions – nach oben"><svg class="logo__svg" viewBox="-4 4 361 82" role="img" aria-label="F&amp;D Solutions"><path class="lg-ink" d="M3.4000000000000004 80.0Q3.1 80.0 3.1 79.4Q3.1 78.8 3.4000000000000004 78.8Q6.800000000000001 78.8 8.450000000000001 78.3Q10.100000000000001 77.8 10.650000000000002 76.3Q11.200000000000001 74.8 11.200000000000001 71.9V25.599999999999994Q11.200000000000001 22.699999999999996 10.700000000000001 21.249999999999996Q10.200000000000001 19.799999999999997 8.700000000000001 19.249999999999996Q7.2 18.699999999999996 4.1000000000000005 18.699999999999996Q3.8000000000000003 18.699999999999996 3.8000000000000003 18.099999999999998Q3.8000000000000003 17.5 4.1000000000000005 17.5H46.5Q47.5 17.5 47.5 18.4L47.7 31.699999999999996Q47.7 31.9 47.2 31.999999999999996Q46.7 32.099999999999994 46.5 31.799999999999997Q44.900000000000006 25.9 41.10000000000001 23.15Q37.300000000000004 20.4 31.1 20.4H28.1Q25.1 20.4 23.700000000000003 21.7Q22.3 23.0 22.3 25.699999999999996V71.5Q22.3 74.5 23.1 76.05Q23.900000000000002 77.6 26.200000000000003 78.19999999999999Q28.5 78.8 33.0 78.8Q33.2 78.8 33.2 79.4Q33.2 80.0 33.0 80.0Q29.6 80.0 25.650000000000002 79.9Q21.700000000000003 79.8 16.400000000000002 79.8Q12.8 79.8 9.4 79.9Q6.0 80.0 3.4000000000000004 80.0ZM41.5 58.8Q41.5 54.8 38.400000000000006 52.449999999999996Q35.300000000000004 50.099999999999994 29.400000000000002 50.099999999999994H17.0V47.3H29.5Q35.4 47.3 38.400000000000006 45.2Q41.400000000000006 43.1 41.400000000000006 39.599999999999994Q41.400000000000006 39.4 42.0 39.4Q42.6 39.4 42.6 39.599999999999994Q42.6 43.0 42.55 44.849999999999994Q42.5 46.699999999999996 42.5 48.7Q42.5 51.2 42.6 53.6Q42.7 56.0 42.7 58.8Q42.7 59.099999999999994 42.1 59.099999999999994Q41.5 59.099999999999994 41.5 58.8Z"/><path class="lg-ink" d="M95.19200000000001 80.4Q91.99200000000002 80.4 87.19200000000001 80.1Q82.39200000000001 79.8 78.39200000000001 79.8Q74.79200000000002 79.8 71.49200000000002 79.9Q68.19200000000001 80.0 65.59200000000001 80.0Q65.39200000000001 80.0 65.39200000000001 79.4Q65.39200000000001 78.8 65.59200000000001 78.8Q68.69200000000001 78.8 70.24200000000002 78.3Q71.79200000000002 77.8 72.34200000000001 76.3Q72.89200000000001 74.8 72.89200000000001 71.9V25.599999999999994Q72.89200000000001 22.699999999999996 72.39200000000001 21.249999999999996Q71.89200000000001 19.799999999999997 70.34200000000001 19.249999999999996Q68.79200000000002 18.699999999999996 65.79200000000002 18.699999999999996Q65.49200000000002 18.699999999999996 65.49200000000002 18.099999999999998Q65.49200000000002 17.5 65.79200000000002 17.5Q68.39200000000001 17.5 71.59200000000001 17.65Q74.79200000000002 17.799999999999997 78.49200000000002 17.799999999999997Q82.09200000000001 17.799999999999997 86.39200000000001 17.549999999999997Q90.69200000000001 17.299999999999997 93.79200000000002 17.299999999999997Q104.19200000000001 17.299999999999997 111.89200000000001 21.299999999999997Q119.59200000000001 25.299999999999997 123.89200000000001 32.199999999999996Q128.192 39.099999999999994 128.192 47.699999999999996Q128.192 55.2 125.59200000000001 61.25Q122.99200000000002 67.3 118.39200000000002 71.55Q113.79200000000002 75.8 107.84200000000001 78.1Q101.89200000000002 80.4 95.19200000000001 80.4ZM94.19200000000001 78.1Q100.49200000000002 78.1 105.39200000000002 74.85Q110.29200000000002 71.6 113.09200000000001 65.3Q115.89200000000002 59.0 115.89200000000002 49.9Q115.89200000000002 41.4 113.29200000000002 34.5Q110.69200000000001 27.599999999999994 105.99200000000002 23.549999999999997Q101.29200000000002 19.5 94.79200000000002 19.5Q88.99200000000002 19.5 86.49200000000002 20.599999999999998Q83.99200000000002 21.699999999999996 83.99200000000002 25.799999999999997V70.8Q83.99200000000002 74.5 85.94200000000001 76.3Q87.89200000000001 78.1 94.19200000000001 78.1Z"/><path class="lg-amp" d="M42.230000000000004 75.878Q42.230000000000004 73.46000000000001 43.532000000000004 71.53800000000001Q44.834 69.616 46.911 67.911Q48.988 66.206 51.313 64.501Q53.638000000000005 62.796 55.715 60.873999999999995Q57.792 58.952 59.094 56.658Q60.396 54.364000000000004 60.396 51.45Q60.396 48.660000000000004 59.094 47.141000000000005Q57.792 45.622 55.80800000000001 45.622Q54.072 45.622 53.328 46.769Q52.584 47.916 52.584 50.086Q52.584 53.495999999999995 54.165000000000006 57.03Q55.746 60.564 58.381 63.974000000000004Q61.016000000000005 67.384 64.27100000000002 70.48400000000001Q67.52600000000001 73.584 70.874 76.126Q75.27600000000001 79.412 78.438 81.117Q81.6 82.822 83.15 83.256Q83.398 83.318 83.367 83.65899999999999Q83.33600000000001 84.0 83.15 84.0Q81.22800000000001 84.0 78.531 84.0Q75.834 84.0 72.982 84.0Q72.30000000000001 84.0 71.184 83.50399999999999Q70.068 83.008 68.17699999999999 81.737Q66.286 80.466 63.248000000000005 78.048Q60.644000000000005 75.94 57.792 73.274Q54.94 70.608 52.491 67.725Q50.042 64.842 48.554 62.114000000000004Q47.748000000000005 60.564 47.252 58.983000000000004Q46.756 57.402 46.756 55.418Q46.756 52.132000000000005 48.182 49.528000000000006Q49.608000000000004 46.924 52.274 45.436Q54.94 43.948 58.660000000000004 43.948Q61.202 43.948 63.062 44.692Q64.922 45.436 65.945 46.8Q66.968 48.164 66.968 50.148Q66.968 52.628 65.635 54.55Q64.302 56.472 62.194 58.084Q60.086 59.696 57.730000000000004 61.245999999999995Q55.374 62.796 53.266000000000005 64.408Q51.158 66.02 49.825 67.94200000000001Q48.492000000000004 69.864 48.492000000000004 72.344Q48.492000000000004 74.7 49.856 76.839Q51.22 78.978 53.793 80.342Q56.366 81.706 59.962 81.706Q62.504000000000005 81.706 64.364 80.93100000000001Q66.224 80.156 67.43299999999999 78.668Q68.642 77.18 69.231 74.97900000000001Q69.82000000000001 72.778 69.82000000000001 69.988Q69.82000000000001 66.45400000000001 68.673 64.78Q67.52600000000001 63.106 64.798 63.106Q64.674 63.106 64.643 62.734Q64.612 62.362 64.798 62.362L79.554 62.3Q79.74000000000001 62.3 79.74000000000001 62.672Q79.74000000000001 63.044 79.554 63.044Q77.694 63.044 76.76400000000001 63.477999999999994Q75.834 63.912 75.369 64.935Q74.904 65.958 74.408 67.756Q73.912 69.554 73.10600000000001 71.81700000000001Q72.30000000000001 74.08 70.96700000000001 76.34299999999999Q69.634 78.606 67.557 80.52799999999999Q65.48 82.45 62.44200000000001 83.59700000000001Q59.404 84.744 55.188 84.744Q50.724000000000004 84.744 47.84100000000001 83.44200000000001Q44.958000000000006 82.14 43.59400000000001 80.094Q42.230000000000004 78.048 42.230000000000004 75.878Z"/><path class="lg-ink" d="M167.5343828125 60.3173828125Q165.414265625 60.3173828125 163.8527421875 59.64453125Q162.29121875 58.9716796875 161.40889453125 57.72119140625Q160.5265703125 56.470703125 160.437703125 54.744140625H163.3449296875Q163.433796875 55.7724609375 164.01143359375 56.4453125Q164.5890703125 57.1181640625 165.515828125 57.4482421875Q166.4425859375 57.7783203125 167.5216875 57.7783203125Q168.7277421875 57.7783203125 169.66084765625 57.40380859375Q170.593953125 57.029296875 171.1398515625 56.33740234375Q171.68575 55.6455078125 171.68575 54.7314453125Q171.68575 53.90625 171.20967578125 53.37939453125Q170.7336015625 52.8525390625 169.92744921875 52.50341796875Q169.121296875 52.154296875 168.0929765625 51.8876953125L165.8839921875 51.2783203125Q163.56075 50.65625 162.25948046875 49.4375Q160.9582109375 48.21875 160.9582109375 46.2763671875Q160.9582109375 44.638671875 161.84053515625 43.41357421875Q162.722859375 42.1884765625 164.23994921875 41.50927734375Q165.7570390625 40.830078125 167.6613359375 40.830078125Q169.60371875 40.830078125 171.08272265625 41.50927734375Q172.5617265625 42.1884765625 173.40596484375 43.369140625Q174.250203125 44.5498046875 174.2882890625 46.060546875H171.4699296875Q171.33028125 44.765625 170.27022265625 44.0546875Q169.2101640625 43.34375 167.597859375 43.34375Q166.45528125 43.34375 165.61104296875 43.69921875Q164.7668046875 44.0546875 164.30342578125 44.68310546875Q163.840046875 45.3115234375 163.840046875 46.111328125Q163.840046875 47.0126953125 164.39229296875 47.56494140625Q164.9445390625 48.1171875 165.73799609375 48.44091796875Q166.531453125 48.7646484375 167.2550859375 48.955078125L169.09590625 49.4375Q169.9972734375 49.666015625 170.95576953125 50.05322265625Q171.914265625 50.4404296875 172.726765625 51.05615234375Q173.539265625 51.671875 174.04073046875 52.57958984375Q174.5421953125 53.4873046875 174.5421953125 54.76953125Q174.5421953125 56.369140625 173.717 57.6259765625Q172.8918046875 58.8828125 171.32393359375 59.60009765625Q169.7560625 60.3173828125 167.5343828125 60.3173828125Z M191.0664140625 60.25390625Q188.61621875 60.25390625 186.68018359375 59.09228515625Q184.7441484375 57.9306640625 183.63330859375 55.75341796875Q182.52246875 53.576171875 182.52246875 50.5546875Q182.52246875 47.5205078125 183.63330859375 45.34326171875Q184.7441484375 43.166015625 186.68018359375 41.998046875Q188.61621875 40.830078125 191.0664140625 40.830078125Q193.516609375 40.830078125 195.43994921875 41.998046875Q197.3632890625 43.166015625 198.47412890625 45.34326171875Q199.58496875 47.5205078125 199.58496875 50.5546875Q199.58496875 53.576171875 198.47412890625 55.75341796875Q197.3632890625 57.9306640625 195.43994921875 59.09228515625Q193.516609375 60.25390625 191.0664140625 60.25390625ZM191.0664140625 57.61328125Q192.67871875 57.61328125 193.95459765625 56.80712890625Q195.2304765625 56.0009765625 195.97315234375 54.42041015625Q196.715828125 52.83984375 196.715828125 50.5546875Q196.715828125 48.244140625 195.97315234375 46.66357421875Q195.2304765625 45.0830078125 193.95459765625 44.27685546875Q192.67871875 43.470703125 191.0664140625 43.470703125Q189.4414140625 43.470703125 188.1591875 44.283203125Q186.8769609375 45.095703125 186.13428515625 46.67626953125Q185.391609375 48.2568359375 185.391609375 50.5546875Q185.391609375 52.83984375 186.13428515625 54.4140625Q186.8769609375 55.98828125 188.1591875 56.80078125Q189.4414140625 57.61328125 191.0664140625 57.61328125Z M208.314265625 60.0V41.083984375H211.208796875V57.51171875H219.7781328125V60.0Z M235.75645312499998 60.2919921875Q233.48399218749998 60.2919921875 231.78282031249998 59.416015625Q230.08164843749998 58.5400390625 229.14854296874998 57.01025390625Q228.21543749999998 55.48046875 228.21543749999998 53.5V41.083984375H231.10996874999998V53.2587890625Q231.10996874999998 54.541015625 231.67491015624998 55.53125Q232.23985156249998 56.521484375 233.28086718749998 57.0927734375Q234.32188281249998 57.6640625 235.75645312499998 57.6640625Q237.17832812499998 57.6640625 238.21299609374998 57.0927734375Q239.24766406249998 56.521484375 239.80625781249998 55.53125Q240.36485156249998 54.541015625 240.36485156249998 53.2587890625V41.083984375H243.27207812499998V53.5Q243.27207812499998 55.48046875 242.33897265624998 57.01025390625Q241.40586718749998 58.5400390625 239.71104296874998 59.416015625Q238.01621874999998 60.2919921875 235.75645312499998 60.2919921875Z M251.70938281249997 43.572265625V41.083984375H266.39785937499994V43.572265625H260.51992968749994V60.0H257.61270312499994V43.572265625Z M277.7296953125 41.083984375V60.0H274.8351640625V41.083984375Z M295.0029375 60.25390625Q292.5527421875 60.25390625 290.61670703125 59.09228515625Q288.680671875 57.9306640625 287.56983203125 55.75341796875Q286.4589921875 53.576171875 286.4589921875 50.5546875Q286.4589921875 47.5205078125 287.56983203125 45.34326171875Q288.680671875 43.166015625 290.61670703125 41.998046875Q292.5527421875 40.830078125 295.0029375 40.830078125Q297.4531328125 40.830078125 299.37647265625 41.998046875Q301.2998125 43.166015625 302.41065234375 45.34326171875Q303.5214921875 47.5205078125 303.5214921875 50.5546875Q303.5214921875 53.576171875 302.41065234375 55.75341796875Q301.2998125 57.9306640625 299.37647265625 59.09228515625Q297.4531328125 60.25390625 295.0029375 60.25390625ZM295.0029375 57.61328125Q296.6152421875 57.61328125 297.89112109375 56.80712890625Q299.167 56.0009765625 299.90967578125 54.42041015625Q300.6523515625 52.83984375 300.6523515625 50.5546875Q300.6523515625 48.244140625 299.90967578125 46.66357421875Q299.167 45.0830078125 297.89112109375 44.27685546875Q296.6152421875 43.470703125 295.0029375 43.470703125Q293.3779375 43.470703125 292.0957109375 44.283203125Q290.813484375 45.095703125 290.07080859375 46.67626953125Q289.3281328125 48.2568359375 289.3281328125 50.5546875Q289.3281328125 52.83984375 290.07080859375 54.4140625Q290.813484375 55.98828125 292.0957109375 56.80078125Q293.3779375 57.61328125 295.0029375 57.61328125Z M312.25078906249996 60.0V41.083984375H315.58965624999996L322.71172656249996 52.3447265625Q323.06719531249996 52.9033203125 323.51153124999996 53.677734375Q323.95586718749996 54.4521484375 324.45098437499996 55.42333984375Q324.94610156249996 56.39453125 325.42852343749996 57.537109375H325.07305468749996Q324.95879687499996 56.4580078125 324.90166796874996 55.39794921875Q324.84453906249996 54.337890625 324.81914843749996 53.4111328125Q324.79375781249996 52.484375 324.79375781249996 51.849609375V41.083984375H327.72637499999996V60.0H324.37481249999996L317.98907031249996 49.9326171875Q317.48125781249996 49.107421875 316.99248828124996 48.26953125Q316.50371874999996 47.431640625 315.91338671874996 46.33349609375Q315.32305468749996 45.2353515625 314.47246874999996 43.6611328125H314.92949999999996Q314.99297656249996 45.0576171875 315.05645312499996 46.27001953125Q315.11992968749996 47.482421875 315.15166796874996 48.41552734375Q315.18340624999996 49.3486328125 315.18340624999996 49.9072265625V60.0Z M343.46348437499995 60.3173828125Q341.34336718749995 60.3173828125 339.78184374999995 59.64453125Q338.22032031249995 58.9716796875 337.33799609374995 57.72119140625Q336.45567187499995 56.470703125 336.36680468749995 54.744140625H339.27403124999995Q339.36289843749995 55.7724609375 339.94053515624995 56.4453125Q340.51817187499995 57.1181640625 341.44492968749995 57.4482421875Q342.37168749999995 57.7783203125 343.45078906249995 57.7783203125Q344.65684374999995 57.7783203125 345.58994921874995 57.40380859375Q346.52305468749995 57.029296875 347.06895312499995 56.33740234375Q347.61485156249995 55.6455078125 347.61485156249995 54.7314453125Q347.61485156249995 53.90625 347.13877734374995 53.37939453125Q346.66270312499995 52.8525390625 345.85655078124995 52.50341796875Q345.05039843749995 52.154296875 344.02207812499995 51.8876953125L341.81309374999995 51.2783203125Q339.48985156249995 50.65625 338.18858203124995 49.4375Q336.88731249999995 48.21875 336.88731249999995 46.2763671875Q336.88731249999995 44.638671875 337.76963671874995 43.41357421875Q338.65196093749995 42.1884765625 340.16905078124995 41.50927734375Q341.68614062499995 40.830078125 343.59043749999995 40.830078125Q345.53282031249995 40.830078125 347.01182421874995 41.50927734375Q348.49082812499995 42.1884765625 349.33506640624995 43.369140625Q350.17930468749995 44.5498046875 350.21739062499995 46.060546875H347.39903124999995Q347.25938281249995 44.765625 346.19932421874995 44.0546875Q345.13926562499995 43.34375 343.52696093749995 43.34375Q342.38438281249995 43.34375 341.54014453124995 43.69921875Q340.69590624999995 44.0546875 340.23252734374995 44.68310546875Q339.76914843749995 45.3115234375 339.76914843749995 46.111328125Q339.76914843749995 47.0126953125 340.32139453124995 47.56494140625Q340.87364062499995 48.1171875 341.66709765624995 48.44091796875Q342.46055468749995 48.7646484375 343.18418749999995 48.955078125L345.02500781249995 49.4375Q345.92637499999995 49.666015625 346.88487109374995 50.05322265625Q347.84336718749995 50.4404296875 348.65586718749995 51.05615234375Q349.46836718749995 51.671875 349.96983203124995 52.57958984375Q350.47129687499995 53.4873046875 350.47129687499995 54.76953125Q350.47129687499995 56.369140625 349.64610156249995 57.6259765625Q348.82090624999995 58.8828125 347.25303515624995 59.60009765625Q345.68516406249995 60.3173828125 343.46348437499995 60.3173828125Z"/></svg></a>
@@ -583,7 +721,7 @@ a.devices:hover { transform: translateY(-4px); }
       <div class="collage" id="collage" aria-label="Unsere Leistungen">
         <a class="hc hc--tour" href="#roomtour"><span class="hc__media"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video></span><span class="hc__tag"><b>03</b>KI-Roomtour</span></a>
         <a class="hc hc--web" href="#web"><span class="hc__phone"><span class="hc__island"></span><span class="screen shot"><img src="/media/ref-spiruli-mobile.jpg" alt="" loading="eager"></span></span><span class="hc__tag"><b>02</b>Website</span></a>
-        <a class="hc hc--nfc" href="#nfc"><img src="/media/nfc-platte.png" alt="Unsere NFC-Platte für Google-Bewertungen"><span class="hc__tag"><b>01</b>NFC-Platte</span></a>
+        <a class="hc hc--nfc" href="#nfc" aria-label="NFC-Platte für Google-Bewertungen"><span class="disc disc--float"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span><span class="hc__tag"><b>01</b>NFC-Platte</span></a>
       </div>
     </div>
   </section>
@@ -592,11 +730,22 @@ a.devices:hover { transform: translateY(-4px); }
 
   <!-- 01 NFC -->
   <section class="svc" id="nfc">
-    <div class="svc__visual" id="nfcStage">
-      <img class="stage-fallback" src="/media/nfc-platte.png" alt="NFC-Platte für Google-Bewertungen">
+    <div class="svc__visual tap" id="nfcStage">
+      <div class="tap__disc"><span class="tap__rings" aria-hidden="true"><i></i><i></i><i></i></span><span class="disc" id="tapDisc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
+      <div class="iph" aria-hidden="true"><div class="iph__screen"><span class="iph__island"></span>
+        <div class="scr scr--lock"><b>9:41</b><small>Montag, 26. Oktober</small></div>
+        <div class="scr__nfc"><i>G</i><div><b>Google Maps</b><span>Bewertung schreiben öffnen</span></div></div>
+        <div class="scr scr--rev">
+          <div class="gr__head"><b class="gr__g">G</b><span>Bewertung schreiben</span></div>
+          <div class="gr__biz"><i>L</i><div><b>Ristorante Luca</b><small>Restaurant · München</small></div></div>
+          <div class="gr__stars"><svg viewBox="-6 -6 12 12"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12"><use href="#discStar"/></svg></div>
+          <p class="gr__text"><span>Super Essen, sehr freundlicher Service!</span></p>
+          <span class="gr__post">Posten</span>
+          <div class="gr__done"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></i><b>Danke!</b><small>Ihre Bewertung ist online.</small></div>
+        </div>
+      </div></div>
       <div class="toast" aria-hidden="true"><i>L</i><div><b>★★★★★</b>Neue Bewertung: „Super Essen!“</div></div>
       <div class="stage-cap" aria-live="polite"><b>1</b><span>Handy an die Platte halten</span></div>
-      <span class="stage-num" aria-hidden="true">01</span>
     </div>
     <div class="svc__text">
       <span class="svc__no rv">01 / 03 · NFC-Platten</span>
@@ -665,12 +814,27 @@ a.devices:hover { transform: translateY(-4px); }
   <section class="sec" id="ablauf">
     <div class="wrap">
       <div class="sec__head"><div><span class="label rv">Ablauf</span><h2 class="display">So einfach <em>geht's.</em></h2></div><p class="lead rv d1">Ein Ansprechpartner von der ersten Nachricht bis zur Übergabe.</p></div>
-      <ol class="track" id="track">
-        <li class="track__step rv"><span class="track__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z"/></svg></span><small>Schritt 1</small><h3>Anfrage</h3><p>Formular ausfüllen oder anrufen. Unverbindlich, in zwei Minuten.</p></li>
-        <li class="track__step rv d1"><span class="track__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></span><small>Schritt 2</small><h3>Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden und klären, was Sie brauchen.</p></li>
-        <li class="track__step rv d2"><span class="track__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4M9 13h6M9 17h4"/></svg></span><small>Schritt 3</small><h3>Festpreis</h3><p>Sie bekommen ein klares Angebot. Kein Abo, keine versteckten Kosten.</p></li>
-        <li class="track__step rv d3"><span class="track__dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><small>Schritt 4</small><h3>Fertig</h3><p>Platten verknüpft, Website online oder Roomtour geliefert.</p></li>
-      </ol>
+<div class="story" id="story">
+        <ol class="story__steps">
+          <li data-s="0"><small>01</small><h3>Anfrage</h3><p>Formular ausfüllen, anrufen oder schreiben. Unverbindlich, in zwei Minuten.</p></li>
+          <li data-s="1"><small>02</small><h3>Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden persönlich und klären, was Sie brauchen.</p></li>
+          <li data-s="2"><small>03</small><h3>Festpreis</h3><p>Sie bekommen ein klares Angebot. Kein Abo, keine versteckten Kosten.</p></li>
+          <li data-s="3"><small>04</small><h3>Fertig</h3><p>Platten verknüpft, Website online oder Roomtour geliefert. Und die ersten Bewertungen kommen.</p></li>
+        </ol>
+        <div class="story__phone" aria-hidden="true"><div class="chat">
+          <div class="chat__top"><span class="chat__av">F&amp;D</span><div><b>F&amp;D Solutions</b><small>online</small></div></div>
+          <div class="chat__body">
+            <p class="msg msg--me" data-s="0">Hallo! Wir haben ein Restaurant und brauchen mehr Google-Bewertungen.</p>
+            <p class="msg msg--typing" data-s="0"><i></i><i></i><i></i></p>
+            <p class="msg" data-s="1">Hallo, hier ist Florian. Ich rufe Sie morgen um 10 Uhr kurz an.</p>
+            <p class="msg msg--call" data-s="1"><span>📞</span> Anruf · 6 Min.</p>
+            <div class="msg msg--doc" data-s="2"><i>PDF</i><div><b>Angebot.pdf</b><small>10 NFC-Platten · Festpreis 150 €</small></div></div>
+            <p class="msg msg--me" data-s="2">Perfekt, machen wir so!</p>
+            <div class="msg msg--ok" data-s="3"><b>Alles verknüpft ✓</b><small>Ihre 10 Platten führen jetzt direkt zu Ihrem Google-Profil.</small></div>
+            <p class="msg msg--me" data-s="3">Schon 6 neue Bewertungen diese Woche! ⭐</p>
+          </div>
+        </div></div>
+      </div>
     </div>
   </section>
 
@@ -750,7 +914,8 @@ a.devices:hover { transform: translateY(-4px); }
 
   <section class="sec" id="ueber-uns">
     <div class="wrap about">
-      <div><span class="label rv">Über uns</span><h2 class="display">Zwei Gründer. <em>Kein Callcenter.</em></h2><p class="lead rv d1">Wir sind Florian Dressler und Davy Stubenrauch aus München. Wir setzen jedes Projekt selbst um und sind für Sie direkt erreichbar.</p></div>
+      <div class="about__intro"><span class="label rv">Über uns</span><h2 class="display">Zwei Gründer. <em>Kein Callcenter.</em></h2></div>
+      <p class="statement" id="statement">Wir sind Florian und Davy aus München. Keine Agentur-Kette, keine Warteschleife. Wir setzen jedes Projekt selbst um, zum Festpreis, und Sie sprechen immer direkt mit uns.</p>
       <div class="founders rv d1">
         <article class="person"><span class="person__mono">FD</span><div><h3>Florian Dressler</h3><p>Co-Founder · München</p></div><a class="btn btn--line person__call" href="tel:+4915566456417"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a></article>
         <article class="person"><span class="person__mono">DS</span><div><h3>Davy Stubenrauch</h3><p>Co-Founder · München</p></div><a class="btn btn--line person__call" href="tel:+4917656612709"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>Anrufen</a></article>
@@ -774,6 +939,8 @@ a.devices:hover { transform: translateY(-4px); }
       </div>
     </div>
   </section>
+
+  <div class="bigline" aria-hidden="true"><div class="bigline__track" id="bigline"><span>Mehr Bewertungen</span><b>✦</b><span class="o">Mehr Kunden</span><b>✦</b><span>Mehr Kunden</span><b>✦</b><span class="o">Mehr Buchungen</span><b>✦</b><span>Mehr Buchungen</span><b>✦</b><span class="o">Mehr Bewertungen</span><b>✦</b><span>Mehr Bewertungen</span><b>✦</b><span class="o">Mehr Kunden</span><b>✦</b><span>Mehr Kunden</span><b>✦</b><span class="o">Mehr Buchungen</span><b>✦</b><span>Mehr Buchungen</span><b>✦</b><span class="o">Mehr Bewertungen</span><b>✦</b></div></div>
 
   <section class="sec ask" id="anfrage">
     <div class="wrap ask__grid">
@@ -883,19 +1050,26 @@ a.devices:hover { transform: translateY(-4px); }
 
 <footer class="foot">
   <div class="wrap">
+    <div class="orbit" id="orbit">
+      <div class="orbit__core"><span class="label">Jetzt starten</span><h2 class="display">Bereit für mehr <em>Kunden?</em></h2><p>Antwort innerhalb von 24 Stunden. Persönlich, aus München.</p><a class="btn btn--solid magnet" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
+      <span class="fl fl--a" style="--d:1.4"><span class="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></span>
+      <span class="fl fl--b" style="--d:-1"><span class="fl__card"><b class="fl__stars">★★★★★</b><span>„Super Essen, tolle Atmosphäre!“</span><small>Neue Google-Bewertung</small></span></span>
+      <span class="fl fl--c" style="--d:.8"><img src="/media/ref-spiruli.jpg" alt=""></span>
+      <span class="fl fl--d" style="--d:-1.6"><img src="/media/roomtour-villa.jpg" alt=""><i>▶</i></span>
+      <span class="fl fl--e" style="--d:1.1"><span class="fl__card fl__card--row"><i class="fl__ok">✓</i><span><b>Neue Buchung</b><small>Ferienwohnung · 3 Nächte</small></span></span></span>
+      <span class="fl fl--f" style="--d:-.7"><span class="disc disc--black"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></span>
+    </div>
     <div class="foot__top">
-      <div class="foot__cta cta-tile"><h2 class="display">Bereit für mehr <em>Kunden?</em></h2><a class="btn btn--solid" href="#anfrage">Jetzt anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
-      <div class="foot__cols">
+            <div class="foot__cols">
         <div><b>Leistungen</b><a href="#nfc">NFC-Platten</a><a href="#web">Websites</a><a href="#roomtour">Roomtours</a><a href="#preise">Preise</a></div>
         <div><b>Kontakt</b><a href="tel:+4915566456417">+49 155 66456417</a><a href="tel:+4917656612709">+49 176 56612709</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></div>
         <div><b>Rechtliches</b><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a></div>
       </div>
     </div>
-    <div class="wordmark" aria-hidden="true"><svg class="wordmark__svg" viewBox="-4 4 361 82" role="img" aria-label="F&amp;D Solutions"><path class="lg-ink" d="M3.4000000000000004 80.0Q3.1 80.0 3.1 79.4Q3.1 78.8 3.4000000000000004 78.8Q6.800000000000001 78.8 8.450000000000001 78.3Q10.100000000000001 77.8 10.650000000000002 76.3Q11.200000000000001 74.8 11.200000000000001 71.9V25.599999999999994Q11.200000000000001 22.699999999999996 10.700000000000001 21.249999999999996Q10.200000000000001 19.799999999999997 8.700000000000001 19.249999999999996Q7.2 18.699999999999996 4.1000000000000005 18.699999999999996Q3.8000000000000003 18.699999999999996 3.8000000000000003 18.099999999999998Q3.8000000000000003 17.5 4.1000000000000005 17.5H46.5Q47.5 17.5 47.5 18.4L47.7 31.699999999999996Q47.7 31.9 47.2 31.999999999999996Q46.7 32.099999999999994 46.5 31.799999999999997Q44.900000000000006 25.9 41.10000000000001 23.15Q37.300000000000004 20.4 31.1 20.4H28.1Q25.1 20.4 23.700000000000003 21.7Q22.3 23.0 22.3 25.699999999999996V71.5Q22.3 74.5 23.1 76.05Q23.900000000000002 77.6 26.200000000000003 78.19999999999999Q28.5 78.8 33.0 78.8Q33.2 78.8 33.2 79.4Q33.2 80.0 33.0 80.0Q29.6 80.0 25.650000000000002 79.9Q21.700000000000003 79.8 16.400000000000002 79.8Q12.8 79.8 9.4 79.9Q6.0 80.0 3.4000000000000004 80.0ZM41.5 58.8Q41.5 54.8 38.400000000000006 52.449999999999996Q35.300000000000004 50.099999999999994 29.400000000000002 50.099999999999994H17.0V47.3H29.5Q35.4 47.3 38.400000000000006 45.2Q41.400000000000006 43.1 41.400000000000006 39.599999999999994Q41.400000000000006 39.4 42.0 39.4Q42.6 39.4 42.6 39.599999999999994Q42.6 43.0 42.55 44.849999999999994Q42.5 46.699999999999996 42.5 48.7Q42.5 51.2 42.6 53.6Q42.7 56.0 42.7 58.8Q42.7 59.099999999999994 42.1 59.099999999999994Q41.5 59.099999999999994 41.5 58.8Z"/><path class="lg-ink" d="M95.19200000000001 80.4Q91.99200000000002 80.4 87.19200000000001 80.1Q82.39200000000001 79.8 78.39200000000001 79.8Q74.79200000000002 79.8 71.49200000000002 79.9Q68.19200000000001 80.0 65.59200000000001 80.0Q65.39200000000001 80.0 65.39200000000001 79.4Q65.39200000000001 78.8 65.59200000000001 78.8Q68.69200000000001 78.8 70.24200000000002 78.3Q71.79200000000002 77.8 72.34200000000001 76.3Q72.89200000000001 74.8 72.89200000000001 71.9V25.599999999999994Q72.89200000000001 22.699999999999996 72.39200000000001 21.249999999999996Q71.89200000000001 19.799999999999997 70.34200000000001 19.249999999999996Q68.79200000000002 18.699999999999996 65.79200000000002 18.699999999999996Q65.49200000000002 18.699999999999996 65.49200000000002 18.099999999999998Q65.49200000000002 17.5 65.79200000000002 17.5Q68.39200000000001 17.5 71.59200000000001 17.65Q74.79200000000002 17.799999999999997 78.49200000000002 17.799999999999997Q82.09200000000001 17.799999999999997 86.39200000000001 17.549999999999997Q90.69200000000001 17.299999999999997 93.79200000000002 17.299999999999997Q104.19200000000001 17.299999999999997 111.89200000000001 21.299999999999997Q119.59200000000001 25.299999999999997 123.89200000000001 32.199999999999996Q128.192 39.099999999999994 128.192 47.699999999999996Q128.192 55.2 125.59200000000001 61.25Q122.99200000000002 67.3 118.39200000000002 71.55Q113.79200000000002 75.8 107.84200000000001 78.1Q101.89200000000002 80.4 95.19200000000001 80.4ZM94.19200000000001 78.1Q100.49200000000002 78.1 105.39200000000002 74.85Q110.29200000000002 71.6 113.09200000000001 65.3Q115.89200000000002 59.0 115.89200000000002 49.9Q115.89200000000002 41.4 113.29200000000002 34.5Q110.69200000000001 27.599999999999994 105.99200000000002 23.549999999999997Q101.29200000000002 19.5 94.79200000000002 19.5Q88.99200000000002 19.5 86.49200000000002 20.599999999999998Q83.99200000000002 21.699999999999996 83.99200000000002 25.799999999999997V70.8Q83.99200000000002 74.5 85.94200000000001 76.3Q87.89200000000001 78.1 94.19200000000001 78.1Z"/><path class="lg-amp" d="M42.230000000000004 75.878Q42.230000000000004 73.46000000000001 43.532000000000004 71.53800000000001Q44.834 69.616 46.911 67.911Q48.988 66.206 51.313 64.501Q53.638000000000005 62.796 55.715 60.873999999999995Q57.792 58.952 59.094 56.658Q60.396 54.364000000000004 60.396 51.45Q60.396 48.660000000000004 59.094 47.141000000000005Q57.792 45.622 55.80800000000001 45.622Q54.072 45.622 53.328 46.769Q52.584 47.916 52.584 50.086Q52.584 53.495999999999995 54.165000000000006 57.03Q55.746 60.564 58.381 63.974000000000004Q61.016000000000005 67.384 64.27100000000002 70.48400000000001Q67.52600000000001 73.584 70.874 76.126Q75.27600000000001 79.412 78.438 81.117Q81.6 82.822 83.15 83.256Q83.398 83.318 83.367 83.65899999999999Q83.33600000000001 84.0 83.15 84.0Q81.22800000000001 84.0 78.531 84.0Q75.834 84.0 72.982 84.0Q72.30000000000001 84.0 71.184 83.50399999999999Q70.068 83.008 68.17699999999999 81.737Q66.286 80.466 63.248000000000005 78.048Q60.644000000000005 75.94 57.792 73.274Q54.94 70.608 52.491 67.725Q50.042 64.842 48.554 62.114000000000004Q47.748000000000005 60.564 47.252 58.983000000000004Q46.756 57.402 46.756 55.418Q46.756 52.132000000000005 48.182 49.528000000000006Q49.608000000000004 46.924 52.274 45.436Q54.94 43.948 58.660000000000004 43.948Q61.202 43.948 63.062 44.692Q64.922 45.436 65.945 46.8Q66.968 48.164 66.968 50.148Q66.968 52.628 65.635 54.55Q64.302 56.472 62.194 58.084Q60.086 59.696 57.730000000000004 61.245999999999995Q55.374 62.796 53.266000000000005 64.408Q51.158 66.02 49.825 67.94200000000001Q48.492000000000004 69.864 48.492000000000004 72.344Q48.492000000000004 74.7 49.856 76.839Q51.22 78.978 53.793 80.342Q56.366 81.706 59.962 81.706Q62.504000000000005 81.706 64.364 80.93100000000001Q66.224 80.156 67.43299999999999 78.668Q68.642 77.18 69.231 74.97900000000001Q69.82000000000001 72.778 69.82000000000001 69.988Q69.82000000000001 66.45400000000001 68.673 64.78Q67.52600000000001 63.106 64.798 63.106Q64.674 63.106 64.643 62.734Q64.612 62.362 64.798 62.362L79.554 62.3Q79.74000000000001 62.3 79.74000000000001 62.672Q79.74000000000001 63.044 79.554 63.044Q77.694 63.044 76.76400000000001 63.477999999999994Q75.834 63.912 75.369 64.935Q74.904 65.958 74.408 67.756Q73.912 69.554 73.10600000000001 71.81700000000001Q72.30000000000001 74.08 70.96700000000001 76.34299999999999Q69.634 78.606 67.557 80.52799999999999Q65.48 82.45 62.44200000000001 83.59700000000001Q59.404 84.744 55.188 84.744Q50.724000000000004 84.744 47.84100000000001 83.44200000000001Q44.958000000000006 82.14 43.59400000000001 80.094Q42.230000000000004 78.048 42.230000000000004 75.878Z"/><path class="lg-ink" d="M167.5343828125 60.3173828125Q165.414265625 60.3173828125 163.8527421875 59.64453125Q162.29121875 58.9716796875 161.40889453125 57.72119140625Q160.5265703125 56.470703125 160.437703125 54.744140625H163.3449296875Q163.433796875 55.7724609375 164.01143359375 56.4453125Q164.5890703125 57.1181640625 165.515828125 57.4482421875Q166.4425859375 57.7783203125 167.5216875 57.7783203125Q168.7277421875 57.7783203125 169.66084765625 57.40380859375Q170.593953125 57.029296875 171.1398515625 56.33740234375Q171.68575 55.6455078125 171.68575 54.7314453125Q171.68575 53.90625 171.20967578125 53.37939453125Q170.7336015625 52.8525390625 169.92744921875 52.50341796875Q169.121296875 52.154296875 168.0929765625 51.8876953125L165.8839921875 51.2783203125Q163.56075 50.65625 162.25948046875 49.4375Q160.9582109375 48.21875 160.9582109375 46.2763671875Q160.9582109375 44.638671875 161.84053515625 43.41357421875Q162.722859375 42.1884765625 164.23994921875 41.50927734375Q165.7570390625 40.830078125 167.6613359375 40.830078125Q169.60371875 40.830078125 171.08272265625 41.50927734375Q172.5617265625 42.1884765625 173.40596484375 43.369140625Q174.250203125 44.5498046875 174.2882890625 46.060546875H171.4699296875Q171.33028125 44.765625 170.27022265625 44.0546875Q169.2101640625 43.34375 167.597859375 43.34375Q166.45528125 43.34375 165.61104296875 43.69921875Q164.7668046875 44.0546875 164.30342578125 44.68310546875Q163.840046875 45.3115234375 163.840046875 46.111328125Q163.840046875 47.0126953125 164.39229296875 47.56494140625Q164.9445390625 48.1171875 165.73799609375 48.44091796875Q166.531453125 48.7646484375 167.2550859375 48.955078125L169.09590625 49.4375Q169.9972734375 49.666015625 170.95576953125 50.05322265625Q171.914265625 50.4404296875 172.726765625 51.05615234375Q173.539265625 51.671875 174.04073046875 52.57958984375Q174.5421953125 53.4873046875 174.5421953125 54.76953125Q174.5421953125 56.369140625 173.717 57.6259765625Q172.8918046875 58.8828125 171.32393359375 59.60009765625Q169.7560625 60.3173828125 167.5343828125 60.3173828125Z M191.0664140625 60.25390625Q188.61621875 60.25390625 186.68018359375 59.09228515625Q184.7441484375 57.9306640625 183.63330859375 55.75341796875Q182.52246875 53.576171875 182.52246875 50.5546875Q182.52246875 47.5205078125 183.63330859375 45.34326171875Q184.7441484375 43.166015625 186.68018359375 41.998046875Q188.61621875 40.830078125 191.0664140625 40.830078125Q193.516609375 40.830078125 195.43994921875 41.998046875Q197.3632890625 43.166015625 198.47412890625 45.34326171875Q199.58496875 47.5205078125 199.58496875 50.5546875Q199.58496875 53.576171875 198.47412890625 55.75341796875Q197.3632890625 57.9306640625 195.43994921875 59.09228515625Q193.516609375 60.25390625 191.0664140625 60.25390625ZM191.0664140625 57.61328125Q192.67871875 57.61328125 193.95459765625 56.80712890625Q195.2304765625 56.0009765625 195.97315234375 54.42041015625Q196.715828125 52.83984375 196.715828125 50.5546875Q196.715828125 48.244140625 195.97315234375 46.66357421875Q195.2304765625 45.0830078125 193.95459765625 44.27685546875Q192.67871875 43.470703125 191.0664140625 43.470703125Q189.4414140625 43.470703125 188.1591875 44.283203125Q186.8769609375 45.095703125 186.13428515625 46.67626953125Q185.391609375 48.2568359375 185.391609375 50.5546875Q185.391609375 52.83984375 186.13428515625 54.4140625Q186.8769609375 55.98828125 188.1591875 56.80078125Q189.4414140625 57.61328125 191.0664140625 57.61328125Z M208.314265625 60.0V41.083984375H211.208796875V57.51171875H219.7781328125V60.0Z M235.75645312499998 60.2919921875Q233.48399218749998 60.2919921875 231.78282031249998 59.416015625Q230.08164843749998 58.5400390625 229.14854296874998 57.01025390625Q228.21543749999998 55.48046875 228.21543749999998 53.5V41.083984375H231.10996874999998V53.2587890625Q231.10996874999998 54.541015625 231.67491015624998 55.53125Q232.23985156249998 56.521484375 233.28086718749998 57.0927734375Q234.32188281249998 57.6640625 235.75645312499998 57.6640625Q237.17832812499998 57.6640625 238.21299609374998 57.0927734375Q239.24766406249998 56.521484375 239.80625781249998 55.53125Q240.36485156249998 54.541015625 240.36485156249998 53.2587890625V41.083984375H243.27207812499998V53.5Q243.27207812499998 55.48046875 242.33897265624998 57.01025390625Q241.40586718749998 58.5400390625 239.71104296874998 59.416015625Q238.01621874999998 60.2919921875 235.75645312499998 60.2919921875Z M251.70938281249997 43.572265625V41.083984375H266.39785937499994V43.572265625H260.51992968749994V60.0H257.61270312499994V43.572265625Z M277.7296953125 41.083984375V60.0H274.8351640625V41.083984375Z M295.0029375 60.25390625Q292.5527421875 60.25390625 290.61670703125 59.09228515625Q288.680671875 57.9306640625 287.56983203125 55.75341796875Q286.4589921875 53.576171875 286.4589921875 50.5546875Q286.4589921875 47.5205078125 287.56983203125 45.34326171875Q288.680671875 43.166015625 290.61670703125 41.998046875Q292.5527421875 40.830078125 295.0029375 40.830078125Q297.4531328125 40.830078125 299.37647265625 41.998046875Q301.2998125 43.166015625 302.41065234375 45.34326171875Q303.5214921875 47.5205078125 303.5214921875 50.5546875Q303.5214921875 53.576171875 302.41065234375 55.75341796875Q301.2998125 57.9306640625 299.37647265625 59.09228515625Q297.4531328125 60.25390625 295.0029375 60.25390625ZM295.0029375 57.61328125Q296.6152421875 57.61328125 297.89112109375 56.80712890625Q299.167 56.0009765625 299.90967578125 54.42041015625Q300.6523515625 52.83984375 300.6523515625 50.5546875Q300.6523515625 48.244140625 299.90967578125 46.66357421875Q299.167 45.0830078125 297.89112109375 44.27685546875Q296.6152421875 43.470703125 295.0029375 43.470703125Q293.3779375 43.470703125 292.0957109375 44.283203125Q290.813484375 45.095703125 290.07080859375 46.67626953125Q289.3281328125 48.2568359375 289.3281328125 50.5546875Q289.3281328125 52.83984375 290.07080859375 54.4140625Q290.813484375 55.98828125 292.0957109375 56.80078125Q293.3779375 57.61328125 295.0029375 57.61328125Z M312.25078906249996 60.0V41.083984375H315.58965624999996L322.71172656249996 52.3447265625Q323.06719531249996 52.9033203125 323.51153124999996 53.677734375Q323.95586718749996 54.4521484375 324.45098437499996 55.42333984375Q324.94610156249996 56.39453125 325.42852343749996 57.537109375H325.07305468749996Q324.95879687499996 56.4580078125 324.90166796874996 55.39794921875Q324.84453906249996 54.337890625 324.81914843749996 53.4111328125Q324.79375781249996 52.484375 324.79375781249996 51.849609375V41.083984375H327.72637499999996V60.0H324.37481249999996L317.98907031249996 49.9326171875Q317.48125781249996 49.107421875 316.99248828124996 48.26953125Q316.50371874999996 47.431640625 315.91338671874996 46.33349609375Q315.32305468749996 45.2353515625 314.47246874999996 43.6611328125H314.92949999999996Q314.99297656249996 45.0576171875 315.05645312499996 46.27001953125Q315.11992968749996 47.482421875 315.15166796874996 48.41552734375Q315.18340624999996 49.3486328125 315.18340624999996 49.9072265625V60.0Z M343.46348437499995 60.3173828125Q341.34336718749995 60.3173828125 339.78184374999995 59.64453125Q338.22032031249995 58.9716796875 337.33799609374995 57.72119140625Q336.45567187499995 56.470703125 336.36680468749995 54.744140625H339.27403124999995Q339.36289843749995 55.7724609375 339.94053515624995 56.4453125Q340.51817187499995 57.1181640625 341.44492968749995 57.4482421875Q342.37168749999995 57.7783203125 343.45078906249995 57.7783203125Q344.65684374999995 57.7783203125 345.58994921874995 57.40380859375Q346.52305468749995 57.029296875 347.06895312499995 56.33740234375Q347.61485156249995 55.6455078125 347.61485156249995 54.7314453125Q347.61485156249995 53.90625 347.13877734374995 53.37939453125Q346.66270312499995 52.8525390625 345.85655078124995 52.50341796875Q345.05039843749995 52.154296875 344.02207812499995 51.8876953125L341.81309374999995 51.2783203125Q339.48985156249995 50.65625 338.18858203124995 49.4375Q336.88731249999995 48.21875 336.88731249999995 46.2763671875Q336.88731249999995 44.638671875 337.76963671874995 43.41357421875Q338.65196093749995 42.1884765625 340.16905078124995 41.50927734375Q341.68614062499995 40.830078125 343.59043749999995 40.830078125Q345.53282031249995 40.830078125 347.01182421874995 41.50927734375Q348.49082812499995 42.1884765625 349.33506640624995 43.369140625Q350.17930468749995 44.5498046875 350.21739062499995 46.060546875H347.39903124999995Q347.25938281249995 44.765625 346.19932421874995 44.0546875Q345.13926562499995 43.34375 343.52696093749995 43.34375Q342.38438281249995 43.34375 341.54014453124995 43.69921875Q340.69590624999995 44.0546875 340.23252734374995 44.68310546875Q339.76914843749995 45.3115234375 339.76914843749995 46.111328125Q339.76914843749995 47.0126953125 340.32139453124995 47.56494140625Q340.87364062499995 48.1171875 341.66709765624995 48.44091796875Q342.46055468749995 48.7646484375 343.18418749999995 48.955078125L345.02500781249995 49.4375Q345.92637499999995 49.666015625 346.88487109374995 50.05322265625Q347.84336718749995 50.4404296875 348.65586718749995 51.05615234375Q349.46836718749995 51.671875 349.96983203124995 52.57958984375Q350.47129687499995 53.4873046875 350.47129687499995 54.76953125Q350.47129687499995 56.369140625 349.64610156249995 57.6259765625Q348.82090624999995 58.8828125 347.25303515624995 59.60009765625Q345.68516406249995 60.3173828125 343.46348437499995 60.3173828125Z"/></svg></div>
+    <div class="wordmark rv" aria-hidden="true"><svg class="wordmark__svg" viewBox="-4 4 361 82" role="img" aria-label="F&amp;D Solutions"><path class="lg-ink" d="M3.4000000000000004 80.0Q3.1 80.0 3.1 79.4Q3.1 78.8 3.4000000000000004 78.8Q6.800000000000001 78.8 8.450000000000001 78.3Q10.100000000000001 77.8 10.650000000000002 76.3Q11.200000000000001 74.8 11.200000000000001 71.9V25.599999999999994Q11.200000000000001 22.699999999999996 10.700000000000001 21.249999999999996Q10.200000000000001 19.799999999999997 8.700000000000001 19.249999999999996Q7.2 18.699999999999996 4.1000000000000005 18.699999999999996Q3.8000000000000003 18.699999999999996 3.8000000000000003 18.099999999999998Q3.8000000000000003 17.5 4.1000000000000005 17.5H46.5Q47.5 17.5 47.5 18.4L47.7 31.699999999999996Q47.7 31.9 47.2 31.999999999999996Q46.7 32.099999999999994 46.5 31.799999999999997Q44.900000000000006 25.9 41.10000000000001 23.15Q37.300000000000004 20.4 31.1 20.4H28.1Q25.1 20.4 23.700000000000003 21.7Q22.3 23.0 22.3 25.699999999999996V71.5Q22.3 74.5 23.1 76.05Q23.900000000000002 77.6 26.200000000000003 78.19999999999999Q28.5 78.8 33.0 78.8Q33.2 78.8 33.2 79.4Q33.2 80.0 33.0 80.0Q29.6 80.0 25.650000000000002 79.9Q21.700000000000003 79.8 16.400000000000002 79.8Q12.8 79.8 9.4 79.9Q6.0 80.0 3.4000000000000004 80.0ZM41.5 58.8Q41.5 54.8 38.400000000000006 52.449999999999996Q35.300000000000004 50.099999999999994 29.400000000000002 50.099999999999994H17.0V47.3H29.5Q35.4 47.3 38.400000000000006 45.2Q41.400000000000006 43.1 41.400000000000006 39.599999999999994Q41.400000000000006 39.4 42.0 39.4Q42.6 39.4 42.6 39.599999999999994Q42.6 43.0 42.55 44.849999999999994Q42.5 46.699999999999996 42.5 48.7Q42.5 51.2 42.6 53.6Q42.7 56.0 42.7 58.8Q42.7 59.099999999999994 42.1 59.099999999999994Q41.5 59.099999999999994 41.5 58.8Z"/><path class="lg-ink" d="M95.19200000000001 80.4Q91.99200000000002 80.4 87.19200000000001 80.1Q82.39200000000001 79.8 78.39200000000001 79.8Q74.79200000000002 79.8 71.49200000000002 79.9Q68.19200000000001 80.0 65.59200000000001 80.0Q65.39200000000001 80.0 65.39200000000001 79.4Q65.39200000000001 78.8 65.59200000000001 78.8Q68.69200000000001 78.8 70.24200000000002 78.3Q71.79200000000002 77.8 72.34200000000001 76.3Q72.89200000000001 74.8 72.89200000000001 71.9V25.599999999999994Q72.89200000000001 22.699999999999996 72.39200000000001 21.249999999999996Q71.89200000000001 19.799999999999997 70.34200000000001 19.249999999999996Q68.79200000000002 18.699999999999996 65.79200000000002 18.699999999999996Q65.49200000000002 18.699999999999996 65.49200000000002 18.099999999999998Q65.49200000000002 17.5 65.79200000000002 17.5Q68.39200000000001 17.5 71.59200000000001 17.65Q74.79200000000002 17.799999999999997 78.49200000000002 17.799999999999997Q82.09200000000001 17.799999999999997 86.39200000000001 17.549999999999997Q90.69200000000001 17.299999999999997 93.79200000000002 17.299999999999997Q104.19200000000001 17.299999999999997 111.89200000000001 21.299999999999997Q119.59200000000001 25.299999999999997 123.89200000000001 32.199999999999996Q128.192 39.099999999999994 128.192 47.699999999999996Q128.192 55.2 125.59200000000001 61.25Q122.99200000000002 67.3 118.39200000000002 71.55Q113.79200000000002 75.8 107.84200000000001 78.1Q101.89200000000002 80.4 95.19200000000001 80.4ZM94.19200000000001 78.1Q100.49200000000002 78.1 105.39200000000002 74.85Q110.29200000000002 71.6 113.09200000000001 65.3Q115.89200000000002 59.0 115.89200000000002 49.9Q115.89200000000002 41.4 113.29200000000002 34.5Q110.69200000000001 27.599999999999994 105.99200000000002 23.549999999999997Q101.29200000000002 19.5 94.79200000000002 19.5Q88.99200000000002 19.5 86.49200000000002 20.599999999999998Q83.99200000000002 21.699999999999996 83.99200000000002 25.799999999999997V70.8Q83.99200000000002 74.5 85.94200000000001 76.3Q87.89200000000001 78.1 94.19200000000001 78.1Z"/><path class="lg-amp" d="M42.230000000000004 75.878Q42.230000000000004 73.46000000000001 43.532000000000004 71.53800000000001Q44.834 69.616 46.911 67.911Q48.988 66.206 51.313 64.501Q53.638000000000005 62.796 55.715 60.873999999999995Q57.792 58.952 59.094 56.658Q60.396 54.364000000000004 60.396 51.45Q60.396 48.660000000000004 59.094 47.141000000000005Q57.792 45.622 55.80800000000001 45.622Q54.072 45.622 53.328 46.769Q52.584 47.916 52.584 50.086Q52.584 53.495999999999995 54.165000000000006 57.03Q55.746 60.564 58.381 63.974000000000004Q61.016000000000005 67.384 64.27100000000002 70.48400000000001Q67.52600000000001 73.584 70.874 76.126Q75.27600000000001 79.412 78.438 81.117Q81.6 82.822 83.15 83.256Q83.398 83.318 83.367 83.65899999999999Q83.33600000000001 84.0 83.15 84.0Q81.22800000000001 84.0 78.531 84.0Q75.834 84.0 72.982 84.0Q72.30000000000001 84.0 71.184 83.50399999999999Q70.068 83.008 68.17699999999999 81.737Q66.286 80.466 63.248000000000005 78.048Q60.644000000000005 75.94 57.792 73.274Q54.94 70.608 52.491 67.725Q50.042 64.842 48.554 62.114000000000004Q47.748000000000005 60.564 47.252 58.983000000000004Q46.756 57.402 46.756 55.418Q46.756 52.132000000000005 48.182 49.528000000000006Q49.608000000000004 46.924 52.274 45.436Q54.94 43.948 58.660000000000004 43.948Q61.202 43.948 63.062 44.692Q64.922 45.436 65.945 46.8Q66.968 48.164 66.968 50.148Q66.968 52.628 65.635 54.55Q64.302 56.472 62.194 58.084Q60.086 59.696 57.730000000000004 61.245999999999995Q55.374 62.796 53.266000000000005 64.408Q51.158 66.02 49.825 67.94200000000001Q48.492000000000004 69.864 48.492000000000004 72.344Q48.492000000000004 74.7 49.856 76.839Q51.22 78.978 53.793 80.342Q56.366 81.706 59.962 81.706Q62.504000000000005 81.706 64.364 80.93100000000001Q66.224 80.156 67.43299999999999 78.668Q68.642 77.18 69.231 74.97900000000001Q69.82000000000001 72.778 69.82000000000001 69.988Q69.82000000000001 66.45400000000001 68.673 64.78Q67.52600000000001 63.106 64.798 63.106Q64.674 63.106 64.643 62.734Q64.612 62.362 64.798 62.362L79.554 62.3Q79.74000000000001 62.3 79.74000000000001 62.672Q79.74000000000001 63.044 79.554 63.044Q77.694 63.044 76.76400000000001 63.477999999999994Q75.834 63.912 75.369 64.935Q74.904 65.958 74.408 67.756Q73.912 69.554 73.10600000000001 71.81700000000001Q72.30000000000001 74.08 70.96700000000001 76.34299999999999Q69.634 78.606 67.557 80.52799999999999Q65.48 82.45 62.44200000000001 83.59700000000001Q59.404 84.744 55.188 84.744Q50.724000000000004 84.744 47.84100000000001 83.44200000000001Q44.958000000000006 82.14 43.59400000000001 80.094Q42.230000000000004 78.048 42.230000000000004 75.878Z"/><path class="lg-ink" d="M167.5343828125 60.3173828125Q165.414265625 60.3173828125 163.8527421875 59.64453125Q162.29121875 58.9716796875 161.40889453125 57.72119140625Q160.5265703125 56.470703125 160.437703125 54.744140625H163.3449296875Q163.433796875 55.7724609375 164.01143359375 56.4453125Q164.5890703125 57.1181640625 165.515828125 57.4482421875Q166.4425859375 57.7783203125 167.5216875 57.7783203125Q168.7277421875 57.7783203125 169.66084765625 57.40380859375Q170.593953125 57.029296875 171.1398515625 56.33740234375Q171.68575 55.6455078125 171.68575 54.7314453125Q171.68575 53.90625 171.20967578125 53.37939453125Q170.7336015625 52.8525390625 169.92744921875 52.50341796875Q169.121296875 52.154296875 168.0929765625 51.8876953125L165.8839921875 51.2783203125Q163.56075 50.65625 162.25948046875 49.4375Q160.9582109375 48.21875 160.9582109375 46.2763671875Q160.9582109375 44.638671875 161.84053515625 43.41357421875Q162.722859375 42.1884765625 164.23994921875 41.50927734375Q165.7570390625 40.830078125 167.6613359375 40.830078125Q169.60371875 40.830078125 171.08272265625 41.50927734375Q172.5617265625 42.1884765625 173.40596484375 43.369140625Q174.250203125 44.5498046875 174.2882890625 46.060546875H171.4699296875Q171.33028125 44.765625 170.27022265625 44.0546875Q169.2101640625 43.34375 167.597859375 43.34375Q166.45528125 43.34375 165.61104296875 43.69921875Q164.7668046875 44.0546875 164.30342578125 44.68310546875Q163.840046875 45.3115234375 163.840046875 46.111328125Q163.840046875 47.0126953125 164.39229296875 47.56494140625Q164.9445390625 48.1171875 165.73799609375 48.44091796875Q166.531453125 48.7646484375 167.2550859375 48.955078125L169.09590625 49.4375Q169.9972734375 49.666015625 170.95576953125 50.05322265625Q171.914265625 50.4404296875 172.726765625 51.05615234375Q173.539265625 51.671875 174.04073046875 52.57958984375Q174.5421953125 53.4873046875 174.5421953125 54.76953125Q174.5421953125 56.369140625 173.717 57.6259765625Q172.8918046875 58.8828125 171.32393359375 59.60009765625Q169.7560625 60.3173828125 167.5343828125 60.3173828125Z M191.0664140625 60.25390625Q188.61621875 60.25390625 186.68018359375 59.09228515625Q184.7441484375 57.9306640625 183.63330859375 55.75341796875Q182.52246875 53.576171875 182.52246875 50.5546875Q182.52246875 47.5205078125 183.63330859375 45.34326171875Q184.7441484375 43.166015625 186.68018359375 41.998046875Q188.61621875 40.830078125 191.0664140625 40.830078125Q193.516609375 40.830078125 195.43994921875 41.998046875Q197.3632890625 43.166015625 198.47412890625 45.34326171875Q199.58496875 47.5205078125 199.58496875 50.5546875Q199.58496875 53.576171875 198.47412890625 55.75341796875Q197.3632890625 57.9306640625 195.43994921875 59.09228515625Q193.516609375 60.25390625 191.0664140625 60.25390625ZM191.0664140625 57.61328125Q192.67871875 57.61328125 193.95459765625 56.80712890625Q195.2304765625 56.0009765625 195.97315234375 54.42041015625Q196.715828125 52.83984375 196.715828125 50.5546875Q196.715828125 48.244140625 195.97315234375 46.66357421875Q195.2304765625 45.0830078125 193.95459765625 44.27685546875Q192.67871875 43.470703125 191.0664140625 43.470703125Q189.4414140625 43.470703125 188.1591875 44.283203125Q186.8769609375 45.095703125 186.13428515625 46.67626953125Q185.391609375 48.2568359375 185.391609375 50.5546875Q185.391609375 52.83984375 186.13428515625 54.4140625Q186.8769609375 55.98828125 188.1591875 56.80078125Q189.4414140625 57.61328125 191.0664140625 57.61328125Z M208.314265625 60.0V41.083984375H211.208796875V57.51171875H219.7781328125V60.0Z M235.75645312499998 60.2919921875Q233.48399218749998 60.2919921875 231.78282031249998 59.416015625Q230.08164843749998 58.5400390625 229.14854296874998 57.01025390625Q228.21543749999998 55.48046875 228.21543749999998 53.5V41.083984375H231.10996874999998V53.2587890625Q231.10996874999998 54.541015625 231.67491015624998 55.53125Q232.23985156249998 56.521484375 233.28086718749998 57.0927734375Q234.32188281249998 57.6640625 235.75645312499998 57.6640625Q237.17832812499998 57.6640625 238.21299609374998 57.0927734375Q239.24766406249998 56.521484375 239.80625781249998 55.53125Q240.36485156249998 54.541015625 240.36485156249998 53.2587890625V41.083984375H243.27207812499998V53.5Q243.27207812499998 55.48046875 242.33897265624998 57.01025390625Q241.40586718749998 58.5400390625 239.71104296874998 59.416015625Q238.01621874999998 60.2919921875 235.75645312499998 60.2919921875Z M251.70938281249997 43.572265625V41.083984375H266.39785937499994V43.572265625H260.51992968749994V60.0H257.61270312499994V43.572265625Z M277.7296953125 41.083984375V60.0H274.8351640625V41.083984375Z M295.0029375 60.25390625Q292.5527421875 60.25390625 290.61670703125 59.09228515625Q288.680671875 57.9306640625 287.56983203125 55.75341796875Q286.4589921875 53.576171875 286.4589921875 50.5546875Q286.4589921875 47.5205078125 287.56983203125 45.34326171875Q288.680671875 43.166015625 290.61670703125 41.998046875Q292.5527421875 40.830078125 295.0029375 40.830078125Q297.4531328125 40.830078125 299.37647265625 41.998046875Q301.2998125 43.166015625 302.41065234375 45.34326171875Q303.5214921875 47.5205078125 303.5214921875 50.5546875Q303.5214921875 53.576171875 302.41065234375 55.75341796875Q301.2998125 57.9306640625 299.37647265625 59.09228515625Q297.4531328125 60.25390625 295.0029375 60.25390625ZM295.0029375 57.61328125Q296.6152421875 57.61328125 297.89112109375 56.80712890625Q299.167 56.0009765625 299.90967578125 54.42041015625Q300.6523515625 52.83984375 300.6523515625 50.5546875Q300.6523515625 48.244140625 299.90967578125 46.66357421875Q299.167 45.0830078125 297.89112109375 44.27685546875Q296.6152421875 43.470703125 295.0029375 43.470703125Q293.3779375 43.470703125 292.0957109375 44.283203125Q290.813484375 45.095703125 290.07080859375 46.67626953125Q289.3281328125 48.2568359375 289.3281328125 50.5546875Q289.3281328125 52.83984375 290.07080859375 54.4140625Q290.813484375 55.98828125 292.0957109375 56.80078125Q293.3779375 57.61328125 295.0029375 57.61328125Z M312.25078906249996 60.0V41.083984375H315.58965624999996L322.71172656249996 52.3447265625Q323.06719531249996 52.9033203125 323.51153124999996 53.677734375Q323.95586718749996 54.4521484375 324.45098437499996 55.42333984375Q324.94610156249996 56.39453125 325.42852343749996 57.537109375H325.07305468749996Q324.95879687499996 56.4580078125 324.90166796874996 55.39794921875Q324.84453906249996 54.337890625 324.81914843749996 53.4111328125Q324.79375781249996 52.484375 324.79375781249996 51.849609375V41.083984375H327.72637499999996V60.0H324.37481249999996L317.98907031249996 49.9326171875Q317.48125781249996 49.107421875 316.99248828124996 48.26953125Q316.50371874999996 47.431640625 315.91338671874996 46.33349609375Q315.32305468749996 45.2353515625 314.47246874999996 43.6611328125H314.92949999999996Q314.99297656249996 45.0576171875 315.05645312499996 46.27001953125Q315.11992968749996 47.482421875 315.15166796874996 48.41552734375Q315.18340624999996 49.3486328125 315.18340624999996 49.9072265625V60.0Z M343.46348437499995 60.3173828125Q341.34336718749995 60.3173828125 339.78184374999995 59.64453125Q338.22032031249995 58.9716796875 337.33799609374995 57.72119140625Q336.45567187499995 56.470703125 336.36680468749995 54.744140625H339.27403124999995Q339.36289843749995 55.7724609375 339.94053515624995 56.4453125Q340.51817187499995 57.1181640625 341.44492968749995 57.4482421875Q342.37168749999995 57.7783203125 343.45078906249995 57.7783203125Q344.65684374999995 57.7783203125 345.58994921874995 57.40380859375Q346.52305468749995 57.029296875 347.06895312499995 56.33740234375Q347.61485156249995 55.6455078125 347.61485156249995 54.7314453125Q347.61485156249995 53.90625 347.13877734374995 53.37939453125Q346.66270312499995 52.8525390625 345.85655078124995 52.50341796875Q345.05039843749995 52.154296875 344.02207812499995 51.8876953125L341.81309374999995 51.2783203125Q339.48985156249995 50.65625 338.18858203124995 49.4375Q336.88731249999995 48.21875 336.88731249999995 46.2763671875Q336.88731249999995 44.638671875 337.76963671874995 43.41357421875Q338.65196093749995 42.1884765625 340.16905078124995 41.50927734375Q341.68614062499995 40.830078125 343.59043749999995 40.830078125Q345.53282031249995 40.830078125 347.01182421874995 41.50927734375Q348.49082812499995 42.1884765625 349.33506640624995 43.369140625Q350.17930468749995 44.5498046875 350.21739062499995 46.060546875H347.39903124999995Q347.25938281249995 44.765625 346.19932421874995 44.0546875Q345.13926562499995 43.34375 343.52696093749995 43.34375Q342.38438281249995 43.34375 341.54014453124995 43.69921875Q340.69590624999995 44.0546875 340.23252734374995 44.68310546875Q339.76914843749995 45.3115234375 339.76914843749995 46.111328125Q339.76914843749995 47.0126953125 340.32139453124995 47.56494140625Q340.87364062499995 48.1171875 341.66709765624995 48.44091796875Q342.46055468749995 48.7646484375 343.18418749999995 48.955078125L345.02500781249995 49.4375Q345.92637499999995 49.666015625 346.88487109374995 50.05322265625Q347.84336718749995 50.4404296875 348.65586718749995 51.05615234375Q349.46836718749995 51.671875 349.96983203124995 52.57958984375Q350.47129687499995 53.4873046875 350.47129687499995 54.76953125Q350.47129687499995 56.369140625 349.64610156249995 57.6259765625Q348.82090624999995 58.8828125 347.25303515624995 59.60009765625Q345.68516406249995 60.3173828125 343.46348437499995 60.3173828125Z"/></svg></div>
     <div class="foot__base"><span>© <span id="year"></span> F&amp;D Solutions · München</span><span>Alle Preise zzgl. MwSt.</span></div>
   </div>
 </footer>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function () {
   "use strict";
@@ -959,20 +1133,89 @@ a.devices:hover { transform: translateY(-4px); }
     });
   })();
 
-  /* ---------------- Process track fills as you scroll past it ---------------- */
+  /* ---------------- Ablauf: the chat follows the step you are reading ---------------- */
   (function () {
-    var track = $("#track"); if (!track) return;
-    var steps = $$(".track__step", track);
+    var story = $("#story"); if (!story) return;
+    var steps = $$(".story__steps li", story), msgs = $$(".msg", story), small = matchMedia("(max-width: 820px)");
+    function set(n) {
+      steps.forEach(function (li, i) { li.classList.toggle("on", i === n); li.classList.toggle("past", i < n); });
+      msgs.forEach(function (m) { var k = +m.getAttribute("data-s"); m.classList.toggle("show", k <= n && !(m.classList.contains("msg--typing") && n > 0)); });
+    }
+    if (reduce) { set(3); return; }
+    if (small.matches) {
+      new IntersectionObserver(function (es, io) { if (es[0].isIntersecting) { io.disconnect(); [0, 1, 2, 3].forEach(function (n) { setTimeout(function () { set(n); }, n * 1400); }); } }, { threshold: .35 }).observe($(".chat", story));
+      set(-1); return;
+    }
     function upd() {
-      var r = track.getBoundingClientRect();
-      var p = reduce ? 1 : clamp((innerHeight * .75 - r.top) / (r.height + innerHeight * .25), 0, 1);
-      track.style.setProperty("--fill", p.toFixed(3));
-      steps.forEach(function (s, i) { s.classList.toggle("is-done", p >= i / (steps.length - 1) - .02); });
+      var mid = innerHeight * .55, n = 0;
+      steps.forEach(function (li, i) { if (li.getBoundingClientRect().top < mid) n = i; });
+      set(n);
     }
     window.addEventListener("scroll", upd, { passive: true }); upd();
   })();
 
-  /* ---------------- Service screens: scroll-linked effects ---------------- */
+  /* ---------------- Über uns: words light up while you scroll ---------------- */
+  (function () {
+    var el = $("#statement"); if (!el) return;
+    el.innerHTML = el.textContent.trim().split(/\s+/).map(function (w) { return "<span>" + w + "</span>"; }).join(" ");
+    var words = $$("span", el);
+    function upd() {
+      var r = el.getBoundingClientRect(), p = reduce ? 1 : clamp((innerHeight * .85 - r.top) / (r.height + innerHeight * .35), 0, 1);
+      var n = Math.round(p * words.length);
+      words.forEach(function (w, i) { w.classList.toggle("lit", i < n); });
+    }
+    window.addEventListener("scroll", upd, { passive: true }); upd();
+  })();
+
+  /* ---------------- Big line: moves with the scroll ---------------- */
+  (function () {
+    var t = $("#bigline"); if (!t || reduce) return;
+    var lastY = scrollY, skew = 0, raf;
+    function frame() {
+      var r = t.parentNode.getBoundingClientRect(), v = scrollY - lastY; lastY = scrollY;
+      skew += (clamp(v * .25, -8, 8) - skew) * .15;
+      t.style.transform = "translate3d(" + (-(innerHeight - r.top) * .45) + "px,0,0) skewX(" + (-skew).toFixed(2) + "deg)";
+      raf = requestAnimationFrame(frame);
+    }
+    new IntersectionObserver(function (es) { cancelAnimationFrame(raf); if (es[0].isIntersecting) frame(); }).observe(t.parentNode);
+  })();
+
+  /* ---------------- Footer: floating pieces follow the mouse, magnetic button ---------------- */
+  (function () {
+    var o = $("#orbit"); if (!o) return;
+    new IntersectionObserver(function (es, io) { if (es[0].isIntersecting) { o.classList.add("in"); io.disconnect(); } }, { threshold: .25 }).observe(o);
+    if (reduce || !matchMedia("(hover: hover)").matches) return;
+    o.addEventListener("pointermove", function (e) {
+      var r = o.getBoundingClientRect();
+      o.style.setProperty("--px", ((e.clientX - r.left) / r.width - .5).toFixed(3));
+      o.style.setProperty("--py", ((e.clientY - r.top) / r.height - .5).toFixed(3));
+    });
+    o.addEventListener("pointerleave", function () { o.style.setProperty("--px", 0); o.style.setProperty("--py", 0); });
+    var m = $(".magnet", o);
+    m.addEventListener("pointermove", function (e) { var r = m.getBoundingClientRect(); m.style.transform = "translate(" + ((e.clientX - r.left - r.width / 2) * .3) + "px," + ((e.clientY - r.top - r.height / 2) * .4) + "px)"; });
+    m.addEventListener("pointerleave", function () { m.style.transform = ""; });
+  })();
+
+  /* ---------------- NFC scene: the iPhone taps the plate, the review page opens ---------------- */
+  (function () {
+    var st = $("#nfcStage"); if (!st) return;
+    var cap = $(".stage-cap", st), capNo = $("b", cap), capTx = $("span", cap);
+    var plan = [[900, "p1"], [1900, "p2"], [3000, "p3"], [3600, "p4"], [4900, "p5"], [6100, "p6"]], timers = [], on = false;
+    var caps = { 0: [1, "Handy an die Platte halten"], 3: [2, "Ihre Google-Bewertungsseite öffnet sich sofort"], 6: [3, "Fertig: eine neue 5-Sterne-Bewertung"] };
+    function say(i) { var c = caps[i]; if (c) { capNo.textContent = c[0]; capTx.textContent = c[1]; } }
+    function run() {
+      st.classList.remove("p1", "p2", "p3", "p4", "p5", "p6"); say(0);
+      plan.forEach(function (x, i) { timers.push(setTimeout(function () { st.classList.add(x[1]); say(i + 1); }, x[0])); });
+      timers.push(setTimeout(run, 9400));
+    }
+    if (reduce) { st.classList.add("p3", "p4", "p5", "p6"); say(6); return; }
+    new IntersectionObserver(function (es) {
+      if (es[0].isIntersecting && !on) { on = true; run(); }
+      else if (!es[0].isIntersecting && on) { on = false; timers.forEach(clearTimeout); timers = []; }
+    }, { threshold: .3 }).observe(st);
+  })();
+
+  /* ---------------- Service screens:  /* ---------------- Service screens: scroll-linked effects ---------------- */
   (function () {
     var webStage = $("#webStage"), devStage = webStage && $(".devices__stage", webStage), tour = $("#tourVisual");
     var flies = tour ? $$(".fly img", tour) : [];
@@ -1192,7 +1435,7 @@ a.devices:hover { transform: translateY(-4px); }
       b.addEventListener("click", function () {
         $$("button", group).forEach(function (x) { x.setAttribute("aria-checked", String(x === b)); });
         btn.setAttribute("data-detail", "NFC-Platte · " + b.getAttribute("data-color"));
-        nfcTheme = b.getAttribute("data-color") === "Schwarz" ? "black" : "white";
+        var d = $("#tapDisc"); if (d) d.classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
       });
     });
   });
@@ -1321,314 +1564,6 @@ a.devices:hover { transform: translateY(-4px); }
     $("#done").hidden = true; form.hidden = false; show(1);
   });
 
-  /* ======================================================================
-     3D (Three.js r128): NFC disc that opens into its layers
-     ====================================================================== */
-  var THREE = window.THREE;
-  var stages = [];
-
-  function stage(host, opts) {
-    var renderer;
-    try { renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); } catch (e) { return null; }
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    renderer.outputEncoding = THREE.sRGBEncoding;
-    host.appendChild(renderer.domElement);
-    host.classList.add("gl-on");
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera(opts.fov || 32, 1, 0.1, 100);
-    var s = { host: host, renderer: renderer, scene: scene, camera: camera, w: 1, h: 1, visible: false, update: opts.update };
-    function size() {
-      s.w = host.clientWidth || 1; s.h = host.clientHeight || 1;
-      renderer.setSize(s.w, s.h, false);
-      camera.aspect = s.w / s.h;
-      camera.updateProjectionMatrix();
-      if (opts.resize) opts.resize(s);
-    }
-    window.addEventListener("resize", size);
-    size();
-    new IntersectionObserver(function (e) { s.visible = e[0].isIntersecting; }, { rootMargin: "100px" }).observe(host);
-    stages.push(s);
-    return s;
-  }
-
-  var clock = THREE ? new THREE.Clock() : null;
-  function loop() {
-    if (document.hidden) { requestAnimationFrame(loop); return; }
-    var dt = Math.min(clock.getDelta(), 1 / 20), t = clock.elapsedTime;
-    stages.forEach(function (s) {
-      if (!s.visible) return;
-      s.update(t, dt, s);
-      s.renderer.render(s.scene, s.camera);
-    });
-    requestAnimationFrame(loop);
-  }
-
-  /* --- Canvas artwork --- */
-  function tex(paint, size) {
-    var c = document.createElement("canvas");
-    c.width = c.height = size || 1024;
-    paint(c.getContext("2d"), c.width);
-    var t = new THREE.CanvasTexture(c);
-    t.encoding = THREE.sRGBEncoding;
-    t.center.set(0.5, 0.5);
-    t.rotation = Math.PI / 2; // cylinder caps map UVs a quarter turn off
-    return t;
-  }
-  function starPath(ctx, cx, cy, r) {
-    ctx.beginPath();
-    for (var i = 0; i < 10; i++) { var a = -Math.PI / 2 + i * Math.PI / 5, rr = i % 2 ? r * .45 : r; ctx.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr); }
-    ctx.closePath(); ctx.fill();
-  }
-  function paintFront(dark) {
-    return function (ctx, s) {
-      var g = ctx.createRadialGradient(s * .35, s * .3, 0, s / 2, s / 2, s * .7);
-      g.addColorStop(0, dark ? "#2b2c30" : "#ffffff"); g.addColorStop(1, dark ? "#08080a" : "#e7eaee");
-      ctx.fillStyle = g; ctx.fillRect(0, 0, s, s);
-      var cols = ["#4285F4", "#EA4335", "#FBBC05", "#34A853"], st = [Math.PI, Math.PI * 1.5, 0, Math.PI * .5];
-      for (var i = 0; i < 4; i++) { ctx.beginPath(); ctx.arc(s / 2, s / 2, s * .41, st[i], st[i] + Math.PI / 2); ctx.strokeStyle = cols[i]; ctx.lineWidth = s * .028; ctx.stroke(); }
-      var ink = dark ? "#f1f3f4" : "#202124";
-      ctx.fillStyle = ink; ctx.strokeStyle = ink; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-      ctx.font = "700 " + s * .04 + "px Inter, sans-serif";
-      ctx.fillText("T A P   H E R E", s / 2, s * .23);
-      ctx.lineWidth = s * .008; ctx.lineCap = "round";
-      ctx.beginPath(); ctx.rect(s * .47, s * .29, s * .07, s * .13); ctx.stroke();
-      for (var k = 1; k <= 3; k++) { ctx.beginPath(); ctx.arc(s * .455, s * .31, s * .018 * k, Math.PI * 1.05, Math.PI * 1.45); ctx.stroke(); }
-      var L = [["G", "#4285F4"], ["o", "#EA4335"], ["o", "#FBBC05"], ["g", "#4285F4"], ["l", "#34A853"], ["e", "#EA4335"]];
-      ctx.font = "500 " + s * .14 + "px Inter, sans-serif"; ctx.textAlign = "left";
-      var w = L.map(function (l) { return ctx.measureText(l[0]).width; });
-      var x = s / 2 - w.reduce(function (a, b) { return a + b; }, 0) / 2;
-      L.forEach(function (l, i) { ctx.fillStyle = l[1]; ctx.fillText(l[0], x, s * .56); x += w[i]; });
-      ctx.fillStyle = "#FBBC05";
-      for (var j = 0; j < 5; j++) starPath(ctx, s / 2 + (j - 2) * s * .058, s * .68, s * .022);
-      ctx.fillStyle = ink; ctx.textAlign = "center"; ctx.font = "600 " + s * .045 + "px Inter, sans-serif";
-      ctx.fillText("Review Us On", s / 2, s * .77);
-    };
-  }
-  function paintBack(ctx, s) {
-    ctx.fillStyle = "#ececea"; ctx.fillRect(0, 0, s, s);
-    ctx.fillStyle = "#111110"; ctx.textAlign = "center"; ctx.textBaseline = "middle";
-    ctx.font = s * .2 + "px Anton, Impact, sans-serif"; ctx.fillText("F&D", s / 2, s * .48);
-    ctx.font = "700 " + s * .04 + "px Inter, sans-serif"; ctx.fillText("S O L U T I O N S", s / 2, s * .63);
-  }
-  function paintInlay(ctx, s) {
-    ctx.clearRect(0, 0, s, s);
-    ctx.fillStyle = "rgba(240,240,236,0.35)";
-    ctx.beginPath(); ctx.arc(s / 2, s / 2, s * .36, 0, Math.PI * 2); ctx.fill();
-    var cg = ctx.createLinearGradient(0, 0, s, s); cg.addColorStop(0, "#8a4f1e"); cg.addColorStop(.5, "#e3a465"); cg.addColorStop(1, "#b87333");
-    ctx.strokeStyle = cg; ctx.lineWidth = s * .009;
-    for (var i = 0; i < 7; i++) { ctx.beginPath(); ctx.arc(s / 2, s / 2, s * (.32 - i * .018), 0, Math.PI * 2); ctx.stroke(); }
-    ctx.beginPath(); ctx.moveTo(s / 2 + s * .2, s / 2); ctx.lineTo(s / 2 + s * .05, s / 2); ctx.stroke();
-  }
-
-  // The real product print, loaded over a painted fallback so the disc never shows blank.
-  function photoTex(url, fallback) {
-    var t = tex(fallback), img = new Image();
-    img.onload = function () { var c = t.image; c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); t.needsUpdate = true; };
-    img.src = url;
-    return t;
-  }
-
-  /* --- Disc built from layers (front cap, inlay with chip, back cap) --- */
-  function buildDisc(theme) {
-    var R = 1.5, T = 0.07, dark = theme === "black";
-    // Each layer gets its own materials so it can be dimmed on its own.
-    var M = function (o) { return new THREE.MeshStandardMaterial(Object.assign({ transparent: true }, o)); };
-    var edge = function () { return M({ color: dark ? 0x1a1a1c : 0xf2f1ee, roughness: .3, metalness: .05 }); };
-    var plain = function () { return M({ color: dark ? 0x1d1d1f : 0xeeeeea, roughness: .5 }); };
-    var front = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge(), M({ map: photoTex(dark ? "/media/nfc-front-black.jpg" : "/media/nfc-front.jpg", paintFront(dark)), roughness: .35 }), plain()]);
-    var back = new THREE.Mesh(new THREE.CylinderGeometry(R, R, T, 96), [edge(), plain(), M({ map: tex(paintBack), roughness: .45 })]);
-    var coil = new THREE.Mesh(new THREE.CircleGeometry(R * .98, 64), M({ map: tex(paintInlay, 512), side: THREE.DoubleSide, metalness: .4, roughness: .4, depthWrite: false }));
-    coil.rotation.x = -Math.PI / 2;
-    var chip = new THREE.Mesh(new THREE.BoxGeometry(.34, .06, .34), M({ color: 0x151515, roughness: .3, metalness: .5 }));
-    chip.position.y = .03;
-    var g = new THREE.Group();
-    front.position.y = T / 2; back.position.y = -T / 2;
-    g.add(front, coil, chip, back);
-    return { group: g, front: front, back: back, coil: coil, chip: chip, T: T, parts: [[front], [chip], [coil], [back]] };
-  }
-
-  function lights(scene) {
-    scene.add(new THREE.HemisphereLight(0xffffff, 0xd8d3c4, 0.9));
-    var key = new THREE.DirectionalLight(0xffffff, 0.9); key.position.set(3, 6, 4); scene.add(key);
-    var rim = new THREE.DirectionalLight(0xebe5d9, 0.5); rim.position.set(-4, 2, -3); scene.add(rim);
-  }
-
-  /* --- NFC panel: a phone taps the disc, then the disc opens and walks through its layers --- */
-  var nfcTheme = "white";
-  // Screen of a current iPhone (Dynamic Island, rounded display) showing the Google review form.
-  function rrect(ctx, x, y, w, h, r) {
-    ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r);
-    ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath();
-  }
-  function paintPhone(ctx, w, h) {
-    ctx.clearRect(0, 0, w, h);
-    rrect(ctx, 0, 0, w, h, w * .16); ctx.save(); ctx.clip();
-    ctx.fillStyle = "#ffffff"; ctx.fillRect(0, 0, w, h);
-    // Status bar and Dynamic Island
-    ctx.fillStyle = "#000"; rrect(ctx, w * .33, h * .018, w * .34, h * .042, h * .021); ctx.fill();
-    ctx.font = "600 " + w * .052 + "px Inter, sans-serif"; ctx.textBaseline = "middle"; ctx.textAlign = "left";
-    ctx.fillText("9:41", w * .1, h * .04);
-    ctx.fillRect(w * .76, h * .032, w * .016, h * .016); ctx.fillRect(w * .785, h * .028, w * .016, h * .02); ctx.fillRect(w * .81, h * .024, w * .016, h * .024);
-    ctx.lineWidth = w * .006; ctx.strokeStyle = "#000"; rrect(ctx, w * .84, h * .03, w * .07, h * .02, w * .01); ctx.stroke(); ctx.fillRect(w * .846, h * .034, w * .05, h * .012);
-    // Browser address pill
-    ctx.fillStyle = "#f1f1f3"; rrect(ctx, w * .07, h * .085, w * .86, h * .05, h * .025); ctx.fill();
-    ctx.fillStyle = "#555"; ctx.font = "500 " + w * .042 + "px Inter, sans-serif"; ctx.textAlign = "center"; ctx.fillText("g.page/review", w / 2, h * .11);
-    // Google wordmark
-    var L = [["G", "#4285F4"], ["o", "#EA4335"], ["o", "#FBBC05"], ["g", "#4285F4"], ["l", "#34A853"], ["e", "#EA4335"]];
-    ctx.font = "500 " + w * .14 + "px Inter, sans-serif"; ctx.textAlign = "left";
-    var total = L.reduce(function (a, l) { return a + ctx.measureText(l[0]).width; }, 0), x = (w - total) / 2;
-    L.forEach(function (l) { ctx.fillStyle = l[1]; ctx.fillText(l[0], x, h * .22); x += ctx.measureText(l[0]).width; });
-    ctx.textAlign = "center"; ctx.fillStyle = "#202124";
-    ctx.font = "700 " + w * .062 + "px Inter, sans-serif"; ctx.fillText("Café Isarblick", w / 2, h * .31);
-    ctx.fillStyle = "#5f6368"; ctx.font = "500 " + w * .045 + "px Inter, sans-serif"; ctx.fillText("Bewertung schreiben", w / 2, h * .35);
-    ctx.fillStyle = "#FBBC05"; ctx.font = w * .12 + "px sans-serif"; ctx.fillText("★★★★★", w / 2, h * .43);
-    ctx.strokeStyle = "#dadce0"; ctx.lineWidth = w * .006; rrect(ctx, w * .08, h * .49, w * .84, h * .17, w * .03); ctx.stroke();
-    ctx.fillStyle = "#3c4043"; ctx.textAlign = "left"; ctx.font = "400 " + w * .042 + "px Inter, sans-serif";
-    ctx.fillText("Super Service, gerne wieder!", w * .12, h * .53);
-    ctx.fillStyle = "#1a73e8"; rrect(ctx, w * .5, h * .7, w * .42, h * .055, h * .0275); ctx.fill();
-    ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.font = "600 " + w * .048 + "px Inter, sans-serif"; ctx.fillText("Posten", w * .71, h * .7275);
-    // Home indicator
-    ctx.fillStyle = "#111"; rrect(ctx, w * .34, h * .965, w * .32, h * .008, h * .004); ctx.fill();
-    ctx.restore();
-  }
-  function iphone() {
-    // Slim aluminium frame with rounded corners, black glass front, side buttons.
-    var W = .98, H = 2.04, R = .17, D = .075;
-    var shape = new THREE.Shape();
-    shape.moveTo(-W / 2 + R, -H / 2); shape.lineTo(W / 2 - R, -H / 2); shape.quadraticCurveTo(W / 2, -H / 2, W / 2, -H / 2 + R);
-    shape.lineTo(W / 2, H / 2 - R); shape.quadraticCurveTo(W / 2, H / 2, W / 2 - R, H / 2); shape.lineTo(-W / 2 + R, H / 2);
-    shape.quadraticCurveTo(-W / 2, H / 2, -W / 2, H / 2 - R); shape.lineTo(-W / 2, -H / 2 + R); shape.quadraticCurveTo(-W / 2, -H / 2, -W / 2 + R, -H / 2);
-    var geo = new THREE.ExtrudeGeometry(shape, { depth: D, bevelEnabled: true, bevelThickness: .012, bevelSize: .012, bevelSegments: 4, curveSegments: 24 });
-    geo.rotateX(-Math.PI / 2);
-    var glassMat = new THREE.MeshStandardMaterial({ color: 0x050506, roughness: .08, metalness: .2 });
-    var frameMat = new THREE.MeshStandardMaterial({ color: 0xb9bcc2, roughness: .28, metalness: .85 });
-    var body = new THREE.Mesh(geo, [glassMat, frameMat]);
-    var g = new THREE.Group(); g.add(body);
-    [[-.12, .13], [.12, .2]].forEach(function (b) {
-      var btn = new THREE.Mesh(new THREE.BoxGeometry(.02, .04, b[1]), frameMat);
-      btn.position.set(-W / 2 - .012, D / 2, b[0] - .35); g.add(btn);
-    });
-    var power = new THREE.Mesh(new THREE.BoxGeometry(.02, .04, .26), frameMat);
-    power.position.set(W / 2 + .012, D / 2, -.3); g.add(power);
-    var pc = document.createElement("canvas"); pc.width = 512; pc.height = 1080; paintPhone(pc.getContext("2d"), 512, 1080);
-    var ptex = new THREE.CanvasTexture(pc); ptex.encoding = THREE.sRGBEncoding; ptex.anisotropy = 4;
-    var screen = new THREE.Mesh(new THREE.PlaneGeometry(W - .07, (W - .07) * 1080 / 512), new THREE.MeshBasicMaterial({ map: ptex, transparent: true, opacity: 0 }));
-    screen.rotation.x = -Math.PI / 2; screen.position.y = D + .014;
-    g.add(screen);
-    return { group: g, screen: screen };
-  }
-  // mode "tap": an iPhone taps the disc and the review page opens (intro).
-  // mode "layers": the disc opens and each layer is shown on its own (NFC panel).
-  function initNfc(host, mode) {
-    var tap = mode === "tap";
-    var labels = $$(".callout", host), cap = host.querySelector(".stage-cap span"), capNo = host.querySelector(".stage-cap b");
-    var anchors = [new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3(), new THREE.Vector3()];
-    var v = new THREE.Vector3();
-    var drag = { active: false, last: 0, yaw: 0, vel: 0 };
-    var steps = tap ? [
-      ["1", "Handy an die Platte halten"],
-      ["2", "Google-Bewertung öffnet sich"]
-    ] : [
-      ["1", "Eine Platte, Ø 10 cm"],
-      ["2", "So ist sie aufgebaut:"],
-      ["3", "Fest verbunden, ohne Akku, ohne App."]
-    ];
-    var lastCap = "";
-    function setCap(i, extra) {
-      var text = extra || steps[i][1];
-      if (!cap || text === lastCap) return;
-      lastCap = text; capNo.textContent = steps[i][0]; cap.textContent = text;
-    }
-    var s = stage(host, { fov: 30, resize: function (st) {
-      var half = tap ? 2.7 : (st.w < 600 ? 2.7 : 3.9);
-      var z = Math.max(tap ? 8.5 : 9.5, half / (Math.tan(THREE.MathUtils.degToRad(st.camera.fov / 2)) * st.camera.aspect));
-      st.camera.position.set(0, z * .42, z);
-      st.camera.lookAt(0, tap ? .55 : .35, 0);
-    }, update: function (t, dt, st) {
-      var c = tap ? (reduce ? 3 : t % 6.5) : (reduce ? 5 : t % 11);
-      var narrow = st.w < 600;
-      if (!drag.active) { drag.yaw += drag.vel * dt; drag.vel *= Math.pow(.05, dt); }
-      // Phase 1: phone comes in, taps, waves go out, the review page lights up.
-      var phoneIn = tap ? smooth(.3, 1.5, c) * (1 - smooth(5.2, 6.2, c)) : 0;
-      phone.visible = phoneIn > .01;
-      phone.position.set(lerp(2.4, -0.15, phoneIn) + .1, lerp(3.4, 1.05, phoneIn), lerp(-.5, .55, phoneIn));
-      phone.rotation.set(lerp(-.3, .55, phoneIn), .2, lerp(.35, .06, phoneIn));
-      screen.material.opacity = smooth(1.9, 2.4, c);
-      rings.forEach(function (r, k) {
-        var on = tap ? smooth(1.5, 1.7, c) * (1 - smooth(4.8, 5.3, c)) : 0;
-        var ph = ((c - 1.5 - k * .4) % 1.2 + 1.2) % 1.2 / 1.2;
-        r.scale.setScalar(1 + ph * 1.1);
-        r.material.opacity = (1 - ph) * .55 * on;
-      });
-      // Phase 2: the disc opens and each layer is shown on its own.
-      var open = tap ? 0 : (reduce ? 1 : smooth(.8, 2, c) * (1 - smooth(9.2, 10.4, c)));
-      var idx = !tap && c > 2.4 && c < 8.8 ? Math.floor((c - 2.4) / 1.6) : -1;
-      if (tap) { if (c < 1.9) setCap(0); else setCap(1); }
-      else if (c < 1.6) setCap(0); else if (c < 9) setCap(1, idx >= 0 ? "So ist sie aufgebaut: " + ["Frontplatte", "NFC-Chip", "Kupferantenne", "Rückplatte"][idx] : null); else setCap(2);
-      var d = discs[tap ? "white" : nfcTheme];
-      [discs.white, discs.black].forEach(function (x) { x.group.visible = x === d; });
-      var lift = function (i) { return idx === i ? .12 : 0; };
-      d.front.position.y = d.T / 2 + open * 1.75 + lift(0);
-      d.chip.position.y = .03 + open * .78 + lift(1);
-      d.coil.position.y = -open * .18 + lift(2);
-      d.back.position.y = -d.T / 2 - open * 1.15 + lift(3);
-      d.parts.forEach(function (meshes, i) {
-        var o = idx < 0 ? 1 : (idx === i ? 1 : .22);
-        meshes.forEach(function (m) { (Array.isArray(m.material) ? m.material : [m.material]).forEach(function (mat) { mat.opacity = lerp(mat.opacity, o * (mat.userData.base || 1), 1 - Math.pow(.002, dt)); }); });
-      });
-      d.group.position.set(tap ? 0 : (narrow ? -0.45 : -0.95), (reduce ? 0 : Math.sin(t) * .04), 0);
-      d.group.rotation.set(.38 + open * .1, -.3 + (reduce ? 0 : Math.sin(t * .3) * .25) + drag.yaw, 0);
-      d.group.updateMatrixWorld();
-      anchors[0].set(1.5, d.front.position.y, 0);
-      anchors[1].set(.17, d.chip.position.y, .17);
-      anchors[2].set(1.35, d.coil.position.y, 0);
-      anchors[3].set(1.5, d.back.position.y, 0);
-      var colX = st.w - (narrow ? 104 : 210), prevY = -1e9, gapY = narrow ? 30 : 54;
-      labels.forEach(function (el, i) {
-        v.copy(anchors[i]).applyMatrix4(d.group.matrixWorld).project(st.camera);
-        var x = (v.x + 1) / 2 * st.w, y = (1 - v.y) / 2 * st.h, ty = Math.max(y, prevY + gapY);
-        prevY = ty;
-        el.style.transform = "translate(" + x.toFixed(1) + "px," + y.toFixed(1) + "px) translateY(-50%)";
-        el.querySelector(".callout__text").style.transform = "translateY(" + (ty - y).toFixed(1) + "px)";
-        el.querySelector(".callout__line").style.width = Math.max(20, colX - x).toFixed(0) + "px";
-        el.style.opacity = (smooth(.5, .9, open) * (idx < 0 || idx === i ? 1 : .28)).toFixed(2);
-        el.classList.toggle("is-on", idx === i);
-      });
-    } });
-    if (!s) return;
-    lights(s.scene);
-    var discs = { white: buildDisc("white"), black: buildDisc("black") };
-    s.scene.add(discs.white.group, discs.black.group);
-    // A current iPhone with the Google review page on its screen.
-    var ip = iphone(), phone = ip.group, screen = ip.screen;
-    phone.children.forEach(function (m) { m.position.multiplyScalar(1.7); m.scale.setScalar(1.7); }); // true-to-size next to the 10 cm disc
-    s.scene.add(phone);
-    // Waves that run out from the disc while the phone taps it.
-    var rings = [0, 1, 2].map(function () {
-      var r = new THREE.Mesh(new THREE.RingGeometry(1.52, 1.56, 96), new THREE.MeshBasicMaterial({ color: 0x111110, transparent: true, opacity: 0, side: THREE.DoubleSide, depthWrite: false }));
-      r.rotation.x = -Math.PI / 2; r.position.y = .06;
-      return r;
-    });
-    var ringHolder = new THREE.Group(); rings.forEach(function (r) { ringHolder.add(r); }); s.scene.add(ringHolder);
-    var cv = s.renderer.domElement;
-    cv.addEventListener("pointerdown", function (e) { drag.active = true; drag.last = e.clientX; cv.setPointerCapture(e.pointerId); cv.style.cursor = "grabbing"; });
-    cv.addEventListener("pointermove", function (e) { if (!drag.active) return; var dx = e.clientX - drag.last; drag.last = e.clientX; drag.yaw += dx * .01; drag.vel = dx * .5; });
-    var up = function () { drag.active = false; cv.style.cursor = ""; };
-    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
-    // Keep the wave rings on the visible disc.
-    var baseUpdate = s.update;
-    s.update = function (t, dt, st) { var d = discs[tap ? "white" : nfcTheme]; baseUpdate(t, dt, st); ringHolder.position.copy(d.group.position); ringHolder.rotation.copy(d.group.rotation); };
-    if (tap) rings.forEach(function (r) { r.material.color.set(0x14275c); });
-    else phone.visible = false;
-  }
-
-  if (THREE) {
-    try {
-      var go = function () { initNfc($("#nfcStage"), "tap"); loop(); };
-      // Draw the canvas artwork once the web fonts are ready (Anton on the disc back).
-      if (document.fonts && document.fonts.ready) document.fonts.ready.then(go); else go();
-    } catch (err) { /* page stays fully usable without 3D */ }
-  }
 
 })();
 </script>
