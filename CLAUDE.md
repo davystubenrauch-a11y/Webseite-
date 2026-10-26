@@ -26,11 +26,12 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - Zentrierte Textwände, Countdown-Timer, Popups
 - Mehrere Komplett-Neugestaltungen hintereinander: lieber gezielt an der bestehenden Version weiterarbeiten
 
-## Fakten zum Angebot
-- NFC: nur **runde** Acryl-Platten (Ø 10 cm), nur **Weiß und Schwarz**, Chip NTAG 215. **Nicht personalisiert** (kein Logo/Name), nur der Chip wird mit dem Google-Profil des Kunden verknüpft. Typisch: Sets mit 5 oder 6 Platten für Restaurants. Preis: auf Anfrage.
-- Roomtours: Kunde schickt nur Fotos (Airbnb, Wohnung), wir erstellen daraus die komplette Video-Roomtour.
-- Websites ab 300 € (Basis), Roomtours ab 300 € (Basis). Höhere Pakete (690/1.290 €, 490/790 €) sind Platzhalter.
+## Fakten zum Angebot (Stand 26.10.2026)
+- **NFC-Platten: 15 € pro Stück**, einheitlich. Einzelkauf jederzeit; für Restaurants/Geschäfte Empfehlung **5 bis 10 Stück** (z. B. in jede Rechnung/Rechnungsmappe). Preis-Karten: 1 Stück 15 €, 5 Stück 75 €, 10 Stück 150 €. Nur rund (Ø 10 cm), nur Weiß/Schwarz, nicht personalisiert – nur der Chip wird mit dem Google-Profil verknüpft.
+- **Roomtours:** Basis 300 € bis **150 m² oder ein ganzes Stockwerk**; größere/komplexere Objekte = **Premium, Preis nach Raumgröße und Detailgrad**. Kunde schickt nur Fotos.
+- **Websites:** Basis 300 € mit **3 professionell gestalteten Seiten**, bewusst klar und fokussiert; **Animationen und 3D-Modelle nur in den erweiterten Paketen** (Business ab 690 €, Premium ab 1.290 € – Platzhalterpreise).
 - Kundenstimmen sind noch Platzhalter und müssen durch echte ersetzt werden.
+- Texte/Preise werden in `scratchpad v10/content.py`-Logik auf das fertige HTML angewendet; bei Änderungen direkt `public/studio/index.html` anpassen.
 
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
