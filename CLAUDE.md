@@ -10,11 +10,12 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
 - **QCLAY / CryptoHub:** (Hintergrund-Farbwechsel beim Scrollen wurde vom Kunden abgelehnt.) Schwebende Elemente um eine zentrale Aussage. Handy in der Mitte, Überschrift links, Text rechts. Dunkle Sektion mit hellen Kacheln und Mini-Illustrationen.
 
-## Design-Regeln (Version 8, vom Kunden per Auswahl festgelegt)
-- Farben: **Schwarz `#07080b`, Weiß, Dunkelblau `#0d1b3d`**, heller Blau-Akzent `#8fa8ff` nur für zweite Überschriftenzeile/Häkchen. Google-Farben nur am NFC-Produkt.
-- **Keine Kästen, keine abgerundeten Module, keine Ränder um Bereiche** („sieht nach KI aus“). Randlose Flächen, Haarlinien, eckige Buttons.
-- Schrift: **Space Grotesk** (Überschriften) + Inter (Text).
-- Aufbau: Hero (schwarz, riesige Typo „Bewertungen. Websites. Roomtours.“, echte Platte schwebt rechts, Leiste 01–03) → **pro Leistung ein eigener Vollbild-Bereich** (Hälfte Animation, Hälfte Infos/Details/Preis/Anfrage): 01 NFC (schwarz, blaue Bühne: 3D-iPhone tippt auf Platte, Bewertungs-Benachrichtigung) → 02 Websites (weiß, Laptop kippt beim Scrollen hoch, Beispiele wechseln automatisch) → 03 Roomtours (blau, Fotos fliegen beim Scrollen ins Video) → Ablauf → Preise → Über uns → FAQ → Kontakt → Footer.
+## Design-Regeln (Version 10)
+- **Hell und einladend**: Weiß und helles Grau `#f5f6f9`; Marineblau `#14275c` nur als Akzent (Buttons, zweite Überschriftenzeile, Empfehlungspaket, Footer) – **nicht großflächig**, keine zweigeteilten Farbflächen, keine dunklen Bereiche (v8/v9 waren „zu dunkel“).
+- **Keine Kästen/abgerundeten Module**; Haarlinien, eckige Buttons.
+- Schrift: **Space Grotesk** + Inter (nicht die monotone Anton-Großbuchstaben-Schrift).
+- Startseite wie vom Kunden gelobt (Foto): links „Mehr *Kunden.* für Ihr Unternehmen.“ (wechselndes Wort), Text, Buttons, Fakten; rechts **Collage**: Roomtour-Video, Handy mit Beispiel-Website, echte NFC-Platte, Schilder 01/02/03. Darunter Laufband Branchen.
+- Danach pro Leistung ein Bereich (Animation + Infos/Preis/Anfrage auf gleichem Hintergrund): 01 NFC (3D-iPhone tippt), 02 Websites (Laptop kippt, Beispiele wechseln), 03 Roomtours (Fotos fliegen ins Video) → Ablauf → Preise → Über uns → FAQ → Kontakt → Footer (Marineblau).
 - Produktfoto der weißen Platte vom Kunden: `public/media/nfc-front.jpg` (Textur der 3D-Platte), `nfc-front-black.jpg` (daraus abgeleitete schwarze Variante), `nfc-platte.png` (freigestellt, schwebt im Hero). Weitere Fotos (Restaurant, Gründer, Logo) folgen.
 - Abgelehnt: Grün/Creme, Fraunces, Plus Jakarta/Königsblau, Manrope, Bricolage, Anton, Nachtblau/Elfenbein, Limette, Orange, Himmelblau, Karten mit Rand, Vollbild-Bühnen nebeneinander, Scroll-Farbwechsel.
 
