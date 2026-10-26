@@ -37,7 +37,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **Roomtours:** Basis 300 € bis **150 m² oder ein ganzes Stockwerk**; größere/komplexere Objekte = **Premium, Preis nach Raumgröße und Detailgrad**. Kunde schickt nur Fotos.
 - **Websites:** Basis 300 € mit **3 professionell gestalteten Seiten**, bewusst klar und fokussiert; **Animationen und 3D-Modelle nur in den erweiterten Paketen** (Business ab 690 €, Premium ab 1.290 € – Platzhalterpreise).
 - Kundenstimmen sind noch Platzhalter und müssen durch echte ersetzt werden.
-- Texte/Preise werden in `scratchpad v10/content.py`-Logik auf das fertige HTML angewendet; bei Änderungen direkt `public/studio/index.html` anpassen.
+- `public/studio/index.html` ist die einzige Quelle. Das Stylesheet wurde am 26.10. **komplett neu und sauber geschrieben** (ein Stylesheet, keine Override-Schichten, Kommentar-Kopf mit Palette/Typo-Skala/Rhythmus). Änderungen direkt dort, keine neuen Schichten anhängen.
 
 ## Widgets (Stand jetzt)
 - Websites: Laptop + Handy zeigen dieselbe Beispielseite (Café / Handwerk / Immobilien umschaltbar, Container-Queries).
