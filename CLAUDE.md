@@ -20,6 +20,11 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - Produktfoto der weißen Platte vom Kunden: `public/media/nfc-front.jpg` (Textur der 3D-Platte), `nfc-front-black.jpg` (daraus abgeleitete schwarze Variante), `nfc-platte.png` (freigestellt, schwebt im Hero). Weitere Fotos (Restaurant, Gründer, Logo) folgen.
 - Abgelehnt: Grün/Creme, Fraunces, Plus Jakarta/Königsblau, Manrope, Bricolage, Anton, Nachtblau/Elfenbein, Limette, Orange, Himmelblau, Karten mit Rand, Vollbild-Bühnen nebeneinander, Scroll-Farbwechsel.
 
+## Feinschliff (Polish-Layer, Stand 26.10.)
+- Palette: Seite `#fbfbfd`, Fläche `#fff`, Kachel `#f5f5f7`, Text `#1d1d1f`, sekundär `#6e6e73`, Haarlinie `#d2d2d7`, Akzent `#14275c`.
+- Typo-Skala (1440 px): Hero 76, H2 52 (Leistungen ~46), Text 17, Klein 13. Laufweite Überschriften -0,032 bis -0,038em.
+- Micro-Interactions: Lesefortschritts-Linie oben, Header blendet beim Runterscrollen aus und beim Hochscrollen ein, Licht-Spot folgt der Maus auf den Animationskacheln, Preiskarten heben sich bei Hover, Fokus-Ring in Akzent-Blau bei Formularfeldern. Alles respektiert „reduzierte Bewegung“.
+
 ## Nicht verwenden (wirkt wie eine Standard-KI-Website)
 - Gold oder dunkles Navy-Gold-Schema
 - Farbverläufe in Überschriften, Leuchtflecken, Glas-Kacheln überall
