@@ -382,7 +382,6 @@ h2.display { font-size: clamp(2.1rem, 3.9vw, 3rem); }
 .player__rec { display: flex; align-items: center; gap: 8px; }
 .player__rec::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #fff; animation: blink 1.6s infinite; }
 @keyframes blink { 50% { opacity: .2; } }
-.tour-stage--empty { display: none; }
 .tour-stage .player { margin-top: 0; }
 .tour-note { display: none; }
 .tour-stage--portrait { display: grid; grid-template-columns: minmax(0, 360px) minmax(0, 1fr); gap: 64px; align-items: center; }
@@ -540,6 +539,7 @@ a.devices:hover { transform: translateY(-4px); }
 .chat__av { display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--accent); color: #fff; font-family: "Cormorant Garamond", Georgia, serif; font-size: 15px; font-weight: 600; }
 .chat__top b { display: block; font-size: 15px; } .chat__top small { font-size: 12px; color: #34A853; }
 .chat__body { flex: 1; display: flex; flex-direction: column; justify-content: flex-end; gap: 8px; padding: 16px; overflow: hidden; }
+.chat__day { margin-bottom: auto; align-self: center; padding: 4px 12px; border-radius: 99px; background: var(--tile); font-size: 12px; color: var(--muted); }
 .msg { max-width: 82%; padding: 10px 14px; border-radius: 20px 20px 20px 6px; background: #e9e9ee; font-size: 14.5px; line-height: 1.4; display: none; }
 .msg--me { align-self: flex-end; border-radius: 20px 20px 6px 20px; background: var(--accent); color: #fff; }
 .msg.show { display: block; animation: pop .55s var(--ease) both; }
@@ -610,7 +610,8 @@ a.devices:hover { transform: translateY(-4px); }
   .fl--e, .fl--f { display: none; }
 }
 @media (max-width: 820px) {
-  .tap { min-height: 430px; }
+  #nfcStage.tap { min-height: 440px; }
+  .iph { top: 5%; width: min(33%, 200px); }
   .about .founders { grid-template-columns: 1fr; }
   .orbit { height: 620px; border-radius: 28px; margin-bottom: 64px; }
   .orbit__core { margin-top: -40px; }
@@ -784,7 +785,7 @@ a.devices:hover { transform: translateY(-4px); }
     <div class="svc__visual" id="tourVisual">
       <span class="fly__label">Ihre Fotos …</span>
       <div class="fly" aria-hidden="true"><img src="/media/tour-foto-1.jpg" alt=""><img src="/media/tour-foto-4.jpg" alt=""><img src="/media/tour-foto-9.jpg" alt=""></div>
-      <div class="tour-wrap"><div class="tour-stage tour-stage--empty" id="tourStage">
+      <div class="tour-wrap"><div class="tour-stage" id="tourStage">
       <div class="player rv" id="villa">
         <div class="player__view"><video id="villaVideo" muted loop playsinline preload="metadata"></video></div>
         <div class="player__top"><span class="player__rec">KI-Roomtour · Beispiel</span><span>Wohnung mit Balkon</span></div>
@@ -823,7 +824,7 @@ a.devices:hover { transform: translateY(-4px); }
         </ol>
         <div class="story__phone" aria-hidden="true"><div class="chat">
           <div class="chat__top"><span class="chat__av">F&amp;D</span><div><b>F&amp;D Solutions</b><small>online</small></div></div>
-          <div class="chat__body">
+          <div class="chat__body"><span class="chat__day">Heute</span>
             <p class="msg msg--me" data-s="0">Hallo! Wir haben ein Restaurant und brauchen mehr Google-Bewertungen.</p>
             <p class="msg msg--typing" data-s="0"><i></i><i></i><i></i></p>
             <p class="msg" data-s="1">Hallo, hier ist Florian. Ich rufe Sie morgen um 10 Uhr kurz an.</p>
@@ -1215,7 +1216,7 @@ a.devices:hover { transform: translateY(-4px); }
     }, { threshold: .3 }).observe(st);
   })();
 
-  /* ---------------- Service screens:  /* ---------------- Service screens: scroll-linked effects ---------------- */
+  /* ---------------- Service screens: scroll-linked effects ---------------- */
   (function () {
     var webStage = $("#webStage"), devStage = webStage && $(".devices__stage", webStage), tour = $("#tourVisual");
     var flies = tour ? $$(".fly img", tour) : [];
@@ -1360,7 +1361,7 @@ a.devices:hover { transform: translateY(-4px); }
     var f = villa.dur ? villa.t / villa.dur : 0;
     vFill.style.width = (f * 100).toFixed(2) + "%";
     vTrack.setAttribute("aria-valuenow", Math.round(f * 100));
-    vTime.textContent = fmt(villa.t) + " / " + fmt(villa.dur);
+    vTime.textContent = fmt(villa.t) + " / " + fmt(villa.dur || 11);
     var ch = 0;
     CHAPTERS.forEach(function (c, i) { if (f >= c[1] - 1e-4) ch = i; });
     if (ch !== villa.chapter) {
@@ -1387,10 +1388,9 @@ a.devices:hover { transform: translateY(-4px); }
   });
   vid.poster = VILLA_POSTER;
   vid.addEventListener("loadedmetadata", function () {
-    villa.dur = vid.duration; tourStage.classList.remove("tour-stage--empty");
+    villa.dur = vid.duration;
     tourStage.classList.toggle("tour-stage--portrait", vid.videoHeight > vid.videoWidth); villaUI(); });
   vid.addEventListener("timeupdate", function () { villa.t = vid.currentTime; villaUI(); });
-  // The player stays hidden until the video file actually loads.
   new IntersectionObserver(function (e) {
     if (!villa.playing) return;
     if (e[0].isIntersecting) vid.play().catch(function () {}); else vid.pause();
