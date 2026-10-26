@@ -15,6 +15,7 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - **Keine Kästen/abgerundeten Module**; Haarlinien, eckige Buttons.
 - Schrift: **Space Grotesk** + Inter (nicht die monotone Anton-Großbuchstaben-Schrift).
 - Startseite wie vom Kunden gelobt (Foto): links „Mehr *Kunden.* für Ihr Unternehmen.“ (wechselndes Wort), Text, Buttons, Fakten; rechts **Collage**: Roomtour-Video, Handy mit Beispiel-Website, echte NFC-Platte, Schilder 01/02/03. Darunter Laufband Branchen.
+- Leistungs-Details als **Symbol-Liste in 2 Spalten** (Icon im blassen Marine-Kreis, Wert fett, kleine Beschriftung darunter) statt Tabelle.
 - Danach pro Leistung ein Bereich (Animation + Infos/Preis/Anfrage auf gleichem Hintergrund): 01 NFC (3D-iPhone tippt), 02 Websites (Laptop kippt, Beispiele wechseln), 03 Roomtours (Fotos fliegen ins Video) → Ablauf → Preise → Über uns → FAQ → Kontakt → Footer (Marineblau).
 - Produktfoto der weißen Platte vom Kunden: `public/media/nfc-front.jpg` (Textur der 3D-Platte), `nfc-front-black.jpg` (daraus abgeleitete schwarze Variante), `nfc-platte.png` (freigestellt, schwebt im Hero). Weitere Fotos (Restaurant, Gründer, Logo) folgen.
 - Abgelehnt: Grün/Creme, Fraunces, Plus Jakarta/Königsblau, Manrope, Bricolage, Anton, Nachtblau/Elfenbein, Limette, Orange, Himmelblau, Karten mit Rand, Vollbild-Bühnen nebeneinander, Scroll-Farbwechsel.
