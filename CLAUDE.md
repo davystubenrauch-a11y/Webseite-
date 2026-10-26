@@ -52,6 +52,13 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 
 - Anfragen: jede Leistungs-Sektion hat einen eigenen Anfrage-Button; auf dem Handy feste Leiste „Anrufen / Jetzt anfragen“.
 
+## Untere Bereiche (Stand 26.10.)
+- Ablauf als Schritt-Leiste: runde Icon-Punkte, Linie füllt sich beim Scrollen in Marineblau.
+- Über uns: Gründer-Karten mit Monogramm-Kreis (Cormorant), Anruf-Button, darunter drei Versprechen (24 h, Festpreis, 1 Ansprechpartner).
+- FAQ: linke Spalte klebt beim Scrollen, mit Kontaktkarte „Ihre Frage ist nicht dabei?“.
+- Kontakt: direkte Wege als weiße Karten mit Icon. Footer-CTA als hellgraue Kachel.
+- iPad-Sicherheit: NFC-Kachel zeigt `nfc-platte.png`, bis WebGL zeichnet; Referenz-Bilder ohne lazy-loading.
+
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.
 - Three.js r128 per CDN in den eigenständigen Seiten.
