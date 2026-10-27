@@ -3,8 +3,14 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Aktuelle Richtung
-Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
+## Aktuelle Richtung (ab 27.10.: Design v3 „Kapitel“)
+Maßgeblich ist jetzt **`public/neu/index.html`** (die Startseite `/` leitet dorthin). Der Kunde wollte ausdrücklich ein **komplett neues Design mit Vollbild auf MacBook, iPad und iPhone** – das ersetzt die frühere Regel „kompakt, nicht bildschirmfüllend“. Die alte Version bleibt unter `/studio/index.html` erreichbar (Logo-SVG, Platten-Sprite und NFC-Szene werden per Skript daraus übernommen: Vorlage im Scratchpad `v3/template.html` + `v3/build.py`; bei Änderungen direkt `public/neu/index.html` bearbeiten).
+- Jedes Kapitel füllt den Bildschirm (`min-height: 100svh`): Start → 01 NFC → 02 Websites → 03 Roomtours → Preise → Ablauf & Team → Fragen → Kontakt (+ Fußzeile). Kapitel-Punkte rechts (Desktop), Fortschrittslinie oben, mobile Leiste „Anrufen / Jetzt anfragen“.
+- Schrift **DM Sans** (ui-ux-pro-max „Premium Sans“), Palette wie bisher hell mit Navy-Akzent, Gold nur im Logo-„&“.
+- Start (QCLAY-Muster): Überschrift links, iPhone mit Google-Profil in der Mitte (Bewertungszähler läuft hoch), Text rechts, schwebende Elemente folgen der Maus, Branchen-Laufband unten.
+- Leistungen als **Vollbild-Panels, die sich beim Scrollen übereinander schieben** (21st.dev „Services Stack“); auf dem iPhone normal untereinander.
+- Preise: NFC-**Rechner mit Schieberegler** (1–20 Platten × 15 €, Empfehlung 5–10) + Preisliste im Speisekarten-Stil (Punktlinien) für Websites und Roomtours. Jeder Anfrage-Button füllt das Formular vor.
+- Formular schickt (noch) eine vorausgefüllte E-Mail an fd.solutions@web.de.
 
 ## Vorbilder (vom Kunden ausgewählt)
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.
