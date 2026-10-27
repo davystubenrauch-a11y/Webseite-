@@ -62,6 +62,12 @@ Maßgeblich ist `public/studio/index.html` (online unter `/studio/index.html`).
 - Laufschrift „Mehr Bewertungen ✦ Mehr Kunden ✦ Mehr Buchungen“ (riesig, bewegt sich mit dem Scrollen, kippt leicht je nach Tempo) vor dem Kontakt.
 - Footer: „Bereit für mehr Kunden?“ zentral, ringsum schwebende Elemente (Platten, Bewertungskarte, SPIRULI, Roomtour, Buchung), folgen der Maus; magnetischer Button; Wortmarke gleitet ein.
 
+## Qualitäts-Durchgang (27.10., mit ui-ux-pro-max + 21st.dev)
+- ui-ux-pro-max Design-System „Trust & Authority + Conversion“ bestätigt die Richtung: Navy/Grau, Akzent nur für CTAs, transparente Preise, kurzes Formular. Dessen Schrift-Vorschlag (EB Garamond/Lato) bewusst nicht übernommen (Serifen nur im Logo).
+- Umgesetzt: keine Emojis als Icons (SVG-Sterne/Telefon), Touch-Ziele ≥ 44 px, Skip-Link „Zum Inhalt springen“, Laufband-Kontrast, weiche Kanten + Pause bei Hover an Laufbändern (Muster aus 21st.dev-Marquees), Hero-Überschrift steigt aus einer Maske, goldenes „&“ im Logo setzt sich beim Laden/Einblenden ein.
+- Roomtour-Video auf 1600 px neu kodiert (2,2 MB statt 11,7 MB). Toter Code des alten Beispielseiten-Generators entfernt.
+- 21st.dev: kostenloser Tarif (Suche frei, 2 Code-Abrufe/Tag, keine KI-Generierung); Komponenten sind React/shadcn, daher nur als Vorlage genutzt.
+
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.
 - `public/studio/index.html` braucht kein Three.js mehr (alles CSS/SVG).
