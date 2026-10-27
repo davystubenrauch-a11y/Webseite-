@@ -1,0 +1,17 @@
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
+  <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
+  <symbol id="disc" viewBox="-100 -100 200 200">
+    <circle r="99.5" style="fill:var(--disc-bg,#fff)"/>
+    <g fill="none" stroke-width="5.5"><circle r="83" stroke="#FBBC05" stroke-dasharray="130.4 400"/><circle r="83" stroke="#34A853" stroke-dasharray="130.4 400" transform="rotate(90)"/><circle r="83" stroke="#4285F4" stroke-dasharray="130.4 400" transform="rotate(180)"/><circle r="83" stroke="#EA4335" stroke-dasharray="130.4 400" transform="rotate(270)"/></g>
+    <g style="fill:var(--disc-ink,#202124);stroke:var(--disc-ink,#202124)" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" text-anchor="middle">
+      <text y="-55" font-size="10.5" font-weight="600" stroke="none" letter-spacing=".4">TAP HERE</text>
+      <g fill="none" stroke-width="1.3"><path d="M-27 -38v-8h8M19 -46h8v8M27 -8v8h-8M-19 0h-8v-8"/><rect x="-10" y="-36" width="17" height="29" rx="3"/><path d="M-4.5 -32h6"/><circle cx="-1.5" cy="-11" r="1.6"/><path d="M-15 -30a9 9 0 0 1 6-7M-19 -31a14 14 0 0 1 10-11"/></g>
+      <text x="16" y="-30" font-size="9" font-weight="600" stroke="none">NFC</text>
+      <text y="30" font-size="36" font-weight="500" stroke="none" letter-spacing="-1.2"><tspan fill="#4285F4" style="fill:#4285F4">G</tspan><tspan style="fill:#EA4335">o</tspan><tspan style="fill:#FBBC05">o</tspan><tspan style="fill:#4285F4">g</tspan><tspan style="fill:#34A853">l</tspan><tspan style="fill:#EA4335">e</tspan></text>
+      <g style="fill:#FBBC05" stroke="none"><use href="#discStar" x="-28" y="48"/><use href="#discStar" x="-14" y="48"/><use href="#discStar" x="0" y="48"/><use href="#discStar" x="14" y="48"/><use href="#discStar" x="28" y="48"/></g>
+      <text y="70" font-size="11" font-weight="500" stroke="none">Review Us On</text>
+    </g>
+    <circle r="99.5" fill="url(#discSheen)"/>
+  </symbol>
+</defs></svg>

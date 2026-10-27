@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>F&amp;D Solutions · KI-Roomtours, Websites und NFC-Platten aus München</title>
+<meta name="description" content="Mehr Buchungen, Bewertungen und Kunden: KI-Roomtour-Videos aus Ihren Fotos ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort in 24 Stunden.">
+<meta name="theme-color" content="#dedbd5">
+<link rel="icon" type="image/svg+xml" href="/media/logo-fd-mark-color.svg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="F&amp;D Solutions">
+<meta property="og:title" content="Mehr Buchungen. Mehr Bewertungen. Mehr Kunden. · F&amp;D Solutions">
+<meta property="og:description" content="KI-Roomtour-Videos aus Ihren Fotos ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Persönlich aus München.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<!--LD-->
+<style>
+/* =====================================================================
+   F&D Solutions · Design v12 „Alles auf einen Blick" (Entwurf neu-2, vom Kunden gewählt)
+   Idee     Kachel-Übersicht (Bento): jede Leistung zeigt sich selbst in ihrer Kachel,
+            Preis immer sichtbar als Schild oben rechts.
+   Palette  Seite #dedbd5 · Kachel #f7f6f3 · Weiß #fff · Graphit #1b1b1d · Text #161616
+            gedämpft #55514b · Google-Gelb #f4b400 (nur Flächen/Sterne, Text darauf dunkel)
+   Schrift  Onest (eine Familie, Gewichte 400–700)
+   Raster   12 Spalten, 12 px Abstand, Kachel-Radius 24 px, Schild 12 px, Button 14 px
+   Bewegung nur Demos (laufen, solange sichtbar) und Antworten auf Klicks;
+            unter „reduzierte Bewegung" alles statisch.
+   ===================================================================== */
+:root {
+  --bg: #dedbd5; --tile: #f7f6f3; --white: #fff; --dark: #1b1b1d; --ink: #161616; --muted: #55514b;
+  --on-dark: #f4f2ee; --on-dark-muted: #b3aea6; --star: #f4b400; --ok: #1d8a5c; --bad: #c42b1c;
+  --line: rgba(22,22,22,.12); --line-dark: rgba(255,255,255,.14);
+  --r: 24px; --gap: 12px; --ease: cubic-bezier(.22,1,.36,1);
+  --font: "Onest", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: var(--bg); color: var(--ink); font-family: var(--font); font-size: 16.5px; line-height: 1.55; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 8px; }
+.dark :focus-visible, .dock :focus-visible { outline-color: var(--star); }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip { position: fixed; z-index: 200; left: 16px; top: -80px; min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 12px; background: var(--ink); color: #fff; font-weight: 600; }
+.skip:focus-visible { top: 16px; }
+.wrap { width: 100%; max-width: 1400px; margin: 0 auto; padding: 0 clamp(14px, 2.2vw, 32px); }
+@media (min-width: 1600px) { .wrap { max-width: min(1680px, 92vw); } body { font-size: 17.5px; } }
+
+/* ---------- buttons, chips ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 22px; border-radius: 14px; font-weight: 600; font-size: 16px; white-space: nowrap; transition: background-color .2s, color .2s, box-shadow .2s, transform .15s; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: scale(.97); }
+.btn svg { width: 16px; height: 16px; flex: none; }
+.btn--ink { background: var(--ink); color: #fff; } .btn--ink:hover { background: #000; }
+.btn--white { background: var(--white); color: var(--ink); } .btn--white:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn--line { box-shadow: inset 0 0 0 1.5px var(--line); } .btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.btn--star { background: var(--star); color: var(--ink); } .btn--star:hover { background: #ffc21a; }
+.dark .btn--line { box-shadow: inset 0 0 0 1.5px var(--line-dark); color: var(--on-dark); } .dark .btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--on-dark); }
+.price { position: absolute; z-index: 4; right: 18px; top: 18px; padding: 8px 12px; border-radius: 12px; background: var(--white); font-weight: 700; font-size: 15px; line-height: 1.2; white-space: nowrap; }
+.dark .price, .price--star { background: var(--star); color: var(--ink); }
+.lbl { display: block; font-size: 14px; font-weight: 600; color: var(--muted); }
+.dark .lbl { color: var(--on-dark-muted); }
+
+/* ---------- header ---------- */
+.head { position: sticky; top: 0; z-index: 100; padding-top: env(safe-area-inset-top); background: rgba(222,219,213,.86); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); transition: box-shadow .3s; }
+.head.scrolled { box-shadow: 0 1px 0 var(--line); }
+.head__in { position: relative; height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.logo { display: inline-flex; align-items: center; min-height: 44px; }
+.logo svg { height: 30px; width: auto; }
+.lg-ink { fill: #14275c; } .lg-amp { fill: #a8874a; }
+.nav { display: flex; gap: 2px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; border-radius: 999px; font-size: 15px; font-weight: 500; transition: background-color .2s; }
+.nav a:hover, .nav a[aria-current="true"] { background: var(--tile); }
+.head .btn { min-height: 46px; }
+.menu-btn { display: none; align-items: center; gap: 10px; min-height: 44px; min-width: 44px; padding: 0 12px; border-radius: 12px; font-weight: 600; margin-left: auto; }
+.menu-btn i { position: relative; width: 18px; height: 12px; }
+.menu-btn i::before, .menu-btn i::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s var(--ease), top .3s var(--ease); }
+.menu-btn i::before { top: 1px; } .menu-btn i::after { top: 9px; }
+.menu-btn[aria-expanded="true"] i::before { top: 5px; transform: rotate(45deg); } .menu-btn[aria-expanded="true"] i::after { top: 5px; transform: rotate(-45deg); }
+.mnav { position: absolute; left: 0; right: 0; top: calc(100% + 4px); padding: 8px; border-radius: 20px; background: var(--white); box-shadow: 0 30px 60px -30px rgba(0,0,0,.45), 0 0 0 1px var(--line); }
+.mnav a { display: flex; justify-content: space-between; align-items: center; min-height: 52px; padding: 0 14px; border-radius: 12px; font-size: 18px; font-weight: 600; }
+.mnav a:hover { background: var(--tile); }
+.mnav a span { font-size: 14px; font-weight: 500; color: var(--muted); }
+.mnav .btn { width: 100%; margin-top: 6px; justify-content: center; color: #fff; }
+
+/* ---------- bento grid ---------- */
+.grid { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: var(--gap); }
+.sec { padding-top: var(--gap); scroll-margin-top: 84px; }
+.t { position: relative; min-width: 0; border-radius: var(--r); background: var(--tile); padding: clamp(20px, 2.2vw, 30px); overflow: hidden; }
+.t--white { background: var(--white); }
+.dark { background: var(--dark); color: var(--on-dark); }
+.dark p, .t.dark p, .dark .tiers p { color: var(--on-dark-muted); }
+.t h2 { font-size: clamp(28px, 3vw, 44px); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; }
+.t h3 { font-size: clamp(20px, 1.6vw, 24px); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
+.t p { color: var(--muted); max-width: 60ch; }
+.t.dark p { color: var(--on-dark-muted); }
+.t h2 + p, .t h3 + p, .lbl + h2, .lbl + h3 { margin-top: 10px; }
+.c4 { grid-column: span 4; } .c5 { grid-column: span 5; } .c6 { grid-column: span 6; } .c7 { grid-column: span 7; } .c8 { grid-column: span 8; } .c3 { grid-column: span 3; } .c12 { grid-column: 1 / -1; }
+.list { margin-top: 18px; list-style: none; display: grid; gap: 10px; }
+.list li { position: relative; padding-left: 30px; }
+.list li::before { content: ""; position: absolute; left: 0; top: .2em; width: 20px; height: 20px; border-radius: 50%; background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 11px no-repeat; }
+.dark .list li { color: var(--on-dark); } .dark .list li::before { background-color: var(--star); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23161616' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
+.row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+
+/* ---------- start ---------- */
+.hero { grid-column: span 5; grid-row: span 3; display: flex; flex-direction: column; justify-content: space-between; gap: 28px; background: transparent; padding: clamp(18px, 2vw, 28px) 8px 8px; }
+.hero h1 { margin-top: 14px; font-size: clamp(42px, 4.9vw, 80px); line-height: .97; letter-spacing: -.048em; font-weight: 700; }
+.hero h1 span { display: block; }
+.hero p.sub { margin-top: 18px; font-size: clamp(17px, 1.25vw, 19px); color: var(--muted); max-width: 42ch; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 18px; margin-top: 18px; list-style: none; font-size: 14.5px; font-weight: 600; }
+.facts li { display: flex; align-items: center; gap: 8px; }
+.facts li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+.vtile { grid-column: span 7; grid-row: span 3; padding: 0; background: #000; min-height: 420px; }
+.vtile video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.vcap { position: absolute; z-index: 3; left: 14px; right: 14px; bottom: 14px; display: flex; justify-content: space-between; align-items: flex-end; gap: 10px; }
+.from { display: flex; align-items: center; gap: 6px; padding: 6px; border-radius: 16px; background: rgba(20,20,20,.5); -webkit-backdrop-filter: blur(12px); backdrop-filter: blur(12px); }
+.from img { width: 64px; height: 46px; object-fit: cover; border-radius: 10px; }
+.from span { padding: 0 8px; color: #fff; font-size: 14px; font-weight: 600; }
+.from svg { width: 14px; height: 14px; color: #fff; }
+.vbtns { display: flex; gap: 8px; }
+.pill { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 14px; border-radius: 12px; background: var(--white); color: var(--ink); font-size: 14px; font-weight: 600; }
+.pill svg { width: 14px; height: 14px; }
+.ibtn { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 12px; background: var(--white); color: var(--ink); }
+.ibtn svg { width: 14px; height: 14px; }
+.vbar { position: absolute; z-index: 3; left: 0; right: 0; top: 0; height: 3px; background: rgba(255,255,255,.25); }
+.vbar b { display: block; height: 100%; width: 0; background: var(--star); }
+.ntile { grid-column: span 4; grid-row: span 2; height: clamp(300px, 36vh, 380px); }
+.ntile .disc-wrap { position: absolute; right: -26px; bottom: -34px; width: 210px; transform: rotate(-12deg); }
+.stars { display: flex; gap: 3px; margin-top: 16px; }
+.stars svg { width: 22px; height: 22px; fill: var(--star); }
+.wtile { grid-column: span 5; grid-row: span 2; height: clamp(300px, 36vh, 380px); display: flex; flex-direction: column; }
+.wtile .shot { flex: 1 1 0; min-height: 0; margin: 18px -2px -40px; border-radius: 12px 12px 0 0; overflow: hidden; box-shadow: 0 20px 40px -20px rgba(0,0,0,.4); transition: transform .5s var(--ease); }
+.wtile .shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.wtile:hover .shot { transform: translateY(-8px); }
+.ttile { grid-column: span 3; grid-row: span 2; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+.av { display: flex; } .av i { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; font-weight: 700; box-shadow: 0 0 0 3px var(--tile); }
+.av i + i { margin-left: -10px; background: #8a6c38; }
+.calls a { display: flex; justify-content: space-between; align-items: center; gap: 10px; min-height: 48px; border-top: 1px solid var(--line); font-weight: 600; font-size: 15px; }
+.calls a span { color: var(--muted); font-weight: 500; }
+.calls a:hover span { color: var(--ink); }
+.steps { grid-column: 1 / -1; display: grid; grid-template-columns: auto repeat(4, minmax(0, 1fr)); gap: 20px 28px; align-items: center; list-style: none; padding-top: 22px; padding-bottom: 22px; }
+.steps li { display: flex; gap: 12px; align-items: center; font-weight: 600; }
+.steps li span { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--white); font-size: 14px; font-weight: 700; }
+.steps small { display: block; font-size: 13.5px; font-weight: 500; color: var(--muted); }
+a.t { transition: transform .4s var(--ease); } a.t:hover { transform: translateY(-3px); }
+a.t .go { position: absolute; z-index: 4; left: clamp(20px, 2.2vw, 30px); bottom: clamp(18px, 2vw, 26px); display: inline-flex; align-items: center; gap: 8px; font-weight: 600; font-size: 15px; }
+a.t .go svg { width: 14px; height: 14px; transition: transform .3s var(--ease); } a.t:hover .go svg { transform: translateX(4px); }
+
+/* ---------- section head tile ---------- */
+.shead { grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 20px 48px; align-items: end; padding-top: clamp(26px, 3vw, 44px); padding-bottom: clamp(24px, 2.6vw, 36px); }
+.shead h2 { font-size: clamp(34px, 4.2vw, 64px); }
+.shead .num { display: inline-grid; place-items: center; width: 40px; height: 40px; margin-bottom: 18px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 700; font-size: 15px; }
+.shead p { font-size: clamp(17px, 1.2vw, 19px); }
+
+/* ---------- roomtour ---------- */
+.film { grid-column: span 8; padding: 0; background: #0d0d0e; }
+.film__box { position: relative; aspect-ratio: 16 / 9; background: #000; }
+.film__box video { width: 100%; height: 100%; object-fit: contain; }
+.film__foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px; padding: 14px 16px 16px; }
+.chap { display: flex; gap: 6px; flex: 1; min-width: 220px; }
+.chap button { flex: 1; min-height: 44px; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 4px; text-align: left; font-size: 13.5px; font-weight: 600; color: var(--on-dark-muted); }
+.chap button i { display: block; height: 3px; border-radius: 3px; background: rgba(255,255,255,.2); overflow: hidden; }
+.chap button i b { display: block; height: 100%; width: 0; background: var(--star); }
+.chap button.on { color: var(--on-dark); }
+.film__tag { position: absolute; z-index: 3; left: 14px; top: 14px; padding: 7px 11px; border-radius: 10px; background: rgba(20,20,20,.6); color: #fff; font-size: 13px; font-weight: 600; }
+.photos { grid-column: span 4; display: flex; flex-direction: column; }
+.photos h3 + p { font-size: 15.5px; }
+.photos__g { margin-top: 16px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.photos__g figure { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.photos__g img { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 12px; }
+.buy { grid-column: span 4; display: flex; flex-direction: column; justify-content: space-between; gap: 18px; }
+.big { font-size: clamp(44px, 4.4vw, 68px); font-weight: 700; letter-spacing: -.045em; line-height: 1; }
+.big small { font-size: 16px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+.dark .big small { color: var(--on-dark-muted); }
+.who { grid-column: span 4; }
+.flow { margin-top: 22px; list-style: none; display: grid; gap: 12px; }
+.flow li { display: flex; align-items: center; gap: 12px; color: var(--on-dark); font-weight: 500; }
+.flow b { display: grid; place-items: center; flex: none; width: 30px; height: 30px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line-dark); font-size: 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; list-style: none; }
+.tags li { padding: 9px 14px; border-radius: 12px; background: var(--white); font-weight: 600; font-size: 15px; }
+.why2 { grid-column: span 4; }
+
+/* ---------- websites ---------- */
+.ref { grid-column: span 7; grid-row: span 2; display: flex; flex-direction: column; }
+.ref__top { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; }
+.seg { display: inline-flex; padding: 4px; border-radius: 14px; background: var(--white); }
+.dark .seg { background: rgba(255,255,255,.08); }
+.seg button { min-height: 44px; min-width: 44px; padding: 0 14px; border-radius: 10px; font-size: 14.5px; font-weight: 600; color: var(--muted); transition: background-color .2s, color .2s; }
+.dark .seg button { color: var(--on-dark-muted); }
+.seg button[aria-pressed="true"] { background: var(--ink); color: #fff; }
+.dark .seg button[aria-pressed="true"] { background: var(--star); color: var(--ink); }
+.screen { position: relative; padding: 5% 0; margin-top: 18px; display: grid; place-items: center; border-radius: 16px; background: var(--white); overflow: hidden; }
+.screen img { transition: opacity .35s, transform .5s var(--ease); }
+.screen .desk { width: 90%; height: auto; border-radius: 10px; box-shadow: 0 24px 50px -24px rgba(0,0,0,.35); }
+.screen .mob { position: absolute; width: auto; height: 88%; border-radius: 22px; border: 6px solid var(--ink); opacity: 0; transform: translateY(16px); }
+.screen.is-mob .desk { opacity: 0; transform: scale(.96); } .screen.is-mob .mob { opacity: 1; transform: none; }
+.ref__foot { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; margin-top: 14px; font-size: 15px; }
+.ref__foot a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; }
+.ref__foot a svg { width: 14px; height: 14px; }
+.pk { grid-column: span 5; }
+.tiers { margin-top: 14px; list-style: none; }
+.tiers li { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 14px 0; border-top: 1px solid var(--line); }
+.tiers b { font-weight: 700; } .tiers span { font-weight: 700; white-space: nowrap; } .tiers span small { font-weight: 500; color: var(--muted); }
+.tiers p { grid-column: 1 / -1; font-size: 14.5px; }
+.dark .tiers li { border-color: var(--line-dark); } .dark .tiers span small { color: var(--on-dark-muted); }
+
+/* ---------- NFC ---------- */
+.ndemo { grid-column: span 7; grid-row: span 2; min-height: 520px; display: flex; flex-direction: column; }
+.stage { position: relative; flex: 1; min-height: 400px; margin-top: 16px; border-radius: 16px; background: radial-gradient(70% 60% at 50% 35%, #2c2c2f, #141415); overflow: hidden; perspective: 1000px; }
+.plate { position: absolute; left: 50%; top: 72%; width: min(52%, 280px); transform: translate(-50%, -50%) rotateX(55deg); }
+.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 1px 0 #dfe3e8, 0 3px 0 #cfd3d8, 0 5px 0 #c3c8ce, 0 30px 40px -12px rgba(0,0,0,.6); }
+.disc svg { width: 100%; height: 100%; }
+.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: 0 1px 0 #2a2a2e, 0 3px 0 #222226, 0 5px 0 #1b1b1e, 0 30px 40px -12px rgba(0,0,0,.7); }
+.rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--star); opacity: 0; }
+.phone { position: absolute; left: 50%; top: 4%; width: min(30%, 170px); aspect-ratio: 71.5 / 149.6; margin-left: calc(min(30%, 170px) / -2); padding: 2.4%; border-radius: 16% / 7.6%; background: linear-gradient(140deg, #3a3a3d, #0e0e10 50%, #2a2a2d); box-shadow: 0 40px 60px -26px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.18); container-type: inline-size; transition: transform .9s var(--ease); }
+.scr { position: relative; height: 100%; border-radius: 13% / 6.2%; overflow: hidden; background: #fff; color: #202124; }
+.scr > div { position: absolute; inset: 0; transition: opacity .35s; }
+.s-lock { display: grid; align-content: start; justify-items: center; padding-top: 26%; color: #fff; background: radial-gradient(100% 70% at 20% 0%, #5a5650, transparent 60%), #1b1b1d; }
+.s-lock small { font-size: 6cqw; opacity: .85; } .s-lock b { font-size: 21cqw; font-weight: 600; line-height: 1.05; letter-spacing: -.03em; }
+.s-lock span { position: absolute; bottom: 9%; left: 8%; right: 8%; padding: 3.5cqw; border-radius: 99px; background: rgba(255,255,255,.2); text-align: center; font-size: 5.6cqw; font-weight: 600; }
+.s-rev, .s-done { opacity: 0; background: #fff; }
+.g-head { padding: 24% 8% 0; display: flex; align-items: center; gap: 4cqw; font-size: 6.4cqw; font-weight: 600; }
+.g-head b { font: 700 10cqw/1 Arial, sans-serif; color: #4285f4; }
+.g-biz { margin: 7cqw 8% 0; display: flex; gap: 4cqw; align-items: center; font-size: 6.6cqw; font-weight: 600; line-height: 1.2; }
+.g-biz i { display: grid; place-items: center; width: 14cqw; height: 14cqw; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; }
+.g-biz small { display: block; font-size: 5.2cqw; color: #70757a; font-weight: 400; }
+.g-stars { margin: 9cqw 7% 0; display: flex; justify-content: space-between; }
+.g-stars svg { width: 15.5cqw; height: 15.5cqw; fill: #e3e6ea; transition: fill .25s, transform .35s var(--ease); }
+.g-stars svg.on { fill: var(--star); transform: scale(1.1); }
+.g-text { margin: 8cqw 8% 0; padding: 4cqw; min-height: 20cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.4cqw; color: #3c4043; }
+.s-done { display: grid; place-content: center; justify-items: center; gap: 2cqw; text-align: center; }
+.s-done i { display: grid; place-items: center; width: 24cqw; height: 24cqw; margin-bottom: 4cqw; border-radius: 50%; background: var(--ok); color: #fff; }
+.s-done i svg { width: 50%; } .s-done b { font-size: 9cqw; } .s-done small { font-size: 5.4cqw; color: #70757a; }
+.counter { position: absolute; z-index: 5; left: 14px; top: 14px; display: flex; align-items: center; gap: 8px; padding: 10px 14px; border-radius: 12px; background: var(--white); color: var(--ink); font-size: 14px; font-weight: 600; }
+.counter b { font-size: 18px; font-variant-numeric: tabular-nums; }
+.counter em { font-style: normal; color: var(--ok); opacity: 0; transition: opacity .3s; } .counter.up em { opacity: 1; }
+.toast { position: absolute; z-index: 5; right: 14px; top: 14px; display: flex; align-items: center; gap: 10px; padding: 10px 14px 10px 10px; border-radius: 12px; background: var(--white); color: var(--ink); font-size: 13.5px; font-weight: 600; opacity: 0; transform: translateY(-10px); transition: opacity .4s, transform .5s var(--ease); }
+.toast i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #4285f4; color: #fff; font: 700 15px/1 Arial, sans-serif; }
+.toast .st { display: flex; gap: 1px; margin-top: 2px; } .toast .st svg { width: 12px; height: 12px; fill: var(--star); }
+.try { position: absolute; z-index: 5; right: 14px; bottom: 14px; }
+/* phases */
+.stage.p1 .phone { transform: translateY(34%); }
+.stage.p1 .rings i { animation: ring 1s var(--ease) forwards; } .stage.p1 .rings i:nth-child(2) { animation-delay: .15s; } .stage.p1 .rings i:nth-child(3) { animation-delay: .3s; }
+.stage.p2 .s-rev, .stage.p3 .s-rev { opacity: 1; }
+.stage.p4 .s-done { opacity: 1; }
+.stage.p4 .toast { opacity: 1; transform: none; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+.calc { grid-column: span 5; }
+.calc__sum { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.calc__sum span { color: var(--on-dark-muted); font-weight: 600; }
+.range { margin-top: 16px; }
+.range input { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; background: transparent; cursor: pointer; }
+.range input::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--star) var(--fill, 47%), rgba(255,255,255,.18) var(--fill, 47%)); }
+.range input::-moz-range-track { height: 6px; border-radius: 6px; background: rgba(255,255,255,.18); }
+.range input::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--star); }
+.range input::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%; background: #fff; box-shadow: 0 2px 8px rgba(0,0,0,.4); }
+.range input::-moz-range-thumb { width: 28px; height: 28px; border: 0; border-radius: 50%; background: #fff; }
+.range__row { display: flex; justify-content: space-between; font-size: 13px; color: var(--on-dark-muted); }
+.hint { margin-top: 10px; min-height: 24px; font-size: 15px; font-weight: 600; color: var(--star); }
+.nfacts { grid-column: span 5; }
+
+/* ---------- prices ---------- */
+.ptile { grid-column: span 4; display: flex; flex-direction: column; }
+.ptile .btn { margin-top: auto; }
+.ptile .tiers { margin-bottom: 22px; }
+.note { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 8px 28px; padding-top: 18px; padding-bottom: 18px; font-weight: 600; font-size: 15px; }
+.note span { display: flex; align-items: center; gap: 8px; } .note span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }
+
+/* ---------- about, faq, contact ---------- */
+.about { grid-column: span 7; }
+.about h2 { max-width: 16ch; }
+.person { grid-column: span 5; display: grid; gap: var(--gap); }
+.person .t { display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+.person .av i { width: 60px; height: 60px; font-size: 19px; }
+.person h3 + p { margin-top: 2px; font-size: 15px; }
+.person .btn { margin-left: auto; }
+.faq { grid-column: span 7; }
+.qa { border-top: 1px solid var(--line); }
+.qa:first-of-type { margin-top: 16px; }
+.qa button { width: 100%; min-height: 60px; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 14px 0; text-align: left; font-size: 17px; font-weight: 600; }
+.qa button i { position: relative; flex: none; width: 28px; height: 28px; border-radius: 50%; background: var(--white); }
+.qa button i::before, .qa button i::after { content: ""; position: absolute; left: 8px; right: 8px; top: 13px; height: 2px; border-radius: 2px; background: var(--ink); transition: transform .3s var(--ease); }
+.qa button i::after { transform: rotate(90deg); } .qa button[aria-expanded="true"] i::after { transform: none; }
+.qa__a { display: grid; grid-template-rows: 0fr; transition: grid-template-rows .4s var(--ease); }
+.qa__a > div { overflow: hidden; } .qa__a p { padding: 0 44px 18px 0; }
+.qa button[aria-expanded="true"] + .qa__a { grid-template-rows: 1fr; }
+.contact { grid-column: span 5; grid-row: span 2; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chips button { min-height: 44px; padding: 0 16px; border-radius: 12px; background: rgba(255,255,255,.08); font-size: 15px; font-weight: 600; color: var(--on-dark); transition: background-color .2s, color .2s; }
+.chips button[aria-pressed="true"] { background: var(--star); color: var(--ink); }
+.field { display: grid; gap: 6px; margin-top: 14px; }
+.field label { font-size: 14.5px; font-weight: 600; color: var(--on-dark); }
+.field label span { color: var(--on-dark-muted); font-weight: 500; }
+.field input, .field textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 0; border-radius: 12px; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 1px var(--line-dark); color: var(--on-dark); font: inherit; font-size: 16px; }
+.field textarea { min-height: 100px; resize: vertical; }
+.field input:focus, .field textarea:focus { outline: none; box-shadow: inset 0 0 0 2px var(--star); }
+.field.bad input { box-shadow: inset 0 0 0 2px #ff8a7a; }
+.err { font-size: 14px; color: #ffb4a8; min-height: 0; }
+.contact .btn { width: 100%; margin-top: 20px; }
+.ok { margin-top: 12px; font-weight: 600; color: #8fe0b8; }
+.reach { grid-column: span 7; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--gap); padding: 0; background: transparent; }
+.reach a { display: flex; flex-direction: column; justify-content: space-between; gap: 22px; min-height: 150px; padding: 22px; border-radius: var(--r); background: var(--tile); transition: transform .4s var(--ease); }
+.reach a:hover { transform: translateY(-3px); }
+.reach svg { width: 22px; height: 22px; }
+.reach b { display: block; font-size: 17px; } .reach span { color: var(--muted); font-size: 15px; word-break: break-word; }
+
+.foot { padding: 34px 0 calc(34px + env(safe-area-inset-bottom)); }
+.foot__in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 28px; font-size: 14.5px; color: var(--muted); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0 18px; } .foot nav a { min-height: 44px; display: inline-flex; align-items: center; } .foot nav a:hover { color: var(--ink); }
+
+.dock { position: fixed; z-index: 90; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); display: none; grid-template-columns: 1fr 1.5fr; gap: 6px; padding: 6px; border-radius: 20px; background: rgba(27,27,29,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); transition: transform .45s var(--ease); }
+.dock .btn--line { color: var(--on-dark); box-shadow: inset 0 0 0 1.5px var(--line-dark); }
+.dock.away { transform: translateY(160%); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1180px) {
+  .hero, .vtile { grid-column: 1 / -1; grid-row: auto; }
+  .vtile { min-height: 0; aspect-ratio: 16 / 9; }
+  .ntile, .wtile { grid-column: span 6; height: 340px; } .ttile { grid-column: 1 / -1; flex-direction: row; flex-wrap: wrap; align-items: center; }
+  .ttile .calls { flex: 1; min-width: 260px; }
+  .steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } .steps .lbl { grid-column: 1 / -1; }
+  .film, .ref, .ndemo { grid-column: 1 / -1; grid-row: auto; }
+  .buy { grid-column: 1 / -1; } .photos, .why2, .who { grid-column: span 6; } .who { grid-column: 1 / -1; }
+  .pk, .calc, .nfacts { grid-column: span 6; }
+  .ptile { grid-column: span 6; } .ptile:first-child { grid-column: 1 / -1; }
+  .about, .person, .faq, .contact, .reach { grid-column: 1 / -1; grid-row: auto; }
+}
+@media (max-width: 1023px) {
+  .nav { display: none; } .menu-btn { display: inline-flex; }
+  .shead { grid-template-columns: minmax(0, 1fr); }
+}
+@media (max-width: 700px) {
+  body { font-size: 16px; }
+  .head__in > .btn { display: none; }
+  .logo svg { height: 26px; }
+  .grid > * { grid-column: 1 / -1 !important; }
+  .hero { padding-top: 22px; }
+  .vtile { aspect-ratio: 4 / 5; }
+  .from img { width: 48px; height: 36px; } .from span { display: none; }
+  .vcap { flex-direction: column; align-items: stretch; } .vbtns { justify-content: space-between; }
+  .ntile, .wtile { height: 300px; }
+  .ttile { flex-direction: column; align-items: stretch; }
+  .steps { grid-template-columns: minmax(0, 1fr); }
+  .screen { min-height: 260px; }
+  .stage { min-height: 380px; }
+  .reach { grid-template-columns: minmax(0, 1fr); }
+  .reach a { min-height: 0; flex-direction: row; align-items: center; justify-content: flex-start; }
+  .person .btn { margin-left: 0; width: 100%; }
+  .dock { display: grid; }
+  .foot { padding-bottom: calc(100px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#start">Zum Inhalt springen</a>
+<!--DEFS-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="star" viewBox="0 0 24 24"><path d="m12 2.2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.4l-6.2 3.7 1.6-7L2 9.4l7.1-.6z"/></symbol>
+  <symbol id="arr" viewBox="0 0 16 16"><path d="M2 8h11M9 3.5 13.5 8 9 12.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="tick" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="phone" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+  <symbol id="pause" viewBox="0 0 16 16"><path d="M4 3h2.6v10H4zM9.4 3H12v10H9.4z" fill="currentColor"/></symbol>
+  <symbol id="play" viewBox="0 0 16 16"><path d="M5 3l8 5-8 5z" fill="currentColor"/></symbol>
+</defs></svg>
+
+<header class="head" id="head">
+  <div class="wrap head__in">
+    <a class="logo" href="#start" aria-label="F&amp;D Solutions – zum Anfang"><!--LOGO--></a>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="#roomtours">Roomtours</a><a href="#websites">Websites</a><a href="#nfc">NFC-Platten</a><a href="#preise">Preise</a><a href="#kontakt">Kontakt</a></nav>
+    <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
+    <a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><a href="#roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="#websites">Websites <span>ab 300 €</span></a><a href="#nfc">NFC-Platten <span>15 €</span></a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></nav>
+  </div>
+</header>
+
+<main id="start">
+  <!-- Start: alles auf einen Blick -->
+  <section class="wrap grid" aria-labelledby="h-start">
+    <div class="t hero">
+      <div>
+        <span class="lbl">Agentur aus München · zwei Gründer, persönlich</span>
+        <h1 id="h-start"><span>Mehr Buchungen.</span><span>Mehr Bewertungen.</span><span>Mehr Kunden.</span></h1>
+        <p class="sub">Wir machen aus Ihren Fotos ein Video, das Gäste bucht, bauen Ihre Website und bringen Ihnen Google-Bewertungen. Zum Festpreis.</p>
+      </div>
+      <div>
+        <div class="row" style="margin-top:0"><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--white" href="#preise">Preise ansehen</a></div>
+        <ul class="facts"><li>Festpreis, kein Abo</li><li>Antwort in 24 Stunden</li></ul>
+      </div>
+    </div>
+
+    <div class="t vtile">
+      <video id="heroVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-label="Beispiel einer KI-Roomtour: Flur, Wohnzimmer, Balkon"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video>
+      <i class="vbar" aria-hidden="true"><b id="heroBar"></b></i>
+      <span class="price">Roomtour ab 300 €</span>
+      <div class="vcap">
+        <div class="from"><img src="/media/tour-sm-1.jpg" alt="Foto Flur" width="640" height="360"><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer" width="640" height="360"><img src="/media/tour-sm-3.jpg" alt="Foto Balkon" width="640" height="360"><span>Aus diesen 3 Fotos entstand das Video</span></div>
+        <div class="vbtns"><a class="pill" href="#roomtours">So funktioniert's <svg aria-hidden="true"><use href="#arr"/></svg></a><button class="ibtn" type="button" id="heroPlay" aria-label="Video anhalten"><svg aria-hidden="true"><use href="#pause"/></svg></button></div>
+      </div>
+    </div>
+
+    <a class="t dark ntile" href="#nfc">
+      <span class="price">15 € / Stück</span>
+      <span class="lbl">NFC-Platte</span>
+      <h3>Antippen, bewerten, fertig.</h3>
+      <p>Gäste landen direkt auf Ihrer Google-Bewertung.</p>
+      <div class="stars" aria-label="5 Sterne"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></div>
+      <span class="disc-wrap" aria-hidden="true"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></span>
+      <span class="go">Ansehen <svg aria-hidden="true"><use href="#arr"/></svg></span>
+    </a>
+
+    <a class="t t--white wtile" href="#websites">
+      <span class="price price--star">ab 300 €</span>
+      <span class="lbl">Website · Referenz SPIRULI®</span>
+      <h3>Websites, die verkaufen.</h3>
+      <p>3 Seiten im Basis-Paket, perfekt auf dem Handy.</p>
+      <div class="shot"><img src="/media/ref-spiruli.jpg" alt="Website von SPIRULI, gestaltet von F&amp;D Solutions" loading="lazy" width="1440" height="900"></div>
+    </a>
+
+    <div class="t ttile">
+      <div><div class="av" aria-hidden="true"><i>FD</i><i>DS</i></div><h3 style="margin-top:16px">Kein Callcenter.</h3><p>Sie sprechen direkt mit uns.</p></div>
+      <div class="calls"><a href="tel:+4915566456417">Florian <span>0155 66456417</span></a><a href="tel:+4917656612709">Davy <span>0176 56612709</span></a></div>
+    </div>
+
+    <ol class="t steps" aria-label="So läuft es">
+      <span class="lbl">So läuft es</span>
+      <li><span>1</span><div>Anfrage senden<small>Formular oder Anruf</small></div></li>
+      <li><span>2</span><div>Wir rufen Sie an<small>innerhalb von 24 Stunden</small></div></li>
+      <li><span>3</span><div>Festpreis-Angebot<small>keine versteckten Kosten</small></div></li>
+      <li><span>4</span><div>Fertig geliefert<small>Video, Website oder Platten</small></div></li>
+    </ol>
+  </section>
+
+  <!-- 1 · KI-Roomtours -->
+  <section class="wrap grid sec" id="roomtours" aria-labelledby="h-tour">
+    <div class="t shead">
+      <div><span class="num">1</span><h2 id="h-tour">KI-Roomtours: Ihre Fotos werden zum Video.</h2></div>
+      <p>Gäste entscheiden in Sekunden. Ein Video-Rundgang zeigt, wie sich Ihre Unterkunft anfühlt, und hebt Ihr Inserat von reinen Foto-Angeboten ab. Sie schicken Fotos, wir erledigen den Rest.</p>
+    </div>
+
+    <div class="t film">
+      <div class="film__box"><video id="film" poster="/media/roomtour-villa.jpg" muted playsinline preload="metadata" aria-label="KI-Roomtour Beispiel in voller Länge"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video><span class="film__tag">KI-Roomtour · Beispiel · 0:11</span></div>
+      <div class="film__foot">
+        <div class="chap" id="chap" role="group" aria-label="Kapitel"><button type="button" data-t="0">Flur<i><b></b></i></button><button type="button" data-t="3.6">Wohnzimmer<i><b></b></i></button><button type="button" data-t="7.3">Balkon<i><b></b></i></button></div>
+        <button class="ibtn" type="button" id="filmPlay" aria-label="Video abspielen"><svg aria-hidden="true"><use href="#play"/></svg></button>
+      </div>
+    </div>
+
+    <div class="t dark buy">
+      <div><span class="lbl">Basis-Paket</span><p class="big" style="margin-top:10px;color:var(--on-dark)"><small>ab </small>300 €</p><p style="margin-top:10px">Festpreis bis 150 m² oder ein ganzes Stockwerk. Größere Objekte, Hotels und Villen nach Größe.</p>
+        <ol class="flow"><li><b>1</b>Sie schicken Fotos per E-Mail oder WhatsApp</li><li><b>2</b>Wir erstellen Ihr Video</li><li><b>3</b>Sie prüfen und geben frei</li><li><b>4</b>Video online, mehr Anfragen</li></ol></div>
+      <a class="btn btn--star" href="#kontakt" data-pick="Roomtour">Roomtour anfragen <svg aria-hidden="true"><use href="#arr"/></svg></a>
+    </div>
+
+    <div class="t photos">
+      <span class="lbl">Das haben wir bekommen</span>
+      <h3>Nur 3 Fotos.</h3>
+      <p>Keine Kamera, kein Termin vor Ort. Handyfotos genügen, am besten aus mehreren Blickwinkeln.</p>
+      <div class="photos__g"><figure><img src="/media/tour-sm-1.jpg" alt="Foto Flur" loading="lazy">Flur</figure><figure><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer" loading="lazy">Wohnzimmer</figure><figure><img src="/media/tour-sm-3.jpg" alt="Foto Balkon" loading="lazy">Balkon</figure></div>
+    </div>
+
+    <div class="t t--white why2">
+      <h3>Das bekommen Sie</h3>
+      <ul class="list"><li>Video in Full HD, quer (16:9) oder hochkant (9:16)</li><li>Fertig für Airbnb, Booking.com, Website und Social Media</li><li>Zur Freigabe, bevor es online geht</li><li>Kein KI-Programm lernen, kein Abo: Wir machen alles</li></ul>
+    </div>
+    <div class="t who">
+      <h3>Für wen?</h3>
+      <p>Für alle, die Räume vermieten und mehr Anfragen wollen.</p>
+      <ul class="tags"><li>Airbnb-Gastgeber</li><li>Ferienwohnungen</li><li>Pensionen</li><li>Hotels</li><li>Monteurzimmer</li><li>Makler</li></ul>
+    </div>
+  </section>
+
+  <!-- 2 · Websites -->
+  <section class="wrap grid sec" id="websites" aria-labelledby="h-web">
+    <div class="t shead">
+      <div><span class="num">2</span><h2 id="h-web">Websites, die Kunden überzeugen.</h2></div>
+      <p>Wir planen, gestalten und bauen Ihre Website und stellen sie online. Klar und schnell im Basis-Paket, mit Animationen und 3D in den größeren Paketen.</p>
+    </div>
+    <div class="t ref">
+      <div class="ref__top"><div><span class="lbl">Referenz · Premium-Paket</span><h3>SPIRULI®</h3></div><div class="seg" role="group" aria-label="Ansicht"><button type="button" aria-pressed="true" data-view="desk">Desktop</button><button type="button" aria-pressed="false" data-view="mob">Handy</button></div></div>
+      <div class="screen" id="screen"><img class="desk" src="/media/ref-spiruli.jpg" alt="SPIRULI Website auf dem Desktop" loading="lazy" width="1440" height="900"><img class="mob" src="/media/ref-spiruli-mobile.jpg" alt="SPIRULI Website auf dem Handy" loading="lazy"></div>
+      <div class="ref__foot"><span>Getränke-Marke mit Online-Shop</span><a href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener">Live ansehen <svg aria-hidden="true"><use href="#arr"/></svg></a></div>
+    </div>
+    <div class="t dark pk">
+      <span class="lbl">Pakete</span>
+      <ul class="tiers"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, Inhalte selbst bearbeitbar</p></li></ul>
+      <a class="btn btn--star" href="#kontakt" data-pick="Website" style="margin-top:18px">Website anfragen <svg aria-hidden="true"><use href="#arr"/></svg></a>
+    </div>
+    <div class="t pk">
+      <h3>Immer dabei</h3>
+      <ul class="list"><li>Perfekt auf iPhone, iPad und Desktop</li><li>Schnell geladen und bei Google auffindbar</li><li>Impressum und Datenschutz</li><li>Online-Shop möglich</li></ul>
+    </div>
+  </section>
+
+  <!-- 3 · NFC -->
+  <section class="wrap grid sec" id="nfc" aria-labelledby="h-nfc">
+    <div class="t shead">
+      <div><span class="num">3</span><h2 id="h-nfc">NFC-Platten: mehr Google-Bewertungen.</h2></div>
+      <p>Zufriedene Gäste halten ihr Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Kein Suchen, kein Umweg, ohne App.</p>
+    </div>
+    <div class="t dark ndemo">
+      <div class="ref__top"><span class="lbl">Live-Demo</span><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß">Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz">Schwarz</button></div></div>
+      <div class="stage" id="stage" role="group" aria-label="Animation: Ein Handy tippt auf die NFC-Platte, die Google-Bewertung öffnet sich">
+        <span class="counter" id="counter">Bewertungen <b id="revN">128</b><em>+1</em></span>
+        <span class="toast" id="toast"><i aria-hidden="true">G</i><span>Neue Google-Bewertung<span class="st"><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg><svg aria-hidden="true"><use href="#star"/></svg></span></span></span>
+        <div class="plate"><span class="rings" aria-hidden="true"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
+        <div class="phone" aria-hidden="true"><div class="scr">
+          <div class="s-lock"><small>Dienstag, 27. Oktober</small><b>9:41</b><span>An die Platte halten</span></div>
+          <div class="s-rev"><div class="g-head"><b>G</b>Bewertung schreiben</div><div class="g-biz"><i>R</i><div>Ihr Restaurant<small>München</small></div></div><div class="g-stars" id="gStars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><p class="g-text">Super Essen, sehr freundlich!</p></div>
+          <div class="s-done"><i><svg><use href="#tick"/></svg></i><b>Danke!</b><small>Bewertung veröffentlicht</small></div>
+        </div></div>
+        <button class="btn btn--white try" type="button" id="try">Antippen ausprobieren</button>
+      </div>
+    </div>
+    <div class="t dark calc">
+      <span class="lbl">Rechner</span>
+      <div class="calc__sum"><span class="big" id="sum" style="color:var(--on-dark)">150 €</span><span id="qtyLabel">für 10 Platten</span></div>
+      <div class="range"><input type="range" id="qty" min="1" max="20" value="10" aria-label="Anzahl NFC-Platten" aria-valuetext="10 Platten"></div>
+      <div class="range__row" aria-hidden="true"><span>1</span><span>5</span><span>10</span><span>15</span><span>20</span></div>
+      <p class="hint" id="hint">Unsere Empfehlung für Restaurants</p>
+      <button class="btn btn--star" type="button" id="calcBuy" style="margin-top:14px;width:100%">Platten anfragen <svg aria-hidden="true"><use href="#arr"/></svg></button>
+    </div>
+    <div class="t t--white nfacts">
+      <h3>Die Platte</h3>
+      <ul class="list"><li>Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz</li><li>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li>iPhone und Android, ohne App und ohne Akku</li><li>Für Restaurants 5 bis 10 Stück, z. B. in jede Rechnungsmappe</li></ul>
+    </div>
+  </section>
+
+  <!-- Preise -->
+  <section class="wrap grid sec" id="preise" aria-labelledby="h-preise">
+    <div class="t shead"><div><h2 id="h-preise">Preise auf einen Blick.</h2></div><p>Einmalig bezahlen, kein Abo. Sie bekommen vor dem Start ein Festpreis-Angebot. Alle Preise zzgl. MwSt.</p></div>
+    <div class="t dark ptile">
+      <span class="price">Schwerpunkt</span>
+      <h3>KI-Roomtours</h3>
+      <ul class="tiers"><li><b>Basis</b><span>300 €</span><p>Bis 150 m² oder ein Stockwerk</p></li><li><b>Premium</b><span>nach Größe</span><p>Größere Objekte, Hotels und Villen</p></li></ul>
+      <a class="btn btn--star" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a>
+    </div>
+    <div class="t t--white ptile">
+      <h3>Websites</h3>
+      <ul class="tiers"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>3D, selbst bearbeitbar</p></li></ul>
+      <a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a>
+    </div>
+    <div class="t t--white ptile">
+      <h3>NFC-Platten</h3>
+      <ul class="tiers"><li><b>1 Platte</b><span>15 €</span><p>Einzeln jederzeit möglich</p></li><li><b>5 Platten</b><span>75 €</span><p>Für kleine Betriebe</p></li><li><b>10 Platten</b><span>150 €</span><p>Empfehlung für Restaurants</p></li></ul>
+      <a class="btn btn--ink" href="#kontakt" data-pick="NFC-Platten">Platten anfragen</a>
+    </div>
+    <p class="t note"><span>Festpreis vorab</span><span>Kein Abo, keine laufenden Kosten</span><span>Antwort innerhalb von 24 Stunden</span><span>Ein Ansprechpartner von Anfang bis Ende</span></p>
+  </section>
+
+  <!-- Über uns + Fragen -->
+  <section class="wrap grid sec" id="team" aria-labelledby="h-team">
+    <div class="t about">
+      <span class="lbl">Über uns</span>
+      <h2 id="h-team">Zwei Gründer aus München. Kein Callcenter.</h2>
+      <p style="margin-top:14px">Wir setzen jedes Projekt selbst um. Sie sprechen immer direkt mit uns, vom ersten Anruf bis zur fertigen Lösung.</p>
+    </div>
+    <div class="person">
+      <article class="t t--white"><div class="av" aria-hidden="true"><i>FD</i></div><div><h3>Florian Dressler</h3><p>Gründer</p></div><a class="btn btn--line" href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone"/></svg>Anrufen</a></article>
+      <article class="t t--white"><div class="av" aria-hidden="true"><i style="background:#8a6c38">DS</i></div><div><h3>Davy Stubenrauch</h3><p>Gründer</p></div><a class="btn btn--line" href="tel:+4917656612709"><svg aria-hidden="true"><use href="#phone"/></svg>Anrufen</a></article>
+    </div>
+  </section>
+
+  <section class="wrap grid sec" id="kontakt" aria-labelledby="h-kontakt">
+    <div class="t faq" id="fragen">
+      <h2>Häufige Fragen</h2>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a0" id="q0">Was brauchen Sie für eine Roomtour?<i aria-hidden="true"></i></button><div class="qa__a" id="a0" role="region" aria-labelledby="q0"><div><p>Nur Fotos Ihrer Räume, am besten aus mehreren Blickwinkeln. Das Basis-Paket (300 €) gilt bis 150 m² oder ein ganzes Stockwerk. Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a1" id="q1">Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></button><div class="qa__a" id="a1" role="region" aria-labelledby="q1"><div><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a2" id="q2">Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></button><div class="qa__a" id="a2" role="region" aria-labelledby="q2"><div><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a3" id="q3">Was kostet eine Website?<i aria-hidden="true"></i></button><div class="qa__a" id="a3" role="region" aria-labelledby="q3"><div><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a4" id="q4">Gibt es laufende Kosten?<i aria-hidden="true"></i></button><div class="qa__a" id="a4" role="region" aria-labelledby="q4"><div><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></div></div></div>
+      <div class="qa"><button type="button" aria-expanded="false" aria-controls="a5" id="q5">Wie schnell geht es los?<i aria-hidden="true"></i></button><div class="qa__a" id="a5" role="region" aria-labelledby="q5"><div><p>Wir melden uns innerhalb von 24 Stunden persönlich, klären mit Ihnen alle Details und schicken Ihnen ein Festpreis-Angebot.</p></div></div></div>
+    </div>
+
+    <form class="t dark contact" id="form" novalidate>
+      <h2 id="h-kontakt">Kostenlos anfragen</h2>
+      <p style="margin-top:8px">Unverbindlich, in zwei Minuten. Antwort innerhalb von 24 Stunden.</p>
+      <div class="chips" role="group" aria-label="Was brauchen Sie?"><button type="button" aria-pressed="false" data-service="Roomtour">Roomtour</button><button type="button" aria-pressed="false" data-service="Website">Website</button><button type="button" aria-pressed="false" data-service="NFC-Platten">NFC-Platten</button></div>
+      <div class="field"><label for="fName">Name</label><input id="fName" autocomplete="name" aria-describedby="eName"><span class="err" id="eName" aria-live="polite"></span></div>
+      <div class="field"><label for="fContact">Telefon oder E-Mail</label><input id="fContact" autocomplete="email" aria-describedby="eContact"><span class="err" id="eContact" aria-live="polite"></span></div>
+      <div class="field"><label for="fMsg">Nachricht <span>(optional)</span></label><textarea id="fMsg"></textarea></div>
+      <button class="btn btn--star" type="submit">Anfrage senden <svg aria-hidden="true"><use href="#arr"/></svg></button>
+      <p class="ok" id="ok" hidden>Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Alternativ rufen Sie uns einfach an.</p>
+    </form>
+
+    <div class="reach">
+      <a href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone"/></svg><div><b>Florian Dressler</b><span>+49 155 66456417</span></div></a>
+      <a href="tel:+4917656612709"><svg aria-hidden="true"><use href="#phone"/></svg><div><b>Davy Stubenrauch</b><span>+49 176 56612709</span></div></a>
+      <a href="mailto:fd.solutions@web.de"><svg aria-hidden="true"><use href="#mail"/></svg><div><b>E-Mail</b><span>fd.solutions@web.de</span></div></a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <!--LOGO-->
+    <nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></nav>
+    <span>© <span id="year">2026</span> F&amp;D Solutions · München</span>
+  </div>
+</footer>
+
+<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone"/></svg>Anrufen</a><a class="btn btn--star" href="#kontakt">Kostenlos anfragen</a></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var icon = function (b, name) { $("use", b).setAttribute("href", "#" + name); };
+  // run fn while el is on screen, stop when it leaves
+  function whileVisible(el, on, off, t) { new IntersectionObserver(function (es) { es[0].isIntersecting ? on() : off(); }, { threshold: t || .3 }).observe(el); }
+  $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- header, menu, dock ---------- */
+  var head = $("#head"), dock = $("#dock"), menuBtn = $("#menuBtn"), mnav = $("#mnav");
+  function chrome() {
+    head.classList.toggle("scrolled", scrollY > 8);
+    var k = $("#kontakt").getBoundingClientRect().top;
+    dock.classList.toggle("away", scrollY < innerHeight * .6 || k < innerHeight * .7);
+  }
+  addEventListener("scroll", chrome, { passive: true }); chrome();
+  function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; }
+  menuBtn.addEventListener("click", function () { menu(mnav.hidden); });
+  mnav.addEventListener("click", function (e) { if (e.target.closest("a")) menu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mnav.hidden) { menu(false); menuBtn.focus(); } });
+  addEventListener("resize", function () { if (innerWidth > 1023 && !mnav.hidden) menu(false); });
+  // mark the section in view in the nav
+  var navLinks = $$(".nav a");
+  $$("main section[id]").forEach(function (s) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) navLinks.forEach(function (a) { a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + s.id)); }); }, { rootMargin: "-45% 0px -50% 0px" }).observe(s);
+  });
+
+  /* ---------- start video ---------- */
+  var hv = $("#heroVid"), hp = $("#heroPlay"), hbar = $("#heroBar"), heroPaused = reduce;
+  function heroUi() { var p = !hv.paused; icon(hp, p ? "pause" : "play"); hp.setAttribute("aria-label", p ? "Video anhalten" : "Video abspielen"); }
+  hp.addEventListener("click", function () { if (hv.paused) { heroPaused = false; hv.play().catch(function () {}); } else { heroPaused = true; hv.pause(); } });
+  hv.addEventListener("play", heroUi); hv.addEventListener("pause", heroUi);
+  hv.addEventListener("timeupdate", function () { if (hv.duration) hbar.style.width = (hv.currentTime / hv.duration * 100) + "%"; });
+  if (reduce) hv.pause();
+  whileVisible(hv, function () { if (!heroPaused) hv.play().catch(function () {}); }, function () { hv.pause(); }, .2);
+
+  /* ---------- roomtour film with chapters ---------- */
+  var film = $("#film"), fp = $("#filmPlay"), chaps = $$("#chap button"), starts = chaps.map(function (b) { return +b.getAttribute("data-t"); });
+  function filmUi() { var p = !film.paused; icon(fp, p ? "pause" : "play"); fp.setAttribute("aria-label", p ? "Video anhalten" : "Video abspielen"); }
+  film.addEventListener("play", filmUi); film.addEventListener("pause", filmUi);
+  film.addEventListener("ended", function () { film.currentTime = 0; film.play().catch(function () {}); });
+  film.addEventListener("timeupdate", function () {
+    var t = film.currentTime, d = film.duration || 11;
+    chaps.forEach(function (b, i) { var a = starts[i], z = i < starts.length - 1 ? starts[i + 1] : d; $("b", b).style.width = Math.max(0, Math.min(1, (t - a) / (z - a))) * 100 + "%"; b.classList.toggle("on", t >= a && t < z); });
+  });
+  fp.addEventListener("click", function () { if (film.paused) film.play().catch(function () {}); else film.pause(); });
+  chaps.forEach(function (b, i) { b.addEventListener("click", function () { film.currentTime = starts[i]; film.play().catch(function () {}); }); });
+  if (!reduce) whileVisible(film, function () { film.play().catch(function () {}); }, function () { film.pause(); }, .4);
+
+  /* ---------- website reference: desktop / phone ---------- */
+  $$("[data-view]").forEach(function (b) { b.addEventListener("click", function () {
+    $$("[data-view]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    $("#screen").classList.toggle("is-mob", b.getAttribute("data-view") === "mob");
+  }); });
+
+  /* ---------- NFC demo: tap → review → stars → thanks → +1 ---------- */
+  var stage = $("#stage"), gStars = $$("#gStars svg"), revN = $("#revN"), counter = $("#counter"), n = 128, timers = [], loop = null;
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function reset() { timers.forEach(clearTimeout); timers = []; stage.className = "stage"; gStars.forEach(function (s) { s.classList.remove("on"); }); counter.classList.remove("up"); }
+  function tap() {
+    reset();
+    later(function () { stage.classList.add("p1"); }, 50);
+    later(function () { stage.classList.remove("p1"); stage.classList.add("p2"); }, 1300);
+    gStars.forEach(function (s, i) { later(function () { s.classList.add("on"); }, 1900 + i * 140); });
+    later(function () { stage.classList.add("p4"); n++; revN.textContent = n; counter.classList.add("up"); }, 3600);
+  }
+  function startLoop() { if (loop || reduce) return; tap(); loop = setInterval(tap, 7000); }
+  function stopLoop() { clearInterval(loop); loop = null; }
+  $("#try").addEventListener("click", function () { stopLoop(); tap(); });
+  if (reduce) { stage.classList.add("p2"); gStars.forEach(function (s) { s.classList.add("on"); }); }
+  else whileVisible(stage, startLoop, stopLoop, .4);
+  $$("[data-color]").forEach(function (b) { b.addEventListener("click", function () {
+    $$("[data-color]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    $("#disc").classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
+  }); });
+
+  /* ---------- calculator ---------- */
+  var qty = $("#qty");
+  function setQty() {
+    var q = +qty.value;
+    $("#sum").textContent = (q * 15).toLocaleString("de-DE") + " €";
+    $("#qtyLabel").textContent = "für " + q + (q === 1 ? " Platte" : " Platten");
+    qty.setAttribute("aria-valuetext", q + (q === 1 ? " Platte" : " Platten"));
+    qty.style.setProperty("--fill", ((q - 1) / 19 * 100) + "%");
+    $("#hint").textContent = q < 5 ? "Für Restaurants empfehlen wir 5 bis 10 Platten" : q > 10 ? "Ideal für größere Betriebe" : "Unsere Empfehlung für Restaurants";
+  }
+  qty.addEventListener("input", setQty); setQty();
+
+  /* ---------- FAQ ---------- */
+  $$(".qa button").forEach(function (b) { b.addEventListener("click", function () { b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true")); }); });
+
+  /* ---------- request buttons pre-fill the form ---------- */
+  var msg = $("#fMsg");
+  function pick(service, note) {
+    $$(".chips button").forEach(function (b) { if (b.getAttribute("data-service") === service) b.setAttribute("aria-pressed", "true"); });
+    if (note && msg.value.indexOf(note) < 0) msg.value = (msg.value ? msg.value + "\n" : "") + "Interesse: " + note;
+    setTimeout(function () { $("#fName").focus({ preventScroll: true }); }, reduce ? 0 : 700);
+  }
+  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () { pick(b.getAttribute("data-pick"), b.getAttribute("data-pick")); }); });
+  $("#calcBuy").addEventListener("click", function () { pick("NFC-Platten", qty.value + " NFC-Platten (" + (+qty.value * 15).toLocaleString("de-DE") + " €), " + $("[data-color][aria-pressed=true]").getAttribute("data-color")); $("#kontakt").scrollIntoView(); });
+  $$(".chips button").forEach(function (b) { b.addEventListener("click", function () { b.setAttribute("aria-pressed", String(b.getAttribute("aria-pressed") !== "true")); }); });
+  $("#form").addEventListener("submit", function (e) {
+    e.preventDefault(); var first = null;
+    [["#fName", "Bitte geben Sie Ihren Namen an."], ["#fContact", "Bitte geben Sie eine Telefonnummer oder E-Mail an."]].forEach(function (x) {
+      var f = $(x[0]), box = f.parentNode, bad = !f.value.trim();
+      box.classList.toggle("bad", bad); f.setAttribute("aria-invalid", String(bad)); $(".err", box).textContent = bad ? x[1] : "";
+      if (bad && !first) first = f;
+    });
+    if (first) { first.focus(); return; }
+    var s = $$(".chips button[aria-pressed=true]").map(function (b) { return b.getAttribute("data-service"); });
+    var body = "Name: " + $("#fName").value.trim() + "\nKontakt: " + $("#fContact").value.trim() + "\nLeistung: " + (s.join(", ") || "noch offen") + (msg.value.trim() ? "\n\n" + msg.value.trim() : "");
+    location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über die Website" + (s.length ? ": " + s.join(" + ") : "")) + "&body=" + encodeURIComponent(body);
+    $("#ok").hidden = false;
+  });
+});
+</script>
+</body>
+</html>

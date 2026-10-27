@@ -3,7 +3,15 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 28.10.: Design v11 „Graphit & Champagner“ — AKTUELL (vom Kunden gewählt)
+## Stand 27.10. spät: Design v12 „Alles auf einen Blick“ — AKTUELL (vom Kunden gewählt)
+- Kunde wollte „eine komplett neue Webseite“. 3 Entwürfe gezeigt (`public/entwurf/neu-1|2|3.html` + Screenshots `neu-*-desktop.png`): 1 „Bühne“ (Video groß + Preisliste), 2 „Alles auf einen Blick“ (Kacheln/Bento), 3 „In drei Schritten“ (Ablauf als Start, Logo-Navy) → **Entwurf 2 gewählt**. Eine Änderung nur an den Fotos war ausdrücklich NICHT gewünscht.
+- Live: `public/site/index.html`. **Quelle ist `design/v12-template.html`**, gebaut mit `python3 design/v12-build.py` (setzt Logo, NFC-Platten-Symbol und schema.org-Daten aus `design/parts/` ein). Änderungen im Template machen, dann bauen. v11 liegt als Archiv unter `public/v11/index.html`.
+- Palette: Seite warmes Mittelgrau `#dedbd5`, Kacheln `#f7f6f3` / Weiß, dunkle Kacheln Graphit `#1b1b1d`, Text `#161616`, gedämpft `#55514b`, Akzent **Google-Gelb `#f4b400`** (nur Flächen, Sterne, Preisschilder; Text darauf immer dunkel). Schrift **Onest** (eine Familie). Kachel-Radius 24 px, Preisschild oben rechts in jeder Leistungskachel.
+- Aufbau: Start-Bento (Überschrift „Mehr Buchungen. Mehr Bewertungen. Mehr Kunden.“, großes Roomtour-Video mit den 3 Ausgangsfotos, NFC-Kachel dunkel mit Platte, Website-Kachel SPIRULI, Gründer-Kachel mit Telefonnummern, Ablauf 1–4) → 1 KI-Roomtours (Video mit Kapiteln Flur/Wohnzimmer/Balkon, Preis-Kachel mit Ablauf, „Nur 3 Fotos“, „Das bekommen Sie“, „Für wen?“) → 2 Websites (SPIRULI Desktop/Handy-Umschalter, Pakete, „Immer dabei“) → 3 NFC (Live-Demo ohne Bibliothek: Handy tippt, Bewertung, Sterne, „Danke“, +1, Weiß/Schwarz; Rechner) → Preise auf einen Blick → Über uns → Fragen + Formular (mailto) + Kontaktkacheln → Fußzeile. Handy: Menü-Knopf, feste Leiste „Anrufen / Kostenlos anfragen“.
+- Technik: keine GSAP/Lenis mehr (nur ein kleines Skript); Demos laufen nur, solange sichtbar; reduzierte Bewegung = statisch. Handy lädt `roomtour-villa-960.mp4` (1,1 MB) statt 6,4 MB; Vorschaubilder `tour-sm-1..3.jpg` (640 px).
+- Geprüft per Playwright (1440, 2000, 1180, 820, 390 px): kein Überlaufen, keine JS-Fehler, alle Texte ≥ 4,5:1, alle Bedienelemente ≥ 44 px.
+
+## Stand 28.10.: Design v11 „Graphit & Champagner“ (abgelöst durch v12, Archiv `public/v11/`)
 - v10 (Hotel-Stil) abgelehnt: „soll keine Hotel-Seite sein, sondern eine Dienstleistungs-Seite“. Dann 3 Entwürfe gezeigt (`public/entwurf/a|b|c.html`): Kunde mochte A (hell, klar) + B (dunkel, spektakulär), aber „nicht komplett dunkel, hell aber nicht alles weiß“. Kombination in 4 Farbwelten (`entwurf/ab1–ab4.html`) → **Variante 2 gewählt**.
 - Palette: Seite warmes Hellgrau `#f0efec` mit feinem 64-px-Raster + leichtem Champagner-Schimmer, Karten weiß, **Demos/Hervorhebungen auf Graphit `#1c1c1f`** mit Champagner-Leuchten, Akzent **Champagner `#c9ad7c`** (Text-Variante `#8f7045`), Text `#18181a`. Kein Blau/Türkis/Violett.
 - Schrift: **Outfit** (Überschriften) + **Work Sans** (Text) – ui-ux-pro-max-Empfehlung für Agenturen/Dienstleister.
