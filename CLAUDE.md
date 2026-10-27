@@ -3,7 +3,13 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Aktuelle Richtung (ab 27.10.: Design v6 „Stripe-Stil“)
+## Aktuelle Richtung (ab 27.10.: Design v7 – Stripe-Stil, Fokus KI-Videos für Airbnb)
+Maßgeblich ist **`public/site/index.html`** (Startseite `/` leitet dorthin). Kunde will sich **auf KI-Roomtour-Videos für Airbnbs/Ferienwohnungen spezialisieren**. Wünsche: einladender Einstieg mit Animation, die erklärt, was wir machen; danach **drei Projekte, je eins pro Bildschirm** (Animation, gute Beschreibung, Preis); alles strukturiert, seriös, modern, nichts durcheinander/übergreifend; Wow-Effekt, der Aufmerksamkeit hält.
+- Start: „Aus Ihren Fotos wird ein Video, das Gäste bucht.“ + Animation rechts: drei Kundenfotos erscheinen → Scan + „KI erstellt Ihr Video 0–100 %“ → Fotos fliegen ins Airbnb-ähnliche Inserat im Handy → Video läuft → „Neue Buchung · 3 Nächte“. Darunter Leiste „Für Gastgeber auf Airbnb, Booking.com …“.
+- Projekt 1 von 3 KI-Roomtours (Schwerpunkt), Projekt 2 Websites, Projekt 3 NFC-Platten – jeweils `min-height: 100svh`, eigene Live-Demo (siehe v6), Preis + Anfrage-Button. Dann Navy-Band „Warum F&D“, Preise, Über uns, FAQ, Kontakt.
+- Überschrift jetzt schlicht Navy (kein color-burn mehr, wirkte zu bunt).
+
+### Vorher: Design v6 „Stripe-Stil“
 Maßgeblich ist **`public/site/index.html`** (Startseite `/` leitet dorthin). Der Kunde hat per Abfrage den **Stripe-Stil** gewählt: weiß und klar, mit fließendem Farbverlauf als Wow-Element, interaktive Mini-Demos je Angebot, scharfe Karten. Wunsch: Leistungen **auffällig, anschaulich, mit Wow-Effekt vorgeführt**, seriös, klar, „höchstes Niveau“.
 - Abgelehnt in dieser Reihe: v3 hell/Navy-Kapitel, v4 „Graphit“ (Serifen, Film-in-Buchstaben → „Immobilien-Vibes, unübersichtlich“), v5 „Klar“ (Graphit-Sans → „immer noch nicht gut, soll sich abheben“).
 - Palette: Text Navy `#0a2540`, Fließtext `#425466`, Fläche `#f6f9fc`, Aktion Indigo `#635bff`; Aurora-Verlauf Violett `#a960ee` · Blau `#635bff` · Türkis `#3ecbd6` · Pfirsich `#ffb38a` (animiertes Canvas, schräg abgeschnittenes Band oben und am Kontakt). Schrift **Inter**. Logo im Kopf weiß auf dem Verlauf, sonst Original-Farben.
