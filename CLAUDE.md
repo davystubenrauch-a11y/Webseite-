@@ -8,6 +8,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Palette: Seite warmes Hellgrau `#f0efec` mit feinem 64-px-Raster + leichtem Champagner-Schimmer, Karten weiß, **Demos/Hervorhebungen auf Graphit `#1c1c1f`** mit Champagner-Leuchten, Akzent **Champagner `#c9ad7c`** (Text-Variante `#8f7045`), Text `#18181a`. Kein Blau/Türkis/Violett.
 - Schrift: **Outfit** (Überschriften) + **Work Sans** (Text) – ui-ux-pro-max-Empfehlung für Agenturen/Dienstleister.
 - Start: links Punkt-Label + „Aus 3 Fotos wird ein Video, das Gäste bucht.“ (zweiter Teil champagner) + Buttons; rechts dunkle Karte „So funktioniert es“: 3 Fotos → KI-Pfeil → **echtes Video** (läuft, Play/Pause, Fortschritt), Chip „Neue Buchung“. Darunter drei Leistungskarten mit Preis (erste graphit).
+- v11.1 Prüfung mit ui-ux-pro-max (automatisiert per Playwright): alle Texte ≥ 4,5:1 Kontrast (`--muted` auf `#5d5a54`), alle Bedienelemente ≥ 44 px, keine Schrift < 12 px außer in den illustrativen Handy-Attrappen (aria-hidden), Fokus-Ring champagner, Drück-Feedback, Lesebreite ≤ 62ch, feines Filmkorn über der Seite.
 - Projekte 01–03 behalten Demos/Abläufe aus v6–v9, jetzt in Graphit-Karten; Preis-Karte weiß. Preise: Roomtour-Karte graphit mit Champagner-Button.
 
 ## Stand 28.10.: Design v10 „Warmes Luxus-Design“ (vom Kunden per Abfrage gewählt)

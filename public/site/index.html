@@ -21,7 +21,7 @@
             haptics on buttons; all off under reduced motion.
    ===================================================================== */
 :root {
-  --ink: #18181a; --body: #47453f; --muted: #6b6862; --page: #f0efec; --tint: #e8e6e1; --line: rgba(24,24,26,.12);
+  --ink: #18181a; --body: #47453f; --muted: #5d5a54; --page: #f0efec; --tint: #e8e6e1; --line: rgba(24,24,26,.12);
   --action: #1c1c1f; --action-hover: #33322f; --violet: #c9ad7c; --turq: #c9ad7c; --peach: #9a7a4c; --night: #1c1c1f; --sand: #ffffff;
   --champ: #c9ad7c; --champ-text: #8f7045; --dark: #1c1c1f;
   --ease: cubic-bezier(.22,1,.36,1);
@@ -454,6 +454,24 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.03em; }
 .nfc__count, .nfc__toast { border-radius: 10px; }
 .qa button i::before, .qa button i::after { background: var(--champ-text); }
 
+/* ---------- v11.1: checklist fixes (touch ≥ 44 px, contrast ≥ 4.5:1) + polish ---------- */
+.head nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.head .btn, .skip { min-height: 44px !important; }
+.head > .wrap > a:first-child { min-height: 44px; display: inline-flex; align-items: center; }
+.proc__play { width: 44px; height: 44px; right: 6px; top: 6px; }
+.seg button { min-height: 44px; min-width: 44px; }
+.more { min-height: 44px; }
+.foot nav a { min-height: 44px; display: inline-flex; align-items: center; }
+.film__tag { font-size: 12px; }
+/* fine film grain over the page for depth (static, decorative) */
+body::after { content: ""; position: fixed; inset: 0; z-index: 300; pointer-events: none; opacity: .035; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+/* consistent press feedback within ~120 ms */
+.btn, .svcs__i, .chips button, .seg button, .qa button { -webkit-tap-highlight-color: transparent; }
+.svcs__i:active, .chips button:active { transform: scale(.98); transition-duration: .12s; }
+/* readable measure for long text */
+.sub, .qa__body p, .person p { max-width: 62ch; }
+:focus-visible { outline-color: var(--champ-text); }
+
 /* ---------- Responsive: MacBook · iPad · iPhone ---------- */
 @media (max-width: 1023px) {
   .head nav { display: none; }
@@ -601,7 +619,7 @@ h1, h2, h3 { font-weight: 600; letter-spacing: -.03em; }
           <span class="nfc__toast" id="nfcToast"><i>G</i><span><b>Neue Google-Bewertung</b><span class="st"><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg></span></span></span>
           <span class="nfc__count" id="nfcCount">Bewertungen <b id="revN">128</b><em>+1</em></span>
           <div class="nfc__disc" id="nfcDisc"><span class="nfc__rings"><i></i><i></i><i></i></span><span class="disc" id="plate"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
-          <div class="nfc__phone" id="nfcPhone"><div class="m-phone__scr"><span class="m-phone__island"></span>
+          <div class="nfc__phone" id="nfcPhone" aria-hidden="true"><div class="m-phone__scr"><span class="m-phone__island"></span>
             <div class="lock"><small>Dienstag, 27. Oktober</small><b>9:41</b><span>An die Platte halten</span></div>
             <div class="rev" id="nfcRev"><div class="g-head"><b>G</b>Bewertung schreiben</div><div class="g-biz"><i>R</i><div><strong>Ihr Restaurant</strong><small>München</small></div></div><div class="g-stars" id="nfcStars"><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg><svg viewBox="-6 -6 12 12" aria-hidden="true"><use href="#discStar"/></svg></div><p class="g-text">Super Essen, sehr freundlich!</p><span class="g-post">Posten</span></div>
             <div class="done" id="nfcDone"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><b>Danke!</b><small>Bewertung veröffentlicht</small></div>
