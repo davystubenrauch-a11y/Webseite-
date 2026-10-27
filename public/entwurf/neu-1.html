@@ -1,0 +1,61 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entwurf Neu 1 · Bühne · F&amp;D Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Neu 1 „Bühne": das Video ist der Held, Leistungen als Preisliste */
+:root{--bg:#ecebe7;--ink:#141414;--muted:#55534e;--line:rgba(20,20,20,.14);--rec:#d23b2a;--card:#fff}
+*{box-sizing:border-box;margin:0;padding:0}img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+body{font-family:"Instrument Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:17px;line-height:1.55}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.top{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-weight:700;font-size:21px;letter-spacing:-.02em}.logo b{color:#a8874a}
+.top nav{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-weight:600;font-size:16px}
+.btn--ink{background:var(--ink);color:#fff}.btn--line{box-shadow:inset 0 0 0 1.5px var(--line)}
+.top .btn{min-height:44px}
+h1{font-size:clamp(44px,7.4vw,112px);line-height:.95;letter-spacing:-.045em;font-weight:700;max-width:14ch;margin-top:28px}
+.lead{display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end;margin-top:28px}
+.lead p{font-size:19px;color:var(--muted);max-width:46ch}
+.lead .cta{display:flex;gap:10px;flex-wrap:wrap}
+/* the stage */
+.stage{margin-top:40px;display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:stretch}
+.in{display:grid;grid-template-rows:auto repeat(3,1fr);gap:10px}
+.in p{font-size:14px;font-weight:600;color:var(--muted)}
+.in img{width:100%;height:100%;object-fit:cover;border-radius:10px}
+.screen{position:relative;aspect-ratio:16/9;border-radius:16px;overflow:hidden;background:#000}
+.screen video{width:100%;height:100%;object-fit:contain}
+.rec{position:absolute;left:16px;top:16px;display:flex;align-items:center;gap:8px;padding:7px 12px;border-radius:999px;background:rgba(0,0,0,.55);color:#fff;font-size:13px;font-weight:600}
+.rec i{width:8px;height:8px;border-radius:50%;background:var(--rec);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.book{position:absolute;right:16px;bottom:16px;display:flex;align-items:center;gap:10px;padding:10px 14px 10px 10px;border-radius:12px;background:#fff;font-size:14px;font-weight:600;box-shadow:0 20px 40px -20px rgba(0,0,0,.6)}
+.book b{display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:#1f9d6a;color:#fff;font-size:14px}
+/* price list */
+.menu{margin-top:96px;padding-bottom:96px}
+.menu h2{font-size:clamp(32px,4vw,56px);letter-spacing:-.035em;line-height:1}
+.rows{margin-top:36px;border-top:1.5px solid var(--ink)}
+.row{display:grid;grid-template-columns:1.1fr 1.4fr auto auto;gap:32px;align-items:center;padding:30px 0;border-bottom:1px solid var(--line)}
+.row h3{font-size:clamp(26px,2.6vw,38px);letter-spacing:-.03em;line-height:1.05}
+.row p{color:var(--muted);font-size:16px}
+.row .pr{font-size:clamp(26px,2.6vw,38px);font-weight:600;letter-spacing:-.03em;white-space:nowrap}.row .pr small{font-size:15px;color:var(--muted);font-weight:500;letter-spacing:0}
+.row .btn{min-height:48px}
+@media(max-width:900px){.top nav{display:none}.lead{grid-template-columns:1fr}.stage{grid-template-columns:1fr}.in{grid-template-rows:auto;grid-template-columns:repeat(3,1fr)}.in p{grid-column:1/-1}.in img{aspect-ratio:4/3}.row{grid-template-columns:1fr auto;gap:10px 20px}.row p{grid-column:1/-1;grid-row:2}.row .btn{grid-column:1/-1}}
+</style></head>
+<body>
+<header class="wrap top"><span class="logo">F<b>&amp;</b>D Solutions</span><nav><a>KI-Roomtours</a><a>Websites</a><a>NFC-Platten</a><a>Über uns</a></nav><a class="btn btn--ink" href="#">Anfragen</a></header>
+<main class="wrap">
+  <h1>Aus Fotos wird ein Video, das Gäste bucht.</h1>
+  <div class="lead"><p>Sie schicken uns Fotos Ihrer Ferienwohnung. Wir machen daraus eine Video-Roomtour für Airbnb, Booking.com und Ihre Website. Festpreis ab 300 €.</p><div class="cta"><a class="btn btn--ink" href="#">Roomtour anfragen</a><a class="btn btn--line" href="#">Preise ansehen</a></div></div>
+  <div class="stage">
+    <div class="in"><p>Ihre Fotos</p><img src="/media/tour-sm-1.jpg" alt="Foto Flur"><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer"><img src="/media/tour-sm-3.jpg" alt="Foto Balkon"></div>
+    <div class="screen"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay></video><span class="rec"><i></i>Ihre Roomtour · Beispiel</span><span class="book"><b><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></b>Neue Buchung · 3 Nächte</span></div>
+  </div>
+  <section class="menu">
+    <h2>Was wir für Sie machen</h2>
+    <div class="rows">
+      <div class="row"><h3>KI-Roomtour</h3><p>Video aus Ihren Fotos, Full HD, quer oder hochkant. Bis 150 m² oder ein Stockwerk.</p><span class="pr"><small>ab </small>300 €</span><a class="btn btn--ink" href="#">Anfragen</a></div>
+      <div class="row"><h3>Website</h3><p>3 professionell gestaltete Seiten mit Kontakt, Google Maps, Impressum und Datenschutz.</p><span class="pr"><small>ab </small>300 €</span><a class="btn btn--line" href="#">Anfragen</a></div>
+      <div class="row"><h3>NFC-Platte</h3><p>Gäste tippen mit dem Handy auf die Platte und bewerten Sie direkt bei Google.</p><span class="pr">15 €<small> / Stück</small></span><a class="btn btn--line" href="#">Bestellen</a></div>
+    </div>
+  </section>
+</main>
+</body></html>

@@ -1,0 +1,58 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entwurf Neu 2 · Alles auf einen Blick · F&amp;D Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Neu 2 „Alles auf einen Blick": Kachel-Übersicht, jede Leistung zeigt sich selbst */
+:root{--bg:#dedbd5;--ink:#161616;--muted:#5a5650;--tile:#f7f6f3;--dark:#1b1b1d;--star:#f4b400;--line:rgba(22,22,22,.12)}
+*{box-sizing:border-box;margin:0;padding:0}img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+body{font-family:"Onest",system-ui,sans-serif;background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px;line-height:1.5}
+.wrap{max-width:1400px;margin:0 auto;padding:0 clamp(16px,2.4vw,32px)}
+.top{height:72px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:20px;letter-spacing:-.02em}.logo b{color:#a8874a}
+.top nav{display:flex;gap:6px}.top nav a{padding:10px 14px;border-radius:999px;font-size:15px;font-weight:500}.top nav a:hover{background:var(--tile)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:14px;font-weight:600;font-size:15.5px}
+.btn--ink{background:var(--ink);color:#fff}.btn--lt{background:#fff;color:var(--ink)}.btn--y{background:var(--star);color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:minmax(120px,auto);gap:12px;padding-bottom:12px}
+.t{position:relative;border-radius:24px;background:var(--tile);padding:28px;overflow:hidden}
+.t h2{font-size:22px;letter-spacing:-.02em;line-height:1.15}.t p{color:var(--muted);font-size:15px;margin-top:6px}
+.lbl{font-size:13px;font-weight:600;color:var(--muted)}
+.price{position:absolute;right:20px;top:20px;padding:8px 12px;border-radius:12px;background:#fff;font-weight:700;font-size:15px}
+.dark .price{background:var(--star)}
+/* tiles */
+.hero{grid-column:span 5;grid-row:span 3;display:flex;flex-direction:column;justify-content:space-between;background:transparent;padding:28px 8px 8px}
+.hero h1{font-size:clamp(40px,4.6vw,72px);line-height:.98;letter-spacing:-.045em}
+.hero p{font-size:18px;color:var(--muted);max-width:40ch;margin-top:18px}
+.hero .cta{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap}
+.vid{grid-column:span 7;grid-row:span 3;padding:0;background:#000}
+.vid video{width:100%;height:100%;object-fit:cover}
+.vid .cap{position:absolute;left:16px;right:16px;bottom:16px;display:flex;justify-content:space-between;align-items:end;gap:12px}
+.vid .ph{display:flex;gap:6px;padding:6px;border-radius:14px;background:rgba(255,255,255,.14);backdrop-filter:blur(10px)}
+.vid .ph img{width:64px;height:44px;object-fit:cover;border-radius:8px}
+.vid .ph span{align-self:center;padding:0 8px;color:#fff;font-size:13px;font-weight:600}
+.vid .tag{padding:9px 13px;border-radius:12px;background:#fff;font-size:14px;font-weight:600}
+.nfc{grid-column:span 4;grid-row:span 2;background:var(--dark);color:#fff}
+.nfc p{color:rgba(255,255,255,.65)}.nfc h2{color:#fff}
+.disc{position:absolute;right:-30px;bottom:-40px;width:210px;aspect-ratio:1;border-radius:50%;background:#fff;box-shadow:0 30px 50px -20px rgba(0,0,0,.6);display:grid;place-items:center;text-align:center;font:600 12px/1.3 Arial,sans-serif;color:#202124}
+.disc::before{content:"";position:absolute;inset:16px;border-radius:50%;border:5px solid;border-color:#4285f4 #34a853 #fbbc05 #ea4335}
+.disc b{display:block;font:500 34px/1 Arial,sans-serif;color:#4285f4}
+.stars{margin-top:18px;display:flex;gap:3px}.stars svg{width:22px;height:22px;fill:var(--star)}
+.web{grid-column:span 5;grid-row:span 2}
+.web img{position:absolute;left:28px;right:28px;bottom:-10px;width:calc(100% - 56px);border-radius:12px 12px 0 0;box-shadow:0 20px 40px -20px rgba(0,0,0,.4)}
+.team{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column;justify-content:space-between}
+.av{display:flex}.av i{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--ink);color:#fff;font-style:normal;font-weight:600;box-shadow:0 0 0 3px var(--tile)}.av i+i{margin-left:-10px;background:#a8874a}
+.team a{display:flex;justify-content:space-between;padding:12px 0;border-top:1px solid var(--line);font-weight:600;font-size:15px}
+.steps{grid-column:span 12;display:grid;grid-template-columns:auto repeat(4,1fr);gap:24px;align-items:center}
+.steps li{list-style:none;display:flex;gap:12px;align-items:center;font-weight:600}.steps li span{display:grid;place-items:center;flex:none;width:34px;height:34px;border-radius:50%;background:#fff;font-size:14px}
+@media(max-width:1000px){.top nav{display:none}.grid>*{grid-column:1/-1!important;grid-row:auto!important}.vid{aspect-ratio:16/10}.nfc,.web{min-height:300px}.steps{grid-template-columns:1fr 1fr}}
+</style></head>
+<body>
+<header class="wrap top"><span class="logo">F<b>&amp;</b>D Solutions</span><nav><a>Roomtours</a><a>Websites</a><a>NFC-Platten</a><a>Preise</a><a>Kontakt</a></nav><a class="btn btn--ink" href="#">Anfragen</a></header>
+<main class="wrap grid">
+  <section class="t hero"><div><span class="lbl">Agentur aus München · zwei Gründer</span><h1>Mehr Buchungen. Mehr Bewertungen. Mehr Kunden.</h1><p>Wir machen Videos aus Ihren Fotos, bauen Ihre Website und bringen Ihnen Google-Bewertungen. Zum Festpreis.</p></div><div class="cta"><a class="btn btn--ink" href="#">Kostenlos anfragen</a><a class="btn btn--lt" href="#">Preise</a></div></section>
+  <section class="t vid"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay></video><span class="price">Roomtour ab 300 €</span><div class="cap"><div class="ph"><img src="/media/tour-sm-1.jpg" alt=""><img src="/media/tour-sm-2.jpg" alt=""><img src="/media/tour-sm-3.jpg" alt=""><span>3 Fotos → dieses Video</span></div><span class="tag">KI-Roomtour · Beispiel</span></div></section>
+  <section class="t nfc dark"><span class="price">15 € / Stück</span><span class="lbl" style="color:rgba(255,255,255,.6)">NFC-Platte</span><h2>Antippen, bewerten, fertig.</h2><p>Gäste landen direkt auf Ihrer Google-Bewertung.</p><div class="stars"><svg viewBox="0 0 24 24"><path d="m12 2 3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg><svg viewBox="0 0 24 24"><path d="m12 2 3 7 7 .6-5.3 4.6 1.6 7.3L12 17.8 5.7 21.5l1.6-7.3L2 9.6 9 9z"/></svg></div><span class="disc"><span>TAP HERE<b>Google</b>Review us</span></span></section>
+  <section class="t web"><span class="price">ab 300 €</span><span class="lbl">Website · Referenz SPIRULI®</span><h2>Websites, die verkaufen.</h2><p>3 Seiten im Basis-Paket, perfekt auf dem Handy.</p><div style="height:150px"></div><img src="/media/ref-spiruli.jpg" alt="SPIRULI Website"></section>
+  <section class="t team"><div><div class="av"><i>FD</i><i>DS</i></div><h2 style="margin-top:16px">Kein Callcenter.</h2><p>Sie sprechen direkt mit uns. Antwort in 24 Stunden.</p></div><div><a href="#">Florian <span>0155 66456417</span></a><a href="#">Davy <span>0176 56612709</span></a></div></section>
+  <ol class="t steps"><span class="lbl">So läuft es</span><li><span>1</span>Anfrage senden</li><li><span>2</span>Wir rufen Sie an</li><li><span>3</span>Festpreis-Angebot</li><li><span>4</span>Fertig geliefert</li></ol>
+</main>
+</body></html>
