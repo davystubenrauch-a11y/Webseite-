@@ -3,6 +3,13 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand 28.10.: Design v11 „Graphit & Champagner“ — AKTUELL (vom Kunden gewählt)
+- v10 (Hotel-Stil) abgelehnt: „soll keine Hotel-Seite sein, sondern eine Dienstleistungs-Seite“. Dann 3 Entwürfe gezeigt (`public/entwurf/a|b|c.html`): Kunde mochte A (hell, klar) + B (dunkel, spektakulär), aber „nicht komplett dunkel, hell aber nicht alles weiß“. Kombination in 4 Farbwelten (`entwurf/ab1–ab4.html`) → **Variante 2 gewählt**.
+- Palette: Seite warmes Hellgrau `#f0efec` mit feinem 64-px-Raster + leichtem Champagner-Schimmer, Karten weiß, **Demos/Hervorhebungen auf Graphit `#1c1c1f`** mit Champagner-Leuchten, Akzent **Champagner `#c9ad7c`** (Text-Variante `#8f7045`), Text `#18181a`. Kein Blau/Türkis/Violett.
+- Schrift: **Outfit** (Überschriften) + **Work Sans** (Text) – ui-ux-pro-max-Empfehlung für Agenturen/Dienstleister.
+- Start: links Punkt-Label + „Aus 3 Fotos wird ein Video, das Gäste bucht.“ (zweiter Teil champagner) + Buttons; rechts dunkle Karte „So funktioniert es“: 3 Fotos → KI-Pfeil → **echtes Video** (läuft, Play/Pause, Fortschritt), Chip „Neue Buchung“. Darunter drei Leistungskarten mit Preis (erste graphit).
+- Projekte 01–03 behalten Demos/Abläufe aus v6–v9, jetzt in Graphit-Karten; Preis-Karte weiß. Preise: Roomtour-Karte graphit mit Champagner-Button.
+
 ## Stand 28.10.: Design v10 „Warmes Luxus-Design“ (vom Kunden per Abfrage gewählt)
 - Kunde zu v9: Video nicht komplett sichtbar, langweilig, Hintergrund nicht seriös, „komisches Türkis“, blaue Knöpfe langweilig → wählte „Warmes Luxus-Design“ (Boutique-Hotel): Sandgrau `#efebe5`, Stein `#e7e1d8`, Hell `#f7f4ef`, Anthrazit `#1e1c1a`, gedämpft `#7a736a`. **Kein Blau/Türkis/Violett**, Farbe nur im Logo (Original Navy + Gold).
 - Schrift **Jost** (Futura-Charakter, leicht 300 für große Überschriften, Labels in Versalien mit weiter Laufweite). Knöpfe eckig, Anthrazit bzw. Kontur. Feine 1-px-Linien statt Karten-Schatten.

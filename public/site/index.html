@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>F&amp;D Solutions · KI-Roomtour-Videos für Airbnb &amp; Ferienwohnungen · München</title>
 <meta name="description" content="Mehr Google-Bewertungen, Kunden und Buchungen: NFC-Platten (15 € pro Stück), Websites und KI-Roomtours ab 300 €. Festpreis, Antwort in 24 Stunden, persönlich aus München.">
-<meta name="theme-color" content="#efebe5">
+<meta name="theme-color" content="#f0efec">
 <link rel="icon" type="image/svg+xml" href="/media/logo-fd-mark-color.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Work+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   F&D Solutions · Design v10 „Warmes Luxus-Design“ (vom Kunden gewählt): Sand, Stein, Anthrazit, Jost
+   F&D Solutions · Design v11 „Graphit & Champagner“ (Entwurf A+B, Variante 2, vom Kunden gewählt)
    ui-ux-pro-max: pattern „Trust & Authority + Conversion“, style „Aurora UI“
    (flowing mesh gradient, 8–12 s loops, contrast checked), type Inter.
    Palette  ink navy #0a2540 · body #425466 · muted #6b7c93 · page #fff · tint #f6f9fc
@@ -21,13 +21,15 @@
             haptics on buttons; all off under reduced motion.
    ===================================================================== */
 :root {
-  --ink: #1e1c1a; --body: #4a453f; --muted: #7a736a; --page: #efebe5; --tint: #e7e1d8; --line: rgba(30,28,26,.14);
-  --action: #1e1c1a; --action-hover: #3a3632; --violet: #8c8276; --turq: #b5ab9e; --peach: #6b655e; --night: #1e1c1a; --sand: #f7f4ef;
+  --ink: #18181a; --body: #47453f; --muted: #6b6862; --page: #f0efec; --tint: #e8e6e1; --line: rgba(24,24,26,.12);
+  --action: #1c1c1f; --action-hover: #33322f; --violet: #c9ad7c; --turq: #c9ad7c; --peach: #9a7a4c; --night: #1c1c1f; --sand: #ffffff;
+  --champ: #c9ad7c; --champ-text: #8f7045; --dark: #1c1c1f;
   --ease: cubic-bezier(.22,1,.36,1);
-  --shadow: 0 1px 2px rgba(30,28,26,.06), 0 10px 30px -18px rgba(30,28,26,.35);
-  --shadow-lg: 0 2px 6px rgba(30,28,26,.05), 0 40px 80px -40px rgba(30,28,26,.45);
-  --r: 4px; --gutter: clamp(20px, 4vw, 56px);
-  --font: "Jost", "Futura", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --shadow: 0 1px 2px rgba(0,0,0,.05), 0 12px 30px -18px rgba(0,0,0,.25);
+  --shadow-lg: 0 40px 100px -40px rgba(0,0,0,.5), 0 0 0 1px rgba(255,255,255,.06);
+  --r: 14px; --gutter: clamp(20px, 4vw, 56px);
+  --font: "Work Sans", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --head: "Outfit", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; }
@@ -111,29 +113,44 @@ h1, h2, h3 { color: var(--ink); font-weight: 400; letter-spacing: -.02em; }
 .g-stars svg.on { fill: #fbbc05; transform: scale(1.08); }
 .g-text { margin: 7cqw 8% 0; padding: 4cqw; min-height: 20cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.2cqw; color: #3c4043; }
 .g-post { display: block; width: fit-content; margin: 6cqw 8% 0 auto; padding: 3cqw 7cqw; border-radius: 99px; background: #1a73e8; color: #fff; font-size: 5.4cqw; font-weight: 600; }
-/* hero: the full film */
-.hero { padding: calc(110px + env(safe-area-inset-top)) 0 clamp(40px, 6vh, 72px); min-height: auto; display: block; background: var(--page); }
-.hero__top { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr); gap: clamp(24px, 5vw, 96px); align-items: end; }
-.hero h1 { margin-top: 18px; font-size: clamp(2.4rem, min(4.6vw, 7.6vh), 5.2rem); font-weight: 300; line-height: 1.04; letter-spacing: -.03em; color: var(--ink); }
-.hero h1 em { font-style: normal; font-weight: 400; color: var(--muted); }
-.hero__aside .sub { margin-top: 0; font-size: 17px; }
-.hero__cta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 10px; }
-.reel { margin: clamp(28px, 4.5vh, 48px) 0 0; width: 100%; }
-.reel__frame { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: #2a2724; box-shadow: var(--shadow-lg); }
-.reel__frame video { width: 100%; height: 100%; object-fit: contain; display: block; }
-.reel__play { position: absolute; right: 18px; bottom: 18px; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: rgba(247,244,239,.9); color: var(--ink); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); transition: transform .3s var(--ease); }
-.reel__play:hover { transform: scale(1.06); }
-.reel__play svg { width: 16px; height: 16px; }
-.reel__bar { margin-top: 16px; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: center; }
-.reel__chapters { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.reel__chapters span { display: grid; gap: 8px; }
-.reel__chapters i { display: block; height: 1px; background: var(--line); position: relative; overflow: hidden; }
-.reel__chapters i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; transform: scaleX(var(--f, 0)); }
-.reel__chapters b { font-size: 12px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
-.reel__src { display: flex; align-items: center; gap: 8px; }
-.reel__src small { margin-right: 6px; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.reel__src img { width: 64px; height: 44px; object-fit: cover; box-shadow: 0 0 0 1px var(--line); }
-.hero__trust { margin-top: clamp(24px, 4vh, 40px); padding-top: 18px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; list-style: none; font-size: 13px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink); }
+/* hero: A+B — light, dark process card with the real film */
+.hero { padding: calc(108px + env(safe-area-inset-top)) 0 clamp(40px, 6vh, 72px); }
+.hx { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+.tag { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; color: var(--ink); }
+.tag i { width: 8px; height: 8px; border-radius: 50%; background: var(--champ); box-shadow: 0 0 0 5px rgba(201,173,124,.25); }
+.hero h1 { margin-top: 20px; font-family: var(--head); font-size: clamp(2.6rem, min(4.7vw, 8vh), 4.6rem); font-weight: 650; line-height: 1.03; letter-spacing: -.035em; color: var(--ink); }
+.hero h1 em { font-style: normal; color: var(--champ-text); }
+.hero .sub { margin-top: 22px; font-size: clamp(17px, 1.3vw, 19px); color: var(--muted); max-width: 540px; }
+.hero__cta { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 12px; }
+.proc { position: relative; padding: 22px; border-radius: 20px; color: #f5f5f4; background: radial-gradient(80% 70% at 70% 15%, rgba(201,173,124,.18), transparent 70%), var(--dark); box-shadow: var(--shadow-lg); }
+.proc__head { display: flex; justify-content: space-between; gap: 12px; margin-bottom: 14px; font-size: 13px; font-weight: 600; color: rgba(255,255,255,.62); }
+.proc__head span:first-child { letter-spacing: .08em; text-transform: uppercase; }
+.proc__row { display: grid; grid-template-columns: .4fr auto 1fr; gap: 14px; align-items: center; }
+.proc__ph { display: grid; gap: 8px; }
+.proc__ph img { aspect-ratio: 16 / 10; width: 100%; object-fit: cover; border-radius: 8px; }
+.proc__arrow { display: grid; justify-items: center; gap: 8px; font-family: var(--head); font-size: 11px; font-weight: 700; letter-spacing: .12em; color: var(--champ); }
+.proc__arrow b { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; background: var(--champ); color: var(--dark); }
+.proc__arrow svg { width: 12px; height: 12px; }
+.proc__vid { position: relative; aspect-ratio: 16 / 9; border-radius: 10px; overflow: hidden; background: #000; }
+.proc__vid video { width: 100%; height: 100%; object-fit: cover; }
+.proc__lbl { position: absolute; left: 10px; top: 10px; padding: 5px 10px; border-radius: 999px; background: rgba(0,0,0,.55); font-size: 12px; font-weight: 600; color: #fff; }
+.proc__play { position: absolute; right: 10px; top: 10px; width: 34px; height: 34px; display: grid; place-items: center; border-radius: 50%; background: rgba(255,255,255,.9); color: var(--dark); }
+.proc__play svg { width: 12px; height: 12px; }
+.proc__bar { position: absolute; left: 10px; right: 10px; bottom: 10px; height: 3px; border-radius: 3px; background: rgba(255,255,255,.3); overflow: hidden; }
+.proc__bar b { display: block; height: 100%; width: 0; background: #fff; }
+.proc__book { position: absolute; right: -14px; bottom: -22px; display: flex; align-items: center; gap: 10px; padding: 11px 16px 11px 11px; border-radius: 12px; background: #fff; color: var(--ink); box-shadow: var(--shadow); font-size: 14px; font-weight: 600; }
+.proc__book i { display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: #1f9d6a; color: #fff; }
+.proc__book svg { width: 14px; height: 14px; }
+.svcs { margin-top: clamp(40px, 6vh, 64px); display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.svcs__i { display: grid; grid-template-columns: auto 1fr auto; gap: 16px; align-items: center; padding: 20px 22px; border-radius: 16px; background: #fff; box-shadow: var(--shadow); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+.svcs__i:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(0,0,0,.05), 0 24px 50px -24px rgba(0,0,0,.35); }
+.svcs__i .n { font-family: var(--head); font-size: 14px; font-weight: 700; color: var(--champ-text); }
+.svcs__i b { display: block; font-family: var(--head); font-size: 20px; font-weight: 600; color: var(--ink); }
+.svcs__i small { font-size: 14px; color: var(--muted); }
+.svcs__i .p { font-family: var(--head); font-size: 18px; font-weight: 600; color: var(--ink); text-align: right; white-space: nowrap; }
+.svcs__i .p small { display: block; font-family: var(--font); font-size: 12px; font-weight: 500; }
+.svcs__i.on { background: var(--dark); }
+.svcs__i.on b, .svcs__i.on .p { color: #fff; } .svcs__i.on small { color: rgba(255,255,255,.65); } .svcs__i.on .n { color: var(--champ); }
 
 /* industries strip */
 .strip { padding: 28px 0 0; }
@@ -386,6 +403,57 @@ h1, h2, h3 { color: var(--ink); font-weight: 400; letter-spacing: -.02em; }
 .dock .btn--white { box-shadow: inset 0 0 0 1px var(--line); }
 .dock.away { transform: translateY(150%); }
 
+/* ---------- v11 skin: Graphit & Champagner ---------- */
+body { background: radial-gradient(50% 60% at 80% 12%, rgba(201,173,124,.14), transparent 70%) no-repeat, linear-gradient(rgba(24,24,26,.045) 1px, transparent 1px) 0 0 / 64px 64px, linear-gradient(90deg, rgba(24,24,26,.045) 1px, transparent 1px) 0 0 / 64px 64px, var(--page); letter-spacing: 0; }
+h1, h2, h3, .h2 { font-family: var(--head); }
+h1, h2, h3 { font-weight: 600; letter-spacing: -.03em; }
+.h2 { font-weight: 600; letter-spacing: -.035em; }
+.kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: 0; text-transform: none; color: var(--ink); }
+.kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--champ); box-shadow: 0 0 0 5px rgba(201,173,124,.25); }
+.btn { border-radius: 12px; font-family: var(--head); font-size: 16px; font-weight: 600; letter-spacing: 0; text-transform: none; min-height: 52px; }
+.btn--action { background: var(--dark); color: #fff; } .btn--action:hover { background: #000; }
+.btn--ghost, .btn--white { background: rgba(255,255,255,.6); color: var(--ink); box-shadow: inset 0 0 0 1.5px rgba(24,24,26,.18); }
+.btn--ghost:hover, .btn--white:hover { background: #fff; color: var(--ink); }
+.head .btn { border-radius: 10px; font-size: 14.5px; min-height: 42px; background: var(--dark); color: #fff; letter-spacing: 0; text-transform: none; }
+.head nav a { font-size: 15px; letter-spacing: 0; color: var(--body); } .head nav a:hover { color: var(--ink); }
+.head.solid { background: rgba(240,239,236,.86); }
+.more { text-transform: none; letter-spacing: 0; font-size: 15px; font-weight: 600; border: 0; }
+.proj, #tour.proj, #nfc.proj { background: transparent; border-top: 0; }
+#web.proj { background: rgba(232,230,225,.75); border-top: 0; }
+.proj::before { -webkit-text-stroke: 1px rgba(24,24,26,.07); }
+.demo { border-radius: 20px; padding: 18px; background: radial-gradient(80% 70% at 70% 10%, rgba(201,173,124,.16), transparent 70%), var(--dark); box-shadow: var(--shadow-lg); color: #f5f5f4; }
+.demo__bar span { color: rgba(255,255,255,.62); letter-spacing: .08em; }
+.seg button { color: rgba(255,255,255,.55); } .seg button[aria-pressed="true"] { color: #fff; border-color: var(--champ); }
+.nfc, .dev { border-radius: 12px; }
+.film { border-radius: 12px; }
+.flow3 li { color: rgba(255,255,255,.55); border-color: rgba(255,255,255,.15); }
+.flow3 li.on { color: #fff; border-color: var(--champ); }
+.ref, .ref b { color: rgba(255,255,255,.8); } .ref .more { color: var(--champ); }
+.demo__cap { background: #fff; color: var(--ink); border-radius: 10px; }
+.shots__ai { background: var(--champ) !important; color: var(--dark) !important; border-radius: 10px !important; letter-spacing: .06em; font-weight: 700; }
+.checks { border-top: 0; padding-top: 0; }
+.checks li::before { width: 16px; height: 2px; border-radius: 2px; background: var(--champ); top: .78em; }
+.buy__price { font-family: var(--head); font-weight: 600; letter-spacing: -.03em; }
+.proj .buy { padding: 18px 20px; border-top: 0; border-radius: 16px; background: #fff; box-shadow: var(--shadow); }
+.plan { border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+.plan--hi { background: radial-gradient(80% 70% at 70% 10%, rgba(201,173,124,.18), transparent 70%), var(--dark); color: #cfcac2; }
+.plan--hi h3, .plan--hi .tiers b, .plan--hi .tiers span { color: #fff; } .plan--hi .plan__tag { color: var(--champ) !important; }
+.plan--hi .btn--action { background: var(--champ); color: var(--dark); }
+.person { border-radius: 18px; background: #fff; box-shadow: var(--shadow); }
+.person__mono { background: var(--dark) !important; color: var(--champ) !important; }
+.why { background: radial-gradient(60% 80% at 85% 0%, rgba(201,173,124,.16), transparent 70%), var(--dark); color: #b9b4ab; }
+.why .kicker { color: #fff; } .stats b { color: #fff; background: none; -webkit-text-fill-color: #fff; font-family: var(--head); font-weight: 600; }
+.steps4 .line { background: var(--champ); }
+.contact { background: rgba(232,230,225,.8); }
+.form { border-radius: 20px; background: #fff; box-shadow: var(--shadow); }
+.field input, .field textarea { border-radius: 10px; background: var(--page); }
+.chips button { border-radius: 10px; } .chips button[aria-pressed="true"] { background: var(--dark); }
+.lines a { border-bottom: 1px solid var(--line); }
+.foot { background: transparent; }
+.range input::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--champ) var(--fill, 47%), rgba(24,24,26,.15) var(--fill, 47%)) !important; }
+.nfc__count, .nfc__toast { border-radius: 10px; }
+.qa button i::before, .qa button i::after { background: var(--champ-text); }
+
 /* ---------- Responsive: MacBook · iPad · iPhone ---------- */
 @media (max-width: 1023px) {
   .head nav { display: none; }
@@ -393,7 +461,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 400; letter-spacing: -.02em; }
   .prod--rev .prod__demo { order: 0; }
   .prod--rev .prod__grid { grid-template-columns: 1fr; }
   .hero__top { grid-template-columns: 1fr; align-items: start; }
-  .reel { width: 100%; } .hero__trust { grid-template-columns: 1fr 1fr; }
+  .hx { grid-template-columns: 1fr; } .svcs { grid-template-columns: 1fr; } .proc__book { right: 10px; }
   .team { grid-template-columns: 1fr; }
   .proj .prod__grid, .proj.prod--rev .prod__grid { grid-template-columns: 1fr !important; }
   .proj .nfc, .proj .dev { height: 460px; } .proj .film { height: 380px; }
@@ -407,7 +475,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 400; letter-spacing: -.02em; }
   .logo__svg { height: 26px; }
   .dock { display: grid; }
   .hero { padding-top: calc(110px + env(safe-area-inset-top)); }
-  .reel__bar { grid-template-columns: 1fr; } .reel__src img { width: 54px; height: 38px; } .hero__trust { font-size: 11.5px; }
+  .proc { padding: 14px; } .proc__head span:last-child { display: none; } .proc__row { grid-template-columns: .38fr auto 1fr; gap: 8px; } .proc__arrow b { width: 32px; height: 32px; } .proc__book { position: static; margin-top: 12px; width: fit-content; }
   .proj .nfc, .proj .dev { height: 400px; } .proj .film { height: 280px; } .proj::before { font-size: 16rem; bottom: -4rem; }
   .proj .buy { flex-direction: column; align-items: stretch; } .proj .buy .btn { width: 100%; }
   .cards3, .plans, .team { grid-template-columns: 1fr; }
@@ -455,27 +523,28 @@ h1, h2, h3 { color: var(--ink); font-weight: 400; letter-spacing: -.02em; }
   <!-- Hero -->
   <section class="hero" aria-labelledby="h-hero">
     <div class="wrap">
-      <div class="hero__top">
+      <div class="hx">
         <div>
-          <p class="kicker" data-rv>KI-Roomtours für Airbnb &amp; Ferienwohnungen</p>
-          <h1 id="h-hero" data-rv>Aus Ihren Fotos wird ein Film, <em>der Gäste überzeugt.</em></h1>
+          <p class="tag" data-rv><i></i>KI-Roomtours für Airbnb &amp; Ferienwohnungen</p>
+          <h1 id="h-hero" data-rv>Aus 3 Fotos wird ein Video, <em>das Gäste bucht.</em></h1>
+          <p class="sub" data-rv>Sie schicken uns Fotos Ihrer Unterkunft. Wir erstellen daraus eine Video-Roomtour für Airbnb, Booking.com und Ihre Website. Dazu: Websites und NFC-Platten für mehr Google-Bewertungen.</p>
+          <div class="hero__cta" data-rv><a class="btn btn--action" href="#kontakt" data-pick-hero data-haptic>Roomtour anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><a class="btn btn--ghost" href="#tour">So funktioniert's</a></div>
         </div>
-        <div class="hero__aside">
-          <p class="sub" data-rv>Sie schicken uns Fotos Ihrer Unterkunft. Wir erstellen daraus einen ruhigen, hochwertigen Video-Rundgang für Ihr Inserat, Ihre Website und Social Media.</p>
-          <div class="hero__cta" data-rv><a class="btn btn--action" href="#kontakt" data-pick-hero data-haptic>Roomtour anfragen</a><a class="btn btn--ghost" href="#tour">So entsteht sie</a></div>
+        <div class="proc" data-rv>
+          <div class="proc__head"><span>So funktioniert es</span><span>Ergebnis: Full HD · 16:9 oder 9:16</span></div>
+          <div class="proc__row">
+            <div class="proc__ph"><img src="/media/tour-hd-1.jpg" alt="Foto Flur"><img src="/media/tour-hd-2.jpg" alt="Foto Wohnzimmer"><img src="/media/tour-hd-3.jpg" alt="Foto Balkon"></div>
+            <div class="proc__arrow" aria-hidden="true"><b><svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></b>KI</div>
+            <div class="proc__vid"><video id="reel" src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-label="KI-Roomtour Beispiel: Flur, Wohnzimmer, Balkon"></video><span class="proc__lbl">Ihre Roomtour · 0:11</span><button class="proc__play" type="button" id="reelPlay" aria-label="Pause" data-haptic><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M4 3h2.6v10H4zM9.4 3H12v10H9.4z"/><path class="i-play" d="M5 3l8 5-8 5z" style="display:none"/></svg></button><i class="proc__bar"><b id="reelBar"></b></i></div>
+          </div>
+          <div class="proc__book"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i>Neue Buchung · 3 Nächte</div>
         </div>
       </div>
-      <figure class="reel" data-rv>
-        <div class="reel__frame">
-          <video id="reel" src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-label="KI-Roomtour Beispiel: Flur, Wohnzimmer, Balkon"></video>
-          <button class="reel__play" type="button" id="reelPlay" aria-label="Pause" data-haptic><svg viewBox="0 0 16 16" fill="currentColor" aria-hidden="true"><path class="i-pause" d="M4 3h2.6v10H4zM9.4 3H12v10H9.4z"/><path class="i-play" d="M5 3l8 5-8 5z" style="display:none"/></svg></button>
-        </div>
-        <figcaption class="reel__bar">
-          <div class="reel__chapters" aria-hidden="true"><span><i></i><b>Flur</b></span><span><i></i><b>Wohnzimmer</b></span><span><i></i><b>Balkon</b></span></div>
-          <div class="reel__src"><small>Entstanden aus 3 Fotos</small><img src="/media/tour-hd-1.jpg" alt="Foto Flur"><img src="/media/tour-hd-2.jpg" alt="Foto Wohnzimmer"><img src="/media/tour-hd-3.jpg" alt="Foto Balkon"></div>
-        </figcaption>
-      </figure>
-      <ul class="hero__trust" data-rv><li>Nur Fotos nötig</li><li>ab 300 € Festpreis</li><li>Full HD, quer oder hochkant</li><li>Antwort in 24 Stunden</li></ul>
+      <nav class="svcs" aria-label="Unsere Leistungen" data-rv>
+        <a class="svcs__i on" href="#tour"><span class="n">01</span><span><b>KI-Roomtours</b><small>Video aus Ihren Fotos</small></span><span class="p">ab 300 €<small>Festpreis</small></span></a>
+        <a class="svcs__i" href="#web"><span class="n">02</span><span><b>Websites</b><small>3 Seiten, professionell</small></span><span class="p">ab 300 €<small>Festpreis</small></span></a>
+        <a class="svcs__i" href="#nfc"><span class="n">03</span><span><b>NFC-Platten</b><small>Mehr Google-Bewertungen</small></span><span class="p">15 €<small>pro Stück</small></span></a>
+      </nav>
     </div>
   </section>
 
@@ -717,12 +786,12 @@ document.addEventListener("DOMContentLoaded", function () {
     c.addEventListener("pointerleave", function () { c.style.transform = ""; });
   });
 
-  /* ---------- Hero film: play/pause + chapter progress ---------- */
-  var reel = $("#reel"), rp = $("#reelPlay"), rch = $$(".reel__chapters span");
+  /* ---------- Hero film: play/pause + progress ---------- */
+  var reel = $("#reel"), rp = $("#reelPlay"), rbar = $("#reelBar");
   function reelUi() { var p = !reel.paused; $(".i-pause", rp).style.display = p ? "" : "none"; $(".i-play", rp).style.display = p ? "none" : ""; rp.setAttribute("aria-label", p ? "Pause" : "Abspielen"); }
   rp.addEventListener("click", function () { if (reel.paused) reel.play().catch(function () {}); else reel.pause(); });
   reel.addEventListener("play", reelUi); reel.addEventListener("pause", reelUi);
-  reel.addEventListener("timeupdate", function () { if (!reel.duration) return; var f = reel.currentTime / reel.duration * 3; rch.forEach(function (c, i) { c.style.setProperty("--f", clamp(f - i, 0, 1)); }); });
+  reel.addEventListener("timeupdate", function () { if (reel.duration) rbar.style.width = (reel.currentTime / reel.duration * 100) + "%"; });
   if (reduce) reel.pause();
   new IntersectionObserver(function (es) { if (es[0].isIntersecting) { if (!reduce) reel.play().catch(function () {}); } else reel.pause(); }, { threshold: .25 }).observe(reel);
 
