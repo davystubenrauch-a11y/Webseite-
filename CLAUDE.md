@@ -3,6 +3,13 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand 27.10. spät: Design v9 „Seriös“ (Weiterentwicklung von v8)
+- Kunde: „seriöser und attraktiver, andere Hintergründe/Farben, Video war unscharf, hochwertiger.“
+- Einstieg komplett auf **Nachtblau `#0b1730`** mit ruhig fließendem Indigo/Petrol-Licht (Canvas) + feines Punkteraster, weiße Schrift, weißer Haupt-Button. Kein Pink/Pfirsich/Violett mehr.
+- Akzent **Indigo `#4f46e5`**, zweiter Ton **Petrol `#14b8a6`**. Projekte auf klaren Flächen (Weiß / `#f5f7fb`) mit feinem Punkteraster, große Projektnummer nur als Kontur, Kennung als dunkles Kästchen „01/02/03“ + „PROJEKT 1 VON 3“.
+- Video wieder in voller Qualität: aus dem Original (Commit 2fe8838) neu kodiert, 1920×1080, x264 CRF 21 (6,4 MB, SSIM 0,989); Standbilder `tour-hd-1..3.jpg` und Poster in 1920 px.
+- Preise: KI-Roomtours zuerst und hervorgehoben („Schwerpunkt“), dann Websites, dann NFC-Rechner.
+
 ## Stand 27.10. abends: Design v8 (Weiterentwicklung von v7)
 - Kunde: „Seiten nicht ausgefüllt, zu langweilig, Startseite langweilig.“ → Start jetzt mit **großem Vorher/Nachher-Regler** über die volle Breite (links „Vorher · 3 Fotos“ als Mosaik aus `tour-hd-1..3.jpg` = Standbilder aus dem Beispielvideo, rechts „Nachher · KI-Video“, Griff ziehbar per Maus/Finger/Pfeiltasten, schwingt automatisch hin und her bis zur ersten Berührung, Chips „Neue Buchung“ und „KI-Roomtour · Full HD“). Überschrift links, Text + Buttons rechts darüber.
 - Kunde (Screenshot auf großem Monitor ~2000 px): „zu viel Platz drumherum, halbe Seite leer“ → ab 1500 px Breite nutzt die Seite bis 1640 px (90 vw), Demos größer (bis 58–64 vh), Fotos füllen die Roomtour-Kachel (Standbilder `tour-hd-*`), weniger Leerraum oben/unten.
