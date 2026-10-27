@@ -3,14 +3,13 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Aktuelle Richtung (ab 27.10.: Design v3 „Kapitel“)
-Maßgeblich ist jetzt **`public/neu/index.html`** (die Startseite `/` leitet dorthin). Der Kunde wollte ausdrücklich ein **komplett neues Design mit Vollbild auf MacBook, iPad und iPhone** – das ersetzt die frühere Regel „kompakt, nicht bildschirmfüllend“. Die alte Version bleibt unter `/studio/index.html` erreichbar (Logo-SVG, Platten-Sprite und NFC-Szene werden per Skript daraus übernommen: Vorlage im Scratchpad `v3/template.html` + `v3/build.py`; bei Änderungen direkt `public/neu/index.html` bearbeiten).
-- Jedes Kapitel füllt den Bildschirm (`min-height: 100svh`): Start → 01 NFC → 02 Websites → 03 Roomtours → Preise → Ablauf & Team → Fragen → Kontakt (+ Fußzeile). Kapitel-Punkte rechts (Desktop), Fortschrittslinie oben, mobile Leiste „Anrufen / Jetzt anfragen“.
-- Schrift **DM Sans** (ui-ux-pro-max „Premium Sans“), Palette wie bisher hell mit Navy-Akzent, Gold nur im Logo-„&“.
-- Start (QCLAY-Muster): Überschrift links, iPhone mit Google-Profil in der Mitte (Bewertungszähler läuft hoch), Text rechts, schwebende Elemente folgen der Maus, Branchen-Laufband unten.
-- Leistungen als **Vollbild-Panels, die sich beim Scrollen übereinander schieben** (21st.dev „Services Stack“); auf dem iPhone normal untereinander.
-- Preise: NFC-**Rechner mit Schieberegler** (1–20 Platten × 15 €, Empfehlung 5–10) + Preisliste im Speisekarten-Stil (Punktlinien) für Websites und Roomtours. Jeder Anfrage-Button füllt das Formular vor.
-- Formular schickt (noch) eine vorausgefüllte E-Mail an fd.solutions@web.de.
+## Aktuelle Richtung (ab 27.10.: Design v4 „Graphit“)
+Maßgeblich ist **`public/site/index.html`** (die Startseite `/` leitet dorthin). Der Kunde wollte eine **komplett neue Seite ohne Bezug auf die vorherigen**, mit Wow-Effekt, seriösem Stil, perfekten Animationen und Haptik; Farbwelt per Abfrage gewählt: **Graphit & Weiß** (Weiß `#f6f6f4`, Silber `#ebebe8`, Graphit `#111214`, keine Farbe außer dem Logo). v3 (`/neu`) und v2 (`/studio`) wurden abgelehnt bzw. sind nur noch Archiv.
+- Erstellt mit ui-ux-pro-max (Muster „Scroll-Triggered Storytelling“, Schrift „Luxury“: **Cormorant Garamond + Montserrat**, Liquid-Glass-Kopfleiste, Regeln: Einblenden ≤ 16 px, Parallax nur dekorativ, max. 2 gepinnte Szenen, 1 magnetisches Element, Haptik nur für Bestätigungen, ohne JS/bei reduzierter Bewegung alles lesbar), Firecrawl (Awwwards-Recherche), 21st.dev, Playwright-Tests.
+- Animation: GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13, **selbst gehostet** in `public/site/vendor/` (keine CDN-Abhängigkeit).
+- Ablauf: Hero „Sichtbar.“ – das Wort ist ein Fenster auf den Roomtour-Film, beim Scrollen Zoom durch den Buchstaben in den Film, dann Headline → Manifest (Wörter leuchten auf) → Leistungs-Index mit Vorschau am Cursor → 01 NFC (gepinnte Szene: iPhone senkt sich auf die Platte, Wellen, Haptik, Google-Bewertung, Zähler +1) → 02 Websites (Browser richtet sich auf, SPIRULI) → 03 Roomtours (Film öffnet sich vom Fenster zur vollen Breite) → Preise (Graphit-Rechner mit +/−, 15 €/Platte) → Ablauf → Über uns → Fragen → Kontakt „Projekt starten.“ → Fußzeile mit großem Logo.
+- Haptik: Android `navigator.vibrate`, iOS 18+ über verstecktes `<input type="checkbox" switch>`; nur bei Buttons/Bestätigungen.
+- Quelle zum Weiterbauen: Vorlage `v4/template.html` + `v4/build.py` im Scratchpad (übernimmt Logo-SVG und Platten-Sprite aus `public/studio/index.html`); dauerhaft direkt `public/site/index.html` bearbeiten.
 
 ## Vorbilder (vom Kunden ausgewählt)
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.

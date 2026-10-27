@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // The current site is the standalone page in public/neu (design v3); the previous one stays at /studio/index.html.
+  // The current site is the standalone page in public/site (design v4 „Graphit“); older versions stay at /neu and /studio.
   async redirects() {
-    return [{ source: "/", destination: "/neu/index.html", permanent: false }];
+    return [{ source: "/", destination: "/site/index.html", permanent: false }];
   },
 };
 
