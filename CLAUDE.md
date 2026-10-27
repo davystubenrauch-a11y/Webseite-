@@ -3,13 +3,13 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Aktuelle Richtung (ab 27.10.: Design v4 „Graphit“)
-Maßgeblich ist **`public/site/index.html`** (die Startseite `/` leitet dorthin). Der Kunde wollte eine **komplett neue Seite ohne Bezug auf die vorherigen**, mit Wow-Effekt, seriösem Stil, perfekten Animationen und Haptik; Farbwelt per Abfrage gewählt: **Graphit & Weiß** (Weiß `#f6f6f4`, Silber `#ebebe8`, Graphit `#111214`, keine Farbe außer dem Logo). v3 (`/neu`) und v2 (`/studio`) wurden abgelehnt bzw. sind nur noch Archiv.
-- Erstellt mit ui-ux-pro-max (Muster „Scroll-Triggered Storytelling“, Schrift „Luxury“: **Cormorant Garamond + Montserrat**, Liquid-Glass-Kopfleiste, Regeln: Einblenden ≤ 16 px, Parallax nur dekorativ, max. 2 gepinnte Szenen, 1 magnetisches Element, Haptik nur für Bestätigungen, ohne JS/bei reduzierter Bewegung alles lesbar), Firecrawl (Awwwards-Recherche), 21st.dev, Playwright-Tests.
-- Animation: GSAP 3.12.5 + ScrollTrigger + Lenis 1.1.13, **selbst gehostet** in `public/site/vendor/` (keine CDN-Abhängigkeit).
-- Ablauf: Hero „Sichtbar.“ – das Wort ist ein Fenster auf den Roomtour-Film, beim Scrollen Zoom durch den Buchstaben in den Film, dann Headline → Manifest (Wörter leuchten auf) → Leistungs-Index mit Vorschau am Cursor → 01 NFC (gepinnte Szene: iPhone senkt sich auf die Platte, Wellen, Haptik, Google-Bewertung, Zähler +1) → 02 Websites (Browser richtet sich auf, SPIRULI) → 03 Roomtours (Film öffnet sich vom Fenster zur vollen Breite) → Preise (Graphit-Rechner mit +/−, 15 €/Platte) → Ablauf → Über uns → Fragen → Kontakt „Projekt starten.“ → Fußzeile mit großem Logo.
-- Haptik: Android `navigator.vibrate`, iOS 18+ über verstecktes `<input type="checkbox" switch>`; nur bei Buttons/Bestätigungen.
-- Quelle zum Weiterbauen: Vorlage `v4/template.html` + `v4/build.py` im Scratchpad (übernimmt Logo-SVG und Platten-Sprite aus `public/studio/index.html`); dauerhaft direkt `public/site/index.html` bearbeiten.
+## Aktuelle Richtung (ab 27.10.: Design v5 „Klar“)
+Maßgeblich ist **`public/site/index.html`** (Startseite `/` leitet dorthin). Farbwelt **Graphit & Weiß** (vom Kunden gewählt: `#f6f6f4` / `#ebebe8` / Graphit `#111214`, Farbe nur im Logo).
+- v4 „Graphit“ (Serifenschrift Cormorant, Film in den Buchstaben „Sichtbar.“, gepinnte Szenen, eigener Cursor) wurde abgelehnt: **„zu unübersichtlich, Immobilien-Vibes“**. Daraus folgt: keine Luxus-Serifen, kein Film als Einstieg, keine Scroll-Gimmicks. Die Seite muss **überzeugen und seriös wirken: klarer Dienstleister, der gute Arbeit macht**.
+- ui-ux-pro-max-Muster „Trust & Authority + Conversion“: Start zeigt sofort Angebot, Zielgruppe, Preise und Vertrauen (Festpreis, 24 h, kein Abo, persönlich aus München) + drei Leistungskarten mit Preis; darunter Fakten-Leiste. Schrift „Corporate Trust“: **Lexend** (Überschriften, zweiter Teil grau) + **Source Sans 3**.
+- Jede Leistung gleich aufgebaut: Kennung „1/3 …“, Überschrift, kurzer Text, „Was Sie bekommen“, Preis, Anfrage-Button. 1/3 NFC mit Szene (iPhone auf Platte, Google-Bewertung, als Schleife), 2/3 Websites mit Referenz SPIRULI im Browser, 3/3 Roomtours mit Video. Dann Preise (Graphit-Rechner +/− und Pakete), Ablauf, Über uns, Fragen, Kontakt.
+- Bewegung ruhig: Einblenden ≤ 16 px, sanftes Scrollen (Lenis), Haptik bei Buttons/Bestätigung (Android vibrate, iOS 18 Switch-Trick). GSAP/ScrollTrigger/Lenis selbst gehostet in `public/site/vendor/`.
+- Weiterbauen: Vorlage `v5/template.html` (aus `v5/make.py`) + `v5/build.py` im Scratchpad, oder direkt `public/site/index.html`.
 
 ## Vorbilder (vom Kunden ausgewählt)
 - **All Star Burgers (wearebrand.io):** Produkt als Held, groß und freigestellt. Fette, schmale Großbuchstaben-Schrift. Produkt zerlegt sich beim Scrollen in seine Schichten, mit feinen Beschriftungslinien. Angebote als „Speisekarte“ mit großem Bild, Name und Preis.

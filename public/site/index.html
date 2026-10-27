@@ -3,30 +3,29 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>F&amp;D Solutions · Sichtbar für Ihre Kunden · München</title>
+<title>F&amp;D Solutions · NFC-Platten, Websites &amp; KI-Roomtours · München</title>
 <meta name="description" content="F&D Solutions aus München: NFC-Platten für Google-Bewertungen (15 € pro Stück), Websites und KI-Roomtours ab 300 €. Persönlich, zum Festpreis.">
 <meta name="theme-color" content="#f6f6f4">
 <link rel="icon" type="image/svg+xml" href="/media/logo-fd-mark-color.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="preload" as="video" href="/media/roomtour-villa.mp4" type="video/mp4">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   F&D Solutions · Design v4 „Graphit“
-   Built with ui-ux-pro-max: pattern „Scroll-Triggered Storytelling“,
-   type „Luxury“ (Cormorant + Montserrat), Liquid-Glass controls,
-   motion rules: reveal y ≤ 16px, parallax only on decorative layers,
-   max. 2 pinned scenes, 1 magnetic focal element, haptics only for
-   confirmations, everything final & readable under reduced motion / no JS.
-   Palette: white #f6f6f4 · silver #ebebe8 · graphite #111214 (no other colour but the logo)
+   F&D Solutions · Design v5 „Klar“
+   ui-ux-pro-max: pattern „Trust & Authority + Conversion“ (credibility hero →
+   proof → solution overview → clear CTA path, transparent prices, short form),
+   type „Corporate Trust“ (Lexend + Source Sans 3). Every service section uses
+   the same structure: what it is · what you get · price · request.
+   Palette Graphit & Weiß: #f6f6f4 · #ebebe8 · #111214, colour only in the logo.
+   Motion is quiet: fade-ups ≤ 16px, no pinned scenes, haptics on confirmations.
    ===================================================================== */
 :root {
   --bg: #f6f6f4; --bg-2: #ebebe8; --surface: #fff; --ink: #111214; --ink-2: #36373b; --muted: #6a6b70;
   --line: rgba(17,18,20,.12); --graphite: #17181b; --graphite-2: #232428;
   --metal: linear-gradient(135deg, #fefefd 0%, #dcdcd8 42%, #f7f7f5 55%, #c4c4bf 100%);
   --ease: cubic-bezier(.22,1,.36,1); --ease-io: cubic-bezier(.65,0,.35,1);
-  --serif: "Cormorant Garamond", "Iowan Old Style", Georgia, serif;
-  --sans: "Montserrat", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --serif: "Lexend", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --sans: "Source Sans 3", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --gutter: clamp(20px, 4.5vw, 72px); --r: 26px;
   --shadow: 0 1px 2px rgba(17,18,20,.05), 0 24px 50px -24px rgba(17,18,20,.28);
 }
@@ -34,7 +33,7 @@
 html { -webkit-text-size-adjust: 100%; }
 html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
-body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+body { background: var(--bg); color: var(--ink); font-family: var(--sans); font-size: 17px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
 img, video, svg { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
@@ -45,17 +44,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .skip:focus-visible { top: 16px; }
 
 /* type */
-.label { display: inline-flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+.label { display: inline-flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .label::before { content: ""; width: 28px; height: 1px; background: currentColor; }
-.serif { font-family: var(--serif); font-weight: 500; letter-spacing: -.02em; line-height: .98; }
-.serif em { font-style: italic; }
-.h2 { font-size: clamp(2.8rem, 6.4vw, 6.6rem); }
+.serif { font-family: var(--serif); font-weight: 600; letter-spacing: -.035em; line-height: 1.06; }
+.serif em { font-style: normal; color: #7a7b80; }
+.h2 { font-size: clamp(2.1rem, 3.9vw, 3.5rem); }
 .lead { font-size: clamp(16px, 1.2vw, 18px); color: var(--muted); max-width: 520px; }
 .wrap { width: 100%; max-width: 1440px; margin: 0 auto; padding: 0 var(--gutter); }
 .line > span { display: block; }
 
 /* buttons */
-.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 52px; padding: 0 28px; border-radius: 999px; font-size: 14.5px; font-weight: 500; letter-spacing: .01em; white-space: nowrap; overflow: hidden; isolation: isolate; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.btn { position: relative; display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 52px; padding: 0 28px; border-radius: 999px; font-size: 16px; font-weight: 500; letter-spacing: .01em; white-space: nowrap; overflow: hidden; isolation: isolate; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .btn svg { width: 16px; height: 16px; transition: transform .5s var(--ease); }
 .btn:hover svg { transform: translateX(4px); }
 .btn:active { transform: scale(.97); }
@@ -79,78 +78,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .head .btn { min-height: 42px; padding: 0 20px; font-size: 13.5px; }
 .progress { position: fixed; z-index: 101; left: 0; top: 0; height: 2px; width: 100%; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); }
 
-/* custom cursor (fine pointers only) */
-.cursor { position: fixed; z-index: 300; left: 0; top: 0; width: 10px; height: 10px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--ink); pointer-events: none; mix-blend-mode: difference; filter: invert(1); opacity: 0; transition: width .4s var(--ease), height .4s var(--ease), margin .4s var(--ease), opacity .3s; display: grid; place-items: center; }
-.cursor span { font-size: 11px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff; opacity: 0; transition: opacity .3s; }
-.cursor.big { width: 92px; height: 92px; margin: -46px 0 0 -46px; mix-blend-mode: normal; filter: none; }
-.cursor.big span { opacity: 1; }
-@media (hover: hover) and (pointer: fine) { .has-cursor .cursor { opacity: 1; } }
-
-/* ---------- 1 Hero: the word is a window onto the film ---------- */
-.hero { position: relative; height: 100vh; height: 100svh; }
-.hero__stage { position: relative; height: 100vh; height: 100svh; overflow: hidden; background: var(--graphite); }
-.hero__video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.hero__mask { position: absolute; inset: 0; display: grid; place-items: center; background: var(--bg); mix-blend-mode: screen; transform-origin: var(--ox, 50%) var(--oy, 52%); will-change: transform; }
-.hero__word { font-family: var(--serif); font-weight: 600; font-size: clamp(6rem, 25vw, 26rem); letter-spacing: -.045em; line-height: .8; color: #000; padding-bottom: .06em; user-select: none; }
-.hero__ui { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-rows: 1fr auto; padding: calc(96px + env(safe-area-inset-top)) var(--gutter) calc(28px + env(safe-area-inset-bottom)); pointer-events: none; }
-.hero__ui > * { pointer-events: auto; }
-.hero__top { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
-.hero__top .label { color: var(--ink-2); }
-.hero__intro { max-width: 340px; font-size: 15px; color: var(--ink-2); text-align: right; }
-.hero__bottom { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
-.hero__services { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; }
-.hero__services a { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: rgba(246,246,244,.7); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px rgba(17,18,20,.08); font-size: 13px; font-weight: 500; transition: background-color .3s; }
-.hero__services a:hover { background: #fff; }
-.hero__services b { font-family: var(--serif); font-size: 16px; font-weight: 600; }
-.scroll-cue { display: flex; align-items: center; gap: 12px; font-size: 12px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--ink-2); }
-.scroll-cue i { position: relative; width: 1px; height: 46px; background: rgba(17,18,20,.18); overflow: hidden; }
-.scroll-cue i::after { content: ""; position: absolute; left: 0; top: -40%; width: 1px; height: 40%; background: var(--ink); animation: cue 2.2s var(--ease-io) infinite; }
-@keyframes cue { to { top: 100%; } }
-.hero__after { position: absolute; inset: 0; z-index: 4; display: grid; align-content: end; padding: 0 var(--gutter) calc(48px + env(safe-area-inset-bottom)); color: #fff; background: linear-gradient(transparent 40%, rgba(10,10,12,.62)); opacity: 0; visibility: hidden; }
-.hero__after h1 { font-size: clamp(2.6rem, 6vw, 6.2rem); max-width: 1100px; }
-.hero__after p { margin-top: 18px; max-width: 560px; color: rgba(255,255,255,.82); font-size: clamp(15px, 1.2vw, 18px); }
-.hero__after .row { margin-top: 28px; display: flex; flex-wrap: wrap; gap: 10px; }
-.hero__after .btn--line { color: #fff; background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 1px rgba(255,255,255,.4); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
-.no-pin .hero__after { position: relative; opacity: 1; visibility: visible; color: var(--ink); background: var(--bg); padding-top: 56px; }
-.no-pin .hero__after p { color: var(--muted); }
-.no-pin .hero__after .btn--line { color: var(--ink); background: transparent; box-shadow: inset 0 0 0 1px var(--line); }
-.no-pin .hero { height: auto; }
-
-/* ---------- 2 Manifest ---------- */
-.manifest { padding: clamp(110px, 18vh, 200px) 0; }
-.manifest p { margin-top: 36px; max-width: 1180px; font-family: var(--serif); font-size: clamp(2rem, 4.4vw, 4.6rem); font-weight: 500; line-height: 1.08; letter-spacing: -.02em; }
-.manifest .w { color: var(--ink); }
-.manifest em { font-style: italic; }
-
-/* ---------- 3 Services index ---------- */
-.index { padding-bottom: clamp(90px, 14vh, 160px); }
-.index__list { margin-top: 40px; list-style: none; border-top: 1px solid var(--line); }
-.index__list a { position: relative; display: grid; grid-template-columns: 90px 1fr auto 40px; align-items: center; gap: 24px; padding: clamp(22px, 3.4vh, 36px) 0; border-bottom: 1px solid var(--line); overflow: hidden; }
-.index__list a::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--ink); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .6s var(--ease); }
-.index__list a:hover::before { transform: scaleY(1); }
-.index__list a:hover { color: var(--bg); }
-.index__no { font-size: 13px; font-weight: 600; letter-spacing: .12em; color: var(--muted); transition: color .4s; }
-.index__list a:hover .index__no { color: rgba(246,246,244,.6); }
-.index__name { font-family: var(--serif); font-size: clamp(2.4rem, 5.6vw, 5.4rem); font-weight: 500; letter-spacing: -.025em; line-height: 1; transition: transform .6s var(--ease); }
-.index__list a:hover .index__name { transform: translateX(14px); }
-.index__price { font-size: clamp(14px, 1.2vw, 17px); font-weight: 500; }
-.index__arrow { width: 40px; height: 40px; border-radius: 50%; display: grid; place-items: center; box-shadow: inset 0 0 0 1px currentColor; opacity: .5; transition: opacity .4s, transform .6s var(--ease); }
-.index__list a:hover .index__arrow { opacity: 1; transform: rotate(-45deg); }
-.index__arrow svg { width: 16px; height: 16px; }
-.preview { position: fixed; z-index: 90; left: 0; top: 0; width: 300px; aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.85); transition: opacity .35s, transform .5s var(--ease); box-shadow: 0 40px 80px -30px rgba(0,0,0,.5); }
-.preview.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-.preview > * { position: absolute; inset: 0; opacity: 0; transition: opacity .35s; }
-.preview > .on { opacity: 1; }
-.preview img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.preview .pv-nfc { display: grid; place-items: center; background: var(--metal); }
-.preview .pv-nfc .disc { width: 62%; }
+/* ---------- Start: what · for whom · price, at one glance ---------- */
+.start { padding: calc(100px + env(safe-area-inset-top)) 0 clamp(32px, 5vh, 64px); min-height: 100vh; min-height: 100svh; display: grid; align-content: center; }
+.start__grid { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.start h1 { margin-top: 18px; font-family: var(--serif); font-size: clamp(2.3rem, min(3.9vw, 7vh), 3.9rem); font-weight: 600; letter-spacing: -.04em; line-height: 1.04; }
+.start h1 em { font-style: normal; color: #7a7b80; }
+.start .lead { margin-top: 22px; font-size: clamp(17px, 1.3vw, 19px); }
+.trust { margin-top: 30px; display: grid; grid-template-columns: repeat(2, max-content); gap: 10px 28px; list-style: none; font-size: 15.5px; color: var(--ink-2); }
+.trust li { display: flex; align-items: center; gap: 10px; }
+.trust svg { width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: var(--ink); color: var(--bg); flex: none; }
+.offer { list-style: none; display: grid; gap: 12px; }
+.offer a { display: grid; grid-template-columns: 128px 1fr auto; gap: 22px; align-items: center; padding: 14px 22px 14px 14px; border-radius: 24px; background: var(--surface); box-shadow: var(--shadow); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.offer a:hover { transform: translateY(-3px); box-shadow: 0 1px 2px rgba(17,18,20,.05), 0 34px 60px -26px rgba(17,18,20,.35); }
+.offer__pic { position: relative; height: 108px; border-radius: 16px; overflow: hidden; background: var(--metal); display: grid; place-items: center; }
+.offer__pic img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.offer__pic .disc { width: 70%; }
+.offer__pic i { position: absolute; width: 32px; height: 32px; border-radius: 50%; display: grid; place-items: center; background: rgba(255,255,255,.92); color: var(--ink); }
+.offer__pic i svg { width: 12px; height: 12px; margin-left: 2px; }
+.offer small { font-size: 12.5px; font-weight: 600; letter-spacing: .1em; color: var(--muted); }
+.offer h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; letter-spacing: -.02em; line-height: 1.2; }
+.offer p { font-size: 15px; color: var(--muted); line-height: 1.45; }
+.offer b { font-family: var(--serif); font-size: 17px; font-weight: 600; white-space: nowrap; }
+.offer b span { display: block; font-family: var(--sans); font-size: 12.5px; font-weight: 500; color: var(--muted); text-align: right; }
+.facts { margin-top: clamp(32px, 5vh, 56px); display: grid; grid-template-columns: repeat(4, 1fr); list-style: none; border-top: 1px solid var(--line); }
+.facts li { padding: 22px 24px 0 0; }
+.facts li + li { padding-left: 24px; border-left: 1px solid var(--line); }
+.facts b { display: block; font-family: var(--serif); font-size: clamp(26px, 2.6vw, 36px); font-weight: 600; letter-spacing: -.03em; line-height: 1.1; }
+.facts span { font-size: 14.5px; color: var(--muted); }
 
 /* ---------- Chapters ---------- */
-.chapter { position: relative; min-height: 100vh; min-height: 100svh; padding: clamp(96px, 13vh, 140px) 0 clamp(48px, 8vh, 96px); }
+.chapter { position: relative; padding: clamp(80px, 12vh, 128px) 0; border-top: 1px solid var(--line); }
+.chapter--fit { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; }
+.kicker { display: inline-flex; align-items: center; gap: 10px; padding: 7px 14px; border-radius: 999px; background: var(--bg-2); font-size: 13.5px; font-weight: 600; color: var(--ink-2); }
+.kicker b { font-family: var(--serif); }
+.what { margin-top: 26px; font-size: 13px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); }
 .chapter__head { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); gap: 48px; align-items: end; }
 .chapter__head .serif { margin-top: 22px; }
 .price-tag { display: flex; align-items: baseline; gap: 10px; }
-.price-tag b { font-family: var(--serif); font-size: clamp(2.4rem, 3.6vw, 3.6rem); font-weight: 600; letter-spacing: -.03em; line-height: 1; }
+.price-tag b { font-family: var(--serif); font-size: clamp(2rem, 2.8vw, 2.8rem); font-weight: 600; letter-spacing: -.03em; line-height: 1; }
 .price-tag span { font-size: 13px; color: var(--muted); }
 .ticks { margin-top: 22px; list-style: none; display: grid; gap: 10px; }
 .ticks li { display: flex; gap: 14px; align-items: baseline; font-size: 15.5px; color: var(--ink-2); }
@@ -158,14 +123,14 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .actions { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
 
 /* NFC scene */
-.nfc__grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 80px); align-items: center; min-height: calc(100svh - 200px); }
+.nfc__grid { display: grid; grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .steps { margin-top: 30px; list-style: none; display: grid; gap: 4px; }
 .steps li { display: grid; grid-template-columns: 34px 1fr; gap: 12px; padding: 12px 0; border-top: 1px solid var(--line); opacity: .35; transition: opacity .5s var(--ease); }
 .steps li.on { opacity: 1; }
-.steps b { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1; }
+.steps b { font-family: var(--serif); font-size: 18px; font-weight: 600; line-height: 1; }
 .steps strong { display: block; font-size: 15px; font-weight: 600; }
 .steps span { font-size: 14px; color: var(--muted); }
-.stage { position: relative; aspect-ratio: 1 / 1.02; max-height: 78svh; width: 100%; border-radius: 34px; overflow: hidden; background: radial-gradient(70% 60% at 50% 35%, #ffffff, #e4e4e0 70%, #d6d6d2); perspective: 1200px; isolation: isolate; }
+.stage { position: relative; aspect-ratio: 1 / 1; max-height: 70svh; width: 100%; border-radius: 34px; overflow: hidden; background: radial-gradient(70% 60% at 50% 35%, #ffffff, #e4e4e0 70%, #d6d6d2); perspective: 1200px; isolation: isolate; }
 .stage::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(115deg, rgba(255,255,255,.55), transparent 40%); mix-blend-mode: soft-light; }
 .plate { position: absolute; left: 50%; top: 66%; width: 58%; transform: translate(-50%, -50%) rotateX(58deg); transform-style: preserve-3d; }
 .plate .disc { position: relative; z-index: 1; }
@@ -214,15 +179,15 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .web__phone { position: absolute; right: 4%; bottom: -8%; width: clamp(110px, 15%, 210px); padding: 1.1%; border-radius: 22% / 10%; background: linear-gradient(140deg, #3a3b40, #121316 40%, #2c2d31); box-shadow: 0 40px 60px -24px rgba(0,0,0,.55); }
 .web__phone div { aspect-ratio: 9 / 19.5; border-radius: 18% / 8.4%; overflow: hidden; }
 .web__phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.web__meta { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; font-size: 14px; color: var(--muted); }
+.web__meta { margin-top: 22px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; font-size: 14px; color: var(--muted); }
 .web__meta b { color: var(--ink); font-weight: 600; }
 
 /* Roomtour */
-.film { margin-top: clamp(36px, 6vh, 64px); position: relative; height: 82svh; min-height: 420px; border-radius: 28px; overflow: hidden; clip-path: inset(0 0 0 0 round 28px); background: #222 center / cover; }
+.film { margin-top: clamp(36px, 6vh, 64px); position: relative; height: min(68svh, 620px); min-height: 360px; border-radius: 28px; overflow: hidden; clip-path: inset(0 0 0 0 round 28px); background: #222 center / cover; }
 .film video { width: 100%; height: 100%; object-fit: cover; }
 .film__tag { position: absolute; left: 22px; top: 20px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.88); font-size: 11.5px; font-weight: 600; letter-spacing: .12em; }
 .film__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px clamp(22px, 3vw, 40px) 28px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 18px; color: #fff; background: linear-gradient(transparent, rgba(0,0,0,.55)); }
-.film__cap p { font-family: var(--serif); font-size: clamp(1.6rem, 2.8vw, 2.6rem); line-height: 1.05; max-width: 620px; }
+.film__cap p { font-family: var(--serif); font-size: clamp(1.3rem, 2.2vw, 2rem); font-weight: 500; line-height: 1.05; max-width: 620px; }
 .film__bar { display: flex; gap: 6px; width: min(320px, 100%); }
 .film__bar span { flex: 1; height: 2px; background: rgba(255,255,255,.35); overflow: hidden; }
 .film__bar i { display: block; height: 100%; width: 0; background: #fff; }
@@ -239,7 +204,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pcard--ink { background: linear-gradient(160deg, var(--graphite-2), var(--graphite) 60%); color: var(--bg); box-shadow: 0 40px 80px -40px rgba(0,0,0,.7), inset 0 1px 0 rgba(255,255,255,.08); }
 .pcard--ink h3 { color: rgba(246,246,244,.6); }
 .calc__sum { margin-top: 18px; display: flex; align-items: baseline; gap: 12px; }
-.calc__sum b { font-family: var(--serif); font-size: clamp(64px, 7vw, 108px); font-weight: 500; line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.calc__sum b { font-family: var(--serif); font-size: clamp(56px, 6vw, 88px); font-weight: 600; line-height: .9; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
 .calc__sum span { font-size: 14px; color: rgba(246,246,244,.7); }
 .stepper { margin-top: 24px; display: grid; grid-template-columns: 52px 1fr 52px; align-items: center; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.06); box-shadow: inset 0 0 0 1px rgba(255,255,255,.1); }
 .stepper button { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 22px; transition: background-color .3s; }
@@ -253,8 +218,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .pcard--ink .btn { margin-top: 26px; }
 .tier { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 18px 0; border-bottom: 1px solid var(--line); }
 .tier:first-of-type { margin-top: 10px; }
-.tier b { font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1.1; }
-.tier span { font-family: var(--serif); font-size: 26px; font-weight: 600; white-space: nowrap; }
+.tier b { font-family: var(--serif); font-size: 20px; font-weight: 600; line-height: 1.1; }
+.tier span { font-family: var(--serif); font-size: 20px; font-weight: 600; white-space: nowrap; }
 .tier span small { font-family: var(--sans); font-size: 12px; font-weight: 500; color: var(--muted); }
 .tier p { grid-column: 1 / -1; font-size: 14px; color: var(--muted); }
 .pcard > .btn--line { margin-top: 22px; }
@@ -262,23 +227,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Process */
 .process__list { margin-top: clamp(40px, 7vh, 80px); position: relative; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; list-style: none; }
-.process__line { position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line); }
+.process__line { position: absolute; left: 26px; right: 26px; top: 26px; height: 1px; background: var(--line); }
 .process__line i { position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; transform: scaleX(1); }
-.process__list li { padding-top: 26px; }
-.process__list b { font-family: var(--serif); font-size: clamp(4rem, 7vw, 7rem); font-weight: 500; line-height: .8; letter-spacing: -.04em; }
+.process__list li { position: relative; padding-top: 0; }
+.process__list b { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; background: var(--ink); color: var(--bg); font-family: var(--serif); font-size: 18px; font-weight: 600; }
 .process__list h3 { margin-top: 16px; font-size: 17px; font-weight: 600; }
 .process__list p { margin-top: 6px; font-size: 14.5px; color: var(--muted); max-width: 260px; }
 
 /* Team */
 .team__grid { margin-top: clamp(40px, 7vh, 72px); display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
 .person { position: relative; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; padding: 28px; border-radius: var(--r); background: var(--surface); box-shadow: var(--shadow); overflow: hidden; }
-.person__mono { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; background: var(--metal); box-shadow: inset 0 0 0 1px rgba(17,18,20,.08); font-family: var(--serif); font-size: 36px; font-weight: 600; color: var(--ink); }
-.person h3 { font-family: var(--serif); font-size: 30px; font-weight: 600; line-height: 1.05; }
+.person__mono { display: grid; place-items: center; width: 80px; height: 80px; border-radius: 50%; background: var(--metal); box-shadow: inset 0 0 0 1px rgba(17,18,20,.08); font-family: var(--serif); font-size: 26px; font-weight: 600; color: var(--ink); }
+.person h3 { font-family: var(--serif); font-size: 22px; font-weight: 600; line-height: 1.05; }
 .person p { font-size: 13.5px; color: var(--muted); }
 .person .btn { grid-column: 1 / -1; }
 .team__facts { margin-top: 16px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; list-style: none; }
 .team__facts li { padding: 22px 24px; border-radius: var(--r); box-shadow: inset 0 0 0 1px var(--line); }
-.team__facts b { display: block; font-family: var(--serif); font-size: 34px; font-weight: 600; line-height: 1; }
+.team__facts b { display: block; font-family: var(--serif); font-size: 26px; font-weight: 600; line-height: 1; }
 .team__facts span { font-size: 13.5px; color: var(--muted); }
 
 /* FAQ */
@@ -298,17 +263,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Contact */
 .contact { padding-bottom: 40px; }
-.contact__big { font-family: var(--serif); font-size: clamp(4rem, 13vw, 14rem); font-weight: 500; letter-spacing: -.045em; line-height: .86; }
-.contact__big em { font-style: italic; }
+.contact__big { font-family: var(--serif); font-size: clamp(2.6rem, 6vw, 5.4rem); font-weight: 600; letter-spacing: -.04em; line-height: 1; }
+.contact__big em { font-style: normal; color: #7a7b80; }
 .contact__grid { margin-top: clamp(32px, 6vh, 64px); display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(32px, 5vw, 80px); align-items: start; }
 .direct { list-style: none; border-top: 1px solid var(--line); }
 .direct a { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; border-bottom: 1px solid var(--line); transition: padding .5s var(--ease); }
 .direct a:hover { padding-left: 10px; }
 .direct small { display: block; font-size: 12px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
-.direct b { font-family: var(--serif); font-size: clamp(22px, 2vw, 30px); font-weight: 600; }
+.direct b { font-family: var(--serif); font-size: clamp(19px, 1.6vw, 24px); font-weight: 600; }
 .direct svg { width: 18px; height: 18px; flex: none; }
 .form { padding: clamp(24px, 3vw, 40px); border-radius: 30px; background: var(--surface); box-shadow: var(--shadow); }
-.form h3 { font-family: var(--serif); font-size: 32px; font-weight: 600; line-height: 1.05; }
+.form h3 { font-family: var(--serif); font-size: 24px; font-weight: 600; line-height: 1.05; }
 .form > p { margin-top: 6px; font-size: 14px; color: var(--muted); }
 .chips { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 8px; }
 .chips button { min-height: 44px; padding: 0 18px; border-radius: 999px; box-shadow: inset 0 0 0 1px var(--line); font-size: 14px; font-weight: 500; transition: background-color .3s, color .3s, box-shadow .3s; }
@@ -337,22 +302,23 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* ---------- Responsive: MacBook · iPad · iPhone ---------- */
 @media (max-width: 1099px) {
   .head nav { display: none; }
+  .start__grid { grid-template-columns: 1fr; }
+  .facts { grid-template-columns: 1fr 1fr; } .facts li:nth-child(3) { padding-left: 0; border-left: 0; } .facts li:nth-child(n+3) { border-top: 1px solid var(--line); margin-top: 0; }
   .chapter__head, .nfc__grid, .faq__grid, .contact__grid { grid-template-columns: 1fr; }
   .nfc__grid { min-height: 0; }
   .stage { max-height: 62svh; aspect-ratio: 4 / 3.4; }
   .prices__grid { grid-template-columns: 1fr 1fr; } .pcard--ink { grid-column: 1 / -1; }
-  .process__list { grid-template-columns: 1fr 1fr; row-gap: 40px; }
+  .process__list { grid-template-columns: 1fr 1fr; row-gap: 40px; } .process__line { display: none; }
 }
 @media (max-width: 699px) {
   body { font-size: 15.5px; }
   .head { padding-left: 16px; } .head .btn { display: none; }
   .logo__svg { height: 26px; }
   .dock { display: grid; }
-  .hero__top { flex-direction: column; } .hero__intro { text-align: left; }
-  .hero__bottom { flex-direction: column; align-items: flex-start; } .scroll-cue { display: none; }
-  .hero__word { font-size: 23vw; }
-  .index__list a { grid-template-columns: 1fr auto; gap: 6px 16px; }
-  .index__no { grid-column: 1 / -1; } .index__arrow { display: none; }
+  .start { padding-top: calc(96px + env(safe-area-inset-top)); }
+  .trust { grid-template-columns: 1fr; }
+  .offer a { grid-template-columns: 84px 1fr; padding: 10px 14px 10px 10px; gap: 14px; } .offer__pic { height: 84px; } .offer b { grid-column: 2; } .offer b span { display: inline; margin-left: 6px; }
+  .facts li { padding: 16px 12px 0 0; } .facts li + li { padding-left: 12px; }
   .stage { aspect-ratio: 1 / 1.08; max-height: none; }
   .film { height: 64svh; }
   .photos { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .photos p { font-size: 12px; }
@@ -369,7 +335,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 </style>
 </head>
 <body>
-<a class="skip" href="#manifest">Zum Inhalt springen</a>
+<a class="skip" href="#leistungen">Zum Inhalt springen</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
   <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
   <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
@@ -388,71 +354,44 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </symbol>
 </defs></svg>
 <div class="progress" aria-hidden="true"></div>
-<div class="cursor" aria-hidden="true"><span></span></div>
 
 <header class="head" id="head">
   <a href="#top" aria-label="F&amp;D Solutions – zum Anfang"><svg class="logo__svg" viewBox="-4 4 361 82" role="img" aria-label="F&amp;D Solutions"><path class="lg-ink" d="M3.4000000000000004 80.0Q3.1 80.0 3.1 79.4Q3.1 78.8 3.4000000000000004 78.8Q6.800000000000001 78.8 8.450000000000001 78.3Q10.100000000000001 77.8 10.650000000000002 76.3Q11.200000000000001 74.8 11.200000000000001 71.9V25.599999999999994Q11.200000000000001 22.699999999999996 10.700000000000001 21.249999999999996Q10.200000000000001 19.799999999999997 8.700000000000001 19.249999999999996Q7.2 18.699999999999996 4.1000000000000005 18.699999999999996Q3.8000000000000003 18.699999999999996 3.8000000000000003 18.099999999999998Q3.8000000000000003 17.5 4.1000000000000005 17.5H46.5Q47.5 17.5 47.5 18.4L47.7 31.699999999999996Q47.7 31.9 47.2 31.999999999999996Q46.7 32.099999999999994 46.5 31.799999999999997Q44.900000000000006 25.9 41.10000000000001 23.15Q37.300000000000004 20.4 31.1 20.4H28.1Q25.1 20.4 23.700000000000003 21.7Q22.3 23.0 22.3 25.699999999999996V71.5Q22.3 74.5 23.1 76.05Q23.900000000000002 77.6 26.200000000000003 78.19999999999999Q28.5 78.8 33.0 78.8Q33.2 78.8 33.2 79.4Q33.2 80.0 33.0 80.0Q29.6 80.0 25.650000000000002 79.9Q21.700000000000003 79.8 16.400000000000002 79.8Q12.8 79.8 9.4 79.9Q6.0 80.0 3.4000000000000004 80.0ZM41.5 58.8Q41.5 54.8 38.400000000000006 52.449999999999996Q35.300000000000004 50.099999999999994 29.400000000000002 50.099999999999994H17.0V47.3H29.5Q35.4 47.3 38.400000000000006 45.2Q41.400000000000006 43.1 41.400000000000006 39.599999999999994Q41.400000000000006 39.4 42.0 39.4Q42.6 39.4 42.6 39.599999999999994Q42.6 43.0 42.55 44.849999999999994Q42.5 46.699999999999996 42.5 48.7Q42.5 51.2 42.6 53.6Q42.7 56.0 42.7 58.8Q42.7 59.099999999999994 42.1 59.099999999999994Q41.5 59.099999999999994 41.5 58.8Z"/><path class="lg-ink" d="M95.19200000000001 80.4Q91.99200000000002 80.4 87.19200000000001 80.1Q82.39200000000001 79.8 78.39200000000001 79.8Q74.79200000000002 79.8 71.49200000000002 79.9Q68.19200000000001 80.0 65.59200000000001 80.0Q65.39200000000001 80.0 65.39200000000001 79.4Q65.39200000000001 78.8 65.59200000000001 78.8Q68.69200000000001 78.8 70.24200000000002 78.3Q71.79200000000002 77.8 72.34200000000001 76.3Q72.89200000000001 74.8 72.89200000000001 71.9V25.599999999999994Q72.89200000000001 22.699999999999996 72.39200000000001 21.249999999999996Q71.89200000000001 19.799999999999997 70.34200000000001 19.249999999999996Q68.79200000000002 18.699999999999996 65.79200000000002 18.699999999999996Q65.49200000000002 18.699999999999996 65.49200000000002 18.099999999999998Q65.49200000000002 17.5 65.79200000000002 17.5Q68.39200000000001 17.5 71.59200000000001 17.65Q74.79200000000002 17.799999999999997 78.49200000000002 17.799999999999997Q82.09200000000001 17.799999999999997 86.39200000000001 17.549999999999997Q90.69200000000001 17.299999999999997 93.79200000000002 17.299999999999997Q104.19200000000001 17.299999999999997 111.89200000000001 21.299999999999997Q119.59200000000001 25.299999999999997 123.89200000000001 32.199999999999996Q128.192 39.099999999999994 128.192 47.699999999999996Q128.192 55.2 125.59200000000001 61.25Q122.99200000000002 67.3 118.39200000000002 71.55Q113.79200000000002 75.8 107.84200000000001 78.1Q101.89200000000002 80.4 95.19200000000001 80.4ZM94.19200000000001 78.1Q100.49200000000002 78.1 105.39200000000002 74.85Q110.29200000000002 71.6 113.09200000000001 65.3Q115.89200000000002 59.0 115.89200000000002 49.9Q115.89200000000002 41.4 113.29200000000002 34.5Q110.69200000000001 27.599999999999994 105.99200000000002 23.549999999999997Q101.29200000000002 19.5 94.79200000000002 19.5Q88.99200000000002 19.5 86.49200000000002 20.599999999999998Q83.99200000000002 21.699999999999996 83.99200000000002 25.799999999999997V70.8Q83.99200000000002 74.5 85.94200000000001 76.3Q87.89200000000001 78.1 94.19200000000001 78.1Z"/><path class="lg-amp" d="M42.230000000000004 75.878Q42.230000000000004 73.46000000000001 43.532000000000004 71.53800000000001Q44.834 69.616 46.911 67.911Q48.988 66.206 51.313 64.501Q53.638000000000005 62.796 55.715 60.873999999999995Q57.792 58.952 59.094 56.658Q60.396 54.364000000000004 60.396 51.45Q60.396 48.660000000000004 59.094 47.141000000000005Q57.792 45.622 55.80800000000001 45.622Q54.072 45.622 53.328 46.769Q52.584 47.916 52.584 50.086Q52.584 53.495999999999995 54.165000000000006 57.03Q55.746 60.564 58.381 63.974000000000004Q61.016000000000005 67.384 64.27100000000002 70.48400000000001Q67.52600000000001 73.584 70.874 76.126Q75.27600000000001 79.412 78.438 81.117Q81.6 82.822 83.15 83.256Q83.398 83.318 83.367 83.65899999999999Q83.33600000000001 84.0 83.15 84.0Q81.22800000000001 84.0 78.531 84.0Q75.834 84.0 72.982 84.0Q72.30000000000001 84.0 71.184 83.50399999999999Q70.068 83.008 68.17699999999999 81.737Q66.286 80.466 63.248000000000005 78.048Q60.644000000000005 75.94 57.792 73.274Q54.94 70.608 52.491 67.725Q50.042 64.842 48.554 62.114000000000004Q47.748000000000005 60.564 47.252 58.983000000000004Q46.756 57.402 46.756 55.418Q46.756 52.132000000000005 48.182 49.528000000000006Q49.608000000000004 46.924 52.274 45.436Q54.94 43.948 58.660000000000004 43.948Q61.202 43.948 63.062 44.692Q64.922 45.436 65.945 46.8Q66.968 48.164 66.968 50.148Q66.968 52.628 65.635 54.55Q64.302 56.472 62.194 58.084Q60.086 59.696 57.730000000000004 61.245999999999995Q55.374 62.796 53.266000000000005 64.408Q51.158 66.02 49.825 67.94200000000001Q48.492000000000004 69.864 48.492000000000004 72.344Q48.492000000000004 74.7 49.856 76.839Q51.22 78.978 53.793 80.342Q56.366 81.706 59.962 81.706Q62.504000000000005 81.706 64.364 80.93100000000001Q66.224 80.156 67.43299999999999 78.668Q68.642 77.18 69.231 74.97900000000001Q69.82000000000001 72.778 69.82000000000001 69.988Q69.82000000000001 66.45400000000001 68.673 64.78Q67.52600000000001 63.106 64.798 63.106Q64.674 63.106 64.643 62.734Q64.612 62.362 64.798 62.362L79.554 62.3Q79.74000000000001 62.3 79.74000000000001 62.672Q79.74000000000001 63.044 79.554 63.044Q77.694 63.044 76.76400000000001 63.477999999999994Q75.834 63.912 75.369 64.935Q74.904 65.958 74.408 67.756Q73.912 69.554 73.10600000000001 71.81700000000001Q72.30000000000001 74.08 70.96700000000001 76.34299999999999Q69.634 78.606 67.557 80.52799999999999Q65.48 82.45 62.44200000000001 83.59700000000001Q59.404 84.744 55.188 84.744Q50.724000000000004 84.744 47.84100000000001 83.44200000000001Q44.958000000000006 82.14 43.59400000000001 80.094Q42.230000000000004 78.048 42.230000000000004 75.878Z"/><path class="lg-ink" d="M167.5343828125 60.3173828125Q165.414265625 60.3173828125 163.8527421875 59.64453125Q162.29121875 58.9716796875 161.40889453125 57.72119140625Q160.5265703125 56.470703125 160.437703125 54.744140625H163.3449296875Q163.433796875 55.7724609375 164.01143359375 56.4453125Q164.5890703125 57.1181640625 165.515828125 57.4482421875Q166.4425859375 57.7783203125 167.5216875 57.7783203125Q168.7277421875 57.7783203125 169.66084765625 57.40380859375Q170.593953125 57.029296875 171.1398515625 56.33740234375Q171.68575 55.6455078125 171.68575 54.7314453125Q171.68575 53.90625 171.20967578125 53.37939453125Q170.7336015625 52.8525390625 169.92744921875 52.50341796875Q169.121296875 52.154296875 168.0929765625 51.8876953125L165.8839921875 51.2783203125Q163.56075 50.65625 162.25948046875 49.4375Q160.9582109375 48.21875 160.9582109375 46.2763671875Q160.9582109375 44.638671875 161.84053515625 43.41357421875Q162.722859375 42.1884765625 164.23994921875 41.50927734375Q165.7570390625 40.830078125 167.6613359375 40.830078125Q169.60371875 40.830078125 171.08272265625 41.50927734375Q172.5617265625 42.1884765625 173.40596484375 43.369140625Q174.250203125 44.5498046875 174.2882890625 46.060546875H171.4699296875Q171.33028125 44.765625 170.27022265625 44.0546875Q169.2101640625 43.34375 167.597859375 43.34375Q166.45528125 43.34375 165.61104296875 43.69921875Q164.7668046875 44.0546875 164.30342578125 44.68310546875Q163.840046875 45.3115234375 163.840046875 46.111328125Q163.840046875 47.0126953125 164.39229296875 47.56494140625Q164.9445390625 48.1171875 165.73799609375 48.44091796875Q166.531453125 48.7646484375 167.2550859375 48.955078125L169.09590625 49.4375Q169.9972734375 49.666015625 170.95576953125 50.05322265625Q171.914265625 50.4404296875 172.726765625 51.05615234375Q173.539265625 51.671875 174.04073046875 52.57958984375Q174.5421953125 53.4873046875 174.5421953125 54.76953125Q174.5421953125 56.369140625 173.717 57.6259765625Q172.8918046875 58.8828125 171.32393359375 59.60009765625Q169.7560625 60.3173828125 167.5343828125 60.3173828125Z M191.0664140625 60.25390625Q188.61621875 60.25390625 186.68018359375 59.09228515625Q184.7441484375 57.9306640625 183.63330859375 55.75341796875Q182.52246875 53.576171875 182.52246875 50.5546875Q182.52246875 47.5205078125 183.63330859375 45.34326171875Q184.7441484375 43.166015625 186.68018359375 41.998046875Q188.61621875 40.830078125 191.0664140625 40.830078125Q193.516609375 40.830078125 195.43994921875 41.998046875Q197.3632890625 43.166015625 198.47412890625 45.34326171875Q199.58496875 47.5205078125 199.58496875 50.5546875Q199.58496875 53.576171875 198.47412890625 55.75341796875Q197.3632890625 57.9306640625 195.43994921875 59.09228515625Q193.516609375 60.25390625 191.0664140625 60.25390625ZM191.0664140625 57.61328125Q192.67871875 57.61328125 193.95459765625 56.80712890625Q195.2304765625 56.0009765625 195.97315234375 54.42041015625Q196.715828125 52.83984375 196.715828125 50.5546875Q196.715828125 48.244140625 195.97315234375 46.66357421875Q195.2304765625 45.0830078125 193.95459765625 44.27685546875Q192.67871875 43.470703125 191.0664140625 43.470703125Q189.4414140625 43.470703125 188.1591875 44.283203125Q186.8769609375 45.095703125 186.13428515625 46.67626953125Q185.391609375 48.2568359375 185.391609375 50.5546875Q185.391609375 52.83984375 186.13428515625 54.4140625Q186.8769609375 55.98828125 188.1591875 56.80078125Q189.4414140625 57.61328125 191.0664140625 57.61328125Z M208.314265625 60.0V41.083984375H211.208796875V57.51171875H219.7781328125V60.0Z M235.75645312499998 60.2919921875Q233.48399218749998 60.2919921875 231.78282031249998 59.416015625Q230.08164843749998 58.5400390625 229.14854296874998 57.01025390625Q228.21543749999998 55.48046875 228.21543749999998 53.5V41.083984375H231.10996874999998V53.2587890625Q231.10996874999998 54.541015625 231.67491015624998 55.53125Q232.23985156249998 56.521484375 233.28086718749998 57.0927734375Q234.32188281249998 57.6640625 235.75645312499998 57.6640625Q237.17832812499998 57.6640625 238.21299609374998 57.0927734375Q239.24766406249998 56.521484375 239.80625781249998 55.53125Q240.36485156249998 54.541015625 240.36485156249998 53.2587890625V41.083984375H243.27207812499998V53.5Q243.27207812499998 55.48046875 242.33897265624998 57.01025390625Q241.40586718749998 58.5400390625 239.71104296874998 59.416015625Q238.01621874999998 60.2919921875 235.75645312499998 60.2919921875Z M251.70938281249997 43.572265625V41.083984375H266.39785937499994V43.572265625H260.51992968749994V60.0H257.61270312499994V43.572265625Z M277.7296953125 41.083984375V60.0H274.8351640625V41.083984375Z M295.0029375 60.25390625Q292.5527421875 60.25390625 290.61670703125 59.09228515625Q288.680671875 57.9306640625 287.56983203125 55.75341796875Q286.4589921875 53.576171875 286.4589921875 50.5546875Q286.4589921875 47.5205078125 287.56983203125 45.34326171875Q288.680671875 43.166015625 290.61670703125 41.998046875Q292.5527421875 40.830078125 295.0029375 40.830078125Q297.4531328125 40.830078125 299.37647265625 41.998046875Q301.2998125 43.166015625 302.41065234375 45.34326171875Q303.5214921875 47.5205078125 303.5214921875 50.5546875Q303.5214921875 53.576171875 302.41065234375 55.75341796875Q301.2998125 57.9306640625 299.37647265625 59.09228515625Q297.4531328125 60.25390625 295.0029375 60.25390625ZM295.0029375 57.61328125Q296.6152421875 57.61328125 297.89112109375 56.80712890625Q299.167 56.0009765625 299.90967578125 54.42041015625Q300.6523515625 52.83984375 300.6523515625 50.5546875Q300.6523515625 48.244140625 299.90967578125 46.66357421875Q299.167 45.0830078125 297.89112109375 44.27685546875Q296.6152421875 43.470703125 295.0029375 43.470703125Q293.3779375 43.470703125 292.0957109375 44.283203125Q290.813484375 45.095703125 290.07080859375 46.67626953125Q289.3281328125 48.2568359375 289.3281328125 50.5546875Q289.3281328125 52.83984375 290.07080859375 54.4140625Q290.813484375 55.98828125 292.0957109375 56.80078125Q293.3779375 57.61328125 295.0029375 57.61328125Z M312.25078906249996 60.0V41.083984375H315.58965624999996L322.71172656249996 52.3447265625Q323.06719531249996 52.9033203125 323.51153124999996 53.677734375Q323.95586718749996 54.4521484375 324.45098437499996 55.42333984375Q324.94610156249996 56.39453125 325.42852343749996 57.537109375H325.07305468749996Q324.95879687499996 56.4580078125 324.90166796874996 55.39794921875Q324.84453906249996 54.337890625 324.81914843749996 53.4111328125Q324.79375781249996 52.484375 324.79375781249996 51.849609375V41.083984375H327.72637499999996V60.0H324.37481249999996L317.98907031249996 49.9326171875Q317.48125781249996 49.107421875 316.99248828124996 48.26953125Q316.50371874999996 47.431640625 315.91338671874996 46.33349609375Q315.32305468749996 45.2353515625 314.47246874999996 43.6611328125H314.92949999999996Q314.99297656249996 45.0576171875 315.05645312499996 46.27001953125Q315.11992968749996 47.482421875 315.15166796874996 48.41552734375Q315.18340624999996 49.3486328125 315.18340624999996 49.9072265625V60.0Z M343.46348437499995 60.3173828125Q341.34336718749995 60.3173828125 339.78184374999995 59.64453125Q338.22032031249995 58.9716796875 337.33799609374995 57.72119140625Q336.45567187499995 56.470703125 336.36680468749995 54.744140625H339.27403124999995Q339.36289843749995 55.7724609375 339.94053515624995 56.4453125Q340.51817187499995 57.1181640625 341.44492968749995 57.4482421875Q342.37168749999995 57.7783203125 343.45078906249995 57.7783203125Q344.65684374999995 57.7783203125 345.58994921874995 57.40380859375Q346.52305468749995 57.029296875 347.06895312499995 56.33740234375Q347.61485156249995 55.6455078125 347.61485156249995 54.7314453125Q347.61485156249995 53.90625 347.13877734374995 53.37939453125Q346.66270312499995 52.8525390625 345.85655078124995 52.50341796875Q345.05039843749995 52.154296875 344.02207812499995 51.8876953125L341.81309374999995 51.2783203125Q339.48985156249995 50.65625 338.18858203124995 49.4375Q336.88731249999995 48.21875 336.88731249999995 46.2763671875Q336.88731249999995 44.638671875 337.76963671874995 43.41357421875Q338.65196093749995 42.1884765625 340.16905078124995 41.50927734375Q341.68614062499995 40.830078125 343.59043749999995 40.830078125Q345.53282031249995 40.830078125 347.01182421874995 41.50927734375Q348.49082812499995 42.1884765625 349.33506640624995 43.369140625Q350.17930468749995 44.5498046875 350.21739062499995 46.060546875H347.39903124999995Q347.25938281249995 44.765625 346.19932421874995 44.0546875Q345.13926562499995 43.34375 343.52696093749995 43.34375Q342.38438281249995 43.34375 341.54014453124995 43.69921875Q340.69590624999995 44.0546875 340.23252734374995 44.68310546875Q339.76914843749995 45.3115234375 339.76914843749995 46.111328125Q339.76914843749995 47.0126953125 340.32139453124995 47.56494140625Q340.87364062499995 48.1171875 341.66709765624995 48.44091796875Q342.46055468749995 48.7646484375 343.18418749999995 48.955078125L345.02500781249995 49.4375Q345.92637499999995 49.666015625 346.88487109374995 50.05322265625Q347.84336718749995 50.4404296875 348.65586718749995 51.05615234375Q349.46836718749995 51.671875 349.96983203124995 52.57958984375Q350.47129687499995 53.4873046875 350.47129687499995 54.76953125Q350.47129687499995 56.369140625 349.64610156249995 57.6259765625Q348.82090624999995 58.8828125 347.25303515624995 59.60009765625Q345.68516406249995 60.3173828125 343.46348437499995 60.3173828125Z"/></svg></a>
-  <nav aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#preise">Preise</a><a href="#ablauf">Ablauf</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a></nav>
-  <a class="btn btn--ink" href="#kontakt" data-haptic>Projekt starten <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a>
+  <nav aria-label="Hauptnavigation"><a href="#nfc">NFC-Platten</a><a href="#web">Websites</a><a href="#tour">Roomtours</a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a></nav>
+  <a class="btn btn--ink" href="#kontakt" data-haptic>Kostenlos anfragen</a>
 </header>
 
 <main id="top">
-  <!-- 1 · Hero -->
-  <section class="hero" id="hero" aria-label="Start">
-    <div class="hero__stage">
-      <video class="hero__video" src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"></video>
-      <div class="hero__mask" aria-hidden="true"><span class="hero__word" id="heroWord">Sichtbar.</span></div>
-      <div class="hero__ui">
-        <div class="hero__top">
+  <!-- Start -->
+  <section class="start" id="start" aria-labelledby="h-start">
+    <div class="wrap">
+      <div class="start__grid">
+        <div>
           <span class="label">F&amp;D Solutions · München</span>
-          <p class="hero__intro">Wir machen lokale Unternehmen sichtbar: mit NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours.</p>
+          <h1 id="h-start">Mehr Bewertungen, Kunden und Buchungen <em>für Ihr Unternehmen.</em></h1>
+          <p class="lead">Wir helfen Restaurants, Gastgebern und lokalen Unternehmen, online gefunden und gewählt zu werden: mit NFC-Platten für Google-Bewertungen, Websites und KI-Roomtours.</p>
+          <div class="actions"><a class="btn btn--ink" href="#kontakt" data-haptic>Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#preise">Alle Preise ansehen</a></div>
+          <ul class="trust"><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Festpreis vor Projektstart</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Antwort innerhalb von 24 Stunden</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Kein Abo, keine versteckten Kosten</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Persönlich betreut aus München</li></ul>
         </div>
-        <div class="hero__bottom">
-          <ul class="hero__services" aria-label="Leistungen">
-            <li><a href="#nfc"><b>01</b>NFC-Platten</a></li>
-            <li><a href="#web"><b>02</b>Websites</a></li>
-            <li><a href="#tour"><b>03</b>KI-Roomtours</a></li>
-          </ul>
-          <span class="scroll-cue" aria-hidden="true"><i></i>Scrollen</span>
-        </div>
+        <ul class="offer" id="leistungen" aria-label="Unsere drei Leistungen">
+          <li><a href="#nfc"><span class="offer__pic"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></span><span><small>LEISTUNG 1</small><h3>NFC-Platten</h3><p>Gäste tippen an, Google-Bewertung öffnet sich.</p></span><b>15 €<span>pro Stück</span></b></a></li>
+          <li><a href="#web"><span class="offer__pic"><img src="/media/ref-spiruli.jpg" alt=""></span><span><small>LEISTUNG 2</small><h3>Websites</h3><p>Professioneller Auftritt für Handy und Desktop.</p></span><b>ab 300 €<span>Festpreis</span></b></a></li>
+          <li><a href="#tour"><span class="offer__pic"><img src="/media/roomtour-villa.jpg" alt=""><i><svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 3l8 5-8 5z"/></svg></i></span><span><small>LEISTUNG 3</small><h3>KI-Roomtours</h3><p>Aus Ihren Fotos wird ein Video-Rundgang.</p></span><b>ab 300 €<span>Festpreis</span></b></a></li>
+        </ul>
       </div>
-      <div class="hero__after" id="heroAfter">
-        <h1 class="serif">Mehr Bewertungen. Mehr Kunden. <em>Mehr Buchungen.</em></h1>
-        <p>Persönlich umgesetzt von zwei Gründern aus München, zum Festpreis und mit Antwort innerhalb von 24 Stunden.</p>
-        <div class="row"><a class="btn btn--light" href="#kontakt" data-haptic>Kostenlos anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a><a class="btn btn--line" href="#preise">Preise ansehen</a></div>
-      </div>
+      <ul class="facts" aria-label="Auf einen Blick"><li><b>15 €</b><span>pro NFC-Platte</span></li><li><b>ab 300 €</b><span>Website oder Roomtour</span></li><li><b>24 h</b><span>bis zur Antwort</span></li><li><b>2 Gründer</b><span>ein Ansprechpartner</span></li></ul>
     </div>
-  </section>
-
-  <!-- 2 · Manifest -->
-  <section class="manifest" id="manifest">
-    <div class="wrap">
-      <span class="label">Unser Anspruch</span>
-      <p id="manifestText">Gute Arbeit verdient es, gesehen zu werden. Wir sorgen dafür, dass Ihre Gäste Sie <em>finden,</em> <em>bewerten</em> und <em>buchen.</em> Ohne Agentur-Floskeln, ohne Abo, mit festen Preisen.</p>
-    </div>
-  </section>
-
-  <!-- 3 · Services index -->
-  <section class="index" id="leistungen" aria-labelledby="h-idx">
-    <div class="wrap">
-      <span class="label" id="h-idx">Leistungen</span>
-      <ul class="index__list">
-        <li><a href="#nfc" data-preview="0" data-cursor="Ansehen"><span class="index__no">01</span><span class="index__name">NFC-Platten</span><span class="index__price">15 € pro Stück</span><span class="index__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></a></li>
-        <li><a href="#web" data-preview="1" data-cursor="Ansehen"><span class="index__no">02</span><span class="index__name">Websites</span><span class="index__price">ab 300 €</span><span class="index__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></a></li>
-        <li><a href="#tour" data-preview="2" data-cursor="Ansehen"><span class="index__no">03</span><span class="index__name">KI-Roomtours</span><span class="index__price">ab 300 €</span><span class="index__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span></a></li>
-      </ul>
-    </div>
-    <div class="preview" aria-hidden="true"><div class="pv-nfc"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></div><img src="/media/ref-spiruli.jpg" alt=""><img src="/media/roomtour-villa.jpg" alt=""></div>
   </section>
 
   <!-- 4 · NFC -->
-  <section class="chapter" id="nfc" aria-labelledby="h-nfc">
+  <section class="chapter chapter--fit" id="nfc" aria-labelledby="h-nfc">
     <div class="wrap nfc__grid">
       <div>
-        <span class="label">01 · NFC-Platten</span>
-        <h2 class="serif h2" id="h-nfc" style="margin-top:22px;font-size:clamp(2.6rem,5vw,5.2rem)">Ein Antippen. <em>Eine Bewertung.</em></h2>
+        <span class="kicker"><b>1/3</b> NFC-Platten</span>
+        <h2 class="serif h2" id="h-nfc" style="margin-top:20px">Mehr Google-Bewertungen. <em>Mit einem Antippen.</em></h2>
         <p class="lead" style="margin-top:20px">Gäste halten ihr Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Ideal in jeder Rechnungsmappe, auf dem Tisch oder an der Theke.</p>
-        <ol class="steps" id="nfcSteps">
+        <p class="what">So funktioniert es</p>
+        <ol class="steps" id="nfcSteps" style="margin-top:12px">
           <li class="on"><b>1</b><div><strong>Handy an die Platte</strong><span>iPhone oder Android, ohne App</span></div></li>
           <li><b>2</b><div><strong>Google öffnet sich</strong><span>direkt Ihr Profil, kein Suchen</span></div></li>
           <li><b>3</b><div><strong>Fünf Sterne, fertig</strong><span>in wenigen Sekunden</span></div></li>
@@ -482,18 +421,19 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <section class="chapter" id="web" aria-labelledby="h-web">
     <div class="wrap">
       <div class="chapter__head">
-        <div><span class="label">02 · Websites</span><h2 class="serif h2" id="h-web">Ihr Auftritt. <em>Auf einem anderen Level.</em></h2></div>
+        <div><span class="kicker"><b>2/3</b> Websites</span><h2 class="serif h2" id="h-web" style="margin-top:20px">Eine Website, <em>die Kunden überzeugt.</em></h2><p class="lead" style="margin-top:18px">Ein klarer, professioneller Auftritt statt Baukasten. Wir planen, gestalten und bauen Ihre Seite und stellen sie online.</p></div>
         <div>
-          <ul class="ticks"><li>Basis: 3 professionell gestaltete Seiten</li><li>Für iPhone, iPad und Desktop</li><li>Animationen und 3D in den größeren Paketen</li><li>Online-Shop möglich</li></ul>
+          <p class="what" style="margin-top:0">Was Sie bekommen</p>
+          <ul class="ticks" style="margin-top:12px"><li>Basis: 3 professionell gestaltete Seiten</li><li>Für iPhone, iPad und Desktop</li><li>Animationen und 3D in den größeren Paketen</li><li>Online-Shop möglich</li></ul>
           <div class="actions"><div class="price-tag"><b>ab 300 €</b><span>Festpreis</span></div><button class="btn btn--ink" type="button" data-pick="Website" data-note="Website" data-haptic>Website anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
         </div>
       </div>
-      <a class="browser" id="browser" href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener" data-cursor="Live" aria-label="Referenz SPIRULI live ansehen (neues Fenster)">
+      <a class="browser" id="browser" href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener" aria-label="Referenz SPIRULI live ansehen (neues Fenster)">
         <div class="browser__bar" aria-hidden="true"><i></i><i></i><i></i><span>spiruli.de</span></div>
         <div class="browser__view"><img src="/media/ref-spiruli.jpg" alt="Startseite der SPIRULI Website" loading="lazy"></div>
         <div class="web__phone" id="webPhone"><div><img src="/media/ref-spiruli-mobile.jpg" alt="" loading="lazy"></div></div>
       </a>
-      <div class="web__meta"><span><b>Referenz · SPIRULI®</b> Getränke-Marke mit Online-Shop, Premium-Paket</span><span>Produkt-Animationen · Warenkorb · Handy-Version</span></div>
+      <div class="web__meta"><span><b>Referenzprojekt: SPIRULI®</b> · Getränke-Marke mit Online-Shop (Premium-Paket)</span><a class="btn btn--line" href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener">Live ansehen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></div>
     </div>
   </section>
 
@@ -501,9 +441,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <section class="chapter" id="tour" aria-labelledby="h-tour">
     <div class="wrap">
       <div class="chapter__head">
-        <div><span class="label">03 · KI-Roomtours</span><h2 class="serif h2" id="h-tour">Aus Ihren Fotos <em>wird ein Rundgang.</em></h2></div>
+        <div><span class="kicker"><b>3/3</b> KI-Roomtours</span><h2 class="serif h2" id="h-tour" style="margin-top:20px">Aus Ihren Fotos <em>wird ein Video-Rundgang.</em></h2><p class="lead" style="margin-top:18px">Für Ferienwohnungen, Airbnbs und Hotels: Gäste sehen vor der Buchung, wie es sich dort lebt.</p></div>
         <div>
-          <ul class="ticks"><li>Sie schicken nur Fotos jedes Raumes</li><li>Video in Full HD, quer oder hochkant</li><li>Basis bis 150 m² oder ein Stockwerk</li></ul>
+          <p class="what" style="margin-top:0">Was Sie bekommen</p>
+          <ul class="ticks" style="margin-top:12px"><li>Sie schicken nur Fotos jedes Raumes</li><li>Video in Full HD, quer oder hochkant</li><li>Basis bis 150 m² oder ein Stockwerk</li></ul>
           <div class="actions"><div class="price-tag"><b>ab 300 €</b><span>größere Objekte nach Größe</span></div><button class="btn btn--ink" type="button" data-pick="Roomtour" data-note="Roomtour" data-haptic>Roomtour anfragen <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button></div>
         </div>
       </div>
@@ -524,7 +465,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   <section class="chapter" id="preise" aria-labelledby="h-preise">
     <div class="wrap">
       <span class="label">Preise</span>
-      <h2 class="serif h2" id="h-preise" style="margin-top:22px">Feste Preise. <em>Kein Abo.</em></h2>
+      <h2 class="serif h2" id="h-preise" style="margin-top:20px">Klare Festpreise. <em>Kein Abo.</em></h2>
       <div class="prices__grid">
         <div class="pcard pcard--ink">
           <h3>NFC-Platten · 15 € pro Stück</h3>
@@ -553,10 +494,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </section>
 
   <!-- 8 · Process -->
-  <section class="chapter" id="ablauf" aria-labelledby="h-ablauf" style="min-height:auto">
+  <section class="chapter" id="ablauf" aria-labelledby="h-ablauf">
     <div class="wrap">
       <span class="label">Ablauf</span>
-      <h2 class="serif h2" id="h-ablauf" style="margin-top:22px">Vier Schritte. <em>Ein Ansprechpartner.</em></h2>
+      <h2 class="serif h2" id="h-ablauf" style="margin-top:20px">Vier Schritte. <em>Ein Ansprechpartner.</em></h2>
       <ol class="process__list" id="process">
         <span class="process__line" aria-hidden="true"><i></i></span>
         <li><b>01</b><h3>Anfrage</h3><p>Formular ausfüllen oder anrufen. Unverbindlich, in zwei Minuten.</p></li>
@@ -568,10 +509,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </section>
 
   <!-- 9 · Team -->
-  <section class="chapter" id="team" aria-labelledby="h-team" style="min-height:auto">
+  <section class="chapter" id="team" aria-labelledby="h-team">
     <div class="wrap">
       <span class="label">Über uns</span>
-      <h2 class="serif h2" id="h-team" style="margin-top:22px">Zwei Gründer. <em>Kein Callcenter.</em></h2>
+      <h2 class="serif h2" id="h-team" style="margin-top:20px">Zwei Gründer. <em>Kein Callcenter.</em></h2>
       <div class="team__grid">
         <article class="person"><span class="person__mono" aria-hidden="true">FD</span><div><h3>Florian Dressler</h3><p>Co-Founder · München</p></div><a class="btn btn--line" href="tel:+4915566456417" data-haptic><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+49 155 66456417</a></article>
         <article class="person"><span class="person__mono" aria-hidden="true">DS</span><div><h3>Davy Stubenrauch</h3><p>Co-Founder · München</p></div><a class="btn btn--line" href="tel:+4917656612709" data-haptic><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>+49 176 56612709</a></article>
@@ -581,9 +522,9 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </section>
 
   <!-- 10 · FAQ -->
-  <section class="chapter" id="fragen" aria-labelledby="h-faq" style="min-height:auto">
+  <section class="chapter" id="fragen" aria-labelledby="h-faq">
     <div class="wrap faq__grid">
-      <div><span class="label">Fragen</span><h2 class="serif h2" id="h-faq" style="margin-top:22px">Gut zu <em>wissen.</em></h2></div>
+      <div><span class="label">Fragen</span><h2 class="serif h2" id="h-faq" style="margin-top:20px">Gut zu <em>wissen.</em></h2></div>
       <div id="faq">
         <div class="qa"><button type="button" aria-expanded="false" aria-controls="qa0" id="qb0">Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></button><div class="qa__body" id="qa0" role="region" aria-labelledby="qb0"><div><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></div></div></div>
         <div class="qa"><button type="button" aria-expanded="false" aria-controls="qa1" id="qb1">Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></button><div class="qa__body" id="qa1" role="region" aria-labelledby="qb1"><div><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></div></div></div>
@@ -596,10 +537,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </section>
 
   <!-- 11 · Contact -->
-  <section class="chapter contact" id="kontakt" aria-labelledby="h-kontakt">
+  <section class="chapter chapter--fit contact" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap">
       <span class="label">Kontakt</span>
-      <h2 class="contact__big" id="h-kontakt" style="margin-top:22px">Projekt <em>starten.</em></h2>
+      <h2 class="contact__big" id="h-kontakt" style="margin-top:20px">Lassen Sie uns <em>sprechen.</em></h2>
       <div class="contact__grid">
         <ul class="direct">
           <li><a href="tel:+4915566456417" data-haptic><span><small>Florian Dressler</small><b>+49 155 66456417</b></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></a></li>
@@ -615,7 +556,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
             <div class="field"><label for="fContact">Telefon oder E-Mail</label><input id="fContact" autocomplete="email" inputmode="email"><span class="err" aria-live="polite"></span></div>
           </div>
           <div class="field"><label for="fMsg">Nachricht <span style="color:var(--muted);font-weight:400">(optional)</span></label><textarea id="fMsg"></textarea></div>
-          <button class="btn btn--ink magnet" type="submit">Anfrage senden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
+          <button class="btn btn--ink" type="submit">Anfrage senden <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></button>
           <p class="form__ok" id="formOk" hidden>Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Alternativ rufen Sie uns einfach an.</p>
         </form>
       </div>
@@ -627,7 +568,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   </section>
 </main>
 
-<div class="dock" id="dock"><a class="btn btn--line" href="tel:+4915566456417" data-haptic>Anrufen</a><a class="btn btn--ink" href="#kontakt" data-haptic>Projekt starten</a></div>
+<div class="dock" id="dock"><a class="btn btn--line" href="tel:+4915566456417" data-haptic>Anrufen</a><a class="btn btn--ink" href="#kontakt" data-haptic>Kostenlos anfragen</a></div>
 
 <script src="/site/vendor/gsap.min.js" defer></script>
 <script src="/site/vendor/ScrollTrigger.min.js" defer></script>
@@ -671,35 +612,6 @@ document.addEventListener("DOMContentLoaded", function () {
     dock.classList.toggle("away", y < innerHeight * .5 || k < innerHeight * .7);
   }
   addEventListener("scroll", chrome, { passive: true }); chrome();
-
-  /* ---------- Services index: a preview follows the cursor ---------- */
-  var pv = $(".preview"), pvItems = pv ? Array.prototype.slice.call(pv.children) : [];
-  if (fine && pv) {
-    $$("[data-preview]").forEach(function (a) {
-      a.addEventListener("pointerenter", function () { pv.classList.add("on"); pvItems.forEach(function (x, i) { x.classList.toggle("on", i === +a.getAttribute("data-preview")); }); });
-      a.addEventListener("pointerleave", function () { pv.classList.remove("on"); });
-    });
-  }
-
-  /* ---------- Custom cursor ---------- */
-  var cur = $(".cursor");
-  if (fine && !reduce) {
-    document.documentElement.classList.add("has-cursor");
-    var cx = innerWidth / 2, cy = innerHeight / 2, tx = cx, ty = cy;
-    addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; if (pv) { pv.style.left = tx + "px"; pv.style.top = ty + "px"; } }, { passive: true });
-    (function loop() { cx += (tx - cx) * .2; cy += (ty - cy) * .2; cur.style.transform = "translate(" + cx + "px," + cy + "px)"; requestAnimationFrame(loop); })();
-    $$("[data-cursor]").forEach(function (el) {
-      el.addEventListener("pointerenter", function () { cur.classList.add("big"); $("span", cur).textContent = el.getAttribute("data-cursor"); });
-      el.addEventListener("pointerleave", function () { cur.classList.remove("big"); });
-    });
-  }
-
-  /* ---------- Magnetic submit (one focal element) ---------- */
-  var mg = $(".magnet");
-  if (fine && !reduce && mg) {
-    mg.addEventListener("pointermove", function (e) { var r = mg.getBoundingClientRect(); mg.style.transform = "translate(" + (e.clientX - r.left - r.width / 2) * .12 + "px," + (e.clientY - r.top - r.height / 2) * .3 + "px)"; });
-    mg.addEventListener("pointerleave", function () { mg.style.transform = ""; });
-  }
 
   /* ---------- Plate colour ---------- */
   var nfcBuy = $("#nfcBuy");
@@ -772,8 +684,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   var G = window.gsap, ST = window.ScrollTrigger;
-  var pinOK = !!(G && ST) && !reduce;
-  if (!pinOK) { document.documentElement.classList.add("no-pin"); return; }
+  if (!(G && ST) || reduce) return;
   G.registerPlugin(ST);
   if (window.Lenis && fine) {
     lenis = new Lenis({ lerp: .1, wheelMultiplier: 1 });
@@ -781,52 +692,20 @@ document.addEventListener("DOMContentLoaded", function () {
     G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
   }
 
-  // Hero entrance
-  G.from("#heroWord", { yPercent: 40, opacity: 0, duration: 1.6, ease: "expo.out", delay: .1 });
-  G.from(".hero__top > *, .hero__bottom > *", { y: 14, opacity: 0, duration: 1, stagger: .08, ease: "power3.out", delay: .5 });
-
-  // Hero: zoom through the word into the film, then the headline
-  var word = $("#heroWord"), mask = $(".hero__mask");
-  function origin() {
-    var r = word.getBoundingClientRect(), s = mask.getBoundingClientRect();
-    // aim at the counter of the „b“ so the zoom lands inside a letter
-    mask.style.setProperty("--ox", ((r.left + r.width * .47 - s.left) / s.width * 100) + "%");
-    mask.style.setProperty("--oy", ((r.top + r.height * .56 - s.top) / s.height * 100) + "%");
-  }
-  origin(); addEventListener("resize", origin);
-  var heroTl = G.timeline({ scrollTrigger: { trigger: "#hero", start: "top top", end: "+=140%", pin: true, scrub: 1, anticipatePin: 1 } });
-  heroTl.to(".hero__ui", { opacity: 0, duration: .15 }, 0)
-        .to(mask, { scale: 34, duration: 1, ease: "power2.in" }, 0)
-        .to(mask, { opacity: 0, duration: .15 }, .85)
-        .to("#heroAfter", { autoAlpha: 1, duration: .2 }, .9)
-        .from("#heroAfter > *", { y: 16, stagger: .05, duration: .2 }, .9);
-
-  // Manifest: words light up while reading
-  var mt = $("#manifestText");
-  (function split(node) {
-    Array.prototype.slice.call(node.childNodes).forEach(function (n) {
-      if (n.nodeType === 3) {
-        var frag = document.createDocumentFragment();
-        n.textContent.split(/(\s+)/).forEach(function (w) { if (!w) return; if (/^\s+$/.test(w)) frag.appendChild(document.createTextNode(w)); else { var s = document.createElement("span"); s.className = "w"; s.textContent = w; frag.appendChild(s); } });
-        node.replaceChild(frag, n);
-      } else if (n.nodeType === 1) split(n);
-    });
-  })(mt);
-  G.fromTo("#manifestText .w", { opacity: .14 }, { opacity: 1, stagger: .1, ease: "none", scrollTrigger: { trigger: mt, start: "top 80%", end: "bottom 45%", scrub: true } });
+  G.from(".start__grid > div > *, .offer li, .facts li", { y: 16, opacity: 0, duration: .9, stagger: .06, ease: "power3.out", delay: .1 });
 
   // Headings and blocks rise gently (≤ 16px, per the skill)
-  $$(".chapter .label, .chapter h2:not(#h-kontakt), .chapter .lead, .ticks, .actions, .index__list li, .pcard, .person, .team__facts li, .qa, .direct li, .form, .web__meta, .photos li").forEach(function (el) {
+  $$(".chapter .kicker, .chapter .label, .chapter h2:not(#h-kontakt), .chapter .lead, .what, .ticks, .actions, .pcard, .person, .team__facts li, .qa, .direct li, .form, .web__meta, .photos li").forEach(function (el) {
     G.from(el, { y: 16, opacity: 0, duration: .9, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
   });
 
   // NFC: pinned scene on wide screens, a looping film on phones
-  var steps = $$("#nfcSteps li"), stars = $$("#psStars svg"), count = $("#revCount"), base = 128, fired = false;
+  var steps = $$("#nfcSteps li"), stars = $$("#psStars svg"), count = $("#revCount"), base = 128;
   function nfcState(p) {
     steps.forEach(function (li, i) { li.classList.toggle("on", i === (p < .42 ? 0 : p < .72 ? 1 : 2)); });
     stars.forEach(function (s, i) { s.classList.toggle("on", p > .6 + i * .05); });
     count.textContent = base + (p > .92 ? 1 : 0);
-    if (p > .4 && !fired) { fired = true; haptic(12); } if (p < .3) fired = false;
-  }
+    }
   function nfcTimeline() {
     var tl = G.timeline({ defaults: { ease: "power2.inOut" } });
     tl.fromTo("#nfcPhone", { yPercent: -40, rotate: -10, rotateX: 0 }, { yPercent: 18, rotate: 0, duration: .4 }, 0)
@@ -839,16 +718,9 @@ document.addEventListener("DOMContentLoaded", function () {
       .to({}, { duration: .1 });
     return tl;
   }
-  var mm = G.matchMedia();
-  mm.add("(min-width: 1100px)", function () {
-    var tl = nfcTimeline();
-    ST.create({ trigger: "#nfc", start: "top top", end: "+=130%", pin: true, scrub: 1, animation: tl, onUpdate: function (s) { nfcState(s.progress); } });
-  });
-  mm.add("(max-width: 1099px)", function () {
-    var tl = nfcTimeline(); tl.duration(6.5).repeat(-1).repeatDelay(1.2).pause();
-    tl.eventCallback("onUpdate", function () { nfcState(tl.progress()); });
-    ST.create({ trigger: "#nfcStage", start: "top 75%", end: "bottom 20%", onToggle: function (s) { s.isActive ? tl.play() : tl.pause(); } });
-  });
+  var tl = nfcTimeline(); tl.duration(6.5).repeat(-1).repeatDelay(1.4).pause();
+  tl.eventCallback("onUpdate", function () { nfcState(tl.progress()); });
+  ST.create({ trigger: "#nfcStage", start: "top 80%", end: "bottom 15%", onToggle: function (st) { st.isActive ? tl.play() : tl.pause(); } });
 
   // Websites: the browser straightens and grows, the phone rises (decorative parallax)
   G.fromTo("#browser", { scale: .9, rotateX: 12, transformPerspective: 1800 }, { scale: 1, rotateX: 0, ease: "none", scrollTrigger: { trigger: "#browser", start: "top 95%", end: "top 30%", scrub: true } });
@@ -860,13 +732,13 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Process: the line draws, numbers rise
   G.fromTo(".process__line i", { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: "#process", start: "top 80%", end: "bottom 60%", scrub: true } });
-  G.from(".process__list b", { yPercent: 60, opacity: 0, stagger: .12, duration: 1, ease: "expo.out", scrollTrigger: { trigger: "#process", start: "top 80%" } });
+  G.from(".process__list li", { y: 16, opacity: 0, stagger: .1, duration: .9, ease: "power3.out", scrollTrigger: { trigger: "#process", start: "top 80%" } });
 
   // Contact headline and footer logo
-  G.from("#h-kontakt", { yPercent: 30, opacity: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: "#h-kontakt", start: "top 85%" } });
-  G.from(".foot__logo", { yPercent: 20, opacity: 0, duration: 1.4, ease: "expo.out", scrollTrigger: { trigger: ".foot", start: "top 90%" } });
+  G.from("#h-kontakt", { y: 16, opacity: 0, duration: 1, ease: "power3.out", scrollTrigger: { trigger: "#h-kontakt", start: "top 85%" } });
+  G.from(".foot__logo", { y: 16, opacity: 0, duration: 1.2, ease: "power3.out", scrollTrigger: { trigger: ".foot", start: "top 90%" } });
 
-  addEventListener("load", function () { origin(); ST.refresh(); });
+  addEventListener("load", function () { ST.refresh(); });
 });
 </script>
 </body>
