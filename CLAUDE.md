@@ -3,7 +3,14 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 27.10. nachts: Design v13 „Ruhig & klar“ — AKTUELL
+## Stand 27.10. nachts (2): Design v14 „Kino“ — AKTUELL
+- Kunde zu v13: „viel zu unspektakulär, langweilig, zu einheitlich, Farben unseriös, basic“. Wollte **keine Entwürfe mehr, direkt eine fertige Seite** (3 Ansätze `public/entwurf/spek-1|2|3` nur intern verglichen; „Kino“ gewählt, Vorher/Nachher-Regler aus spek-3 übernommen).
+- **Quelle: `design/v14-template.html`**, bauen mit `python3 design/build.py v14`. Archive: `public/v13/`, `public/v12/`, `public/v11/`.
+- Farben wie das vom Kunden früher gewählte v11: Stein `#ebe8e2` (Seite), `#e2ded6` (Kontakt/Fuß), Graphit `#1c1c1f` (NFC-Band, Hero-Rand), Tinte `#151517`, Champagner `#c9ad7c` (Knöpfe/Flächen), Champagner-Text `#74572c`. Schrift **Hanken Grotesk** 400–800, große fette Überschriften.
+- Hero: das Roomtour-Video füllt den ganzen Bildschirm, Überschrift steigt Zeile für Zeile auf; beim Scrollen zieht sich das Video zu einem gerahmten Bild zusammen (sticky, an Scroll gekoppelt, kein Pinning von Inhalten), Kopfzeile wird hell. → Drei Leistungen (Bild, Text, Preis, Spalten mit Linie) → Roomtours: **Vorher/Nachher-Regler** (links 3 Fotos grau, rechts Video; schwingt bis zur ersten Berührung, Maus/Finger/Pfeiltasten) → Websites: Laptop + Handy, SPIRULI scrollt im Rahmen mit → NFC auf Graphit (Demo + Rechner) → Ablauf 1–4 → Preistabelle → Gründer → Fragen → Kontakt.
+- Geprüft 1440/2000/1180/820/390 px: kein Überlaufen, keine JS-Fehler, Kontrast ≥ 4,5:1 (Text auf dem Video über Abdunklung), Ziele ≥ 44 px.
+
+## Stand 27.10. nachts: Design v13 „Ruhig & klar“ (abgelehnt: zu langweilig; Archiv `public/v13/`)
 - Kunde zu v12 (Kacheln): „alles durcheinander, zu viel auf einmal, KI-Kasten-Schema, ein Kasten schwarz, einer weiß – nicht professionell“. Wunsch: übersichtlich, professionell, hochwertig, anschaulich, Wow durch Animation, andere und **einheitliche** Farben. Ausdrücklich mit dem frontend-design-Skill gearbeitet (Plan → Prüfung gegen KI-Muster → Bau → Screenshot-Kritik).
 - **Quelle: `design/v13-template.html`**, bauen mit `python3 design/build.py v13` (füllt Logo, Platten-Symbol, schema.org aus `design/parts/`). Archiv: `public/v12/`, `public/v11/`.
 - Farben (eine Familie aus dem Logo): Fläche `#f4f5f8`, Band `#e7ebf3`, Linie `#d5dae6`, Logo-Marine `#14275c` (Überschriften, Knöpfe), Text `#3b4560`, gedämpft `#5a6380`; Gold nur im Logo. **Keine schwarzen Kästen, keine Karten-Raster, kein Schwarz/Weiß-Wechsel.**

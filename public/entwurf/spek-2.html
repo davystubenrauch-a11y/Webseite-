@@ -1,0 +1,68 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entwurf Produkt-Held · F&amp;D Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@700;800;900&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Entwurf „Produkt-Held" (nach Ihrem Vorbild All Star Burgers): das Handy mit der Roomtour steht
+   freigestellt im Zentrum, feine Beschriftungslinien zeichnen sich, riesige schmale Schrift. */
+:root{--red:#a3221b;--red-d:#7e1913;--cream:#f5efe6;--ink:#1a1412;--soft:rgba(245,239,230,.78);--line:rgba(245,239,230,.45)}
+*{box-sizing:border-box;margin:0;padding:0}img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:clip;font-size:18px;line-height:1.6}
+.wrap{max-width:1360px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+.hero{position:relative;min-height:100vh;background:radial-gradient(60% 70% at 50% 55%,#b9271f,var(--red) 55%,var(--red-d));color:var(--cream);overflow:hidden}
+.top{height:84px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:700;font-size:21px}.logo b{color:#e8c99a}
+.top nav{display:flex;gap:30px;font-weight:500;color:var(--soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:4px;font-weight:700;font-size:16.5px}
+.btn--cream{background:var(--cream);color:var(--red-d)}.btn--line{box-shadow:inset 0 0 0 1.5px var(--line);color:var(--cream)}
+.btn--red{background:var(--red);color:var(--cream)}
+.big{position:absolute;left:0;right:0;top:110px;text-align:center;font-family:"Big Shoulders Display",sans-serif;font-weight:900;text-transform:uppercase;font-size:clamp(84px,17vw,280px);line-height:.82;letter-spacing:-.01em;color:#c63a30;user-select:none}
+.big span{display:block;opacity:0;transform:translateY(40px);animation:in 1s cubic-bezier(.2,.8,.2,1) forwards}.big span+span{animation-delay:.15s}
+@keyframes in{to{opacity:1;transform:none}}
+.stage{position:relative;z-index:2;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:40px;padding:40px 0 70px}
+.phone{position:relative;width:min(300px,70vw);aspect-ratio:9/19.5;padding:12px;border-radius:46px;background:#141414;box-shadow:0 60px 80px -30px rgba(0,0,0,.6),inset 0 0 0 2px #3a3a3a;opacity:0;transform:translateY(60px) rotate(-4deg);animation:phone 1.2s .3s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes phone{to{opacity:1;transform:rotate(-4deg)}}
+.phone video{width:100%;height:100%;object-fit:cover;border-radius:36px}
+.phone::before{content:"";position:absolute;z-index:2;top:22px;left:50%;width:90px;height:26px;margin-left:-45px;border-radius:20px;background:#141414}
+.notes{display:grid;gap:44px}
+.note{position:relative;opacity:0;animation:fadein .6s forwards}
+.note b{display:block;font-family:"Big Shoulders Display",sans-serif;font-size:34px;font-weight:800;text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.note span{font-size:16px;color:var(--soft)}
+.l .note{text-align:right;padding-right:110px}.r .note{padding-left:110px}
+.note::after{content:"";position:absolute;top:16px;width:0;height:1px;background:var(--cream);animation:draw .7s forwards;animation-delay:inherit}
+.l .note::after{right:0}.r .note::after{left:0}
+.note::before{content:"";position:absolute;top:12px;width:9px;height:9px;border-radius:50%;background:var(--cream)}
+.l .note::before{right:-4px}.r .note::before{left:-4px}
+@keyframes draw{to{width:96px}}@keyframes fadein{to{opacity:1}}
+.n1{animation-delay:1.3s}.n2{animation-delay:1.55s}.n3{animation-delay:1.8s}.n4{animation-delay:2.05s}
+.foot{position:relative;z-index:2;display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;padding-bottom:48px}
+.foot h1{font-size:clamp(28px,2.8vw,40px);line-height:1.1;letter-spacing:-.02em;max-width:22ch;font-weight:700}
+.foot .cta{display:flex;gap:12px}
+/* menu-style services, from the same reference */
+.menu{padding:110px 0}
+.menu h2{font-family:"Big Shoulders Display",sans-serif;font-size:clamp(48px,6vw,96px);text-transform:uppercase;line-height:.9;color:var(--red)}
+.items{margin-top:48px;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,4vw,56px)}
+.items img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:50%;box-shadow:0 30px 50px -30px rgba(80,20,10,.5)}
+.items h3{margin-top:24px;font-family:"Big Shoulders Display",sans-serif;font-size:38px;text-transform:uppercase;line-height:1;color:var(--ink)}
+.items p{margin-top:8px;color:#4a403b}.items b{display:block;margin-top:14px;font-size:24px;color:var(--red)}
+@media(max-width:900px){.top nav{display:none}.stage{grid-template-columns:1fr}.notes{display:none}.phone{margin:0 auto}.items{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.01ms!important;animation-delay:0s!important}}
+</style></head><body>
+<section class="hero">
+  <div class="wrap top"><span class="logo">F<b>&amp;</b>D Solutions</span><nav><a>Roomtours</a><a>Websites</a><a>NFC-Platten</a><a>Preise</a></nav><a class="btn btn--cream" href="#">Anfragen</a></div>
+  <div class="big" aria-hidden="true"><span>Mehr</span><span>Buchungen</span></div>
+  <div class="wrap stage">
+    <div class="notes l"><div class="note n1"><b>3 Fotos</b><span>Mehr brauchen wir nicht</span></div><div class="note n2"><b>Full HD</b><span>Quer oder hochkant</span></div></div>
+    <div class="phone"><video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay></video></div>
+    <div class="notes r"><div class="note n3"><b>Ab 300 €</b><span>Festpreis bis 150 m²</span></div><div class="note n4"><b>Freigabe</b><span>Bevor es online geht</span></div></div>
+  </div>
+  <div class="wrap foot"><h1>KI-Roomtours: Aus Ihren Fotos wird ein Video, das Gäste bucht.</h1><div class="cta"><a class="btn btn--cream" href="#">Roomtour anfragen</a><a class="btn btn--line" href="#">Preise</a></div></div>
+</section>
+<section class="wrap menu">
+  <h2>Unsere Karte</h2>
+  <div class="items">
+    <article><img src="/media/tour-sm-2.jpg" alt=""><h3>KI-Roomtour</h3><p>Video-Rundgang aus Ihren Fotos.</p><b>ab 300 €</b></article>
+    <article><img src="/media/ref-spiruli.jpg" alt=""><h3>Website</h3><p>3 Seiten, perfekt auf dem Handy.</p><b>ab 300 €</b></article>
+    <article><img src="/media/nfc-front.jpg" alt=""><h3>NFC-Platte</h3><p>Antippen, bei Google bewerten.</p><b>15 €</b></article>
+  </div>
+</section>
+</body></html>
