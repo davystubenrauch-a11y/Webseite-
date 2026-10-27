@@ -5,6 +5,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 
 ## Stand 27.10. abends: Design v8 (Weiterentwicklung von v7)
 - Kunde: „Seiten nicht ausgefüllt, zu langweilig, Startseite langweilig.“ → Start jetzt mit **großem Vorher/Nachher-Regler** über die volle Breite (links „Vorher · 3 Fotos“ als Mosaik aus `tour-hd-1..3.jpg` = Standbilder aus dem Beispielvideo, rechts „Nachher · KI-Video“, Griff ziehbar per Maus/Finger/Pfeiltasten, schwingt automatisch hin und her bis zur ersten Berührung, Chips „Neue Buchung“ und „KI-Roomtour · Full HD“). Überschrift links, Text + Buttons rechts darüber.
+- Kunde (Screenshot auf großem Monitor ~2000 px): „zu viel Platz drumherum, halbe Seite leer“ → ab 1500 px Breite nutzt die Seite bis 1640 px (90 vw), Demos größer (bis 58–64 vh), Fotos füllen die Roomtour-Kachel (Standbilder `tour-hd-*`), weniger Leerraum oben/unten.
 - Projekt-Bildschirme gefüllt: eigene Farbstimmung je Projekt (01 Violett/Türkis, 02 Blau/Türkis, 03 Pfirsich/Violett), riesige blasse Projektnummer im Hintergrund, größere Demos, Preis in eigener weißer Karte mit Kurzinfo.
 
 ## Aktuelle Richtung (ab 27.10.: Design v7 – Stripe-Stil, Fokus KI-Videos für Airbnb)

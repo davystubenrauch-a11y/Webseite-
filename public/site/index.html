@@ -41,6 +41,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .skip { position: fixed; z-index: 200; left: 16px; top: -70px; padding: 10px 18px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 14px; transition: top .3s var(--ease); }
 .skip:focus-visible { top: 16px; }
 .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 var(--gutter); }
+@media (min-width: 1500px) { .wrap { max-width: min(1640px, 90vw); } body { font-size: 18px; } }
 
 /* type */
 h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
@@ -112,7 +113,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 /* hero: before / after */
 .hero { padding-top: calc(104px + env(safe-area-inset-top)); padding-bottom: 32px; }
 .hero__top { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(24px, 4vw, 64px); align-items: end; }
-.hero h1 { font-size: clamp(2.3rem, min(4.3vw, 7.4vh), 4.1rem); }
+.hero h1 { font-size: clamp(2.3rem, min(4.3vw, 7.4vh), 5rem); }
 .hero .sub { margin-top: 0; }
 .ba { --pos: 50%; position: relative; margin-top: clamp(20px, 3vh, 36px); height: clamp(300px, 43vh, 520px); border-radius: 20px; overflow: hidden; background: #111; box-shadow: var(--shadow-lg); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
 .ba__after, .ba__before { position: absolute; inset: 0; }
@@ -167,8 +168,8 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 
 /* ---------- Product sections ---------- */
 .prod { padding: clamp(80px, 12vh, 128px) 0; }
-.proj { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding: calc(72px + clamp(16px, 3vh, 40px)) 0 clamp(24px, 4vh, 56px); }
-.proj .h2 { font-size: clamp(1.9rem, min(3vw, 5.4vh), 2.7rem); }
+.proj { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding: calc(72px + clamp(12px, 2vh, 28px)) 0 clamp(16px, 3vh, 40px); }
+.proj .h2 { font-size: clamp(1.9rem, min(3vw, 5.4vh), 3.3rem); }
 .proj { position: relative; overflow: hidden; isolation: isolate; }
 .proj::before { content: attr(data-no); position: absolute; z-index: -1; right: -2vw; bottom: -9vw; font-size: clamp(14rem, 34vw, 34rem); font-weight: 800; letter-spacing: -.06em; line-height: 1; color: rgba(10,37,64,.045); pointer-events: none; }
 #tour.proj { background: radial-gradient(55% 65% at 90% 20%, rgba(169,96,238,.18), transparent 70%), radial-gradient(45% 55% at 5% 95%, rgba(62,203,214,.16), transparent 70%), #fbfaff; }
@@ -178,9 +179,10 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 .proj .prod__grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr) !important; }
 .proj.prod--rev .prod__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) !important; }
 .proj .demo { padding: 18px; }
-.proj .nfc { height: min(56vh, 580px); }
-.proj .dev { height: min(54vh, 540px); }
-.proj .film { aspect-ratio: auto; height: min(46vh, 500px); }
+.proj .nfc { height: min(64vh, 760px); }
+.proj .dev { height: min(62vh, 740px); }
+.proj .film { aspect-ratio: auto; height: min(58vh, 720px); }
+.proj .prod__grid { gap: clamp(28px, 4vw, 72px); }
 .proj .checks li { font-size: 15.5px; } .proj .sub { font-size: 16.5px; }
 .proj .buy { margin-top: 18px; padding: 14px 18px; }
 .proj .buy { margin-top: 24px; padding: 18px 20px; border-radius: 16px; background: #fff; box-shadow: var(--shadow); justify-content: space-between; }
@@ -265,11 +267,11 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 /* Roomtour demo */
 .film { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 10; background: #000 center / cover; }
 .film video { width: 100%; height: 100%; object-fit: cover; }
-.shots { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 4%; align-content: center; padding: 6%; background: rgba(246,249,252,.96); }
-.shots figure { position: relative; border-radius: 10px; overflow: hidden; box-shadow: var(--shadow-lg); background: #fff; padding: 5px; }
-.shots img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 6px; }
-.shots figcaption { padding: 6px 2px 2px; font-size: 11.5px; font-weight: 600; color: var(--ink); }
-.shots__ai { position: absolute; left: 50%; bottom: 10%; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: linear-gradient(90deg, var(--violet), var(--action), var(--turq)); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; opacity: 0; }
+.shots { position: absolute; inset: 0; z-index: 3; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; padding: 10px; background: #f6f9fc; }
+.shots figure { position: relative; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow); background: #fff; padding: 6px; }
+.shots img { flex: 1; min-height: 0; width: 100%; object-fit: cover; border-radius: 8px; }
+.shots figcaption { padding: 8px 4px 2px; font-size: 13px; font-weight: 600; color: var(--ink); }
+.shots__ai { position: absolute; left: 50%; bottom: 50%; z-index: 2; transform: translate(-50%, 50%) !important; padding: 12px 20px !important; font-size: 15px !important; box-shadow: var(--shadow-lg); transform: translateX(-50%); display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: linear-gradient(90deg, var(--violet), var(--action), var(--turq)); color: #fff; font-size: 13px; font-weight: 600; white-space: nowrap; opacity: 0; }
 .film__tag { position: absolute; left: 12px; top: 12px; padding: 5px 10px; border-radius: 999px; background: rgba(255,255,255,.92); font-size: 11.5px; font-weight: 700; letter-spacing: .06em; color: var(--ink); }
 .film__bar { position: absolute; left: 12px; right: 12px; bottom: 12px; display: flex; gap: 6px; }
 .film__bar span { flex: 1; height: 3px; border-radius: 3px; background: rgba(255,255,255,.4); overflow: hidden; }
@@ -492,7 +494,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
       </div>
       <div class="demo prod__demo" data-rv>
         <div class="demo__bar"><span>Beispiel</span><span>KI-Roomtour · 0:11</span></div>
-        <div class="film" style="background-image:url(/media/roomtour-villa.jpg)"><video id="film" src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Beispiel einer KI-Roomtour"></video><div class="shots" id="shots" aria-hidden="true"><figure><img src="/media/tour-foto-1.jpg" alt=""><figcaption>Foto 1 · Flur</figcaption></figure><figure><img src="/media/tour-foto-4.jpg" alt=""><figcaption>Foto 2 · Wohnen</figcaption></figure><figure><img src="/media/tour-foto-9.jpg" alt=""><figcaption>Foto 3 · Balkon</figcaption></figure><span class="shots__ai">✦ KI erstellt den Rundgang</span></div><span class="film__tag">KI-ROOMTOUR · BEISPIEL</span><div class="film__bar" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div></div>
+        <div class="film" style="background-image:url(/media/roomtour-villa.jpg)"><video id="film" src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Beispiel einer KI-Roomtour"></video><div class="shots" id="shots" aria-hidden="true"><figure><img src="/media/tour-hd-1.jpg" alt=""><figcaption>Foto 1 · Flur</figcaption></figure><figure><img src="/media/tour-hd-2.jpg" alt=""><figcaption>Foto 2 · Wohnen</figcaption></figure><figure><img src="/media/tour-hd-3.jpg" alt=""><figcaption>Foto 3 · Balkon</figcaption></figure><span class="shots__ai">✦ KI erstellt den Rundgang</span></div><span class="film__tag">KI-ROOMTOUR · BEISPIEL</span><div class="film__bar" aria-hidden="true"><span><i></i></span><span><i></i></span><span><i></i></span></div></div>
         <ol class="flow3" id="flow3"><li><img src="/media/tour-foto-1.jpg" alt="" loading="lazy">1. Fotos senden</li><li><img src="/media/tour-foto-4.jpg" alt="" loading="lazy">2. Video entsteht</li><li><img src="/media/tour-foto-9.jpg" alt="" loading="lazy">3. Mehr Buchungen</li></ol>
       </div>
     </div>
