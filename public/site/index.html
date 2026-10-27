@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* =====================================================================
-   F&D Solutions · Design v7 „Stripe-Stil, Fokus KI-Videos“ (vom Kunden gewählt)
+   F&D Solutions · Design v8 „Stripe-Stil, Fokus KI-Videos, Vorher/Nachher“
    ui-ux-pro-max: pattern „Trust & Authority + Conversion“, style „Aurora UI“
    (flowing mesh gradient, 8–12 s loops, contrast checked), type Inter.
    Palette  ink navy #0a2540 · body #425466 · muted #6b7c93 · page #fff · tint #f6f9fc
@@ -109,37 +109,36 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 .g-stars svg.on { fill: #fbbc05; transform: scale(1.08); }
 .g-text { margin: 7cqw 8% 0; padding: 4cqw; min-height: 20cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.2cqw; color: #3c4043; }
 .g-post { display: block; width: fit-content; margin: 6cqw 8% 0 auto; padding: 3cqw 7cqw; border-radius: 99px; background: #1a73e8; color: #fff; font-size: 5.4cqw; font-weight: 600; }
-/* hero show: photos → AI → listing video → booking */
-.show { position: relative; height: clamp(440px, 60vh, 580px); }
-.show > * { position: absolute; }
-.show__photos { left: 0; top: 10%; width: 38%; height: 64%; z-index: 3; }
-.show__label { position: absolute; left: 0; top: -34px; padding: 5px 12px; border-radius: 999px; background: rgba(255,255,255,.9); font-size: 12.5px; font-weight: 600; color: var(--ink); box-shadow: var(--shadow); }
-.sp { position: absolute; left: 0; width: 100%; padding: 5px; border-radius: 12px; background: #fff; box-shadow: var(--shadow-lg); }
-.sp img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 8px; }
-.sp1 { top: 0; rotate: -4deg; } .sp2 { top: 30%; left: 14%; rotate: 3deg; } .sp3 { top: 60%; rotate: -2deg; }
-.show__scan { position: absolute; inset: -4% -6%; border-radius: 14px; background: linear-gradient(90deg, transparent, rgba(99,91,255,.0) 35%, rgba(169,96,238,.55) 48%, rgba(62,203,214,.55) 52%, transparent 65%); mix-blend-mode: screen; opacity: 0; pointer-events: none; }
-.show__ai { left: 0; bottom: 0; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 6px 10px; width: 40%; padding: 10px 14px; border-radius: 12px; background: #fff; box-shadow: var(--shadow-lg); font-size: 13px; font-weight: 600; color: var(--ink); }
-.show__ai span { grid-column: 1 / -1; }
-.show__ai i { height: 6px; border-radius: 6px; background: #edf0f5; overflow: hidden; }
-.show__ai b { display: block; width: 0; height: 100%; background: linear-gradient(90deg, var(--violet), var(--action), var(--turq)); }
-.show__ai em { font-style: normal; font-variant-numeric: tabular-nums; color: var(--muted); font-weight: 500; }
-.show__phone { right: 2%; top: 0; height: 100%; z-index: 2; aspect-ratio: 71.5 / 149.6; padding: 1.6%; border-radius: 16% / 7.6%; background: #fff; box-shadow: var(--shadow-lg), inset 0 0 0 1px rgba(0,0,0,.06); container-type: inline-size; }
-.lst__media { position: relative; height: 46%; background: linear-gradient(135deg, #eef1f6, #e2e7ef); overflow: hidden; }
-.lst__media::before { content: "Video folgt …"; position: absolute; inset: 0; display: grid; place-items: center; font-size: 5cqw; font-weight: 600; color: #8898aa; }
-.lst__media img, .lst__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.lst__media video { opacity: 0; }
-.lst__badge { position: absolute; left: 5%; bottom: 6%; display: flex; align-items: center; gap: 2cqw; padding: 2cqw 4cqw; border-radius: 99px; background: rgba(255,255,255,.94); font-size: 4.6cqw; font-weight: 700; color: var(--ink); }
-.lst__badge i { width: 0; height: 0; border-left: 3cqw solid #ff385c; border-top: 2cqw solid transparent; border-bottom: 2cqw solid transparent; }
-.lst__body { padding: 6cqw 7cqw; color: #222; }
-.lst__body b { display: block; font-size: 7.4cqw; letter-spacing: -.02em; }
-.lst__body > span { display: block; margin-top: 1cqw; font-size: 4.8cqw; color: #717171; }
-.lst__row { margin-top: 5cqw; padding: 4cqw 0; border-block: 1px solid #ebebeb; display: flex; justify-content: space-between; align-items: center; font-size: 5cqw; }
-.lst__row em { font-style: normal; padding: 1cqw 3cqw; border-radius: 99px; background: rgba(99,91,255,.12); color: var(--action); font-weight: 700; font-size: 4.2cqw; }
-.lst__btn { display: block; margin-top: 6cqw; padding: 4cqw; border-radius: 3cqw; background: linear-gradient(90deg, #e61e4d, #d70466); color: #fff; text-align: center; font-size: 5.6cqw; font-weight: 700; }
-.show__book { right: 0; top: 8%; z-index: 4; display: flex; align-items: center; gap: 10px; padding: 10px 16px 10px 10px; border-radius: 14px; background: #fff; box-shadow: var(--shadow-lg); color: var(--ink); opacity: 0; }
-.show__book i { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #0e9f6e; color: #fff; }
-.show__book i svg { width: 16px; height: 16px; }
-.show__book b { display: block; font-size: 14px; } .show__book small { font-size: 12px; color: var(--muted); }
+/* hero: before / after */
+.hero { padding-top: calc(104px + env(safe-area-inset-top)); padding-bottom: 32px; }
+.hero__top { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); gap: clamp(24px, 4vw, 64px); align-items: end; }
+.hero h1 { font-size: clamp(2.3rem, min(4.3vw, 7.4vh), 4.1rem); }
+.hero .sub { margin-top: 0; }
+.ba { --pos: 50%; position: relative; margin-top: clamp(20px, 3vh, 36px); height: clamp(300px, 43vh, 520px); border-radius: 20px; overflow: hidden; background: #111; box-shadow: var(--shadow-lg); touch-action: pan-y; user-select: none; -webkit-user-select: none; }
+.ba__after, .ba__before { position: absolute; inset: 0; }
+.ba__after video { width: 100%; height: 100%; object-fit: cover; }
+.ba__before { clip-path: inset(0 calc(100% - var(--pos)) 0 0); background: #f3f1ee; }
+.ba__grid { position: absolute; inset: 0; display: grid; grid-template-columns: 1.4fr 1fr; grid-template-rows: 1fr 1fr; gap: 6px; padding: 6px; }
+.ba__grid img { width: 100%; height: 100%; object-fit: cover; border-radius: 12px; }
+.ba__grid img:first-child { grid-row: 1 / 3; }
+.ba__tag { position: absolute; left: 18px; top: 16px; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 7px 13px; border-radius: 999px; background: rgba(255,255,255,.94); font-size: 13px; font-weight: 600; color: var(--ink); box-shadow: var(--shadow); }
+.ba__tag--r { left: auto; right: 18px; background: var(--ink); color: #fff; }
+.ba__play { width: 0; height: 0; border-left: 8px solid #fff; border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.ba__line { position: absolute; z-index: 4; top: 0; bottom: 0; left: var(--pos); width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 20px rgba(0,0,0,.25); pointer-events: none; }
+.ba__handle { position: absolute; z-index: 5; top: 50%; left: var(--pos); width: 56px; height: 56px; margin: -28px 0 0 -28px; border-radius: 50%; display: grid; place-items: center; background: #fff; color: var(--action); box-shadow: 0 10px 30px rgba(0,0,0,.3); cursor: ew-resize; transition: transform .2s; }
+.ba__handle:hover { transform: scale(1.06); }
+.ba__handle svg { width: 24px; height: 24px; }
+.ba__hint { position: absolute; z-index: 5; left: var(--pos); top: calc(50% + 40px); transform: translateX(-50%); padding: 5px 11px; border-radius: 999px; background: rgba(10,37,64,.75); color: #fff; font-size: 12px; font-weight: 600; white-space: nowrap; pointer-events: none; transition: opacity .4s; }
+.ba.touched .ba__hint { opacity: 0; }
+.ba__chip { position: absolute; z-index: 6; display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 12px; background: #fff; box-shadow: var(--shadow-lg); font-size: 13.5px; font-weight: 600; color: var(--ink); }
+.ba__chip b { color: var(--action); }
+.ba__chip--1 { right: 18px; bottom: 18px; }
+.ba__chip--2 { left: 18px; bottom: 18px; }
+.ba__chip--2 i { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #0e9f6e; color: #fff; }
+.ba__chip--2 i svg { width: 15px; height: 15px; }
+.ba__chip--2 strong { display: block; font-size: 13.5px; } .ba__chip--2 small { font-size: 12px; color: var(--muted); font-weight: 500; }
+.hero__trust { margin-top: 20px; }
+.hero .strip { padding-top: 22px; }
 
 /* industries strip */
 .strip { padding: 28px 0 0; }
@@ -170,6 +169,22 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
 .prod { padding: clamp(80px, 12vh, 128px) 0; }
 .proj { min-height: 100vh; min-height: 100svh; display: grid; align-content: center; padding: calc(72px + clamp(16px, 3vh, 40px)) 0 clamp(24px, 4vh, 56px); }
 .proj .h2 { font-size: clamp(1.9rem, min(3vw, 5.4vh), 2.7rem); }
+.proj { position: relative; overflow: hidden; isolation: isolate; }
+.proj::before { content: attr(data-no); position: absolute; z-index: -1; right: -2vw; bottom: -9vw; font-size: clamp(14rem, 34vw, 34rem); font-weight: 800; letter-spacing: -.06em; line-height: 1; color: rgba(10,37,64,.045); pointer-events: none; }
+#tour.proj { background: radial-gradient(55% 65% at 90% 20%, rgba(169,96,238,.18), transparent 70%), radial-gradient(45% 55% at 5% 95%, rgba(62,203,214,.16), transparent 70%), #fbfaff; }
+#web.proj { background: radial-gradient(55% 65% at 10% 20%, rgba(99,91,255,.16), transparent 70%), radial-gradient(45% 55% at 95% 90%, rgba(62,203,214,.18), transparent 70%), #f7fbff; }
+#nfc.proj { background: radial-gradient(55% 65% at 90% 25%, rgba(255,179,138,.24), transparent 70%), radial-gradient(45% 55% at 5% 90%, rgba(169,96,238,.14), transparent 70%), #fffaf7; }
+#web.proj::before { right: auto; left: -2vw; }
+.proj .prod__grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1.08fr) !important; }
+.proj.prod--rev .prod__grid { grid-template-columns: minmax(0, 1.08fr) minmax(0, .92fr) !important; }
+.proj .demo { padding: 18px; }
+.proj .nfc { height: min(56vh, 580px); }
+.proj .dev { height: min(54vh, 540px); }
+.proj .film { aspect-ratio: auto; height: min(46vh, 500px); }
+.proj .checks li { font-size: 15.5px; } .proj .sub { font-size: 16.5px; }
+.proj .buy { margin-top: 18px; padding: 14px 18px; }
+.proj .buy { margin-top: 24px; padding: 18px 20px; border-radius: 16px; background: #fff; box-shadow: var(--shadow); justify-content: space-between; }
+.proj .buy__price small { display: block; margin-top: 4px; }
 .proj__no { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px; padding: 6px 14px; border-radius: 999px; background: #fff; box-shadow: var(--shadow); font-size: 13.5px; color: var(--muted); }
 .proj__no b { color: var(--ink); }
 .prod--tint .proj__no { background: #fff; }
@@ -373,7 +388,9 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   .hero__grid, .prod__grid, .faq__grid, .contact__grid { grid-template-columns: 1fr; }
   .prod--rev .prod__demo { order: 0; }
   .prod--rev .prod__grid { grid-template-columns: 1fr; }
-  .show { height: 500px; max-width: 620px; width: 100%; margin: 24px auto 0; }
+  .hero__top { grid-template-columns: 1fr; align-items: start; }
+  .proj .prod__grid, .proj.prod--rev .prod__grid { grid-template-columns: 1fr !important; }
+  .proj .nfc, .proj .dev { height: 460px; } .proj .film { height: 380px; }
   #tour .prod__grid { grid-template-columns: 1fr; }
   .aurora { height: 64%; }
   .cards3, .plans { grid-template-columns: 1fr 1fr; } .plan--hi { grid-column: 1 / -1; }
@@ -386,8 +403,9 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   .dock { display: grid; }
   .hero { padding-top: calc(110px + env(safe-area-inset-top)); }
   .aurora { height: 58%; }
-  .show { height: 420px; }
-  .show__ai { width: 46%; font-size: 12px; padding: 8px 10px; } .show__book { top: 0; padding: 8px 12px 8px 8px; } .show__book i { width: 28px; height: 28px; }
+  .ba { height: 360px; } .ba__chip--1 { display: none; } .ba__chip { padding: 8px 10px; font-size: 12px; } .ba__grid { grid-template-columns: 1fr; grid-template-rows: 1fr 1fr 1fr; } .ba__grid img:first-child { grid-row: auto; }
+  .proj .nfc, .proj .dev { height: 400px; } .proj .film { height: 280px; } .proj::before { font-size: 16rem; bottom: -4rem; }
+  .proj .buy { flex-direction: column; align-items: stretch; } .proj .buy .btn { width: 100%; }
   .cards3, .plans, .team { grid-template-columns: 1fr; }
   .stats { gap: 22px 16px; }
   .person { flex-wrap: wrap; } .person .btn { margin-left: 0; width: 100%; }
@@ -433,29 +451,27 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   <!-- Hero -->
   <section class="hero" aria-labelledby="h-hero">
     <div class="aurora" aria-hidden="true"><canvas id="aurora1"></canvas></div>
-    <div class="wrap hero__grid">
-      <div>
-        <a class="pill" href="#tour" data-rv><b>Spezialisiert</b>Airbnb &amp; Ferienwohnungen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
-        <h1 id="h-hero"><span data-rv>Aus Ihren Fotos</span><span data-rv>wird ein Video,</span><span data-rv>das Gäste bucht.</span></h1>
-        <p class="sub" data-rv>Wir erstellen KI-Roomtours für Airbnbs und Ferienwohnungen. Sie schicken uns Fotos, wir liefern ein Video, das Ihre Unterkunft lebendig zeigt. Dazu Websites und NFC-Platten für mehr Google-Bewertungen.</p>
-        <div class="hero__cta" data-rv><a class="btn btn--action" href="#kontakt" data-pick-hero data-haptic>Roomtour anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><a class="btn btn--ghost" href="#tour">So funktioniert's <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
-        <ul class="hero__trust" data-rv><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nur Fotos nötig</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>ab 300 € Festpreis</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Antwort in 24 h</li></ul>
-      </div>
-      <div class="show" id="show" aria-label="Animation: Aus drei Fotos erstellt die KI ein Video, das im Inserat läuft, und eine Buchung kommt herein">
-        <div class="show__photos" id="showPhotos">
-          <span class="show__label">Ihre Fotos</span>
-          <figure class="sp sp1"><img src="/media/tour-foto-1.jpg" alt=""></figure>
-          <figure class="sp sp2"><img src="/media/tour-foto-4.jpg" alt=""></figure>
-          <figure class="sp sp3"><img src="/media/tour-foto-9.jpg" alt=""></figure>
-          <span class="show__scan" aria-hidden="true"></span>
+    <div class="wrap">
+      <div class="hero__top">
+        <div>
+          <a class="pill" href="#tour" data-rv><b>Spezialisiert</b>Airbnb &amp; Ferienwohnungen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a>
+          <h1 id="h-hero" data-rv>Aus Ihren Fotos wird ein Video, das Gäste bucht.</h1>
         </div>
-        <div class="show__ai" id="showAi"><span>✦ KI erstellt Ihr Video</span><i><b id="aiBar"></b></i><em id="aiPct">0 %</em></div>
-        <div class="show__phone"><div class="m-phone__scr"><span class="m-phone__island"></span>
-          <div class="lst__media" id="lstMedia"><img src="/media/roomtour-villa.jpg" alt=""><video id="heroVideo" src="/media/roomtour-villa.mp4" muted loop playsinline preload="metadata"></video><span class="lst__badge"><i></i>Roomtour</span></div>
-          <div class="lst__body"><b>Ihre Ferienwohnung</b><span>München · 2 Gäste · 1 Schlafzimmer</span><div class="lst__row"><strong>Video-Rundgang</strong><em>Neu</em></div><span class="lst__btn">Reservieren</span></div>
-        </div></div>
-        <div class="show__book" id="showBook"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span><b>Neue Buchung</b><small>3 Nächte · gerade eben</small></span></div>
+        <div>
+          <p class="sub" data-rv>Wir erstellen KI-Roomtours für Airbnbs und Ferienwohnungen. Sie schicken Fotos, wir liefern ein Video, das Ihre Unterkunft lebendig zeigt.</p>
+          <div class="hero__cta" data-rv><a class="btn btn--action" href="#kontakt" data-pick-hero data-haptic>Roomtour anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a><a class="btn btn--ghost" href="#tour">So funktioniert's <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></a></div>
+        </div>
       </div>
+      <div class="ba" id="ba" data-rv>
+        <div class="ba__after"><video id="baVideo" src="/media/roomtour-villa.mp4" poster="/media/tour-hd-2.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Nachher: KI-Roomtour-Video"></video><span class="ba__tag ba__tag--r"><i class="ba__play"></i>Nachher · KI-Video</span></div>
+        <div class="ba__before" aria-label="Vorher: drei Fotos der Wohnung"><div class="ba__grid"><img src="/media/tour-hd-2.jpg" alt="Foto Wohnzimmer"><img src="/media/tour-hd-1.jpg" alt="Foto Flur"><img src="/media/tour-hd-3.jpg" alt="Foto Balkon"></div><span class="ba__tag">Vorher · 3 Fotos</span></div>
+        <div class="ba__line" aria-hidden="true"></div>
+        <button class="ba__handle" type="button" id="baHandle" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6-6 6 6 6M15 6l6 6-6 6"/></svg></button>
+        <span class="ba__hint" id="baHint">Ziehen zum Vergleichen</span>
+        <div class="ba__chip ba__chip--1"><b>✦</b> KI-Roomtour · Full HD</div>
+        <div class="ba__chip ba__chip--2"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></i><span><strong>Neue Buchung</strong><small>3 Nächte · gerade eben</small></span></div>
+      </div>
+      <ul class="hero__trust" data-rv><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Nur Fotos nötig</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>ab 300 € Festpreis</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Antwort in 24 h</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Für Airbnb, Booking.com und Ihre Website</li></ul>
     </div>
     <div class="wrap strip">
       <p>Für Gastgeber auf</p>
@@ -464,7 +480,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   </section>
 
   <!-- Roomtours -->
-  <section class="prod proj" id="tour" aria-labelledby="h-tour">
+  <section class="prod proj" data-no="01" id="tour" aria-labelledby="h-tour">
     <div class="wrap prod__grid">
       <div>
         <p class="proj__no" data-rv><b>Projekt 1</b> von 3 · Unser Schwerpunkt</p>
@@ -472,7 +488,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
         <h2 class="h2" id="h-tour" data-rv>Ein Video, das Ihre Unterkunft verkauft.</h2>
         <p class="sub" data-rv>Gäste entscheiden in Sekunden. Ein Video-Rundgang zeigt, wie sich Ihre Unterkunft anfühlt, und hebt Ihr Inserat von reinen Foto-Angeboten ab.</p>
         <ul class="checks" data-rv><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Video in Full HD, quer oder hochkant</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Basis bis 150 m² oder ein ganzes Stockwerk</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Für Airbnb, Booking.com und Ihre Website</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Zur Freigabe, bevor es online geht</li></ul>
-        <div class="buy" data-rv><p class="buy__price"><small>ab</small> 300 €</p><button class="btn btn--action" type="button" data-pick="Roomtour" data-note="Roomtour" data-haptic>Roomtour anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
+        <div class="buy" data-rv><p class="buy__price">ab 300 €<small>Festpreis bis 150 m² · größere Objekte nach Größe</small></p><button class="btn btn--action" type="button" data-pick="Roomtour" data-note="Roomtour" data-haptic>Roomtour anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
       </div>
       <div class="demo prod__demo" data-rv>
         <div class="demo__bar"><span>Beispiel</span><span>KI-Roomtour · 0:11</span></div>
@@ -483,7 +499,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   </section>
 
   <!-- Websites -->
-  <section class="prod prod--tint prod--rev proj" id="web" aria-labelledby="h-web">
+  <section class="prod prod--rev proj" data-no="02" id="web" aria-labelledby="h-web">
     <div class="wrap prod__grid">
       <div>
         <p class="proj__no" data-rv><b>Projekt 2</b> von 3</p>
@@ -491,7 +507,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
         <h2 class="h2" id="h-web" data-rv>Eine Website, die Kunden überzeugt.</h2>
         <p class="sub" data-rv>Wir planen, gestalten und bauen Ihre Website und stellen sie online. Klar und schnell im Basis-Paket, mit Animationen und 3D in den größeren Paketen.</p>
         <ul class="checks" data-rv><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Basis: 3 professionell gestaltete Seiten</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Perfekt auf iPhone, iPad und Desktop</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Kontakt, Google Maps, Impressum und Datenschutz</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Online-Shop möglich</li></ul>
-        <div class="buy" data-rv><p class="buy__price"><small>ab</small> 300 €</p><button class="btn btn--action" type="button" data-pick="Website" data-note="Website" data-haptic>Website anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
+        <div class="buy" data-rv><p class="buy__price">ab 300 €<small>Festpreis · 3 Seiten im Basis-Paket</small></p><button class="btn btn--action" type="button" data-pick="Website" data-note="Website" data-haptic>Website anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
       </div>
       <div class="demo prod__demo" data-rv>
         <div class="demo__bar"><span>Referenz</span><div class="seg" role="group" aria-label="Ansicht"><button type="button" aria-pressed="true" data-view="desk" data-haptic>Desktop</button><button type="button" aria-pressed="false" data-view="mob" data-haptic>Handy</button></div></div>
@@ -502,7 +518,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
   </section>
 
   <!-- NFC -->
-  <section class="prod proj" id="nfc" aria-labelledby="h-nfc">
+  <section class="prod proj" data-no="03" id="nfc" aria-labelledby="h-nfc">
     <div class="wrap prod__grid">
       <div>
         <p class="proj__no" data-rv><b>Projekt 3</b> von 3</p>
@@ -510,7 +526,7 @@ h1, h2, h3 { color: var(--ink); font-weight: 600; letter-spacing: -.025em; }
         <h2 class="h2" id="h-nfc" data-rv>Mehr Google-Bewertungen. Mit einem Antippen.</h2>
         <p class="sub" data-rv>Zufriedene Gäste halten ihr Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Kein Suchen, kein Umweg.</p>
         <ul class="checks" data-rv><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Funktioniert mit iPhone und Android, ohne App</li><li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Für Restaurants empfehlen wir 5 bis 10 Stück</li></ul>
-        <div class="buy" data-rv><p class="buy__price">15 € <small>pro Stück</small></p><button class="btn btn--action" type="button" data-pick="NFC-Platten" data-note="NFC-Platten" id="nfcBuy" data-haptic>Platten anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
+        <div class="buy" data-rv><p class="buy__price">15 €<small>pro Platte · Empfehlung 5–10 Stück</small></p><button class="btn btn--action" type="button" data-pick="NFC-Platten" data-note="NFC-Platten" id="nfcBuy" data-haptic>Platten anfragen <svg class="arr" viewBox="0 0 10 10" aria-hidden="true"><path class="ln" d="M0 5h7" stroke="currentColor" stroke-width="1.6"/><path class="hd" d="M1 1l4 4-4 4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg></button></div>
       </div>
       <div class="demo prod__demo" data-rv>
         <div class="demo__bar"><span>Live-Demo</span><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß" data-haptic>Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz" data-haptic>Schwarz</button></div></div>
@@ -704,6 +720,19 @@ document.addEventListener("DOMContentLoaded", function () {
     c.addEventListener("pointerleave", function () { c.style.transform = ""; });
   });
 
+  /* ---------- Hero: before / after slider (drag, keys, gentle auto-sweep until touched) ---------- */
+  var ba = $("#ba"), bh = $("#baHandle"), baPos = 50, sweep = null;
+  function setPos(p) { baPos = clamp(p, 4, 96); ba.style.setProperty("--pos", baPos + "%"); bh.setAttribute("aria-valuenow", Math.round(baPos)); }
+  function stopSweep() { if (sweep) { sweep.kill(); sweep = null; } ba.classList.add("touched"); }
+  function fromEvent(e) { var r = ba.getBoundingClientRect(); setPos((e.clientX - r.left) / r.width * 100); }
+  var dragging = false;
+  ba.addEventListener("pointerdown", function (e) { dragging = true; stopSweep(); haptic(8); ba.setPointerCapture(e.pointerId); fromEvent(e); });
+  ba.addEventListener("pointermove", function (e) { if (dragging) fromEvent(e); });
+  ba.addEventListener("pointerup", function () { dragging = false; });
+  ba.addEventListener("pointercancel", function () { dragging = false; });
+  bh.addEventListener("keydown", function (e) { var d = e.key === "ArrowLeft" ? -5 : e.key === "ArrowRight" ? 5 : 0; if (d) { e.preventDefault(); stopSweep(); setPos(baPos + d); } });
+  setPos(50);
+
   /* ---------- FAQ ---------- */
   $$(".qa button").forEach(function (b) { b.addEventListener("click", function () { b.setAttribute("aria-expanded", String(b.getAttribute("aria-expanded") !== "true")); }); });
 
@@ -775,24 +804,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var stars = $$("#nfcStars svg"), revN = $("#revN"), count = $("#nfcCount"), n = 128;
   var nfcTl = null, webTl = null, tourTl = null, showTl = null, webManual = false;
   if (G) {
-    // 0 · Hero: photos → AI → video in the listing → booking
-    var heroVid = $("#heroVideo"), pct = $("#aiPct"), aiProg = { v: 0 };
-    showTl = G.timeline({ paused: true, repeat: -1, repeatDelay: .4 });
-    function toMedia(el) { var m = $("#lstMedia").getBoundingClientRect(), r = el.getBoundingClientRect(); return { x: m.left + m.width / 2 - (r.left + r.width / 2), y: m.top + m.height / 2 - (r.top + r.height / 2) }; }
-    showTl.set(".sp", { x: 0, y: 0, scale: 1, opacity: 0 }).set(["#heroVideo", "#lstMedia img"], { opacity: 0 }).set("#showBook", { opacity: 0, y: -10, scale: .96 }).set("#aiBar", { width: "0%" }).set(".show__scan", { opacity: 0, xPercent: -60 })
-      .call(function () { aiProg.v = 0; pct.textContent = "0 %"; heroVid.pause(); })
-      .to(".sp", { opacity: 1, y: 0, duration: .6, stagger: .25, ease: "back.out(1.5)", startAt: { y: 24 } })
-      .to(".show__scan", { opacity: 1, xPercent: 60, duration: 1.4, ease: "power1.inOut" }, "+=.2")
-      .to("#aiBar", { width: "100%", duration: 1.8, ease: "power1.inOut" }, "<")
-      .to(aiProg, { v: 100, duration: 1.8, ease: "power1.inOut", onUpdate: function () { pct.textContent = Math.round(aiProg.v) + " %"; } }, "<")
-      .to(".show__scan", { opacity: 0, duration: .3 })
-      .to(".sp", { x: function (i, el) { return toMedia(el).x; }, y: function (i, el) { return toMedia(el).y; }, scale: .35, opacity: 0, duration: .8, stagger: .08, ease: "power3.in" })
-      .to(["#heroVideo", "#lstMedia img"], { opacity: 1, duration: .4 }, "-=.2")
-      .call(function () { heroVid.currentTime = 0; heroVid.play().catch(function () {}); }, null, "<")
-      .to("#showBook", { opacity: 1, y: 0, scale: 1, duration: .6, ease: "back.out(1.6)" }, "+=1.6")
-      .to({}, { duration: 3.2 })
-      .to(["#showBook", "#heroVideo"], { opacity: 0, duration: .4 });
-
     // 1 · NFC: phone taps the plate → glow + rings → Google review → stars → posted → notification
     nfcTl = G.timeline({ paused: true, repeat: -1, repeatDelay: 1.2, defaults: { ease: "power3.inOut" },
       onRepeat: function () { stars.forEach(function (s) { s.classList.remove("on"); }); count.classList.remove("up"); } });
@@ -841,17 +852,20 @@ document.addEventListener("DOMContentLoaded", function () {
       .to({}, { duration: 9 });
   } else { $("#nfcPlay").hidden = true; }
 
-  if (!(G && ST) || reduce) { if (nfcTl) { nfcTl.pause(); stars.forEach(function (s) { s.classList.add("on"); }); G && G.set(["#nfcRev"], { opacity: 1 }); } if (G) { G.set("#shots", { autoAlpha: 0 }); G.set(".dev__view .desk", { clipPath: "none" }); G.set(["#heroVideo", "#showBook"], { opacity: 1 }); G.set("#aiBar", { width: "100%" }); } return; }
+  if (!(G && ST) || reduce) { if (nfcTl) { nfcTl.pause(); stars.forEach(function (s) { s.classList.add("on"); }); G && G.set(["#nfcRev"], { opacity: 1 }); } if (G) { G.set("#shots", { autoAlpha: 0 }); G.set(".dev__view .desk", { clipPath: "none" }); } return; }
   G.registerPlugin(ST);
+  var sw = { p: 50 };
+  sweep = G.timeline({ repeat: -1, delay: 1.4, onUpdate: function () { setPos(sw.p); } });
+  sweep.to(sw, { p: 22, duration: 1.8, ease: "power2.inOut" }).to(sw, { p: 78, duration: 2.6, ease: "power2.inOut" }, "+=.8").to(sw, { p: 50, duration: 1.6, ease: "power2.inOut" }, "+=.8").to({}, { duration: 1.2 });
   if (window.Lenis && fine) { lenis = new Lenis({ lerp: .11 }); lenis.on("scroll", ST.update); G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0); }
 
-  [[showTl, "#show"], [nfcTl, "#nfcDemo"], [webTl, "#dev"], [tourTl, ".film"]].forEach(function (d) {
+  [[nfcTl, "#nfcDemo"], [webTl, "#dev"], [tourTl, ".film"]].forEach(function (d) {
     ST.create({ trigger: d[1], start: "top 85%", end: "bottom 10%", onToggle: function (st) { if (d[0] === webTl && webManual) return; st.isActive ? d[0].play() : d[0].pause(); } });
   });
 
   // entrance + reveals (≤ 16px)
   G.from(".hero [data-rv]", { y: 16, opacity: 0, duration: .9, stagger: .07, ease: "power3.out", delay: .1 });
-  G.from(".show__phone, .show__ai", { y: 30, opacity: 0, duration: 1.2, stagger: .12, ease: "expo.out", delay: .35 });
+  G.from(".ba__chip", { y: 16, opacity: 0, duration: .8, stagger: .2, ease: "back.out(1.6)", delay: 1.2 });
   $$("main section:not(.hero) [data-rv]").forEach(function (el) {
     G.from(el, { y: 16, opacity: 0, duration: .8, ease: "power3.out", scrollTrigger: { trigger: el, start: "top 90%" } });
   });

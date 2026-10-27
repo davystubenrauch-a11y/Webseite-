@@ -3,6 +3,10 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand 27.10. abends: Design v8 (Weiterentwicklung von v7)
+- Kunde: „Seiten nicht ausgefüllt, zu langweilig, Startseite langweilig.“ → Start jetzt mit **großem Vorher/Nachher-Regler** über die volle Breite (links „Vorher · 3 Fotos“ als Mosaik aus `tour-hd-1..3.jpg` = Standbilder aus dem Beispielvideo, rechts „Nachher · KI-Video“, Griff ziehbar per Maus/Finger/Pfeiltasten, schwingt automatisch hin und her bis zur ersten Berührung, Chips „Neue Buchung“ und „KI-Roomtour · Full HD“). Überschrift links, Text + Buttons rechts darüber.
+- Projekt-Bildschirme gefüllt: eigene Farbstimmung je Projekt (01 Violett/Türkis, 02 Blau/Türkis, 03 Pfirsich/Violett), riesige blasse Projektnummer im Hintergrund, größere Demos, Preis in eigener weißer Karte mit Kurzinfo.
+
 ## Aktuelle Richtung (ab 27.10.: Design v7 – Stripe-Stil, Fokus KI-Videos für Airbnb)
 Maßgeblich ist **`public/site/index.html`** (Startseite `/` leitet dorthin). Kunde will sich **auf KI-Roomtour-Videos für Airbnbs/Ferienwohnungen spezialisieren**. Wünsche: einladender Einstieg mit Animation, die erklärt, was wir machen; danach **drei Projekte, je eins pro Bildschirm** (Animation, gute Beschreibung, Preis); alles strukturiert, seriös, modern, nichts durcheinander/übergreifend; Wow-Effekt, der Aufmerksamkeit hält.
 - Start: „Aus Ihren Fotos wird ein Video, das Gäste bucht.“ + Animation rechts: drei Kundenfotos erscheinen → Scan + „KI erstellt Ihr Video 0–100 %“ → Fotos fliegen ins Airbnb-ähnliche Inserat im Handy → Video läuft → „Neue Buchung · 3 Nächte“. Darunter Leiste „Für Gastgeber auf Airbnb, Booking.com …“.
