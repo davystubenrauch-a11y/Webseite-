@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>F&amp;D Solutions · KI-Roomtours, Websites und NFC-Platten aus München</title>
-<meta name="description" content="Aus drei Fotos wird ein Video, das Gäste bucht: KI-Roomtours ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort in 24 Stunden.">
+<title>F&amp;D Solutions · Roomtour-Videos für Ferienwohnungen und Hotels · München</title>
+<meta name="description" content="Roomtour-Videos für Ferienwohnungen und Hotels, erstellt aus Ihren Fotos: ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort in 24 Stunden.">
 <meta name="theme-color" content="#1c1c1f">
 <link rel="icon" type="image/svg+xml" href="/media/logo-fd-mark-color.svg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="de_DE">
 <meta property="og:site_name" content="F&amp;D Solutions">
-<meta property="og:title" content="Aus drei Fotos wird ein Video, das Gäste bucht · F&amp;D Solutions">
+<meta property="og:title" content="Roomtour-Videos für Ferienwohnungen und Hotels · F&amp;D Solutions">
 <meta property="og:description" content="KI-Roomtours ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Persönlich aus München.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -33,7 +33,10 @@
 </script>
 <style>
 /* =====================================================================
-   F&D Solutions · Design v14 „Kino“
+   F&D Solutions · Design v15 „Kino“ (Weiterentwicklung von v14)
+   v15      sachliche Überschrift, Zoom als scroll-gekoppelte CSS-Animation (Compositor,
+            ruckelfrei; JS-Fallback mit Glättung), echte Laptop-/iPhone-Rahmen in
+            korrekten Proportionen, Medien in voller Qualität, Studio-Bild der NFC-Platten.
    Idee     Das Roomtour-Video füllt beim Öffnen den ganzen Bildschirm und zieht sich
             beim Scrollen zu einem gerahmten Bild zusammen. Danach ruhige, große Abschnitte
             ohne Kachel-Raster; ein Vorher/Nachher-Regler zeigt Fotos gegen Video,
@@ -41,7 +44,7 @@
    Farben   Stein #ebe8e2 (Seite) · Graphit #1c1c1f (Hero-Rand, NFC-Band) · Tinte #151517
             Text #3d3b37 · gedämpft #5f5b54 · Champagner #c9ad7c (Flächen/Knöpfe),
             #74572c (Text auf hell)
-   Schrift  Hanken Grotesk 400–800 · H1 bis 124 · H2 60 · H3 26 · Text 18
+   Schrift  Hanken Grotesk 400–800 · H1 bis 104 (700) · H2 60 · H3 26 · Text 18
    Bewegung Hero-Zeilen steigen auf (einmal), Video-Zoom an Scroll gekoppelt, Regler
             schwingt bis zur ersten Berührung, NFC-Demo solange sichtbar.
             Reduzierte Bewegung: alles im Endzustand.
@@ -68,7 +71,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
 @media (min-width: 1600px) { .wrap { max-width: 1520px; } }
 
-h1, h2, h3 { color: var(--ink); font-weight: 800; }
+h1, h2, h3 { color: var(--ink); font-weight: 750; }
 h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -.04em; max-width: 17ch; }
 h3 { font-size: clamp(22px, 1.9vw, 27px); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
 .lead { margin-top: 22px; font-size: clamp(18px, 1.4vw, 20.5px); max-width: 50ch; }
@@ -116,23 +119,29 @@ h3 { font-size: clamp(22px, 1.9vw, 27px); line-height: 1.15; letter-spacing: -.0
 /* ---------- hero: the film fills the screen, then settles into a frame ---------- */
 .hero { position: relative; height: 165vh; background: var(--stone); }
 .stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
-.film { position: absolute; inset: 0; overflow: hidden; background: var(--graphite); transform-origin: 50% 45%; will-change: transform; }
+.film { position: absolute; inset: 0; overflow: hidden; border-radius: 30px; background: var(--graphite); transform: scale(1.06); transform-origin: 50% 45%; will-change: transform; backface-visibility: hidden; contain: paint; }
 .film video, .film img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.film::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,12,.55), rgba(10,10,12,.12) 38%, rgba(10,10,12,.62)); transition: opacity .3s; }
+.film::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,12,.6), rgba(10,10,12,.1) 34%, rgba(10,10,12,.2) 55%, rgba(10,10,12,.78)), linear-gradient(90deg, rgba(10,10,12,.45), transparent 60%); }
+.film i { position: absolute; z-index: 1; inset: 0; opacity: .06; pointer-events: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
 .copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(36px, 8vh, 90px); color: #fff; will-change: opacity, transform; }
-.copy h1 { color: #fff; font-size: clamp(48px, 7.8vw, 124px); line-height: .92; letter-spacing: -.05em; max-width: 11.5ch; }
+.copy h1 { color: #fff; font-size: clamp(44px, 6.6vw, 104px); line-height: .95; letter-spacing: -.045em; font-weight: 700; max-width: 12ch; }
 .copy h1 span { display: block; overflow: hidden; padding-bottom: .04em; }
 .copy h1 span i { display: block; font-style: normal; transform: translateY(105%); animation: up 1.1s var(--ease) forwards; }
 .copy h1 span:nth-child(2) i { animation-delay: .12s; } .copy h1 span:nth-child(3) i { animation-delay: .24s; }
-.copy .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; margin-top: 34px; opacity: 0; animation: fade .9s .7s forwards; }
+.copy .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; margin-top: 30px; animation: fadeIn .9s .7s both; }
+@keyframes fadeIn { from { opacity: 0; } }
 .copy p { font-size: clamp(18px, 1.5vw, 21px); max-width: 44ch; color: rgba(255,255,255,.9); }
 .copy .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.facts { position: absolute; z-index: 2; right: clamp(20px, 4vw, 48px); top: 120px; display: grid; gap: 8px; justify-items: end; list-style: none; }
-.facts li { opacity: 0; animation: fade .9s 1.1s forwards; }
-.facts li + li { animation-delay: 1.25s; } .facts li + li + li { animation-delay: 1.4s; }
-.facts li { padding: 9px 15px; border-radius: 999px; background: rgba(20,20,22,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-size: 15px; font-weight: 600; }
+.facts { display: flex; flex-wrap: wrap; gap: 10px 0; margin-top: 30px; list-style: none; color: rgba(255,255,255,.82); font-size: 15px; font-weight: 600; }
+.facts li { padding: 0 20px; border-left: 1px solid rgba(255,255,255,.35); } .facts li:first-child { padding-left: 0; border-left: 0; }
 .mute { position: absolute; z-index: 3; right: clamp(20px, 4vw, 48px); bottom: clamp(36px, 8vh, 90px); display: none; }
 @keyframes up { to { transform: none; } }
+@supports (animation-timeline: scroll()) {
+  .film { animation: settle linear both; animation-timeline: scroll(root); animation-range: 0 75vh; }
+  .copy { animation: lift linear both; animation-timeline: scroll(root); animation-range: 0 45vh; }
+  @keyframes settle { to { transform: scale(.8); } }
+  @keyframes lift { to { opacity: 0; transform: translateY(-50px); } }
+}
 @keyframes fade { to { opacity: 1; } }
 
 /* ---------- services ---------- */
@@ -174,17 +183,18 @@ h3 { font-size: clamp(22px, 1.9vw, 27px); line-height: 1.15; letter-spacing: -.0
 .packs li:last-child { border-bottom: 1px solid var(--line); }
 .packs b { color: var(--ink); font-weight: 700; } .packs span { color: var(--ink); font-weight: 800; white-space: nowrap; } .packs span small { font-weight: 500; color: var(--muted); }
 .packs p { grid-column: 1 / -1; font-size: 16px; color: var(--muted); }
+.ref { font-size: 15.5px; font-weight: 600; color: var(--muted); }
 .web .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; margin-top: 30px; }
-.devices { position: relative; padding-bottom: 8%; }
-.laptop { border-radius: 14px; background: var(--white); box-shadow: var(--shadow); overflow: hidden; }
-.laptop__bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
-.laptop__bar i { display: flex; gap: 6px; } .laptop__bar i b, .laptop__bar i::before, .laptop__bar i::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #d8d4cc; }
-.laptop__bar span { flex: 1; padding: 6px 12px; border-radius: 8px; background: var(--stone); font-size: 13.5px; color: var(--muted); }
-.screen { aspect-ratio: 16 / 10; overflow: hidden; background: #eef0ec; }
-.screen img { width: 100%; will-change: transform; }
-.handy { position: absolute; right: -3%; bottom: 0; width: 26%; aspect-ratio: 9 / 19.5; padding: 6px; border-radius: 28px; background: var(--ink); box-shadow: 0 40px 60px -24px rgba(0,0,0,.55); overflow: hidden; }
-.handy div { height: 100%; border-radius: 22px; overflow: hidden; background: #eef0ec; }
-.handy img { width: 100%; will-change: transform; }
+.devices { position: relative; padding: 0 6% 4% 0; }
+.mac { position: relative; }
+.mac__lid { padding: 2.2% 2.2% 3%; border-radius: 18px 18px 6px 6px; background: linear-gradient(180deg, #2b2b2f, #18181b); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), var(--shadow); }
+.mac__screen { position: relative; aspect-ratio: 16 / 10; border-radius: 4px; overflow: hidden; background: #f1f3ee; }
+.mac__base { position: relative; height: 0; padding-bottom: 3.2%; margin: 0 -6%; border-radius: 2px 2px 14px 14px; background: linear-gradient(180deg, #d9d6d0, #b9b5ad 60%, #9f9b93); box-shadow: 0 30px 40px -24px rgba(0,0,0,.5); }
+.mac__base::before { content: ""; position: absolute; left: 42%; right: 42%; top: 0; height: 40%; border-radius: 0 0 8px 8px; background: #a8a49c; }
+.iphone { position: absolute; right: 0; bottom: 0; width: 23%; aspect-ratio: 9 / 19.5; padding: 2.4%; border-radius: 18% / 8.4%; background: linear-gradient(150deg, #3a3a3e, #121214 55%, #26262a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 40px 60px -24px rgba(0,0,0,.6); }
+.iphone__screen { position: relative; height: 100%; border-radius: 14% / 6.6%; overflow: hidden; background: #f1f3ee; }
+.iphone__screen::before { content: ""; position: absolute; z-index: 2; top: 2.2%; left: 50%; width: 30%; height: 3.4%; margin-left: -15%; border-radius: 99px; background: #0d0d0f; }
+.scroller { position: absolute; left: 0; top: 0; width: 100%; height: auto; will-change: transform; }
 
 /* ---------- NFC on graphite ---------- */
 .nfcband { margin-top: clamp(96px, 12vw, 170px); padding: clamp(80px, 10vw, 140px) 0; }
@@ -321,14 +331,15 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   .head__in { height: 68px; } .head__in > .btn { display: none; }
   .logo svg { height: 26px; }
   .hero { height: 150vh; }
-  .facts { top: 90px; } .facts li { font-size: 13.5px; padding: 7px 12px; }
+  .copy h1 { font-size: clamp(32px, 8.9vw, 52px); }
+  .facts { display: grid; gap: 4px; font-size: 14.5px; } .facts li { padding: 0; border: 0; }
   .copy .btn { flex: 1; }
   .three a { grid-template-columns: minmax(0, 1fr); } .three .pic { grid-row: auto; margin-bottom: 20px; }
   .cmp { aspect-ratio: 4 / 5; }
   .cmp .tag { font-size: 13.5px; padding: 7px 12px; } .cmp .tag.l { top: 12px; left: 12px; } .cmp .tag.r { top: auto; bottom: 12px; right: 12px; }
   .before { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(3, minmax(0, 1fr)); }
   .tour__foot, .buy { grid-template-columns: minmax(0, 1fr); }
-  .handy { width: 30%; right: 0; }
+  .iphone { width: 27%; }
   .flow { grid-template-columns: minmax(0, 1fr); }
   .people, .form .pair { grid-template-columns: minmax(0, 1fr); }
   .counter { top: -64px; display: flex; align-items: baseline; gap: 10px; padding: 9px 14px; font-size: 13px; } .counter b { font-size: 22px; }
@@ -348,7 +359,7 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
-  .hero { height: auto; } .stick { position: relative; }
+  .hero { height: auto; } .stick { position: relative; } .film { transform: none; border-radius: 0; animation: none; } .copy { animation: none; }
 }
 </style>
 </head>
@@ -392,11 +403,10 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 <main id="start">
   <section class="hero" id="hero" aria-labelledby="h-start">
     <div class="stick">
-      <div class="film" id="film"><img src="/media/roomtour-villa.jpg" alt=""><video id="heroVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video></div>
-      <ul class="facts" aria-label="Auf einen Blick"><li>Aus 3 Fotos</li><li>Full HD, quer oder hochkant</li><li>ab 300 € Festpreis</li></ul>
+      <div class="film" id="film"><img src="/media/roomtour-villa.jpg" alt="" fetchpriority="high"><i aria-hidden="true"></i><video id="heroVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video></div>
       <div class="wrap copy" id="copy">
-        <h1 id="h-start"><span><i>Aus drei Fotos</i></span><span><i>wird ein Video,</i></span><span><i>das Gäste bucht.</i></span></h1>
-        <div class="row"><p>KI-Roomtours für Airbnb und Ferienwohnungen. Sie schicken uns Fotos, wir liefern das fertige Video. Dazu Websites und NFC-Platten für mehr Google-Bewertungen.</p><div class="cta"><a class="btn btn--champ" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a><a class="btn btn--glass" href="#roomtours">Vorher und nachher</a></div></div>
+        <h1 id="h-start"><span><i>Roomtour-Videos</i></span><span><i>für Ferienwohnungen</i></span><span><i>und Hotels.</i></span></h1>
+        <div class="row"><div><p>Aus Ihren vorhandenen Fotos erstellen wir einen hochwertigen Video-Rundgang für Airbnb, Booking.com und Ihre Website. Ohne Fototermin, zum Festpreis.</p><ul class="facts"><li>Full HD, 16:9 und 9:16</li><li>Freigabe vor Veröffentlichung</li><li>ab 300 €</li></ul></div><div class="cta"><a class="btn btn--champ" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a><a class="btn btn--glass" href="#roomtours">Beispiel ansehen</a></div></div>
       </div>
     </div>
   </section>
@@ -405,9 +415,9 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
     <div class="wrap">
       <h2 id="h-svc">Drei Leistungen, die Ihnen Kunden bringen.</h2>
       <ul class="three">
-        <li><a href="#roomtours"><div class="pic"><img src="/media/tour-hd-2.jpg" alt="Wohnzimmer aus einer KI-Roomtour" loading="lazy"></div><h3>KI-Roomtours</h3><p>Ein Video-Rundgang aus Ihren Fotos, fertig für Airbnb, Booking.com und Ihre Website.</p><b><small>ab </small>300 €</b></a></li>
-        <li><a href="#websites"><div class="pic"><img src="/media/ref-spiruli.jpg" alt="Website von SPIRULI" loading="lazy"></div><h3>Websites</h3><p>Drei professionell gestaltete Seiten, perfekt auf dem Handy, inklusive Impressum und Datenschutz.</p><b><small>ab </small>300 €</b></a></li>
-        <li><a href="#nfc"><div class="pic"><img src="/media/nfc-front.jpg" alt="NFC-Platte für Google-Bewertungen" loading="lazy"></div><h3>NFC-Platten</h3><p>Gäste tippen mit dem Handy auf die Platte und bewerten Sie direkt bei Google, ohne App.</p><b>15 € <small>pro Stück</small></b></a></li>
+        <li><a href="#roomtours"><div class="pic"><img src="/media/tour-md-2.jpg" srcset="/media/tour-md-2.jpg 960w, /media/tour-hd-2.jpg 1920w" sizes="(max-width: 1023px) 90vw, 33vw" alt="Wohnzimmer aus einer KI-Roomtour" loading="lazy"></div><h3>KI-Roomtours</h3><p>Ein Video-Rundgang aus Ihren Fotos, fertig für Airbnb, Booking.com und Ihre Website.</p><b><small>ab </small>300 €</b></a></li>
+        <li><a href="#websites"><div class="pic"><img src="/media/ref-spiruli-desk-top.jpg" alt="Website von SPIRULI" loading="lazy" style="object-position:top"></div><h3>Websites</h3><p>Drei professionell gestaltete Seiten, perfekt auf dem Handy, inklusive Impressum und Datenschutz.</p><b><small>ab </small>300 €</b></a></li>
+        <li><a href="#nfc"><div class="pic"><img src="/media/nfc-platten.webp" alt="NFC-Platten für Google-Bewertungen in Weiß und Schwarz" loading="lazy"></div><h3>NFC-Platten</h3><p>Gäste tippen mit dem Handy auf die Platte und bewerten Sie direkt bei Google, ohne App.</p><b>15 € <small>pro Stück</small></b></a></li>
       </ul>
     </div>
   </section>
@@ -417,8 +427,8 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
       <h2 id="h-tour">Ziehen Sie den Regler: So wird aus Fotos ein Video.</h2>
       <p class="lead">Links die drei Fotos, die wir bekommen haben. Rechts das fertige Video. Gäste sehen sofort, wie sich Ihre Unterkunft anfühlt.</p>
       <div class="cmp" id="cmp">
-        <video id="tourVid" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video>
-        <div class="before"><img src="/media/tour-sm-1.jpg" alt="Foto Flur" loading="lazy"><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer" loading="lazy"><img src="/media/tour-sm-3.jpg" alt="Foto Balkon" loading="lazy"></div>
+        <video id="tourVid" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video>
+        <div class="before"><img src="/media/tour-md-1.jpg" srcset="/media/tour-md-1.jpg 960w, /media/tour-hd-1.jpg 1920w" sizes="(max-width: 700px) 100vw, 33vw" alt="Foto Flur" loading="lazy"><img src="/media/tour-md-2.jpg" srcset="/media/tour-md-2.jpg 960w, /media/tour-hd-2.jpg 1920w" sizes="(max-width: 700px) 100vw, 33vw" alt="Foto Wohnzimmer" loading="lazy"><img src="/media/tour-md-3.jpg" srcset="/media/tour-md-3.jpg 960w, /media/tour-hd-3.jpg 1920w" sizes="(max-width: 700px) 100vw, 33vw" alt="Foto Balkon" loading="lazy"></div>
         <span class="tag l">Vorher: 3 Fotos</span><span class="tag r">Nachher: Ihr Video</span>
         <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
       </div>
@@ -436,11 +446,11 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
         <h2 id="h-web">Websites, die Kunden überzeugen.</h2>
         <p class="lead">Wir planen, gestalten und bauen Ihre Website und stellen sie online. Klar und schnell im Basis-Paket, mit Animationen und 3D in den größeren Paketen.</p>
         <ul class="packs"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, Inhalte selbst bearbeitbar</p></li></ul>
-        <div class="row"><a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a><a class="link" href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener">Referenz SPIRULI ansehen</a></div>
+        <div class="row"><a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a><span class="ref">Referenz: SPIRULI, Getränke-Marke mit Online-Shop</span></div>
       </div>
       <div class="devices" id="devices">
-        <div class="laptop"><div class="laptop__bar"><i><b></b></i><span>spiruli.de</span></div><div class="screen"><img id="deskImg" src="/media/ref-spiruli.jpg" alt="Website von SPIRULI auf dem Computer" loading="lazy" width="1440" height="900"></div></div>
-        <div class="handy"><div><img id="mobImg" src="/media/ref-spiruli-mobile.jpg" alt="Website von SPIRULI auf dem Handy" loading="lazy"></div></div>
+        <div class="mac"><div class="mac__lid"><div class="mac__screen"><img class="scroller" id="deskImg" src="/media/ref-spiruli-desk.webp" alt="Website von SPIRULI auf dem Laptop" loading="lazy" width="1600" height="3000"></div></div><div class="mac__base"></div></div>
+        <div class="iphone"><div class="iphone__screen"><img class="scroller" id="mobImg" src="/media/ref-spiruli-mob.webp" alt="Website von SPIRULI auf dem iPhone" loading="lazy" width="780" height="5064"></div></div>
       </div>
     </div>
   </section>
@@ -574,36 +584,37 @@ document.addEventListener("DOMContentLoaded", function () {
   function whileVisible(el, on, off, t) { new IntersectionObserver(function (es) { es[0].isIntersecting ? on() : off(); }, { threshold: t || .3 }).observe(el); }
   $("#year").textContent = new Date().getFullYear();
 
-  /* ---------- scroll-linked: header, hero zoom, website frames, dock ---------- */
-  var head = $("#head"), dock = $("#dock"), hero = $("#hero"), film = $("#film"), copy = $("#copy"), facts = $(".facts");
-  var devices = $("#devices"), deskImg = $("#deskImg"), mobImg = $("#mobImg"), ticking = false;
-  function frame() {
-    ticking = false;
-    var vh = innerHeight, r = hero.getBoundingClientRect(), k = clamp(-r.top / (vh * .75), 0, 1);
-    head.classList.toggle("solid", k > .3 || head.classList.contains("open"));
-    if (!reduce) {
-      film.style.transform = "scale(" + (1 - k * .22).toFixed(4) + ")";
-      film.style.borderRadius = (k * 28).toFixed(1) + "px";
-      copy.style.opacity = (1 - k * 1.8).toFixed(3);
-      copy.style.transform = "translateY(" + (-k * 60).toFixed(1) + "px)";
-      facts.style.opacity = (1 - k * 2.2).toFixed(3);
-      var d = devices.getBoundingClientRect();
-      if (d.top < vh && d.bottom > 0) {
-        var p = clamp((vh - d.top) / (vh + d.height), 0, 1);
-        var dh = deskImg.offsetHeight - deskImg.parentNode.offsetHeight, mh = mobImg.offsetHeight - mobImg.parentNode.offsetHeight;
-        deskImg.style.transform = "translateY(" + (-Math.max(0, dh) * p).toFixed(1) + "px)";
-        mobImg.style.transform = "translateY(" + (-Math.max(0, mh) * p).toFixed(1) + "px)";
-      }
-    }
-    dock.classList.toggle("away", r.bottom > vh * .4 || $("#kontakt").getBoundingClientRect().top < vh * .8);
+  /* ---------- scroll-linked: header, hero zoom (fallback), website frames, dock ---------- */
+  var head = $("#head"), dock = $("#dock"), hero = $("#hero"), film = $("#film"), copy = $("#copy"), kontakt = $("#kontakt");
+  var css = window.CSS && CSS.supports("animation-timeline: scroll()");
+  var devices = $("#devices"), shots = [$("#deskImg"), $("#mobImg")], geo = null, cur = 0, want = 0, running = false;
+  function measure() { geo = { top: devices.getBoundingClientRect().top + scrollY, h: devices.offsetHeight, max: shots.map(function (im) { return Math.max(0, im.offsetHeight - im.parentNode.offsetHeight); }) }; }
+  function paint() {
+    // ease the fallback zoom towards its target so it never stutters
+    cur += (want - cur) * .18; if (Math.abs(want - cur) < .0005) cur = want;
+    film.style.transform = "scale(" + (1.06 - cur * .26).toFixed(4) + ")";
+    copy.style.opacity = Math.max(0, 1 - cur * 1.7).toFixed(3);
+    copy.style.transform = "translateY(" + (-cur * 50).toFixed(1) + "px)";
+    if (cur !== want) requestAnimationFrame(paint); else running = false;
   }
-  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
-  addEventListener("resize", frame); frame();
+  function onScroll() {
+    var vh = innerHeight, y = scrollY, k = clamp(y / (vh * .75), 0, 1);
+    head.classList.toggle("solid", k > .3 || head.classList.contains("open"));
+    dock.classList.toggle("away", k < .9 || kontakt.getBoundingClientRect().top < vh * .8);
+    if (reduce) return;
+    if (!css) { want = k; if (!running) { running = true; requestAnimationFrame(paint); } }
+    if (geo) { var p = clamp((y + vh * .45 - geo.top) / vh, 0, 1) * .5; shots.forEach(function (im, i) { im.style.transform = "translate3d(0," + (-geo.max[i] * p).toFixed(1) + "px,0)"; }); }
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", function () { measure(); onScroll(); });
+  shots.forEach(function (im) { im.addEventListener("load", function () { measure(); onScroll(); }); });
+  addEventListener("load", function () { measure(); onScroll(); });
+  measure(); onScroll();
   var hv = $("#heroVid"); if (reduce) hv.pause(); else whileVisible(hero, function () { hv.play().catch(function () {}); }, function () { hv.pause(); }, .05);
 
   /* ---------- menu ---------- */
   var menuBtn = $("#menuBtn"), mnav = $("#mnav");
-  function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; head.classList.toggle("open", open); frame(); }
+  function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; head.classList.toggle("open", open); onScroll(); }
   menuBtn.addEventListener("click", function () { menu(mnav.hidden); });
   mnav.addEventListener("click", function (e) { if (e.target.closest("a")) menu(false); });
   document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mnav.hidden) { menu(false); menuBtn.focus(); } });

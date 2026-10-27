@@ -3,7 +3,17 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 27.10. nachts (2): Design v14 „Kino“ — AKTUELL
+## Stand 27.10. nachts (3): Design v15 „Kino“ (Weiterentwicklung v14) — AKTUELL
+- Kunde zu v14: Spruch „Aus drei Fotos wird ein Video, das Gäste bucht“ klingt unprofessionell; Herauszoomen ruckelt; Website-Attrappe falsch proportioniert; Fotos/Videos plötzlich schlechte Qualität; NFC-Foto „wie auf eBay“; insgesamt seriöser, cooler, hochwertiger.
+- **Quelle `design/v15-template.html`**, bauen mit `python3 design/build.py v15`. Archiv v14 unter `public/v14/`.
+- Überschrift jetzt sachlich: **„Roomtour-Videos für Ferienwohnungen und Hotels.“** + Text „Aus Ihren vorhandenen Fotos erstellen wir einen hochwertigen Video-Rundgang …“ + Faktenzeile (Full HD 16:9/9:16 · Freigabe · ab 300 €) statt Pillen.
+- Zoom ruckelfrei: scroll-gekoppelte **CSS-Animation** (`animation-timeline: scroll(root)`, läuft im Compositor); Fallback per JS mit Glättung; kein Border-Radius-Animieren mehr (Video startet bei scale 1.06, Ecken außerhalb des Bildes).
+- Website-Attrappe: echter Laptop (16:10, Scharnier/Unterteil) + iPhone (9:19,5). Fehler war: `<img height>` ohne `height:auto` streckte das Bild. Neue Retina-Aufnahmen der SPIRULI-Seite (lokal gebaut aus `spiruli/`, Playwright 2x/3x): `ref-spiruli-desk.webp` (1600×3000, 3 Bildschirme), `ref-spiruli-mob.webp`, `ref-spiruli-desk-top.jpg`; scrollen im Rahmen mit.
+- **Achtung:** Die SPIRULI-Vercel-Vorschau ist passwortgeschützt (Vercel-Login) → Link „Live ansehen“ entfernt, bis der Kunde die Seite öffentlich macht.
+- Medien neu: Video aus bester Quelle (Commit 2fe8838) neu kodiert, CRF 18, leicht geschärft (12 MB) + `roomtour-villa-1280.mp4` (Handy, 3,9 MB); Standbilder `tour-hd-1..3` (1920) und `tour-md-1..3` (960) neu aus dem Video, srcset. Vorher/Nachher nutzt jetzt volle Auflösung (vorher 640-px-Bilder → unscharf).
+- NFC: **Studio-Produktbild** `nfc-platten.webp` (weiße + schwarze Platte, schräg auf Stein, Acryl-Kante, weicher Schatten), gerendert aus der Vektor-Platte – kein fremdes Foto (Urheberrecht).
+
+## Stand 27.10. nachts (2): Design v14 „Kino“ (Archiv `public/v14/`)
 - Kunde zu v13: „viel zu unspektakulär, langweilig, zu einheitlich, Farben unseriös, basic“. Wollte **keine Entwürfe mehr, direkt eine fertige Seite** (3 Ansätze `public/entwurf/spek-1|2|3` nur intern verglichen; „Kino“ gewählt, Vorher/Nachher-Regler aus spek-3 übernommen).
 - **Quelle: `design/v14-template.html`**, bauen mit `python3 design/build.py v14`. Archive: `public/v13/`, `public/v12/`, `public/v11/`.
 - Farben wie das vom Kunden früher gewählte v11: Stein `#ebe8e2` (Seite), `#e2ded6` (Kontakt/Fuß), Graphit `#1c1c1f` (NFC-Band, Hero-Rand), Tinte `#151517`, Champagner `#c9ad7c` (Knöpfe/Flächen), Champagner-Text `#74572c`. Schrift **Hanken Grotesk** 400–800, große fette Überschriften.
