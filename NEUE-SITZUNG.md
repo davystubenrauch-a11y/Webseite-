@@ -10,7 +10,7 @@
 
 Du betreust die Website der Agentur **F&D Solutions** aus München. Ziel: eine **überzeugende, seriöse, moderne Dienstleistungs-Website** (keine Hotel-, Immobilien- oder Tech-Startup-Optik), die konkret zeigt und vorführt, was wir anbieten, und Besucher zur Anfrage bringt. Antworte dem Kunden auf **Deutsch**, kurz und verständlich (er ist kein Entwickler).
 
-**Wichtigste Arbeitsregel:** Es gab bereits ~25 Komplett-Neugestaltungen. Das aktuelle Design (**v12 „Alles auf einen Blick“**, Kacheln) hat der Kunde **selbst ausgewählt**. Nicht wieder alles neu bauen, sondern **gezielt am Template `design/v12-template.html` weiterarbeiten** und mit `python3 design/v12-build.py` nach `public/site/index.html` bauen. Details in CLAUDE.md, Abschnitt „Design v12“. Wenn eine grundsätzliche Stilfrage offen ist: erst 2–4 echte Entwürfe als Screenshots zeigen (unter `public/entwurf/`), den Kunden wählen lassen, dann ausbauen.
+**Wichtigste Arbeitsregel:** Es gab bereits ~25 Komplett-Neugestaltungen. Das aktuelle Design ist **v13 „Ruhig & klar“** (offene Abschnitte, Logo-Marineblau, keine Kästen). Nicht wieder alles neu bauen, sondern **gezielt am Template `design/v13-template.html` weiterarbeiten** und mit `python3 design/build.py v13` nach `public/site/index.html` bauen. Details in CLAUDE.md, Abschnitt „Design v13“. Wenn eine grundsätzliche Stilfrage offen ist: erst 2–4 echte Entwürfe als Screenshots zeigen (unter `public/entwurf/`), den Kunden wählen lassen, dann ausbauen.
 
 ## 2. Unternehmen
 
@@ -60,7 +60,8 @@ Live-Datei: **`public/site/index.html`** (eine eigenständige HTML-Datei mit CSS
 
 | Pfad | Inhalt |
 |---|---|
-| `public/site/index.html` | **aktuelle Website (v12)** – gebaut aus `design/v12-template.html` |
+| `public/site/index.html` | **aktuelle Website (v13)** – gebaut aus `design/v13-template.html` |
+| `public/v12/index.html` | Version v12 Kacheln (Archiv) |
 | `public/v11/index.html` | vorherige Version v11 (Archiv) |
 | `public/site/vendor/` | gsap, ScrollTrigger, lenis (nur noch von v11 genutzt) |
 | `public/entwurf/a,b,c,ab1–ab4.html` | Stil-Entwürfe (ab2 = gewählte Richtung) |
