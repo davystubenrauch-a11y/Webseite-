@@ -3,6 +3,12 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand 28.10.: Design v10 „Warmes Luxus-Design“ (vom Kunden per Abfrage gewählt)
+- Kunde zu v9: Video nicht komplett sichtbar, langweilig, Hintergrund nicht seriös, „komisches Türkis“, blaue Knöpfe langweilig → wählte „Warmes Luxus-Design“ (Boutique-Hotel): Sandgrau `#efebe5`, Stein `#e7e1d8`, Hell `#f7f4ef`, Anthrazit `#1e1c1a`, gedämpft `#7a736a`. **Kein Blau/Türkis/Violett**, Farbe nur im Logo (Original Navy + Gold).
+- Schrift **Jost** (Futura-Charakter, leicht 300 für große Überschriften, Labels in Versalien mit weiter Laufweite). Knöpfe eckig, Anthrazit bzw. Kontur. Feine 1-px-Linien statt Karten-Schatten.
+- Einstieg nach Aman-Vorbild (aman.com per Firecrawl verglichen): kurze Überschriftenzeile, darunter **das Video vollständig in 16:9** über die volle Breite (object-fit: contain), eigene Play/Pause-Taste, Kapitel-Linien Flur/Wohnzimmer/Balkon, rechts „Entstanden aus 3 Fotos“ mit Miniaturen. Vorher/Nachher-Regler entfernt.
+- „KI-Merkmale“ entfernt: kein ✦-Glitzer, keine Pillen-Badges, keine Verlaufs-Chips, keine hochzählenden Zahlen, keine doppelten Beschriftungen (nur „01 — KI-Roomtours“ usw.), Schritte als Textzeile mit Linie statt Kacheln, Umschalter als unterstrichene Textlinks.
+
 ## Stand 27.10. spät: Design v9 „Seriös“ (Weiterentwicklung von v8)
 - Kunde: „seriöser und attraktiver, andere Hintergründe/Farben, Video war unscharf, hochwertiger.“
 - Einstieg komplett auf **Nachtblau `#0b1730`** mit ruhig fließendem Indigo/Petrol-Licht (Canvas) + feines Punkteraster, weiße Schrift, weißer Haupt-Button. Kein Pink/Pfirsich/Violett mehr.
