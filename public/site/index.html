@@ -188,9 +188,12 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .strip:hover .strip__in, .strip:focus-within .strip__in { animation-play-state: paused; }
 @keyframes slide { to { transform: translateX(-50%); } }
 
-/* ---------- services: big cards stacking on scroll ---------- */
-.stack { margin-top: clamp(40px, 6vw, 72px); display: grid; gap: 28px; }
-.svc { position: sticky; box-sizing: border-box; top: calc(96px + var(--i) * 18px); display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(24px, 4vw, 56px); align-items: center; min-height: min(78vh, 680px); padding: clamp(24px, 3.4vw, 48px); border-radius: 30px; background: var(--white); box-shadow: var(--edge), var(--shadow); transform-origin: 50% 0; }
+/* ---------- services: open rows, image and text alternate sides ---------- */
+.stack { margin-top: clamp(48px, 7vw, 88px); display: grid; }
+.svc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 88px); align-items: center; padding: clamp(40px, 5vw, 72px) 0; border-top: 1px solid var(--line); }
+.svc:last-child { border-bottom: 1px solid var(--line); }
+.svc:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.svc:nth-child(even) > :first-child { order: 2; }
 .svc__no { font-family: var(--head); font-weight: 600; font-size: 0.9375rem; color: var(--champ-t); }
 .svc h3 { margin-top: 12px; font-size: clamp(30px, 3.2vw, 48px); letter-spacing: -.035em; }
 .svc p { margin-top: 14px; max-width: 46ch; }
@@ -198,10 +201,14 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .svc__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 28px; }
 .svc__price { font-family: var(--head); font-size: 2rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.03em; color: var(--ink); }
 .svc__price small { font-family: var(--font); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
-.svc__media { position: relative; height: 100%; min-height: 360px; border-radius: 20px; overflow: hidden; background: var(--bg-2); }
+.svc__media { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; background: var(--bg-2); }
 .svc__media video, .svc__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .svc__media--web { background: #eef0ec; } .svc__media--web > img { object-position: top center; }
 .svc__media--nfc { background: #e3ded5; }
+.vplay { position: absolute; z-index: 6; left: 50%; top: 50%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px 0 18px; border-radius: 999px; background: rgba(17,17,20,.78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-weight: 700; }
+.vplay svg { width: 18px; height: 18px; fill: currentColor; }
+.vplay[hidden] { display: none; }
+.cmp .vplay { top: auto; bottom: 16px; left: auto; right: 16px; translate: none; }
 
 /* roomtour before / after */
 .ba { margin-top: clamp(40px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
@@ -397,8 +404,8 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 @media (max-width: 1023px) {
   .nav { display: none; } .menu-btn { display: inline-flex; }
   .sec__head, .ba, .case, .nfc, .about, .two, .contact__grid { grid-template-columns: minmax(0, 1fr); }
-  .svc { position: relative; top: auto; grid-template-columns: minmax(0, 1fr); min-height: 0; }
-  .svc__media { min-height: 0; aspect-ratio: 16 / 10; }
+  .svc, .svc:nth-child(even) { grid-template-columns: minmax(0, 1fr); } .svc:nth-child(even) > :first-child { order: 0; }
+  .svc__media { aspect-ratio: 16 / 10; order: -1; }
   .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; } .steps::before, .steps::after { display: none; }
   .plans { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .promise { grid-template-columns: 1fr 1fr; } .promise div:nth-child(3) { padding-left: 0; border-left: 0; }
@@ -500,15 +507,15 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-svc">Drei Leistungen. Ein Ziel: mehr Kunden.</h2></div><p class="lead">Jede Leistung funktioniert für sich und zusammen noch besser. Sie bekommen alles aus einer Hand, mit einem festen Ansprechpartner.</p></div>
       <div class="stack" id="stack">
-        <article class="svc" style="--i:0">
+        <article class="svc">
           <div><span class="svc__no">Websites</span><h3>Sichtbar werden, wo Kunden suchen.</h3><p>Wir planen, gestalten und bauen Ihre Website und stellen sie online. Schnell, klar und perfekt auf dem Handy.</p><ul class="ticks"><li>3 professionell gestaltete Seiten im Basis-Paket</li><li>Kontakt, Google Maps, Impressum und Datenschutz</li><li>Animationen, 3D und Shop in größeren Paketen</li></ul><div class="svc__foot"><p class="svc__price"><small>ab </small>300 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a></div></div>
           <div class="svc__media svc__media--web"><img src="/media/ref-spiruli-desk-top.jpg" alt="Website von SPIRULI" loading="lazy"></div>
         </article>
-        <article class="svc" id="roomtours" style="--i:1">
+        <article class="svc" id="roomtours">
           <div><span class="svc__no">KI-Roomtours</span><h3>Gebucht werden, weil Gäste es fühlen.</h3><p>Aus Ihren Fotos erstellen wir einen Video-Rundgang für Airbnb, Booking.com und Ihre Website. Ohne Fototermin.</p><ul class="ticks"><li>Full HD, quer (16:9) oder hochkant (9:16)</li><li>Basis bis 150 m² oder ein ganzes Stockwerk</li><li>Freigabe durch Sie vor der Veröffentlichung</li></ul><div class="svc__foot"><p class="svc__price"><small>ab </small>300 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div></div>
-          <div class="svc__media"><video id="svcVid" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Beispiel einer KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div>
+          <div class="svc__media"><video id="svcVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel einer KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video><button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button></div>
         </article>
-        <article class="svc" style="--i:2">
+        <article class="svc">
           <div><span class="svc__no">NFC-Platten</span><h3>Bewertet werden, mit einem Antippen.</h3><p>Gäste halten ihr Handy an die Platte und landen direkt auf Ihrer Google-Bewertungsseite. Ohne App.</p><ul class="ticks"><li>Rund, Ø 10 cm, Acryl, in Weiß oder Schwarz</li><li>Mit Ihrem Google-Profil verknüpft</li><li>Für Restaurants 5 bis 10 Stück empfohlen</li></ul><div class="svc__foot"><p class="svc__price">15 € <small>pro Stück</small></p><a class="btn btn--ink" href="#nfc">Live-Demo ansehen</a></div></div>
           <div class="svc__media svc__media--nfc"><img src="/media/nfc-platten.webp" alt="NFC-Platten in Weiß und Schwarz" loading="lazy"></div>
         </article>
@@ -522,8 +529,9 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
       <div class="ba">
         <div><h2 id="h-ba">Vom Foto zum Video.</h2><p class="lead">Links ein ganz normales Foto, wie Sie es uns schicken. Rechts der fertige Rundgang. Ziehen Sie den Regler und wählen Sie einen Raum.</p><div class="tabs" role="tablist" aria-label="Raum wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Flur</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Wohnzimmer</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="2">Balkon</button></div></div>
         <div class="cmp" id="cmp" role="tabpanel" aria-label="Vorher und Nachher">
-          <video id="tourVid" poster="/media/roomtour-villa.jpg" muted playsinline preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video>
+          <video id="tourVid" poster="/media/roomtour-villa.jpg" muted playsinline autoplay preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video>
           <img class="before" id="beforeImg" src="/media/vorher-1.jpg" srcset="/media/vorher-1-md.jpg 1280w, /media/vorher-1.jpg 1920w" sizes="(max-width: 1023px) 100vw, 60vw" alt="Vorher: normales Foto des Raums" loading="lazy">
+          <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
           <span class="tag l">Ihr Foto</span><span class="tag r">Ihre Roomtour</span>
           <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
         </div>
@@ -722,12 +730,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------- videos play only while visible; one button stops all motion in the start ---------- */
   var still = reduce, pauseBtn = $("#pause");
-  [$("#heroVid"), $("#svcVid")].forEach(function (v) { if (reduce) { v.pause(); return; } whileVisible(v, function () { if (!(still && v.id === "heroVid")) v.play().catch(function () {}); }, function () { v.pause(); }, .2); });
+  var shown = [];
+  function start(v) {
+    var btn = v.parentNode.querySelector(".vplay"), p = v.play();
+    if (p && p.then) p.then(function () { if (btn) btn.hidden = true; }, function () { if (btn) btn.hidden = false; });
+  }
+  function keepPlaying(v) {
+    var btn = v.parentNode.querySelector(".vplay");
+    if (btn) btn.addEventListener("click", function (e) { e.stopPropagation(); start(v); });
+    if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
+    whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
+  }
+  ["#heroVid", "#svcVid", "#tourVid"].forEach(function (s) { keepPlaying($(s)); });
+  // Safari may refuse to start videos until the first touch; try again then
+  ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function retry() { shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); removeEventListener(ev, retry); }, { passive: true }); });
   function setStill(s) {
     still = s; document.documentElement.classList.toggle("still", s);
     pauseBtn.setAttribute("aria-pressed", String(s)); pauseBtn.querySelector("span").textContent = s ? "Bewegung fortsetzen" : "Bewegung anhalten";
     pauseBtn.querySelector("svg").innerHTML = s ? '<path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/>' : '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
-    var hv = $("#heroVid"); if (s) hv.pause(); else hv.play().catch(function () {});
+    var hv = $("#heroVid"); if (s) hv.pause(); else start(hv);
   }
   if (reduce) pauseBtn.hidden = true; else pauseBtn.addEventListener("click", function () { setStill(!still); });
 
@@ -736,7 +757,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var rooms = [[0, 3.6], [3.6, 7.3], [7.3, 11]], room = 0;
   function setX(p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
-  cmp.addEventListener("pointerdown", function (e) { drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); });
+  cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
   cmp.addEventListener("pointermove", function (e) { if (drag) pos(e); });
   cmp.addEventListener("pointerup", function () { drag = false; });
   grip.addEventListener("keydown", function (e) { var x = parseFloat(cmp.style.getPropertyValue("--x")) || 50; if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); touched = true; setX(x + (e.key === "ArrowLeft" ? -5 : 5)); } });
@@ -745,7 +766,7 @@ document.addEventListener("DOMContentLoaded", function () {
     $$("[data-room]").forEach(function (b) { var on = +b.getAttribute("data-room") === i; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
     bimg.srcset = "/media/vorher-" + n + "-md.jpg 1280w, /media/vorher-" + n + ".jpg 1920w"; bimg.src = "/media/vorher-" + n + ".jpg";
     try { tv.currentTime = rooms[i][0]; } catch (e) {}
-    if (!reduce) tv.play().catch(function () {});
+    start(tv);
   }
   $$("[data-room]").forEach(function (b) {
     b.addEventListener("click", function () { pickRoom(+b.getAttribute("data-room")); });
@@ -756,7 +777,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   tv.addEventListener("timeupdate", function () { if (tv.currentTime >= rooms[room][1] - .05 || tv.currentTime < rooms[room][0] - .3) tv.currentTime = rooms[room][0]; });
-  whileVisible(cmp, function () { if (!reduce) tv.play().catch(function () {}); }, function () { tv.pause(); }, .3);
   setX(50);
 
   /* ---------- statement words, process line (fallback without GSAP) ---------- */
@@ -846,7 +866,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
 
-  /* ---------- GSAP: smooth scroll, floating start, stacking cards, reveals ---------- */
+  /* ---------- GSAP: smooth scroll, floating start, scroll-linked details ---------- */
   if (G) {
     var ST = window.ScrollTrigger, Split = window.SplitText, out = "expo.out";
     G.registerPlugin(ST, Split);
@@ -870,14 +890,6 @@ document.addEventListener("DOMContentLoaded", function () {
       $("#hero").addEventListener("pointermove", function (e) { if (still) return; var nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5; movers.forEach(function (m) { m.x(nx * -46 * m.d); m.y(ny * -36 * m.d); }); });
     }
     G.to(".hero__center", { opacity: 0, y: -60, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "60% top", scrub: .5 } });
-    // stacking cards: the earlier card steps back as the next one slides over it
-    if (innerWidth > 1023) {
-      var cards = $$(".svc");
-      cards.forEach(function (c, i) {
-        if (i === cards.length - 1) return;
-        G.to(c, { scale: .94 - (cards.length - 2 - i) * .02, filter: "brightness(.92)", ease: "none", scrollTrigger: { trigger: cards[i + 1], start: "top bottom", end: "top " + (96 + (i + 1) * 18) + "px", scrub: .5 } });
-      });
-    }
     // before / after follows the scroll until grabbed
     var mix = { x: 88 };
     G.to(mix, { x: 18, ease: "none", scrollTrigger: { trigger: "#cmp", start: "top 80%", end: "bottom 30%", scrub: .6 }, onUpdate: function () { if (!touched) setX(mix.x); } });
