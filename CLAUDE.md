@@ -3,7 +3,16 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 28.10.: Design v18 „Sichtbar. Gebucht. Bewertet.“ (komplett neu) — AKTUELL
+## Stand 28.10.: Design v19 „Schaufenster“ (komplett neu, vollständige Seite) — AKTUELL
+- Kunde: „nochmal eine komplett neue Seite mit neuem Design, vollständig mit allem, was eine Seite braucht“.
+- **Quelle `design/v19-template.html`**, bauen mit `python3 design/build.py v19`. Archiv v18 unter `public/v18/`. NFC-Demo + Rechner aus v18 übernommen.
+- Idee nach Kunden-Vorbild QCLAY: Aussage in der Mitte („Digitale Auftritte, die Kunden gewinnen.“), ringsum schweben echte Arbeitsproben (Roomtour-Video, SPIRULI-Handy, NFC-Platten, Google-Bewertung, „Neue Buchung“, Website) – fliegen beim Laden ein, folgen Maus und Scroll (GSAP quickTo/scrub). Dann Branchen-Laufband → Leistungen als große **Karten, die sich beim Scrollen stapeln** (sticky, vordere tritt zurück) → Vorher/Nachher (Räume) → **Referenz SPIRULI** (Laptop klappt auf, Seite scrollt in Laptop + iPhone, Fakten-Liste) → NFC auf Tinte (Demo + Rechner) → Ablauf (Linie füllt sich) → Preise als 3 Karten + 4 Versprechen → Über uns (Wörter leuchten auf) → Fragen → Kontakt auf Tinte mit **vollständigem Formular** → Fußzeile mit Navigation, Impressum, Datenschutz.
+- Formular sendet an `/api/inquiry` (volles Inquiry-Format, Pflicht: Leistung, Name, E-Mail, Einwilligung Datenschutz; Honeypot `website`); ohne konfigurierten Versand (503/502/Fehler) öffnet sich automatisch eine fertige E-Mail an fd.solutions@web.de.
+- Vollständigkeit: Meta-/OG-Daten + Vorschaubild `public/media/og-fd.jpg` (1200×630), `app/robots.ts` (Archive/Entwürfe nicht indexieren), `app/sitemap.ts`, schema.org, Skip-Link, Menü fürs Handy, feste Leiste „Anrufen / Kostenlos anfragen“.
+- Farben: Porzellan #f6f4ef, Weiß, Tinte #111114, Text #45433e, Champagner #c9ad7c (Text #74572c). Schrift **Sora** (Überschriften) + **Figtree** (Text).
+- Geprüft 1440/2000/820/390 px: keine JS-Fehler, kein Überlaufen, Kontrast ≥ 4,5:1, Formular-Ersatzweg getestet.
+
+## Stand 28.10.: Design v18 „Sichtbar. Gebucht. Bewertet.“ (Archiv `public/v18/`)
 - Kunde: „komplett neue Webseite mit neuem Design“, mit GSAP (github.com/greensock/GSAP), Lenis (darkroomengineering/lenis) und React Bits (DavidHDev/react-bits) als Hilfe.
 - **Quelle `design/v18-template.html`**, bauen mit `python3 design/build.py v18`. Archive: `public/v17/` (v16-Layout + GSAP), `public/v16/` … 
 - Technik: **GSAP 3.13** (gsap, ScrollTrigger, SplitText) selbst gehostet in `public/site/vendor/gsap-3.13/`, **Lenis 1.3.26** in `public/site/vendor/lenis-1.3/` (weiches Scrollen nur mit Maus). React Bits ist React-only → Effekte in reinem JS nachgebaut: Magnet-Knöpfe, BlurText (Absätze aus der Unschärfe), Buchstaben-Aufstieg (SplitText). Ohne GSAP bleibt alles sichtbar; reduzierte Bewegung = statisch.

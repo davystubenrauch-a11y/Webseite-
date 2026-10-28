@@ -10,7 +10,7 @@
 
 Du betreust die Website der Agentur **F&D Solutions** aus München. Ziel: eine **überzeugende, seriöse, moderne Dienstleistungs-Website** (keine Hotel-, Immobilien- oder Tech-Startup-Optik), die konkret zeigt und vorführt, was wir anbieten, und Besucher zur Anfrage bringt. Antworte dem Kunden auf **Deutsch**, kurz und verständlich (er ist kein Entwickler).
 
-**Wichtigste Arbeitsregel:** Es gab bereits ~25 Komplett-Neugestaltungen. Das aktuelle Design ist **v18 „Sichtbar. Gebucht. Bewertet.“** (komplett neu, mit GSAP + Lenis) (Vollbild-Video, das sich beim Scrollen einrahmt; Graphit/Stein/Champagner; Vorher/Nachher-Regler). Nicht wieder alles neu bauen, sondern **gezielt am Template `design/v18-template.html` weiterarbeiten** und mit `python3 design/build.py v18` nach `public/site/index.html` bauen. Details in CLAUDE.md, Abschnitt „Design v18“. Der Kunde will **keine Entwürfe zur Auswahl mehr**, sondern direkt Ergebnisse. Wenn eine grundsätzliche Stilfrage offen ist: erst 2–4 echte Entwürfe als Screenshots zeigen (unter `public/entwurf/`), den Kunden wählen lassen, dann ausbauen.
+**Wichtigste Arbeitsregel:** Es gab bereits ~25 Komplett-Neugestaltungen. Das aktuelle Design ist **v19 „Schaufenster“** (komplett neu, vollständige Seite; Aussage in der Mitte, ringsum schwebende Arbeitsproben; Porzellan/Tinte/Champagner; GSAP + Lenis). Nicht wieder alles neu bauen, sondern **gezielt am Template `design/v19-template.html` weiterarbeiten** und mit `python3 design/build.py v19` nach `public/site/index.html` bauen. Details in CLAUDE.md, Abschnitt „Design v19“. Der Kunde will **keine Entwürfe zur Auswahl mehr**, sondern direkt Ergebnisse. Wenn eine grundsätzliche Stilfrage offen ist: erst 2–4 echte Entwürfe als Screenshots zeigen (unter `public/entwurf/`), den Kunden wählen lassen, dann ausbauen.
 
 ## 2. Unternehmen
 
@@ -60,7 +60,7 @@ Live-Datei: **`public/site/index.html`** (eine eigenständige HTML-Datei mit CSS
 
 | Pfad | Inhalt |
 |---|---|
-| `public/site/index.html` | **aktuelle Website (v18)** – gebaut aus `design/v18-template.html` |
+| `public/site/index.html` | **aktuelle Website (v19)** – gebaut aus `design/v19-template.html` |
 | `public/v17/index.html`, `public/v16/index.html` | Versionen v17/v16 (Archiv) |
 | `public/site/vendor/gsap-3.13/`, `lenis-1.3/` | GSAP 3.13 (ScrollTrigger, SplitText) und Lenis 1.3.26, selbst gehostet |
 | `public/v15/index.html` | Version v15 (Archiv) |
