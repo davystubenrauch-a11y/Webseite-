@@ -33,7 +33,11 @@
 </script>
 <style>
 /* =====================================================================
-   F&D Solutions · Design v16 „Galerie“ (Weiterentwicklung von v15)
+   F&D Solutions · Design v17 „Galerie“ mit GSAP (Weiterentwicklung von v16)
+   v17      Bewegung mit GSAP 3.13 (ScrollTrigger + SplitText, selbst gehostet), weiches
+            Scrollen mit Lenis 1.3 am Computer; Effekte nach React-Bits-Vorbild in reinem JS:
+            magnetische Knöpfe, Text aus der Unschärfe, Laufband mit Scroll-Geschwindigkeit.
+            Ohne GSAP läuft die v16-Logik als Rückfall.
    v16      Start zeigt alle drei Leistungen als Galerie (aktives Feld öffnet sich groß),
             Vorher/Nachher je Raum mit farbigem Vorher-Foto, KI-geschärfte Standbilder,
             untere Bereiche mit Effekten: Ablauf-Linie, Licht-Spot bei Preisen,
@@ -391,6 +395,16 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   .dock { display: grid; }
   .foot { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
 }
+/* ---------- GSAP mode: JS owns these motions ---------- */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.gs .hero h1 span i, .gs .hero__side, .gs .gallery { animation: none; }
+.gs .hero h1 span i { transform: none; }
+.gs .say span { transition: none; }
+.gs .flow h3, .gs .flow p { transition: opacity .5s; }
+.devices { perspective: 1400px; }
+.mac { transform-origin: 50% 100%; }
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
   .say span { opacity: 1; } .flow h3, .flow p { opacity: 1; }
@@ -606,12 +620,18 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 
 <div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#kontakt">Kostenlos anfragen</a></div>
 
+<script src="/site/vendor/gsap-3.13/gsap.min.js" defer></script>
+<script src="/site/vendor/gsap-3.13/ScrollTrigger.min.js" defer></script>
+<script src="/site/vendor/gsap-3.13/SplitText.min.js" defer></script>
+<script src="/site/vendor/lenis-1.3/lenis.min.js" defer></script>
 <script>
 document.addEventListener("DOMContentLoaded", function () {
   "use strict";
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var G = !reduce && window.gsap && window.ScrollTrigger && window.SplitText ? window.gsap : null;
+  if (G) document.documentElement.classList.add("gs");
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   function whileVisible(el, on, off, t) { new IntersectionObserver(function (es) { es[0].isIntersecting ? on() : off(); }, { threshold: t || .3 }).observe(el); }
   $("#year").textContent = new Date().getFullYear();
@@ -629,7 +649,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var vh = innerHeight, y = scrollY;
     head.classList.toggle("solid", y > 8);
     dock.classList.toggle("away", y < vh * .6 || kontakt.getBoundingClientRect().top < vh * .8);
-    if (reduce) return;
+    if (reduce || G) return;
     if (geo) { var p = clamp((y + vh * .45 - geo.top) / vh, 0, 1) * .5; shots.forEach(function (im, i) { im.style.transform = "translate3d(0," + (-geo.max[i] * p).toFixed(1) + "px,0)"; }); }
     var f = flow.getBoundingClientRect(), fp = clamp((vh * .55 - f.top) / f.height, 0, 1);
     flow.style.setProperty("--p", fp.toFixed(3));
@@ -692,7 +712,7 @@ document.addEventListener("DOMContentLoaded", function () {
   tv.addEventListener("timeupdate", function () { if (tv.currentTime >= rooms[room][1] - .05 || tv.currentTime < rooms[room][0] - .3) tv.currentTime = rooms[room][0]; });
   tv.addEventListener("ended", function () { tv.currentTime = rooms[room][0]; tv.play().catch(function () {}); });
   var swinging = false;
-  function swing(t) { if (!auto || !swinging) return; if (!t0) t0 = t; setX(50 + Math.sin((t - t0) / 1500) * 30); requestAnimationFrame(swing); }
+  function swing(t) { if (G || !auto || !swinging) return; if (!t0) t0 = t; setX(50 + Math.sin((t - t0) / 1500) * 30); requestAnimationFrame(swing); }
   whileVisible(cmp, function () { if (!reduce) tv.play().catch(function () {}); if (auto && !swinging) { swinging = true; requestAnimationFrame(swing); } }, function () { tv.pause(); swinging = false; }, .3);
   if (reduce) setX(50);
 
@@ -749,6 +769,79 @@ document.addEventListener("DOMContentLoaded", function () {
     location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über die Website" + (s.length ? ": " + s.join(" + ") : "")) + "&body=" + encodeURIComponent(body);
     $("#ok").hidden = false;
   });
+
+  /* ---------- GSAP: smooth scroll, reveals and scroll-linked scenes ---------- */
+  if (G) {
+    var ST = window.ScrollTrigger, Split = window.SplitText;
+    G.registerPlugin(ST, Split);
+    var lenis = null;
+    if (window.Lenis && matchMedia("(hover: hover) and (pointer: fine)").matches) {
+      lenis = new Lenis({ lerp: .1 });
+      lenis.on("scroll", ST.update);
+      G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
+      $$('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function (e) { var id = a.getAttribute("href"), el = id.length > 1 && $(id); if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -78, duration: 1.3 }); } }); });
+    }
+    var out = "expo.out";
+    // hero: lines rise from their masks, the gallery opens like curtains
+    G.from(".hero h1 span i", { yPercent: 110, duration: 1.2, ease: out, stagger: .1, delay: .1 });
+    G.from(".hero__side", { opacity: 0, y: 24, duration: 1, ease: out, delay: .45 });
+    G.from("#gallery li", { clipPath: "inset(100% 0% 0% 0% round 22px)", y: 50, duration: 1.4, ease: out, stagger: .12, delay: .35, clearProps: "clipPath,transform" });
+    G.from(".trust li", { opacity: 0, y: 12, duration: .8, ease: out, stagger: .06, delay: .9 });
+    // every section heading reveals line by line
+    $$("main h2").forEach(function (h) {
+      if (h.closest(".panel") || h.classList.contains("sr-only")) return;
+      Split.create(h, { type: "lines", mask: "lines", autoSplit: true, onSplit: function (self) {
+        return G.from(self.lines, { yPercent: 105, duration: 1.1, ease: out, stagger: .08, scrollTrigger: { trigger: h, start: "top 88%", once: true } });
+      } });
+    });
+    // leads come into focus word by word (after React Bits "BlurText")
+    $$("main .lead").forEach(function (el) {
+      Split.create(el, { type: "words", autoSplit: true, onSplit: function (self) {
+        return G.from(self.words, { opacity: 0, filter: "blur(10px)", y: 10, duration: .8, ease: "power3.out", stagger: .018, scrollTrigger: { trigger: el, start: "top 90%", once: true } });
+      } });
+    });
+    // before / after: scrolling slides from photo to video until someone grabs the handle
+    var mix = { x: 86 };
+    G.to(mix, { x: 18, ease: "none", scrollTrigger: { trigger: "#cmp", start: "top 75%", end: "bottom 35%", scrub: .6 }, onUpdate: function () { if (auto) setX(mix.x); } });
+    G.from("#cmp", { scale: .94, opacity: 0, duration: 1.2, ease: out, scrollTrigger: { trigger: "#cmp", start: "top 92%", once: true } });
+    // websites: the laptop opens towards you, the reference scrolls inside both screens
+    G.fromTo(".mac", { rotateX: 22, y: 70, opacity: .2 }, { rotateX: 0, y: 0, opacity: 1, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 95%", end: "top 45%", scrub: .8 } });
+    G.from(".iphone", { y: 120, opacity: 0, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 85%", end: "top 40%", scrub: .8 } });
+    shots.forEach(function (im) {
+      G.to(im, { y: function () { return -Math.max(0, im.offsetHeight - im.parentNode.offsetHeight) * .55; }, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 55%", end: "bottom top", scrub: .6, invalidateOnRefresh: true } });
+    });
+    // NFC: the plate and phone settle in
+    G.from("#stage .plate", { y: 90, opacity: 0, duration: 1.3, ease: out, scrollTrigger: { trigger: "#stage", start: "top 85%", once: true } });
+    G.from("#stage .phone", { y: -60, opacity: 0, duration: 1.3, ease: out, delay: .15, scrollTrigger: { trigger: "#stage", start: "top 85%", once: true } });
+    // process: the line fills with the reading position, steps light up
+    G.to(flow, { "--p": 1, ease: "none", scrollTrigger: { trigger: flow, start: "top 55%", end: "bottom 55%", scrub: .4 } });
+    steps.forEach(function (li) { ST.create({ trigger: li, start: "top 62%", onEnter: function () { li.classList.add("lit"); }, onLeaveBack: function () { li.classList.remove("lit"); } }); });
+    // prices: rows slide in
+    G.from(".table tbody tr", { opacity: 0, x: -24, duration: .8, ease: out, stagger: .05, scrollTrigger: { trigger: ".table", start: "top 82%", once: true } });
+    // about: the statement lights up word by word with the scroll
+    G.to(words, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: say, start: "top 80%", end: "bottom 40%", scrub: .5 } });
+    G.from(".person", { opacity: 0, y: 40, duration: 1, ease: out, stagger: .12, scrollTrigger: { trigger: ".people", start: "top 88%", once: true } });
+    // marquee: drifts with the scroll and leans into fast scrolling
+    // marquee runs on its own and speeds up / turns with the scroll (after React Bits "ScrollVelocity")
+    var lean = G.quickTo(marq, "skewX", { duration: .4, ease: "power3" }), mx = 0, dir = 1, boost = 0, half = 0;
+    function mhalf() { half = marq.scrollWidth / 2; }
+    mhalf(); addEventListener("resize", mhalf);
+    var vel = ST.create({ trigger: "body", start: 0, end: "max", onUpdate: function (self) { var v = self.getVelocity(); if (v) dir = v > 0 ? 1 : -1; boost = Math.min(Math.abs(v) / 6, 900); lean(clamp(v / -260, -7, 7)); } });
+    var mvis = false; new IntersectionObserver(function (es) { mvis = es[0].isIntersecting; }).observe(marq);
+    G.ticker.add(function (t, dt) {
+      if (!mvis || !half) return;
+      mx -= dir * (70 + boost) * dt / 1000; boost *= .92;
+      if (mx <= -half) mx += half; else if (mx > 0) mx -= half;
+      G.set(marq, { x: mx });
+    });
+    // magnetic call-to-action buttons (after React Bits "Magnet"), mouse only
+    if (matchMedia("(hover: hover) and (pointer: fine)").matches) $$(".btn--ink, .btn--champ").forEach(function (b) {
+      var bx = G.quickTo(b, "x", { duration: .5, ease: "power3" }), by = G.quickTo(b, "y", { duration: .5, ease: "power3" });
+      b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect(); bx((e.clientX - r.left - r.width / 2) * .28); by((e.clientY - r.top - r.height / 2) * .35); });
+      b.addEventListener("pointerleave", function () { bx(0); by(0); });
+    });
+    addEventListener("load", function () { ST.refresh(); mhalf(); });
+  }
 });
 </script>
 </body>
