@@ -1,6 +1,6 @@
 # F&D Solutions – Design-Briefing
 
-Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
+Website der Agentur **FOAV** (Domain **foav.de**, neuer Name ab 28.10.; vorher F&D Solutions – Seite, Logo und Texte sind noch auf F&D umzustellen) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
 ## Stand 28.10.: Design v19 „Schaufenster“ (komplett neu, vollständige Seite) — AKTUELL
