@@ -3,7 +3,16 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 27.10. nachts (3): Design v15 „Kino“ (Weiterentwicklung v14) — AKTUELL
+## Stand 28.10.: Design v16 „Galerie“ (Weiterentwicklung v15) — AKTUELL
+- Kunde zu v15: Start wirkt, als würden wir **nur** Roomtours machen; Qualität nicht perfekt; Vorher/Nachher: Fotos nicht in voller Größe, Grau „komisch“, passende Vorher-Fotos erstellen; Roomtour-Bilder unscharf; untere Bereiche (Ablauf, Preise, Über uns …) „basic, langweilig“ → coole Effekte.
+- **Quelle `design/v16-template.html`**, bauen mit `python3 design/build.py v16`. Archiv v15 unter `public/v15/`.
+- Start: Überschrift **„Mehr Gäste, Kunden und Bewertungen.“** + Agentur-Text; darunter **Galerie aller drei Leistungen** (Roomtour-Video, SPIRULI-Website, NFC-Studio-Bild): aktives Feld öffnet sich groß (flex), wechselt alle 6 s mit Fortschrittslinie, bis Maus/Fokus es übernimmt; Handy: untereinander. Zeile „Festpreis · 24 h · zwei Gründer · München“. Kein Vollbild-Video mehr (machte das Material unscharf); Kopfzeile immer hell.
+- Vorher/Nachher: Umschalter **Flur / Wohnzimmer / Balkon**; links ein **farbiges Vorher-Foto** in voller Größe (`vorher-1..3.jpg` + `-md`; aus den schärfsten Videobildern, als normales Handyfoto aufbereitet: leicht schief, kühler, flacher, leichte Vignette), rechts das Video, das im Raum-Abschnitt in Schleife läuft. 16:9.
+- Bildqualität: schärfste Frames per Laplace-Varianz gesucht, mit OpenCV **EDSR x2** hochgerechnet (Modell im Scratchpad), dann auf 1920 verkleinert.
+- Untere Bereiche: **Ablauf** = klebende Überschrift links, rechts 4 große Schritte, Linie füllt sich beim Scrollen champagner, Schritte leuchten auf. **Preise** auf Graphit mit Licht-Spot, der der Maus folgt. **Über uns** = großes Statement, Wörter leuchten beim Scrollen nacheinander auf. **Laufband** „KI-Roomtours / Websites / NFC-Platten / München“ (voll + Kontur) bewegt sich mit dem Scrollen vor dem Kontakt.
+- Geprüft 1440/2000/1180/820/390 px: kein Überlaufen, keine JS-Fehler.
+
+## Stand 27.10. nachts (3): Design v15 „Kino“ (Archiv `public/v15/`)
 - Kunde zu v14: Spruch „Aus drei Fotos wird ein Video, das Gäste bucht“ klingt unprofessionell; Herauszoomen ruckelt; Website-Attrappe falsch proportioniert; Fotos/Videos plötzlich schlechte Qualität; NFC-Foto „wie auf eBay“; insgesamt seriöser, cooler, hochwertiger.
 - **Quelle `design/v15-template.html`**, bauen mit `python3 design/build.py v15`. Archiv v14 unter `public/v14/`.
 - Überschrift jetzt sachlich: **„Roomtour-Videos für Ferienwohnungen und Hotels.“** + Text „Aus Ihren vorhandenen Fotos erstellen wir einen hochwertigen Video-Rundgang …“ + Faktenzeile (Full HD 16:9/9:16 · Freigabe · ab 300 €) statt Pillen.
