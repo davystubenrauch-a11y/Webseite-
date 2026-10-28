@@ -3,7 +3,16 @@
 Website der Agentur F&D Solutions (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 28.10.: Design v16 „Galerie“ (Weiterentwicklung v15) — AKTUELL
+## Stand 28.10.: Design v18 „Sichtbar. Gebucht. Bewertet.“ (komplett neu) — AKTUELL
+- Kunde: „komplett neue Webseite mit neuem Design“, mit GSAP (github.com/greensock/GSAP), Lenis (darkroomengineering/lenis) und React Bits (DavidHDev/react-bits) als Hilfe.
+- **Quelle `design/v18-template.html`**, bauen mit `python3 design/build.py v18`. Archive: `public/v17/` (v16-Layout + GSAP), `public/v16/` … 
+- Technik: **GSAP 3.13** (gsap, ScrollTrigger, SplitText) selbst gehostet in `public/site/vendor/gsap-3.13/`, **Lenis 1.3.26** in `public/site/vendor/lenis-1.3/` (weiches Scrollen nur mit Maus). React Bits ist React-only → Effekte in reinem JS nachgebaut: Magnet-Knöpfe, BlurText (Absätze aus der Unschärfe), Buchstaben-Aufstieg (SplitText). Ohne GSAP bleibt alles sichtbar; reduzierte Bewegung = statisch.
+- Idee: jede Leistung ein Wort – **Sichtbar.** (Websites), **Gebucht.** (KI-Roomtours), **Bewertet.** (NFC). Start **dunkel** (#0f0f10): drei riesige Wörter (Archivo breit, Versalien; aktives Wort gefüllt, andere als Kontur), rechts wechselt Bild/Video (SPIRULI / Roomtour / NFC-Studio) alle 5 s mit Fortschrittslinien, bis Maus/Klick übernimmt. Darunter Agentur-Text + Faktenzeile.
+- Kapitel in dieser Reihenfolge: Websites (Laptop klappt beim Scrollen auf, SPIRULI scrollt in Laptop+iPhone, Pakete) → Roomtours (Video öffnet sich beim Scrollen aus einem Rahmen auf volle Breite; Vorher/Nachher je Raum, Regler gleitet mit dem Scrollen) → NFC auf Schwarz (Demo + Rechner) → Ablauf (Linie füllt sich) → Preise auf Schwarz mit Licht-Spot → Über uns (Wörter leuchten auf) → Fragen → Kontakt auf Schwarz („Lassen Sie uns sprechen.“) mit riesiger Wortmarke „F&D Solutions“, die beim Scrollen aufsteigt.
+- Farben: Schwarz #0f0f10/#19191b, Knochenweiß #f2efe9/#e8e3da, Text #121212, Champagner #c9ad7c (Text #74572c). Schrift **Archivo** (variabel, Anzeige 112–122 % Breite).
+- Geprüft 1440/2000/1180/820/390 px: keine JS-Fehler, kein Überlaufen.
+
+## Stand 28.10.: Design v16 „Galerie“ (Archiv `public/v16/`; v17 = gleiches Layout mit GSAP, Archiv `public/v17/`)
 - Kunde zu v15: Start wirkt, als würden wir **nur** Roomtours machen; Qualität nicht perfekt; Vorher/Nachher: Fotos nicht in voller Größe, Grau „komisch“, passende Vorher-Fotos erstellen; Roomtour-Bilder unscharf; untere Bereiche (Ablauf, Preise, Über uns …) „basic, langweilig“ → coole Effekte.
 - **Quelle `design/v16-template.html`**, bauen mit `python3 design/build.py v16`. Archiv v15 unter `public/v15/`.
 - Start: Überschrift **„Mehr Gäste, Kunden und Bewertungen.“** + Agentur-Text; darunter **Galerie aller drei Leistungen** (Roomtour-Video, SPIRULI-Website, NFC-Studio-Bild): aktives Feld öffnet sich groß (flex), wechselt alle 6 s mit Fortschrittslinie, bis Maus/Fokus es übernimmt; Handy: untereinander. Zeile „Festpreis · 24 h · zwei Gründer · München“. Kein Vollbild-Video mehr (machte das Material unscharf); Kopfzeile immer hell.
