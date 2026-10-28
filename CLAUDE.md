@@ -11,6 +11,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Vollständigkeit: Meta-/OG-Daten + Vorschaubild `public/media/og-fd.jpg` (1200×630), `app/robots.ts` (Archive/Entwürfe nicht indexieren), `app/sitemap.ts`, schema.org, Skip-Link, Menü fürs Handy, feste Leiste „Anrufen / Kostenlos anfragen“.
 - Farben: Porzellan #f6f4ef, Weiß, Tinte #111114, Text #45433e, Champagner #c9ad7c (Text #74572c). Schrift **Sora** (Überschriften) + **Figtree** (Text).
 - Geprüft 1440/2000/820/390 px: keine JS-Fehler, kein Überlaufen, Kontrast ≥ 4,5:1, Formular-Ersatzweg getestet.
+- **Apple-HIG-Durchgang (28.10.)**: Dunkelmodus nach Systemeinstellung (Tokens `--fill/--on-fill/--band/--glass/--logo`, Flächen #141416/#1d1d20, Bänder #0b0b0c); Schriftgrößen in rem, auf iPhone/iPad folgt die Grundgröße der eingestellten Textgröße (`font: -apple-system-body`, nur iOS); keine Dauer-Schwebe mehr, Knopf „Bewegung anhalten“ stoppt Start-Video, Laufband und Maus-Parallaxe; Datenschutz-Link getrennt vom Häkchen (Zeile ≥ 44 pt); Raum-Reiter mit Pfeiltasten; NFC-Bild im Start als Karte; Tastatur-Hinweise im Formular; kein Überlaufen mehr bei 320 px. **Schriften selbst gehostet** in `public/site/fonts/` (Sora, Figtree, OFL) – kein Google-Abruf mehr (DSGVO).
 
 ## Stand 28.10.: Design v18 „Sichtbar. Gebucht. Bewertet.“ (Archiv `public/v18/`)
 - Kunde: „komplett neue Webseite mit neuem Design“, mit GSAP (github.com/greensock/GSAP), Lenis (darkroomengineering/lenis) und React Bits (DavidHDev/react-bits) als Hilfe.
