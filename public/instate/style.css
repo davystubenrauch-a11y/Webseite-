@@ -77,12 +77,12 @@ p:last-child { margin-bottom: 0; }
 .mark { display: inline-block; text-decoration: none; color: var(--ink); }
 .mark__name {
   display: block;
-  font-weight: 600; font-size: 1.375rem; letter-spacing: .14em; line-height: 1;
+  font-weight: 600; font-size: clamp(1.625rem, 2.6vw, 2.125rem); letter-spacing: .14em; line-height: 1;
 }
-.mark__rule { display: block; width: 2.25rem; height: 1px; background: var(--navy); margin: .85rem 0 .7rem; }
+.mark__rule { display: block; width: 3rem; height: 1px; background: var(--navy); margin: 1rem 0 .85rem; }
 .mark__line {
   display: block;
-  font-weight: 300; font-size: .9375rem; letter-spacing: .04em; color: var(--quiet); line-height: 1;
+  font-weight: 300; font-size: clamp(1.0625rem, 1.4vw, 1.1875rem); letter-spacing: .05em; color: var(--quiet); line-height: 1;
 }
 
 .nav ul { display: flex; flex-wrap: wrap; gap: .25rem 1.75rem; margin: 0; padding: 0; list-style: none; }
