@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Impressum | F&D Solutions", robots: { index: false } };
+export const metadata: Metadata = { title: "Impressum | FOAV", robots: { index: false } };
 
 // TODO before going live: complete the address in lib/site.ts and check legal form / tax IDs.
 export default function Impressum() {
@@ -36,7 +36,7 @@ export default function Impressum() {
         Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Für Inhalte externer
         Links übernehmen wir keine Haftung; für den Inhalt der verlinkten Seiten sind ausschließlich deren Betreiber verantwortlich.
       </p>
-      <p className="note">Google und das Google-Logo sind Marken der Google LLC. F&amp;D Solutions steht in keiner Verbindung zu Google.</p>
+      <p className="note">Google und das Google-Logo sind Marken der Google LLC. {site.name} steht in keiner Verbindung zu Google.</p>
     </LegalPage>
   );
 }

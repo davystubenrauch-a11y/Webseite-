@@ -31,13 +31,13 @@ export async function POST(req: Request) {
   }
 
   // Bots fill the hidden field; pretend success so they don't retry.
-  if (data.website) return NextResponse.json({ ok: true, id: "FD-000000" });
+  if (data.website) return NextResponse.json({ ok: true, id: "FOAV-000000" });
 
   data.services = (data.services ?? []).filter((s) => s in serviceLabels);
   const errors = validate(data);
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 422 });
 
-  const id = `FD-${Date.now().toString(36).toUpperCase().slice(-6)}`;
+  const id = `FOAV-${Date.now().toString(36).toUpperCase().slice(-6)}`;
   const subject = `Anfrage ${id}: ${data.services.map((s) => serviceLabels[s]).join(" + ")}`;
   const text = `${summarize(data)}\n\nReferenz: ${id}`;
 
@@ -47,7 +47,7 @@ export async function POST(req: Request) {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: process.env.INQUIRY_FROM ?? "F&D Solutions <onboarding@resend.dev>",
+          from: process.env.INQUIRY_FROM ?? "FOAV <onboarding@resend.dev>",
           to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"],
           reply_to: data.email,
           subject,

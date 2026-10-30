@@ -1,8 +1,9 @@
 // Central company data. Everything that appears in the footer, legal pages and
 // contact sections is read from here, so update it in one place before going live.
 export const site = {
-  name: "F&D Solutions",
-  claim: "Digitale Lösungen aus München.",
+  name: "FOAV",
+  url: "https://foav.de",
+  claim: "Websites, KI-Roomtours und NFC-Platten aus München.",
   email: "fd.solutions@web.de",
   city: "München",
   founders: [
@@ -10,7 +11,7 @@ export const site = {
     { name: "Davy Stubenrauch", role: "Co-Founder", phone: "+49 176 56612709" },
   ],
   // TODO: Enter the full postal address before going live (required for the Impressum).
-  address: ["F&D Solutions GbR", "[Straße Hausnummer]", "[PLZ] München"],
+  address: ["[Firmenname laut Gewerbeanmeldung, z. B. FOAV – Dressler & Stubenrauch GbR]", "[Straße Hausnummer]", "[PLZ] München"],
   social: [
     { label: "Instagram", href: "https://instagram.com/" },
     { label: "LinkedIn", href: "https://linkedin.com/" },

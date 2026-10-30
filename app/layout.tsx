@@ -3,12 +3,13 @@ import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "F&D Solutions | NFC-Bewertungsplatten, Websites & Roomtours aus München",
+  metadataBase: new URL("https://foav.de"),
+  title: "FOAV · Websites, KI-Roomtours und NFC-Platten aus München",
   description:
-    "F&D Solutions aus München: smarte runde NFC Google-Bewertungsplatten, moderne Websites ab 300 € und 360°-Roomtours ab 300 € für Immobilien, Hotels und Gewerbe.",
+    "FOAV aus München: Websites ab 300 €, KI-Roomtour-Videos ab 300 € und NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.",
   openGraph: {
-    title: "F&D Solutions",
-    description: "Google-Bewertungen per NFC, Websites ab 300 € und 360°-Roomtours aus München.",
+    title: "FOAV",
+    description: "Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.",
     type: "website",
     locale: "de_DE",
   },

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Datenschutz | F&D Solutions", robots: { index: false } };
+export const metadata: Metadata = { title: "Datenschutz | FOAV", robots: { index: false } };
 
 // Template text. Have it reviewed and adjust it to your actual hosting and tools before going live.
 export default function Datenschutz() {
@@ -23,7 +23,7 @@ export default function Datenschutz() {
       </p>
       <h2>3. Anfrageformular</h2>
       <p>
-        Wenn Sie uns über den Anfrage-Assistenten kontaktieren, verarbeiten wir Ihre Angaben (Name, Unternehmen, E-Mail, Telefon, Projektdetails)
+        Wenn Sie uns über das Anfrageformular kontaktieren, verarbeiten wir Ihre Angaben (Name, Unternehmen, E-Mail, Telefon, Projektdetails)
         ausschließlich zur Bearbeitung Ihrer Anfrage und für Anschlussfragen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche
         Maßnahmen) sowie Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Die Daten werden gelöscht, sobald sie für den Zweck nicht mehr
         erforderlich sind und keine gesetzlichen Aufbewahrungspflichten bestehen.

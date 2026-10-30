@@ -1,7 +1,14 @@
-# F&D Solutions – Design-Briefing
+# FOAV (früher F&D Solutions) – Design-Briefing
 
-Website der Agentur **FOAV** (Domain **foav.de**, neuer Name ab 28.10.; vorher F&D Solutions – Seite, Logo und Texte sind noch auf F&D umzustellen) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
+Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
+
+## Stand 30.10.: Marke FOAV auf der Seite (v19 weiterentwickelt) — AKTUELL
+- Name **FOAV** (Schreibweise in Versalien, Kunde hat noch nicht bestätigt), Domain **foav.de** bei Checkdomain, Hosting Vercel (Production Branch soll `claude/fd-solutions-landing-l1x6bu` sein).
+- **Logo neu** (`design/parts/logo.svg`, `public/media/logo-foav.svg`): Wortmarke FOAV aus Sora 600 (Glyphen per fontTools in Pfade umgewandelt, Skript im Scratchpad `logo/make.py`), das **O ist ein Ring mit Champagner-Punkt** (Antipp-Punkt/Objektiv). Favicon/`app/icon.svg`/`logo-foav-mark.svg` = nur der Ring auf Tinte; `apple-touch-foav.png`; Vorschaubild `og-foav.jpg`. Logo-Farbe Tinte statt Marine, Punkt #b8955a (hell) / #c9ad7c (dunkel). Alte F&D-Dateien bleiben nur für die Archive.
+- Neu auf der Seite: Abschnitt **„Was FOAV anders macht.“** (Tabelle Bei FOAV / Oft üblich: Preis, Antwort, Ansprechpartner, laufende Kosten, Freigabe, Leistungen; Handy: gestapelt) statt der 4 Versprechen; **riesige FOAV-Wortmarke** unten im Kontakt-Band, steigt beim Scrollen auf.
+- Technik: `/` wird per `rewrites().beforeFiles` auf `/site/index.html` umgeschrieben (Adresse bleibt foav.de/, kein Redirect mehr); `canonical`, `og:url`, absolute OG-Bilder auf https://foav.de; Sitemap/robots mit fester Basis foav.de; schema.org mit url/logo. Impressum/Datenschutz (`components/ui/LegalPage.tsx`) im neuen Stil mit FOAV-Logo, ohne alte React-Footer. Anfrage-IDs `FOAV-…`.
+- Offen: echte Adresse + Firmenname laut Gewerbeanmeldung in `lib/site.ts`, E-Mail (noch fd.solutions@web.de), Schreibweise des Namens.
 
 ## Stand 28.10.: Design v19 „Schaufenster“ (komplett neu, vollständige Seite) — AKTUELL
 - Kunde: „nochmal eine komplett neue Seite mit neuem Design, vollständig mit allem, was eine Seite braucht“.
