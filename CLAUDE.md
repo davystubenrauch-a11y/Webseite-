@@ -172,3 +172,8 @@ Maßgeblich ist **`public/site/index.html`** (Startseite `/` leitet dorthin). De
 ## Technik
 - Next.js-Projekt im Root (`app/`, `components/`); eigenständige HTML-Seiten liegen in `public/` und werden von Vercel mit ausgeliefert.
 - `public/studio/index.html` braucht kein Three.js mehr (alles CSS/SVG).
+
+## Kundenprojekt INSTATE GMBH (30.10.)
+- Statische One-Page für instate.de in `public/instate/` (index, impressum, datenschutz, style.css, Raleway 300/400/600 lokal in `fonts/`). Kein JS, keine Cookies, kein Formular. Auf der F&D-Domain per `app/robots.ts` vom Index ausgeschlossen; Canonical zeigt auf instate.de.
+- Briefpapier-Stil: Weiß, Text #1a1a1a, Grau #8a8d91 (Linien), kleiner Nebentext #6b6e73 (Kontrast), Marine #1f2a4a (kurze Linien, Footer). Randspalte mit Abschnittsname + Lesespalte.
+- Offen: Adresse/Registerdaten Instate Italy S.r.l., Hosting-Anbieter und Log-Löschfrist im Datenschutz (als [Platzhalter] markiert).
