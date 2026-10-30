@@ -28,11 +28,19 @@ export default function Datenschutz() {
         Maßnahmen) sowie Ihre Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO. Die Daten werden gelöscht, sobald sie für den Zweck nicht mehr
         erforderlich sind und keine gesetzlichen Aufbewahrungspflichten bestehen.
       </p>
-      <h2>4. Schriftarten</h2>
+      <h2>4. Fragebogen und Foto-Upload</h2>
+      <p>
+        Im Website-Fragebogen und im Roomtour-Formular können Sie Angaben zu Ihrem Projekt machen und Fotos oder Ihr Logo hochladen. Die Dateien
+        werden bei Vercel Blob (Vercel Inc., USA) gespeichert und sind nur über eine zufällig erzeugte, nicht öffentlich verlinkte Adresse
+        erreichbar. Wir nutzen sie ausschließlich, um Ihren Auftrag zu erstellen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Vercel ist unter
+        dem EU-US Data Privacy Framework zertifiziert. Wir löschen die Dateien spätestens drei Monate nach Abschluss des Auftrags, auf Wunsch
+        sofort. Bitte laden Sie keine Fotos hoch, auf denen Personen zu erkennen sind.
+      </p>
+      <h2>5. Schriftarten</h2>
       <p>Die verwendeten Schriftarten werden lokal von unserem Server ausgeliefert. Es findet keine Verbindung zu Servern von Google statt.</p>
-      <h2>5. Cookies und Tracking</h2>
+      <h2>6. Cookies und Tracking</h2>
       <p>Diese Website setzt keine Tracking-Cookies und keine Analyse-Tools ein.</p>
-      <h2>6. Ihre Rechte</h2>
+      <h2>7. Ihre Rechte</h2>
       <p>
         Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch
         (Art. 15–21 DSGVO) und können eine erteilte Einwilligung jederzeit widerrufen. Zudem besteht ein Beschwerderecht bei einer
