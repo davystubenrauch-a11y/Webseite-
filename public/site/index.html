@@ -5,9 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FOAV · Websites, KI-Roomtours und NFC-Platten aus München</title>
 <meta name="description" content="FOAV aus München: Websites ab 300 €, KI-Roomtour-Videos ab 300 € und NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.">
-<meta name="theme-color" content="#f6f4ef" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#141416" media="(prefers-color-scheme: dark)">
-<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#000000">
+<meta name="color-scheme" content="dark">
 <link rel="canonical" href="https://foav.de/">
 <link rel="icon" type="image/svg+xml" href="/media/logo-foav-mark.svg">
 <link rel="apple-touch-icon" href="/media/apple-touch-foav.png">
@@ -57,28 +56,18 @@
 @font-face { font-family: "Sora"; font-style: normal; font-weight: 500 700; font-display: swap; src: url(/site/fonts/sora-latin.woff2) format("woff2"); }
 @font-face { font-family: "Figtree"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/site/fonts/figtree-latin.woff2) format("woff2"); }
 :root {
-  color-scheme: light dark;
-  --fill: #111114; --fill-h: #2b2b30; --on-fill: #fff; --band: #111114; --glass: rgba(246,244,239,.9); --glass-2: rgba(255,255,255,.6); --glow: #fff; --logo: #111114;
-  --bg: #f6f4ef; --bg-2: #eeebe4; --white: #fff; --ink: #111114; --text: #45433e; --muted: #66625a;
-  --line: rgba(17,17,20,.12); --line-d: rgba(255,255,255,.14); --on-dark: #f4f2ed; --on-dark-m: #aba59b;
-  --champ: #c9ad7c; --champ-t: #74572c; --ok: #1d7a52; --bad: #b42318; --graphite: #19191b; --stone: #f6f4ef;
+  color-scheme: dark;
+  --bg: #000; --bg-2: #0b0b0d; --white: #161618; --ink: #f5f5f7; --text: #c7c7cc; --muted: #98989d;
+  --line: rgba(255,255,255,.12); --line-d: rgba(255,255,255,.12); --on-dark: #f5f5f7; --on-dark-m: #a1a1a6;
+  --gold: #e8b04b; --champ: #e8b04b; --champ-t: #f0c066; --ok: #4cc38a; --bad: #ff8a7a; --graphite: #161618;
+  --fill: #f5f5f7; --fill-h: #fff; --on-fill: #000; --band: #0b0b0d; --glass: rgba(0,0,0,.72); --glass-2: rgba(255,255,255,.07); --glow: #111; --logo: #f5f5f7;
   --ease: cubic-bezier(.2,.8,.2,1); --r: 22px;
   --head: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  --shadow: 0 1px 1px rgba(40,32,20,.05), 0 6px 14px -6px rgba(40,32,20,.10), 0 34px 64px -30px rgba(40,32,20,.30);
-  --edge: inset 0 0 0 1px rgba(17,17,20,.07);
+  --shadow: 0 1px 1px rgba(0,0,0,.4), 0 40px 80px -30px rgba(0,0,0,.9);
+  --edge: inset 0 0 0 1px rgba(255,255,255,.09);
 }
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #141416; --bg-2: #1f1f22; --white: #1d1d20; --ink: #f4f2ed; --text: #c9c4ba; --muted: #a39e94;
-    --line: rgba(255,255,255,.13); --champ-t: #d2b684; --ok: #4cc38a; --bad: #ff8a7a;
-    --fill: #f4f2ed; --fill-h: #ffffff; --on-fill: #111114; --band: #0b0b0c; --glass: rgba(20,20,22,.86); --glass-2: rgba(255,255,255,.06); --glow: #1c1c1f; --logo: #f4f2ed;
-    --shadow: 0 1px 1px rgba(0,0,0,.3), 0 34px 64px -28px rgba(0,0,0,.8);
-    --edge: inset 0 0 0 1px rgba(255,255,255,.08);
-  }
-  .ticks li::before { background-color: var(--champ); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23111114' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E"); }
-  .f-nfc .card, .svc__media--nfc { background: #2a2825; }
-}
+.ticks li::before { background-color: var(--gold) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
 /* iPhone/iPad: Grundgröße folgt der eingestellten Textgröße (Dynamic Type) */
@@ -128,7 +117,7 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .head__in { position: relative; height: 80px; display: flex; align-items: center; gap: 24px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; margin-right: auto; }
 .logo svg { height: 27px; width: auto; }
-.lg-ink { fill: var(--logo); } .lg-amp { fill: #b8955a; }
+.lg-ink { fill: var(--logo); } .lg-amp { fill: var(--gold); }
 .foot .lg-ink { fill: var(--on-dark); } .foot .lg-amp { fill: var(--champ); }
 .nav { display: flex; gap: 2px; padding: 5px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); }
 .nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; font-size: 0.9688rem; font-weight: 600; color: var(--text); transition: background-color .2s, color .2s; }
@@ -145,62 +134,11 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .mnav a span { font-family: var(--font); font-size: 0.9375rem; font-weight: 500; color: var(--muted); }
 .mnav .btn { width: 100%; margin-top: 18px; }
 
-/* ---------- start: statement in the middle, our work floating around it ---------- */
-.hero { position: relative; min-height: 100vh; min-height: 100svh; display: grid; place-items: center; padding: 120px 0 90px; overflow: hidden; background: radial-gradient(55% 50% at 50% 46%, var(--glow), transparent 70%), var(--bg); }
-.hero__center { position: relative; z-index: 3; text-align: center; max-width: 1080px; padding: 0 20px; }
-.hero h1 { font-size: clamp(44px, 6.2vw, 100px); line-height: .96; letter-spacing: -.058em; text-wrap: balance; }
-.ln-mask { padding-bottom: .12em; margin-bottom: -.12em; }
-.hero h1 em { font-style: normal; }
-.hero__center p { margin: 24px auto 0; max-width: 46ch; font-size: clamp(18px, 1.4vw, 20.5px); }
-.hero__center .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 32px; }
-.hero__note { text-wrap: balance; margin-top: 22px; font-size: 0.875rem; font-weight: 600; color: var(--muted); }
-.hero__note b { color: var(--ink); }
-.fl { position: absolute; z-index: 2; will-change: transform; }
-.fl > * { transform: rotate(var(--rot, 0deg)); }
 .pause { position: absolute; z-index: 4; right: clamp(20px, 4vw, 48px); bottom: 20px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .875rem; font-weight: 700; color: var(--ink); }
 .pause svg { width: 14px; height: 14px; }
 .pause[hidden] { display: none; }
-.card { position: relative; border-radius: 18px; background: var(--white); box-shadow: var(--shadow); overflow: hidden; }
-.card::after, .svc__media::after, .cmp::after { content: ""; position: absolute; inset: 0; z-index: 5; border-radius: inherit; box-shadow: var(--edge); pointer-events: none; }
-.f-video { left: 3%; top: 14%; width: clamp(200px, 18.5vw, 310px); --rot: -4deg; }
-.f-video .card { aspect-ratio: 4 / 3; position: relative; }
-.f-video video { width: 100%; height: 100%; object-fit: cover; }
-.f-video span { position: absolute; left: 10px; bottom: 10px; padding: 5px 10px; border-radius: 999px; background: rgba(17,17,20,.7); color: #fff; font-size: 0.7812rem; font-weight: 600; }
-.f-phone { right: 6%; top: 11%; width: clamp(120px, 11vw, 172px); --rot: 6deg; }
-.f-phone .ph { aspect-ratio: 9 / 19.5; padding: 6px; border-radius: 26px; background: linear-gradient(150deg, #3a3a3e, #121214 55%, #26262a); box-shadow: var(--shadow); }
-.f-phone .ph div { height: 100%; border-radius: 21px; overflow: hidden; background: #eef0ec; }
-.f-phone img { width: 100%; }
-.f-nfc { right: 4%; bottom: 9%; width: clamp(210px, 22vw, 340px); --rot: -3deg; }
-.f-nfc .card { aspect-ratio: 4 / 3; background: #e3ded5; }
-.f-nfc img { width: 100%; height: 100%; object-fit: cover; }
-.f-review { left: 9%; bottom: 13%; width: clamp(220px, 19vw, 280px); --rot: 3deg; }
-.f-review .card, .f-book .card { display: flex; gap: 12px; align-items: center; padding: 14px 16px; }
-.f-review i { display: grid; place-items: center; flex: none; width: 40px; height: 40px; border-radius: 50%; background: #4285f4; color: #fff; font: 700 18px/1 Arial, sans-serif; font-style: normal; }
-.f-review b, .f-book b { display: block; font-family: var(--head); font-size: 0.9062rem; color: var(--ink); }
-.f-review .st { display: flex; gap: 2px; margin-top: 3px; } .f-review .st svg { width: 14px; height: 14px; fill: #fbbc05; }
-.f-review small, .f-book small { font-size: 0.8125rem; color: var(--muted); }
-.f-book { left: 26%; top: 9%; --rot: -2deg; }
-.f-book i { display: grid; place-items: center; flex: none; width: 36px; height: 36px; border-radius: 50%; background: var(--ok); color: #fff; } .f-book i svg { width: 16px; height: 16px; }
 
 
-/* ---------- services: open rows, image and text alternate sides ---------- */
-.stack { margin-top: clamp(48px, 7vw, 88px); display: grid; }
-.svc { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 88px); align-items: center; padding: clamp(40px, 5vw, 72px) 0; border-top: 1px solid var(--line); }
-.svc:last-child { border-bottom: 1px solid var(--line); }
-.svc:nth-child(even) { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
-.svc:nth-child(even) > :first-child { order: 2; }
-.svc__no { font-family: var(--head); font-weight: 600; font-size: 0.9375rem; color: var(--champ-t); }
-.svc h3 { margin-top: 12px; font-size: clamp(30px, 3.2vw, 48px); letter-spacing: -.035em; }
-.svc p { margin-top: 14px; max-width: 46ch; }
-.svc .ticks { margin-top: 22px; }
-.svc__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 28px; }
-.svc__price { font-family: var(--head); font-size: 2rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.03em; color: var(--ink); }
-.svc__price small { font-family: var(--font); font-size: 0.9375rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
-.svc__media { position: relative; aspect-ratio: 4 / 3; border-radius: 22px; overflow: hidden; background: var(--bg-2); }
-.svc__media video, .svc__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.svc__media--web { background: #eef0ec; } .svc__media--web > img { object-position: top center; }
-.svc__media--nfc { background: #e3ded5; }
-/* hero: the three services with their price, one tap away */
 .quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
 .quick a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .9375rem; font-weight: 600; color: var(--ink); transition: box-shadow .2s, background-color .2s; }
 .quick a:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
@@ -227,81 +165,116 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 @media (max-width: 520px) { .rec__foot .btn { width: 100%; } }
 .rec__sum small { font-family: var(--font); font-size: .9375rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
 
-/* services: "so läuft's" steps that light up in time with the explainer */
 .how { list-style: none; counter-reset: how; margin-top: 24px; display: grid; gap: 4px; }
 .how li { position: relative; padding: 10px 0 10px 46px; counter-increment: how; color: var(--muted); transition: color .4s; }
-.how li::before { content: counter(how); position: absolute; left: 0; top: 7px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); font-family: var(--head); font-size: .875rem; font-weight: 600; color: var(--muted); transition: background-color .4s, color .4s, box-shadow .4s; }
+.how li::before { content: "1"; position: absolute; left: 0; top: 7px; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; box-shadow: inset 0 0 0 1.5px var(--line); font-family: var(--head); font-size: .875rem; font-weight: 600; color: var(--muted); transition: background-color .4s, color .4s, box-shadow .4s; }
+.how li:nth-child(2)::before { content: "2"; } .how li:nth-child(3)::before { content: "3"; }
 .how li b { color: var(--ink); font-weight: 600; }
 .how li.on { color: var(--text); }
 .how li.on::before { background: #111114; color: var(--champ); box-shadow: 0 0 0 5px rgba(201,173,124,.2); }
-.svc__fact { margin-top: 16px !important; font-size: .9375rem; color: var(--muted); }
 
-/* explainers: each plays its three steps once when it comes into view (data-p 1..3) */
-.ex { container-type: inline-size; isolation: isolate; }
-.ex * { transition-timing-function: var(--ease); }
-.ex-badge { position: absolute; z-index: 7; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px 10px 12px; border-radius: 999px; background: #fff; color: #111114; font-size: max(13px, 3.1cqw); font-weight: 700; box-shadow: 0 14px 30px -12px rgba(0,0,0,.45); opacity: 0; transform: translateY(14px) scale(.9); transition: opacity .5s, transform .6s; }
-.ex-badge svg { width: 1.3em; height: 1.3em; padding: .2em; border-radius: 50%; background: var(--ok); color: #fff; fill: #fff; }
-.ex[data-p="3"] .ex-badge { opacity: 1; transform: none; }
-.ex-replay { position: absolute; z-index: 8; left: 14px; bottom: 14px; display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: rgba(17,17,20,.72); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); color: #fff; font-size: .875rem; font-weight: 700; }
-.ex-replay svg { width: 16px; height: 16px; }
-.ex-replay[hidden] { display: none; }
 
-/* website: wireframe draws, design wipes in, address types, phone joins */
-.ex-web { background: linear-gradient(160deg, #ebe7df, #e2ddd3); }
-.bw { position: absolute; left: 6%; right: 14%; top: 9%; bottom: 13%; display: flex; flex-direction: column; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 30px 60px -30px rgba(40,32,20,.5), 0 0 0 1px rgba(17,17,20,.06); }
-.bw__bar { display: flex; align-items: center; gap: 1.2cqw; height: 7.5cqw; padding: 0 2.4cqw; background: #f3f1ec; border-bottom: 1px solid #e6e2da; }
-.bw__bar i { width: 1.6cqw; height: 1.6cqw; border-radius: 50%; background: #d8d3c9; }
-.bw__url { flex: 1; display: flex; align-items: center; height: 4.4cqw; margin-left: 2cqw; padding: 0 2cqw; border-radius: 99px; background: #fff; font-size: 2.6cqw; color: #45433e; }
-.bw__url b { font-weight: 600; white-space: nowrap; overflow: hidden; clip-path: inset(0 100% 0 0); transition: clip-path 1.1s steps(14); }
-.ex[data-p="3"] .bw__url b { clip-path: inset(0 0 0 0); }
-.bw__body { position: relative; flex: 1; overflow: hidden; }
-.wf { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 6% 44% 1fr; gap: 4%; padding: 5%; }
-.wf i { border-radius: 4px; background: #ece8e1; transform: scaleX(0); transform-origin: left; transition: transform .7s; }
-.wf i:nth-child(1) { grid-column: 1 / 3; } .wf i:nth-child(2) { grid-column: 1 / -1; }
-.wf i:nth-child(2) { transition-delay: .12s; } .wf i:nth-child(3) { transition-delay: .24s; } .wf i:nth-child(4) { transition-delay: .32s; } .wf i:nth-child(5) { transition-delay: .4s; }
-.ex:not([data-p="0"]) .wf i { transform: none; }
-.bw__shot { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top; clip-path: inset(0 100% 0 0); transition: clip-path 1.2s cubic-bezier(.7,0,.2,1); }
-.ex[data-p="2"] .bw__shot, .ex[data-p="3"] .bw__shot { clip-path: inset(0 0 0 0); }
-.ex-phone { position: absolute; z-index: 3; right: 6%; bottom: 7%; width: 21%; aspect-ratio: 9 / 19.5; padding: 1.1cqw; border-radius: 3.4cqw; background: linear-gradient(150deg, #3a3a3e, #121214 55%, #26262a); box-shadow: 0 30px 50px -20px rgba(0,0,0,.55); opacity: 0; transform: translateY(30%) rotate(6deg); transition: opacity .6s, transform .9s; }
-.ex-phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 2.4cqw; }
-.ex[data-p="3"] .ex-phone { opacity: 1; transform: rotate(3deg); }
-.ex-web .ex-badge { left: 9%; top: 3%; }
 
-/* roomtour: three photos land, merge into a progress bar, the video opens */
-.ex-room { background: #1a1917; }
-.ex-room video { opacity: 0; transform: scale(.88); border-radius: 22px; transition: opacity .9s, transform 1.1s; }
-.ex[data-p="3"] video { opacity: 1; transform: none; }
-.ex .pol { position: absolute; z-index: 2; inset: auto; top: 24%; width: 30%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; border: 1.2cqw solid #fff; border-bottom-width: 4cqw; border-radius: 4px; box-shadow: 0 20px 40px -18px rgba(0,0,0,.7); opacity: 0; transform: translateY(-60%) rotate(var(--r)); transition: opacity .5s, transform .8s, left .9s, top .9s; }
-.ex .pol1 { left: 5%; --r: -7deg; } .ex .pol2 { left: 35%; --r: 3deg; transition-delay: .12s; } .ex .pol3 { left: 65%; --r: -2deg; transition-delay: .24s; }
-.ex[data-p="1"] .pol { opacity: 1; transform: rotate(var(--r)); }
-.ex[data-p="2"] .pol { left: 35% !important; top: 20%; opacity: 1; transform: rotate(0) scale(.8); transition-delay: 0s; }
-.ex[data-p="2"] .pol2 { transform: rotate(-3deg) scale(.84); } .ex[data-p="2"] .pol3 { transform: rotate(3deg) scale(.88); }
-.ex[data-p="3"] .pol { opacity: 0; left: 35% !important; top: 20%; transform: scale(1.4); transition: opacity .5s, transform .8s; }
-.ex-progress { position: absolute; z-index: 3; left: 25%; right: 25%; top: 72%; display: grid; gap: 10px; justify-items: center; color: #fff; font-size: max(13px, 3cqw); font-weight: 600; opacity: 0; transition: opacity .4s; }
-.ex-progress i { width: 100%; height: 6px; border-radius: 6px; background: rgba(255,255,255,.18) linear-gradient(var(--champ), var(--champ)) no-repeat 0 0 / 0 100%; transition: background-size 1.6s linear; }
-.ex[data-p="2"] .ex-progress { opacity: 1; } .ex[data-p="2"] .ex-progress i { background-size: 100% 100%; }
-.ex-room .ex-badge { right: 5%; top: 6%; }
-.ex-room .vplay { z-index: 9; }
 
-/* nfc: the phone comes down to the plate, rings, stars fill */
-.ex-rings { position: absolute; z-index: 2; left: 36%; top: 61%; width: 26%; aspect-ratio: 1; translate: -50% -50%; pointer-events: none; }
-.ex-rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--champ); opacity: 0; }
-.ex[data-p="2"] .ex-rings i { animation: ring 1.1s var(--ease) forwards; } .ex[data-p="2"] .ex-rings i:nth-child(2) { animation-delay: .18s; } .ex[data-p="2"] .ex-rings i:nth-child(3) { animation-delay: .36s; }
-.ex-tap { position: absolute; z-index: 3; left: 25%; top: 4%; width: 22%; aspect-ratio: 9 / 19; padding: 1cqw; border-radius: 3.4cqw; background: linear-gradient(150deg, #3a3a3e, #121214 55%, #26262a); box-shadow: 0 30px 50px -18px rgba(0,0,0,.6); opacity: 0; transform: translateY(-45%) rotate(-8deg); transition: opacity .5s, transform 1s; }
-.ex-tap > div { height: 100%; display: grid; align-content: center; justify-items: center; gap: 1.6cqw; border-radius: 2.4cqw; background: #fff; color: #202124; text-align: center; }
-.ex-tap b { font: 700 6cqw/1 Arial, sans-serif; color: #4285f4; }
-.ex-tap small { font-size: 1.9cqw; font-weight: 600; padding: 0 1cqw; }
-.ex-stars { display: flex; gap: .4cqw; } .ex-stars svg { width: 3cqw; height: 3cqw; fill: #e3e6ea; transition: fill .25s, transform .3s; }
-.ex[data-p="3"] .ex-stars svg { fill: #fbbc05; } .ex[data-p="3"] .ex-stars svg:nth-child(2) { transition-delay: .12s; } .ex[data-p="3"] .ex-stars svg:nth-child(3) { transition-delay: .24s; } .ex[data-p="3"] .ex-stars svg:nth-child(4) { transition-delay: .36s; } .ex[data-p="3"] .ex-stars svg:nth-child(5) { transition-delay: .48s; }
-.ex:not([data-p="0"]) .ex-tap { opacity: 1; transform: rotate(-4deg); }
-.ex[data-p="2"] .ex-tap, .ex[data-p="3"] .ex-tap { transform: translateY(14%) rotate(-2deg); }
-.ex-nfc .ex-badge { right: 6%; top: 8%; } .ex-nfc .ex-badge svg { background: #fbbc05; fill: #fff; }
 .vplay { position: absolute; z-index: 6; left: 50%; top: 50%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px 0 18px; border-radius: 999px; background: rgba(17,17,20,.78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-weight: 700; }
 .vplay svg { width: 18px; height: 18px; fill: currentColor; }
 .vplay[hidden] { display: none; }
 .cmp .vplay { top: auto; bottom: 16px; left: auto; right: 16px; translate: none; }
 
+/* ---------- v20 „Bühne“: black stage, white type, gold accent; services told as short scroll films ---------- */
+.btn--light { background: #f5f5f7; color: #000; } .btn--light:hover { background: #fff; }
+.kicker { font-family: var(--head); font-weight: 600; font-size: 1rem; color: var(--gold); }
+.price { font-family: var(--head); font-size: 2rem; font-weight: 600; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
+.price small { font-family: var(--font); font-size: .9375rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.toast { position: absolute; z-index: 6; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px 12px 12px; border-radius: 999px; background: rgba(255,255,255,.96); color: #000; font-size: .9375rem; font-weight: 700; box-shadow: 0 24px 48px -18px rgba(0,0,0,.7); opacity: 0; transform: translateY(18px) scale(.92); transition: opacity .5s, transform .7s var(--ease); }
+.toast svg { width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: #fff; }
+.scene.s3 .toast { opacity: 1; transform: none; }
+
+/* start: one clear sentence, the three products rise underneath like a product lineup */
+.hero { position: relative; padding: clamp(120px, 16vh, 170px) 0 0; text-align: center; overflow: hidden; background: linear-gradient(180deg, #000 55%, #0d0d0f); }
+.hero h1 { margin: 0 auto; max-width: 11ch; font-size: clamp(48px, 8.2vw, 132px); line-height: .95; letter-spacing: -.058em; text-wrap: balance; }
+.hero__sub { margin: 26px auto 0; max-width: 44ch; font-size: clamp(18px, 1.5vw, 22px); color: var(--text); }
+.hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px; }
+.quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
+.quick a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .9375rem; font-weight: 600; color: var(--ink); transition: box-shadow .2s; }
+.quick a:hover { box-shadow: inset 0 0 0 1.5px var(--ink); } .quick b { font-weight: 600; color: var(--gold); }
+.lineup { position: relative; width: min(1120px, 94vw); aspect-ratio: 16 / 7; margin: clamp(56px, 8vh, 96px) auto 0; perspective: 1600px; }
+.lu { position: absolute; bottom: 0; will-change: transform; }
+.lu-mac { left: 50%; width: 66%; margin-left: -33%; }
+.lu-mac .mac__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.lu-phone { right: 5%; width: 14.5%; z-index: 2; }
+.lu-disc { left: 4%; bottom: -2%; width: 22%; z-index: 2; }
+.lu-tilt { perspective: 900px; } .lu-tilt > div { transform: rotateX(58deg) rotateZ(-20deg); }
+.lu-mac .mac, .w-mac .mac { perspective: 1600px; perspective-origin: 50% 0; }
+.ln-mask { padding-bottom: .12em; margin-bottom: -.12em; }
+.lu-phone .iphone, .w-phone .iphone { position: relative; right: auto; bottom: auto; width: 100%; }
+.iphone__screen video { width: 100%; height: 100%; object-fit: cover; }
+.mac__base { background: linear-gradient(180deg, #c9c6c0, #8f8b84 60%, #6c6964); }
+.hero .pause { bottom: 18px; }
+
+/* scenes: a tall section with a sticky stage; JS writes the scroll progress as --a, --b, --c (0..1) */
+.scene { position: relative; height: 340vh; }
+.scene__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
+.scene__grid { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center; width: 100%; }
+.scene__text { position: relative; z-index: 5; }
+.scene h2 { margin-top: 10px; font-size: clamp(36px, 4.4vw, 64px); }
+.scene .how { margin-top: 26px; }
+.scene__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 26px; }
+.scene__fact { margin-top: 16px; font-size: .9375rem; color: var(--muted); }
+.scene__stage { position: relative; height: min(72vh, 660px); }
+.how li.on::before { background: var(--gold); color: #000; box-shadow: 0 0 0 5px rgba(232,176,75,.18); }
+
+/* website: the laptop opens, the page scrolls on its screen, the phone slides in, "Online" */
+.scene--web { background: linear-gradient(180deg, #0d0d0f, #000 40%); }
+.w-stage { perspective: 1800px; }
+.w-mac { position: absolute; left: 0; right: 9%; top: 50%; translate: 0 -50%; }
+.w-mac .mac__lid { transform-origin: 50% 100%; transform: rotateX(calc((1 - var(--a, 1)) * 88deg)); }
+.w-mac .mac__screen .scroller { transform: translateY(calc(var(--b, 1) * -62%)); }
+.w-phone { position: absolute; right: 0; bottom: 4%; width: 21%; z-index: 2; opacity: min(1, calc(var(--c, 1) * 3)); transform: translateX(calc((1 - var(--c, 1)) * 140%)) rotate(3deg); }
+.w-toast { left: 4%; top: 4%; }
+
+/* roomtour: three photos land, merge, and open into the full-screen video */
+.scene--room { background: #0d0a07; --x1: 56%; --x2: 71%; --x3: 86%; --xm: 71%; --py: 50%; --pw: min(19vw, 300px); --ct: 26%; --cr: 10%; --cb: 26%; --cl: 54%; }
+.r-stage { position: absolute; inset: 0; }
+.r-ph { position: absolute; z-index: 2; top: var(--py); width: var(--pw); aspect-ratio: 4 / 3; object-fit: cover; border: 8px solid #fff; border-bottom-width: 26px; border-radius: 4px; box-shadow: 0 30px 50px -20px rgba(0,0,0,.8);
+  left: calc(var(--x) + (var(--xm) - var(--x)) * var(--b, 1));
+  transform: translate(-50%, -50%) translateY(calc((1 - var(--a, 1)) * 70vh)) rotate(calc(var(--r) * (1 - var(--b, 1)))) scale(calc(1 - var(--b, 1) * .2));
+  opacity: calc(1 - var(--c, 1) * 2.5); }
+.r-ph1 { --x: var(--x1); --r: -8deg; } .r-ph2 { --x: var(--x2); --r: 4deg; } .r-ph3 { --x: var(--x3); --r: -3deg; }
+.r-vid { position: absolute; inset: 0; opacity: min(1, calc(var(--c, 1) * 4)); clip-path: inset(calc(var(--ct) * (1 - var(--c, 1))) calc(var(--cr) * (1 - var(--c, 1))) calc(var(--cb) * (1 - var(--c, 1))) calc(var(--cl) * (1 - var(--c, 1))) round calc(24px * (1 - var(--c, 1)))); }
+.r-vid video { width: 100%; height: 100%; object-fit: cover; }
+.r-stage::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.55) 42%, rgba(0,0,0,0) 72%); opacity: var(--c, 1); pointer-events: none; }
+.r-toast { right: 6%; top: 16%; }
+
+/* nfc: the plate turns and lies down, the phone comes to it, rings, five stars */
+.scene--nfc { background: linear-gradient(180deg, #000, #0d0d0f); }
+.n-stage { perspective: 1400px; }
+.n-floor { position: absolute; left: 50%; top: 62%; width: min(50vh, 30vw); aspect-ratio: 1; margin: calc(min(50vh, 30vw) / -2) 0 0 calc(min(50vh, 30vw) / -2); transform-style: preserve-3d; transform: rotateX(calc(var(--a, 1) * 58deg)) rotateZ(calc((1 - var(--a, 1)) * -140deg)) scale(calc(.72 + var(--a, 1) * .28)); }
+.n-floor .disc { width: 100%; }
+.n-rings { position: absolute; inset: 0; pointer-events: none; }
+.n-rings i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; }
+.scene.s2 .n-rings i, .scene.s3 .n-rings i { animation: ring 1.2s var(--ease) forwards; } .scene.s2 .n-rings i:nth-child(2), .scene.s3 .n-rings i:nth-child(2) { animation-delay: .2s; } .scene.s2 .n-rings i:nth-child(3), .scene.s3 .n-rings i:nth-child(3) { animation-delay: .4s; }
+.n-phone { position: absolute; z-index: 3; left: 50%; top: 10%; width: min(17vh, 10.5vw); aspect-ratio: 9 / 19; margin-left: calc(min(17vh, 10.5vw) / -2); padding: 6px; border-radius: 22% / 10%; background: linear-gradient(150deg, #48474c, #151517 55%, #2a2a2e); box-shadow: 0 40px 60px -24px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.2); opacity: min(1, calc(var(--b, 1) * 4)); transform: translateY(calc((1 - var(--b, 1)) * -90%)) rotate(-6deg); }
+.n-phone > div { height: 100%; display: grid; align-content: center; justify-items: center; gap: 8px; border-radius: 18% / 8%; background: #fff; color: #202124; text-align: center; }
+.n-phone b { font: 700 clamp(22px, 2.6vw, 34px)/1 Arial, sans-serif; color: #4285f4; }
+.n-phone small { font-size: clamp(10px, .8vw, 12px); font-weight: 600; }
+.n-stars { display: flex; gap: 2px; } .n-stars svg { width: clamp(12px, 1.1vw, 16px); height: clamp(12px, 1.1vw, 16px); fill: #e3e6ea; transition: fill .3s; }
+.scene.s3 .n-stars svg { fill: #fbbc05; } .scene.s3 .n-stars svg:nth-child(2) { transition-delay: .1s; } .scene.s3 .n-stars svg:nth-child(3) { transition-delay: .2s; } .scene.s3 .n-stars svg:nth-child(4) { transition-delay: .3s; } .scene.s3 .n-stars svg:nth-child(5) { transition-delay: .4s; }
+.n-toast { right: 2%; top: 14%; } .n-toast svg { background: #fbbc05; }
+
+/* without scroll animation (reduced motion, no GSAP): every scene shows its final picture */
+.scene.static { height: auto; } .scene.static .scene__pin { position: relative; height: auto; min-height: 100vh; padding: 110px 0 80px; }
+
+/* NFC calculator */
+.nfcband { margin-top: 0; }
+.calcwrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
+.calcwrap .ticks { margin-top: 26px; }
+.calc-card { padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--white); box-shadow: var(--edge); }
+.calc-card .calc { margin-top: 26px; }
+.calc-card .btn { margin-top: 18px; }
+
 /* roomtour before / after */
+.cmp::after { content: ""; position: absolute; inset: 0; z-index: 5; border-radius: inherit; box-shadow: var(--edge); pointer-events: none; }
 .ba { margin-top: clamp(40px, 6vw, 72px); display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 8fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .tabs button { min-height: 46px; padding: 0 20px; border-radius: 999px; font-weight: 700; color: var(--ink); background: var(--white); box-shadow: inset 0 0 0 1.5px var(--line); transition: background-color .2s, color .2s, box-shadow .2s; }
@@ -316,9 +289,6 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .grip button { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 60px; height: 60px; margin: -30px 0 0 -30px; border-radius: 50%; background: #fff; color: #111114; cursor: ew-resize; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
 .grip svg { width: 26px; height: 26px; }
 
-/* reference: SPIRULI case */
-.case { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(36px, 6vw, 96px); align-items: center; margin-top: clamp(40px, 6vw, 72px); }
-.devices { position: relative; padding: 0 6% 4% 0; perspective: 1400px; }
 .mac { position: relative; transform-origin: 50% 100%; }
 .mac__lid { padding: 2.2% 2.2% 3%; border-radius: 18px 18px 6px 6px; background: linear-gradient(180deg, #2b2b2f, #18181b); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), var(--shadow); }
 .mac__screen { position: relative; aspect-ratio: 16 / 10; border-radius: 4px; overflow: hidden; background: #f1f3ee; }
@@ -327,47 +297,13 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .iphone { position: absolute; right: 0; bottom: 0; width: 23%; aspect-ratio: 9 / 19.5; padding: 2.4%; border-radius: 18% / 8.4%; background: linear-gradient(150deg, #3a3a3e, #121214 55%, #26262a); box-shadow: inset 0 0 0 1px rgba(255,255,255,.18), 0 40px 60px -24px rgba(0,0,0,.5); }
 .iphone__screen { position: relative; height: 100%; border-radius: 14% / 6.6%; overflow: hidden; background: #f1f3ee; }
 .iphone__screen::before { content: ""; position: absolute; z-index: 2; top: 2.2%; left: 50%; width: 30%; height: 3.4%; margin-left: -15%; border-radius: 99px; background: #0d0d0f; }
-.scroller { position: absolute; left: 0; top: 0; width: 100%; height: auto; will-change: transform; }
-.facts { list-style: none; margin-top: 26px; }
-.facts li { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; padding: 14px 0; border-top: 1px solid var(--line); }
-.facts li:last-child { border-bottom: 1px solid var(--line); }
-.facts b { font-family: var(--head); font-weight: 600; color: var(--ink); font-size: 0.9688rem; }
 
 /* NFC band */
 .nfcband { margin-top: clamp(100px, 12vw, 170px); padding: clamp(90px, 11vw, 150px) 0; }
-.nfcband .sec__head { margin-bottom: clamp(40px, 6vw, 72px); }
-.stage { position: relative; aspect-ratio: 1 / .92; max-height: 640px; perspective: 1000px; }
-.stage::before { content: ""; position: absolute; left: 10%; right: 10%; top: 40%; bottom: 0; background: radial-gradient(closest-side, rgba(201,173,124,.22), transparent); }
-.plate { position: absolute; left: 50%; top: 70%; width: 54%; transform: translate(-50%, -50%) rotateX(55deg); }
 .disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 1px 0 #dcd8d0, 0 3px 0 #cdc8be, 0 5px 0 #bfb9ae, 0 40px 50px -16px rgba(0,0,0,.7); }
 .disc svg { width: 100%; height: 100%; }
 .disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: 0 1px 0 #3a3a3e, 0 3px 0 #2c2c30, 0 5px 0 #222226, 0 40px 50px -16px rgba(0,0,0,.8); }
 .rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--champ); opacity: 0; }
-.phone { position: absolute; left: 50%; top: 2%; width: 32%; aspect-ratio: 71.5 / 149.6; margin-left: -16%; padding: 2.4%; border-radius: 16% / 7.6%; background: linear-gradient(150deg, #48474c, #151517 55%, #2a2a2e); box-shadow: 0 40px 60px -26px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.2); container-type: inline-size; transition: transform .9s var(--ease); }
-.scr { position: relative; height: 100%; border-radius: 13% / 6.2%; overflow: hidden; background: #fff; color: #202124; }
-.scr > div { position: absolute; inset: 0; background: #fff; transition: opacity .35s; }
-.s-lock { display: grid; align-content: start; justify-items: center; padding-top: 26%; color: #fff; background: linear-gradient(170deg, #5a4a33, #1c1c1f) !important; }
-.s-lock small { font-size: 6cqw; opacity: .85; } .s-lock b { font-size: 21cqw; font-weight: 600; line-height: 1.05; letter-spacing: -.03em; }
-.s-lock span { position: absolute; bottom: 9%; left: 8%; right: 8%; padding: 3.5cqw; border-radius: 99px; background: rgba(255,255,255,.2); text-align: center; font-size: 5.6cqw; font-weight: 600; }
-.s-rev, .s-done { opacity: 0; }
-.g-head { padding: 24% 8% 0; display: flex; align-items: center; gap: 4cqw; font-size: 6.4cqw; font-weight: 600; }
-.g-head b { font: 700 10cqw/1 Arial, sans-serif; color: #4285f4; }
-.g-biz { margin: 7cqw 8% 0; display: flex; gap: 4cqw; align-items: center; font-size: 6.6cqw; font-weight: 600; line-height: 1.2; }
-.g-biz i { display: grid; place-items: center; width: 14cqw; height: 14cqw; border-radius: 50%; background: var(--graphite); color: #fff; font-style: normal; }
-.g-biz small { display: block; font-size: 5.2cqw; color: #70757a; font-weight: 400; }
-.g-stars { margin: 9cqw 7% 0; display: flex; justify-content: space-between; }
-.g-stars svg { width: 15.5cqw; height: 15.5cqw; fill: #e3e6ea; transition: fill .25s, transform .35s var(--ease); }
-.g-stars svg.on { fill: #fbbc05; transform: scale(1.1); }
-.g-text { margin: 8cqw 8% 0; padding: 4cqw; min-height: 20cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.4cqw; color: #3c4043; }
-.s-done { display: grid; place-content: center; justify-items: center; gap: 2cqw; text-align: center; }
-.s-done i { display: grid; place-items: center; width: 24cqw; height: 24cqw; margin-bottom: 4cqw; border-radius: 50%; background: var(--ok); color: #fff; }
-.s-done i svg { width: 50%; } .s-done b { font-size: 9cqw; } .s-done small { font-size: 5.4cqw; color: #70757a; }
-.counter { position: absolute; z-index: 5; left: 0; top: 4%; padding: 14px 18px; border-radius: 16px; background: var(--white); box-shadow: var(--shadow); color: var(--ink); font-size: 0.9062rem; font-weight: 700; line-height: 1.25; }
-.counter b { display: block; font-size: 2rem; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
-.counter em { font-style: normal; color: var(--ok); opacity: 0; transition: opacity .3s; } .counter.up em { opacity: 1; }
-.stage.p1 .phone { transform: translateY(32%); }
-.stage.p1 .rings i { animation: ring 1s var(--ease) forwards; } .stage.p1 .rings i:nth-child(2) { animation-delay: .15s; } .stage.p1 .rings i:nth-child(3) { animation-delay: .3s; }
-.stage.p2 .s-rev { opacity: 1; } .stage.p4 .s-done { opacity: 1; }
 @keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
 .ctrl { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 10px; }
 .seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.08); }
@@ -497,30 +433,37 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
-  .f-book { display: none; }
 }
 @media (max-width: 1023px) {
   .nav { display: none; } .menu-btn { display: inline-flex; }
   .sec__head, .ba, .case, .nfc, .about, .two, .contact__grid { grid-template-columns: minmax(0, 1fr); }
   .picker__grid { grid-template-columns: minmax(0, 1fr); } .pick-tabs { max-width: none; }
-  .svc, .svc:nth-child(even) { grid-template-columns: minmax(0, 1fr); } .svc:nth-child(even) > :first-child { order: 0; }
-  .svc__media { aspect-ratio: 16 / 10; order: -1; }
+  .scene { height: 300vh; }
+  .scene__pin { align-items: stretch; }
+  .scene__grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); gap: 8px; height: 100%; padding-top: 82px; padding-bottom: 16px; }
+  .scene h2 { font-size: clamp(28px, 7.4vw, 44px); }
+  .scene .how { margin-top: 12px; gap: 0; min-height: 3.4em; } .scene .how li { display: none; padding: 4px 0 4px 40px; font-size: 1rem; } .scene .how li.cur { display: block; } .scene .how li::before { width: 28px; height: 28px; top: 2px; }
+  .scene.static .how li { display: block; }
+  .scene__fact { display: none; } .scene__foot { margin-top: 12px; } .scene .price { font-size: 1.5rem; }
+  .scene__stage { height: auto; }
+  .w-mac { right: 14%; top: 46%; } .w-phone { width: 27%; }
+  .scene--room { --x1: 20%; --x2: 50%; --x3: 80%; --xm: 50%; --py: 78%; --pw: 30vw; --ct: 62%; --cr: 6%; --cb: 6%; --cl: 6%; }
+  .r-stage::after { background: linear-gradient(180deg, rgba(0,0,0,.88), rgba(0,0,0,.6) 55%, rgba(0,0,0,.1)); }
+  .r-toast { right: auto; left: 20px; top: auto; bottom: 22%; }
+  .n-floor { top: 56%; width: min(62vw, 34vh); margin: calc(min(62vw, 34vh) / -2) 0 0 calc(min(62vw, 34vh) / -2); }
+  .n-phone { width: min(22vw, 14vh); margin-left: calc(min(22vw, 14vh) / -2); top: 4%; }
+  .n-toast { right: auto; left: 0; top: auto; bottom: 4%; }
+  .w-toast { top: auto; bottom: 2%; }
+  .calcwrap { grid-template-columns: minmax(0, 1fr); }
+  .lineup { aspect-ratio: 16 / 11; } .lu-mac { width: 84%; margin-left: -42%; } .lu-phone { right: 0; width: 22%; } .lu-disc { left: 0; width: 30%; }
   .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; } .steps::before, .steps::after { display: none; }
   .plans { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .foot__grid { grid-template-columns: 1fr 1fr; } .foot__brand { grid-column: 1 / -1; }
-  .stage { max-width: 540px; width: 100%; margin: 0 auto; }
-  .hero { padding-bottom: 60px; }
-  .f-video { left: -4%; top: 12%; width: 34vw; } .f-phone { right: -2%; top: 10%; width: 20vw; }
-  .f-review { left: 2%; bottom: 6%; } .f-nfc { right: -2%; bottom: 4%; width: 34vw; }
 }
 @media (max-width: 700px) {
   body { font-size: 1.0625rem; }
   .head__in { height: 68px; } .head__in > .btn { display: none; }
   .logo svg { height: 24px; }
-  .hero { min-height: 0; padding: 310px 0 300px; }
-  .hero__center .btn { flex: 1; }
-  .f-video { left: -6%; top: 84px; width: 54vw; } .f-phone { right: -3%; top: 72px; width: 25vw; }
-  .f-review { left: 4%; bottom: 120px; width: 70vw; } .f-nfc { right: -10%; bottom: 10px; width: 62vw; }
   .pause { left: 20px; right: auto; bottom: 16px; padding: 0 15px; } .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
   .cmp { aspect-ratio: 4 / 5; }
   .iphone { width: 27%; }
@@ -530,9 +473,6 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   .diff th, .diff td, .diff tbody tr:last-child th, .diff tbody tr:last-child td { padding: 0; border: 0; background: none; box-shadow: none; }
   .diff tbody th, .diff .us, .diff tbody tr:last-child .us { width: auto; } .diff .us, .diff tbody tr:last-child .us { margin-top: 6px; background: none; box-shadow: none; }
   .diff td:not(.us) { margin-top: 4px; padding-left: 28px; font-size: .9375rem; } .diff td:not(.us)::before { content: "Oft üblich: "; }
-  .facts li { grid-template-columns: minmax(0, 1fr); gap: 2px; }
-  .counter { top: -64px; display: flex; align-items: baseline; gap: 10px; padding: 9px 14px; font-size: 0.8125rem; } .counter b { font-size: 1.375rem; }
-  .stage { margin-top: 72px; }
   .dock { display: grid; }
   .foot { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
 }
@@ -578,27 +518,26 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 <header class="head" id="head">
   <div class="wrap head__in">
     <a class="logo" href="#start" aria-label="FOAV – zum Anfang"><svg class="logo__svg" viewBox="-20 -40 2730 830" role="img" aria-label="FOAV"><path class="lg-ink" transform="translate(-90 730) scale(1 -1)" d="M90 0V730H232V0ZM212 304V424L504 424.5V304.5ZM212 610V730H518V610Z"/><path class="lg-ink" fill-rule="evenodd" d="M492 365a384 384 0 1 0 768 0a384 384 0 1 0 -768 0zM596.0 365a280.0 280.0 0 1 1 560.0 0a280.0 280.0 0 1 1 -560.0 0z"/><circle class="lg-amp" cx="876" cy="365" r="81"/><path class="lg-ink" transform="translate(1282 730) scale(1 -1)" d="M18 0 266.5 730H498.5L755 0H608.5L392 633L442.5 611H317.5L370 633L160 0ZM192 193.5 236.5 313.5H532.5L577 193.5Z"/><path class="lg-ink" transform="translate(1986 730) scale(1 -1)" d="M253.5 0 21 730H167.5L360.5 97.5L319 118H427L383.5 97.5L562 730H704L487.5 0Z"/></svg></a>
-    <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#referenz">Referenz</a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a></nav>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#passend">Beratung</a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#kontakt">Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="#leistungen">Leistungen</a><a href="#roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="#referenz">Referenz</a><a href="#nfc">NFC-Platten <span>15 €</span></a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="#leistungen">Leistungen</a><a href="#roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="#passend">Beratung</a><a href="#platten">NFC-Platten <span>15 €</span></a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
 
 <main id="start">
   <!-- Start -->
   <section class="hero" id="hero" aria-labelledby="h-start">
-    <div class="fl f-video" data-depth="1.2"><div class="card"><video id="heroVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video><span>KI-Roomtour</span></div></div>
-    <div class="fl f-book" data-depth=".7" aria-hidden="true"><div class="card"><i><svg><use href="#tick"/></svg></i><div><b>Neue Buchung</b><small>3 Nächte, 2 Gäste</small></div></div></div>
-    <div class="fl f-phone" data-depth="1.5" aria-hidden="true"><div class="ph"><div><img src="/media/ref-spiruli-mob.webp" alt=""></div></div></div>
-    <div class="fl f-review" data-depth=".9" aria-hidden="true"><div class="card"><i>G</i><div><b>Neue Google-Bewertung</b><span class="st"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></div></div></div>
-    <div class="fl f-nfc" data-depth="1.1" aria-hidden="true"><div class="card"><img src="/media/nfc-platten.webp" alt=""></div></div>
-    <div class="hero__center">
-      <h1 id="h-start">Digitale Auftritte, die <em>Kunden gewinnen.</em></h1>
-      <p>Websites, KI-Roomtour-Videos und NFC-Platten für Google-Bewertungen. Von zwei Gründern aus München, persönlich betreut und zum Festpreis.</p>
-      <div class="cta"><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#leistungen">Leistungen ansehen</a></div>
-      <p class="hero__note"><b>Antwort innerhalb von 24 Stunden.</b> Kein Abo, keine versteckten Kosten.</p>
+    <div class="wrap hero__top">
+      <h1 id="h-start">Mehr Kunden für Ihren Betrieb.</h1>
+      <p class="hero__sub">Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p>
+      <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#websites">So funktioniert's</a></div>
       <nav class="quick" aria-label="Leistungen mit Preis"><a href="#websites">Websites <b>ab 300 €</b></a><a href="#roomtours">KI-Roomtours <b>ab 300 €</b></a><a href="#platten">NFC-Platten <b>15 €</b></a></nav>
+    </div>
+    <div class="lineup" id="lineup" aria-hidden="true">
+      <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-spiruli-desk-top.jpg" alt=""></div></div><div class="mac__base"></div></div></div>
+      <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><video id="heroVid" poster="/media/tour-md-2.jpg" muted loop playsinline autoplay preload="auto"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div></div></div>
+      <div class="lu lu-disc"><div class="lu-tilt"><div><span class="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div></div></div>
     </div>
     <button class="pause" type="button" id="pause" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><span>Bewegung anhalten</span></button>
   </section>
@@ -610,54 +549,45 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
     </div>
   </section>
 
-  <!-- Services -->
-  <section class="sec" id="leistungen" aria-labelledby="h-svc">
-    <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-svc">Drei Leistungen. Ein Ziel: mehr Kunden.</h2></div><p class="lead">Jede Leistung funktioniert für sich und zusammen noch besser. Sie bekommen alles aus einer Hand, mit einem festen Ansprechpartner.</p></div>
-      <div class="stack" id="stack">
-        <article class="svc" id="websites">
-          <div><span class="svc__no">Websites</span><h3>Sichtbar werden, wo Kunden suchen.</h3><p>Ihre Website erklärt in Sekunden, was Sie anbieten, und sieht auf jedem Handy gut aus.</p>
-            <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website, Sie geben sie frei.</li><li><b>Online.</b> Wir stellen sie ins Netz, mit Impressum und Datenschutz.</li></ol>
-            <p class="svc__fact">Basis-Paket mit 3 Seiten. Animationen, mehr Seiten und Shop in größeren Paketen.</p>
-            <div class="svc__foot"><p class="svc__price"><small>ab </small>300 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a></div></div>
-          <div class="svc__media ex ex-web" data-ex data-p="3">
-            <div aria-hidden="true" class="bw"><div class="bw__bar"><i></i><i></i><i></i><span class="bw__url"><b>ihr-betrieb.de</b></span></div><div class="bw__body"><div class="wf"><i></i><i></i><i></i><i></i><i></i></div><img class="bw__shot" src="/media/ref-spiruli-desk-top.jpg" alt="" loading="lazy"></div></div>
-            <div aria-hidden="true" class="ex-phone"><img src="/media/ref-spiruli-mob.webp" alt="" loading="lazy"></div>
-            <span aria-hidden="true" class="ex-badge"><svg><use href="#tick"/></svg>Online</span>
-            <button class="ex-replay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nochmal ansehen</button>
-          </div>
-        </article>
-        <article class="svc" id="roomtours">
-          <div><span class="svc__no">KI-Roomtours</span><h3>Gebucht werden, weil Gäste es fühlen.</h3><p>Ein Video-Rundgang zeigt Ihre Unterkunft so, wie Gäste sie erleben. Ganz ohne Fototermin.</p>
-            <ol class="how"><li><b>Fotos.</b> Sie schicken uns Fotos Ihrer Räume.</li><li><b>Video.</b> Wir erstellen daraus einen Rundgang in Full HD.</li><li><b>Buchungen.</b> Sie zeigen ihn auf Airbnb, Booking.com und Ihrer Website.</li></ol>
-            <p class="svc__fact">Basis bis 150 m² oder ein ganzes Stockwerk. Quer oder hochkant, mit Ihrer Freigabe.</p>
-            <div class="svc__foot"><p class="svc__price"><small>ab </small>300 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div></div>
-          <div class="svc__media ex ex-room" data-ex data-p="3">
-            <video id="svcVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel einer KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video>
-            <img class="pol pol1" src="/media/tour-md-1.jpg" alt="" loading="lazy"><img class="pol pol2" src="/media/tour-md-2.jpg" alt="" loading="lazy"><img class="pol pol3" src="/media/tour-md-3.jpg" alt="" loading="lazy">
-            <div class="ex-progress" aria-hidden="true"><span>Video entsteht</span><i></i></div>
-            <span class="ex-badge" aria-hidden="true"><svg><use href="#tick"/></svg>Neue Buchung: 3 Nächte</span>
-            <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
-            <button class="ex-replay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nochmal ansehen</button>
-          </div>
-        </article>
-        <article class="svc" id="platten">
-          <div><span class="svc__no">NFC-Platten</span><h3>Bewertet werden, mit einem Antippen.</h3><p>Zufriedene Gäste bewerten Sie in Sekunden, weil sie nichts suchen müssen.</p>
-            <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
-            <p class="svc__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz. Für Restaurants empfehlen wir 5 bis 10 Stück.</p>
-            <div class="svc__foot"><p class="svc__price">15 € <small>pro Stück</small></p><a class="btn btn--ink" href="#nfc">Live-Demo ansehen</a></div></div>
-          <div class="svc__media svc__media--nfc ex ex-nfc" data-ex data-p="3">
-            <img src="/media/nfc-platten.webp" alt="" loading="lazy">
-            <span aria-hidden="true" class="ex-rings"><i></i><i></i><i></i></span>
-            <div aria-hidden="true" class="ex-tap"><div><b>G</b><small>Bewertung schreiben</small><span class="ex-stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></div></div>
-            <span aria-hidden="true" class="ex-badge"><svg><use href="#star"/></svg>+1 Google-Bewertung</span>
-            <button class="ex-replay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.4-5.7M4 4v4h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Nochmal ansehen</button>
-          </div>
-        </article>
+  <!-- Services: three short films that play while you scroll -->
+  <div id="leistungen">
+  <section class="scene scene--web" id="websites" aria-labelledby="h-web">
+    <div class="scene__pin">
+      <div class="wrap scene__grid">
+        <div class="scene__text">
+          <p class="kicker">Websites</p>
+          <h2 id="h-web">Sichtbar werden, wo Kunden suchen.</h2>
+          <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website, Sie geben sie frei.</li><li><b>Online.</b> Wir stellen sie ins Netz, mit Impressum und Datenschutz.</li></ol>
+          <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Website">Website anfragen</a></div>
+          <p class="scene__fact">Basis-Paket mit 3 Seiten. Im Bild: unsere Referenz SPIRULI (Premium-Paket).</p>
+        </div>
+        <div class="scene__stage w-stage" aria-hidden="true">
+          <div class="w-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img class="scroller" src="/media/ref-spiruli-desk.webp" alt="" width="1600" height="3000" loading="lazy"></div></div><div class="mac__base"></div></div></div>
+          <div class="w-phone"><div class="iphone"><div class="iphone__screen"><img class="scroller" src="/media/ref-spiruli-mob.webp" alt="" width="780" height="5064" loading="lazy"></div></div></div>
+          <span class="toast w-toast"><svg><use href="#tick"/></svg>Online: ihr-betrieb.de</span>
+        </div>
       </div>
     </div>
   </section>
 
+  <section class="scene scene--room" id="roomtours" aria-labelledby="h-room">
+    <div class="scene__pin">
+      <div class="r-stage" aria-hidden="true">
+        <img class="r-ph r-ph1" src="/media/tour-md-1.jpg" alt=""><img class="r-ph r-ph2" src="/media/tour-md-2.jpg" alt=""><img class="r-ph r-ph3" src="/media/tour-md-3.jpg" alt="">
+        <div class="r-vid"><video id="svcVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div>
+        <span class="toast r-toast"><svg><use href="#tick"/></svg>Neue Buchung: 3 Nächte</span>
+      </div>
+      <div class="wrap scene__grid">
+        <div class="scene__text">
+          <p class="kicker">KI-Roomtours</p>
+          <h2 id="h-room">Gebucht werden, weil Gäste es fühlen.</h2>
+          <ol class="how"><li><b>Fotos.</b> Sie schicken uns Fotos Ihrer Räume.</li><li><b>Video.</b> Wir erstellen daraus einen Rundgang in Full HD.</li><li><b>Buchungen.</b> Sie zeigen ihn auf Airbnb, Booking.com und Ihrer Website.</li></ol>
+          <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div>
+          <p class="scene__fact">Basis bis 150 m² oder ein ganzes Stockwerk. Ohne Fototermin.</p>
+        </div>
+      </div>
+    </div>
+  </section>
   <!-- Before / after -->
   <section class="sec" id="vorher-nachher" aria-labelledby="h-ba">
     <div class="wrap">
@@ -674,50 +604,39 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
     </div>
   </section>
 
-  <!-- Reference -->
-  <section class="sec" id="referenz" aria-labelledby="h-ref">
-    <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-ref">SPIRULI: eine Marke, die man sehen will.</h2></div><p class="lead">Für die Getränke-Marke SPIRULI haben wir eine Website mit Online-Shop gebaut, die das Produkt groß inszeniert und auf jedem Gerät glänzt.</p></div>
-      <div class="case">
-        <div class="devices" id="devices">
-          <div class="mac"><div class="mac__lid"><div class="mac__screen"><img class="scroller" id="deskImg" src="/media/ref-spiruli-desk.webp" alt="Website von SPIRULI auf dem Laptop" loading="lazy" width="1600" height="3000"></div></div><div class="mac__base"></div></div>
-          <div class="iphone"><div class="iphone__screen"><img class="scroller" id="mobImg" src="/media/ref-spiruli-mob.webp" alt="Website von SPIRULI auf dem iPhone" loading="lazy" width="780" height="5064"></div></div>
+  <section class="scene scene--nfc" id="platten" aria-labelledby="h-plate">
+    <div class="scene__pin">
+      <div class="wrap scene__grid">
+        <div class="scene__text">
+          <p class="kicker">NFC-Platten</p>
+          <h2 id="h-plate">Bewertet werden, mit einem Antippen.</h2>
+          <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
+          <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="#nfc">Platten berechnen</a></div>
+          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
         </div>
-        <div>
-          <ul class="facts"><li><b>Kunde</b><span>SPIRULI, vegane Getränke-Marke</span></li><li><b>Paket</b><span>Premium</span></li><li><b>Umfang</b><span>Design, Animationen, Online-Shop, Handy-Version</span></li><li><b>Ergebnis</b><span>Eine Seite, die das Produkt wie ein Werbefilm zeigt</span></li></ul>
-          <div class="svc__foot"><a class="btn btn--ink" href="#kontakt" data-pick="Website">So eine Website anfragen</a></div>
+        <div class="scene__stage n-stage" aria-hidden="true">
+          <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
+          <div class="n-phone"><div><b>G</b><small>Bewertung schreiben</small><span class="n-stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></div></div>
+          <span class="toast n-toast"><svg><use href="#star"/></svg>+1 Google-Bewertung</span>
         </div>
       </div>
     </div>
   </section>
+  </div>
 
-  <!-- NFC -->
-  <section class="dark nfcband" id="nfc" aria-labelledby="h-nfc">
-    <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-nfc">Probieren Sie es aus.</h2></div><p class="lead">So läuft es bei Ihren Gästen: Handy an die Platte, Bewertung öffnet sich, fünf Sterne, fertig. Rechts berechnen Sie Ihren Preis.</p></div>
-      <div class="nfc">
-      <div>
-        <div class="stage" id="stage" role="img" aria-label="Animation: Ein Handy tippt auf die NFC-Platte, die Google-Bewertung öffnet sich und wird veröffentlicht">
-          <div class="counter" id="counter">Google-Bewertungen<b><span id="revN">128</span> <em>+1</em></b></div>
-          <div class="plate"><span class="rings" aria-hidden="true"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
-          <div class="phone" aria-hidden="true"><div class="scr">
-            <div class="s-lock"><small>Dienstag, 27. Oktober</small><b>9:41</b><span>An die Platte halten</span></div>
-            <div class="s-rev"><div class="g-head"><b>G</b>Bewertung schreiben</div><div class="g-biz"><i>R</i><div>Ihr Restaurant<small>München</small></div></div><div class="g-stars" id="gStars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><p class="g-text">Super Essen, sehr freundlich!</p></div>
-            <div class="s-done"><i><svg><use href="#tick"/></svg></i><b>Danke!</b><small>Bewertung veröffentlicht</small></div>
-          </div></div>
-        </div>
-        <div class="ctrl"><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß">Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz">Schwarz</button></div><button class="btn btn--line" type="button" id="try">Antippen ausprobieren</button></div>
-      </div>
-      <div>
-        <ul class="ticks"><li>Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz</li><li>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li>Für Restaurants 5 bis 10 Stück, z. B. in jede Rechnungsmappe</li></ul>
+  <!-- NFC calculator -->
+  <section class="sec nfcband" id="nfc" aria-labelledby="h-nfc">
+    <div class="wrap calcwrap">
+      <div><h2 id="h-nfc">Wie viele Platten brauchen Sie?</h2><p class="lead">Für Restaurants empfehlen wir 5 bis 10 Stück, zum Beispiel eine pro Tisch oder Rechnungsmappe. Wählen Sie die Farbe, die zu Ihrem Betrieb passt.</p>
+        <ul class="ticks"><li>Rund, Ø 10 cm, aus Acryl</li><li>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li>Mit iPhone und Android, ohne App und ohne Akku</li></ul></div>
+      <div class="calc-card">
+        <div class="ctrl"><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß">Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz">Schwarz</button></div></div>
         <div class="calc">
           <div class="calc__sum"><b id="sum">150 €</b><span id="qtyLabel">für 10 Platten</span></div>
           <div class="range"><input type="range" id="qty" min="1" max="20" value="10" aria-label="Anzahl NFC-Platten" aria-valuetext="10 Platten"></div>
           <p class="hint" id="hint">Unsere Empfehlung für Restaurants</p>
-          <a class="btn btn--champ" href="#kontakt" id="calcBuy" style="margin-top:18px">Platten anfragen</a>
+          <a class="btn btn--light" href="#kontakt" id="calcBuy">Platten anfragen</a>
         </div>
-      </div>
-      </div>
       </div>
     </div>
   </section>
@@ -823,8 +742,8 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
       <div class="wrap">
         <div class="foot__grid">
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
-          <div><h3>Leistungen</h3><ul><li><a href="#websites">Websites</a></li><li><a href="#roomtours">KI-Roomtours</a></li><li><a href="#nfc">NFC-Platten</a></li><li><a href="#preise">Preise</a></li></ul></div>
-          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="#referenz">Referenz</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#unterschied">Warum FOAV</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
+          <div><h3>Leistungen</h3><ul><li><a href="#websites">Websites</a></li><li><a href="#roomtours">KI-Roomtours</a></li><li><a href="#platten">NFC-Platten</a></li><li><a href="#preise">Preise</a></li></ul></div>
+          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="#passend">Beratung</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#unterschied">Warum FOAV</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-20 -40 2730 830" role="img" aria-label="FOAV"><path class="lg-ink" transform="translate(-90 730) scale(1 -1)" d="M90 0V730H232V0ZM212 304V424L504 424.5V304.5ZM212 610V730H518V610Z"/><path class="lg-ink" fill-rule="evenodd" d="M492 365a384 384 0 1 0 768 0a384 384 0 1 0 -768 0zM596.0 365a280.0 280.0 0 1 1 560.0 0a280.0 280.0 0 1 1 -560.0 0z"/><circle class="lg-amp" cx="876" cy="365" r="81"/><path class="lg-ink" transform="translate(1282 730) scale(1 -1)" d="M18 0 266.5 730H498.5L755 0H608.5L392 633L442.5 611H317.5L370 633L160 0ZM192 193.5 236.5 313.5H532.5L577 193.5Z"/><path class="lg-ink" transform="translate(1986 730) scale(1 -1)" d="M253.5 0 21 730H167.5L360.5 97.5L319 118H427L383.5 97.5L562 730H704L487.5 0Z"/></svg></div>
@@ -895,26 +814,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   if (reduce) pauseBtn.hidden = true; else pauseBtn.addEventListener("click", function () { setStill(!still); });
 
-  /* ---------- explainers: each plays its three steps once when it comes into view ---------- */
-  $$("[data-ex]").forEach(function (ex) {
-    var art = ex.closest(".svc"), lis = $$(".how li", art), replay = $(".ex-replay", ex), timers = [];
-    var at = ex.classList.contains("ex-room") ? [0, 1500, 3500] : [0, 1500, 3100];
-    function set(p) { ex.setAttribute("data-p", p); lis.forEach(function (li, i) { li.classList.toggle("on", i < p); }); }
-    function play() {
-      timers.forEach(clearTimeout); timers = []; replay.hidden = true; set(0);
-      at.forEach(function (ms, i) { timers.push(setTimeout(function () { set(i + 1); }, ms + 80)); });
-      timers.push(setTimeout(function () { replay.hidden = false; }, at[2] + 1600));
-    }
-    if (reduce) { set(3); return; }
-    set(0);
-    replay.addEventListener("click", play);
-    new IntersectionObserver(function (es) {
-      var e = es[0];
-      if (e.intersectionRatio >= .5 && ex.getAttribute("data-p") === "0") play();
-      else if (!e.isIntersecting) { timers.forEach(clearTimeout); timers = []; set(0); }
-    }, { threshold: [0, .5] }).observe(ex);
-  });
-
   /* ---------- "Was passt zu Ihrem Betrieb?" ---------- */
   var ptabs = $$(".pick-tabs [role=tab]");
   function showRec(btn, focus) {
@@ -959,6 +858,19 @@ document.addEventListener("DOMContentLoaded", function () {
   tv.addEventListener("timeupdate", function () { if (tv.currentTime >= rooms[room][1] - .05 || tv.currentTime < rooms[room][0] - .3) tv.currentTime = rooms[room][0]; });
   setX(50);
 
+  /* ---------- scenes: scroll progress 0..1 -> --a, --b, --c and the active step ---------- */
+  var scenes = $$(".scene");
+  function sceneSet(sc, p) {
+    sc.style.setProperty("--a", clamp(p / .3, 0, 1).toFixed(4));
+    sc.style.setProperty("--b", clamp((p - .33) / .3, 0, 1).toFixed(4));
+    sc.style.setProperty("--c", clamp((p - .66) / .28, 0, 1).toFixed(4));
+    var s = p < .33 ? 1 : p < .66 ? 2 : 3;
+    if (sc._s === s) return;
+    sc._s = s; sc.classList.remove("s1", "s2", "s3"); sc.classList.add("s" + s);
+    $$(".how li", sc).forEach(function (li, i) { li.classList.toggle("on", i < s); li.classList.toggle("cur", i === s - 1); });
+  }
+  if (!G) scenes.forEach(function (sc) { sc.classList.add("static"); sceneSet(sc, 1); });
+
   /* ---------- statement words, process line (fallback without GSAP) ---------- */
   var say = $("#say");
   (function () { var html = ""; say.childNodes.forEach(function (n) { var part = n.textContent.split(/(\s+)/).map(function (x) { return /\s+/.test(x) || !x ? x : "<span>" + x + "</span>"; }).join(""); html += n.nodeType === 1 ? "<em>" + part + "</em>" : part; }); say.innerHTML = html; })();
@@ -967,21 +879,7 @@ document.addEventListener("DOMContentLoaded", function () {
     words.forEach(function (w) { w.classList.add("on"); }); steps.style.setProperty("--p", 1); stepLis.forEach(function (li) { li.classList.add("lit"); });
   }
 
-  /* ---------- NFC demo ---------- */
-  var stage = $("#stage"), gStars = $$("#gStars svg"), revN = $("#revN"), counter = $("#counter"), n = 128, timers = [], loop = null;
-  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
-  function tap() {
-    timers.forEach(clearTimeout); timers = []; stage.className = "stage"; gStars.forEach(function (s) { s.classList.remove("on"); }); counter.classList.remove("up");
-    later(function () { stage.classList.add("p1"); }, 60);
-    later(function () { stage.classList.remove("p1"); stage.classList.add("p2"); }, 1300);
-    gStars.forEach(function (s, i) { later(function () { s.classList.add("on"); }, 1900 + i * 140); });
-    later(function () { stage.classList.add("p4"); n++; revN.textContent = n; counter.classList.add("up"); }, 3600);
-  }
-  function startLoop() { if (loop) return; tap(); loop = setInterval(tap, 7000); }
-  function stopLoop() { clearInterval(loop); loop = null; }
-  $("#try").addEventListener("click", function () { stopLoop(); tap(); });
-  if (reduce) { stage.classList.add("p2"); gStars.forEach(function (s) { s.classList.add("on"); }); }
-  else whileVisible(stage, startLoop, stopLoop, .4);
+  /* ---------- NFC: plate colour (shown on the plate in the NFC scene) ---------- */
   $$("[data-color]").forEach(function (b) { b.addEventListener("click", function () {
     $$("[data-color]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
     $("#disc").classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
@@ -1058,32 +956,29 @@ document.addEventListener("DOMContentLoaded", function () {
       G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
       $$('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function (e) { var id = a.getAttribute("href"), el = id.length > 1 && $(id); if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -84, duration: 1.3 }); } }); });
     }
-    // start: headline rises, the floating work flies in and then follows the mouse and the scroll
+    // start: the headline rises, the lineup comes up from below: laptop opens, phone and plate join
     Split.create("#h-start", { type: "lines,words", mask: "lines", linesClass: "ln", autoSplit: true, onSplit: function (self) { return G.from(self.words, { yPercent: 110, duration: 1.1, ease: out, stagger: .05, delay: .1 }); } });
-    G.from(".hero__center > p, .hero__center .cta", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .5 });
-    var fls = $$(".fl");
-    G.from(fls, { opacity: 0, scale: .6, y: function (i) { return i % 2 ? 120 : -120; }, duration: 1.5, ease: out, stagger: .08, delay: .35 });
-    fls.forEach(function (el) {
-      var d = +el.getAttribute("data-depth") || 1;
-      G.to(el, { yPercent: -60 * d, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
-    });
+    G.from(".hero__sub, .hero .cta, .quick", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
+    G.from(".lu-mac", { y: 140, opacity: 0, duration: 1.6, ease: out, delay: .35 });
+    G.from(".lu-mac .mac__lid", { rotationX: 82, transformOrigin: "50% 100%", duration: 1.8, ease: "power3.inOut", delay: .6 });
+    G.from(".lu-phone", { y: 220, x: 40, rotation: 10, opacity: 0, duration: 1.6, ease: out, delay: .9 });
+    G.from(".lu-disc", { y: 180, opacity: 0, duration: 1.6, ease: out, delay: 1 });
+    G.from(".lu-disc .disc", { rotation: -240, duration: 2.2, ease: out, delay: 1 });
+    G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
+    G.to("#lineup", { scale: 1.08, y: -30, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
     if (fine) {
-      var movers = fls.map(function (el) { var d = +el.getAttribute("data-depth") || 1; return { d: d, x: G.quickTo(el, "x", { duration: 1, ease: "power3" }), y: G.quickTo(el, "y", { duration: 1, ease: "power3" }) }; });
-      $("#hero").addEventListener("pointermove", function (e) { if (still) return; var nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5; movers.forEach(function (m) { m.x(nx * -46 * m.d); m.y(ny * -36 * m.d); }); });
+      G.set("#lineup", { transformPerspective: 1600 });
+      var ry = G.quickTo("#lineup", "rotationY", { duration: 1.2, ease: "power3" }), rx = G.quickTo("#lineup", "rotationX", { duration: 1.2, ease: "power3" });
+      $("#hero").addEventListener("pointermove", function (e) { if (still) return; ry((e.clientX / innerWidth - .5) * 6); rx((e.clientY / innerHeight - .5) * -4); });
     }
-    G.to(".hero__center", { opacity: 0, y: -60, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "60% top", scrub: .5 } });
+    // services: each scene follows the scroll while its stage is pinned
+    scenes.forEach(function (sc) {
+      sceneSet(sc, 0);
+      ST.create({ trigger: sc, start: "top top", end: "bottom bottom", onUpdate: function (self) { sceneSet(sc, self.progress); }, onRefresh: function (self) { sceneSet(sc, self.progress); } });
+    });
     // before / after follows the scroll until grabbed
     var mix = { x: 88 };
     G.to(mix, { x: 18, ease: "none", scrollTrigger: { trigger: "#cmp", start: "top 80%", end: "bottom 30%", scrub: .6 }, onUpdate: function () { if (!touched) setX(mix.x); } });
-    // reference devices
-    G.fromTo(".mac", { rotateX: 24, y: 80 }, { rotateX: 0, y: 0, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 95%", end: "top 40%", scrub: .8 } });
-    G.from(".iphone", { y: 140, opacity: 0, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 85%", end: "top 35%", scrub: .8 } });
-    [$("#deskImg"), $("#mobImg")].forEach(function (im) {
-      G.to(im, { y: function () { return -Math.max(0, im.offsetHeight - im.parentNode.offsetHeight) * .55; }, ease: "none", scrollTrigger: { trigger: "#devices", start: "top 50%", end: "bottom top", scrub: .6, invalidateOnRefresh: true } });
-    });
-    // NFC
-    G.from("#stage .plate", { y: 90, opacity: 0, duration: 1.3, ease: out, scrollTrigger: { trigger: "#stage", start: "top 85%", once: true } });
-    G.from("#stage .phone", { y: -60, opacity: 0, duration: 1.3, ease: out, delay: .15, scrollTrigger: { trigger: "#stage", start: "top 85%", once: true } });
     // process line and steps
     G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
     stepLis.forEach(function (li, i) { ST.create({ trigger: steps, start: "top " + (75 - i * 7) + "%", onEnter: function () { li.classList.add("lit"); }, onLeaveBack: function () { li.classList.remove("lit"); } }); });
