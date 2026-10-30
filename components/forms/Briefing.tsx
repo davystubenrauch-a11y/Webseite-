@@ -37,13 +37,12 @@ const css = `
 .bf-hero { padding:clamp(48px,7vw,88px) 0 clamp(28px,4vw,44px); }
 .bf h1 { margin:0; max-width:16ch; font:600 clamp(36px,5.4vw,64px)/1.04 "Inter",sans-serif; letter-spacing:-.04em; color:var(--ink); text-wrap:balance; }
 .bf-lead { max-width:56ch; margin:20px 0 0; font-size:19px; color:var(--text); }
-.bf-grid { display:grid; grid-template-columns:minmax(0,1fr) 340px; gap:clamp(24px,4vw,56px); align-items:start; padding-bottom:96px; }
-.bf-sec { background:#fff; border-radius:22px; padding:clamp(22px,3.4vw,36px); box-shadow:0 0 0 1px var(--line), 0 1px 2px rgba(0,0,0,.03); }
-.bf-sec + .bf-sec { margin-top:16px; }
-.bf-sec h2 { display:flex; gap:12px; align-items:baseline; margin:0; font:600 22px/1.25 "Inter",sans-serif; letter-spacing:-.025em; color:var(--ink); }
-.bf-sec h2 span { font-size:15px; font-weight:500; color:var(--muted); font-variant-numeric:tabular-nums; }
-.bf-intro { margin:6px 0 0; color:var(--muted); font-size:15px; }
-.bf-qs { display:grid; grid-template-columns:1fr 1fr; gap:22px 18px; margin-top:24px; }
+.bf-sec { display:grid; grid-template-columns:260px minmax(0,1fr); gap:24px clamp(32px,5vw,72px); padding:clamp(36px,5vw,56px) 0; border-top:1px solid var(--line); }
+.bf-sec__h { align-self:start; position:sticky; top:84px; }
+.bf-sec__h b { display:block; font:500 15px/1 "Inter",sans-serif; color:var(--muted); font-variant-numeric:tabular-nums; }
+.bf-sec h2 { margin:10px 0 0; font:600 26px/1.15 "Inter",sans-serif; letter-spacing:-.03em; color:var(--ink); }
+.bf-intro { margin:10px 0 0; color:var(--muted); font-size:15px; max-width:30ch; }
+.bf-qs { display:grid; grid-template-columns:1fr 1fr; gap:28px 18px; max-width:720px; }
 .bf-q { grid-column:1/-1; min-width:0; } .bf-q.half { grid-column:auto; }
 .bf-q > label, .bf-q > .lab { display:block; margin-bottom:8px; font-weight:500; font-size:15px; color:var(--ink); }
 .bf-hint { margin:-4px 0 8px; font-size:14px; color:var(--muted); }
@@ -66,42 +65,46 @@ const css = `
 .bf-step button:hover:not([disabled]) { background:var(--bg2); } .bf-step button[disabled] { color:#c7c7cc; cursor:default; }
 .bf :focus-visible { outline:3px solid rgba(0,113,227,.45); outline-offset:2px; }
 .bf-err { margin:8px 0 0; font-size:14px; color:#c4211a; }
-.bf-drop { position:relative; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px; min-height:112px; padding:18px; border-radius:16px; border:1.5px dashed rgba(0,0,0,.18); background:var(--bg2); text-align:center; font-size:15px; color:var(--muted); transition:border-color .15s, background .15s; }
-.bf-drop strong { color:var(--ink); font-weight:600; }
-.bf-drop input { position:absolute; inset:0; opacity:0; cursor:pointer; }
-.bf-drop:hover, .bf-drop.over { border-color:var(--ink); background:#fff; }
-.bf-drop:focus-within { outline:3px solid rgba(0,113,227,.45); outline-offset:2px; }
-.bf-thumbs { display:grid; grid-template-columns:repeat(auto-fill,minmax(88px,1fr)); gap:8px; margin-top:10px; }
-.bf-thumb { position:relative; aspect-ratio:4/3; border-radius:10px; overflow:hidden; background:var(--bg2); }
-.bf-thumb img { width:100%; height:100%; object-fit:cover; display:block; }
-.bf-thumb .bar { position:absolute; left:6px; right:6px; bottom:6px; height:4px; border-radius:2px; background:rgba(255,255,255,.6); overflow:hidden; }
-.bf-thumb .bar i { display:block; height:100%; background:var(--ink); }
-.bf-thumb .x { position:absolute; top:4px; right:4px; width:28px; height:28px; border:0; border-radius:50%; background:rgba(0,0,0,.6); color:#fff; font-size:16px; line-height:28px; cursor:pointer; }
-.bf-thumb.bad { outline:2px solid #c4211a; }
-.bf-count { margin-top:8px; font-size:14px; color:var(--muted); }
-.bf-count b { color:var(--ink); font-weight:600; }
 .bf-off { padding:14px 16px; border-radius:14px; background:var(--bg2); font-size:15px; }
 .bf-consent, .bf-q > label.bf-consent { display:flex; gap:12px; align-items:flex-start; margin-top:4px; font-size:15px; }
 .bf-consent input { appearance:none; -webkit-appearance:none; display:grid; place-items:center; width:22px; height:22px; margin:1px 0 0; border-radius:6px; background:#fff; box-shadow:inset 0 0 0 1.5px rgba(0,0,0,.3); flex:none; cursor:pointer; }
 .bf-consent input:checked { background:var(--ink); box-shadow:none; }
 .bf-consent input:checked::after { content:""; width:10px; height:6px; margin-top:-3px; border-left:2px solid #fff; border-bottom:2px solid #fff; transform:rotate(-45deg); }
-.bf-submit { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; margin-top:24px; }
+.bf-submit { display:flex; flex-wrap:wrap; align-items:center; gap:14px 20px; }
 .bf-btn { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:0 26px; border:0; border-radius:999px; background:var(--ink); color:#fff; font:500 16px/1 "Inter",sans-serif; cursor:pointer; transition:background .15s; }
 .bf-btn:hover { background:#000; } .bf-btn[disabled] { opacity:.5; cursor:default; }
 .bf-small { font-size:14px; color:var(--muted); }
 .bf-hp { position:absolute; left:-9999px; width:1px; height:1px; overflow:hidden; }
-.bf-aside { position:sticky; top:84px; }
-.bf-card { background:#fff; border-radius:22px; padding:26px; box-shadow:0 0 0 1px var(--line); }
-.bf-card + .bf-card { margin-top:16px; }
-.bf-card h3 { margin:0 0 14px; font:600 17px/1.3 "Inter",sans-serif; color:var(--ink); letter-spacing:-.02em; }
-.bf-steps { list-style:none; margin:0; padding:0; display:grid; gap:14px; }
-.bf-steps li { display:grid; grid-template-columns:28px 1fr; gap:10px; font-size:15px; }
-.bf-steps li b { display:block; color:var(--ink); font-weight:600; }
-.bf-steps i { display:grid; place-items:center; width:28px; height:28px; border-radius:50%; background:var(--bg2); font-style:normal; font-size:13px; font-weight:600; color:var(--ink); }
-.bf-price { font:600 30px/1.1 "Inter",sans-serif; letter-spacing:-.03em; color:var(--ink); font-variant-numeric:tabular-nums; }
-.bf-price + p { margin:6px 0 0; font-size:15px; color:var(--muted); }
-.bf-call { font-size:15px; } .bf-call a { display:block; margin-top:4px; font-weight:500; text-decoration:none; } .bf-call a:hover { text-decoration:underline; }
-.bf-tips { margin:0; padding:0; list-style:none; display:grid; gap:8px; font-size:15px; }
+.bf-flow { list-style:none; margin:clamp(36px,5vw,56px) 0 0; padding:0; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:0; border-top:1px solid var(--ink); }
+.bf-flow li { padding:16px 20px 0 0; font-size:15px; color:var(--muted); }
+.bf-flow b { display:block; margin-bottom:4px; color:var(--ink); font-weight:600; }
+.bf-flow i { display:block; margin-bottom:12px; font:500 13px/1 "Inter",sans-serif; font-style:normal; color:var(--muted); font-variant-numeric:tabular-nums; }
+.bf-panel { padding:22px 24px; border-radius:16px; background:var(--bg2); }
+.bf-panel h3 { margin:0 0 12px; font:600 16px/1.3 "Inter",sans-serif; color:var(--ink); letter-spacing:-.015em; }
+.bf-quote { display:flex; align-items:baseline; gap:12px; flex-wrap:wrap; margin-top:10px; font-size:15px; color:var(--muted); }
+.bf-price { font:600 28px/1 "Inter",sans-serif; letter-spacing:-.03em; color:var(--ink); font-variant-numeric:tabular-nums; }
+.bf-call { display:flex; flex-wrap:wrap; gap:4px 18px; font-size:15px; color:var(--muted); } .bf-call a { font-weight:500; text-decoration:none; } .bf-call a:hover { text-decoration:underline; }
+.bf-opt small { display:block; margin-top:1px; font-size:13px; color:var(--muted); }
+.bf-chip input:checked + span small { color:rgba(255,255,255,.72); }
+.bf-chip span.two { flex-direction:column; align-items:flex-start; border-radius:14px; padding:10px 16px; line-height:1.3; }
+.bf-shots { display:grid; grid-template-columns:repeat(auto-fill,minmax(150px,1fr)); gap:10px; }
+.bf-shot { position:relative; display:flex; flex-direction:column; justify-content:space-between; aspect-ratio:4/3; padding:12px; border-radius:12px; background:var(--bg2); color:var(--muted); font-size:13px; line-height:1.3; overflow:hidden; cursor:pointer; transition:box-shadow .15s, background .15s; }
+.bf-shot svg { width:46px; height:36px; color:var(--ink); }
+.bf-shot:hover, .bf-shot.over { background:#fff; box-shadow:inset 0 0 0 1.5px var(--ink); }
+.bf-shot:focus-within { outline:3px solid rgba(0,113,227,.45); outline-offset:2px; }
+.bf-shot input { position:absolute; inset:0; opacity:0; cursor:pointer; }
+.bf-shot.add { align-items:center; justify-content:center; background:none; box-shadow:inset 0 0 0 1px rgba(0,0,0,.14); color:var(--ink); font-size:14px; font-weight:500; }
+.bf-shot.full { padding:0; cursor:default; }
+.bf-shot.full img { width:100%; height:100%; object-fit:cover; display:block; }
+.bf-shot.full figcaption { position:absolute; left:8px; bottom:8px; padding:3px 8px; border-radius:6px; background:rgba(255,255,255,.9); color:var(--ink); font-size:12px; }
+.bf-shot .bar { position:absolute; left:8px; right:8px; top:8px; height:4px; border-radius:2px; background:rgba(255,255,255,.7); overflow:hidden; }
+.bf-shot .bar i { display:block; height:100%; background:var(--ink); }
+.bf-shot .x { position:absolute; top:6px; right:6px; width:30px; height:30px; border:0; border-radius:50%; background:rgba(0,0,0,.62); color:#fff; font-size:17px; line-height:30px; cursor:pointer; }
+.bf-shot.bad { box-shadow:inset 0 0 0 2px #c4211a; }
+.bf-room { padding-top:24px; border-top:1px solid var(--line); }
+.bf-room > .lab { display:flex; justify-content:space-between; gap:12px; margin-bottom:12px; font-weight:500; font-size:15px; color:var(--ink); }
+.bf-room > .lab span { color:var(--muted); font-weight:400; font-variant-numeric:tabular-nums; }
+.bf-tips { margin:0; padding:0; list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:8px 24px; font-size:15px; }
 .bf-tips li { position:relative; padding-left:22px; }
 .bf-tips li::before { content:""; position:absolute; left:2px; top:.5em; width:10px; height:6px; border-left:2px solid var(--ink); border-bottom:2px solid var(--ink); transform:rotate(-45deg); }
 .bf-done { max-width:640px; padding:clamp(56px,9vw,120px) 0 120px; }
@@ -111,15 +114,16 @@ const css = `
 .bf-foot .bf-wrap { display:flex; flex-wrap:wrap; gap:8px 22px; justify-content:space-between; }
 .bf-foot nav { display:flex; gap:20px; } .bf-foot a { color:var(--muted); }
 @media (max-width:900px) {
-  .bf-grid { grid-template-columns:1fr; }
-  .bf-aside { position:static; order:-1; }
-  .bf-aside .bf-card.hide-sm { display:none; }
+  .bf-sec { grid-template-columns:1fr; }
+  .bf-sec__h { position:static; }
+  .bf-intro { max-width:none; }
+  .bf-flow { grid-template-columns:1fr 1fr; row-gap:20px; }
 }
-@media (max-width:560px) { .bf-qs { grid-template-columns:1fr; } .bf-q.half { grid-column:1/-1; } .bf-sec { border-radius:18px; } }
+@media (max-width:560px) { .bf-qs, .bf-tips { grid-template-columns:1fr; } .bf-q.half { grid-column:1/-1; } .bf-shots { grid-template-columns:1fr 1fr; } }
 @media (prefers-reduced-motion:reduce) { .bf * { transition:none!important; } }
 `;
 
-export function Shell({ title, lead, aside, done, children }: { title: string; lead: string; aside: React.ReactNode; done?: React.ReactNode; children: React.ReactNode }) {
+export function Shell({ title, lead, steps, done, children }: { title: string; lead: string; steps: [string, string][]; done?: React.ReactNode; children: React.ReactNode }) {
   return (
     <div className="bf">
       <style>{css}</style>
@@ -132,16 +136,20 @@ export function Shell({ title, lead, aside, done, children }: { title: string; l
         </div>
       </header>
       <main className="bf-wrap">
-        {done ?? (<>
-        <div className="bf-hero">
-          <h1>{title}</h1>
-          <p className="bf-lead">{lead}</p>
-        </div>
-        <div className="bf-grid">
-          <div>{children}</div>
-          <aside className="bf-aside">{aside}</aside>
-        </div>
-        </>)}
+        {done ?? (
+          <>
+            <div className="bf-hero">
+              <h1>{title}</h1>
+              <p className="bf-lead">{lead}</p>
+              <ol className="bf-flow" aria-label="So geht es weiter">
+                {steps.map(([t, d], i) => (
+                  <li key={t}><i>{i + 1}</i><b>{t}</b>{d}</li>
+                ))}
+              </ol>
+            </div>
+            <div className="bf-form">{children}</div>
+          </>
+        )}
       </main>
       <footer className="bf-foot">
         <div className="bf-wrap">
@@ -152,30 +160,6 @@ export function Shell({ title, lead, aside, done, children }: { title: string; l
           </nav>
         </div>
       </footer>
-    </div>
-  );
-}
-
-export function Steps({ items }: { items: [string, string][] }) {
-  return (
-    <ol className="bf-steps">
-      {items.map(([t, d], i) => (
-        <li key={t}>
-          <i aria-hidden="true">{i + 1}</i>
-          <span><b>{t}</b>{d}</span>
-        </li>
-      ))}
-    </ol>
-  );
-}
-
-export function CallCard() {
-  return (
-    <div className="bf-card bf-call hide-sm">
-      <h3>Lieber kurz telefonieren?</h3>
-      {site.founders.map((f) => (
-        <a key={f.phone} href={`tel:${f.phone.replace(/\s+/g, "")}`}>{f.name.split(" ")[0]}: {f.phone}</a>
-      ))}
     </div>
   );
 }
@@ -200,7 +184,11 @@ export function Question({ q, value, onChange }: { q: Q; value: string | string[
                   q.type === "one" ? onChange(o) : onChange(list.includes(o) ? list.filter((x) => x !== o) : [...list, o])
                 }
               />
-              <span>{o}</span>
+              {o.includes("|") ? (
+                <span className="two bf-opt">{o.split("|")[0]}<small>{o.split("|")[1]}</small></span>
+              ) : (
+                <span>{o}</span>
+              )}
             </label>
           ))}
         </div>
@@ -217,11 +205,14 @@ export function Question({ q, value, onChange }: { q: Q; value: string | string[
   );
 }
 
-export function Sec({ n, title, intro, children }: { n: number; title: string; intro?: string; children: React.ReactNode }) {
+export function Sec({ n, title, intro, children }: { n: number; title: string; intro?: React.ReactNode; children: React.ReactNode }) {
   return (
     <section className="bf-sec" aria-labelledby={`sec-${n}`}>
-      <h2 id={`sec-${n}`}><span>{n}</span>{title}</h2>
-      {intro && <p className="bf-intro">{intro}</p>}
+      <div className="bf-sec__h">
+        <b>{n}</b>
+        <h2 id={`sec-${n}`}>{title}</h2>
+        {intro && <p className="bf-intro">{intro}</p>}
+      </div>
       <div className="bf-qs">{children}</div>
     </section>
   );
@@ -283,41 +274,69 @@ export function usePhotos(kind: BriefingKind) {
   return { enabled, items, add, remove, busy, done };
 }
 
-export function PhotoDrop({ group, photos, recommended, tip, accept = "image/*" }: { group: string; photos: ReturnType<typeof usePhotos>; recommended?: number; tip?: string; accept?: string }) {
+/** One requested photo: what to shoot, plus camera position (x, y in 0..1, top wall = window) and view angle. */
+export type Shot = { label: string; x: number; y: number; a: number };
+
+/** Tiny floor plan: room outline, window on top, camera dot with its view cone. */
+function Plan({ x, y, a }: Omit<Shot, "label">) {
+  const cx = 3 + x * 40, cy = 3 + y * 30, r = (d: number) => (d * Math.PI) / 180, len = 15;
+  const p1 = [cx + len * Math.cos(r(a - 26)), cy + len * Math.sin(r(a - 26))];
+  const p2 = [cx + len * Math.cos(r(a + 26)), cy + len * Math.sin(r(a + 26))];
+  return (
+    <svg viewBox="0 0 46 36" aria-hidden="true">
+      <rect x="1" y="1" width="44" height="34" rx="2" fill="none" stroke="currentColor" strokeOpacity=".3" />
+      <line x1="15" y1="1" x2="31" y2="1" stroke="currentColor" strokeWidth="3" strokeOpacity=".45" />
+      <path d={`M${cx} ${cy}L${p1[0]} ${p1[1]}L${p2[0]} ${p2[1]}Z`} fill="currentColor" fillOpacity=".16" />
+      <circle cx={cx} cy={cy} r="2.6" fill="currentColor" />
+    </svg>
+  );
+}
+
+/** Read-only slot, used when uploads are off: still shows which photo we need. */
+export function ShotHint(s: Shot) {
+  return (
+    <div className="bf-shot" style={{ cursor: "default" }}>
+      <Plan {...s} />
+      <span>{s.label}</span>
+    </div>
+  );
+}
+
+/** Photo tiles for one group. With shots, every requested angle gets its own empty slot that fills in order. */
+export function PhotoSlots({ group, photos, shots = [], accept = "image/*" }: { group: string; photos: ReturnType<typeof usePhotos>; shots?: Shot[]; accept?: string }) {
   const [over, setOver] = useState(false);
   const mine = photos.items.filter((x) => x.group === group);
-  if (photos.enabled === false)
-    return tip ? <p className="bf-hint" style={{ margin: 0 }}>{tip}</p> : null;
+  const pick = (label: string) => (
+    <input type="file" accept={accept} multiple aria-label={label} disabled={photos.enabled === null}
+      onChange={(e) => { if (e.target.files) photos.add(group, e.target.files); e.target.value = ""; }} />
+  );
   return (
-    <div>
-      {tip && <p className="bf-hint">{tip}</p>}
-      <div
-        className={`bf-drop${over ? " over" : ""}`}
-        onDragOver={(e) => { e.preventDefault(); setOver(true); }}
-        onDragLeave={() => setOver(false)}
-        onDrop={(e) => { e.preventDefault(); setOver(false); photos.add(group, e.dataTransfer.files); }}
-      >
-        <strong>Fotos auswählen</strong>
-        <span>oder hierher ziehen</span>
-        <input type="file" accept={accept} multiple aria-label={`Fotos für ${group} auswählen`} disabled={photos.enabled === null}
-          onChange={(e) => { if (e.target.files) photos.add(group, e.target.files); e.target.value = ""; }} />
-      </div>
-      {mine.length > 0 && (
-        <div className="bf-thumbs">
-          {mine.map((x) => (
-            <div key={x.id} className={`bf-thumb${x.error ? " bad" : ""}`} title={x.error ?? x.name}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={x.preview} alt="" />
-              {!x.url && !x.error && <span className="bar"><i style={{ width: `${x.progress}%` }} /></span>}
-              <button type="button" className="x" aria-label={`${x.name} entfernen`} onClick={() => photos.remove(x.id)}>×</button>
-            </div>
-          ))}
-        </div>
-      )}
-      {recommended ? (
-        <p className="bf-count"><b>{mine.filter((x) => !x.error).length}</b> von {recommended} empfohlenen Fotos</p>
-      ) : null}
-      {mine.some((x) => x.error) && <p className="bf-err">Ein Foto ließ sich nicht hochladen. Bitte entfernen und erneut versuchen.</p>}
+    <div
+      className="bf-shots"
+      onDragOver={(e) => { e.preventDefault(); setOver(true); }}
+      onDragLeave={() => setOver(false)}
+      onDrop={(e) => { e.preventDefault(); setOver(false); photos.add(group, e.dataTransfer.files); }}
+    >
+      {mine.map((x, i) => (
+        <figure key={x.id} className={`bf-shot full${x.error ? " bad" : ""}`} title={x.error ?? x.name} style={{ margin: 0 }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={x.preview} alt="" />
+          {!x.url && !x.error && <span className="bar"><i style={{ width: `${x.progress}%` }} /></span>}
+          <figcaption>{x.error ?? shots[i]?.label ?? "Zusätzlich"}</figcaption>
+          <button type="button" className="x" aria-label={`${x.name} entfernen`} onClick={() => photos.remove(x.id)}>×</button>
+        </figure>
+      ))}
+      {shots.slice(mine.length).map((s) => (
+        <label key={s.label} className={`bf-shot${over ? " over" : ""}`}>
+          <Plan {...s} />
+          <span>{s.label}</span>
+          {pick(`${group}: ${s.label}`)}
+        </label>
+      ))}
+      <label className="bf-shot add">
+        {mine.length || shots.length ? "+ Weitere Fotos" : "+ Dateien auswählen"}
+        {pick(`Weitere Fotos für ${group}`)}
+      </label>
     </div>
   );
 }
@@ -372,9 +391,12 @@ export function Submit({
 
   return (
     <form onSubmit={send} noValidate>
-      <section className="bf-sec" aria-labelledby={`sec-${n}`} style={{ marginTop: 16 }}>
-        <h2 id={`sec-${n}`}><span>{n}</span>Ihre Kontaktdaten</h2>
-        <p className="bf-intro">Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis.</p>
+      <section className="bf-sec" aria-labelledby={`sec-${n}`}>
+        <div className="bf-sec__h">
+          <b>{n}</b>
+          <h2 id={`sec-${n}`}>Ihre Kontaktdaten</h2>
+          <p className="bf-intro">Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis.</p>
+        </div>
         <div className="bf-qs">
           <div className="bf-q half">
             <label htmlFor="c-name">Ihr Name</label>
@@ -403,14 +425,22 @@ export function Submit({
             <p className="bf-small" style={{ margin: "8px 0 0 34px" }}><a href="/datenschutz" target="_blank">Datenschutzerklärung lesen</a></p>
             {errors.consent && <p className="bf-err">{errors.consent}</p>}
           </div>
+          <div className="bf-q">
+            <div className="bf-submit">
+              <button className="bf-btn" type="submit" disabled={state === "sending" || photos.busy}>
+                {state === "sending" ? "Wird gesendet …" : photos.busy ? "Fotos werden hochgeladen …" : button}
+              </button>
+              <span className="bf-small">Unverbindlich. Sie zahlen erst, wenn Sie den Festpreis bestätigen.</span>
+            </div>
+            {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
+            <p className="bf-call" style={{ marginTop: 28 }}>
+              Lieber telefonieren?
+              {site.founders.map((f) => (
+                <a key={f.phone} href={`tel:${f.phone.replace(/\s+/g, "")}`}>{f.name.split(" ")[0]} {f.phone}</a>
+              ))}
+            </p>
+          </div>
         </div>
-        <div className="bf-submit">
-          <button className="bf-btn" type="submit" disabled={state === "sending" || photos.busy}>
-            {state === "sending" ? "Wird gesendet …" : photos.busy ? "Fotos werden hochgeladen …" : button}
-          </button>
-          <span className="bf-small">Unverbindlich. Sie zahlen erst, wenn Sie den Festpreis bestätigen.</span>
-        </div>
-        {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
       </section>
     </form>
   );

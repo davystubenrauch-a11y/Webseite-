@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CallCard, Done, PhotoDrop, Question, Sec, Shell, Steps, Submit, usePhotos, usePrefill, type DoneInfo, type Section, type Values } from "./Briefing";
+import { Done, PhotoSlots, Question, Sec, Shell, Submit, usePhotos, usePrefill, type DoneInfo, type Section, type Values } from "./Briefing";
 
 const sections: Section[] = [
   {
@@ -20,7 +20,7 @@ const sections: Section[] = [
     questions: [
       {
         id: "paket", label: "Paket", type: "one",
-        options: ["Basis · 3 Seiten · ab 300 €", "Business · ab 690 €", "Premium · ab 1.290 €", "Noch unsicher"],
+        options: ["Basis|3 Seiten, ab 300 €", "Business|ab 690 €", "Premium|ab 1.290 €", "Noch unsicher|Wir beraten Sie"],
         hint: "Basis: klar und fokussiert. Business und Premium: mehr Seiten, Animationen und 3D.",
       },
       { id: "seiten", label: "Welche Seiten brauchen Sie?", type: "many", options: ["Startseite", "Leistungen", "Über uns", "Preise", "Speisekarte", "Galerie", "Team", "Termine / Buchung", "Blog / Neuigkeiten", "Kontakt"], hint: "Impressum und Datenschutz sind immer dabei." },
@@ -64,28 +64,16 @@ export default function WebsiteBriefing() {
       }),
     );
 
-  const aside = (
-    <>
-      <div className="bf-card">
-        <h3>So geht es weiter</h3>
-        <Steps
-          items={[
-            ["Fragebogen senden", "Beantworten Sie, was Sie schon wissen. Den Rest klären wir am Telefon."],
-            ["Festpreis erhalten", "Innerhalb von 24 Stunden, mit Zahlungslink."],
-            ["Website in bis zu 7 Tagen", "Je nach Paket. Wir starten, sobald die Zahlung da ist."],
-            ["Gemeinsam anpassen", "Sie sehen die Seite vorab und sagen uns, was wir ändern sollen."],
-          ]}
-        />
-      </div>
-      <CallCard />
-    </>
-  );
-
   return (
     <Shell
       title="Ihre Website in fünf Minuten beschrieben."
       lead="Je mehr wir über Ihren Betrieb wissen, desto genauer wird der Entwurf. Kein Feld ist Pflicht außer Name und Kontakt."
-      aside={aside}
+      steps={[
+        ["Fragebogen senden", "Was Sie schon wissen. Den Rest klären wir am Telefon."],
+        ["Festpreis erhalten", "Innerhalb von 24 Stunden, mit Zahlungslink."],
+        ["Website in bis zu 7 Tagen", "Je nach Paket, ab Zahlungseingang."],
+        ["Gemeinsam anpassen", "Sie sehen die Seite vorab und sagen, was wir ändern."],
+      ]}
       done={done && <Done kind="website" {...done} />}
     >
       {sections.map((s, i) => (
@@ -99,7 +87,10 @@ export default function WebsiteBriefing() {
               {photos.enabled === false ? (
                 <p className="bf-off">Logo und Fotos schicken Sie uns nach dem Absenden einfach per E-Mail oder WhatsApp.</p>
               ) : (
-                <PhotoDrop group="Logo und Fotos" photos={photos} accept="image/*,.pdf,.svg" tip="Logo, Fotos von Ihnen, Ihrem Team, Ihren Räumen oder Produkten. Am besten in Originalgröße." />
+                <>
+                  <p className="bf-hint">Logo, Fotos von Ihnen, Ihrem Team, Ihren Räumen oder Produkten. Am besten in Originalgröße.</p>
+                  <PhotoSlots group="Logo und Fotos" photos={photos} accept="image/*,.pdf,.svg" />
+                </>
               )}
             </div>
           )}
