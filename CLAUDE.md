@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 30.10.: Design v20 „Bühne“ (dunkel, Apple-Produktseite) — AKTUELL
+## Stand 30.10.: v20 „Bühne“ hell + „einfacher Ablauf“ — AKTUELL
+- Kunde: v20 gefällt mehr, aber **keine dunkle Seite**; anschaulich und stilvoll; soll für jede Kundengruppe einen **einfachen Prozess** versprechen („nicht tausend Formulare, bis man einen Preis bekommt“).
+- Farben jetzt **hell (Apple hell)**: Seite #fbfbfd, Bänder/Kontakt #f5f5f7, Karten Weiß, Text #1d1d1f / #424245 / gedämpft #636366, Akzent Gold #e8b04b (Flächen) bzw. #8a5a00 (Text). Primärknöpfe dunkel (`.btn--light` = Graphit-Pille). Scroll-Filme mit hellen Bühnen (Roomtour-Film warm #f4efe8, Video-Overlay hell).
+- Botschaft „einfach“: Start-Text „Preis sofort sehen, in einer Minute anfragen, fertig.“ + 3 Häkchen (Festpreis direkt auf der Seite / Nur Name und Telefon nötig / Antwort in 24 Stunden); Berater heißt **„Ihr Festpreis in zehn Sekunden.“** mit 5. Reiter „Etwas anderes“ (kostenloses Gespräch + Festpreis-Angebot, 0 €); Ablauf auf **3 Schritte** „So einfach geht's. Ohne Formular-Marathon.“ (Preis sehen → Kurz anfragen → Zurücklehnen).
+- **Formular verkürzt**: Leistung, Name, **ein Feld „Telefon oder E-Mail“**, Einwilligung; Firma/Nachricht unter „Weitere Angaben (optional)“. Server (`lib/inquiry.ts`) verlangt jetzt E-Mail **oder** Telefon; `reply_to` nur wenn E-Mail.
+
+## Stand 30.10.: Design v20 „Bühne“ (erst dunkel, Apple-Produktseite)
 - Kunde zu v19/FOAV: „noch zu einfach und langweilig, neues Design, andere Farben, bessere Animationen“ (Richtungsfrage abgebrochen, ich habe „Apple-Produktseite“ gewählt).
 - **Quelle `design/v20-template.html`**, bauen mit `python3 design/build.py v20`. Archiv v19 (hell, FOAV) unter `public/v19/`.
 - Farben: **Schwarz #000** / Band #0b0b0d / Flächen #161618, Text #f5f5f7 / #c7c7cc / gedämpft #98989d, Akzent **Gold #e8b04b** (Logo-Punkt, Schritt-Nummern, Preise in den Schnell-Links, Dock). Nur dunkel (`color-scheme: dark`), weiße Pillen-Knöpfe (`.btn--light`). Schriften unverändert (Sora/Figtree).

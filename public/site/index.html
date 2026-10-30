@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FOAV · Websites, KI-Roomtours und NFC-Platten aus München</title>
 <meta name="description" content="FOAV aus München: Websites ab 300 €, KI-Roomtour-Videos ab 300 € und NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.">
-<meta name="theme-color" content="#000000">
-<meta name="color-scheme" content="dark">
+<meta name="theme-color" content="#fbfbfd">
+<meta name="color-scheme" content="light">
 <link rel="canonical" href="https://foav.de/">
 <link rel="icon" type="image/svg+xml" href="/media/logo-foav-mark.svg">
 <link rel="apple-touch-icon" href="/media/apple-touch-foav.png">
@@ -56,16 +56,16 @@
 @font-face { font-family: "Sora"; font-style: normal; font-weight: 500 700; font-display: swap; src: url(/site/fonts/sora-latin.woff2) format("woff2"); }
 @font-face { font-family: "Figtree"; font-style: normal; font-weight: 400 700; font-display: swap; src: url(/site/fonts/figtree-latin.woff2) format("woff2"); }
 :root {
-  color-scheme: dark;
-  --bg: #000; --bg-2: #0b0b0d; --white: #161618; --ink: #f5f5f7; --text: #c7c7cc; --muted: #98989d;
-  --line: rgba(255,255,255,.12); --line-d: rgba(255,255,255,.12); --on-dark: #f5f5f7; --on-dark-m: #a1a1a6;
-  --gold: #e8b04b; --champ: #e8b04b; --champ-t: #f0c066; --ok: #4cc38a; --bad: #ff8a7a; --graphite: #161618;
-  --fill: #f5f5f7; --fill-h: #fff; --on-fill: #000; --band: #0b0b0d; --glass: rgba(0,0,0,.72); --glass-2: rgba(255,255,255,.07); --glow: #111; --logo: #f5f5f7;
+  color-scheme: light;
+  --bg: #fbfbfd; --bg-2: #f5f5f7; --white: #fff; --ink: #1d1d1f; --text: #424245; --muted: #636366;
+  --line: rgba(0,0,0,.1); --line-d: rgba(0,0,0,.1); --on-dark: #1d1d1f; --on-dark-m: #424245;
+  --gold: #e8b04b; --champ: #e8b04b; --champ-t: #8a5a00; --ok: #1d7a52; --bad: #b42318; --graphite: #1d1d1f;
+  --fill: #1d1d1f; --fill-h: #3a3a3c; --on-fill: #fff; --band: #f5f5f7; --glass: rgba(251,251,253,.82); --glass-2: rgba(255,255,255,.75); --glow: #fff; --logo: #1d1d1f;
   --ease: cubic-bezier(.2,.8,.2,1); --r: 22px;
   --head: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
   --font: "Figtree", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-  --shadow: 0 1px 1px rgba(0,0,0,.4), 0 40px 80px -30px rgba(0,0,0,.9);
-  --edge: inset 0 0 0 1px rgba(255,255,255,.09);
+  --shadow: 0 1px 2px rgba(0,0,0,.04), 0 12px 24px -12px rgba(0,0,0,.12), 0 40px 80px -40px rgba(0,0,0,.22);
+  --edge: inset 0 0 0 1px rgba(0,0,0,.06);
 }
 .ticks li::before { background-color: var(--gold) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -139,10 +139,6 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .pause[hidden] { display: none; }
 
 
-.quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 26px; }
-.quick a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .9375rem; font-weight: 600; color: var(--ink); transition: box-shadow .2s, background-color .2s; }
-.quick a:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
-.quick b { font-weight: 600; color: var(--champ-t); }
 
 /* "Was passt zu Ihrem Betrieb?": pick an industry, get a recommendation with price */
 .picker__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
@@ -182,22 +178,25 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .cmp .vplay { top: auto; bottom: 16px; left: auto; right: 16px; translate: none; }
 
 /* ---------- v20 „Bühne“: black stage, white type, gold accent; services told as short scroll films ---------- */
-.btn--light { background: #f5f5f7; color: #000; } .btn--light:hover { background: #fff; }
-.kicker { font-family: var(--head); font-weight: 600; font-size: 1rem; color: var(--gold); }
+.btn--light { background: var(--fill); color: #fff; } .btn--light:hover { background: var(--fill-h); }
+.kicker { font-family: var(--head); font-weight: 600; font-size: 1rem; color: var(--champ-t); }
 .price { font-family: var(--head); font-size: 2rem; font-weight: 600; letter-spacing: -.03em; color: var(--ink); font-variant-numeric: tabular-nums; }
 .price small { font-family: var(--font); font-size: .9375rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
-.toast { position: absolute; z-index: 6; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px 12px 12px; border-radius: 999px; background: rgba(255,255,255,.96); color: #000; font-size: .9375rem; font-weight: 700; box-shadow: 0 24px 48px -18px rgba(0,0,0,.7); opacity: 0; transform: translateY(18px) scale(.92); transition: opacity .5s, transform .7s var(--ease); }
+.toast { position: absolute; z-index: 6; display: inline-flex; align-items: center; gap: 10px; padding: 12px 18px 12px 12px; border-radius: 999px; background: #fff; color: #1d1d1f; font-size: .9375rem; font-weight: 700; box-shadow: inset 0 0 0 1px rgba(0,0,0,.06), 0 24px 48px -20px rgba(0,0,0,.35); opacity: 0; transform: translateY(18px) scale(.92); transition: opacity .5s, transform .7s var(--ease); }
 .toast svg { width: 24px; height: 24px; padding: 4px; border-radius: 50%; background: var(--ok); color: #fff; fill: #fff; }
 .scene.s3 .toast { opacity: 1; transform: none; }
 
 /* start: one clear sentence, the three products rise underneath like a product lineup */
-.hero { position: relative; padding: clamp(120px, 16vh, 170px) 0 0; text-align: center; overflow: hidden; background: linear-gradient(180deg, #000 55%, #0d0d0f); }
+.hero { position: relative; padding: clamp(120px, 16vh, 170px) 0 0; text-align: center; overflow: hidden; background: linear-gradient(180deg, #fff 40%, #f5f5f7); }
 .hero h1 { margin: 0 auto; max-width: 11ch; font-size: clamp(48px, 8.2vw, 132px); line-height: .95; letter-spacing: -.058em; text-wrap: balance; }
-.hero__sub { margin: 26px auto 0; max-width: 44ch; font-size: clamp(18px, 1.5vw, 22px); color: var(--text); }
+.hero__sub { margin: 26px auto 0; max-width: 46ch; text-wrap: balance; font-size: clamp(18px, 1.5vw, 22px); color: var(--text); }
 .hero .cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 34px; }
+.hero__easy { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 22px; font-size: .9375rem; font-weight: 600; color: var(--text); }
+.hero__easy span { display: inline-flex; align-items: center; gap: 7px; }
+.hero__easy svg { width: 18px; height: 18px; padding: 3px; border-radius: 50%; background: var(--gold); color: #1d1d1f; }
 .quick { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 22px; }
 .quick a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); font-size: .9375rem; font-weight: 600; color: var(--ink); transition: box-shadow .2s; }
-.quick a:hover { box-shadow: inset 0 0 0 1.5px var(--ink); } .quick b { font-weight: 600; color: var(--gold); }
+.quick a:hover { box-shadow: inset 0 0 0 1.5px var(--ink); } .quick b { font-weight: 600; color: var(--champ-t); }
 .lineup { position: relative; width: min(1120px, 94vw); aspect-ratio: 16 / 7; margin: clamp(56px, 8vh, 96px) auto 0; perspective: 1600px; }
 .lu { position: absolute; bottom: 0; will-change: transform; }
 .lu-mac { left: 50%; width: 66%; margin-left: -33%; }
@@ -209,7 +208,7 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .ln-mask { padding-bottom: .12em; margin-bottom: -.12em; }
 .lu-phone .iphone, .w-phone .iphone { position: relative; right: auto; bottom: auto; width: 100%; }
 .iphone__screen video { width: 100%; height: 100%; object-fit: cover; }
-.mac__base { background: linear-gradient(180deg, #c9c6c0, #8f8b84 60%, #6c6964); }
+.mac__base { background: linear-gradient(180deg, #e3e1dd, #b7b3ac 60%, #9a968f); }
 .hero .pause { bottom: 18px; }
 
 /* scenes: a tall section with a sticky stage; JS writes the scroll progress as --a, --b, --c (0..1) */
@@ -222,10 +221,10 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .scene__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 26px; }
 .scene__fact { margin-top: 16px; font-size: .9375rem; color: var(--muted); }
 .scene__stage { position: relative; height: min(72vh, 660px); }
-.how li.on::before { background: var(--gold); color: #000; box-shadow: 0 0 0 5px rgba(232,176,75,.18); }
+.how li.on::before { background: var(--gold); color: #1d1d1f; box-shadow: 0 0 0 5px rgba(232,176,75,.22); }
 
 /* website: the laptop opens, the page scrolls on its screen, the phone slides in, "Online" */
-.scene--web { background: linear-gradient(180deg, #0d0d0f, #000 40%); }
+.scene--web { background: linear-gradient(180deg, #f5f5f7, #fbfbfd 40%); }
 .w-stage { perspective: 1800px; }
 .w-mac { position: absolute; left: 0; right: 9%; top: 50%; translate: 0 -50%; }
 .w-mac .mac__lid { transform-origin: 50% 100%; transform: rotateX(calc((1 - var(--a, 1)) * 88deg)); }
@@ -234,27 +233,27 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .w-toast { left: 4%; top: 4%; }
 
 /* roomtour: three photos land, merge, and open into the full-screen video */
-.scene--room { background: #0d0a07; --x1: 56%; --x2: 71%; --x3: 86%; --xm: 71%; --py: 50%; --pw: min(19vw, 300px); --ct: 26%; --cr: 10%; --cb: 26%; --cl: 54%; }
+.scene--room { background: #f4efe8; --x1: 56%; --x2: 71%; --x3: 86%; --xm: 71%; --py: 50%; --pw: min(19vw, 300px); --ct: 26%; --cr: 10%; --cb: 26%; --cl: 54%; }
 .r-stage { position: absolute; inset: 0; }
-.r-ph { position: absolute; z-index: 2; top: var(--py); width: var(--pw); aspect-ratio: 4 / 3; object-fit: cover; border: 8px solid #fff; border-bottom-width: 26px; border-radius: 4px; box-shadow: 0 30px 50px -20px rgba(0,0,0,.8);
+.r-ph { position: absolute; z-index: 2; top: var(--py); width: var(--pw); aspect-ratio: 4 / 3; object-fit: cover; border: 8px solid #fff; border-bottom-width: 26px; border-radius: 4px; box-shadow: 0 30px 50px -24px rgba(60,40,20,.45), 0 0 0 1px rgba(0,0,0,.05);
   left: calc(var(--x) + (var(--xm) - var(--x)) * var(--b, 1));
   transform: translate(-50%, -50%) translateY(calc((1 - var(--a, 1)) * 70vh)) rotate(calc(var(--r) * (1 - var(--b, 1)))) scale(calc(1 - var(--b, 1) * .2));
   opacity: calc(1 - var(--c, 1) * 2.5); }
 .r-ph1 { --x: var(--x1); --r: -8deg; } .r-ph2 { --x: var(--x2); --r: 4deg; } .r-ph3 { --x: var(--x3); --r: -3deg; }
 .r-vid { position: absolute; inset: 0; opacity: min(1, calc(var(--c, 1) * 4)); clip-path: inset(calc(var(--ct) * (1 - var(--c, 1))) calc(var(--cr) * (1 - var(--c, 1))) calc(var(--cb) * (1 - var(--c, 1))) calc(var(--cl) * (1 - var(--c, 1))) round calc(24px * (1 - var(--c, 1)))); }
 .r-vid video { width: 100%; height: 100%; object-fit: cover; }
-.r-stage::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(0,0,0,.85), rgba(0,0,0,.55) 42%, rgba(0,0,0,0) 72%); opacity: var(--c, 1); pointer-events: none; }
+.r-stage::after { content: ""; position: absolute; inset: 0; z-index: 3; background: linear-gradient(90deg, rgba(251,251,253,.94), rgba(251,251,253,.72) 40%, rgba(251,251,253,0) 70%); opacity: var(--c, 1); pointer-events: none; }
 .r-toast { right: 6%; top: 16%; }
 
 /* nfc: the plate turns and lies down, the phone comes to it, rings, five stars */
-.scene--nfc { background: linear-gradient(180deg, #000, #0d0d0f); }
+.scene--nfc { background: linear-gradient(180deg, #fbfbfd, #f2f2f5); }
 .n-stage { perspective: 1400px; }
 .n-floor { position: absolute; left: 50%; top: 62%; width: min(50vh, 30vw); aspect-ratio: 1; margin: calc(min(50vh, 30vw) / -2) 0 0 calc(min(50vh, 30vw) / -2); transform-style: preserve-3d; transform: rotateX(calc(var(--a, 1) * 58deg)) rotateZ(calc((1 - var(--a, 1)) * -140deg)) scale(calc(.72 + var(--a, 1) * .28)); }
 .n-floor .disc { width: 100%; }
 .n-rings { position: absolute; inset: 0; pointer-events: none; }
 .n-rings i { position: absolute; inset: 0; border-radius: 50%; border: 3px solid var(--gold); opacity: 0; }
 .scene.s2 .n-rings i, .scene.s3 .n-rings i { animation: ring 1.2s var(--ease) forwards; } .scene.s2 .n-rings i:nth-child(2), .scene.s3 .n-rings i:nth-child(2) { animation-delay: .2s; } .scene.s2 .n-rings i:nth-child(3), .scene.s3 .n-rings i:nth-child(3) { animation-delay: .4s; }
-.n-phone { position: absolute; z-index: 3; left: 50%; top: 10%; width: min(17vh, 10.5vw); aspect-ratio: 9 / 19; margin-left: calc(min(17vh, 10.5vw) / -2); padding: 6px; border-radius: 22% / 10%; background: linear-gradient(150deg, #48474c, #151517 55%, #2a2a2e); box-shadow: 0 40px 60px -24px rgba(0,0,0,.9), inset 0 0 0 1px rgba(255,255,255,.2); opacity: min(1, calc(var(--b, 1) * 4)); transform: translateY(calc((1 - var(--b, 1)) * -90%)) rotate(-6deg); }
+.n-phone { position: absolute; z-index: 3; left: 50%; top: 10%; width: min(17vh, 10.5vw); aspect-ratio: 9 / 19; margin-left: calc(min(17vh, 10.5vw) / -2); padding: 6px; border-radius: 22% / 10%; background: linear-gradient(150deg, #48474c, #151517 55%, #2a2a2e); box-shadow: 0 40px 60px -28px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.2); opacity: min(1, calc(var(--b, 1) * 4)); transform: translateY(calc((1 - var(--b, 1)) * -90%)) rotate(-6deg); }
 .n-phone > div { height: 100%; display: grid; align-content: center; justify-items: center; gap: 8px; border-radius: 18% / 8%; background: #fff; color: #202124; text-align: center; }
 .n-phone b { font: 700 clamp(22px, 2.6vw, 34px)/1 Arial, sans-serif; color: #4285f4; }
 .n-phone small { font-size: clamp(10px, .8vw, 12px); font-weight: 600; }
@@ -269,7 +268,12 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .nfcband { margin-top: 0; }
 .calcwrap { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(32px, 6vw, 96px); align-items: center; }
 .calcwrap .ticks { margin-top: 26px; }
-.calc-card { padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--white); box-shadow: var(--edge); }
+.calc-card { padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--white); box-shadow: var(--edge), var(--shadow); }
+.calc-card .seg { background: #ececf0; } .calc-card .seg button { color: var(--text); }
+.calc-card .range input::-webkit-slider-runnable-track { background: linear-gradient(90deg, var(--gold) var(--fill, 47%), rgba(0,0,0,.12) var(--fill, 47%)); }
+.calc-card .range input::-moz-range-track { background: rgba(0,0,0,.12); }
+.calc-card .range input::-webkit-slider-thumb { box-shadow: 0 2px 8px rgba(0,0,0,.3), 0 0 0 1px rgba(0,0,0,.06); }
+.calc-card .hint { color: var(--champ-t); }
 .calc-card .calc { margin-top: 26px; }
 .calc-card .btn { margin-top: 18px; }
 
@@ -323,7 +327,7 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .nfc { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
 
 /* process */
-.steps { position: relative; margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; list-style: none; --p: 0; }
+.steps { position: relative; margin-top: clamp(48px, 7vw, 80px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 40px; list-style: none; --p: 0; }
 .steps::before, .steps::after { content: ""; position: absolute; left: 0; right: 0; top: 31px; height: 2px; background: var(--line); }
 .steps::after { background: var(--champ); transform-origin: left; transform: scaleX(var(--p)); }
 .steps li > span { position: relative; z-index: 1; display: grid; place-items: center; width: 64px; height: 64px; border-radius: 50%; background: var(--white); box-shadow: inset 0 0 0 2px var(--line); color: var(--muted); font-family: var(--head); font-weight: 600; font-size: 1.3125rem; transition: background-color .5s, color .5s, box-shadow .5s; }
@@ -387,8 +391,14 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 .reach li:last-child a { border-bottom: 1px solid var(--line-d); }
 .reach svg { width: 22px; height: 22px; color: var(--champ); flex: none; }
 .reach b { display: block; color: var(--on-dark); font-weight: 700; } .reach span { font-size: 1rem; }
-.form { padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--white); color: var(--text); }
+.form { padding: clamp(24px, 3vw, 40px); border-radius: 28px; background: var(--white); color: var(--text); box-shadow: var(--edge), var(--shadow); }
 .form h3 { font-size: 1.5rem; color: var(--ink); }
+.form__sub { margin-top: 4px; font-size: .9375rem; color: var(--muted); }
+.form .more { margin-top: 18px; border: 0; }
+.form .more summary { justify-content: flex-start; gap: 6px; min-height: 48px; padding: 0; font-family: var(--font); font-size: .9375rem; font-weight: 700; color: var(--ink); }
+.form .more summary span { font-weight: 500; color: var(--muted); }
+.form .more summary i { width: 28px; height: 28px; margin-left: auto; }
+.form .more summary i::before, .form .more summary i::after { left: 8px; right: 8px; top: 13px; }
 .form legend, .form label { display: block; font-size: 0.9375rem; font-weight: 700; color: var(--ink); }
 .form fieldset { border: 0; margin-top: 20px; }
 .form .f { margin-top: 18px; display: grid; gap: 8px; }
@@ -448,7 +458,7 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   .scene__stage { height: auto; }
   .w-mac { right: 14%; top: 46%; } .w-phone { width: 27%; }
   .scene--room { --x1: 20%; --x2: 50%; --x3: 80%; --xm: 50%; --py: 78%; --pw: 30vw; --ct: 62%; --cr: 6%; --cb: 6%; --cl: 6%; }
-  .r-stage::after { background: linear-gradient(180deg, rgba(0,0,0,.88), rgba(0,0,0,.6) 55%, rgba(0,0,0,.1)); }
+  .r-stage::after { background: linear-gradient(180deg, rgba(251,251,253,.95), rgba(251,251,253,.8) 52%, rgba(251,251,253,.05)); }
   .r-toast { right: auto; left: 20px; top: auto; bottom: 22%; }
   .n-floor { top: 56%; width: min(62vw, 34vh); margin: calc(min(62vw, 34vh) / -2) 0 0 calc(min(62vw, 34vh) / -2); }
   .n-phone { width: min(22vw, 14vh); margin-left: calc(min(22vw, 14vh) / -2); top: 4%; }
@@ -456,7 +466,7 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   .w-toast { top: auto; bottom: 2%; }
   .calcwrap { grid-template-columns: minmax(0, 1fr); }
   .lineup { aspect-ratio: 16 / 11; } .lu-mac { width: 84%; margin-left: -42%; } .lu-phone { right: 0; width: 22%; } .lu-disc { left: 0; width: 30%; }
-  .steps { grid-template-columns: 1fr 1fr; row-gap: 40px; } .steps::before, .steps::after { display: none; }
+  .steps { grid-template-columns: 1fr; row-gap: 32px; } .steps::before, .steps::after { display: none; }
   .plans { grid-template-columns: minmax(0, 1fr); max-width: 560px; }
   .foot__grid { grid-template-columns: 1fr 1fr; } .foot__brand { grid-column: 1 / -1; }
 }
@@ -530,8 +540,9 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   <section class="hero" id="hero" aria-labelledby="h-start">
     <div class="wrap hero__top">
       <h1 id="h-start">Mehr Kunden für Ihren Betrieb.</h1>
-      <p class="hero__sub">Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p>
+      <p class="hero__sub">Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Preis sofort sehen, in einer Minute anfragen, fertig.</p>
       <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#websites">So funktioniert's</a></div>
+      <p class="hero__easy"><span><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis direkt auf der Seite</span><span><svg aria-hidden="true"><use href="#tick"/></svg>Nur Name und Telefon nötig</span><span><svg aria-hidden="true"><use href="#tick"/></svg>Antwort in 24 Stunden</span></p>
       <nav class="quick" aria-label="Leistungen mit Preis"><a href="#websites">Websites <b>ab 300 €</b></a><a href="#roomtours">KI-Roomtours <b>ab 300 €</b></a><a href="#platten">NFC-Platten <b>15 €</b></a></nav>
     </div>
     <div class="lineup" id="lineup" aria-hidden="true">
@@ -544,8 +555,8 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 
   <section class="sec picker" id="passend" aria-labelledby="h-pick">
     <div class="wrap picker__grid">
-      <div><h2 id="h-pick">Was passt zu Ihrem Betrieb?</h2><p class="lead">Wählen Sie Ihre Branche. Wir zeigen Ihnen, womit Sie am schnellsten mehr Kunden gewinnen, und was es kostet.</p><div class="pick-tabs" role="tablist" aria-label="Branche wählen"><button type="button" role="tab" id="t-gastro" aria-controls="r-gastro" aria-selected="true">Restaurant oder Café</button><button type="button" role="tab" id="t-ferien" aria-controls="r-ferien" aria-selected="false" tabindex="-1">Ferienwohnung oder Hotel</button><button type="button" role="tab" id="t-handel" aria-controls="r-handel" aria-selected="false" tabindex="-1">Laden oder Geschäft</button><button type="button" role="tab" id="t-handwerk" aria-controls="r-handwerk" aria-selected="false" tabindex="-1">Handwerk oder Dienstleistung</button></div></div>
-      <div class="rec-card"><div class="rec" role="tabpanel" id="r-gastro" aria-labelledby="t-gastro"><p class="rec__lead">Gäste entscheiden nach Bewertungen. Mit NFC-Platten auf den Tischen sammeln Sie mehr davon, und Ihre Website zeigt Speisekarte, Öffnungszeiten und Anfahrt.</p><ul class="rec__list"><li><div><b>NFC-Platten</b><span>10 Stück für Tische und Rechnungsmappen</span></div><em>150 €</em></li><li><div><b>Website</b><span>3 Seiten mit Speisekarte, Anfahrt und Kontakt</span></div><em>300 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 450 €</p><a class="btn btn--ink" href="#kontakt" data-pick="NFC-Platten,Website" data-note="Empfehlung für Restaurant oder Café">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-ferien" aria-labelledby="t-ferien" hidden><p class="rec__lead">Eine Roomtour zeigt Gästen schon vor der Buchung, wie sich Ihre Unterkunft anfühlt. Eine NFC-Platte in der Wohnung holt die Bewertung nach dem Aufenthalt.</p><ul class="rec__list"><li><div><b>KI-Roomtour</b><span>Video-Rundgang aus Ihren Fotos, bis 150 m²</span></div><em>300 €</em></li><li><div><b>NFC-Platte</b><span>1 Platte für den Eingangsbereich</span></div><em>15 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 315 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour,NFC-Platten" data-note="Empfehlung für Ferienwohnung oder Hotel">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handel" aria-labelledby="t-handel" hidden><p class="rec__lead">Wer in der Nähe sucht, findet zuerst Läden mit guter Website und vielen Bewertungen. Wir sorgen für beides.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Sortiment, Öffnungszeiten und Anfahrt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Kasse und Theke</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Laden oder Geschäft">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handwerk" aria-labelledby="t-handwerk" hidden><p class="rec__lead">Neue Kunden suchen online nach Betrieben in der Nähe. Eine klare Website mit Ihren Leistungen und guten Bewertungen bringt die Anfragen zu Ihnen.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Leistungen, Referenzen und Kontakt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Büro und Werkstatt</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Handwerk oder Dienstleistung">Diese Empfehlung anfragen</a></div></div></div>
+      <div><h2 id="h-pick">Ihr Festpreis in zehn Sekunden.</h2><p class="lead">Wählen Sie Ihre Branche. Sie sehen sofort, was wir empfehlen und was es kostet. Ein Klick, und Ihre Anfrage ist vorbereitet. Ohne Formular-Marathon.</p><div class="pick-tabs" role="tablist" aria-label="Branche wählen"><button type="button" role="tab" id="t-gastro" aria-controls="r-gastro" aria-selected="true">Restaurant oder Café</button><button type="button" role="tab" id="t-ferien" aria-controls="r-ferien" aria-selected="false" tabindex="-1">Ferienwohnung oder Hotel</button><button type="button" role="tab" id="t-handel" aria-controls="r-handel" aria-selected="false" tabindex="-1">Laden oder Geschäft</button><button type="button" role="tab" id="t-handwerk" aria-controls="r-handwerk" aria-selected="false" tabindex="-1">Handwerk oder Dienstleistung</button><button type="button" role="tab" id="t-anders" aria-controls="r-anders" aria-selected="false" tabindex="-1">Etwas anderes</button></div></div>
+      <div class="rec-card"><div class="rec" role="tabpanel" id="r-gastro" aria-labelledby="t-gastro"><p class="rec__lead">Gäste entscheiden nach Bewertungen. Mit NFC-Platten auf den Tischen sammeln Sie mehr davon, und Ihre Website zeigt Speisekarte, Öffnungszeiten und Anfahrt.</p><ul class="rec__list"><li><div><b>NFC-Platten</b><span>10 Stück für Tische und Rechnungsmappen</span></div><em>150 €</em></li><li><div><b>Website</b><span>3 Seiten mit Speisekarte, Anfahrt und Kontakt</span></div><em>300 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 450 €</p><a class="btn btn--ink" href="#kontakt" data-pick="NFC-Platten,Website" data-note="Empfehlung für Restaurant oder Café">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-ferien" aria-labelledby="t-ferien" hidden><p class="rec__lead">Eine Roomtour zeigt Gästen schon vor der Buchung, wie sich Ihre Unterkunft anfühlt. Eine NFC-Platte in der Wohnung holt die Bewertung nach dem Aufenthalt.</p><ul class="rec__list"><li><div><b>KI-Roomtour</b><span>Video-Rundgang aus Ihren Fotos, bis 150 m²</span></div><em>300 €</em></li><li><div><b>NFC-Platte</b><span>1 Platte für den Eingangsbereich</span></div><em>15 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 315 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour,NFC-Platten" data-note="Empfehlung für Ferienwohnung oder Hotel">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handel" aria-labelledby="t-handel" hidden><p class="rec__lead">Wer in der Nähe sucht, findet zuerst Läden mit guter Website und vielen Bewertungen. Wir sorgen für beides.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Sortiment, Öffnungszeiten und Anfahrt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Kasse und Theke</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Laden oder Geschäft">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handwerk" aria-labelledby="t-handwerk" hidden><p class="rec__lead">Neue Kunden suchen online nach Betrieben in der Nähe. Eine klare Website mit Ihren Leistungen und guten Bewertungen bringt die Anfragen zu Ihnen.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Leistungen, Referenzen und Kontakt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Büro und Werkstatt</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Handwerk oder Dienstleistung">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-anders" aria-labelledby="t-anders" hidden><p class="rec__lead">Sie haben etwas anderes vor oder sind sich noch unsicher? Erzählen Sie uns kurz davon. Wir melden uns innerhalb von 24 Stunden mit einem Festpreis.</p><ul class="rec__list"><li><div><b>Kurzes Gespräch</b><span>Telefon oder E-Mail, wie es Ihnen lieber ist</span></div><em>kostenlos</em></li><li><div><b>Festpreis-Angebot</b><span>Schriftlich, verbindlich, ohne versteckte Kosten</span></div><em>kostenlos</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Unverbindlich</small> 0 €</p><a class="btn btn--ink" href="#kontakt">Kurz anfragen</a></div></div></div>
     </div>
   </section>
 
@@ -644,12 +655,11 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
   <!-- Process -->
   <section class="sec" id="ablauf" aria-labelledby="h-flow">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-flow">In vier Schritten zu Ihrem Ergebnis.</h2></div><p class="lead">Ohne Aufwand für Sie. Wir kümmern uns um alles und halten Sie auf dem Laufenden.</p></div>
+      <div class="sec__head"><div><h2 id="h-flow">So einfach geht's. Ohne Formular-Marathon.</h2></div><p class="lead">Kein Konto, kein Fragebogen, kein Rätselraten beim Preis. Den Rest erledigen wir für Sie.</p></div>
       <ol class="steps" id="steps">
-        <li><span>1</span><h3>Anfrage</h3><p>Formular ausfüllen oder anrufen. Unverbindlich, in zwei Minuten.</p></li>
-        <li><span>2</span><h3>Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden persönlich bei Ihnen.</p></li>
-        <li><span>3</span><h3>Festpreis</h3><p>Sie bekommen ein klares Angebot ohne versteckte Kosten.</p></li>
-        <li><span>4</span><h3>Fertig</h3><p>Website online, Video geliefert oder Platten verknüpft.</p></li>
+        <li><span>1</span><h3>Preis sehen</h3><p>Alle Preise stehen hier auf der Seite. Ohne Anmeldung, ohne Rückruf-Pflicht.</p></li>
+        <li><span>2</span><h3>Kurz anfragen</h3><p>Name und Telefon oder E-Mail genügen. Das dauert eine Minute.</p></li>
+        <li><span>3</span><h3>Zurücklehnen</h3><p>Wir melden uns innerhalb von 24 Stunden und kümmern uns um alles Weitere.</p></li>
       </ol>
     </div>
   </section>
@@ -719,17 +729,16 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
         </ul>
       </div>
       <form class="form" id="form" novalidate>
-        <h3>Kostenlos anfragen</h3>
+        <h3>Kostenlos anfragen</h3><p class="form__sub">Nur zwei Angaben. Kein Konto, keine Verpflichtung.</p>
         <fieldset><legend>Worum geht es?</legend><div class="picks"><label><input type="checkbox" name="s" value="Website">Website</label><label><input type="checkbox" name="s" value="Roomtour">Roomtour</label><label><input type="checkbox" name="s" value="NFC-Platten">NFC-Platten</label></div><span class="err" id="eServices" aria-live="polite"></span></fieldset>
         <div class="pair">
           <div class="f"><label for="fName">Name</label><input id="fName" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="eName" required><span class="err" id="eName" aria-live="polite"></span></div>
-          <div class="f"><label for="fCompany">Firma <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="fCompany" autocomplete="organization" autocapitalize="words" enterkeyhint="next"></div>
+          <div class="f"><label for="fContact">Telefon oder E-Mail</label><input id="fContact" autocomplete="tel" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="send" aria-describedby="eContact" required><span class="err" id="eContact" aria-live="polite"></span></div>
         </div>
-        <div class="pair">
-          <div class="f"><label for="fEmail">E-Mail</label><input id="fEmail" type="email" autocomplete="email" autocapitalize="off" spellcheck="false" enterkeyhint="next" aria-describedby="eEmail" required><span class="err" id="eEmail" aria-live="polite"></span></div>
-          <div class="f"><label for="fPhone">Telefon <span style="font-weight:500;color:var(--muted)">(optional)</span></label><input id="fPhone" type="tel" autocomplete="tel" enterkeyhint="next" aria-describedby="ePhone"><span class="err" id="ePhone" aria-live="polite"></span></div>
-        </div>
-        <div class="f"><label for="fMsg">Nachricht <span style="font-weight:500;color:var(--muted)">(optional)</span></label><textarea id="fMsg" enterkeyhint="enter"></textarea></div>
+        <details class="more"><summary>Weitere Angaben <span>(optional)</span><i aria-hidden="true"></i></summary>
+          <div class="f"><label for="fCompany">Firma</label><input id="fCompany" autocomplete="organization" autocapitalize="words" enterkeyhint="next"></div>
+          <div class="f"><label for="fMsg">Nachricht</label><textarea id="fMsg" enterkeyhint="enter"></textarea></div>
+        </details>
         <input class="hp" id="fWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
         <label class="consent"><input type="checkbox" id="fConsent" aria-describedby="eConsent"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.</span></label>
         <p class="consent-more">Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a></p>
@@ -912,23 +921,22 @@ document.addEventListener("DOMContentLoaded", function () {
   form.addEventListener("submit", function (e) {
     e.preventDefault(); status.hidden = true;
     var picked = $$(".picks input:checked").map(function (c) { return c.value; });
-    var name = $("#fName"), email = $("#fEmail"), phone = $("#fPhone"), consent = $("#fConsent");
+    var name = $("#fName"), contact = $("#fContact"), consent = $("#fConsent"), cv = contact.value.trim(), isMail = cv.indexOf("@") > -1;
     var ok = [
       err("#eServices", picked.length ? "" : "Bitte wählen Sie mindestens eine Leistung."),
       err("#eName", name.value.trim().length >= 2 ? "" : "Bitte geben Sie Ihren Namen an.", name),
-      err("#eEmail", /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim()) ? "" : "Bitte geben Sie eine gültige E-Mail an.", email),
-      err("#ePhone", !phone.value.trim() || /^[+()\d\s/-]{6,}$/.test(phone.value.trim()) ? "" : "Bitte prüfen Sie die Telefonnummer.", phone),
+      err("#eContact", !cv ? "Bitte geben Sie eine Telefonnummer oder E-Mail an." : isMail ? (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cv) ? "" : "Bitte prüfen Sie die E-Mail-Adresse.") : (/^[+()\d\s/-]{6,24}$/.test(cv) ? "" : "Bitte prüfen Sie die Telefonnummer."), contact),
       err("#eConsent", consent.checked ? "" : "Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.")
     ];
     if (ok.indexOf(false) > -1) { var f = form.querySelector(".bad input") || (!picked.length ? $(".picks input") : consent); f.focus(); return; }
     var map = { "Website": "web", "Roomtour": "roomtour", "NFC-Platten": "nfc" }, services = picked.map(function (p) { return map[p]; });
-    var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: email.value.trim(), phone: phone.value.trim(), contactPref: phone.value.trim() ? "phone" : "email", message: msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
+    var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
     body.web = { tier: services.indexOf("web") > -1 ? "Basis" : "", url: "" };
     body.roomtour = { tier: services.indexOf("roomtour") > -1 ? "Basis" : "", property: services.indexOf("roomtour") > -1 ? "Ferienwohnung" : "", area: "" };
     body.nfc = { theme: $("[data-color][aria-pressed=true]").getAttribute("data-color"), qty: +qty.value, business: "" };
     body.budget = ""; body.timeline = "";
     function mail() {
-      var text = "Leistungen: " + picked.join(", ") + "\nName: " + body.name + (body.company ? "\nFirma: " + body.company : "") + "\nE-Mail: " + body.email + (body.phone ? "\nTelefon: " + body.phone : "") + (body.message ? "\n\n" + body.message : "");
+      var text = "Leistungen: " + picked.join(", ") + "\nName: " + body.name + (body.company ? "\nFirma: " + body.company : "") + (body.email ? "\nE-Mail: " + body.email : "") + (body.phone ? "\nTelefon: " + body.phone : "") + (body.message ? "\n\n" + body.message : "");
       location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über die Website: " + picked.join(", ")) + "&body=" + encodeURIComponent(text);
       note("Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Bitte dort noch auf Senden tippen.", true);
     }
@@ -958,7 +966,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // start: the headline rises, the lineup comes up from below: laptop opens, phone and plate join
     Split.create("#h-start", { type: "lines,words", mask: "lines", linesClass: "ln", autoSplit: true, onSplit: function (self) { return G.from(self.words, { yPercent: 110, duration: 1.1, ease: out, stagger: .05, delay: .1 }); } });
-    G.from(".hero__sub, .hero .cta, .quick", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
+    G.from(".hero__sub, .hero .cta, .hero__easy, .quick", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
     G.from(".lu-mac", { y: 140, opacity: 0, duration: 1.6, ease: out, delay: .35 });
     G.from(".lu-mac .mac__lid", { rotationX: 82, transformOrigin: "50% 100%", duration: 1.8, ease: "power3.inOut", delay: .6 });
     G.from(".lu-phone", { y: 220, x: 40, rotation: 10, opacity: 0, duration: 1.6, ease: out, delay: .9 });

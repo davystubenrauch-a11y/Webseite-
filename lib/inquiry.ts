@@ -55,7 +55,9 @@ export function validate(d: Inquiry, step?: number): Errors {
   }
   if (all || step === 2) {
     if (d.name.trim().length < 2) e.name = "Bitte geben Sie Ihren Namen an.";
-    if (!EMAIL.test(d.email.trim())) e.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
+    // One way to reach the customer is enough: e-mail or phone.
+    if (!d.email.trim() && !d.phone.trim()) e.email = "Bitte geben Sie eine Telefonnummer oder E-Mail an.";
+    else if (d.email.trim() && !EMAIL.test(d.email.trim())) e.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
     if (d.phone.trim() && !PHONE.test(d.phone.trim())) e.phone = "Bitte geben Sie eine gültige Telefonnummer an.";
     if (d.contactPref === "phone" && !d.phone.trim()) e.phone = "Für einen Rückruf benötigen wir Ihre Telefonnummer.";
     if (!d.consent) e.consent = "Bitte stimmen Sie der Datenverarbeitung zu.";

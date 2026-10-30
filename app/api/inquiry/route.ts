@@ -49,7 +49,7 @@ export async function POST(req: Request) {
         body: JSON.stringify({
           from: process.env.INQUIRY_FROM ?? "FOAV <onboarding@resend.dev>",
           to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"],
-          reply_to: data.email,
+          reply_to: data.email || undefined,
           subject,
           text,
         }),
