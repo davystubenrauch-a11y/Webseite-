@@ -3,7 +3,15 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 30.10.: v20 „Bühne“ hell + „einfacher Ablauf“ — AKTUELL
+## Stand 30.10. abends: Premium-Durchgang nach Apple/Linear — AKTUELL
+- Kunde: „immer noch nicht hochwertig genug, wie ein Profi-Webdesigner, Premium-Seiten vergleichen und übernehmen; Proportionen in den Animationen falsch; gelber Akzent gefällt nicht“. Verglichen per Firecrawl-Screenshot: apple.com/de/macbook-air, linear.app (Archiv vorher: `public/v20/`).
+- **Kein Gelb mehr, monochrom**: Knöpfe Graphit #1d1d1f (Hover Schwarz), Zweitknopf Weiß mit 1-px-Kontur, Kopf-Knopf klein (40 px); Logo-Punkt weiß (Zeichen ganz monochrom), Favicon/Touch-Icon ebenso. Farbe kommt nur aus den Bildern.
+- **Schrift Inter** (selbst gehostet `public/site/fonts/inter-latin.woff2`, opsz) statt Sora/Figtree, Laufweite enger, Skala kleiner und ruhiger (h1 44–80 px, h2 32–52 px, Text 17 px), Navigation als schlichte Textlinks.
+- **Start wie Linear**: Überschrift links, darunter Zeile mit Text links und Knöpfen rechts („Kostenlos anfragen“, „Preise ansehen“); Produkt-Lineup in einer hellgrauen, abgerundeten Bühne (`.hero__stage`), keine Maus-Neigung mehr.
+- **Geräte realistischer**: MacBook mit dünnem Rand, Kerbe, Alu-Rahmenlinie, gewölbter Alu-Unterseite; iPhone mit Titan-Rahmen und Dynamic Island.
+- **Animationen**: Fortschritt mit Glättung (smoothstep), Filme kürzer (290 vh, Handy 260 vh); **echte Größenverhältnisse NFC** (Platte Ø 10 cm, Handy 7 × 15 cm → Handy-Breite 0,71 × Platte, `--w`), Handy endet schräg über der Platte; Website-Handy landet vollständig in der Bühne.
+
+## Stand 30.10.: v20 „Bühne“ hell + „einfacher Ablauf“
 - **Logo v2 (30.10.)**: Kombi-Marke = **Zeichen** (abgerundetes Graphit-Quadrat, weißer Ring, goldener Punkt; identisch mit Favicon/App-Symbol) + Wortmarke **„foav“ in Kleinbuchstaben** (Sora 650, Pfade per fontTools, Skript `logo/make2.py` im Scratchpad, Varianten v1/v2/v3 verglichen → v3). Klassen `lg-tile`, `lg-on`, `lg-ink`, `lg-amp`. Im Fließtext heißt die Firma weiter „FOAV“.
 - **Akzent-Disziplin (30.10.)**, nach Recherche (NN/g, WCAG, Stripe): **Gold #f1b33c nur noch für Anfrage-Knöpfe** (Verlauf, dunkle Kante #9c6a08 für ≥ 3:1 gegen Weiß, Graphit-Schrift, Glanz beim Überfahren, hebt sich 1 px). Alles Nicht-Klickbare (Häkchen, Schritt-Nummern, Kicker, Preise in Links, Regler, Plan-Hervorhebung) in Graphit. Zweitknöpfe = weiß mit Kontur. Block „accent discipline“ vor `/* ---------- responsive`.
 - Kunde: v20 gefällt mehr, aber **keine dunkle Seite**; anschaulich und stilvoll; soll für jede Kundengruppe einen **einfachen Prozess** versprechen („nicht tausend Formulare, bis man einen Preis bekommt“).
