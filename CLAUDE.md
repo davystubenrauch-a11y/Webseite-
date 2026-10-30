@@ -3,7 +3,15 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 30.10. nachts: Fragebogen + Roomtour-Auftrag mit Foto-Upload — AKTUELL
+## Stand 30.10. spät nachts: Startseite spannender (Skills frontend-design + ui-ux-pro-max) — AKTUELL
+- Kunde: „Layout immer noch gleich langweilig und einheitlich, auf höchstem Niveau, mit Premium-Seiten konkurrieren“. Archiv vorher: `public/v20b/`.
+- **Typo als Held**: Start-Überschrift bis 184 px (10,6 vw, Zeilenabstand .9), h2 bis 88 px, Szenen-h2 bis 68 px, Preise bis 84 px, Über-uns-Satz bis 64 px. Start-Bühne fast randlos (8–16 px Abstand).
+- **Neuer Leistungs-Index** `#angebot` direkt nach dem Start (Agentur-Stil): drei riesige Zeilen Websites / KI-Roomtours / NFC-Platten mit Kurztext + Preis; beim Überfahren werden die anderen Zeilen blass, ein Vorschaubild folgt dem Mauszeiger (`#peek`, nur Maus, nicht bei reduzierter Bewegung).
+- **Bewegtes Schriftband** `#bandx` vor dem Ablauf: zwei Zeilen (voll / Kontur) laufen beim Scrollen gegeneinander, Trenner = Logo-Zeichen.
+- NFC-Film auf hellgrauem Grund (Abwechslung zu Website weiß / Roomtour warm).
+- Formulare: keine Karten mehr, Abschnitte als offene Zeilen (Titel links klebend, Felder rechts), Ablauf als Linie unter der Überschrift; Roomtour-Fotos als **Kacheln mit Mini-Grundriss**, der Kamera-Standort und Blickrichtung zeigt.
+
+## Stand 30.10. nachts: Fragebogen + Roomtour-Auftrag mit Foto-Upload
 - Kunde: noch **keine Kunden**; braucht für Websites einen **Informations-Fragebogen** und für Roomtours ein Formular, über das Kunden **pro Raum die passenden Fotos** schicken. Ablauf: Kunde zahlt vorab → bekommt Ergebnis → Änderungen gemeinsam. **Website bis 7 Tage** (je nach Paket), **Roomtour bis 48 Stunden**.
 - Neue Next-Seiten **`/anfrage/website`** und **`/anfrage/roomtour`** (`components/forms/Briefing.tsx` = Hülle/Fragen/Foto-Upload/Absenden, `WebsiteBriefing.tsx`, `RoomtourBriefing.tsx`), Stil wie die Startseite. Pflicht nur Name, Telefon-oder-E-Mail, Einwilligung. Vorauswahl per URL, z. B. `?paket=Business`.
 - Roomtour: Räume wählen (Schlafzimmer/Bad mit +/−), je Raum Foto-Tipp + empfohlene Anzahl (Flur 2, Wohnzimmer 4, Küche 3, Schlafzimmer 3, Bad 2, Balkon 2, Außen 2, Weitere 2), allgemeine Foto-Tipps, Preis-Karte (≤ 150 m² = 300 €, sonst „Nach Größe“).

@@ -88,7 +88,7 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 h1, h2, h3 { font-family: var(--head); color: var(--ink); font-weight: 600; font-kerning: normal; }
 h1, h2 { font-weight: 600; }
-h2 { font-size: clamp(32px, 3.6vw, 52px); line-height: 1.06; letter-spacing: -.035em; max-width: 18ch; text-wrap: balance; }
+h2 { font-size: clamp(40px, 5.4vw, 88px); line-height: 1; letter-spacing: -.048em; max-width: 15ch; text-wrap: balance; }
 h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.02em; }
 .lead { margin-top: 18px; font-size: clamp(17px, 1.25vw, 19px); max-width: 52ch; color: var(--muted); }
 .dark .lead { color: var(--on-dark-m); }
@@ -186,13 +186,13 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 
 /* start: one clear sentence, the three products rise underneath like a product lineup */
 .hero { position: relative; padding: clamp(112px, 15vh, 150px) 0 clamp(40px, 6vh, 72px); overflow: hidden; background: var(--bg); }
-.hero h1 { max-width: 14ch; font-size: clamp(44px, 5.6vw, 80px); line-height: 1.02; letter-spacing: -.035em; }
+.hero h1 { max-width: 11ch; font-size: clamp(56px, 10.6vw, 184px); line-height: .9; letter-spacing: -.058em; font-weight: 600; }
 .hero__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-top: 28px; }
 .hero__sub { max-width: 44ch; font-size: clamp(17px, 1.3vw, 20px); color: var(--muted); }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; }
-.hero__stage { position: relative; margin-top: clamp(40px, 6vh, 64px); padding: clamp(28px, 5vw, 72px) clamp(16px, 4vw, 64px) 0; border-radius: 32px; background: linear-gradient(180deg, #f5f5f7, #ececf0); overflow: hidden; }
+.hero__stage { position: relative; margin: clamp(48px, 7vh, 80px) clamp(8px, 1.1vw, 16px) 0; padding: clamp(32px, 5vw, 88px) clamp(16px, 4vw, 64px) 0; border-radius: clamp(20px, 2.4vw, 36px); background: linear-gradient(180deg, #f5f5f7, #ececf0); overflow: hidden; }
 .hero__stage::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 0; height: 22%; background: radial-gradient(50% 60% at 50% 100%, rgba(0,0,0,.10), transparent); pointer-events: none; }
-.lineup { position: relative; z-index: 1; width: 100%; max-width: 1060px; aspect-ratio: 16 / 7.4; margin: 0 auto; perspective: 1600px; }
+.lineup { position: relative; z-index: 1; width: 100%; max-width: 1320px; aspect-ratio: 16 / 7.4; margin: 0 auto; perspective: 1600px; }
 .lu { position: absolute; bottom: 0; will-change: transform; }
 .lu-mac { left: 50%; width: 64%; margin-left: -32%; bottom: 3%; }
 .lu-mac .mac__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
@@ -210,7 +210,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .scene__pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; align-items: center; }
 .scene__grid { position: relative; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center; width: 100%; }
 .scene__text { position: relative; z-index: 5; }
-.scene h2 { margin-top: 10px; font-size: clamp(32px, 3.6vw, 52px); }
+.scene h2 { margin-top: 12px; font-size: clamp(36px, 4.4vw, 68px); max-width: 12ch; }
 .scene .how { margin-top: 26px; }
 .scene__foot { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 24px; margin-top: 26px; }
 .scene__fact { margin-top: 16px; font-size: .9375rem; color: var(--muted); }
@@ -240,7 +240,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .r-toast { right: 6%; top: 16%; }
 
 /* nfc: the plate turns and lies down, the phone comes to it, rings, five stars */
-.scene--nfc { background: linear-gradient(180deg, #fbfbfd, #f2f2f5); }
+.scene--nfc { background: linear-gradient(180deg, #f1f1f4, #e9e9ee); }
 .n-stage { perspective: 1400px; }
 .n-stage { --w: min(30vh, 20vw); }
 .n-floor { position: absolute; left: 50%; top: 72%; width: var(--w); aspect-ratio: 1; margin: calc(var(--w) / -2) 0 0 calc(var(--w) / -2); transform-style: preserve-3d; transform: rotateX(calc(var(--a, 1) * 58deg)) rotateZ(calc((1 - var(--a, 1)) * -140deg)) scale(calc(.72 + var(--a, 1) * .28)); }
@@ -338,7 +338,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .plan--top::before { content: "Unser Schwerpunkt"; position: absolute; top: -14px; left: 26px; padding: 5px 12px; border-radius: 999px; background: var(--champ); color: #111114; font-size: 0.8125rem; font-weight: 700; }
 .plan h3 { font-size: 1.5rem; }
 .plan > p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
-.plan__big { margin-top: 22px; font-family: var(--head); font-size: 2.75rem; font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
+.plan__big { margin-top: 28px; font-family: var(--head); font-size: clamp(56px, 5.4vw, 84px); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
 .plan__big small { font-family: var(--font); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
 .tiers { list-style: none; margin: 22px 0 26px; }
 .tiers li { display: grid; grid-template-columns: 1fr auto; gap: 2px 14px; padding: 13px 0; border-top: 1px solid var(--line); font-size: 1rem; }
@@ -361,7 +361,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 
 /* about */
 .about { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 6fr); gap: clamp(36px, 6vw, 96px); align-items: center; margin-top: clamp(40px, 6vw, 72px); }
-.say { font-family: var(--head); font-size: clamp(26px, 2.8vw, 42px); line-height: 1.2; letter-spacing: -.03em; font-weight: 600; color: var(--ink); }
+.say { font-family: var(--head); font-size: clamp(30px, 4vw, 64px); line-height: 1.08; letter-spacing: -.04em; font-weight: 600; color: var(--ink); }
 .say span { opacity: .18; transition: opacity .35s; } .say span.on { opacity: 1; }
 .gs .say span { transition: none; }
 .people { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
@@ -466,6 +466,40 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .link { text-decoration-color: rgba(0,0,0,.3); } .link:hover { text-decoration-color: var(--ink); }
 .inl { color: var(--ink); font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(0,0,0,.3); } .inl:hover { text-decoration-color: var(--ink); }
 
+/* ---------- service index: agency-style menu, a preview follows the cursor */
+.index { padding-top: clamp(96px, 12vw, 176px); }
+.index__lead { max-width: 30ch; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.3; letter-spacing: -.02em; color: var(--ink); font-weight: 500; }
+.ix { list-style: none; margin-top: clamp(40px, 5vw, 72px); border-bottom: 1px solid var(--line); }
+.ix li { border-top: 1px solid var(--line); }
+.ix a { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 26ch) 9ch; align-items: center; gap: 12px 40px; padding: clamp(18px, 2.2vw, 32px) 0; text-decoration: none; color: var(--ink); }
+.ix__name { font-family: var(--head); font-size: clamp(44px, 8.2vw, 136px); font-weight: 600; line-height: .95; letter-spacing: -.055em; transition: transform .6s cubic-bezier(.2,.7,.2,1), opacity .4s; }
+.ix__what { font-size: 1rem; line-height: 1.45; color: var(--muted); transition: opacity .4s; }
+.ix__price { justify-self: end; font-family: var(--head); font-size: clamp(20px, 1.8vw, 28px); font-weight: 600; letter-spacing: -.03em; font-variant-numeric: tabular-nums; white-space: nowrap; transition: opacity .4s; }
+.ix__price small { font-size: .6em; font-weight: 500; color: var(--muted); letter-spacing: 0; }
+.ix:hover a { opacity: .28; } .ix:hover a:hover { opacity: 1; }
+.ix a { transition: opacity .4s; }
+.ix a:hover .ix__name, .ix a:focus-visible .ix__name { transform: translateX(clamp(8px, 1.4vw, 24px)); }
+.ix__thumb { display: none; }
+.peek { position: fixed; left: 0; top: 0; z-index: 30; width: clamp(240px, 22vw, 360px); aspect-ratio: 4 / 3; border-radius: 18px; overflow: hidden; pointer-events: none; opacity: 0; transform: translate(-50%, -50%) scale(.6); transition: opacity .3s, transform .45s cubic-bezier(.2,.7,.2,1); box-shadow: 0 30px 80px -20px rgba(0,0,0,.35); }
+.peek.on { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+.peek img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity .3s; }
+.peek img.on { opacity: 1; }
+/* ---------- kinetic band: the offer in huge type, moves with the scroll */
+.band-x { padding: clamp(96px, 12vw, 176px) 0 0; overflow: hidden; }
+.band-x__row { display: flex; gap: .35em; width: max-content; font-family: var(--head); font-size: clamp(64px, 12vw, 210px); font-weight: 600; line-height: 1; letter-spacing: -.06em; color: var(--ink); white-space: nowrap; will-change: transform; }
+.band-x__row + .band-x__row { margin-top: .06em; color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+.band-x__row i { display: inline-block; width: .5em; height: .5em; margin: 0 .05em; align-self: center; border-radius: 30%; background: var(--ink); box-shadow: inset 0 0 0 .1em var(--ink), inset 0 0 0 .16em #fff; }
+.band-x__row + .band-x__row i { background: none; box-shadow: inset 0 0 0 2px var(--ink); }
+@media (max-width: 760px) {
+  .ix a { grid-template-columns: minmax(0, 1fr) auto; }
+  .ix__what { grid-column: 1 / -1; grid-row: 2; }
+  .ix__price { grid-column: 2; grid-row: 1; }
+  .ix__name { font-size: clamp(34px, 10.4vw, 56px); white-space: nowrap; }
+  .peek { display: none; }
+}
+@media (hover: none) { .peek { display: none; } .ix:hover a { opacity: 1; } }
+@media (prefers-reduced-motion: reduce) { .peek { display: none; } .ix__name { transition: none; } }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
 }
@@ -569,14 +603,26 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#preise">Preise ansehen</a></div>
       </div>
     </div>
-    <div class="wrap"><div class="hero__stage">
+    <div class="hero__stage">
     <div class="lineup" id="lineup" aria-hidden="true">
       <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-spiruli-desk-top.jpg" alt=""></div></div><div class="mac__base"></div></div></div>
       <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><video id="heroVid" poster="/media/tour-md-2.jpg" muted loop playsinline autoplay preload="auto"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div></div></div>
       <div class="lu lu-disc"><div class="lu-tilt"><div><span class="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div></div></div>
     </div>
-    </div></div>
+    </div>
     <button class="pause" type="button" id="pause" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><span>Bewegung anhalten</span></button>
+  </section>
+
+  <section class="index" id="angebot" aria-labelledby="h-ix">
+    <div class="wrap">
+      <h2 id="h-ix" class="index__lead">Drei Leistungen, die Ihnen Kunden bringen. Mit festen Startpreisen und den Gründern als Ansprechpartner.</h2>
+      <ol class="ix" id="ix">
+        <li><a href="#websites" data-peek="0"><span class="ix__name">Websites</span><span class="ix__what">Ihr Auftritt im Netz, fertig in bis zu 7 Tagen.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
+        <li><a href="#roomtours" data-peek="1"><span class="ix__name">KI-Roomtours</span><span class="ix__what">Ein Video-Rundgang aus Ihren Fotos, in bis zu 48 Stunden.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
+        <li><a href="#platten" data-peek="2"><span class="ix__name">NFC-Platten</span><span class="ix__what">Google-Bewertungen mit einem Antippen, ohne App.</span><span class="ix__price">15 €</span></a></li>
+      </ol>
+    </div>
+    <div class="peek" id="peek" aria-hidden="true"><img src="/media/ref-spiruli-desk-top.jpg" alt="" loading="lazy"><img src="/media/tour-md-2.jpg" alt="" loading="lazy"><img src="/media/nfc-platten.webp" alt="" loading="lazy"></div>
   </section>
 
   <section class="sec picker" id="passend" aria-labelledby="h-pick">
@@ -679,6 +725,11 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   </section>
 
   <!-- Process -->
+  <div class="band-x" id="bandx" aria-hidden="true">
+    <div class="band-x__row">Websites<i></i>KI-Roomtours<i></i>NFC-Platten<i></i>Websites<i></i>KI-Roomtours<i></i></div>
+    <div class="band-x__row">München<i></i>Festpreis<i></i>48 Stunden<i></i>München<i></i>Festpreis<i></i>48 Stunden<i></i></div>
+  </div>
+
   <section class="sec" id="ablauf" aria-labelledby="h-flow">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-flow">In drei Schritten zum fertigen Ergebnis.</h2></div><p class="lead">Sie brauchen kein Konto. Den Preis sehen Sie vorher, und bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p></div>
@@ -826,6 +877,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ---------- videos play only while visible; one button stops all motion in the start ---------- */
+  // service index: preview image follows the cursor
+  var peek = $("#peek"), ix = $("#ix");
+  if (peek && ix && fine && !reduce) {
+    var pimgs = $$("img", peek), px = 0, py = 0, tx = 0, ty = 0, raf = 0;
+    var loop = function () { px += (tx - px) * .18; py += (ty - py) * .18; peek.style.left = px + "px"; peek.style.top = py + "px"; raf = Math.abs(tx - px) + Math.abs(ty - py) > .5 ? requestAnimationFrame(loop) : 0; };
+    ix.addEventListener("pointermove", function (e) { tx = e.clientX; ty = e.clientY; if (!peek.classList.contains("on")) { px = tx; py = ty; } if (!raf) raf = requestAnimationFrame(loop); });
+    $$("a", ix).forEach(function (a) { a.addEventListener("pointerenter", function () { peek.classList.add("on"); pimgs.forEach(function (im, i) { im.classList.toggle("on", String(i) === a.dataset.peek); }); }); });
+    ix.addEventListener("pointerleave", function () { peek.classList.remove("on"); });
+  }
   var still = reduce, pauseBtn = $("#pause");
   var shown = [];
   function start(v) {
@@ -1012,6 +1072,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // process line and steps
     G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
     stepLis.forEach(function (li, i) { ST.create({ trigger: steps, start: "top " + (75 - i * 7) + "%", onEnter: function () { li.classList.add("lit"); }, onLeaveBack: function () { li.classList.remove("lit"); } }); });
+    // kinetic band: rows drift in opposite directions while scrolling
+    $$(".band-x__row").forEach(function (row, i) { G.fromTo(row, { xPercent: i ? -30 : 0 }, { xPercent: i ? 0 : -30, ease: "none", scrollTrigger: { trigger: "#bandx", start: "top bottom", end: "bottom top", scrub: .5 } }); });
     // about: the statement lights up word by word
     // footer: the wordmark rises into place
     G.from("#footMark svg", { yPercent: 35, ease: "none", scrollTrigger: { trigger: "#footMark", start: "top bottom", end: "bottom bottom", scrub: .6 } });
