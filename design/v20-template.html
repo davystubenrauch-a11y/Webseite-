@@ -102,8 +102,8 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .head.solid { background: var(--glass); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); box-shadow: 0 1px 0 var(--line); }
 .head__in { position: relative; height: 80px; display: flex; align-items: center; gap: 24px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; margin-right: auto; }
-.logo svg { height: 27px; width: auto; }
-.lg-ink { fill: var(--logo); } .lg-amp { fill: var(--gold); }
+.logo svg { height: 30px; width: auto; }
+.lg-ink, .lg-tile { fill: var(--logo); } .lg-on { fill: #fff; } .lg-amp { fill: var(--gold); }
 .foot .lg-ink { fill: var(--on-dark); } .foot .lg-amp { fill: var(--champ); }
 .nav { display: flex; gap: 2px; padding: 5px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); }
 .nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; font-size: 0.9688rem; font-weight: 600; color: var(--text); transition: background-color .2s, color .2s; }
@@ -426,6 +426,38 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 .dock { position: fixed; z-index: 90; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); display: none; grid-template-columns: 1fr 1.5fr; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(17,17,20,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); transition: transform .45s var(--ease); }
 .dock .btn { min-height: 48px; font-size: 0.9688rem; } .dock .btn--line { color: #fff; background: transparent; box-shadow: inset 0 0 0 1.5px var(--line-d); }
 .dock.away { transform: translateY(160%); }
+
+/* ---------- accent discipline: gold is reserved for the buttons that start an inquiry ----------
+   Best practice from conversion research (NN/g, WCAG): one action colour, used for actions only;
+   button edge at least 3:1 against the page, label at least 4.5:1. Everything else stays graphite. */
+:root { --cta: #f1b33c; --cta-hi: #f7c55e; --cta-edge: #9c6a08; }
+.btn { position: relative; overflow: hidden; isolation: isolate; transition: background-color .2s, box-shadow .25s, color .2s, translate .25s var(--ease); }
+.btn--ink, .btn--light, .btn--champ { background: linear-gradient(180deg, var(--cta-hi), var(--cta)); color: #1d1d1f; box-shadow: inset 0 0 0 1.5px var(--cta-edge), inset 0 1px 0 rgba(255,255,255,.55), 0 10px 22px -12px rgba(156,106,8,.75); }
+.btn--ink:hover, .btn--light:hover, .btn--champ:hover { background: linear-gradient(180deg, #f9cf72, var(--cta-hi)); translate: 0 -1px; box-shadow: inset 0 0 0 1.5px var(--cta-edge), inset 0 1px 0 rgba(255,255,255,.6), 0 16px 30px -12px rgba(156,106,8,.8); }
+.btn--ink::after, .btn--light::after, .btn--champ::after { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); transition: left .7s var(--ease); }
+.btn--ink:hover::after, .btn--light:hover::after, .btn--champ:hover::after { left: 130%; }
+.btn--line { color: var(--ink); background: #fff; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.22); }
+.btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.hero .cta .btn { min-height: 58px; padding: 0 32px; font-size: 1.0625rem; }
+/* non-clickable accents back to graphite */
+.ticks li::before { background-color: #1d1d1f !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
+.kicker { color: var(--muted); }
+.hero__easy svg { background: #1d1d1f; color: #fff; }
+.quick b { color: var(--ink); }
+.how li.on::before { background: #1d1d1f; color: #fff; box-shadow: 0 0 0 5px rgba(0,0,0,.06); }
+.steps::after { background: #1d1d1f; } .steps li.lit > span { background: #1d1d1f; color: #fff; box-shadow: 0 0 0 8px rgba(0,0,0,.06); }
+.plan--top { box-shadow: inset 0 0 0 2px #1d1d1f; } .plan--top::before { background: #1d1d1f; color: #fff; }
+.diff td.us svg { color: var(--ink); }
+.mono { color: #fff; }
+details[open] summary i { background: #1d1d1f; } details[open] summary i::before, details[open] summary i::after { background: #fff; }
+.reach svg { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: #1d1d1f; color: #fff; }
+.calc-card .range input::-webkit-slider-runnable-track { background: linear-gradient(90deg, #1d1d1f var(--fill, 47%), rgba(0,0,0,.12) var(--fill, 47%)); }
+.range input::-moz-range-progress { background: #1d1d1f; }
+.calc-card .hint { color: var(--ink); }
+.cmp .tag.r { background: #1d1d1f; color: #fff; }
+.n-rings i { border-color: #1d1d1f; }
+.link { text-decoration-color: rgba(0,0,0,.3); } .link:hover { text-decoration-color: var(--ink); }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {

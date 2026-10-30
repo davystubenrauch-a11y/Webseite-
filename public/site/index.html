@@ -116,8 +116,8 @@ h3 { font-size: clamp(21px, 1.7vw, 25px); line-height: 1.2; letter-spacing: -.02
 .head.solid { background: var(--glass); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); box-shadow: 0 1px 0 var(--line); }
 .head__in { position: relative; height: 80px; display: flex; align-items: center; gap: 24px; }
 .logo { display: inline-flex; align-items: center; min-height: 44px; margin-right: auto; }
-.logo svg { height: 27px; width: auto; }
-.lg-ink { fill: var(--logo); } .lg-amp { fill: var(--gold); }
+.logo svg { height: 30px; width: auto; }
+.lg-ink, .lg-tile { fill: var(--logo); } .lg-on { fill: #fff; } .lg-amp { fill: var(--gold); }
 .foot .lg-ink { fill: var(--on-dark); } .foot .lg-amp { fill: var(--champ); }
 .nav { display: flex; gap: 2px; padding: 5px; border-radius: 999px; background: var(--glass-2); box-shadow: inset 0 0 0 1px var(--line); }
 .nav a { display: inline-flex; align-items: center; min-height: 40px; padding: 0 16px; border-radius: 999px; font-size: 0.9688rem; font-weight: 600; color: var(--text); transition: background-color .2s, color .2s; }
@@ -441,6 +441,38 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 .dock .btn { min-height: 48px; font-size: 0.9688rem; } .dock .btn--line { color: #fff; background: transparent; box-shadow: inset 0 0 0 1.5px var(--line-d); }
 .dock.away { transform: translateY(160%); }
 
+/* ---------- accent discipline: gold is reserved for the buttons that start an inquiry ----------
+   Best practice from conversion research (NN/g, WCAG): one action colour, used for actions only;
+   button edge at least 3:1 against the page, label at least 4.5:1. Everything else stays graphite. */
+:root { --cta: #f1b33c; --cta-hi: #f7c55e; --cta-edge: #9c6a08; }
+.btn { position: relative; overflow: hidden; isolation: isolate; transition: background-color .2s, box-shadow .25s, color .2s, translate .25s var(--ease); }
+.btn--ink, .btn--light, .btn--champ { background: linear-gradient(180deg, var(--cta-hi), var(--cta)); color: #1d1d1f; box-shadow: inset 0 0 0 1.5px var(--cta-edge), inset 0 1px 0 rgba(255,255,255,.55), 0 10px 22px -12px rgba(156,106,8,.75); }
+.btn--ink:hover, .btn--light:hover, .btn--champ:hover { background: linear-gradient(180deg, #f9cf72, var(--cta-hi)); translate: 0 -1px; box-shadow: inset 0 0 0 1.5px var(--cta-edge), inset 0 1px 0 rgba(255,255,255,.6), 0 16px 30px -12px rgba(156,106,8,.8); }
+.btn--ink::after, .btn--light::after, .btn--champ::after { content: ""; position: absolute; z-index: -1; top: 0; bottom: 0; left: -60%; width: 40%; background: linear-gradient(100deg, transparent, rgba(255,255,255,.55), transparent); transform: skewX(-20deg); transition: left .7s var(--ease); }
+.btn--ink:hover::after, .btn--light:hover::after, .btn--champ:hover::after { left: 130%; }
+.btn--line { color: var(--ink); background: #fff; box-shadow: inset 0 0 0 1.5px rgba(0,0,0,.22); }
+.btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.hero .cta .btn { min-height: 58px; padding: 0 32px; font-size: 1.0625rem; }
+/* non-clickable accents back to graphite */
+.ticks li::before { background-color: #1d1d1f !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
+.kicker { color: var(--muted); }
+.hero__easy svg { background: #1d1d1f; color: #fff; }
+.quick b { color: var(--ink); }
+.how li.on::before { background: #1d1d1f; color: #fff; box-shadow: 0 0 0 5px rgba(0,0,0,.06); }
+.steps::after { background: #1d1d1f; } .steps li.lit > span { background: #1d1d1f; color: #fff; box-shadow: 0 0 0 8px rgba(0,0,0,.06); }
+.plan--top { box-shadow: inset 0 0 0 2px #1d1d1f; } .plan--top::before { background: #1d1d1f; color: #fff; }
+.diff td.us svg { color: var(--ink); }
+.mono { color: #fff; }
+details[open] summary i { background: #1d1d1f; } details[open] summary i::before, details[open] summary i::after { background: #fff; }
+.reach svg { color: var(--ink); }
+.seg button[aria-pressed="true"] { background: #1d1d1f; color: #fff; }
+.calc-card .range input::-webkit-slider-runnable-track { background: linear-gradient(90deg, #1d1d1f var(--fill, 47%), rgba(0,0,0,.12) var(--fill, 47%)); }
+.range input::-moz-range-progress { background: #1d1d1f; }
+.calc-card .hint { color: var(--ink); }
+.cmp .tag.r { background: #1d1d1f; color: #fff; }
+.n-rings i { border-color: #1d1d1f; }
+.link { text-decoration-color: rgba(0,0,0,.3); } .link:hover { text-decoration-color: var(--ink); }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
 }
@@ -527,7 +559,7 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
 
 <header class="head" id="head">
   <div class="wrap head__in">
-    <a class="logo" href="#start" aria-label="FOAV – zum Anfang"><svg class="logo__svg" viewBox="-20 -40 2730 830" role="img" aria-label="FOAV"><path class="lg-ink" transform="translate(-90 730) scale(1 -1)" d="M90 0V730H232V0ZM212 304V424L504 424.5V304.5ZM212 610V730H518V610Z"/><path class="lg-ink" fill-rule="evenodd" d="M492 365a384 384 0 1 0 768 0a384 384 0 1 0 -768 0zM596.0 365a280.0 280.0 0 1 1 560.0 0a280.0 280.0 0 1 1 -560.0 0z"/><circle class="lg-amp" cx="876" cy="365" r="81"/><path class="lg-ink" transform="translate(1282 730) scale(1 -1)" d="M18 0 266.5 730H498.5L755 0H608.5L392 633L442.5 611H317.5L370 633L160 0ZM192 193.5 236.5 313.5H532.5L577 193.5Z"/><path class="lg-ink" transform="translate(1986 730) scale(1 -1)" d="M253.5 0 21 730H167.5L360.5 97.5L319 118H427L383.5 97.5L562 730H704L487.5 0Z"/></svg></a>
+    <a class="logo" href="#start" aria-label="FOAV – zum Anfang"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
     <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#passend">Beratung</a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#kontakt">Anfragen</a>
@@ -755,7 +787,7 @@ details p { padding: 0 50px 22px 0; max-width: 62ch; }
           <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="#passend">Beratung</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#unterschied">Warum FOAV</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
-        <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-20 -40 2730 830" role="img" aria-label="FOAV"><path class="lg-ink" transform="translate(-90 730) scale(1 -1)" d="M90 0V730H232V0ZM212 304V424L504 424.5V304.5ZM212 610V730H518V610Z"/><path class="lg-ink" fill-rule="evenodd" d="M492 365a384 384 0 1 0 768 0a384 384 0 1 0 -768 0zM596.0 365a280.0 280.0 0 1 1 560.0 0a280.0 280.0 0 1 1 -560.0 0z"/><circle class="lg-amp" cx="876" cy="365" r="81"/><path class="lg-ink" transform="translate(1282 730) scale(1 -1)" d="M18 0 266.5 730H498.5L755 0H608.5L392 633L442.5 611H317.5L370 633L160 0ZM192 193.5 236.5 313.5H532.5L577 193.5Z"/><path class="lg-ink" transform="translate(1986 730) scale(1 -1)" d="M253.5 0 21 730H167.5L360.5 97.5L319 118H427L383.5 97.5L562 730H704L487.5 0Z"/></svg></div>
+        <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>
         <div class="foot__base"><span>© <span id="year">2026</span> FOAV, München</span><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a class="totop" href="#start">Nach oben</a></nav></div>
       </div>
     </footer>
