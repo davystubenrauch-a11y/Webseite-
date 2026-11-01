@@ -722,17 +722,19 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 /* ---------- promises as a bento with real material */
 .bento { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); grid-auto-rows: minmax(220px, auto); gap: 16px; margin-top: clamp(40px, 5vw, 72px); }
 .bt { position: relative; display: flex; flex-direction: column; padding: 28px; border-radius: 28px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); overflow: hidden; }
-.bt b { font-family: var(--head); font-size: clamp(48px, 5vw, 84px); font-weight: 600; line-height: .95; letter-spacing: -.055em; color: var(--ink); }
-.bt h3 { margin-top: 12px; font-size: 1.125rem; letter-spacing: -.015em; }
+.bt b { font-family: var(--head); font-size: clamp(40px, 3.8vw, 64px); font-weight: 600; line-height: .95; letter-spacing: -.055em; color: var(--ink); }
+.bt h3 { order: -1; font-size: 1.0625rem; font-weight: 500; letter-spacing: -.01em; color: var(--muted); }
+.bt b { margin-top: 8px; }
 .bt p { margin-top: 6px; color: var(--muted); font-size: 1rem; max-width: 34ch; }
 .bt--a { grid-column: span 2; grid-row: span 2; justify-content: flex-end; color: #fff; background: #1a1714; }
 .bt--a img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .bt--a::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 35%, rgba(10,8,6,.78)); }
-.bt--a div { position: relative; z-index: 1; } .bt--a b { font-size: clamp(72px, 8vw, 140px); color: #fff; } .bt--a h3 { color: #fff; } .bt--a p { color: rgba(255,255,255,.82); }
+.bt--a div { position: relative; z-index: 1; display: flex; flex-direction: column; } .bt--a b { font-size: clamp(56px, 6vw, 108px); color: #fff; } .bt--a h3 { color: rgba(255,255,255,.85); } .bt--a p { color: rgba(255,255,255,.82); }
+.bt--b div { display: flex; flex-direction: column; }
 .bt--b { grid-column: span 2; display: grid; grid-template-columns: 1fr 1.1fr; gap: 20px; background: var(--bg-2); }
 .bt--b img { align-self: end; width: 100%; margin: 0 -28px -28px 0; border-radius: 12px 0 0 0; box-shadow: 0 0 0 1px rgba(0,0,0,.08), 0 20px 40px -20px rgba(30,20,90,.4); }
 .bubble { margin-top: auto !important; padding: 12px 14px; border-radius: 16px 16px 16px 4px; background: var(--bg-2); color: var(--ink) !important; font-size: .9375rem !important; }
-.bt--d { background: var(--night); } .bt--d b, .bt--d h3 { color: #fff; } .bt--d p { color: rgba(255,255,255,.66); }
+.bt--d { background: var(--bg-2); box-shadow: none; }
 .bt--d::before { display: none; content: ""; position: absolute; right: -40%; top: -50%; width: 100%; aspect-ratio: 1; background: radial-gradient(closest-side, rgba(0,0,0,.18), transparent); }
 .bt--e, .bt--f { grid-column: span 2; }
 .minif { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: auto !important; max-width: none !important; }
@@ -853,7 +855,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Websites</span></nav>
       <h1 id="h-p-websites">Websites, die Kunden bringen.</h1>
       <div class="phero__row"><p class="hero__sub">Klar gestaltet, schnell auf jedem Handy und mit allem, was rechtlich dazugehört. Sie beschreiben Ihren Betrieb, wir bauen die Seite in bis zu 7 Tagen.</p><div class="cta"><a class="btn btn--light" href="/anfrage/website">Fragebogen starten</a><a class="btn btn--line" href="#pakete">Pakete ansehen</a></div></div>
-      <ul class="phero__facts" role="list"><li><b>ab 300 €</b><span>Basis mit 3 Seiten</span></li><li><b>7 Tage</b><span>höchstens, je nach Paket</span></li><li><b>0 €</b><span>laufende Kosten bei uns</span></li></ul>
+      <ul class="phero__facts" role="list"><li><b>ab 300 €</b><span>Basis-Website mit 3 Seiten</span></li><li><b>7 Tage</b><span>höchstens, bis Ihre Website online ist</span></li><li><b>0 €</b><span>laufende Kosten bei uns</span></li></ul>
     </div>
   </section>
 
@@ -878,7 +880,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   </section>
 
 
-  <section class="sec night" id="pakete" aria-labelledby="h-pakete">
+  <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Pakete für Ihre Website.</h2></div><p class="lead">Startpreise für Unternehmen, zzgl. MwSt. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p></div>
       <div class="plans"><div class="plan"><h3>Basis</h3><p>Klar und fokussiert</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>3 professionell gestaltete Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy und Computer</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kontaktformular und Google Maps</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Impressum und Datenschutz</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Basis">Fragebogen starten</a></div><div class="plan plan--top"><h3>Business</h3><p>Für Betriebe mit mehr Angebot</p><p class="plan__big"><small>ab </small>690 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehr Seiten nach Bedarf</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Animationen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Google-Bewertungen eingebunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Business">Fragebogen starten</a></div><div class="plan"><h3>Premium</h3><p>Ein Auftritt, der auffällt</p><p class="plan__big"><small>ab </small>1.290 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuelles Design</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3D-Modelle und Effekte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Selbst bearbeitbar</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Business</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Premium">Fragebogen starten</a></div></div>

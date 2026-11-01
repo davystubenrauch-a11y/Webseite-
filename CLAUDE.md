@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Startseite entschlackt, kein lila Schleier — AKTUELL
+## Stand: eine helle Seite, Zeiten ausgeschrieben — AKTUELL
+- Kunde: „Zeiten schwer verständlich; weiß nicht, ob das Zweitönige (schwarzer Hintergrund) passt; konkreter, aber besonders“.
+- **Keine dunklen Bänder mehr**: `.night` von Leistungs-Index, Paketen und Preisen entfernt (CSS bleibt ungenutzt), Bento-Kachel 0 € hellgrau. Dunkel ist nur noch das Roomtour-Foto in der 48-Stunden-Kachel.
+- **Zeiten eindeutig**: Bento mit Satz-Anfang oben und Wert darunter („Ihre Roomtour ist fertig in / 48 Stunden“, „Ihre Website ist online in / höchstens 7 Tagen“, „Wir melden uns innerhalb von / 24 Stunden“, „Laufende Kosten bei uns / 0 €“, „Ihre Anfrage dauert / 1 Minute“, „Ihre Ansprechpartner / 2 Gründer“); keine Kürzel „h“ mehr; Vertrauenszeile „Roomtour in 48 Stunden, Website in höchstens 7 Tagen“; Index-Texte „Online in höchstens 7 Tagen“ / „Fertig in 48 Stunden“.
+
+## Stand: Startseite entschlackt, kein lila Schleier
 - Kunde: „zu viele Abschnitte, die das Gleiche vermitteln, darf nicht kompliziert sein; der lila Schleier wirkt zu KI“.
 - **Startseite jetzt nur noch**: Start → Leistungen mit Preisen (`#angebot`, dunkel) → Ablauf (Vorführung) → Zusagen (Bento) → drei Leistungs-Filme → Referenz SPIRULI → Über uns → Fragen → Kontakt (≈ 16.800 px statt ≈ 23.000).
 - Von der Startseite entfernt (doppelte Aussagen): „Das passt zu Ihrem Betrieb“ (`@none`), Kino-Band (nur noch /roomtours), Schriftband (`@none`), Preis-Karten (`@none`; Preise stehen im Leistungs-Index und auf den Leistungsseiten), „Neu in München“ (nur Leistungsseiten). Links auf `#preise` → `#angebot`, „Platten bestellen/berechnen“ → `/nfc-platten#nfc`.
