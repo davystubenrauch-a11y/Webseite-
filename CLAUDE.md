@@ -3,7 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 2.11. spät: Firmenname foav.de, ehrlicher Vertrauens-Block — AKTUELL
+## Stand 2.11. nachts: iPhone-Start als Bild, Ablauf mit Bildern — AKTUELL
+- Kunde schaut über den **Vercel-Vorschau-Link** und sieht auf dem iPhone im ersten Bildschirm weiterhin nichts. In Chromium nicht nachstellbar (kein WebKit im Container) → robust gelöst: bis 700 px wird statt der CSS-3D-Geräte ein **fertiges Bild** gezeigt (`public/media/hero-lineup.webp`, 1026 × 708, per Playwright aus der Handy-Ansicht aufgenommen), `.lineup` ist dort ausgeblendet, Pause-Knopf ebenfalls; Start-Video lädt nur noch `metadata`.
+- **Ablauf** als drei Karten mit kleinen Bildern (`.sv`): 1 Preisliste (Website ab 300 € / KI-Roomtour 300 € / NFC-Platte 15 €), 2 Mini-Formular (Name, Telefon oder E-Mail, „Anfrage senden“), 3 dunkle Fertig-Meldung „Ihre Roomtour ist fertig“; leuchten nacheinander auf (`.lit`). Verbindungslinie entfällt.
+
+## Stand 2.11. spät: Firmenname foav.de, ehrlicher Vertrauens-Block
 - Kunde: „Firmenname ist foav.de“ → `lib/site.ts` `name: "foav.de"`, Adresse Zeile 1 „foav.de, Florian Dressler und Davy Stubenrauch [Rechtsform, z. B. GbR]“ (Rechtsform + Straße/PLZ fehlen noch); schema.org `name` foav.de, `alternateName` FOAV; Fußzeile „© foav.de, München“. Logo/Wortmarke bleiben „foav“.
 - Kunde wollte **erfundene Kundenbewertungen** → **abgelehnt** (in DE/EU verboten: UWG Anhang Nr. 23b/23c, UCPD; Abmahnrisiko, Google-Richtlinien). Stattdessen Block **„Neu in München. Deshalb zählt jedes Projekt.“** `#erste-kunden` (Startseite + alle Leistungsseiten, vor Über uns): Erst sehen, dann veröffentlichen / Änderungen im Preis enthalten / Ihre Meinung wird hier stehen (echte Stimmen später, mit Erlaubnis). Erste echte Stimme am ehesten von SPIRULI holen.
 
