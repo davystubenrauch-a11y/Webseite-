@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: v24 nach Kunden-Briefing (Awwwards, Dark, Bento, Glas) — ZUM VERGLEICH
+- Kunde gab ein ausführliches Briefing: Bento-Grids, riesige Typo mit Serif/Sans-Mix, Soft-3D + Liquid Glass, **dunkles Fundament mit edlem Akzent** (Champagner, Neon-Mint oder Electric Indigo), starke USP, Scroll-Animationen, mobil perfekt. → Dunkel und Glas sind hier ausdrücklich gewünscht (frühere Ablehnungen galten anderen Fassungen). Akzent **Mint** gewählt (Gold und Lila wurden früher abgelehnt).
+- **Quelle `design/v24-template.html`** → `public/v24/index.html` (Aufruf `/v24/index.html`, noindex, robots gesperrt). Schriften **Instrument Serif** (Überschriften, kursiv für den Mint-Teil) + **Geist**, selbst gehostet in `public/v24/fonts/`.
+- Farben: Grund `#06080b`, Text `#eef2f0`, gedämpft `#98a39f`, Mint `#7df2c9` / `#2fd3a0`; Glas = Verlauf + `backdrop-filter`, feines Korn, weiche Licht-Auren (mit Maske, keine harten Kanten).
+- Aufbau: Glas-Navigation → Start „Mehr Kunden. Weniger *Aufwand.*“ (Zeilen steigen auf) mit schwebenden 3D-Objekten (Handy mit Roomtour-Video, 3D-Platte, Mint-Kugeln, Bewertungs-Karte; folgen Maus/Scroll) → Branchen-Laufband → Bento „Drei Werkzeuge. *Ein Ziel:* mehr Kunden.“ (Roomtour-Video groß, Website mit SPIRULI, NFC mit 3D-Platte, 48 Std., Gründer, Festpreis-Karte; Licht folgt der Maus, leichte Neigung) → USP „Ein Video-Rundgang. *Ohne Filmteam.*“ mit **Umschalter Klassischer Dreh / Mit foav** (Termin vs. Fotos, Filmteam vs. niemand, oft Wochen vs. 48 Stunden, nach Aufwand vs. 300 €) → 3 Schritte → Preise (Roomtour hervorgehoben) → Fragen → Glas-Kontaktbox mit Formular (`/api/inquiry`).
+
 ## Stand: v23 „Plakat-Raster“, alle drei Leistungen gleich — ZUM VERGLEICH
 - Kunde zu v22: „nur für Roomtours, soll für alle Angebote sein; alle Seiten sehen ähnlich aus, komplett anderes Design und Layout“.
 - **Quelle `design/v23-template.html`** → `public/v23/index.html` (Aufruf `/v23/index.html`, noindex, robots gesperrt). Startseite v20 unverändert.
