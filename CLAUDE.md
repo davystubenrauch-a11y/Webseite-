@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: v20 komplett ohne Akzentfarbe — AKTUELL
+## Stand: Start = Geräte-Bild + was uns ausmacht — AKTUELL
+- Kunde: „Startseite soll unsere Angebote zeigen, wo man alle 3 Dinge sieht, auch fürs Handy“ – gemeint ist **das Bild mit MacBook, Handy und NFC-Platte** (nicht die Angebots-Karten; ein Versuch, „Was brauchen Sie?“ in den Start zu ziehen, wurde verworfen). „Uns machen die günstigen Preise aus, Generieren auf höchstem Niveau dank KI und das Anbieten von KI-Roomtours.“
+- Start ab 1000 px **zweispaltig**: links h1 „Mehr Kunden für Ihr Unternehmen.“, Text („… Günstig, zum Festpreis und dank KI in Profi-Qualität.“), Knöpfe, darunter `.hero__usps` (3 Karten: **Günstige Festpreise** / **Profi-Qualität dank KI** / **KI-Roomtours aus Handyfotos**); rechts die Geräte-Bühne über die volle Höhe (Lineup größer, Pause-Knopf oben rechts in der Bühne). Plakette „Neu …“ ausgeblendet.
+- Handy: h1, Text, Knöpfe, **Geräte-Bild** (`hero-lineup.webp`) im ersten Bildschirm, darunter die 3 Karten. „Was brauchen Sie?“ bleibt eigener Abschnitt.
+
+## Stand: v20 komplett ohne Akzentfarbe
 - Kunde: „diese komischen bunten Farben wieder weg“ → auch Terrakotta entfernt: `--iris` und `--c-room` = Tinte `#1d1d1f`, alle Tönungen neutrales Grau. Seite ist wieder **monochrom** (Graphit/Weiß/Grau), Farbe nur aus Fotos und Video. Keine neuen Akzentfarben mehr vorschlagen.
 - Kunde: „was uns ausmacht muss auf der Startseite integriert sein“ → `#warum` „Was uns anders macht.“ (direkt nach dem Start) um den **Vergleich Klassischer Dreh / Mit foav** ergänzt (`#vs`, Umschalter, 4 Felder: Was Sie tun, Vor Ort, Fertig in, Preis; monochrom, aus v24 übernommen). Navigation hat jetzt „Warum foav“ (`/#warum`).
 - Kunde: „was uns ausmacht muss in die **erste Seite** (ersten Bildschirm)“ → im Start ersetzen drei weiße Karten `.usps` die Häkchen-Zeile: **Video ohne Filmteam** / **Preis vorher klar** / **Alles aus einer Hand**, je mit kurzem Satz; h1 etwas kleiner (bis 120 px), damit alles im ersten Bildschirm steht (1440 × 900 und 390 × 844 geprüft). `#warum` zeigt dafür nur noch den Vergleich (die drei Karten dort entfernt, keine Doppelung).
