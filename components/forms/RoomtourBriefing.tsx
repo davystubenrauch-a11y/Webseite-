@@ -5,12 +5,12 @@ import { Done, PhotoSlots, ShotHint, Question, Sec, Shell, Submit, usePhotos, us
 
 const sections: Section[] = [
   {
-    title: "Ihre Unterkunft",
+    title: "Ihre Räume",
     questions: [
-      { id: "art", label: "Art der Unterkunft", type: "one", options: ["Ferienwohnung", "Apartment", "Haus", "Hotelzimmer", "Pension", "Gewerbe / Büro", "Sonstiges"] },
-      { id: "flaeche", label: "Wohnfläche in m²", type: "number", placeholder: "z. B. 75", half: true },
+      { id: "art", label: "Was sollen wir zeigen?", type: "one", options: ["Ferienwohnung / Airbnb", "Hotel / Pension", "Immobilie (Verkauf oder Vermietung)", "Laden / Showroom", "Restaurant / Café", "Praxis / Studio", "Büro", "Sonstiges"] },
+      { id: "flaeche", label: "Fläche in m²", type: "number", placeholder: "z. B. 75", half: true },
       { id: "ort", label: "Ort", type: "text", placeholder: "z. B. Garmisch", half: true },
-      { id: "inserat", label: "Link zum Inserat (falls vorhanden)", type: "url", placeholder: "Airbnb, Booking.com oder Ihre Website" },
+      { id: "inserat", label: "Link zum Inserat (falls vorhanden)", type: "url", placeholder: "Airbnb, Immobilienportal, Google oder Ihre Website" },
     ],
   },
   {
@@ -18,7 +18,7 @@ const sections: Section[] = [
     questions: [
       { id: "format", label: "Format", type: "one", options: ["Querformat 16:9 (Inserat, Website, YouTube)", "Hochformat 9:16 (Instagram, TikTok)", "Beides"] },
       { id: "stimmung", label: "Stimmung", type: "one", options: ["Ruhig und hell", "Modern", "Gemütlich", "Luxuriös", "Entscheiden Sie"] },
-      { id: "highlights", label: "Was sollen Gäste unbedingt sehen?", type: "textarea", placeholder: "z. B. Seeblick vom Balkon, Sauna, die neue Küche" },
+      { id: "highlights", label: "Was sollen Ihre Kunden unbedingt sehen?", type: "textarea", placeholder: "z. B. Seeblick vom Balkon, Sauna, die neue Küche" },
     ],
   },
 ];
@@ -134,7 +134,7 @@ export default function RoomtourBriefing() {
           <ul className="bf-tips">{tips.map((t) => <li key={t}>{t}</li>)}</ul>
         </div>
         <fieldset className="bf-q" style={{ border: 0, padding: 0, margin: 0 }}>
-          <legend className="lab" style={{ padding: 0, marginBottom: 8, fontWeight: 500, fontSize: 15, color: "var(--ink)" }}>Welche Räume hat Ihre Unterkunft?</legend>
+          <legend className="lab" style={{ padding: 0, marginBottom: 8, fontWeight: 500, fontSize: 15, color: "var(--ink)" }}>Welche Räume sollen ins Video?</legend>
           <div className="bf-chips">
             {rooms.map((r) => {
               const n = count[r.id] ?? 0;

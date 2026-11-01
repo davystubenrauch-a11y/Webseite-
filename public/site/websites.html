@@ -871,6 +871,83 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
   .say span { opacity: 1; }
 }
+/* ---------- colour pass: one accent per service, tinted surfaces, USP bento ---------- */
+:root { --c-web: #4f46e5; --c-web-bg: #eef0ff; --c-room: #c2541d; --c-room-bg: #f7eee5; --c-nfc: #12804f; --c-nfc-bg: #e8f4ed; --c-sky-bg: #eaf3fb; --c-sky: #1f6fb2; }
+.hero__badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 6px 18px -10px rgba(0,0,0,.18); font-size: .9375rem; font-weight: 500; color: var(--text); }
+.hero__badge i { display: flex; gap: 3px; }
+.hero__badge i::before { content: ""; width: 26px; height: 8px; border-radius: 99px; background: linear-gradient(90deg, var(--c-web) 0 33.3%, var(--c-room) 0 66.6%, var(--c-nfc) 0); }
+.hero h1 { max-width: 13.5ch; margin-top: 26px; font-size: clamp(52px, 7.6vw, 132px); }
+.hero h1 .hl { color: var(--c-web); }
+.hero .trust svg { color: var(--c-nfc); }
+.hero__stage { background: linear-gradient(160deg, var(--c-web-bg) 0%, #f5f5f7 45%, var(--c-room-bg) 100%); }
+
+.usp { padding-top: clamp(64px, 8vw, 120px); }
+.usp__head { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 24px 64px; align-items: end; }
+.usp__head h2 { max-width: 13ch; }
+.usp__head .lead { margin-top: 0; }
+.usp__grid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 5vw, 64px); }
+.ub { position: relative; display: flex; flex-direction: column; gap: 14px; padding: clamp(24px, 2.6vw, 40px); border-radius: 28px; overflow: hidden; color: var(--text); }
+.ub h3 { font-size: clamp(24px, 2.1vw, 34px); line-height: 1.08; letter-spacing: -.035em; max-width: 18ch; text-wrap: balance; }
+.ub > p:last-child { margin-top: auto; max-width: 46ch; }
+.ub__k { display: inline-flex; align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: rgba(255,255,255,.75); font-size: .8125rem; font-weight: 600; letter-spacing: .01em; color: var(--k, var(--ink)); }
+.ub--price { grid-column: span 4; background: var(--c-web-bg); --k: var(--c-web); }
+.ub--ai .ub__ai { flex: 1; align-content: center; } .ub--ai { grid-column: span 2; grid-row: span 2; background: var(--c-room-bg); --k: var(--c-room); }
+.ub--goal { grid-column: span 2; background: var(--c-nfc-bg); --k: var(--c-nfc); }
+.ub--fast { grid-column: span 2; background: var(--c-sky-bg); --k: var(--c-sky); }
+.ub--team { grid-column: span 6; display: grid; grid-template-columns: auto minmax(0, 1fr) auto minmax(0, 1fr); align-items: center; gap: 12px 32px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.ub--team h3 { max-width: 16ch; }
+.ub--team > p:last-child { margin-top: 0; } .ub--team .ub__k { background: var(--bg-2); }
+.ub__prices b small { font-size: .42em; letter-spacing: 0; margin-right: 2px; color: var(--muted); font-weight: 500; }
+.ub__time { display: grid; gap: 14px; margin: 8px 0; } .ub__time p { display: grid; grid-template-columns: 1fr auto; gap: 6px 12px; } .ub__time b { color: var(--ink); } .ub__time span { color: var(--c-sky); font-weight: 600; } .ub__time i { grid-column: 1 / -1; height: 10px; border-radius: 99px; background: rgba(255,255,255,.9); position: relative; overflow: hidden; } .ub__time i::after { content: ""; position: absolute; inset: 0 auto 0 0; width: var(--w); border-radius: inherit; background: var(--c-sky); }
+.ub__prices { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 6px 0; }
+.ub__prices li { padding: 18px 18px 16px; border-radius: 18px; background: #fff; box-shadow: 0 10px 30px -18px rgba(40,40,120,.35); }
+.ub__prices b { display: block; font-family: var(--head); font-size: clamp(34px, 3.6vw, 60px); font-weight: 600; line-height: 1; letter-spacing: -.05em; color: var(--c-web); white-space: nowrap; }
+.ub__prices span { display: block; margin-top: 8px; font-size: .9375rem; color: var(--muted); }
+.ub__ai { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin: 8px 0; align-items: center; }
+.ub__ai img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 12px; box-shadow: 0 8px 20px -12px rgba(0,0,0,.35); }
+.ub__ai img:nth-child(1) { rotate: -4deg; } .ub__ai img:nth-child(3) { rotate: 4deg; }
+.ub__ai svg { grid-column: 1 / -1; justify-self: center; width: 28px; height: 28px; rotate: 90deg; color: var(--c-room); }
+.ub__ai span { grid-column: 1 / -1; position: relative; display: block; aspect-ratio: 16 / 9; border-radius: 16px; background: url(/media/tour-md-2.jpg) center / cover; box-shadow: 0 18px 40px -20px rgba(0,0,0,.45); }
+.ub__ai span i { position: absolute; left: 50%; top: 50%; width: 54px; height: 54px; translate: -50% -50%; border-radius: 50%; background: rgba(255,255,255,.92); }
+.ub__ai span i::after { content: ""; position: absolute; left: 21px; top: 16px; border-left: 17px solid var(--c-room); border-top: 11px solid transparent; border-bottom: 11px solid transparent; }
+.ub__ai span { font-size: 0; }
+.ub__goals { list-style: none; display: grid; gap: 8px; margin-top: auto; }
+.ub__goals li { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 10px; padding: 12px 16px; border-radius: 14px; background: rgba(255,255,255,.8); }
+.ub__goals b { color: var(--c-nfc); } .ub__goals span { color: var(--text); }
+.duo2 { display: flex; } .duo2 span { display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 600; box-shadow: 0 0 0 4px #fff; } .duo2 span + span { margin-left: -12px; background: var(--c-web); }
+
+/* service accents everywhere else */
+.cmpc--web { --acc: var(--c-web); } .cmpc--room { --acc: var(--c-room); } .cmpc--nfc { --acc: var(--c-nfc); }
+.cmpc--web .cmpc__stage { background: linear-gradient(180deg, var(--c-web-bg), #dfe2fb); }
+.cmpc--room .cmpc__stage { background: linear-gradient(180deg, var(--c-room-bg), #eddcc9); }
+.cmpc--nfc .cmpc__stage { background: linear-gradient(180deg, var(--c-nfc-bg), #d3e9dc); }
+.cmpc h3 { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
+.cmpc h3::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--acc); }
+.cmpc__price { color: var(--acc); }
+.cmpx__all svg { color: var(--c-nfc); }
+.scene--web { background: linear-gradient(180deg, var(--c-web-bg), #fbfbfd 55%); } .scene--web .kicker { color: var(--c-web); }
+.scene--room .kicker { color: var(--c-room); }
+.scene--nfc { background: linear-gradient(180deg, var(--c-nfc-bg), #e4ece7); } .scene--nfc .kicker { color: var(--c-nfc); }
+.kicker { display: inline-flex; align-items: center; gap: 8px; } .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+#p-websites h1 { color: var(--ink); } #p-websites .phero__facts b { color: var(--c-web); }
+#p-roomtours .phero__facts b { color: var(--c-room); } #p-nfc .phero__facts b { color: var(--c-nfc); }
+.who { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 36px; }
+.who p { font-weight: 600; color: var(--ink); margin-right: 4px; }
+.who ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
+.who li { padding: 8px 14px; border-radius: 999px; background: var(--c-room-bg); color: #6b3412; font-size: .9375rem; font-weight: 500; }
+@media (max-width: 980px) {
+  .usp__head { grid-template-columns: 1fr; }
+  .ub--price { grid-column: span 6; } .ub--ai { grid-column: span 6; grid-row: auto; } .ub--goal, .ub--fast { grid-column: span 3; }
+  .ub--team { grid-template-columns: auto minmax(0, 1fr); } .ub--team > p:last-child { grid-column: 1 / -1; }
+  .ub__ai { grid-template-columns: repeat(3, 1fr) auto 1.6fr; } .ub__ai svg { grid-column: auto; rotate: 0deg; } .ub__ai span { grid-column: auto; }
+}
+@media (max-width: 640px) {
+  .ub--goal, .ub--fast { grid-column: span 6; }
+  .ub__prices { grid-template-columns: 1fr 1fr 1fr; gap: 8px; } .ub__prices li { padding: 14px 12px; } .ub__prices b { font-size: 30px; }
+  .ub__ai { grid-template-columns: repeat(3, 1fr); } .ub__ai svg { grid-column: 1 / -1; rotate: 90deg; } .ub__ai span { grid-column: 1 / -1; }
+  .ub--team { grid-template-columns: 1fr; } .ub--team .ub__k { grid-row: auto; }
+  .hero__badge { font-size: .8125rem; }
+}
 </style>
 </head>
 <body>
@@ -915,7 +992,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="phero" id="p-websites" aria-labelledby="h-p-websites">
     <div class="wrap">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Websites</span></nav>
-      <h1 id="h-p-websites">Websites, die Kunden bringen.</h1>
+      <h1 id="h-p-websites">Eine Website, die Kunden überzeugt.</h1>
       <div class="phero__row"><p class="hero__sub">Klar gestaltet, schnell auf jedem Handy und mit allem, was rechtlich dazugehört. Sie beschreiben Ihren Betrieb, wir bauen die Seite in bis zu 7 Tagen.</p><div class="cta"><a class="btn btn--light" href="/anfrage/website">Fragebogen starten</a><a class="btn btn--line" href="#pakete">Pakete ansehen</a></div></div>
       <ul class="phero__facts" role="list"><li><b>ab 300 €</b><span>Basis-Website mit 3 Seiten</span></li><li><b>7 Tage</b><span>höchstens, bis Ihre Website online ist</span></li><li><b>0 €</b><span>laufende Kosten bei uns</span></li></ul>
     </div>
@@ -927,7 +1004,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <div class="wrap scene__grid">
         <div class="scene__text">
           <p class="kicker">Websites</p>
-          <h2 id="h-web">Sichtbar werden, wo Kunden suchen.</h2>
+          <h2 id="h-web">Gefunden werden. Überzeugen. Angefragt werden.</h2>
           <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website in bis zu 7 Tagen, Sie geben sie frei.</li><li><b>Online.</b> Wir stellen sie ins Netz, mit Impressum und Datenschutz.</li></ol>
           <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Website">Website anfragen</a></div>
           <p class="scene__fact">Basis-Paket mit 3 Seiten. Im Bild: unsere Referenz SPIRULI (Premium-Paket).</p>
@@ -991,7 +1068,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
   <section class="sec" id="fragen" aria-labelledby="h-faq">
     <div class="wrap two">
-      <div><h2 id="h-faq">Häufige Fragen</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
+      <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
       <div>
         <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
         <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Eine Roomtour ist in bis zu 48 Stunden fertig, eine Website je nach Paket in bis zu 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details><details><summary>Wann bezahle ich?<i aria-hidden="true"></i></summary><p>Erst wenn Sie unseren Festpreis bestätigt haben. Dann schicken wir Ihnen einen Zahlungslink, und sobald die Zahlung da ist, legen wir los. Gefällt Ihnen am Ergebnis etwas nicht, passen wir es gemeinsam mit Ihnen an.</p></details>
@@ -1006,7 +1083,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="contact dark" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap contact__grid">
       <div>
-        <h2 id="h-kontakt">Lassen Sie uns über Ihr Projekt sprechen.</h2>
+        <h2 id="h-kontakt">Bereit für mehr Kunden?</h2>
         <p class="lead">Wir melden uns innerhalb von 24 Stunden mit einem Festpreis-Angebot. Das Angebot ist kostenlos und unverbindlich.</p>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
@@ -1264,7 +1341,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var map = { "Website": "web", "Roomtour": "roomtour", "NFC-Platten": "nfc" }, services = picked.map(function (p) { return map[p]; });
     var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
     body.web = { tier: services.indexOf("web") > -1 ? "Basis" : "", url: "" };
-    body.roomtour = { tier: services.indexOf("roomtour") > -1 ? "Basis" : "", property: services.indexOf("roomtour") > -1 ? "Ferienwohnung" : "", area: "" };
+    body.roomtour = { tier: services.indexOf("roomtour") > -1 ? "Basis" : "", property: services.indexOf("roomtour") > -1 ? "Räume" : "", area: "" };
     var col = $("[data-color][aria-pressed=true]");
     body.nfc = { theme: col ? col.getAttribute("data-color") : "", qty: qty ? +qty.value : 0, business: "" };
     body.budget = ""; body.timeline = "";

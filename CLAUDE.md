@@ -3,7 +3,15 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Reihenfolge, neuer Ablauf, Shop — AKTUELL
+## Stand: Überschriften, USP-Block, mehr Farbe — AKTUELL
+- Kunde: „bessere Headlines, am Anfang eine USP (warum wir), Roomtours für jede Art von Betrieb, Seite etwas zu schlicht bei Farben und Layout“.
+- **Start**: Plakette „Agentur aus München für …“ (Dreifarb-Strich), h1 „Wir bringen Ihrem Betrieb **mehr Kunden.**“ (Teil in `--c-web`), Text mit „aktueller KI und sauberem Handwerk … Festpreis ab 300 €“.
+- **Neuer Block `#warum`** direkt nach dem Start: „Profi-Auftritt ohne Agentur-Preise.“ als Bento: Faire Festpreise (300/300/15 €), Aktuelle KI (3 Fotos → Video), Ziel: mehr Kunden (Website → Anfragen, Roomtour → Buchungen/Besichtigungen, NFC → Bewertungen), Schnell fertig (Balken 48 Stunden / 7 Tage), Persönlich (zwei Gründer). „Unschlagbar“ bewusst **nicht** verwendet (nicht belegbar, Irreführungsrisiko) – stattdessen offene Festpreise.
+- **Farbe je Leistung** (Tokens `--c-web` Indigo, `--c-room` Terrakotta, `--c-nfc` Grün, je `-bg`-Tönung, dazu `--c-sky`): Vergleichs-Bühnen getönt, Punkt vor dem Namen, Preis in der Leistungsfarbe; Scene-Hintergründe/Kicker getönt; Kennzahlen der Leistungsseiten farbig. Weiterhin hell, keine dunklen Bänder, kein Schleier, kein Gelb.
+- **Roomtours für alle Betriebe**: „Passt zu: Airbnb, Hotels, Makler, Läden“; Roomtour-Seite h1 „Ihre Räume als Film. Aus Ihren Handyfotos.“ + Chips „Gemacht für“ (Airbnb, Hotels, Immobilienmakler, Läden, Restaurants, Praxen, Büros); neue FAQ „Für welche Betriebe eignet sich eine KI-Roomtour?“; Roomtour-Formular „Was sollen wir zeigen?“ mit Immobilie/Laden/Restaurant/Praxis/Büro.
+- Neue Überschriften: Websites-Film „Gefunden werden. Überzeugen. Angefragt werden.“, Roomtour-Film „Kunden sehen Ihre Räume, bevor sie kommen.“, NFC „Mehr Sterne bei Google. Ohne Nachfragen.“, Ablauf „In drei Schritten zu mehr Kunden.“, Team „Zwei Gründer. Ein direkter Draht.“, Fragen „Gute Fragen. Klare Antworten.“, Kontakt „Bereit für mehr Kunden?“.
+
+## Stand: Reihenfolge, neuer Ablauf, Shop
 - „Was brauchen Sie?“: Roomtour-Spalte zeigt jetzt das **echte Video auf einem iPhone** (`#cmpVid`, `roomtour-villa-960.mp4`, über `keepPlaying`) mit Chip „Roomtour läuft“ (roter Punkt).
 - Startseite: Start → Was brauchen Sie? → **drei Leistungs-Filme** → **So einfach geht’s** (Ablauf) → SPIRULI → Über uns → Fragen → Kontakt.
 - **Ablauf neu** `#jour`: drei Schritte gleichzeitig sichtbar nebeneinander, je mit Bild (Browser-Preisliste, iPhone-Anfrage, E-Mail „Ihre Roomtour ist fertig“ auf dunkler Bühne), Pfeile mit Zeit („1 Minute“, „am selben Tag“), Nummer, Titel, Text; Karten steigen gestaffelt auf. Reiter-Version `#flow` entfällt.
