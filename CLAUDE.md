@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: v21 komplett neue Vergleichs-Seite — ZUM VERGLEICH
+- Kunde: „zu viel mit den Farben gespielt, komplett neue Seite, nicht an vorherigen Ergebnissen orientieren“.
+- **Quelle `design/v21-template.html`** → `public/v21/index.html` (Logo/Disc per Python eingesetzt, `noindex`, in robots gesperrt). Aufruf: `/v21/index.html`. Die Startseite (v20) ist **unverändert**, bis der Kunde wählt.
+- Stil: ruhig, warmes Papier `#f6f5f1`, Tinte `#121212`, **keine Akzentfarbe** – Farbe nur aus Video/Fotos. Inter, schwarze Pillen-Knöpfe, feine Linien.
+- Aufbau: Start (h1 „Mehr Kunden für Ihr Unternehmen.“ + Text rechts) → großes Roomtour-Video mit 3 Handyfoto-Abzügen „Ihre Handyfotos werden zu diesem Video“ → 4 Fakten → „Warum Unternehmen zu uns kommen.“ (4 nummerierte Gründe, Überschrift klebt) → „Drei Wege zu mehr Kunden.“ (3 Karten: Roomtour mit Video, Website SPIRULI, NFC) → Roomtour „Für jede Branche“ (Foto/Video-Regler + Branchen) → Ablauf 1-2-3 → Über uns → Fragen → Kontakt-Formular (`/api/inquiry`, Ersatz mailto) → Fußzeile.
+
 ## Stand: einfacher Unterschied, kein Lila — AKTUELL
 - Kunde: „3. Seite (USP-Bento) zu kompliziert, Lila passt nicht, besserer Einstieg: ‚Unternehmen‘ statt ‚Betrieb‘, konkret was uns unterscheidet (Roomtours)“.
 - Start: Plakette „Neu: Video-Rundgänge aus Handyfotos, ohne Filmteam“, h1 „Mehr Kunden für Ihr **Unternehmen.**“ (Terrakotta), Text beginnt mit Handyfotos → Video in 48 Stunden.
