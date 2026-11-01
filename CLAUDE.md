@@ -3,7 +3,14 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Start = Geräte-Bild + was uns ausmacht — AKTUELL
+## Stand: Angebote direkt nach dem Start, Filme mobil repariert — AKTUELL
+- Kunde: „was uns ausmacht darf nicht als eigene Seite agieren, höchstens klein dranhängen; direkt als Zweites unsere Angebote; Angebots-Überschriften überzeugend; Animationen verbessern, auch auf dem Handy“.
+- `#warum` (Vergleich Klassischer Dreh / Mit foav) **nur noch auf /roomtours** (`<!--@roomtours-->`), Navigation ohne „Warum foav“. Startseite: Start → **Was brauchen Sie?** → drei Filme → Ablauf → …
+- Stärken im Start nur noch **klein als Häkchen-Zeilen** (`.hero__usps`): Günstige Festpreise – ab 15 €, kein Abo / Profi-Qualität dank KI – Ergebnisse auf hohem Niveau / KI-Roomtours – aus Handyfotos, ohne Filmteam.
+- Neue Nutzen-Überschriften der Filme: „Ihre Website holt Anfragen, rund um die Uhr.“ / „Ihre Räume überzeugen, bevor Kunden da sind.“ / „Gäste bewerten Sie mit einem Antippen.“; Vergleichs-Texte: „Bringt Ihnen Anfragen, auch wenn Sie schlafen.“ / „Zeigt Ihre Räume als Film, bevor Kunden kommen. Aus Ihren Handyfotos.“ / „Macht aus zufriedenen Gästen Google-Bewertungen. Ein Antippen genügt.“
+- **Handy-Filme geprüft (Playwright 390 × 844, je 5/45/90 %) und repariert**: Laptop größer und halb offen statt winzig; Roomtour-Fotos von Anfang an sichtbar (vorher leere Bühne, Fotos unter der Leiste); NFC-Handy kommt **von rechts** statt von oben und verdeckt Text/Knopf nicht mehr; Platte tiefer.
+
+## Stand: Start = Geräte-Bild + was uns ausmacht
 - Kunde: „Startseite soll unsere Angebote zeigen, wo man alle 3 Dinge sieht, auch fürs Handy“ – gemeint ist **das Bild mit MacBook, Handy und NFC-Platte** (nicht die Angebots-Karten; ein Versuch, „Was brauchen Sie?“ in den Start zu ziehen, wurde verworfen). „Uns machen die günstigen Preise aus, Generieren auf höchstem Niveau dank KI und das Anbieten von KI-Roomtours.“
 - Start ab 1000 px **zweispaltig**: links h1 „Mehr Kunden für Ihr Unternehmen.“, Text („… Günstig, zum Festpreis und dank KI in Profi-Qualität.“), Knöpfe, darunter `.hero__usps` (3 Karten: **Günstige Festpreise** / **Profi-Qualität dank KI** / **KI-Roomtours aus Handyfotos**); rechts die Geräte-Bühne über die volle Höhe (Lineup größer, Pause-Knopf oben rechts in der Bühne). Plakette „Neu …“ ausgeblendet.
 - Handy: h1, Text, Knöpfe, **Geräte-Bild** (`hero-lineup.webp`) im ersten Bildschirm, darunter die 3 Karten. „Was brauchen Sie?“ bleibt eigener Abschnitt.

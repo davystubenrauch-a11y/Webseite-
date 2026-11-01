@@ -989,6 +989,30 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .hero__badge { display: none; }
   .hero__usps .usps li { padding: 11px 14px; }
 }
+
+/* ---------- hero: what sets us apart, small and attached ---------- */
+.hero__usps .usps { display: flex; flex-wrap: wrap; gap: 8px 22px; }
+.hero__usps .usps li { padding: 0; border-radius: 0; background: none; box-shadow: none; display: flex; align-items: baseline; gap: 6px; }
+.hero__usps .usps b { font-size: .9375rem; }
+.hero__usps .usps span { margin: 0; font-size: .9375rem; color: var(--muted); }
+.hero__usps .usps span::before { content: "\00a0– "; }
+@media (min-width: 1000px) { .hero__usps .usps { flex-direction: column; gap: 8px; } .hero__usps { margin-top: 28px !important; } }
+@media (max-width: 700px) { .hero__usps .usps { flex-direction: column; gap: 6px; } .hero__usps .usps li { display: block; padding-left: 26px; position: relative; } .hero__usps .usps b::before { position: absolute; left: 0; top: 2px; margin: 0; } .hero__usps .usps b, .hero__usps .usps span { display: inline; font-size: .875rem; } }
+
+/* ---------- scenes on phones: text on top, the picture keeps to its own space underneath ---------- */
+@media (max-width: 700px) {
+  .scene__stage { position: relative; min-height: 0; }
+  .w-mac { left: 0; right: 6%; top: 50%; }
+  .w-mac .mac__lid { transform: rotateX(calc((1 - var(--a, 1)) * 70deg)); }
+  .w-phone { width: 28%; right: 0; bottom: 4%; }
+  .n-stage { --w: min(34vw, 19vh); }
+  .n-floor { top: 74%; }
+  .n-phone { top: calc(74% - var(--w) * 1.55); transform: translateX(calc((1 - var(--b, 1)) * 90%)) rotate(-10deg); }
+  .scene--room { --py: 64%; }
+  .r-ph { transform: translate(-50%, -50%) translateY(calc((1 - var(--a, 1)) * 10vh)) rotate(calc(var(--r) * (1 - var(--b, 1)))) scale(calc(1 - var(--b, 1) * .2)); opacity: calc(min(1, .35 + var(--a, 1)) - var(--c, 1) * 2.5); }
+  .scene .more { margin-top: 10px; }
+  .n-toast { bottom: 0; }
+}
 </style>
 </head>
 <body>
@@ -1022,10 +1046,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 <header class="head" id="head"><span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap head__in">
     <a class="logo" href="/" aria-label="FOAV – zur Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
-    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/#warum">Warum foav</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#kontakt">Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#warum">Warum foav</a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
 
@@ -1045,7 +1069,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <div class="wrap scene__grid">
         <div class="scene__text">
           <p class="kicker">NFC-Platten</p>
-          <h2 id="h-plate">Mehr Sterne bei Google. Ohne Nachfragen.</h2>
+          <h2 id="h-plate">Gäste bewerten Sie mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
           <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="/nfc-platten#nfc">Platten berechnen</a></div>
           <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
