@@ -930,7 +930,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 }
 
 /* ---------- warum: classic vs foav ---------- */
-.vs { margin-top: 16px; padding: clamp(22px, 3vw, 40px); border-radius: 28px; background: var(--bg-2); }
+.vs { margin-top: clamp(32px, 4vw, 56px); padding: clamp(22px, 3vw, 40px); border-radius: 28px; background: var(--bg-2); }
 .vs__head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
 .vs__head h3 { font-size: clamp(22px, 2vw, 30px); letter-spacing: -.03em; }
 .switch { position: relative; display: inline-flex; padding: 5px; border-radius: 99px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
@@ -947,6 +947,20 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .vs__note { margin-top: 16px; font-size: .875rem; color: var(--muted); }
 @media (max-width: 980px) { .vs__grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 560px) { .vs__grid { grid-template-columns: 1fr; } .switch { width: 100%; } .switch button { flex: 1; padding: 0 8px; white-space: nowrap; font-size: .875rem; } }
+
+/* ---------- hero: what sets us apart, visible in the first screen ---------- */
+.hero h1 { font-size: clamp(48px, 6.9vw, 120px); }
+.usps { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin-top: clamp(24px, 3vw, 36px); }
+.usps li { padding: 16px 18px 18px; border-radius: 18px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+.usps b { display: block; font-size: clamp(17px, 1.35vw, 20px); font-weight: 600; letter-spacing: -.02em; color: var(--ink); }
+.usps b::before { content: ""; display: inline-block; width: 18px; height: 18px; margin: 0 8px -3px 0; border-radius: 50%; background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 10px no-repeat; }
+.usps span { display: block; margin-top: 6px; font-size: .9375rem; line-height: 1.45; color: var(--text); }
+@media (max-width: 700px) {
+  .hero h1 { font-size: clamp(38px, 11vw, 52px); }
+  .usps { grid-template-columns: 1fr; gap: 8px; margin-top: 18px; }
+  .usps li { padding: 12px 14px; border-radius: 14px; }
+  .usps b { font-size: 1rem; } .usps span { font-size: .875rem; margin-top: 2px; }
+}
 </style>
 </head>
 <body>
@@ -996,7 +1010,11 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <p class="hero__sub">Sie schicken uns ein paar Handyfotos, unsere KI macht daraus in 48 Stunden einen Video-Rundgang durch Ihre Räume. Dazu Websites, die Anfragen bringen, und NFC-Platten für Google-Bewertungen. Festpreis ab 300 €.</p>
         <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#angebot">Preise ansehen</a></div>
       </div>
-      <ul class="trust" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Roomtour in 48 Stunden, Website in höchstens 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zwei Gründer aus München als Ansprechpartner</li></ul>
+      <ul class="usps" role="list" aria-label="Was uns ausmacht">
+        <li><b>Video ohne Filmteam</b><span>Aus Ihren Handyfotos wird ein Rundgang, fertig in 48 Stunden.</span></li>
+        <li><b>Preis vorher klar</b><span>Schriftlicher Festpreis ab 300 €, kein Abo.</span></li>
+        <li><b>Alles aus einer Hand</b><span>Website, Video und Google-Bewertungen von zwei Gründern aus München.</span></li>
+      </ul>
     </div>
     <div class="hero__stage">
     <img class="lineup-img" src="/media/hero-lineup.webp" alt="Beispiele von foav.de: Website auf dem Laptop, Roomtour-Video auf dem Handy und eine NFC-Platte" width="1026" height="708">
@@ -1012,26 +1030,9 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
   <section class="sec usp" id="warum" aria-labelledby="h-usp">
     <div class="wrap">
-      <div class="usp__head"><h2 id="h-usp">Was uns anders macht.</h2><p class="lead">Drei Gründe, kurz erklärt. Darunter sehen Sie den Unterschied bei der Roomtour direkt im Vergleich.</p></div>
-      <ol class="usp3" role="list">
-        <li class="u3 u3--room">
-          <div class="u3__pic" aria-hidden="true"><img src="/media/tour-sm-1.jpg" alt="" loading="lazy"><img src="/media/tour-sm-3.jpg" alt="" loading="lazy"><span><i></i></span></div>
-          <h3>Video ohne Filmteam.</h3>
-          <p>Üblich ist ein Kameramann vor Ort. Wir brauchen nur Ihre Handyfotos und liefern den fertigen Rundgang in 48 Stunden.</p>
-        </li>
-        <li class="u3 u3--price">
-          <div class="u3__pic" aria-hidden="true"><b>300 €</b><small>Festpreis, kein Abo</small></div>
-          <h3>Preis vorher klar.</h3>
-          <p>Alle Preise stehen auf der Seite. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p>
-        </li>
-        <li class="u3 u3--one">
-          <div class="u3__pic" aria-hidden="true"><span class="duo2"><span>FD</span><span>DS</span></span></div>
-          <h3>Alles aus einer Hand.</h3>
-          <p>Website, Video und Google-Bewertungen von zwei Gründern aus München, die Sie direkt anrufen können.</p>
-        </li>
-      </ol>
-      <div class="vs" id="vs">
-        <div class="vs__head"><h3>Video-Rundgang: klassisch oder mit foav?</h3><div class="switch" role="group" aria-label="Vergleich wählen"><i class="switch__knob"></i><button type="button" aria-pressed="false" data-m="old">Klassischer Dreh</button><button type="button" aria-pressed="true" data-m="foav">Mit foav</button></div></div>
+      <div class="usp__head"><h2 id="h-usp">Was uns anders macht.</h2><p class="lead">Für einen Video-Rundgang kommt sonst ein Filmteam vorbei. Bei uns reichen Ihre Handyfotos. Schalten Sie um und vergleichen Sie.</p></div>
+            <div class="vs" id="vs">
+        <div class="vs__head"><h3>Video-Rundgang im Vergleich</h3><div class="switch" role="group" aria-label="Vergleich wählen"><i class="switch__knob"></i><button type="button" aria-pressed="false" data-m="old">Klassischer Dreh</button><button type="button" aria-pressed="true" data-m="foav">Mit foav</button></div></div>
         <div class="vs__grid">
           <div class="vs__c"><small>Was Sie tun</small><b data-old="Termin vereinbaren" data-foav="Fotos machen">Fotos machen</b><span data-old="Räume vorbereiten, vor Ort sein" data-foav="mit Ihrem Handy, wann es Ihnen passt">mit Ihrem Handy, wann es Ihnen passt</span></div>
           <div class="vs__c"><small>Vor Ort</small><b data-old="Filmteam" data-foav="Niemand">Niemand</b><span data-old="Kamera, Licht, mehrere Stunden" data-foav="kein Termin, keine Störung im Betrieb">kein Termin, keine Störung im Betrieb</span></div>

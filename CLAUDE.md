@@ -6,6 +6,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 ## Stand: v20 komplett ohne Akzentfarbe — AKTUELL
 - Kunde: „diese komischen bunten Farben wieder weg“ → auch Terrakotta entfernt: `--iris` und `--c-room` = Tinte `#1d1d1f`, alle Tönungen neutrales Grau. Seite ist wieder **monochrom** (Graphit/Weiß/Grau), Farbe nur aus Fotos und Video. Keine neuen Akzentfarben mehr vorschlagen.
 - Kunde: „was uns ausmacht muss auf der Startseite integriert sein“ → `#warum` „Was uns anders macht.“ (direkt nach dem Start) um den **Vergleich Klassischer Dreh / Mit foav** ergänzt (`#vs`, Umschalter, 4 Felder: Was Sie tun, Vor Ort, Fertig in, Preis; monochrom, aus v24 übernommen). Navigation hat jetzt „Warum foav“ (`/#warum`).
+- Kunde: „was uns ausmacht muss in die **erste Seite** (ersten Bildschirm)“ → im Start ersetzen drei weiße Karten `.usps` die Häkchen-Zeile: **Video ohne Filmteam** / **Preis vorher klar** / **Alles aus einer Hand**, je mit kurzem Satz; h1 etwas kleiner (bis 120 px), damit alles im ersten Bildschirm steht (1440 × 900 und 390 × 844 geprüft). `#warum` zeigt dafür nur noch den Vergleich (die drei Karten dort entfernt, keine Doppelung).
 
 ## Stand: zurück zu v20, nur noch eine Akzentfarbe
 - Kunde zu v24: „schwach, verbessere die Seite vom Ursprung (vor der komplett neuen)“. → `/` zeigt wieder `public/site/index.html` (v20); v21–v24 bleiben nur als Entwürfe (noindex).
