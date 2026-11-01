@@ -7,6 +7,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Kunde: „Zeit-Kacheln (48 h, 24 h) unübersichtlich, nicht konkret, zu KI-mäßig; überschaubar, deutlich, trotzdem Wow und Profi-Designsprache“. Archiv vorher: `public/v20d/`.
 - Leistungs-Index (Riesen-Schrift) + Zusagen-Bento ersetzt durch **„Was brauchen Sie?“** `#angebot` = Vergleich wie Apples „Modelle vergleichen“: drei Spalten (Website / KI-Roomtour / NFC-Platte) mit Produkt-Bühne (MacBook mit SPIRULI, iPhone mit Wohnung, schräge Platte), Name, Ein-Satz-Nutzen, Preis, Knopf + „Mehr erfahren“, darunter gleiche Zeilen **Sie schicken uns / Sie bekommen / Fertig / Passt zu**. Darunter für alle: Festpreis vorab, Freigabe, kein Abo, Antwort innerhalb eines Tages. Bento `#unterschied` = `@none`.
 - Startseite jetzt: Start → Was brauchen Sie? → Ablauf → drei Filme → SPIRULI → Über uns → Fragen → Kontakt.
+- Kunde: „Was brauchen Sie ist perfekt“; nachgebessert: Roomtour-Bild = **gerades, ganz sichtbares iPhone** mit Play-Knopf, links/rechts zwei Fotos der Wohnung als Abzüge (Fotos → Video); Zeilen kompakt **Beschriftung links, Wert rechts** (Sie schicken / Sie bekommen / Fertig / Passt zu), kurze Werte in einer Zeile.
 
 ## Stand: eine helle Seite, Zeiten ausgeschrieben
 - Kunde: „Zeiten schwer verständlich; weiß nicht, ob das Zweitönige (schwarzer Hintergrund) passt; konkreter, aber besonders“.

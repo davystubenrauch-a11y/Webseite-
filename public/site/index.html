@@ -763,7 +763,12 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc:hover .cmpc__stage { transform: translateY(-4px); }
 .cmpc--web .mac { width: 78%; transform: translateY(8%); }
 .cmpc--room { --t: 0; }
-.cmpc--room .iphone { position: relative; right: auto; bottom: auto; width: 31%; transform: translateY(14%) rotate(-4deg); }
+.cmpc--room .iphone { position: relative; right: auto; bottom: auto; width: auto; height: 82%; aspect-ratio: 9 / 19.5; z-index: 2; }
+.rt-ph { position: absolute; top: 50%; width: 34%; aspect-ratio: 4 / 3; object-fit: cover; border: 5px solid #fff; border-radius: 8px; box-shadow: 0 18px 30px -16px rgba(0,0,0,.35); }
+.rt-ph1 { left: 9%; transform: translateY(-62%) rotate(-7deg); }
+.rt-ph2 { right: 9%; transform: translateY(-38%) rotate(6deg); }
+.rt-play { position: absolute; left: 50%; top: 50%; width: 30%; aspect-ratio: 1; transform: translate(-50%, -50%); border-radius: 50%; background: rgba(255,255,255,.85); backdrop-filter: blur(6px); }
+.rt-play::after { content: ""; position: absolute; left: 38%; top: 28%; border-left: 13px solid #1d1d1f; border-top: 9px solid transparent; border-bottom: 9px solid transparent; transform: scale(var(--ps, 1)); }
 .cmpc--room .cmpc__stage { background: linear-gradient(180deg, #f4efe8, #e9e1d6); }
 .cmpc--nfc .disc { width: 46%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg) translateY(6%); filter: drop-shadow(0 30px 30px rgba(0,0,0,.18)); }
 .cmpc h3 { margin-top: 28px; font-size: clamp(26px, 2.2vw, 34px); letter-spacing: -.035em; }
@@ -772,10 +777,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc__price small { font-family: var(--font); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
 .cmpc__cta { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; }
 .cmpc__cta .btn { min-width: 210px; }
-.cmpc__rows { margin-top: 28px; border-top: 1px solid var(--line); text-align: center; }
-.cmp-row { padding: 18px 8px; border-bottom: 1px solid var(--line); }
-.cmp-row dt { font-size: .8125rem; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
-.cmp-row dd { margin-top: 4px; font-size: 1.0625rem; color: var(--ink); min-height: 3.2em; }
+.cmpc__rows { margin-top: 26px; border-top: 1px solid var(--line); text-align: left; }
+.cmp-row { display: grid; grid-template-columns: 7.2em 1fr; gap: 12px; padding: 11px 4px; border-bottom: 1px solid var(--line); font-size: .9375rem; line-height: 1.4; }
+.cmp-row dt { font-weight: 500; color: var(--muted); }
+.cmp-row dd { color: var(--ink); }
 @media (max-width: 1023px) { .cmp-row dd { min-height: 0; } }
 .cmpx__all { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 32px; margin-top: 40px; color: var(--text); }
 .cmpx__all li { display: inline-flex; align-items: center; gap: 8px; }
@@ -910,15 +915,15 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="cmpc__tag">Ihr Betrieb im Internet, gut zu finden und schnell zu verstehen.</p>
           <p class="cmpc__price"><small>ab</small> 300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/anfrage/website">Fragebogen starten</a><a class="more" href="/websites">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken uns</dt><dd>Ein paar Angaben zu Ihrem Betrieb, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Eine Website mit 3 Seiten, für Handy und Computer</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>In höchstens 7 Tagen online</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Handwerk, Praxen</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 Seiten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in höchstens 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen</dd></div></dl>
         </article>
         <article class="cmpc cmpc--room">
-          <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt="" loading="lazy"></div></div></div>
+          <div class="cmpc__stage" aria-hidden="true"><img class="rt-ph rt-ph1" src="/media/tour-md-1.jpg" alt="" loading="lazy"><img class="rt-ph rt-ph2" src="/media/tour-md-3.jpg" alt="" loading="lazy"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt="" loading="lazy"><span class="rt-play"></span></div></div></div>
           <h3>KI-Roomtour</h3>
           <p class="cmpc__tag">Ein Video-Rundgang, der Gästen Ihre Unterkunft zeigt, bevor sie buchen.</p>
           <p class="cmpc__price">300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/anfrage/roomtour">Fotos hochladen</a><a class="more" href="/roomtours">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken uns</dt><dd>Handyfotos Ihrer Räume, wir sagen Ihnen genau welche</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Ein Video in Full HD, quer und hochkant</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>48 Stunden nach Ihren Fotos</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Ferienwohnungen, Apartments, Hotels</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Handyfotos Ihrer Räume</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Video in Full HD</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Ferienwohnungen, Hotels</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
           <div class="cmpc__stage" aria-hidden="true"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></div>
@@ -926,7 +931,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="cmpc__tag">Gäste halten ihr Handy an die Platte und können Sie sofort bei Google bewerten.</p>
           <p class="cmpc__price">15 € <small>pro Stück</small></p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/nfc-platten#nfc">Platten bestellen</a><a class="more" href="/nfc-platten">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken uns</dt><dd>Den Namen Ihres Betriebs bei Google</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Platten in Weiß oder Schwarz, fertig eingerichtet</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Versand direkt nach Ihrer Zahlung</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Cafés, Läden, Friseure</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Fertig eingerichtete Platten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Versand nach Zahlung</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden</dd></div></dl>
         </article>
       </div>
       <ul class="cmpx__all" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Sie geben frei, bevor etwas online geht</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kein Abo, keine laufenden Kosten bei uns</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Antwort auf Ihre Anfrage innerhalb eines Tages</li></ul>
