@@ -8,6 +8,8 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - **Typo als Held**: Start-Überschrift bis 184 px (10,6 vw, Zeilenabstand .9), h2 bis 88 px, Szenen-h2 bis 68 px, Preise bis 84 px, Über-uns-Satz bis 64 px. Start-Bühne fast randlos (8–16 px Abstand).
 - **Neuer Leistungs-Index** `#angebot` direkt nach dem Start (Agentur-Stil): drei riesige Zeilen Websites / KI-Roomtours / NFC-Platten mit Kurztext + Preis; beim Überfahren werden die anderen Zeilen blass, ein Vorschaubild folgt dem Mauszeiger (`#peek`, nur Maus, nicht bei reduzierter Bewegung).
 - **Bewegtes Schriftband** `#bandx` vor dem Ablauf: zwei Zeilen (voll / Kontur) laufen beim Scrollen gegeneinander, Trenner = Logo-Zeichen.
+- **Proportionen (1.11.)**: SPIRULI neu aufgenommen in echter MacBook-Größe (1470 × 956, Retina) → `ref-spiruli-desk-top.jpg` (1800 px) und `ref-spiruli-desk.webp` (Start, Produkt, Zutaten); vorher war es mit 800 px Breite aufgenommen und wirkte riesig. `.scroller { height: auto }` behebt das gestreckte Handy-Bild im Website-Film.
+- **Bewertungs-Handy (1.11.)** nach Kunden-Foto wie Googles „Bewertung schreiben“: Name des Betriebs + ×, Avatar „Ihr Gast“, 5 große Sterne (füllen sich gelb), „Hervorragend“, Essen/Service/Ambiente, Textfeld, „Fotos & Videos hinzufügen“, „Was hast du bestellt?“, Knopf „Posten“ (Klasse `.gr`, Größen in `cqw`). Echte Namen bewusst durch „Ihr Restaurant“/„Ihr Gast“ ersetzt.
 - NFC-Film auf hellgrauem Grund (Abwechslung zu Website weiß / Roomtour warm).
 - Formulare: keine Karten mehr, Abschnitte als offene Zeilen (Titel links klebend, Felder rechts), Ablauf als Linie unter der Überschrift; Roomtour-Fotos als **Kacheln mit Mini-Grundriss**, der Kamera-Standort und Blickrichtung zeigt.
 
