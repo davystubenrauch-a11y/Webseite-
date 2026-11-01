@@ -3,7 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: v24 ist jetzt die STARTSEITE — AKTUELL
+## Stand: zurück zu v20, nur noch eine Akzentfarbe — AKTUELL
+- Kunde zu v24: „schwach, verbessere die Seite vom Ursprung (vor der komplett neuen)“. → `/` zeigt wieder `public/site/index.html` (v20); v21–v24 bleiben nur als Entwürfe (noindex).
+- Umgesetzt zur Kritik „zu viel mit den Farben gespielt“: **nur noch Terrakotta `#c2541d` als einziger Akzent** (Hervorhebung „Unternehmen.“, Roomtour-Preis, Roomtour-Karte im USP, Schritt-Nummer 1). Blau und Grün entfernt (`--c-web`/`--c-nfc` = Tinte, Tönungen = neutrales Grau), Punkte vor Namen/Kickern entfernt, Website- und NFC-Bühnen wieder neutral grau.
+
+## Stand: v24 war kurz die Startseite (wieder zurückgenommen)
 - Kunde: „lade sie direkt hoch“ → `next.config.mjs` schreibt `/` auf `/v24/index.html` um; `noindex` entfernt, canonical/og auf https://foav.de/. Leistungsseiten `/websites`, `/roomtours`, `/nfc-platten` kommen noch aus `public/site` (v20-Stil) und sollten im v24-Stil nachgezogen werden. **Live auf foav.de erst, wenn Vercel den Zweig als Production nutzt.**
 
 ## Stand: v24 nach Kunden-Briefing (Awwwards, Dark, Bento, Glas)

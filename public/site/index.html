@@ -872,7 +872,8 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .say span { opacity: 1; }
 }
 /* ---------- colour pass: one accent per service, tinted surfaces, USP bento ---------- */
-:root { --c-web: #1f5fa8; --c-web-bg: #eaf1fa; --c-room: #c2541d; --c-room-bg: #f7eee5; --c-nfc: #12804f; --c-nfc-bg: #e8f4ed; --c-sky-bg: #eaf3fb; --c-sky: #1f6fb2; }
+/* one accent only (terracotta); everything else ink and neutral grey */
+:root { --c-web: #1d1d1f; --c-web-bg: #f5f5f7; --c-room: #c2541d; --c-room-bg: #f7eee5; --c-nfc: #1d1d1f; --c-nfc-bg: #f5f5f7; --c-sky-bg: #f5f5f7; --c-sky: #1d1d1f; }
 .hero__badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 16px 8px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line), 0 6px 18px -10px rgba(0,0,0,.18); font-size: .9375rem; font-weight: 500; color: var(--text); }
 .hero__badge i { display: flex; gap: 3px; }
 .hero__badge i::before { content: ""; width: 9px; height: 9px; border-radius: 50%; background: var(--c-room); box-shadow: 0 0 0 4px var(--c-room-bg); }
@@ -904,17 +905,17 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
 /* service accents everywhere else */
 .cmpc--web { --acc: var(--c-web); } .cmpc--room { --acc: var(--c-room); } .cmpc--nfc { --acc: var(--c-nfc); }
-.cmpc--web .cmpc__stage { background: linear-gradient(180deg, var(--c-web-bg), #d9e6f5); }
+.cmpc--web .cmpc__stage { background: linear-gradient(180deg, #f5f5f7, #e9e9ee); }
 .cmpc--room .cmpc__stage { background: linear-gradient(180deg, var(--c-room-bg), #eddcc9); }
-.cmpc--nfc .cmpc__stage { background: linear-gradient(180deg, var(--c-nfc-bg), #d3e9dc); }
+.cmpc--nfc .cmpc__stage { background: linear-gradient(180deg, #f5f5f7, #e9e9ee); }
 .cmpc h3 { display: inline-flex; align-items: center; justify-content: center; gap: 10px; }
-.cmpc h3::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--acc); }
+.cmpc h3::before { content: none; }
 .cmpc__price { color: var(--acc); }
 .cmpx__all svg { color: var(--c-nfc); }
-.scene--web { background: linear-gradient(180deg, var(--c-web-bg), #fbfbfd 55%); } .scene--web .kicker { color: var(--c-web); }
+.scene--web { background: linear-gradient(180deg, #f5f5f7, #fbfbfd 40%); } .scene--web .kicker { color: var(--c-web); }
 .scene--room .kicker { color: var(--c-room); }
-.scene--nfc { background: linear-gradient(180deg, var(--c-nfc-bg), #e4ece7); } .scene--nfc .kicker { color: var(--c-nfc); }
-.kicker { display: inline-flex; align-items: center; gap: 8px; } .kicker::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+.scene--nfc { background: linear-gradient(180deg, #f1f1f4, #e9e9ee); } .scene--nfc .kicker { color: var(--c-nfc); }
+.kicker { display: inline-flex; align-items: center; gap: 8px; } .kicker::before { content: none; }
 #p-websites h1 { color: var(--ink); } #p-websites .phero__facts b { color: var(--c-web); }
 #p-roomtours .phero__facts b { color: var(--c-room); } #p-nfc .phero__facts b { color: var(--c-nfc); }
 .who { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; margin-top: 36px; }
@@ -1021,7 +1022,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <article class="cmpc cmpc--web">
           <div class="cmpc__stage" aria-hidden="true"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" loading="lazy"></div></div><div class="mac__base"></div></div></div>
           <h3>Website</h3>
-          <p class="cmpc__tag">Ihr Betrieb im Internet: gut zu finden, schnell verstanden, gebaut für Anfragen.</p>
+          <p class="cmpc__tag">Ihr Unternehmen im Internet: gut zu finden, schnell verstanden, gebaut für Anfragen.</p>
           <p class="cmpc__price"><small>ab</small> 300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/anfrage/website">Fragebogen starten</a><a class="more" href="/websites">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 Seiten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in höchstens 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen, Gastro</dd></div></dl>
