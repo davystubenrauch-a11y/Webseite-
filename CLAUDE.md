@@ -3,7 +3,14 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 2.11. nachts: iPhone-Start als Bild, Ablauf mit Bildern — AKTUELL
+## Stand 1.11. (Kunden-Datum 2.11.) spät: Ablauf als Produkt-Vorführung, Zusagen als Bento, Fotos — AKTUELL
+- Screenshot vom Kunden (Safari Mac, Vercel-Vorschau): Start-Überschrift fehlte (blendete beim Scrollen aus) und Handy-Bildschirm war weiß → Ausblenden entfernt, SplitText im Start ersetzt durch einfaches Einblenden, `<img class="iphone__still">` liegt unter dem Video, `.lineup` ohne `perspective`.
+- Kunde: „Grafiken zu basic, nach KI“ – gemeint sind **auch Tabelle und Schritt-für-Schritt**. Umgesetzt:
+  - **Ablauf** `#flow` = Reiter links (1 Preis sehen / 2 Angaben senden / 3 Ergebnis erhalten, mit Fortschrittsbalken, wechseln alle 6 s, bis man klickt; Pfeiltasten) + große Bühne rechts mit echter Produkt-Vorführung: Browserfenster mit Preisliste (`.win`), iPhone mit Anfrage-Formular und „Anfrage gesendet“ (`.app`), E-Mail „Ihre Roomtour ist fertig“ mit Video-Vorschau und Knöpfen (`.mail`). Alte `.steps`/`.sv` ungenutzt.
+  - **Zusagen** als Bento `.bento`: 48 h groß mit Roomtour-Foto, 7 Tage mit SPIRULI-Ausschnitt, 24 h mit Chat-Blase, 0 € auf Nacht mit Iris-Licht, 1 Min. mit Mini-Formular, 2 mit Gründer-Monogrammen.
+  - **Für-wen-Karten** mit Fotos (Higgsfield `gpt_image_2_5`, 4:3: Restaurant mit NFC-Platte, Gastgeberin fotografiert Ferienwohnung, Concept Store, Schreinerwerkstatt). **Achtung:** Download/Upload zu Higgsfield ist im Container gesperrt → Bilder sind von `d8j0ntlcm91z4.cloudfront.net/…_min.webp` **verlinkt, nicht selbst gehostet**. Später herunterladen nach `public/media/fw-*.webp` und Pfade ersetzen.
+
+## Stand 2.11. nachts: iPhone-Start als Bild, Ablauf mit Bildern
 - Kunde schaut über den **Vercel-Vorschau-Link** und sieht auf dem iPhone im ersten Bildschirm weiterhin nichts. In Chromium nicht nachstellbar (kein WebKit im Container) → robust gelöst: bis 700 px wird statt der CSS-3D-Geräte ein **fertiges Bild** gezeigt (`public/media/hero-lineup.webp`, 1026 × 708, per Playwright aus der Handy-Ansicht aufgenommen), `.lineup` ist dort ausgeblendet, Pause-Knopf ebenfalls; Start-Video lädt nur noch `metadata`.
 - **Ablauf** als drei Karten mit kleinen Bildern (`.sv`): 1 Preisliste (Website ab 300 € / KI-Roomtour 300 € / NFC-Platte 15 €), 2 Mini-Formular (Name, Telefon oder E-Mail, „Anfrage senden“), 3 dunkle Fertig-Meldung „Ihre Roomtour ist fertig“; leuchten nacheinander auf (`.lit`). Verbindungslinie entfällt.
 
