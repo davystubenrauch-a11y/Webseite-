@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 1.11. (Kunden-Datum 2.11.) spät: Ablauf als Produkt-Vorführung, Zusagen als Bento, Fotos — AKTUELL
+## Stand: Startseite entschlackt, kein lila Schleier — AKTUELL
+- Kunde: „zu viele Abschnitte, die das Gleiche vermitteln, darf nicht kompliziert sein; der lila Schleier wirkt zu KI“.
+- **Startseite jetzt nur noch**: Start → Leistungen mit Preisen (`#angebot`, dunkel) → Ablauf (Vorführung) → Zusagen (Bento) → drei Leistungs-Filme → Referenz SPIRULI → Über uns → Fragen → Kontakt (≈ 16.800 px statt ≈ 23.000).
+- Von der Startseite entfernt (doppelte Aussagen): „Das passt zu Ihrem Betrieb“ (`@none`), Kino-Band (nur noch /roomtours), Schriftband (`@none`), Preis-Karten (`@none`; Preise stehen im Leistungs-Index und auf den Leistungsseiten), „Neu in München“ (nur Leistungsseiten). Links auf `#preise` → `#angebot`, „Platten bestellen/berechnen“ → `/nfc-platten#nfc`.
+- **Kein Schleier mehr**: Iris-Leuchten in `.night`, Bento-Nachtkachel und Ablauf-Bühne entfernt, violette Schatten neutral, Lesefortschritt Graphit 2 px. Iris bleibt nur als kleine Volltonfarbe (aktive Schritt-Nummer, Häkchen, Kicker).
+
+## Stand: Ablauf als Produkt-Vorführung, Zusagen als Bento, Fotos
 - Screenshot vom Kunden (Safari Mac, Vercel-Vorschau): Start-Überschrift fehlte (blendete beim Scrollen aus) und Handy-Bildschirm war weiß → Ausblenden entfernt, SplitText im Start ersetzt durch einfaches Einblenden, `<img class="iphone__still">` liegt unter dem Video, `.lineup` ohne `perspective`.
 - Kunde: „Grafiken zu basic, nach KI“ – gemeint sind **auch Tabelle und Schritt-für-Schritt**. Umgesetzt:
   - **Ablauf** `#flow` = Reiter links (1 Preis sehen / 2 Angaben senden / 3 Ergebnis erhalten, mit Fortschrittsbalken, wechseln alle 6 s, bis man klickt; Pfeiltasten) + große Bühne rechts mit echter Produkt-Vorführung: Browserfenster mit Preisliste (`.win`), iPhone mit Anfrage-Formular und „Anfrage gesendet“ (`.app`), E-Mail „Ihre Roomtour ist fertig“ mit Video-Vorschau und Knöpfen (`.mail`). Alte `.steps`/`.sv` ungenutzt.
