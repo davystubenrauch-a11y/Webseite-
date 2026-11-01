@@ -3,7 +3,10 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: zurück zu v20, nur noch eine Akzentfarbe — AKTUELL
+## Stand: v20 komplett ohne Akzentfarbe — AKTUELL
+- Kunde: „diese komischen bunten Farben wieder weg“ → auch Terrakotta entfernt: `--iris` und `--c-room` = Tinte `#1d1d1f`, alle Tönungen neutrales Grau. Seite ist wieder **monochrom** (Graphit/Weiß/Grau), Farbe nur aus Fotos und Video. Keine neuen Akzentfarben mehr vorschlagen.
+
+## Stand: zurück zu v20, nur noch eine Akzentfarbe
 - Kunde zu v24: „schwach, verbessere die Seite vom Ursprung (vor der komplett neuen)“. → `/` zeigt wieder `public/site/index.html` (v20); v21–v24 bleiben nur als Entwürfe (noindex).
 - Umgesetzt zur Kritik „zu viel mit den Farben gespielt“: **nur noch Terrakotta `#c2541d` als einziger Akzent** (Hervorhebung „Unternehmen.“, Roomtour-Preis, Roomtour-Karte im USP, Schritt-Nummer 1). Blau und Grün entfernt (`--c-web`/`--c-nfc` = Tinte, Tönungen = neutrales Grau), Punkte vor Namen/Kickern entfernt, Website- und NFC-Bühnen wieder neutral grau.
 
