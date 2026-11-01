@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 1.11. abends: Umbau für mehr Anfragen — AKTUELL
+## Stand 1.11. nachts: reicher, „alles drei kombiniert“ — AKTUELL
+- Kunde: „immer noch zu basic, zu schlicht“ → per Abfrage gewählt: **große Bilder + dunkle Kino-Bänder + Markenfarbe**. Archiv vorher: `public/v20c/`.
+- **Markenfarbe Iris** `--iris #5b4cf0` / `--iris-soft #8b80ff`, nur dezent: Leuchten in dunklen Bändern, Lesefortschritt (Verlauf, 3 px), Häkchen der Vertrauenszeile, Glanz unter Graphit-Knöpfen beim Überfahren, Schild „Unser Schwerpunkt“.
+- **Dunkle Bänder** `.night` (Nacht `#0b0b10`, abgerundet wie die Start-Bühne, Iris-Leuchten oben rechts): **Leistungs-Index** (weiße Riesen-Namen, weiße/Glas-Knöpfe) und **Preise** (Glas-Karten, Roomtour-Karte mit Iris-Kante und weißem Knopf, Preise jetzt wirklich groß – vorher überschrieb `.plan > p` die Größe).
+- **Kino-Band** `#erlebnis` nach den Zusagen: Roomtour-Video randlos (88 vh, zoomt beim Scrollen von 1,16 auf 1), Überschrift „Ihre Räume als Film. In 48 Stunden.“, **Glas-Karte** (300 € bis 150 m², 16:9 + 9:16, Knopf „Fotos hochladen“). Video über `keepPlaying` (`#cineVid`).
+
+## Stand 1.11. abends: Umbau für mehr Anfragen
 - Kunde: „wie ein Profi, Kunden überzeugen, seriös und zuverlässig, schnell verstehen was wir anbieten und wie man kauft; auf dem iPhone sieht man auf der Startseite immer noch nichts“. **Achtung: foav.de zeigt noch den alten Stand**, weil das Hochladen auf den Live-Zweig gesperrt ist (Production Branch in Vercel umstellen).
 - iPhone: Start-Animation (SplitText, 3D-Deckel, einfliegende Geräte) und das Ausblenden beim Scrollen nur noch mit Maus (`fine`); auf Touch-Geräten ist der erste Bildschirm sofort sichtbar. `.hero__stage` mit `isolation` + `-webkit-mask-image` gegen den Safari-Fehler (3D in abgerundetem `overflow:hidden`).
 - Reihenfolge nach ui-ux-pro-max-Muster „Trust & Authority + Conversion“ (Angebot → Vertrauen → klarer Weg): Start (neuer Text „Wir erstellen …, Preis vorher, bestellt in wenigen Minuten“ + **Vertrauenszeile** mit 3 Häkchen) → Leistungs-Index mit **„Direkt loslegen“** (Website-Fragebogen / Roomtour-Fotos / NFC bestellen) → **Ablauf** → **Zusagen-Kennzahlen** → Leistungs-Filme → Vorher/Nachher → NFC-Rechner → Schriftband → Preise → „Unsicher, was passt?“ → Über uns → Fragen → Kontakt. Start-Überschrift bis 148 px.
