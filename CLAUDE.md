@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Überschriften, USP-Block, mehr Farbe — AKTUELL
+## Stand: einfacher Unterschied, kein Lila — AKTUELL
+- Kunde: „3. Seite (USP-Bento) zu kompliziert, Lila passt nicht, besserer Einstieg: ‚Unternehmen‘ statt ‚Betrieb‘, konkret was uns unterscheidet (Roomtours)“.
+- Start: Plakette „Neu: Video-Rundgänge aus Handyfotos, ohne Filmteam“, h1 „Mehr Kunden für Ihr **Unternehmen.**“ (Terrakotta), Text beginnt mit Handyfotos → Video in 48 Stunden.
+- `#warum` jetzt nur **„Was uns anders macht.“** mit 3 Karten: 1 Video ohne Filmteam, 2 Preis vorher klar (300 €), 3 Alles aus einer Hand (FD/DS). Bento entfernt.
+- **Kein Lila mehr**: `--iris` = Terrakotta `#c2541d`; Website-Farbe `--c-web` = Blau `#1f5fa8`. „Einzige Anbieter“ nicht behauptet (nicht belegbar).
+
+## Stand: Überschriften, USP-Block, mehr Farbe (USP später vereinfacht)
 - Kunde: „bessere Headlines, am Anfang eine USP (warum wir), Roomtours für jede Art von Betrieb, Seite etwas zu schlicht bei Farben und Layout“.
 - **Start**: Plakette „Agentur aus München für …“ (Dreifarb-Strich), h1 „Wir bringen Ihrem Betrieb **mehr Kunden.**“ (Teil in `--c-web`), Text mit „aktueller KI und sauberem Handwerk … Festpreis ab 300 €“.
 - **Neuer Block `#warum`** direkt nach dem Start: „Profi-Auftritt ohne Agentur-Preise.“ als Bento: Faire Festpreise (300/300/15 €), Aktuelle KI (3 Fotos → Video), Ziel: mehr Kunden (Website → Anfragen, Roomtour → Buchungen/Besichtigungen, NFC → Bewertungen), Schnell fertig (Balken 48 Stunden / 7 Tage), Persönlich (zwei Gründer). „Unschlagbar“ bewusst **nicht** verwendet (nicht belegbar, Irreführungsrisiko) – stattdessen offene Festpreise.
