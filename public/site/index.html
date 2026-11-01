@@ -185,12 +185,13 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .scene.s3 .toast { opacity: 1; transform: none; }
 
 /* start: one clear sentence, the three products rise underneath like a product lineup */
-.hero { position: relative; padding: clamp(112px, 15vh, 150px) 0 clamp(40px, 6vh, 72px); overflow: hidden; background: var(--bg); }
-.hero h1 { max-width: 11ch; font-size: clamp(56px, 10.6vw, 184px); line-height: .9; letter-spacing: -.058em; font-weight: 600; }
+.hero { position: relative; padding: clamp(104px, 13vh, 132px) 0 clamp(40px, 6vh, 72px); overflow: hidden; background: var(--bg); }
+.hero h1 { max-width: 11ch; font-size: clamp(56px, 8.4vw, 148px); line-height: .9; letter-spacing: -.058em; font-weight: 600; }
 .hero__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-top: 28px; }
 .hero__sub { max-width: 44ch; font-size: clamp(17px, 1.3vw, 20px); color: var(--muted); }
 .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero__stage { position: relative; margin: clamp(48px, 7vh, 80px) clamp(8px, 1.1vw, 16px) 0; padding: clamp(32px, 5vw, 88px) clamp(16px, 4vw, 64px) 0; border-radius: clamp(20px, 2.4vw, 36px); background: linear-gradient(180deg, #f5f5f7, #ececf0); overflow: hidden; }
+.hero__stage { isolation: isolate; -webkit-mask-image: -webkit-radial-gradient(white, black); }
 .hero__stage::after { content: ""; position: absolute; left: 8%; right: 8%; bottom: 0; height: 22%; background: radial-gradient(50% 60% at 50% 100%, rgba(0,0,0,.10), transparent); pointer-events: none; }
 .lineup { position: relative; z-index: 1; width: 100%; max-width: 1320px; aspect-ratio: 16 / 7.4; margin: 0 auto; perspective: 1600px; }
 .lu { position: absolute; bottom: 0; will-change: transform; }
@@ -533,6 +534,17 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 @media (max-width: 560px) { .kpis b { font-size: clamp(36px, 10.4vw, 56px); } }
 @media (prefers-reduced-motion: reduce) { .rl { transform: none; transition: none; } }
 
+/* ---------- trust line in the hero, direct start buttons under the index */
+.trust { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 28px; margin-top: 28px; font-size: .9375rem; color: var(--text); }
+.trust li { display: inline-flex; align-items: center; gap: 8px; }
+.trust svg { width: 18px; height: 18px; flex: none; color: var(--ink); }
+.ix-go { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 32px; }
+.ix-go span { margin-right: 8px; font-weight: 600; color: var(--ink); }
+@media (max-width: 700px) {
+  .trust { flex-direction: column; gap: 8px; margin-top: 20px; font-size: .875rem; }
+  .ix-go { flex-direction: column; align-items: stretch; } .ix-go span { margin: 0 0 4px; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
 }
@@ -635,9 +647,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap hero__top">
       <h1 id="h-start">Mehr Kunden für Ihren Betrieb.</h1>
       <div class="hero__row">
-        <p class="hero__sub">Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Mit klaren Preisen auf der Seite und einer Anfrage, die eine Minute dauert.</p>
+        <p class="hero__sub">Wir erstellen Websites, KI-Roomtour-Videos aus Ihren Fotos und NFC-Platten für Google-Bewertungen. Den Preis sehen Sie vorher, bestellt ist in wenigen Minuten.</p>
         <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#preise">Preise ansehen</a></div>
       </div>
+      <ul class="trust" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 48 Stunden bis 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zwei Gründer aus München als Ansprechpartner</li></ul>
     </div>
     <div class="hero__stage">
     <div class="lineup" id="lineup" aria-hidden="true">
@@ -657,12 +670,31 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <li><a href="#roomtours" data-peek="1"><span class="ix__name">KI-Roomtours</span><span class="ix__what">Ein Video-Rundgang aus Ihren Fotos, in bis zu 48 Stunden.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
         <li><a href="#platten" data-peek="2"><span class="ix__name">NFC-Platten</span><span class="ix__what">Google-Bewertungen mit einem Antippen, ohne App.</span><span class="ix__price">15 €</span></a></li>
       </ol>
+      <div class="ix-go"><span>Direkt loslegen</span><a class="btn btn--light" href="/anfrage/website">Website-Fragebogen</a><a class="btn btn--line" href="/anfrage/roomtour">Roomtour-Fotos hochladen</a><a class="btn btn--line" href="#nfc">NFC-Platten bestellen</a></div>
     </div>
     <div class="peek" id="peek" aria-hidden="true"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" loading="lazy"><img src="/media/tour-md-2.jpg" alt="" loading="lazy"><img src="/media/nfc-platten.webp" alt="" loading="lazy"></div>
   </section>
 
 
   <!-- Services: three short films that play while you scroll -->
+  <section class="sec" id="ablauf" aria-labelledby="h-flow">
+    <div class="wrap">
+      <div class="sec__head"><div><h2 id="h-flow">In drei Schritten zum fertigen Ergebnis.</h2></div><p class="lead">Sie brauchen kein Konto. Den Preis sehen Sie vorher, und bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p></div>
+      <ol class="steps" id="steps">
+        <li><span>1</span><h3>Preis sehen</h3><p>Alle Startpreise stehen hier auf der Seite, Sie müssen sich dafür nirgends anmelden.</p></li>
+        <li><span>2</span><h3>Angaben senden</h3><p>Eine kurze Anfrage genügt. Wenn Sie mögen, füllen Sie gleich den <a class="inl" href="/anfrage/website">Website-Fragebogen</a> aus oder laden die <a class="inl" href="/anfrage/roomtour">Fotos für Ihre Roomtour</a> hoch.</p></li>
+        <li><span>3</span><h3>Ergebnis erhalten</h3><p>Sie bekommen Festpreis und Zahlungslink. Nach der Zahlung ist die Roomtour in bis zu 48 Stunden fertig, die Website in bis zu 7 Tagen. Wünsche ändern wir mit Ihnen.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="unterschied" aria-labelledby="h-diff">
+    <div class="wrap">
+      <div class="sec__head"><h2 id="h-diff">Darauf können Sie sich verlassen.</h2><p class="lead">Vor dem Start bekommen Sie einen schriftlichen Festpreis, und online geht nur, was Sie freigegeben haben. Das gilt für jeden Auftrag, auch für eine einzelne Platte.</p></div>
+      <ul class="kpis" role="list"><li><b>24 h</b><h3>Antwort</h3><p>Persönlich, per Telefon oder E-Mail, wie es Ihnen lieber ist.</p></li><li><b>48 h</b><h3>Roomtour</h3><p>So schnell ist Ihr Video fertig, gerechnet ab Zahlung und vollständigen Fotos.</p></li><li><b>7 Tage</b><h3>Website</h3><p>Höchstens, je nach Paket. Sie sehen jeden Entwurf, bevor er online geht.</p></li><li><b>0 €</b><h3>Laufende Kosten</h3><p>Kein Abo. Fallen Domain oder Hosting an, sagen wir es vorher.</p></li><li><b>2</b><h3>Ansprechpartner</h3><p>Florian Dressler oder Davy Stubenrauch, vom ersten Anruf bis zum Ende.</p></li><li><b>3 in 1</b><h3>Leistungen</h3><p>Website, Roomtour und Bewertungen aus einer Hand.</p></li></ul>
+    </div>
+  </section>
+
   <div id="leistungen">
   <section class="scene scene--web" id="websites" aria-labelledby="h-web">
     <div class="scene__pin">
@@ -760,16 +792,6 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="band-x__row">München<i></i>Festpreis<i></i>48 Stunden<i></i>München<i></i>Festpreis<i></i>48 Stunden<i></i></div>
   </div>
 
-  <section class="sec" id="ablauf" aria-labelledby="h-flow">
-    <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-flow">In drei Schritten zum fertigen Ergebnis.</h2></div><p class="lead">Sie brauchen kein Konto. Den Preis sehen Sie vorher, und bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p></div>
-      <ol class="steps" id="steps">
-        <li><span>1</span><h3>Preis sehen</h3><p>Alle Startpreise stehen hier auf der Seite, Sie müssen sich dafür nirgends anmelden.</p></li>
-        <li><span>2</span><h3>Angaben senden</h3><p>Eine kurze Anfrage genügt. Wenn Sie mögen, füllen Sie gleich den <a class="inl" href="/anfrage/website">Website-Fragebogen</a> aus oder laden die <a class="inl" href="/anfrage/roomtour">Fotos für Ihre Roomtour</a> hoch.</p></li>
-        <li><span>3</span><h3>Ergebnis erhalten</h3><p>Sie bekommen Festpreis und Zahlungslink. Nach der Zahlung ist die Roomtour in bis zu 48 Stunden fertig, die Website in bis zu 7 Tagen. Wünsche ändern wir mit Ihnen.</p></li>
-      </ol>
-    </div>
-  </section>
 
   <!-- Prices -->
   <section class="sec" id="preise" aria-labelledby="h-preise">
@@ -792,12 +814,6 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
   </section>
 
-  <section class="sec" id="unterschied" aria-labelledby="h-diff">
-    <div class="wrap">
-      <div class="sec__head"><h2 id="h-diff">Darauf können Sie sich verlassen.</h2><p class="lead">Vor dem Start bekommen Sie einen schriftlichen Festpreis, und online geht nur, was Sie freigegeben haben. Das gilt für jeden Auftrag, auch für eine einzelne Platte.</p></div>
-      <ul class="kpis" role="list"><li><b>24 h</b><h3>Antwort</h3><p>Persönlich, per Telefon oder E-Mail, wie es Ihnen lieber ist.</p></li><li><b>48 h</b><h3>Roomtour</h3><p>So schnell ist Ihr Video fertig, gerechnet ab Zahlung und vollständigen Fotos.</p></li><li><b>7 Tage</b><h3>Website</h3><p>Höchstens, je nach Paket. Sie sehen jeden Entwurf, bevor er online geht.</p></li><li><b>0 €</b><h3>Laufende Kosten</h3><p>Kein Abo. Fallen Domain oder Hosting an, sagen wir es vorher.</p></li><li><b>2</b><h3>Ansprechpartner</h3><p>Florian Dressler oder Davy Stubenrauch, vom ersten Anruf bis zum Ende.</p></li><li><b>3 in 1</b><h3>Leistungen</h3><p>Website, Roomtour und Bewertungen aus einer Hand.</p></li></ul>
-    </div>
-  </section>
 
   <!-- About -->
   <section class="sec" id="team" aria-labelledby="h-team">
@@ -1094,14 +1110,17 @@ document.addEventListener("DOMContentLoaded", function () {
       $$('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function (e) { var id = a.getAttribute("href"), el = id.length > 1 && $(id); if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -84, duration: 1.3 }); } }); });
     }
     // start: the headline rises, the lineup comes up from below: laptop opens, phone and plate join
-    Split.create("#h-start", { type: "lines,words", mask: "lines", linesClass: "ln", autoSplit: true, onSplit: function (self) { return G.from(self.words, { yPercent: 110, duration: 1.1, ease: out, stagger: .05, delay: .1 }); } });
-    G.from(".hero__row", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
-    G.from(".lu-mac", { y: 140, opacity: 0, duration: 1.6, ease: out, delay: .35 });
-    G.from(".lu-mac .mac__lid", { rotationX: 82, transformOrigin: "50% 100%", duration: 1.8, ease: "power3.inOut", delay: .6 });
-    G.from(".lu-phone", { y: 220, x: 40, rotation: 10, opacity: 0, duration: 1.6, ease: out, delay: .9 });
-    G.from(".lu-disc", { y: 180, opacity: 0, duration: 1.6, ease: out, delay: 1 });
-    G.from(".lu-disc .disc", { rotation: -240, duration: 2.2, ease: out, delay: 1 });
-    G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
+    // start: on touch devices the first screen shows immediately (iPhone Safari had trouble with the 3D intro)
+    if (fine) {
+      Split.create("#h-start", { type: "lines,words", mask: "lines", linesClass: "ln", autoSplit: true, onSplit: function (self) { return G.from(self.words, { yPercent: 110, duration: 1.1, ease: out, stagger: .05, delay: .1 }); } });
+      G.from(".hero__row", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
+      G.from(".lu-mac", { y: 140, opacity: 0, duration: 1.6, ease: out, delay: .35 });
+      G.from(".lu-mac .mac__lid", { rotationX: 82, transformOrigin: "50% 100%", duration: 1.8, ease: "power3.inOut", delay: .6 });
+      G.from(".lu-phone", { y: 220, x: 40, rotation: 10, opacity: 0, duration: 1.6, ease: out, delay: .9 });
+      G.from(".lu-disc", { y: 180, opacity: 0, duration: 1.6, ease: out, delay: 1 });
+      G.from(".lu-disc .disc", { rotation: -240, duration: 2.2, ease: out, delay: 1 });
+    }
+    if (fine) G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
     G.to("#lineup", { scale: 1.04, y: -20, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
     // services: each scene follows the scroll while its stage is pinned
     scenes.forEach(function (sc) {

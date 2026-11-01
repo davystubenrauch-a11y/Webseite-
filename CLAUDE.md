@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 1.11.: AGB, Kennzahlen, Überschriften-Effekt — AKTUELL
+## Stand 1.11. abends: Umbau für mehr Anfragen — AKTUELL
+- Kunde: „wie ein Profi, Kunden überzeugen, seriös und zuverlässig, schnell verstehen was wir anbieten und wie man kauft; auf dem iPhone sieht man auf der Startseite immer noch nichts“. **Achtung: foav.de zeigt noch den alten Stand**, weil das Hochladen auf den Live-Zweig gesperrt ist (Production Branch in Vercel umstellen).
+- iPhone: Start-Animation (SplitText, 3D-Deckel, einfliegende Geräte) und das Ausblenden beim Scrollen nur noch mit Maus (`fine`); auf Touch-Geräten ist der erste Bildschirm sofort sichtbar. `.hero__stage` mit `isolation` + `-webkit-mask-image` gegen den Safari-Fehler (3D in abgerundetem `overflow:hidden`).
+- Reihenfolge nach ui-ux-pro-max-Muster „Trust & Authority + Conversion“ (Angebot → Vertrauen → klarer Weg): Start (neuer Text „Wir erstellen …, Preis vorher, bestellt in wenigen Minuten“ + **Vertrauenszeile** mit 3 Häkchen) → Leistungs-Index mit **„Direkt loslegen“** (Website-Fragebogen / Roomtour-Fotos / NFC bestellen) → **Ablauf** → **Zusagen-Kennzahlen** → Leistungs-Filme → Vorher/Nachher → NFC-Rechner → Schriftband → Preise → „Unsicher, was passt?“ → Über uns → Fragen → Kontakt. Start-Überschrift bis 148 px.
+
+## Stand 1.11.: AGB, Kennzahlen, Überschriften-Effekt
 - **Handy-Start (1.11.)**: Kunde: „auf dem Handy sieht man auf der ersten Seite nichts“ → kleinere Überschrift (12 vw), Knöpfe nebeneinander, Bühne mit Laptop/Handy/Platte komplett im ersten Bildschirm (390 × 844 und 375 × 667 geprüft), Pause-Knopf rechts.
 - **Paketwahl** („Ihr Preis in zehn Sekunden“, `#passend`) gefiel oben nicht → nach unten hinter die Preise verschoben, heißt jetzt **„Unsicher, was zu Ihnen passt?“**; Navigation: Leistungen, Ablauf, Preise, Beratung, Über uns.
 - **AGB** neu unter `/agb` (`app/agb/page.tsx`, Entwurf passend zum Ablauf: Festpreis-Angebot → Bestätigung/Zahlung, Vorkasse per Zahlungslink, Lieferzeiten 48 h / bis 7 Tage ab Zahlung + Unterlagen, Mitwirkung/Bildrechte, Änderungen im Umfang inklusive, Abnahme nach 14 Tagen, Nutzungsrechte nach Zahlung, KI-Hinweis Roomtour, Google-Richtlinien NFC, Haftung, Verbraucher → Widerrufsbelehrung fehlt noch). Platzhalter in [eckigen Klammern] (Firmenname, USt/Kleinunternehmer). Links in allen Fußzeilen + Sitemap. **Rechtlich prüfen lassen.**
