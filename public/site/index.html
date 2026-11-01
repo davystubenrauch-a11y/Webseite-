@@ -591,6 +591,28 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .night { padding: 72px 0; }
 }
 
+/* ---------- service pages: intro, breadcrumb, feature lists, "everything about" links */
+.phero { padding: clamp(120px, 16vh, 168px) 0 clamp(48px, 6vw, 80px); }
+.crumb { display: flex; gap: 10px; font-size: .9375rem; color: var(--muted); } .crumb a { color: var(--muted); } .crumb a:hover { color: var(--ink); }
+.phero h1 { margin-top: 20px; max-width: 15ch; font-size: clamp(48px, 7.4vw, 128px); line-height: .94; letter-spacing: -.055em; }
+.phero__row { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px 48px; margin-top: 32px; }
+.phero .cta { display: flex; flex-wrap: wrap; gap: 12px; } .phero .cta .btn { min-height: 52px; padding: 0 28px; }
+.phero__facts { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: clamp(40px, 5vw, 72px); border-top: 1px solid var(--line); }
+.phero__facts li { padding: 24px 24px 0 0; } .phero__facts li + li { padding-left: 24px; border-left: 1px solid var(--line); }
+.phero__facts b { display: block; font-family: var(--head); font-size: clamp(36px, 4.4vw, 72px); font-weight: 600; line-height: 1; letter-spacing: -.05em; color: var(--ink); white-space: nowrap; }
+.phero__facts span { display: block; margin-top: 10px; color: var(--muted); }
+.feat { list-style: none; display: grid; gap: 12px; margin: 26px 0 30px; padding-top: 22px; border-top: 1px solid var(--line); }
+.feat li { display: flex; gap: 10px; align-items: flex-start; } .feat svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--iris-soft); }
+.night .feat { border-color: rgba(255,255,255,.1); color: rgba(255,255,255,.82); }
+.more { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-weight: 600; color: var(--ink); text-decoration: none; }
+.more svg { width: 18px; height: 18px; transition: transform .3s; } .more:hover svg { transform: translateX(4px); }
+.plan__link { color: inherit; text-decoration: none; } .plan__link:hover { text-decoration: underline; text-underline-offset: 4px; }
+@media (max-width: 700px) {
+  .phero { padding-top: 104px; }
+  .phero__facts { grid-template-columns: 1fr; } .phero__facts li, .phero__facts li + li { padding: 18px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .phero .cta { width: 100%; } .phero .cta .btn { flex: 1 1 auto; padding: 0 16px; }
+}
+
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
 }
@@ -650,7 +672,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 </style>
 </head>
 <body>
-<a class="skip" href="#leistungen">Zum Inhalt springen</a>
+<a class="skip" href="/#leistungen">Zum Inhalt springen</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
   <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
   <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
@@ -679,16 +701,15 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
 <header class="head" id="head"><span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap head__in">
-    <a class="logo" href="#start" aria-label="FOAV – zum Anfang"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
-    <nav class="nav" aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#passend">Beratung</a><a href="#team">Über uns</a></nav>
+    <a class="logo" href="/" aria-label="FOAV – zur Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="#preise">Preise</a><a href="#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#kontakt">Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="#leistungen">Leistungen</a><a href="#roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="#passend">Beratung</a><a href="#platten">NFC-Platten <span>15 €</span></a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="#ablauf">Ablauf</a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
 
 <main id="start">
-  <!-- Start -->
   <section class="hero" id="hero" aria-labelledby="h-start">
     <div class="wrap hero__top">
       <h1 id="h-start">Mehr Kunden für Ihren Betrieb.</h1>
@@ -708,21 +729,21 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <button class="pause" type="button" id="pause" aria-pressed="false"><svg aria-hidden="true" viewBox="0 0 24 24" fill="currentColor"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg><span>Bewegung anhalten</span></button>
   </section>
 
+
   <section class="index night" id="angebot" aria-labelledby="h-ix">
     <div class="wrap">
       <h2 id="h-ix" class="index__lead">Drei Leistungen, die Ihnen Kunden bringen. Mit festen Startpreisen und den Gründern als Ansprechpartner.</h2>
       <ol class="ix" id="ix">
-        <li><a href="#websites" data-peek="0"><span class="ix__name">Websites</span><span class="ix__what">Ihr Auftritt im Netz, fertig in bis zu 7 Tagen.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
-        <li><a href="#roomtours" data-peek="1"><span class="ix__name">KI-Roomtours</span><span class="ix__what">Ein Video-Rundgang aus Ihren Fotos, in bis zu 48 Stunden.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
-        <li><a href="#platten" data-peek="2"><span class="ix__name">NFC-Platten</span><span class="ix__what">Google-Bewertungen mit einem Antippen, ohne App.</span><span class="ix__price">15 €</span></a></li>
+        <li><a href="/websites" data-peek="0"><span class="ix__name">Websites</span><span class="ix__what">Ihr Auftritt im Netz, fertig in bis zu 7 Tagen.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
+        <li><a href="/roomtours" data-peek="1"><span class="ix__name">KI-Roomtours</span><span class="ix__what">Ein Video-Rundgang aus Ihren Fotos, in bis zu 48 Stunden.</span><span class="ix__price"><small>ab </small>300 €</span></a></li>
+        <li><a href="/nfc-platten" data-peek="2"><span class="ix__name">NFC-Platten</span><span class="ix__what">Google-Bewertungen mit einem Antippen, ohne App.</span><span class="ix__price">15 €</span></a></li>
       </ol>
-      <div class="ix-go"><span>Direkt loslegen</span><a class="btn btn--light" href="/anfrage/website">Website-Fragebogen</a><a class="btn btn--line" href="/anfrage/roomtour">Roomtour-Fotos hochladen</a><a class="btn btn--line" href="#nfc">NFC-Platten bestellen</a></div>
+      <div class="ix-go"><span>Direkt loslegen</span><a class="btn btn--light" href="/anfrage/website">Website-Fragebogen</a><a class="btn btn--line" href="/anfrage/roomtour">Roomtour-Fotos hochladen</a><a class="btn btn--line" href="/#nfc">NFC-Platten bestellen</a></div>
     </div>
     <div class="peek" id="peek" aria-hidden="true"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" loading="lazy"><img src="/media/tour-md-2.jpg" alt="" loading="lazy"><img src="/media/nfc-platten.webp" alt="" loading="lazy"></div>
   </section>
 
 
-  <!-- Services: three short films that play while you scroll -->
   <section class="sec" id="ablauf" aria-labelledby="h-flow">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-flow">In drei Schritten zum fertigen Ergebnis.</h2></div><p class="lead">Sie brauchen kein Konto. Den Preis sehen Sie vorher, und bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p></div>
@@ -734,12 +755,14 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
   </section>
 
+
   <section class="sec" id="unterschied" aria-labelledby="h-diff">
     <div class="wrap">
       <div class="sec__head"><h2 id="h-diff">Darauf können Sie sich verlassen.</h2><p class="lead">Vor dem Start bekommen Sie einen schriftlichen Festpreis, und online geht nur, was Sie freigegeben haben. Das gilt für jeden Auftrag, auch für eine einzelne Platte.</p></div>
       <ul class="kpis" role="list"><li><b>24 h</b><h3>Antwort</h3><p>Persönlich, per Telefon oder E-Mail, wie es Ihnen lieber ist.</p></li><li><b>48 h</b><h3>Roomtour</h3><p>So schnell ist Ihr Video fertig, gerechnet ab Zahlung und vollständigen Fotos.</p></li><li><b>7 Tage</b><h3>Website</h3><p>Höchstens, je nach Paket. Sie sehen jeden Entwurf, bevor er online geht.</p></li><li><b>0 €</b><h3>Laufende Kosten</h3><p>Kein Abo. Fallen Domain oder Hosting an, sagen wir es vorher.</p></li><li><b>2</b><h3>Ansprechpartner</h3><p>Florian Dressler oder Davy Stubenrauch, vom ersten Anruf bis zum Ende.</p></li><li><b>3 in 1</b><h3>Leistungen</h3><p>Website, Roomtour und Bewertungen aus einer Hand.</p></li></ul>
     </div>
   </section>
+
 
   <section class="cine" id="erlebnis" aria-labelledby="h-cine">
     <div class="cine__media"><video id="cineVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="none"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div>
@@ -756,7 +779,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
   </section>
 
-  <div id="leistungen">
+
   <section class="scene scene--web" id="websites" aria-labelledby="h-web">
     <div class="scene__pin">
       <div class="wrap scene__grid">
@@ -765,6 +788,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <h2 id="h-web">Sichtbar werden, wo Kunden suchen.</h2>
           <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website in bis zu 7 Tagen, Sie geben sie frei.</li><li><b>Online.</b> Wir stellen sie ins Netz, mit Impressum und Datenschutz.</li></ol>
           <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Website">Website anfragen</a></div>
+          <a class="more" href="/websites">Alles über Websites<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="scene__fact">Basis-Paket mit 3 Seiten. Im Bild: unsere Referenz SPIRULI (Premium-Paket).</p>
         </div>
         <div class="scene__stage w-stage" aria-hidden="true">
@@ -775,6 +799,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       </div>
     </div>
   </section>
+
 
   <section class="scene scene--room" id="roomtours" aria-labelledby="h-room">
     <div class="scene__pin">
@@ -789,26 +814,13 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <h2 id="h-room">Gäste sehen Ihre Unterkunft, bevor sie buchen.</h2>
           <ol class="how"><li><b>Fotos.</b> Sie laden Fotos Ihrer Räume hoch, wir sagen Ihnen genau, welche.</li><li><b>Video.</b> In bis zu 48 Stunden entsteht daraus ein Rundgang in Full HD.</li><li><b>Buchungen.</b> Sie zeigen ihn auf Airbnb, Booking.com und Ihrer Website.</li></ol>
           <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div>
+          <a class="more" href="/roomtours">Alles über KI-Roomtours<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="scene__fact">Basis bis 150 m² oder ein ganzes Stockwerk. Ohne Fototermin. Im Bild: Beispiel-Roomtour.</p>
         </div>
       </div>
     </div>
   </section>
-  <!-- Before / after -->
-  <section class="sec" id="vorher-nachher" aria-labelledby="h-ba">
-    <div class="wrap">
-      <div class="ba">
-        <div><h2 id="h-ba">Vom Foto zum Video.</h2><p class="lead">Links ein ganz normales Foto, wie Sie es uns schicken. Rechts der fertige Rundgang. Ziehen Sie den Regler und wählen Sie einen Raum.</p><div class="tabs" role="tablist" aria-label="Raum wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Flur</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Wohnzimmer</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="2">Balkon</button></div></div>
-        <div class="cmp" id="cmp" role="tabpanel" aria-label="Vorher und Nachher">
-          <video id="tourVid" poster="/media/roomtour-villa.jpg" muted playsinline autoplay preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video>
-          <img class="before" id="beforeImg" src="/media/vorher-1.jpg" srcset="/media/vorher-1-md.jpg 1280w, /media/vorher-1.jpg 1920w" sizes="(max-width: 1023px) 100vw, 60vw" alt="Vorher: normales Foto des Raums" loading="lazy">
-          <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
-          <span class="tag l">Ihr Foto</span><span class="tag r">Ihre Roomtour</span>
-          <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
-        </div>
-      </div>
-    </div>
-  </section>
+
 
   <section class="scene scene--nfc" id="platten" aria-labelledby="h-plate">
     <div class="scene__pin">
@@ -817,7 +829,8 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="kicker">NFC-Platten</p>
           <h2 id="h-plate">Google-Bewertungen mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
-          <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="#nfc">Platten berechnen</a></div>
+          <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="/#nfc">Platten berechnen</a></div>
+          <a class="more" href="/nfc-platten">Alles über NFC-Platten<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
@@ -828,55 +841,27 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       </div>
     </div>
   </section>
-  </div>
 
-  <!-- NFC calculator -->
-  <section class="sec nfcband" id="nfc" aria-labelledby="h-nfc">
-    <div class="wrap calcwrap">
-      <div><h2 id="h-nfc">Wie viele Platten brauchen Sie?</h2><p class="lead">Für Restaurants empfehlen wir 5 bis 10 Stück, zum Beispiel eine pro Tisch oder Rechnungsmappe. Wählen Sie die Farbe, die zu Ihrem Betrieb passt.</p>
-        <ul class="ticks"><li>Rund, Ø 10 cm, aus Acryl</li><li>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li>Mit iPhone und Android, ohne App und ohne Akku</li></ul></div>
-      <div class="calc-card">
-        <div class="ctrl"><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß">Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz">Schwarz</button></div></div>
-        <div class="calc">
-          <div class="calc__sum"><b id="sum">150 €</b><span id="qtyLabel">für 10 Platten</span></div>
-          <div class="range"><input type="range" id="qty" min="1" max="20" value="10" aria-label="Anzahl NFC-Platten" aria-valuetext="10 Platten"></div>
-          <p class="hint" id="hint">Unsere Empfehlung für Restaurants</p>
-          <a class="btn btn--light" href="#kontakt" id="calcBuy">Platten anfragen</a>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Process -->
   <div class="band-x" id="bandx" aria-hidden="true">
     <div class="band-x__row">Websites<i></i>KI-Roomtours<i></i>NFC-Platten<i></i>Websites<i></i>KI-Roomtours<i></i></div>
     <div class="band-x__row">München<i></i>Festpreis<i></i>48 Stunden<i></i>München<i></i>Festpreis<i></i>48 Stunden<i></i></div>
   </div>
 
 
-  <!-- Prices -->
   <section class="sec night" id="preise" aria-labelledby="h-preise">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-preise">Klare Preise. Einmal zahlen, kein Abo.</h2></div><p class="lead">Startpreise für Unternehmen, zzgl. MwSt. Vor dem Start bekommen Sie immer einen schriftlichen Festpreis.</p></div>
       <div class="plans">
-        <div class="plan"><h3>Websites</h3><p>Ihr Auftritt im Netz</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, selbst bearbeitbar</p></li></ul><a class="btn btn--line" href="/anfrage/website">Fragebogen ausfüllen</a></div>
-        <div class="plan plan--top"><h3>KI-Roomtours</h3><p>Video-Rundgang aus Ihren Fotos</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>Bis 150 m² oder ein ganzes Stockwerk</p></li><li><b>Premium</b><span>nach Größe</span><p>Größere Objekte, Hotels und Villen</p></li></ul><a class="btn btn--ink" href="/anfrage/roomtour">Fotos hochladen</a></div>
-        <div class="plan"><h3>NFC-Platten</h3><p>Mehr Google-Bewertungen</p><p class="plan__big">15 € <small>pro Stück</small></p><ul class="tiers"><li><b>1 Platte</b><span>15 €</span><p>Einzeln jederzeit möglich</p></li><li><b>5 Platten</b><span>75 €</span><p>Für kleine Betriebe</p></li><li><b>10 Platten</b><span>150 €</span><p>Unsere Empfehlung für Restaurants</p></li></ul><a class="btn btn--line" href="#kontakt" data-pick="NFC-Platten">Platten anfragen</a></div>
+        <div class="plan"><h3><a class="plan__link" href="/websites">Websites</a></h3><p>Ihr Auftritt im Netz</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, selbst bearbeitbar</p></li></ul><a class="btn btn--line" href="/anfrage/website">Fragebogen ausfüllen</a></div>
+        <div class="plan plan--top"><h3><a class="plan__link" href="/roomtours">KI-Roomtours</a></h3><p>Video-Rundgang aus Ihren Fotos</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>Bis 150 m² oder ein ganzes Stockwerk</p></li><li><b>Premium</b><span>nach Größe</span><p>Größere Objekte, Hotels und Villen</p></li></ul><a class="btn btn--ink" href="/anfrage/roomtour">Fotos hochladen</a></div>
+        <div class="plan"><h3><a class="plan__link" href="/nfc-platten">NFC-Platten</a></h3><p>Mehr Google-Bewertungen</p><p class="plan__big">15 € <small>pro Stück</small></p><ul class="tiers"><li><b>1 Platte</b><span>15 €</span><p>Einzeln jederzeit möglich</p></li><li><b>5 Platten</b><span>75 €</span><p>Für kleine Betriebe</p></li><li><b>10 Platten</b><span>150 €</span><p>Unsere Empfehlung für Restaurants</p></li></ul><a class="btn btn--line" href="#kontakt" data-pick="NFC-Platten">Platten anfragen</a></div>
       </div>
       <p class="plans__note">Business- und Premium-Preise sind Richtwerte. Den genauen Preis nennen wir Ihnen nach dem ersten Gespräch.</p>
     </div>
   </section>
 
-  <!-- Difference -->
-  <section class="sec picker" id="passend" aria-labelledby="h-pick">
-    <div class="wrap picker__grid">
-      <div><h2 id="h-pick">Unsicher, was zu Ihnen passt?</h2><p class="lead">Wählen Sie Ihre Branche, und Sie sehen sofort, was wir empfehlen und was es kostet. Mit einem Klick übernehmen Sie die Empfehlung in Ihre Anfrage.</p><div class="pick-tabs" role="tablist" aria-label="Branche wählen"><button type="button" role="tab" id="t-gastro" aria-controls="r-gastro" aria-selected="true">Restaurant oder Café</button><button type="button" role="tab" id="t-ferien" aria-controls="r-ferien" aria-selected="false" tabindex="-1">Ferienwohnung oder Hotel</button><button type="button" role="tab" id="t-handel" aria-controls="r-handel" aria-selected="false" tabindex="-1">Laden oder Geschäft</button><button type="button" role="tab" id="t-handwerk" aria-controls="r-handwerk" aria-selected="false" tabindex="-1">Handwerk oder Dienstleistung</button><button type="button" role="tab" id="t-anders" aria-controls="r-anders" aria-selected="false" tabindex="-1">Etwas anderes</button></div></div>
-      <div class="rec-card"><div class="rec" role="tabpanel" id="r-gastro" aria-labelledby="t-gastro"><p class="rec__lead">Viele Gäste schauen vor dem Besuch auf Ihre Bewertungen. Mit NFC-Platten auf den Tischen ist das Bewerten ein Antippen, und Ihre Website zeigt Speisekarte, Öffnungszeiten und Anfahrt.</p><ul class="rec__list"><li><div><b>NFC-Platten</b><span>10 Stück für Tische und Rechnungsmappen</span></div><em>150 €</em></li><li><div><b>Website</b><span>3 Seiten mit Speisekarte, Anfahrt und Kontakt</span></div><em>300 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 450 €</p><a class="btn btn--ink" href="#kontakt" data-pick="NFC-Platten,Website" data-note="Empfehlung für Restaurant oder Café">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-ferien" aria-labelledby="t-ferien" hidden><p class="rec__lead">Eine Roomtour zeigt Gästen schon vor der Buchung, wie sich Ihre Unterkunft anfühlt. Eine NFC-Platte in der Wohnung holt die Bewertung nach dem Aufenthalt.</p><ul class="rec__list"><li><div><b>KI-Roomtour</b><span>Video-Rundgang aus Ihren Fotos, bis 150 m²</span></div><em>300 €</em></li><li><div><b>NFC-Platte</b><span>1 Platte für den Eingangsbereich</span></div><em>15 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 315 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour,NFC-Platten" data-note="Empfehlung für Ferienwohnung oder Hotel">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handel" aria-labelledby="t-handel" hidden><p class="rec__lead">Wer in der Nähe nach einem Laden sucht, sieht zuerst Ihr Google-Profil und Ihre Website. Wir sorgen dafür, dass beides überzeugt.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Sortiment, Öffnungszeiten und Anfahrt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Kasse und Theke</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Laden oder Geschäft">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-handwerk" aria-labelledby="t-handwerk" hidden><p class="rec__lead">Viele Kunden suchen online nach Betrieben in der Nähe. Eine klare Website mit Ihren Leistungen und echten Bewertungen macht es ihnen leicht, Sie anzufragen.</p><ul class="rec__list"><li><div><b>Website</b><span>3 Seiten mit Leistungen, Referenzen und Kontakt</span></div><em>300 €</em></li><li><div><b>NFC-Platten</b><span>5 Stück für Büro und Werkstatt</span></div><em>75 €</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Start ab</small> 375 €</p><a class="btn btn--ink" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Empfehlung für Handwerk oder Dienstleistung">Diese Empfehlung anfragen</a></div></div><div class="rec" role="tabpanel" id="r-anders" aria-labelledby="t-anders" hidden><p class="rec__lead">Sie haben etwas anderes vor oder sind sich noch unsicher? Erzählen Sie uns kurz davon. Wir melden uns innerhalb von 24 Stunden mit einem Festpreis.</p><ul class="rec__list"><li><div><b>Kurzes Gespräch</b><span>Telefon oder E-Mail, wie es Ihnen lieber ist</span></div><em>kostenlos</em></li><li><div><b>Festpreis-Angebot</b><span>Schriftlich, verbindlich, ohne versteckte Kosten</span></div><em>kostenlos</em></li></ul><div class="rec__foot"><p class="rec__sum"><small>Unverbindlich</small> 0 €</p><a class="btn btn--ink" href="#kontakt">Kurz anfragen</a></div></div></div>
-    </div>
-  </section>
 
-
-  <!-- About -->
   <section class="sec" id="team" aria-labelledby="h-team">
     <div class="wrap">
       <h2 id="h-team">Zwei Gründer aus München.</h2>
@@ -890,23 +875,21 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
   </section>
 
-  <!-- FAQ -->
+
   <section class="sec" id="fragen" aria-labelledby="h-faq">
     <div class="wrap two">
       <div><h2 id="h-faq">Häufige Fragen</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
       <div>
-        <details><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
-        <details><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Eine Roomtour ist in bis zu 48 Stunden fertig, eine Website je nach Paket in bis zu 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details><details><summary>Wann bezahle ich?<i aria-hidden="true"></i></summary><p>Erst wenn Sie unseren Festpreis bestätigt haben. Dann schicken wir Ihnen einen Zahlungslink, und sobald die Zahlung da ist, legen wir los. Gefällt Ihnen am Ergebnis etwas nicht, passen wir es gemeinsam mit Ihnen an.</p></details>
-        <details><summary>Was brauchen Sie für eine Roomtour?<i aria-hidden="true"></i></summary><p>Nur Fotos Ihrer Räume, aus mehreren Blickwinkeln. Welche genau, zeigt Ihnen unser <a class="inl" href="/anfrage/roomtour">Roomtour-Formular</a> Raum für Raum. Das Basis-Paket (300 €) gilt bis 150 m² oder ein ganzes Stockwerk. Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p></details>
-        <details><summary>Darf ich die Roomtour überall verwenden?<i aria-hidden="true"></i></summary><p>Ja. Sie bekommen das Video quer und auf Wunsch hochkant, passend für Airbnb, Booking.com, Ihre Website und Social Media.</p></details>
-        <details><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
-        <details><summary>Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></summary><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></details>
-        <details><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
+        <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
+        <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Eine Roomtour ist in bis zu 48 Stunden fertig, eine Website je nach Paket in bis zu 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details><details><summary>Wann bezahle ich?<i aria-hidden="true"></i></summary><p>Erst wenn Sie unseren Festpreis bestätigt haben. Dann schicken wir Ihnen einen Zahlungslink, und sobald die Zahlung da ist, legen wir los. Gefällt Ihnen am Ergebnis etwas nicht, passen wir es gemeinsam mit Ihnen an.</p></details>
+        <details data-on="home roomtours"><summary>Was brauchen Sie für eine Roomtour?<i aria-hidden="true"></i></summary><p>Nur Fotos Ihrer Räume, aus mehreren Blickwinkeln. Welche genau, zeigt Ihnen unser <a class="inl" href="/anfrage/roomtour">Roomtour-Formular</a> Raum für Raum. Das Basis-Paket (300 €) gilt bis 150 m² oder ein ganzes Stockwerk. Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p></details>
+        <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
+        <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
+
   <section class="contact dark" id="kontakt" aria-labelledby="h-kontakt">
     <div class="wrap contact__grid">
       <div>
@@ -943,8 +926,8 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <div class="wrap">
         <div class="foot__grid">
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
-          <div><h3>Leistungen</h3><ul><li><a href="#websites">Websites</a></li><li><a href="#roomtours">KI-Roomtours</a></li><li><a href="#platten">NFC-Platten</a></li><li><a href="#preise">Preise</a></li></ul></div>
-          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="#passend">Beratung</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#unterschied">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
+          <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="#preise">Preise</a></li></ul></div>
+          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="/#passend">Beratung</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#unterschied">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>
@@ -952,6 +935,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       </div>
     </footer>
   </section>
+
 </main>
 
 <div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#kontakt">Kostenlos anfragen</a></div>
@@ -979,7 +963,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var vh = innerHeight;
     head.classList.toggle("solid", scrollY > 10 || head.classList.contains("open"));
     head.style.setProperty("--pg", Math.min(1, scrollY / Math.max(1, document.documentElement.scrollHeight - vh)).toFixed(4));
-    dock.classList.toggle("away", scrollY < vh * .6 || kontakt.getBoundingClientRect().top < vh * .8);
+    if (dock) dock.classList.toggle("away", scrollY < vh * .6 || (kontakt && kontakt.getBoundingClientRect().top < vh * .8));
   }
   addEventListener("scroll", chrome, { passive: true }); chrome();
   function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; head.classList.toggle("open", open); chrome(); }
@@ -1017,16 +1001,16 @@ document.addEventListener("DOMContentLoaded", function () {
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
     whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
-  ["#heroVid", "#svcVid", "#tourVid", "#cineVid"].forEach(function (s) { keepPlaying($(s)); });
+  ["#heroVid", "#svcVid", "#tourVid", "#cineVid"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
   // Safari may refuse to start videos until the first touch; try again then
   ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function retry() { shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); removeEventListener(ev, retry); }, { passive: true }); });
   function setStill(s) {
     still = s; document.documentElement.classList.toggle("still", s);
     pauseBtn.setAttribute("aria-pressed", String(s)); pauseBtn.querySelector("span").textContent = s ? "Bewegung fortsetzen" : "Bewegung anhalten";
     pauseBtn.querySelector("svg").innerHTML = s ? '<path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/>' : '<rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/>';
-    var hv = $("#heroVid"); if (s) hv.pause(); else start(hv);
+    var hv = $("#heroVid"); if (hv) { if (s) hv.pause(); else start(hv); }
   }
-  if (reduce) pauseBtn.hidden = true; else pauseBtn.addEventListener("click", function () { setStill(!still); });
+  if (!pauseBtn) {} else if (reduce) pauseBtn.hidden = true; else pauseBtn.addEventListener("click", function () { setStill(!still); });
 
   /* ---------- "Was passt zu Ihrem Betrieb?" ---------- */
   var ptabs = $$(".pick-tabs [role=tab]");
@@ -1046,9 +1030,11 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   /* ---------- before / after ---------- */
-  var cmp = $("#cmp"), grip = $("#grip"), tv = $("#tourVid"), bimg = $("#beforeImg"), drag = false, touched = false;
+  var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
+  if (cmp) (function () {
+  grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
   var rooms = [[0, 3.6], [3.6, 7.3], [7.3, 11]], room = 0;
-  function setX(p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
+  setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
   cmp.addEventListener("pointermove", function (e) { if (drag) pos(e); });
@@ -1071,6 +1057,7 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   tv.addEventListener("timeupdate", function () { if (tv.currentTime >= rooms[room][1] - .05 || tv.currentTime < rooms[room][0] - .3) tv.currentTime = rooms[room][0]; });
   setX(50);
+  })();
 
   /* ---------- scenes: scroll progress 0..1 -> --a, --b, --c and the active step ---------- */
   var scenes = $$(".scene");
@@ -1087,17 +1074,21 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!G) scenes.forEach(function (sc) { sc.classList.add("static"); sceneSet(sc, 1); });
 
   /* ---------- statement words, process line (fallback without GSAP) ---------- */
-  var say = $("#say");
+  var say = $("#say"), words = [], steps = $("#steps"), stepLis = $$("#steps li");
+  if (say) {
   (function () { var html = ""; say.childNodes.forEach(function (n) { var part = n.textContent.split(/(\s+)/).map(function (x) { return /\s+/.test(x) || !x ? x : "<span>" + x + "</span>"; }).join(""); html += n.nodeType === 1 ? "<em>" + part + "</em>" : part; }); say.innerHTML = html; })();
-  var words = $$("span", say), steps = $("#steps"), stepLis = $$("#steps li");
+  words = $$("span", say);
   if (!G) {
-    words.forEach(function (w) { w.classList.add("on"); }); steps.style.setProperty("--p", 1); stepLis.forEach(function (li) { li.classList.add("lit"); });
+    words.forEach(function (w) { w.classList.add("on"); });
   }
+
+  }
+  if (steps && !G) { steps.style.setProperty("--p", 1); stepLis.forEach(function (li) { li.classList.add("lit"); }); }
 
   /* ---------- NFC: plate colour (shown on the plate in the NFC scene) ---------- */
   $$("[data-color]").forEach(function (b) { b.addEventListener("click", function () {
     $$("[data-color]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
-    $("#disc").classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
+    if ($("#disc")) $("#disc").classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
   }); });
 
   /* ---------- calculator ---------- */
@@ -1110,7 +1101,7 @@ document.addEventListener("DOMContentLoaded", function () {
     qty.style.setProperty("--fill", ((q - 1) / 19 * 100) + "%");
     $("#hint").textContent = q < 5 ? "Für Restaurants empfehlen wir 5 bis 10 Platten" : q > 10 ? "Ideal für größere Betriebe" : "Unsere Empfehlung für Restaurants";
   }
-  qty.addEventListener("input", setQty); setQty();
+  if (qty) { qty.addEventListener("input", setQty); setQty(); }
 
   /* ---------- form: sends to /api/inquiry, falls back to e-mail ---------- */
   var msg = $("#fMsg"), form = $("#form"), status = $("#status"), sendBtn = $("#send");
@@ -1121,7 +1112,7 @@ document.addEventListener("DOMContentLoaded", function () {
   $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () {
     b.getAttribute("data-pick").split(",").forEach(function (s, i) { pick(s, i === 0 ? b.getAttribute("data-note") : null); });
   }); });
-  $("#calcBuy").addEventListener("click", function () { pick("NFC-Platten", qty.value + " NFC-Platten (" + (+qty.value * 15).toLocaleString("de-DE") + " €), " + $("[data-color][aria-pressed=true]").getAttribute("data-color")); });
+  if ($("#calcBuy")) $("#calcBuy").addEventListener("click", function () { pick("NFC-Platten", qty.value + " NFC-Platten (" + (+qty.value * 15).toLocaleString("de-DE") + " €), " + $("[data-color][aria-pressed=true]").getAttribute("data-color")); });
   function err(id, text, field) { $(id).textContent = text; if (field) field.parentNode.classList.toggle("bad", !!text); return !text; }
   function note(text, ok) { status.hidden = false; status.textContent = text; status.className = "status " + (ok ? "ok" : "bad"); }
   form.addEventListener("submit", function (e) {
@@ -1139,7 +1130,8 @@ document.addEventListener("DOMContentLoaded", function () {
     var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
     body.web = { tier: services.indexOf("web") > -1 ? "Basis" : "", url: "" };
     body.roomtour = { tier: services.indexOf("roomtour") > -1 ? "Basis" : "", property: services.indexOf("roomtour") > -1 ? "Ferienwohnung" : "", area: "" };
-    body.nfc = { theme: $("[data-color][aria-pressed=true]").getAttribute("data-color"), qty: +qty.value, business: "" };
+    var col = $("[data-color][aria-pressed=true]");
+    body.nfc = { theme: col ? col.getAttribute("data-color") : "", qty: qty ? +qty.value : 0, business: "" };
     body.budget = ""; body.timeline = "";
     function mail() {
       var text = "Leistungen: " + picked.join(", ") + "\nName: " + body.name + (body.company ? "\nFirma: " + body.company : "") + (body.email ? "\nE-Mail: " + body.email : "") + (body.phone ? "\nTelefon: " + body.phone : "") + (body.message ? "\n\n" + body.message : "");
@@ -1172,7 +1164,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     // start: the headline rises, the lineup comes up from below: laptop opens, phone and plate join
     // start: on touch devices the first screen shows immediately (iPhone Safari had trouble with the 3D intro)
-    if (fine) {
+    if (fine && $("#h-start")) {
       Split.create("#h-start", { type: "lines,words", mask: "lines", linesClass: "ln", autoSplit: true, onSplit: function (self) { return G.from(self.words, { yPercent: 110, duration: 1.1, ease: out, stagger: .05, delay: .1 }); } });
       G.from(".hero__row", { opacity: 0, y: 24, duration: 1, ease: out, stagger: .1, delay: .45 });
       G.from(".lu-mac", { y: 140, opacity: 0, duration: 1.6, ease: out, delay: .35 });
@@ -1181,8 +1173,8 @@ document.addEventListener("DOMContentLoaded", function () {
       G.from(".lu-disc", { y: 180, opacity: 0, duration: 1.6, ease: out, delay: 1 });
       G.from(".lu-disc .disc", { rotation: -240, duration: 2.2, ease: out, delay: 1 });
     }
-    if (fine) G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
-    G.to("#lineup", { scale: 1.04, y: -20, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
+    if (fine && $("#hero")) G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
+    if ($("#lineup")) G.to("#lineup", { scale: 1.04, y: -20, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
     // services: each scene follows the scroll while its stage is pinned
     scenes.forEach(function (sc) {
       sceneSet(sc, 0);
@@ -1190,25 +1182,25 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     // before / after follows the scroll until grabbed
     var mix = { x: 88 };
-    G.to(mix, { x: 18, ease: "none", scrollTrigger: { trigger: "#cmp", start: "top 80%", end: "bottom 30%", scrub: .6 }, onUpdate: function () { if (!touched) setX(mix.x); } });
+    if (cmp) G.to(mix, { x: 18, ease: "none", scrollTrigger: { trigger: "#cmp", start: "top 80%", end: "bottom 30%", scrub: .6 }, onUpdate: function () { if (!touched) setX(mix.x); } });
     // process line and steps
-    G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
+    if (steps) G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
     stepLis.forEach(function (li, i) { ST.create({ trigger: steps, start: "top " + (75 - i * 7) + "%", onEnter: function () { li.classList.add("lit"); }, onLeaveBack: function () { li.classList.remove("lit"); } }); });
     // section headlines: lines rise out of a mask once, when they enter the viewport
-    var heads = $$(".sec h2, .scene h2").filter(function (h) { return !h.closest(".index"); });
+    var heads = $$(".sec h2, .scene h2, .phero h1").filter(function (h) { return !h.closest(".index"); });
     var seen = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("in"); seen.unobserve(e.target); } }); }, { rootMargin: "0px 0px -12% 0px" });
     heads.forEach(function (h) {
       Split.create(h, { type: "lines", mask: "lines", linesClass: "rl", autoSplit: true, onSplit: function (self) { self.lines.forEach(function (l, i) { l.style.transitionDelay = i * 80 + "ms"; }); } });
       seen.observe(h);
     });
     // cinematic band: the video settles from a slight zoom while it scrolls through
-    G.fromTo("#erlebnis", { "--cz": 1.16 }, { "--cz": 1, ease: "none", scrollTrigger: { trigger: "#erlebnis", start: "top bottom", end: "bottom top", scrub: .5 } });
+    if ($("#erlebnis")) G.fromTo("#erlebnis", { "--cz": 1.16 }, { "--cz": 1, ease: "none", scrollTrigger: { trigger: "#erlebnis", start: "top bottom", end: "bottom top", scrub: .5 } });
     // kinetic band: rows drift in opposite directions while scrolling
-    $$(".band-x__row").forEach(function (row, i) { G.fromTo(row, { xPercent: i ? -30 : 0 }, { xPercent: i ? 0 : -30, ease: "none", scrollTrigger: { trigger: "#bandx", start: "top bottom", end: "bottom top", scrub: .5 } }); });
+    if ($("#bandx")) $$(".band-x__row").forEach(function (row, i) { G.fromTo(row, { xPercent: i ? -30 : 0 }, { xPercent: i ? 0 : -30, ease: "none", scrollTrigger: { trigger: "#bandx", start: "top bottom", end: "bottom top", scrub: .5 } }); });
     // about: the statement lights up word by word
     // footer: the wordmark rises into place
     G.from("#footMark svg", { yPercent: 35, ease: "none", scrollTrigger: { trigger: "#footMark", start: "top bottom", end: "bottom bottom", scrub: .6 } });
-    G.to(words, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: say, start: "top 80%", end: "bottom 45%", scrub: .5 } });
+    if (say) G.to(words, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: say, start: "top 80%", end: "bottom 45%", scrub: .5 } });
     // magnetic buttons (mouse only)
     if (fine) $$(".btn--ink, .btn--champ").forEach(function (b) {
       var bx = G.quickTo(b, "x", { duration: .5, ease: "power3" }), by = G.quickTo(b, "y", { duration: .5, ease: "power3" });

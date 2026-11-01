@@ -3,7 +3,14 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 1.11. nachts: reicher, „alles drei kombiniert“ — AKTUELL
+## Stand 2.11.: Eigene Seite pro Leistung — AKTUELL
+- Kunde: „Aufbau passt noch nicht“ → gewählt: **eigene Seite pro Leistung**; „die Startseite ist das Wichtigste, Wow-Effekt, aber darf nicht kompliziert wirken“.
+- **Ein Template, mehrere Seiten**: Blöcke in `<main>` beginnen mit `<!--@home websites …-->`; `design/build.py v20` schreibt `public/site/index.html`, `websites.html`, `roomtours.html`, `nfc-platten.html` (Titel, Beschreibung, canonical, og:url je Seite; FAQ nach `data-on` gefiltert; `#`-Links zu fehlenden Abschnitten werden zu `/#…`; Link „Alles über …“ fehlt auf der eigenen Seite). Rewrites in `next.config.mjs`: `/websites`, `/roomtours`, `/nfc-platten`. Sitemap ergänzt.
+- **Startseite** (Wow, aber einfach): Start → Leistungs-Index (Zeilen führen auf die Leistungsseiten) → Ablauf → Zusagen → Kino-Band → drei Scroll-Filme (je „Alles über …“) → Schriftband → Preise (Kartentitel verlinkt) → Über uns → Fragen → Kontakt. Vorher/Nachher-Regler, Platten-Rechner und Branchen-Berater sind nicht mehr auf der Startseite (Berater `#passend` aktuell nirgends, `<!--@none-->`).
+- **Leistungsseiten**: Einstieg `.phero` (Brotkrumen, große Überschrift, Text, 2 Knöpfe, 3 Kennzahlen) → Film → Details (Roomtours: Kino-Band + Vorher/Nachher; NFC: Rechner) → **eigene Pakete** auf dunklem Band (`.feat`-Listen mit Iris-Häkchen; Websites Basis/Business/Premium mit `?paket=` zum Fragebogen; Roomtour Basis/Premium; NFC 1/5/10) → eigene Fragen (neue: Was brauchen Sie von mir, später ändern, unperfekte Fotos, jedes Handy, Belohnung für Bewertungen verboten) → Kontakt.
+- Navigation: Websites, KI-Roomtours, NFC-Platten, Preise, Über uns + „Anfragen“. Skript prüft jetzt überall, ob ein Element existiert.
+
+## Stand 1.11. nachts: reicher, „alles drei kombiniert“
 - Kunde: „immer noch zu basic, zu schlicht“ → per Abfrage gewählt: **große Bilder + dunkle Kino-Bänder + Markenfarbe**. Archiv vorher: `public/v20c/`.
 - **Markenfarbe Iris** `--iris #5b4cf0` / `--iris-soft #8b80ff`, nur dezent: Leuchten in dunklen Bändern, Lesefortschritt (Verlauf, 3 px), Häkchen der Vertrauenszeile, Glanz unter Graphit-Knöpfen beim Überfahren, Schild „Unser Schwerpunkt“.
 - **Dunkle Bänder** `.night` (Nacht `#0b0b10`, abgerundet wie die Start-Bühne, Iris-Leuchten oben rechts): **Leistungs-Index** (weiße Riesen-Namen, weiße/Glas-Knöpfe) und **Preise** (Glas-Karten, Roomtour-Karte mit Iris-Kante und weißem Knopf, Preise jetzt wirklich groß – vorher überschrieb `.plan > p` die Größe).
