@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: v23 „Plakat-Raster“, alle drei Leistungen gleich — ZUM VERGLEICH
+- Kunde zu v22: „nur für Roomtours, soll für alle Angebote sein; alle Seiten sehen ähnlich aus, komplett anderes Design und Layout“.
+- **Quelle `design/v23-template.html`** → `public/v23/index.html` (Aufruf `/v23/index.html`, noindex, robots gesperrt). Startseite v20 unverändert.
+- Stil bewusst gegen alle Vorgänger: **reines Schwarz/Weiß, harte 1,5-px-Rasterlinien, keine runden Ecken**, Plakat-Typo **Unbounded** (breit, fett) + **Geist** (Text), beide selbst gehostet in `public/v23/fonts/` (OFL, von Google Fonts geladen). Hover kehrt Flächen in Schwarz um.
+- Aufbau: Kopf als Rasterleiste → riesige Überschrift „Mehr Kunden für Ihr Unternehmen.“ → **Triptychon** mit drei gleich großen Feldern (Website: Browser scrollt SPIRULI; Roomtour: Video; NFC: Platte mit tippendem Handy) → schwarzes Laufband mit Preisen/Zeiten → drei Kapitel im Wechsel (Website, Roomtour Foto/Video, NFC mit Bewertungsfenster), je Nutzen-Überschrift, Tags, Preis, Knopf → **Paket-Rechner** „Ihr Preis in zehn Sekunden“ (Häkchen Website/Roomtour/NFC + Stückzahl, Beleg mit Summe, Versand 2,99 € unter 5 Platten, Knöpfe „Mit dieser Auswahl anfragen“ / „Direkt im Shop kaufen“) → „Warum foav.“ 4 Felder → Kontakt (Gründer + Formular, `/api/inquiry`) → Fußzeile mit riesiger Wortmarke foav.de.
+
 ## Stand: v22 komplett neu, eigene Module — ZUM VERGLEICH
 - Kunde zu v21: „immer die gleichen Module (Zeitstreifen, untereinander geschrieben), Profi-Niveau, Skills nutzen“. Mit frontend-design-Skill geplant.
 - **Quelle `design/v22-template.html`** → `public/v22/index.html` (Aufruf `/v22/index.html`, noindex, robots gesperrt). Startseite v20 unverändert.

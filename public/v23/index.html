@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>foav.de · Websites, KI-Roomtours, NFC-Platten</title>
+<meta name="description" content="Websites ab 300 €, KI-Roomtours aus Handyfotos für 300 € und NFC-Platten für Google-Bewertungen für 15 €. Zwei Gründer aus München.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preload" href="/v23/fonts/unbounded-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Unbounded"; src: url(/v23/fonts/unbounded-latin.woff2) format("woff2"); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: "Geist"; src: url(/v23/fonts/geist-latin.woff2) format("woff2"); font-weight: 300 700; font-display: swap; }
+:root { --paper: #fff; --ink: #000; --grey: #6b6b6b; --soft: #f2f2f0; --rule: 1.5px solid #000; --disp: "Unbounded", system-ui, sans-serif; --body: "Geist", system-ui, sans-serif; --g: clamp(16px, 2.6vw, 36px); }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; scroll-padding-top: 64px; }
+body { font: 400 1.0625rem/1.55 var(--body); color: var(--ink); background: var(--paper); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--disp); font-weight: 700; letter-spacing: -.03em; line-height: 1; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
+.skip { position: absolute; left: 8px; top: -60px; z-index: 99; padding: 10px 14px; background: var(--ink); color: #fff; }
+.skip:focus { top: 8px; }
+.frame { border-left: var(--rule); border-right: var(--rule); max-width: 1480px; margin: 0 auto; }
+.btn { display: inline-flex; align-items: center; justify-content: space-between; gap: 18px; min-height: 54px; padding: 0 20px; border: var(--rule); background: var(--ink); color: #fff; font-family: var(--body); font-weight: 600; font-size: 1rem; text-decoration: none; cursor: pointer; transition: background .2s, color .2s; }
+.btn:hover { background: #fff; color: var(--ink); }
+.btn--line { background: #fff; color: var(--ink); } .btn--line:hover { background: var(--ink); color: #fff; }
+.btn svg { width: 20px; height: 20px; flex: none; }
+
+/* header */
+.top { position: sticky; top: 0; z-index: 30; background: #fff; border-bottom: var(--rule); }
+.top .frame { display: grid; grid-template-columns: auto 1fr auto; align-items: stretch; height: 64px; }
+.logo { display: flex; align-items: center; padding: 0 var(--g); border-right: var(--rule); } .logo svg { width: 88px; height: auto; }
+.lg-ink, .lg-tile { fill: var(--ink); } .lg-on, .lg-amp { fill: #fff; }
+.top nav { display: flex; align-items: stretch; }
+.top nav a { display: flex; align-items: center; padding: 0 22px; border-right: var(--rule); font-weight: 500; text-decoration: none; transition: background .2s, color .2s; }
+.top nav a:hover { background: var(--ink); color: #fff; }
+.top .btn { min-height: 0; height: 100%; border: 0; border-left: var(--rule); padding: 0 26px; }
+
+/* hero */
+.hero h1 { padding: clamp(40px, 7vw, 96px) var(--g) clamp(24px, 3vw, 40px); font-size: clamp(3rem, 11.2vw, 11rem); letter-spacing: -.05em; line-height: .88; }
+.hero__sub { display: grid; grid-template-columns: 1fr 1fr; border-top: var(--rule); }
+.hero__sub p { padding: 24px var(--g); font-size: clamp(1.0625rem, 1.5vw, 1.375rem); line-height: 1.4; max-width: 40ch; }
+.hero__sub div { display: flex; align-items: center; justify-content: flex-end; gap: 0; border-left: var(--rule); }
+.hero__sub .btn { height: 100%; min-height: 72px; border: 0; padding: 0 clamp(20px, 3vw, 40px); }
+.hero__sub .btn + .btn { border-left: var(--rule); }
+
+.tri { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); border-top: var(--rule); }
+.tri__c { position: relative; display: flex; flex-direction: column; min-height: clamp(520px, 72vh, 760px); text-decoration: none; transition: background .25s, color .25s; }
+.tri__c + .tri__c { border-left: var(--rule); }
+.tri__media { position: relative; flex: 1; overflow: hidden; background: var(--soft); border-bottom: var(--rule); }
+.tri__media video, .tri__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tri__text { min-height: 112px; display: grid; grid-template-columns: 1fr auto; gap: 6px 16px; align-items: end; padding: 22px var(--g) 26px; }
+.tri__text h2 { font-size: clamp(1.5rem, 2.3vw, 2.25rem); }
+.tri__text p { grid-column: 1; color: var(--grey); transition: color .25s; }
+.tri__text b { grid-column: 2; grid-row: 1 / 3; font-family: var(--disp); font-size: clamp(1.25rem, 1.8vw, 1.75rem); font-weight: 600; white-space: nowrap; }
+.tri__c:hover { background: var(--ink); color: #fff; } .tri__c:hover .tri__text p { color: #bdbdbd; }
+.tri__tag { position: absolute; z-index: 2; left: 0; top: 0; padding: 8px 14px; background: #fff; border-right: var(--rule); border-bottom: var(--rule); font-size: .875rem; font-weight: 600; color: var(--ink); }
+/* website column: browser scrolling the reference */
+.browser { position: absolute; left: 10%; right: 10%; top: 12%; bottom: -2px; border: var(--rule); border-bottom: 0; background: #fff; overflow: hidden; }
+.browser i { display: block; height: 28px; border-bottom: var(--rule); background: radial-gradient(circle at 14px 50%, #000 4px, transparent 5px), radial-gradient(circle at 30px 50%, #000 4px, transparent 5px), radial-gradient(circle at 46px 50%, #000 4px, transparent 5px); }
+.browser img { width: 100%; animation: scrollsite 18s ease-in-out infinite alternate; }
+@keyframes scrollsite { 0%, 12% { transform: translateY(0); } 100% { transform: translateY(calc(-100% + 300px)); } }
+/* nfc column: plate with tapping phone */
+.tri__media--nfc { display: grid; place-items: center; }
+.plate { width: 58%; aspect-ratio: 1; }
+.plate svg { width: 100%; height: 100%; filter: drop-shadow(0 24px 30px rgba(0,0,0,.18)); }
+.tapper { position: absolute; width: 24%; aspect-ratio: 9 / 19; border: 6px solid #000; border-radius: 22px; background: #fff; right: 14%; top: 10%; rotate: 14deg; animation: tap 3.6s ease-in-out infinite; display: grid; place-items: center; }
+.tapper span { font-family: var(--disp); font-size: clamp(.8rem, 1.2vw, 1.2rem); text-align: center; line-height: 1.2; opacity: 0; animation: stars 3.6s ease-in-out infinite; }
+@keyframes tap { 0%, 100% { translate: 0 0; } 40%, 60% { translate: -46% 46%; } }
+@keyframes stars { 0%, 45% { opacity: 0; } 55%, 90% { opacity: 1; } 100% { opacity: 0; } }
+
+/* ticker */
+.ticker { overflow: hidden; border-bottom: var(--rule); background: var(--ink); color: #fff; }
+.ticker div { display: flex; width: max-content; animation: tick 34s linear infinite; }
+.ticker span { padding: 16px 28px; font-family: var(--disp); font-weight: 500; font-size: clamp(1rem, 1.6vw, 1.375rem); white-space: nowrap; }
+.ticker span::after { content: ""; display: inline-block; width: .5em; height: .5em; margin-left: 56px; background: #fff; vertical-align: .12em; }
+@keyframes tick { to { transform: translateX(-50%); } }
+
+/* chapters */
+.chap { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); border-bottom: var(--rule); }
+.chap--flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.chap--flip .chap__text { order: 2; border-left: var(--rule); border-right: 0; }
+.chap__text { display: flex; flex-direction: column; padding: clamp(32px, 5vw, 72px) var(--g); border-right: var(--rule); }
+.chap__k { font-weight: 600; margin-bottom: 26px; }
+.chap h2 { font-size: clamp(2rem, 4vw, 3.75rem); letter-spacing: -.045em; }
+.chap__text > p { margin-top: 22px; color: var(--grey); max-width: 44ch; }
+.inc { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; list-style: none; }
+.inc li { padding: 7px 12px; border: var(--rule); font-size: .9375rem; font-weight: 500; }
+.chap__buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 40px; }
+.chap__buy b { font-family: var(--disp); font-size: clamp(2rem, 3.4vw, 3rem); font-weight: 700; letter-spacing: -.04em; }
+.chap__buy b small { font-family: var(--body); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--grey); }
+.chap__media { position: relative; min-height: clamp(380px, 46vw, 640px); background: var(--soft); overflow: hidden; }
+.chap__media > img, .chap__media > video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pair { position: absolute; inset: 0; display: grid; grid-template-columns: 1fr 1fr; }
+.pair figure { position: relative; overflow: hidden; } .pair figure + figure { border-left: var(--rule); }
+.pair img, .pair video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.pair figcaption { position: absolute; left: 0; bottom: 0; padding: 8px 14px; background: #fff; border-top: var(--rule); border-right: var(--rule); font-size: .875rem; font-weight: 600; }
+.devices { position: absolute; inset: 0; }
+.devices .lap { position: absolute; left: 6%; right: 22%; top: 14%; border: 8px solid #000; border-bottom-width: 14px; background: #000; }
+.devices .lap img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.devices .mob { position: absolute; right: 6%; bottom: 8%; width: 24%; aspect-ratio: 9 / 19.5; border: 7px solid #000; border-radius: 26px; overflow: hidden; background: #000; }
+.devices .mob img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.gr { position: absolute; left: 10%; right: 10%; top: 50%; translate: 0 -50%; display: grid; grid-template-columns: 1fr 1fr; gap: 0; border: var(--rule); background: #fff; }
+.gr > div { display: flex; flex-direction: column; justify-content: center; padding: 6%; }
+.gr > div + div { border-left: var(--rule); }
+.gr .disc-w svg { width: 100%; }
+.gr strong { font-family: var(--disp); font-size: clamp(1.2rem, 2vw, 1.8rem); line-height: 1.1; }
+.gr .stars { margin-top: 14px; display: flex; gap: 4px; } .gr .stars svg { width: clamp(18px, 2vw, 28px); height: auto; fill: #000; }
+.gr small { margin-top: 12px; color: var(--grey); }
+
+/* configurator */
+.build { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); border-bottom: var(--rule); }
+.build__l { padding: clamp(32px, 5vw, 72px) var(--g); border-right: var(--rule); }
+.build h2 { font-size: clamp(2rem, 4vw, 3.75rem); letter-spacing: -.045em; }
+.build__l > p { margin-top: 16px; color: var(--grey); max-width: 46ch; }
+.opts { margin-top: 36px; border-top: var(--rule); }
+.opt { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 18px; padding: 18px 0; border-bottom: var(--rule); cursor: pointer; }
+.opt input[type=checkbox] { appearance: none; -webkit-appearance: none; width: 28px; height: 28px; border: var(--rule); background: #fff; cursor: pointer; display: grid; place-items: center; }
+.opt input[type=checkbox]:checked { background: #000; }
+.opt input[type=checkbox]:checked::after { content: ""; width: 9px; height: 15px; border: solid #fff; border-width: 0 3px 3px 0; rotate: 45deg; translate: 0 -2px; }
+.opt b { display: block; font-family: var(--disp); font-weight: 600; font-size: clamp(1.05rem, 1.5vw, 1.35rem); }
+.opt span { display: block; color: var(--grey); font-size: .9375rem; }
+.opt em { font-style: normal; font-family: var(--disp); font-weight: 600; white-space: nowrap; }
+.qty { display: inline-flex; border: var(--rule); margin-top: 10px; }
+.qty button { width: 40px; height: 38px; border: 0; background: #fff; cursor: pointer; font-size: 1.25rem; }
+.qty button:hover { background: #000; color: #fff; }
+.qty output { min-width: 48px; display: grid; place-items: center; border-left: var(--rule); border-right: var(--rule); font-weight: 600; }
+.bill { display: flex; flex-direction: column; padding: clamp(32px, 5vw, 72px) var(--g); background: var(--soft); }
+.bill h3 { font-family: var(--body); font-size: 1rem; font-weight: 600; letter-spacing: 0; }
+.bill ul { list-style: none; margin-top: 18px; border-top: var(--rule); }
+.bill li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px dashed #000; }
+.bill li.empty { color: var(--grey); }
+.bill__sum { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; margin-top: 22px; }
+.bill__sum b { font-family: var(--disp); font-size: clamp(2.6rem, 5vw, 4.4rem); letter-spacing: -.05em; line-height: 1; }
+.bill__note { margin-top: 10px; font-size: .9375rem; color: var(--grey); }
+.bill__go { display: grid; gap: 10px; margin-top: auto; padding-top: 32px; }
+
+/* reasons grid */
+.why { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-bottom: var(--rule); }
+.why h2 { grid-column: 1 / -1; padding: clamp(32px, 5vw, 72px) var(--g) clamp(24px, 3vw, 40px); font-size: clamp(2rem, 4vw, 3.75rem); letter-spacing: -.045em; border-bottom: var(--rule); }
+.why div { padding: 28px var(--g) 36px; }
+.why div + div { border-left: var(--rule); }
+.why h3 { font-size: clamp(1.15rem, 1.5vw, 1.4rem); line-height: 1.15; }
+.why p { margin-top: 12px; color: var(--grey); }
+
+/* contact */
+.talk { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); border-bottom: var(--rule); }
+.talk__l { padding: clamp(32px, 5vw, 72px) var(--g); border-right: var(--rule); }
+.talk h2 { font-size: clamp(2.2rem, 5vw, 4.6rem); letter-spacing: -.05em; }
+.people { margin-top: 36px; border-top: var(--rule); }
+.people a { display: grid; grid-template-columns: 56px 1fr auto; align-items: center; gap: 16px; padding: 16px 0; border-bottom: var(--rule); text-decoration: none; }
+.people a:hover strong { text-decoration: underline; }
+.people i { display: grid; place-items: center; width: 56px; height: 56px; background: #000; color: #fff; font-style: normal; font-family: var(--disp); font-weight: 600; }
+.people strong { display: block; font-weight: 600; } .people span { color: var(--grey); font-size: .9375rem; }
+.people em { font-style: normal; font-weight: 600; white-space: nowrap; }
+form { display: flex; flex-direction: column; padding: clamp(32px, 5vw, 72px) var(--g); background: var(--soft); }
+form label { display: block; margin-top: 18px; font-weight: 600; }
+form label:first-child { margin-top: 0; }
+form input[type=text] { display: block; width: 100%; height: 56px; margin-top: 8px; padding: 0 16px; border: var(--rule); border-radius: 0; background: #fff; }
+form input[type=text]:focus { outline: 3px solid #000; outline-offset: -3px; }
+form .bad { outline: 3px solid #c4231a; outline-offset: -3px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.chips label { margin: 0; position: relative; }
+.chips input { position: absolute; opacity: 0; }
+.chips span { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border: var(--rule); background: #fff; font-weight: 500; cursor: pointer; }
+.chips input:checked + span { background: #000; color: #fff; }
+.chips input:focus-visible + span { outline: 3px solid #000; outline-offset: 2px; }
+.consent { display: flex !important; gap: 12px; align-items: flex-start; font-weight: 400 !important; font-size: .9375rem; color: var(--grey); }
+.consent input { flex: none; width: 22px; height: 22px; accent-color: #000; margin-top: 1px; }
+form .btn { margin-top: 26px; }
+.status { margin-top: 16px; padding: 12px 14px; border: var(--rule); font-size: .9375rem; }
+.status.bad { border-color: #c4231a; color: #8d1a13; }
+.hp { position: absolute; left: -9999px; }
+
+.foot .frame { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 22px var(--g) calc(22px + env(safe-area-inset-bottom)); font-size: .9375rem; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.foot a { text-decoration: none; } .foot a:hover { text-decoration: underline; }
+.big { overflow: hidden; border-top: var(--rule); }
+.big p { font-family: var(--disp); font-weight: 800; font-size: 21.5vw; line-height: .8; letter-spacing: -.07em; padding: 2vw 0 0 1vw; white-space: nowrap; max-width: 1480px; margin: 0 auto; }
+
+@media (prefers-reduced-motion: reduce) { .browser img, .tapper, .tapper span, .ticker div { animation: none; } .tapper span { opacity: 1; } html { scroll-behavior: auto; } }
+@media (min-width: 1480px) { .big p { font-size: 318px; } }
+@media (max-width: 1000px) {
+  .top nav a:not(.btn) { display: none; }
+  .top .frame { grid-template-columns: auto 1fr auto; }
+  .hero__sub, .chap, .chap--flip, .build, .talk { grid-template-columns: 1fr; }
+  .hero__sub div { border-left: 0; border-top: var(--rule); justify-content: stretch; }
+  .hero__sub .btn { flex: 1; min-height: 60px; }
+  .tri { grid-template-columns: 1fr; }
+  .tri__c + .tri__c { border-left: 0; border-top: var(--rule); }
+  .tri__c { min-height: 0; } .tri__media { aspect-ratio: 4 / 3; flex: none; }
+  .chap__text, .chap--flip .chap__text { order: 2; border: 0; border-top: var(--rule); }
+  .chap__media { min-height: 0; aspect-ratio: 4 / 3; }
+  .build__l, .talk__l { border-right: 0; border-bottom: var(--rule); }
+  .why { grid-template-columns: 1fr 1fr; }
+  .why div:nth-of-type(3) { border-left: 0; }
+  .why div:nth-of-type(n+3) { border-top: var(--rule); }
+}
+@media (max-width: 560px) {
+  .hero h1 { font-size: 9.4vw; }
+  .why { grid-template-columns: 1fr; } .why div + div { border-left: 0; border-top: var(--rule); }
+  .hero__sub .btn + .btn { display: none; }
+  .people a { grid-template-columns: 48px 1fr; } .people i { width: 48px; height: 48px; } .people em { grid-column: 2; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#inhalt">Zum Inhalt springen</a>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
+  <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
+  <symbol id="disc" viewBox="-100 -100 200 200">
+    <circle r="99.5" style="fill:var(--disc-bg,#fff)"/>
+    <g fill="none" stroke-width="5.5"><circle r="83" stroke="#FBBC05" stroke-dasharray="130.4 400"/><circle r="83" stroke="#34A853" stroke-dasharray="130.4 400" transform="rotate(90)"/><circle r="83" stroke="#4285F4" stroke-dasharray="130.4 400" transform="rotate(180)"/><circle r="83" stroke="#EA4335" stroke-dasharray="130.4 400" transform="rotate(270)"/></g>
+    <g style="fill:var(--disc-ink,#202124);stroke:var(--disc-ink,#202124)" font-family="-apple-system, BlinkMacSystemFont, 'Helvetica Neue', Inter, Arial, sans-serif" text-anchor="middle">
+      <text y="-55" font-size="10.5" font-weight="600" stroke="none" letter-spacing=".4">TAP HERE</text>
+      <g fill="none" stroke-width="1.3"><path d="M-27 -38v-8h8M19 -46h8v8M27 -8v8h-8M-19 0h-8v-8"/><rect x="-10" y="-36" width="17" height="29" rx="3"/><path d="M-4.5 -32h6"/><circle cx="-1.5" cy="-11" r="1.6"/><path d="M-15 -30a9 9 0 0 1 6-7M-19 -31a14 14 0 0 1 10-11"/></g>
+      <text x="16" y="-30" font-size="9" font-weight="600" stroke="none">NFC</text>
+      <text y="30" font-size="36" font-weight="500" stroke="none" letter-spacing="-1.2"><tspan fill="#4285F4" style="fill:#4285F4">G</tspan><tspan style="fill:#EA4335">o</tspan><tspan style="fill:#FBBC05">o</tspan><tspan style="fill:#4285F4">g</tspan><tspan style="fill:#34A853">l</tspan><tspan style="fill:#EA4335">e</tspan></text>
+      <g style="fill:#FBBC05" stroke="none"><use href="#discStar" x="-28" y="48"/><use href="#discStar" x="-14" y="48"/><use href="#discStar" x="0" y="48"/><use href="#discStar" x="14" y="48"/><use href="#discStar" x="28" y="48"/></g>
+      <text y="70" font-size="11" font-weight="500" stroke="none">Review Us On</text>
+    </g>
+    <circle r="99.5" fill="url(#discSheen)"/>
+  </symbol>
+</defs></svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="star" viewBox="0 0 24 24"><path d="m12 2.2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.4l-6.2 3.7 1.6-7L2 9.4l7.1-.6z"/></symbol></defs></svg>
+<header class="top"><div class="frame">
+  <a class="logo" href="/" aria-label="foav.de Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
+  <nav aria-label="Hauptnavigation"><a href="#website">Websites</a><a href="#roomtour">KI-Roomtours</a><a href="#nfc">NFC-Platten</a><a href="#paket">Preise</a><a href="/shop">Shop</a></nav>
+  <a class="btn" href="#kontakt">Anfragen</a>
+</div></header>
+
+<main id="inhalt" class="frame">
+  <section class="hero" aria-labelledby="h1"><div>
+    <h1 id="h1">Mehr Kunden für Ihr Unternehmen.</h1>
+    <div class="hero__sub">
+      <p>Drei Werkzeuge aus einer Hand: eine Website, die Anfragen bringt, ein Video-Rundgang aus Ihren Handyfotos und Google-Bewertungen mit einem Antippen. Mit Festpreis vorab, ohne Abo.</p>
+      <div><a class="btn" href="#kontakt">Kostenlos anfragen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a><a class="btn btn--line" href="#paket">Preis ausrechnen</a></div>
+    </div>
+    <div class="tri">
+      <a class="tri__c" href="#website">
+        <div class="tri__media"><span class="tri__tag">Referenz: SPIRULI</span><div class="browser" aria-hidden="true"><i></i><img src="/media/ref-spiruli-desk.webp" alt=""></div></div>
+        <div class="tri__text"><h2>Website</h2><p>Gefunden werden und Anfragen bekommen.</p><b>ab 300 €</b></div>
+      </a>
+      <a class="tri__c" href="#roomtour">
+        <div class="tri__media"><span class="tri__tag">Beispiel aus Handyfotos</span><video id="v1" muted loop playsinline autoplay preload="metadata" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video></div>
+        <div class="tri__text"><h2>KI-Roomtour</h2><p>Ihre Räume als Video, ohne Filmteam.</p><b>300 €</b></div>
+      </a>
+      <a class="tri__c" href="#nfc">
+        <div class="tri__media tri__media--nfc"><span class="tri__tag">Weiß oder Schwarz</span><span class="plate" aria-hidden="true"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="tapper" aria-hidden="true"><span>★★★★★</span></span></div>
+        <div class="tri__text"><h2>NFC-Platte</h2><p>Handy dranhalten, Google-Bewertung schreiben.</p><b>15 €</b></div>
+      </a>
+    </div>
+  </div></section>
+
+  <div class="ticker" aria-hidden="true"><div>
+    <span>Website mit 3 Seiten ab 300 €</span><span>Online in höchstens 7 Tagen</span><span>KI-Roomtour bis 150 m² für 300 €</span><span>Fertig in 48 Stunden</span><span>NFC-Platte 15 €</span><span>Versand ab 5 Stück kostenlos</span>
+    <span>Website mit 3 Seiten ab 300 €</span><span>Online in höchstens 7 Tagen</span><span>KI-Roomtour bis 150 m² für 300 €</span><span>Fertig in 48 Stunden</span><span>NFC-Platte 15 €</span><span>Versand ab 5 Stück kostenlos</span>
+  </div></div>
+
+  <section class="chap" id="website" aria-labelledby="h-web">
+    <div class="chap__text">
+      <p class="chap__k">Website</p>
+      <h2 id="h-web">Wer Sie sucht, soll Sie finden. Und anfragen.</h2>
+      <p>Wir bauen Ihre Website klar, schnell auf dem Handy und mit allem, was rechtlich dazugehört. Sie beantworten einen Fragebogen, den Rest machen wir.</p>
+      <ul class="inc" role="list"><li>3 Seiten im Basis-Paket</li><li>Impressum und Datenschutz</li><li>Kontaktformular</li><li>Texte auf Wunsch von uns</li></ul>
+      <div class="chap__buy"><b><small>ab </small>300 €</b><a class="btn" href="/anfrage/website">Fragebogen starten <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></div>
+    </div>
+    <div class="chap__media"><div class="devices" aria-hidden="true"><div class="lap"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" loading="lazy"></div><div class="mob"><img src="/media/ref-spiruli-mob.webp" alt="" loading="lazy"></div></div></div>
+  </section>
+
+  <section class="chap chap--flip" id="roomtour" aria-labelledby="h-room">
+    <div class="chap__media"><div class="pair"><figure><img src="/media/vorher-2-md.jpg" alt="Handyfoto eines Wohnzimmers" loading="lazy"><figcaption>Ihr Foto</figcaption></figure><figure><video id="v2" muted loop playsinline autoplay preload="none" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video><figcaption>Unser Video</figcaption></figure></div></div>
+    <div class="chap__text">
+      <p class="chap__k">KI-Roomtour</p>
+      <h2 id="h-room">Kunden sehen Ihre Räume, bevor sie kommen.</h2>
+      <p>Sie fotografieren jeden Raum mit dem Handy, unsere KI macht daraus einen Video-Rundgang in Full HD. Für Ferienwohnungen, Hotels, Makler, Läden, Restaurants und Praxen.</p>
+      <ul class="inc" role="list"><li>bis 150 m² oder ein Stockwerk</li><li>quer und hochkant</li><li>fertig in 48 Stunden</li><li>Sie prüfen vor der Veröffentlichung</li></ul>
+      <div class="chap__buy"><b>300 €</b><a class="btn" href="/anfrage/roomtour">Fotos senden <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></div>
+    </div>
+  </section>
+
+  <section class="chap" id="nfc" aria-labelledby="h-nfc">
+    <div class="chap__text">
+      <p class="chap__k">NFC-Platte</p>
+      <h2 id="h-nfc">Zufriedene Gäste. Mehr Sterne bei Google.</h2>
+      <p>Die Platte liegt auf dem Tisch, an der Kasse oder in der Rechnungsmappe. Gäste halten ihr Handy dran, und Ihre Bewertungsseite öffnet sich. Ohne App, auf iPhone und Android.</p>
+      <ul class="inc" role="list"><li>Ø 10 cm, Acryl</li><li>Weiß oder Schwarz</li><li>mit Ihrem Google-Profil verknüpft</li><li>keine laufenden Kosten</li></ul>
+      <div class="chap__buy"><b>15 € <small>pro Stück</small></b><a class="btn" href="/shop?weiss=5">Im Shop bestellen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a></div>
+    </div>
+    <div class="chap__media"><div class="gr" aria-hidden="true"><div class="disc-w"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></div><div><strong>Wie war Ihr Besuch?</strong><span class="stars"><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg><svg viewBox="0 0 24 24"><use href="#star"/></svg></span><small>Öffnet sich direkt nach dem Antippen</small></div></div></div>
+  </section>
+
+  <section class="build" id="paket" aria-labelledby="h-build">
+    <div class="build__l">
+      <h2 id="h-build">Ihr Preis in zehn Sekunden.</h2>
+      <p>Wählen Sie aus, was Sie brauchen. Der Preis rechts ist der Startpreis, den genauen Festpreis bekommen Sie schriftlich vor dem Start.</p>
+      <div class="opts">
+        <label class="opt"><input type="checkbox" data-k="web" data-p="300" data-n="Website, Basis mit 3 Seiten" checked><div><b>Website</b><span>Basis mit 3 Seiten, größere Pakete ab 690 €</span></div><em>300 €</em></label>
+        <label class="opt"><input type="checkbox" data-k="room" data-p="300" data-n="KI-Roomtour bis 150 m²"><div><b>KI-Roomtour</b><span>bis 150 m² oder ein Stockwerk</span></div><em>300 €</em></label>
+        <div class="opt"><input type="checkbox" id="nfcOn" data-k="nfc" data-p="15" data-n="NFC-Platten" aria-label="NFC-Platten"><div><b>NFC-Platten</b><span>15 € pro Stück, Versand ab 5 Stück kostenlos</span><div class="qty"><button type="button" id="minus" aria-label="Eine Platte weniger">−</button><output id="qty" aria-live="polite">5</output><button type="button" id="plus" aria-label="Eine Platte mehr">+</button></div></div><em id="nfcP">75 €</em></div>
+      </div>
+    </div>
+    <div class="bill" aria-live="polite">
+      <h3>Ihre Auswahl</h3>
+      <ul id="lines"></ul>
+      <div class="bill__sum"><span>Gesamt</span><b id="sum">0 €</b></div>
+      <p class="bill__note">Einmal zahlen, kein Abo. Bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p>
+      <div class="bill__go"><a class="btn" href="#kontakt" id="toForm">Mit dieser Auswahl anfragen <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></a><a class="btn btn--line" href="/shop" id="toShop">Direkt im Shop kaufen</a></div>
+    </div>
+  </section>
+
+  <section class="why" aria-labelledby="h-why">
+    <h2 id="h-why">Warum foav.</h2>
+    <div><h3>Preis vorher schriftlich.</h3><p>Alle Startpreise stehen auf dieser Seite. Vor dem Start bekommen Sie ein festes Angebot.</p></div>
+    <div><h3>Schnell fertig.</h3><p>Roomtour in 48 Stunden, Website in höchstens 7 Tagen, Platten nach Zahlung im Versand.</p></div>
+    <div><h3>KI, wo sie hilft.</h3><p>Für Roomtours nutzen wir aktuelle KI-Videomodelle. Jedes Ergebnis prüfen wir selbst.</p></div>
+    <div><h3>Ein Ansprechpartner.</h3><p>Alles aus einer Hand. Sie sprechen immer direkt mit einem der beiden Gründer.</p></div>
+  </section>
+
+  <section class="talk" id="kontakt" aria-labelledby="h-talk">
+    <div class="talk__l">
+      <h2 id="h-talk">Lassen Sie uns reden.</h2>
+      <div class="people">
+        <a href="tel:+4915566456417"><i aria-hidden="true">FD</i><div><strong>Florian Dressler</strong><span>Gründer</span></div><em>+49 155 66456417</em></a>
+        <a href="tel:+4917656612709"><i aria-hidden="true">DS</i><div><strong>Davy Stubenrauch</strong><span>Gründer</span></div><em>+49 176 56612709</em></a>
+        <a href="mailto:fd.solutions@web.de"><i aria-hidden="true">@</i><div><strong>E-Mail</strong><span>Antwort innerhalb eines Tages</span></div><em>fd.solutions@web.de</em></a>
+      </div>
+    </div>
+    <form id="form" novalidate>
+      <label>Was interessiert Sie?</label>
+      <div class="chips"><label><input type="checkbox" name="s" value="web"><span>Website</span></label><label><input type="checkbox" name="s" value="roomtour"><span>KI-Roomtour</span></label><label><input type="checkbox" name="s" value="nfc"><span>NFC-Platten</span></label></div>
+      <label for="fName">Ihr Name</label><input type="text" id="fName" autocomplete="name">
+      <label for="fContact">Telefon oder E-Mail</label><input type="text" id="fContact" autocomplete="email">
+      <label for="fMsg">Ihr Unternehmen (optional)</label><input type="text" id="fMsg" placeholder="z. B. Café in Schwabing">
+      <input class="hp" type="text" id="fWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <label class="consent"><input type="checkbox" id="fOk"><span>Ich bin einverstanden, dass foav.de meine Angaben nutzt, um zu antworten (<a href="/datenschutz">Datenschutz</a>).</span></label>
+      <button class="btn" type="submit" id="send">Anfrage senden <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
+      <p class="status" id="status" role="status" hidden></p>
+    </form>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="frame"><p>© foav.de, München</p><nav aria-label="Rechtliches"><a href="/shop">Shop</a><a href="/impressum">Impressum</a><a href="/agb">AGB</a><a href="/widerruf">Widerruf</a><a href="/datenschutz">Datenschutz</a></nav></div>
+  <div class="big" aria-hidden="true"><p>foav.de</p></div>
+</footer>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function play(v) { if (!v || reduce) return; if (v.preload === "none") v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+  var vids = [$("#v1"), $("#v2")];
+  if ("IntersectionObserver" in window) { var io = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? play(e.target) : e.target.pause(); }); }, { threshold: .15 }); vids.forEach(function (v) { io.observe(v); }); }
+  addEventListener("touchstart", function () { vids.forEach(function (v) { if (v.getBoundingClientRect().top < innerHeight) play(v); }); }, { once: true, passive: true });
+
+  /* configurator */
+  var q = 5, boxes = $$(".opt input[type=checkbox]");
+  function euro(n) { return n.toLocaleString("de-DE") + " €"; }
+  function calc() {
+    var lines = [], sum = 0, ship = 0;
+    boxes.forEach(function (b) {
+      if (!b.checked) return;
+      var price = +b.dataset.p * (b.dataset.k === "nfc" ? q : 1);
+      lines.push([b.dataset.k === "nfc" ? q + " NFC-Platten" : b.dataset.n, price]); sum += price;
+      if (b.dataset.k === "nfc" && q < 5) ship = 2.99;
+    });
+    if (ship) { lines.push(["Versand", ship]); sum += ship; }
+    $("#lines").innerHTML = lines.length ? lines.map(function (l) { return "<li><span>" + l[0] + "</span><span>" + (l[0] === "Versand" ? "2,99 €" : euro(l[1])) + "</span></li>"; }).join("") : '<li class="empty">Noch nichts ausgewählt</li>';
+    $("#sum").textContent = (Math.round(sum * 100) / 100).toLocaleString("de-DE", { minimumFractionDigits: sum % 1 ? 2 : 0 }) + " €";
+    $("#qty").textContent = q; $("#nfcP").textContent = euro(q * 15);
+    var shop = [], room = $('[data-k="room"]').checked, nfc = $("#nfcOn").checked;
+    if (nfc) shop.push("weiss=" + q); if (room) shop.push("roomtour=1");
+    $("#toShop").hidden = !(room || nfc) || $('[data-k="web"]').checked;
+    $("#toShop").href = "/shop?" + shop.join("&");
+  }
+  boxes.forEach(function (b) { b.addEventListener("change", calc); });
+  $("#minus").addEventListener("click", function () { q = Math.max(1, q - 1); $("#nfcOn").checked = true; calc(); });
+  $("#plus").addEventListener("click", function () { q = Math.min(100, q + 1); $("#nfcOn").checked = true; calc(); });
+  calc();
+  $("#toForm").addEventListener("click", function () {
+    var map = { web: "web", room: "roomtour", nfc: "nfc" };
+    boxes.forEach(function (b) { var c = $('.chips input[value="' + map[b.dataset.k] + '"]'); if (c) c.checked = b.checked; });
+    if ($("#nfcOn").checked) $("#fMsg").value = $("#fMsg").value || (q + " NFC-Platten");
+  });
+
+  /* form */
+  var form = $("#form"), status = $("#status"), btn = $("#send");
+  function note(t, ok) { status.hidden = false; status.textContent = t; status.className = "status" + (ok ? "" : " bad"); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); status.hidden = true;
+    var picked = $$('.chips input:checked').map(function (c) { return c.value; });
+    var n = $("#fName"), c = $("#fContact"), name = n.value.trim(), cv = c.value.trim(), isMail = cv.indexOf("@") > -1, msg = $("#fMsg").value.trim();
+    var okC = isMail ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cv) : /^[+()\d\s/-]{6,24}$/.test(cv);
+    n.classList.toggle("bad", name.length < 2); c.classList.toggle("bad", !okC);
+    if (!picked.length) return note("Bitte wählen Sie mindestens eine Leistung.", false);
+    if (name.length < 2) { n.focus(); return note("Bitte tragen Sie Ihren Namen ein.", false); }
+    if (!okC) { c.focus(); return note(cv ? "Bitte prüfen Sie Telefonnummer oder E-Mail." : "Bitte tragen Sie Telefon oder E-Mail ein.", false); }
+    if (!$("#fOk").checked) return note("Bitte setzen Sie das Häkchen, damit wir antworten dürfen.", false);
+    var body = { services: picked, name: name, company: msg, email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: msg, consent: true, website: $("#fWeb").value, addOns: [], budget: "", timeline: "",
+      web: { tier: picked.indexOf("web") > -1 ? "Basis" : "", url: "" }, roomtour: { tier: picked.indexOf("roomtour") > -1 ? "Basis" : "", property: picked.indexOf("roomtour") > -1 ? "Räume" : "", area: "" }, nfc: { theme: "", qty: picked.indexOf("nfc") > -1 ? q : 0, business: "" } };
+    var labels = { web: "Website", roomtour: "KI-Roomtour", nfc: "NFC-Platten" };
+    function mail() { location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über foav.de") + "&body=" + encodeURIComponent("Leistungen: " + picked.map(function (p) { return labels[p]; }).join(", ") + "\nName: " + name + "\nKontakt: " + cv + (msg ? "\nUnternehmen: " + msg : "")); note("Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Bitte dort noch auf Senden tippen.", true); }
+    btn.disabled = true;
+    fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { r: r, d: d }; }); })
+      .then(function (x) { if (x.r.ok) { form.reset(); note("Danke, Ihre Anfrage ist angekommen. Wir melden uns innerhalb eines Tages.", true); } else if (x.r.status === 422 && x.d.errors) note(Object.keys(x.d.errors).map(function (k) { return x.d.errors[k]; })[0], false); else mail(); })
+      .catch(mail).then(function () { btn.disabled = false; });
+  });
+})();
+</script>
+</body>
+</html>
