@@ -588,7 +588,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .phero__facts b { display: block; font-family: var(--head); font-size: clamp(36px, 4.4vw, 72px); font-weight: 600; line-height: 1; letter-spacing: -.05em; color: var(--ink); white-space: nowrap; }
 .phero__facts span { display: block; margin-top: 10px; color: var(--muted); }
 .feat { list-style: none; display: grid; gap: 12px; margin: 26px 0 30px; padding-top: 22px; border-top: 1px solid var(--line); }
-.feat li { display: flex; gap: 10px; align-items: flex-start; } .feat svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--iris-soft); }
+.feat li { display: flex; gap: 10px; align-items: flex-start; } .feat svg { flex: none; width: 18px; height: 18px; margin-top: 3px; color: var(--iris); } .night .feat svg { color: var(--iris-soft); }
 .night .feat { border-color: rgba(255,255,255,.1); color: rgba(255,255,255,.82); }
 .more { display: inline-flex; align-items: center; gap: 8px; margin-top: 16px; font-weight: 600; color: var(--ink); text-decoration: none; }
 .more svg { width: 18px; height: 18px; transition: transform .3s; } .more:hover svg { transform: translateX(4px); }
@@ -598,6 +598,26 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .phero__facts { grid-template-columns: 1fr; } .phero__facts li, .phero__facts li + li { padding: 18px 0; border-left: 0; border-bottom: 1px solid var(--line); }
   .phero .cta { width: 100%; } .phero .cta .btn { flex: 1 1 auto; padding: 0 16px; }
 }
+
+/* ---------- "for whom" + real project */
+.fw { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin-top: clamp(40px, 5vw, 64px); }
+.fw li { display: flex; flex-direction: column; padding: 28px 24px; border-radius: 22px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .3s, transform .3s var(--ease); }
+.fw li:hover { box-shadow: inset 0 0 0 1px rgba(91,76,240,.45), 0 20px 50px -30px rgba(91,76,240,.6); transform: translateY(-2px); }
+.fw h3 { font-size: 1.1875rem; letter-spacing: -.02em; }
+.fw p { margin-top: 10px; font-size: 1rem; color: var(--muted); }
+.fw .fw__price { margin-top: auto; padding-top: 22px; font-family: var(--head); font-size: 2rem; font-weight: 600; letter-spacing: -.04em; color: var(--ink); }
+.fw__price small { font-family: var(--font); font-size: .875rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.fw .more { margin-top: 10px; }
+.case-x__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.case-x__kicker { color: var(--iris) !important; font-weight: 600; }
+.case-x h2 { margin-top: 12px; max-width: 16ch; font-size: clamp(34px, 3.8vw, 60px); }
+.case-x .lead { margin-top: 18px; }
+.case-x .btn { margin-top: 8px; }
+.case-x__media { position: relative; padding: 0 6% 6% 0; }
+.case-x__media .iphone { position: absolute; right: 0; bottom: 0; width: 22%; }
+.team__note { margin-top: 28px; max-width: 46ch; font-size: 1.0625rem; color: var(--text); }
+@media (max-width: 1023px) { .fw { grid-template-columns: 1fr 1fr; } .case-x__grid { grid-template-columns: 1fr; } }
+@media (max-width: 560px) { .fw { grid-template-columns: 1fr; } }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
@@ -685,7 +705,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap hero__top">
       <h1 id="h-start">Mehr Kunden für Ihren Betrieb.</h1>
       <div class="hero__row">
-        <p class="hero__sub">Wir erstellen Websites, KI-Roomtour-Videos aus Ihren Fotos und NFC-Platten für Google-Bewertungen. Den Preis sehen Sie vorher, bestellt ist in wenigen Minuten.</p>
+        <p class="hero__sub">Ihre Website in bis zu 7 Tagen, ein Video-Rundgang aus Ihren Handyfotos in 48 Stunden und Google-Bewertungen mit einem Antippen. Den Preis sehen Sie vorher, die Anfrage dauert eine Minute.</p>
         <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#preise">Preise ansehen</a></div>
       </div>
       <ul class="trust" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 48 Stunden bis 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zwei Gründer aus München als Ansprechpartner</li></ul>
@@ -745,6 +765,19 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   </section>
 
 <!--@home-->
+  <section class="sec" id="fuer-wen" aria-labelledby="h-fw">
+    <div class="wrap">
+      <div class="sec__head"><div><h2 id="h-fw">Das passt zu Ihrem Betrieb.</h2></div><p class="lead">Vier typische Fälle und womit wir anfangen würden. Ihr Betrieb ist nicht dabei? Fragen Sie uns einfach.</p></div>
+      <ul class="fw" role="list">
+        <li><h3>Restaurant oder Café</h3><p>Platten auf den Tischen für mehr Bewertungen, eine Website mit Speisekarte, Öffnungszeiten und Anfahrt.</p><p class="fw__price"><small>Start ab</small> 450 €</p><a class="more" href="#kontakt" data-pick="NFC-Platten,Website" data-note="Restaurant oder Café">Anfragen<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><h3>Ferienwohnung oder Hotel</h3><p>Ein Video-Rundgang für Airbnb und Booking.com, dazu eine Platte in der Wohnung für die Bewertung nach dem Aufenthalt.</p><p class="fw__price"><small>Start ab</small> 315 €</p><a class="more" href="/anfrage/roomtour">Fotos hochladen<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><h3>Laden oder Geschäft</h3><p>Eine Website mit Sortiment und Anfahrt, Platten an Kasse und Theke.</p><p class="fw__price"><small>Start ab</small> 375 €</p><a class="more" href="#kontakt" data-pick="Website,NFC-Platten" data-note="Laden oder Geschäft">Anfragen<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+        <li><h3>Handwerk oder Dienstleistung</h3><p>Eine Website, die Ihre Leistungen klar zeigt und Anfragen bringt. Bewertungen holen Sie mit der Platte im Büro.</p><p class="fw__price"><small>Start ab</small> 375 €</p><a class="more" href="/anfrage/website">Fragebogen starten<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></li>
+      </ul>
+    </div>
+  </section>
+
+<!--@home-->
   <section class="sec" id="ablauf" aria-labelledby="h-flow">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-flow">In drei Schritten zum fertigen Ergebnis.</h2></div><p class="lead">Sie brauchen kein Konto. Den Preis sehen Sie vorher, und bezahlt wird erst, wenn Sie den Festpreis bestätigt haben.</p></div>
@@ -760,7 +793,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="sec" id="unterschied" aria-labelledby="h-diff">
     <div class="wrap">
       <div class="sec__head"><h2 id="h-diff">Darauf können Sie sich verlassen.</h2><p class="lead">Vor dem Start bekommen Sie einen schriftlichen Festpreis, und online geht nur, was Sie freigegeben haben. Das gilt für jeden Auftrag, auch für eine einzelne Platte.</p></div>
-      <ul class="kpis" role="list"><li><b>24 h</b><h3>Antwort</h3><p>Persönlich, per Telefon oder E-Mail, wie es Ihnen lieber ist.</p></li><li><b>48 h</b><h3>Roomtour</h3><p>So schnell ist Ihr Video fertig, gerechnet ab Zahlung und vollständigen Fotos.</p></li><li><b>7 Tage</b><h3>Website</h3><p>Höchstens, je nach Paket. Sie sehen jeden Entwurf, bevor er online geht.</p></li><li><b>0 €</b><h3>Laufende Kosten</h3><p>Kein Abo. Fallen Domain oder Hosting an, sagen wir es vorher.</p></li><li><b>2</b><h3>Ansprechpartner</h3><p>Florian Dressler oder Davy Stubenrauch, vom ersten Anruf bis zum Ende.</p></li><li><b>3 in 1</b><h3>Leistungen</h3><p>Website, Roomtour und Bewertungen aus einer Hand.</p></li></ul>
+      <ul class="kpis" role="list"><li><b>24 h</b><h3>Antwort</h3><p>Persönlich, per Telefon oder E-Mail, wie es Ihnen lieber ist.</p></li><li><b>48 h</b><h3>Roomtour</h3><p>So schnell ist Ihr Video fertig, gerechnet ab Zahlung und vollständigen Fotos.</p></li><li><b>7 Tage</b><h3>Website</h3><p>Höchstens, je nach Paket. Sie sehen jeden Entwurf, bevor er online geht.</p></li><li><b>0 €</b><h3>Laufende Kosten</h3><p>Kein Abo. Fallen Domain oder Hosting an, sagen wir es vorher.</p></li><li><b>2</b><h3>Ansprechpartner</h3><p>Florian Dressler oder Davy Stubenrauch, vom ersten Anruf bis zum Ende.</p></li><li><b>1 Min.</b><h3>Anfrage</h3><p>Name und Telefon oder E-Mail genügen. Den Rest klären wir im Gespräch.</p></li></ul>
     </div>
   </section>
 
@@ -903,6 +936,29 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
   </section>
 
+<!--@home websites-->
+  <section class="sec case-x" id="referenz" aria-labelledby="h-ref">
+    <div class="wrap">
+      <div class="case-x__grid">
+        <div class="case-x__text">
+          <p class="cine__kicker case-x__kicker">Ein Projekt von uns</p>
+          <h2 id="h-ref">SPIRULI: online so stark wie im Regal.</h2>
+          <p class="lead">Für die Marke SPIRULI haben wir einen kompletten Auftritt gestaltet und umgesetzt, im Premium-Paket.</p>
+          <ul class="feat" role="list">
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>Startseite mit großer Produktbühne und Scroll-Animationen</li>
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>Zutaten, Nährwerte und Fragen übersichtlich erklärt</li>
+            <li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy und Computer gebaut</li>
+          </ul>
+          <a class="btn btn--light" href="/anfrage/website?paket=Premium">So eine Website anfragen</a>
+        </div>
+        <div class="case-x__media" aria-hidden="true">
+          <div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" loading="lazy"></div></div><div class="mac__base"></div></div>
+          <div class="iphone"><div class="iphone__screen"><img src="/media/ref-spiruli-mob.webp" alt="" loading="lazy" style="width:100%;height:auto"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 <!--@home-->
   <div class="band-x" id="bandx" aria-hidden="true">
     <div class="band-x__row">Websites<i></i>KI-Roomtours<i></i>NFC-Platten<i></i>Websites<i></i>KI-Roomtours<i></i></div>
@@ -940,6 +996,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <div class="person"><span class="mono" aria-hidden="true">FD</span><h3>Florian Dressler</h3><p>Gründer</p><a class="link" href="tel:+4915566456417">+49 155 66456417</a></div>
           <div class="person"><span class="mono" aria-hidden="true">DS</span><h3>Davy Stubenrauch</h3><p>Gründer</p><a class="link" href="tel:+4917656612709">+49 176 56612709</a></div>
         </div>
+        <p class="team__note">Sie erreichen uns direkt: Rufen Sie an oder schreiben Sie uns, und einer von uns beiden meldet sich.</p>
       </div>
     </div>
   </section>

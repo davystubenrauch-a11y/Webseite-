@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 2.11.: Eigene Seite pro Leistung — AKTUELL
+## Stand 2.11. abends: Überzeugungs-Durchgang (persuasion-audit + frontend-design + humanizer) — AKTUELL
+- Befund: Weg zum Kauf ist leicht genug; **Bremse ist Vertrauen/Belege** (keine Kunden, vage Start-Zusage „Mehr Kunden“, SPIRULI nur klein sichtbar, schwache Kennzahlen „3 in 1“/„2“, Leser sieht nicht, ob es zu seinem Betrieb passt). Keine erfundenen Bewertungen.
+- Umgesetzt: Start-Text **konkret** („Ihre Website in bis zu 7 Tagen, ein Video-Rundgang aus Ihren Handyfotos in 48 Stunden und Google-Bewertungen mit einem Antippen …“); Kennzahl „3 in 1“ → **„1 Min. Anfrage“**; neuer Abschnitt **„Das passt zu Ihrem Betrieb.“** `#fuer-wen` (4 Karten: Restaurant 450 €, Ferienwohnung 315 €, Laden 375 €, Handwerk 375 €, je Knopf mit Vorauswahl); neuer Abschnitt **Referenz SPIRULI** `#referenz` (Startseite + /websites; MacBook + iPhone, 3 Fakten, „So eine Website anfragen“ → Fragebogen Premium); Über uns mit direktem Satz zur Erreichbarkeit.
+- Startseite jetzt: Start → Leistungs-Index → Für wen → Ablauf → Zusagen → Kino-Band → drei Filme → Referenz → Schriftband → Preise → Über uns → Fragen → Kontakt.
+- Noch nötig für mehr Vertrauen: **echte Fotos der Gründer**, Firmenname + Adresse, erste echte Kundenstimmen (Name, Betrieb, Ergebnis, Erlaubnis).
+
+## Stand 2.11.: Eigene Seite pro Leistung
 - Kunde: „Aufbau passt noch nicht“ → gewählt: **eigene Seite pro Leistung**; „die Startseite ist das Wichtigste, Wow-Effekt, aber darf nicht kompliziert wirken“.
 - **Ein Template, mehrere Seiten**: Blöcke in `<main>` beginnen mit `<!--@home websites …-->`; `design/build.py v20` schreibt `public/site/index.html`, `websites.html`, `roomtours.html`, `nfc-platten.html` (Titel, Beschreibung, canonical, og:url je Seite; FAQ nach `data-on` gefiltert; `#`-Links zu fehlenden Abschnitten werden zu `/#…`; Link „Alles über …“ fehlt auf der eigenen Seite). Rewrites in `next.config.mjs`: `/websites`, `/roomtours`, `/nfc-platten`. Sitemap ergänzt.
 - **Startseite** (Wow, aber einfach): Start → Leistungs-Index (Zeilen führen auf die Leistungsseiten) → Ablauf → Zusagen → Kino-Band → drei Scroll-Filme (je „Alles über …“) → Schriftband → Preise (Kartentitel verlinkt) → Über uns → Fragen → Kontakt. Vorher/Nachher-Regler, Platten-Rechner und Branchen-Berater sind nicht mehr auf der Startseite (Berater `#passend` aktuell nirgends, `<!--@none-->`).
