@@ -36,11 +36,18 @@ export default function Datenschutz() {
         dem EU-US Data Privacy Framework zertifiziert. Wir löschen die Dateien spätestens drei Monate nach Abschluss des Auftrags, auf Wunsch
         sofort. Bitte laden Sie keine Fotos hoch, auf denen Personen zu erkennen sind.
       </p>
-      <h2>5. Schriftarten</h2>
+      <h2>5. Bestellungen und Zahlung</h2>
+      <p>
+        Wenn Sie im Shop bestellen, verarbeiten wir Name, E-Mail, Telefon (freiwillig), Lieferadresse und den Namen Ihres Betriebs, um die
+        Bestellung auszuführen (Art. 6 Abs. 1 lit. b DSGVO). Die Zahlung wickelt Stripe Payments Europe Ltd. (Dublin, Irland) ab; Ihre
+        Zahlungsdaten gibt Stripe nicht an uns weiter. Rechnungsdaten bewahren wir nach den gesetzlichen Fristen auf (Art. 6 Abs. 1 lit. c
+        DSGVO).
+      </p>
+      <h2>6. Schriftarten</h2>
       <p>Die verwendeten Schriftarten werden lokal von unserem Server ausgeliefert. Es findet keine Verbindung zu Servern von Google statt.</p>
-      <h2>6. Cookies und Tracking</h2>
+      <h2>7. Cookies und Tracking</h2>
       <p>Diese Website setzt keine Tracking-Cookies und keine Analyse-Tools ein.</p>
-      <h2>7. Ihre Rechte</h2>
+      <h2>8. Ihre Rechte</h2>
       <p>
         Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch
         (Art. 15–21 DSGVO) und können eine erteilte Einwilligung jederzeit widerrufen. Zudem besteht ein Beschwerderecht bei einer

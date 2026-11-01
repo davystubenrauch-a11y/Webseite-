@@ -157,6 +157,7 @@ export function Shell({ title, lead, steps, done, children }: { title: string; l
           <nav aria-label="Rechtliches">
             <a href="/impressum">Impressum</a>
             <a href="/agb">AGB</a>
+            <a href="/widerruf">Widerruf</a>
             <a href="/datenschutz">Datenschutz</a>
           </nav>
         </div>

@@ -763,7 +763,11 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc:hover .cmpc__stage { transform: translateY(-4px); }
 .cmpc--web .mac { width: 78%; transform: translateY(8%); }
 .cmpc--room { --t: 0; }
-.cmpc--room .iphone { position: relative; right: auto; bottom: auto; width: auto; height: 82%; aspect-ratio: 9 / 19.5; z-index: 2; }
+.cmpc--room .iphone { position: relative; right: auto; bottom: auto; width: auto; height: 86%; aspect-ratio: 9 / 19.5; z-index: 2; transform: translateY(4%); }
+.cmpc--room .iphone__screen video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.rt-chip { position: absolute; left: 50%; bottom: 7%; z-index: 3; display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; background: rgba(255,255,255,.92); box-shadow: 0 10px 30px -12px rgba(0,0,0,.35); font-size: .8125rem; font-weight: 600; color: var(--ink); transform: translateX(-50%); white-space: nowrap; }
+.rt-chip i { width: 8px; height: 8px; border-radius: 50%; background: #e5484d; animation: rec 1.4s ease-in-out infinite; }
+@keyframes rec { 50% { opacity: .3; } }
 .rt-ph { position: absolute; top: 50%; width: 34%; aspect-ratio: 4 / 3; object-fit: cover; border: 5px solid #fff; border-radius: 8px; box-shadow: 0 18px 30px -16px rgba(0,0,0,.35); }
 .rt-ph1 { left: 9%; transform: translateY(-62%) rotate(-7deg); }
 .rt-ph2 { right: 9%; transform: translateY(-38%) rotate(6deg); }
@@ -786,6 +790,30 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpx__all li { display: inline-flex; align-items: center; gap: 8px; }
 .cmpx__all svg { width: 18px; height: 18px; color: var(--ink); }
 @media (max-width: 1023px) { .cmpx__grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; gap: 56px; } .cmpc__tag { min-height: 0; } }
+
+/* ---------- process: three steps side by side, each with what you actually see */
+.jour { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr) 72px minmax(0, 1fr) 72px minmax(0, 1fr); align-items: start; margin-top: clamp(40px, 5vw, 72px); }
+.jstage { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 4.2; padding: 22px; border-radius: 28px; background: linear-gradient(180deg, #f5f5f7, #eaeaef); overflow: hidden; }
+.jstage--dark { background: linear-gradient(180deg, #2a2a2e, #141416); }
+.jstage .win { width: 100%; } .jstage .win__body { padding: 16px 18px 18px; } .jstage .win__h { font-size: 1.125rem; margin-bottom: 8px; }
+.jstage .prow { padding: 10px 0; } .jstage .prow b { font-size: 1.25rem; } .jstage .prow small { font-size: .75rem; } .jstage .prow span { font-size: .9375rem; }
+.jstage .fp__phone { width: 54%; }
+.jstage .app { font-size: 11px; gap: 6px; } .jstage .app__h { font-size: 15px; } .jstage .app__chips span { font-size: 10px; padding: 4px 8px; }
+.jstage .mail { width: 100%; padding: 16px; } .jstage .mail__txt { font-size: .8125rem; } .jstage .mail__btns span { padding: 8px 12px; font-size: .75rem; }
+.jno { margin-top: 26px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 600; }
+.jstep h3 { margin-top: 14px; font-size: 1.5rem; letter-spacing: -.025em; }
+.jstep > p:last-child { margin-top: 8px; color: var(--muted); max-width: 34ch; }
+.jlink { align-self: start; display: grid; justify-items: center; gap: 6px; margin-top: calc((100vw - 0px) * 0); padding-top: 9vw; color: var(--muted); font-size: .8125rem; font-weight: 600; text-align: center; }
+.jlink svg { width: 40px; height: 12px; color: var(--ink); }
+.jstep { opacity: 1; transform: none; transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.gs .jour:not(.in) .jstep { opacity: 0; transform: translateY(28px); }
+.gs .jour .jstep:nth-child(3) { transition-delay: .18s; } .gs .jour .jstep:nth-child(5) { transition-delay: .36s; }
+@media (min-width: 1500px) { .jlink { padding-top: 140px; } }
+@media (max-width: 1023px) {
+  .jour { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .jlink { padding: 18px 0; } .jlink svg { transform: rotate(90deg); }
+}
+@media (prefers-reduced-motion: reduce) { .gs .jour:not(.in) .jstep { opacity: 1; transform: none; } }
 
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
@@ -876,10 +904,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 <header class="head" id="head"><span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap head__in">
     <a class="logo" href="/" aria-label="FOAV – zur Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
-    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/#angebot">Preise</a><a href="/#team">Über uns</a></nav>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#kontakt">Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/#ablauf">Ablauf</a><a href="/#angebot">Preise</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
 
@@ -949,7 +977,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Was Ihre Roomtour kostet.</h2></div><p class="lead">Einmal zahlen, das Video gehört Ihnen. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p></div>
-      <div class="plans"><div class="plan plan--top"><h3>Basis</h3><p>Wohnung, Ferienwohnung, Apartment</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder ein ganzes Stockwerk</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Full HD, quer und auf Wunsch hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in bis zu 48 Stunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Änderungen gemeinsam mit Ihnen</li></ul><a class="btn btn--light" href="/anfrage/roomtour">Fotos hochladen</a></div><div class="plan"><h3>Premium</h3><p>Häuser, Hotels, Villen</p><p class="plan__big">nach Größe</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 150 m² oder mehrere Etagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Preis nach Fläche und Detailgrad</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--line" href="#kontakt" data-pick="Roomtour">Festpreis anfragen</a></div></div>
+      <div class="plans"><div class="plan plan--top"><h3>Basis</h3><p>Wohnung, Ferienwohnung, Apartment</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder ein ganzes Stockwerk</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Full HD, quer und auf Wunsch hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in bis zu 48 Stunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Änderungen gemeinsam mit Ihnen</li></ul><a class="btn btn--light" href="/shop?roomtour=1">Jetzt kaufen</a></div><div class="plan"><h3>Premium</h3><p>Häuser, Hotels, Villen</p><p class="plan__big">nach Größe</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 150 m² oder mehrere Etagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Preis nach Fläche und Detailgrad</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--line" href="#kontakt" data-pick="Roomtour">Festpreis anfragen</a></div></div>
       <p class="plans__note">Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p>
     </div>
   </section>
@@ -1019,12 +1047,12 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <div class="wrap">
         <div class="foot__grid">
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
-          <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/#angebot">Preise</a></li></ul></div>
+          <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
           <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#angebot">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>
-        <div class="foot__base"><span>© <span id="year">2026</span> foav.de, München</span><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/agb">AGB</a><a href="/datenschutz">Datenschutz</a><a class="totop" href="#start">Nach oben</a></nav></div>
+        <div class="foot__base"><span>© <span id="year">2026</span> foav.de, München</span><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/agb">AGB</a><a href="/widerruf">Widerruf</a><a href="/datenschutz">Datenschutz</a><a class="totop" href="#start">Nach oben</a></nav></div>
       </div>
     </footer>
   </section>
@@ -1094,7 +1122,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
     whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
-  ["#heroVid", "#svcVid", "#tourVid", "#cineVid"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
+  ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#cmpVid"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
   // Safari may refuse to start videos until the first touch; try again then
   ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function retry() { shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); removeEventListener(ev, retry); }, { passive: true }); });
   function setStill(s) {
@@ -1122,6 +1150,9 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     if (!reduce) whileVisible(flow, function () { if (!user && !timer) { show(cur); timer = setInterval(next, 6000); } }, function () { clearInterval(timer); timer = 0; flow.classList.remove("run"); }, .35);
   })();
+
+  var jour = $("#jour");
+  if (jour) new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { jour.classList.add("in"); o.disconnect(); } }, { threshold: .2 }).observe(jour);
 
   /* ---------- "Was passt zu Ihrem Betrieb?" ---------- */
   var ptabs = $$(".pick-tabs [role=tab]");
@@ -1223,7 +1254,8 @@ document.addEventListener("DOMContentLoaded", function () {
   $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () {
     b.getAttribute("data-pick").split(",").forEach(function (s, i) { pick(s, i === 0 ? b.getAttribute("data-note") : null); });
   }); });
-  if ($("#calcBuy")) $("#calcBuy").addEventListener("click", function () { pick("NFC-Platten", qty.value + " NFC-Platten (" + (+qty.value * 15).toLocaleString("de-DE") + " €), " + $("[data-color][aria-pressed=true]").getAttribute("data-color")); });
+  function calcLink() { var b = $("#calcBuy"), c = $("[data-color][aria-pressed=true]"); if (b && qty) b.href = "/shop?" + (c && c.getAttribute("data-color") === "Schwarz" ? "schwarz=" : "weiss=") + qty.value; }
+  if (qty) { qty.addEventListener("input", calcLink); $$("[data-color]").forEach(function (x) { x.addEventListener("click", calcLink); }); calcLink(); }
   function err(id, text, field) { $(id).textContent = text; if (field) field.parentNode.classList.toggle("bad", !!text); return !text; }
   function note(text, ok) { status.hidden = false; status.textContent = text; status.className = "status " + (ok ? "ok" : "bad"); }
   form.addEventListener("submit", function (e) {

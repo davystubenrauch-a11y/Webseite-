@@ -88,7 +88,7 @@ export default function Agb() {
       <h2>10. Verbraucher</h2>
       <p>
         Sind Sie Verbraucher, steht Ihnen ein gesetzliches Widerrufsrecht zu. Einzelheiten und das Muster-Widerrufsformular finden Sie in unserer
-        Widerrufsbelehrung. [Widerrufsbelehrung ergänzen, z. B. über einen Rechtstexte-Dienst.]
+        <a href="/widerruf">Widerrufsbelehrung</a>.
       </p>
 
       <h2>11. Schlussbestimmungen</h2>

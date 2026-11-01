@@ -8,9 +8,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/websites`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/roomtours`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/nfc-platten`, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${base}/shop`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/anfrage/website`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/anfrage/roomtour`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/impressum`, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${base}/widerruf`, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/agb`, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/datenschutz`, changeFrequency: "yearly", priority: 0.2 },
   ];

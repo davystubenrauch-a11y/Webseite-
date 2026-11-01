@@ -49,6 +49,7 @@ export default function LegalPage({ title, children }: { title: string; children
           <nav aria-label="Rechtliches">
             <a href="/impressum">Impressum</a>
             <a href="/agb">AGB</a>
+            <a href="/widerruf">Widerruf</a>
             <a href="/datenschutz">Datenschutz</a>
           </nav>
         </div>

@@ -3,7 +3,16 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Vergleich statt Zahlen-Kacheln — AKTUELL
+## Stand: Reihenfolge, neuer Ablauf, Shop — AKTUELL
+- „Was brauchen Sie?“: Roomtour-Spalte zeigt jetzt das **echte Video auf einem iPhone** (`#cmpVid`, `roomtour-villa-960.mp4`, über `keepPlaying`) mit Chip „Roomtour läuft“ (roter Punkt).
+- Startseite: Start → Was brauchen Sie? → **drei Leistungs-Filme** → **So einfach geht’s** (Ablauf) → SPIRULI → Über uns → Fragen → Kontakt.
+- **Ablauf neu** `#jour`: drei Schritte gleichzeitig sichtbar nebeneinander, je mit Bild (Browser-Preisliste, iPhone-Anfrage, E-Mail „Ihre Roomtour ist fertig“ auf dunkler Bühne), Pfeile mit Zeit („1 Minute“, „am selben Tag“), Nummer, Titel, Text; Karten steigen gestaffelt auf. Reiter-Version `#flow` entfällt.
+- **Shop `/shop`** (`components/shop/Shop.tsx`, `lib/shop.ts`, `app/api/checkout`): NFC-Platte Weiß/Schwarz 15 €, KI-Roomtour Basis 300 €; Mengen per +/−, Vorauswahl per URL (`?weiss=5&schwarz=2&roomtour=1`); **Versand 2,99 €, ab 5 Platten kostenlos** (Hinweis „Noch X Platten …“); Formular Name, E-Mail, Telefon, Betrieb bei Google + Lieferadresse (nur bei Platten), AGB/Widerruf/Datenschutz, Knopf „Zahlungspflichtig bestellen für …“. **Zahlung über Stripe Checkout, sobald `STRIPE_SECRET_KEY` gesetzt ist**; sonst Bestellung per Resend/Webhook bzw. fertige E-Mail. `/shop/danke` nach Zahlung. Platten-Bilder `public/media/disc-weiss.svg` / `disc-schwarz.svg` aus der Vektor-Platte.
+- **Offen:** Steuerhinweis in `lib/shop.ts` (`vatNote`, Kleinunternehmer oder 19 % MwSt.); Stripe-Konto + Schlüssel in Vercel.
+- **Widerrufsbelehrung** `/widerruf` (Muster nach EGBGB, inkl. Dienstleistungen/vorzeitiges Erlöschen), verlinkt in AGB, Shop, allen Fußzeilen, Sitemap. Datenschutz um „Bestellungen und Zahlung (Stripe)“ ergänzt.
+- Verlinkung: Navigation „Shop“ statt „Preise“; NFC-Knöpfe → `/shop?weiss=5`, NFC-Pakete „1/5/10 bestellen“, Rechner „In den Warenkorb“ (Menge + Farbe), Roomtour-Basis „Jetzt kaufen“.
+
+## Stand: Vergleich statt Zahlen-Kacheln
 - Kunde: „Zeit-Kacheln (48 h, 24 h) unübersichtlich, nicht konkret, zu KI-mäßig; überschaubar, deutlich, trotzdem Wow und Profi-Designsprache“. Archiv vorher: `public/v20d/`.
 - Leistungs-Index (Riesen-Schrift) + Zusagen-Bento ersetzt durch **„Was brauchen Sie?“** `#angebot` = Vergleich wie Apples „Modelle vergleichen“: drei Spalten (Website / KI-Roomtour / NFC-Platte) mit Produkt-Bühne (MacBook mit SPIRULI, iPhone mit Wohnung, schräge Platte), Name, Ein-Satz-Nutzen, Preis, Knopf + „Mehr erfahren“, darunter gleiche Zeilen **Sie schicken uns / Sie bekommen / Fertig / Passt zu**. Darunter für alle: Festpreis vorab, Freigabe, kein Abo, Antwort innerhalb eines Tages. Bento `#unterschied` = `@none`.
 - Startseite jetzt: Start → Was brauchen Sie? → Ablauf → drei Filme → SPIRULI → Über uns → Fragen → Kontakt.
