@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Angebote direkt nach dem Start, Filme mobil repariert — AKTUELL
+## Stand: Geräte im Start anklickbar, Roomtour-Handy groß — AKTUELL
+- Kunde: „auf der Startseite die verschiedenen Dinge anklicken können und direkt zum Angebot geführt werden; bei ‚Was brauchen Sie?‘ soll die Roomtour auf dem ganzen Bildschirm des Handys laufen“.
+- Start-Bühne: `.hs` mit drei Links über den Geräten (Laptop → `#websites`, Handy → `#roomtours`, Platte → `#platten`), sichtbar als weiße Schildchen „Website ab 300 €“ / „KI-Roomtour 300 €“ / „NFC-Platte 15 €“ mit pulsierendem Punkt; Überfahren färbt das Schild schwarz und hebt das Gerät 10 px an (`:has`). Funktioniert auch über dem Handy-Bild `hero-lineup.webp`. Klick-Test per Playwright (Desktop + Handy) ok.
+- „Was brauchen Sie?“: Roomtour-iPhone viel größer (104 % Höhe, unten angeschnitten), Video füllt den ganzen Bildschirm, Chip „Roomtour läuft“ oben links.
+
+## Stand: Angebote direkt nach dem Start, Filme mobil repariert
 - Kunde: „was uns ausmacht darf nicht als eigene Seite agieren, höchstens klein dranhängen; direkt als Zweites unsere Angebote; Angebots-Überschriften überzeugend; Animationen verbessern, auch auf dem Handy“.
 - `#warum` (Vergleich Klassischer Dreh / Mit foav) **nur noch auf /roomtours** (`<!--@roomtours-->`), Navigation ohne „Warum foav“. Startseite: Start → **Was brauchen Sie?** → drei Filme → Ablauf → …
 - Stärken im Start nur noch **klein als Häkchen-Zeilen** (`.hero__usps`): Günstige Festpreise – ab 15 €, kein Abo / Profi-Qualität dank KI – Ergebnisse auf hohem Niveau / KI-Roomtours – aus Handyfotos, ohne Filmteam.

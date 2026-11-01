@@ -1013,6 +1013,39 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .scene .more { margin-top: 10px; }
   .n-toast { bottom: 0; }
 }
+
+/* ---------- start: each product in the picture is a link to its offer ---------- */
+.hs { position: absolute; inset: 0; z-index: 3; }
+.hs__a { position: absolute; display: block; border-radius: 18px; text-decoration: none; -webkit-tap-highlight-color: transparent; }
+.hs-web { left: 18%; right: 20%; top: 14%; bottom: 8%; }
+.hs-room { right: 1%; width: 19%; top: 34%; bottom: 2%; }
+.hs-nfc { left: 0; width: 25%; bottom: 0; height: 32%; }
+.hs__a span { position: absolute; display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px 9px 12px; border-radius: 999px; background: rgba(255,255,255,.94); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); box-shadow: 0 10px 30px -12px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.06); font-size: .875rem; font-weight: 600; color: var(--ink); white-space: nowrap; transition: transform .35s var(--ease), background .25s, color .25s; }
+.hs__a span::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 0 rgba(29,29,31,.35); animation: hsPulse 2.4s ease-out infinite; }
+.hs__a span b { font-weight: 600; color: var(--muted); }
+.hs-web span { left: 50%; top: -6%; translate: -50% 0; }
+.hs-room span { right: 0; top: -14%; }
+.hs-nfc span { left: 4%; top: -26%; }
+.hs__a:hover span, .hs__a:focus-visible span { background: var(--ink); color: #fff; transform: translateY(-3px); }
+.hs__a:hover span b, .hs__a:focus-visible span b { color: #c7c7cc; }
+.hs__a:hover span::before, .hs__a:focus-visible span::before { background: #fff; }
+@keyframes hsPulse { 0% { box-shadow: 0 0 0 0 rgba(29,29,31,.35); } 70%, 100% { box-shadow: 0 0 0 9px rgba(29,29,31,0); } }
+.lu { transition: translate .5s var(--ease); }
+.hero__stage:has(.hs-web:hover) .lu-mac, .hero__stage:has(.hs-room:hover) .lu-phone, .hero__stage:has(.hs-nfc:hover) .lu-disc { translate: 0 -10px; }
+@media (max-width: 700px) {
+  .hs-web { left: 12%; right: 22%; top: 8%; bottom: 10%; }
+  .hs-room { right: 0; width: 24%; top: 26%; bottom: 0; }
+  .hs-nfc { left: 0; width: 34%; height: 36%; }
+  .hs__a span { padding: 6px 10px 6px 9px; font-size: .75rem; gap: 6px; }
+  .hs__a span b { display: none; }
+  .hs-web span { top: -2%; } .hs-room span { top: -12%; } .hs-nfc span { top: -18%; left: 2%; }
+}
+@media (prefers-reduced-motion: reduce) { .hs__a span::before { animation: none; } }
+
+/* ---------- "Was brauchen Sie?": the roomtour fills the whole phone screen, phone large ---------- */
+.cmpc--room .iphone { height: 104%; transform: translateY(14%); }
+.cmpc--room .iphone__screen { inset: 2.4%; border-radius: 13% / 6%; }
+.cmpc--room .rt-chip { left: 16px; top: 16px; bottom: auto; translate: none; transform: none; }
 </style>
 </head>
 <body>
@@ -1065,6 +1098,11 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     </div>
     <div class="hero__stage">
     <img class="lineup-img" src="/media/hero-lineup.webp" alt="Beispiele von foav.de: Website auf dem Laptop, Roomtour-Video auf dem Handy und eine NFC-Platte" width="1026" height="708">
+    <nav class="hs" aria-label="Unsere Angebote">
+      <a class="hs__a hs-web" href="#websites"><span>Website <b>ab 300 €</b></span></a>
+      <a class="hs__a hs-room" href="#roomtours"><span>KI-Roomtour <b>300 €</b></span></a>
+      <a class="hs__a hs-nfc" href="#platten"><span>NFC-Platte <b>15 €</b></span></a>
+    </nav>
     <div class="lineup" id="lineup" aria-hidden="true">
       <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt=""></div></div><div class="mac__base"></div></div></div>
       <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt=""><video id="heroVid" poster="/media/tour-md-2.jpg" muted loop playsinline autoplay preload="metadata"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div></div></div>
