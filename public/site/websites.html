@@ -753,6 +753,35 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 @media (max-width: 560px) { .bt--b { grid-template-columns: 1fr; } .bt--b img { display: none; } .minif { grid-template-columns: 1fr; } .flow__stage { padding: 18px; } }
 @media (prefers-reduced-motion: reduce) { .fp--on > *, .app__ok { animation: none; } }
 
+/* ---------- comparison: three services side by side, Apple "compare models" style */
+.cmpx__head { max-width: 760px; margin: 0 auto; text-align: center; }
+.cmpx__head h2 { margin: 0 auto; max-width: none; }
+.cmpx__head .lead { margin: 18px auto 0; }
+.cmpx__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: clamp(40px, 5vw, 72px); }
+.cmpc { display: flex; flex-direction: column; text-align: center; }
+.cmpc__stage { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; border-radius: 28px; overflow: hidden; background: linear-gradient(180deg, #f5f5f7, #e9e9ee); transition: transform .6s var(--ease); }
+.cmpc:hover .cmpc__stage { transform: translateY(-4px); }
+.cmpc--web .mac { width: 78%; transform: translateY(8%); }
+.cmpc--room { --t: 0; }
+.cmpc--room .iphone { position: relative; right: auto; bottom: auto; width: 31%; transform: translateY(14%) rotate(-4deg); }
+.cmpc--room .cmpc__stage { background: linear-gradient(180deg, #f4efe8, #e9e1d6); }
+.cmpc--nfc .disc { width: 46%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg) translateY(6%); filter: drop-shadow(0 30px 30px rgba(0,0,0,.18)); }
+.cmpc h3 { margin-top: 28px; font-size: clamp(26px, 2.2vw, 34px); letter-spacing: -.035em; }
+.cmpc__tag { margin: 10px auto 0; max-width: 30ch; color: var(--muted); min-height: 3.1em; }
+.cmpc__price { margin-top: 18px; font-family: var(--head); font-size: clamp(34px, 3vw, 46px); font-weight: 600; letter-spacing: -.045em; color: var(--ink); }
+.cmpc__price small { font-family: var(--font); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--muted); }
+.cmpc__cta { display: flex; flex-direction: column; align-items: center; gap: 4px; margin-top: 18px; }
+.cmpc__cta .btn { min-width: 210px; }
+.cmpc__rows { margin-top: 28px; border-top: 1px solid var(--line); text-align: center; }
+.cmp-row { padding: 18px 8px; border-bottom: 1px solid var(--line); }
+.cmp-row dt { font-size: .8125rem; font-weight: 600; letter-spacing: .02em; color: var(--muted); }
+.cmp-row dd { margin-top: 4px; font-size: 1.0625rem; color: var(--ink); min-height: 3.2em; }
+@media (max-width: 1023px) { .cmp-row dd { min-height: 0; } }
+.cmpx__all { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 32px; margin-top: 40px; color: var(--text); }
+.cmpx__all li { display: inline-flex; align-items: center; gap: 8px; }
+.cmpx__all svg { width: 18px; height: 18px; color: var(--ink); }
+@media (max-width: 1023px) { .cmpx__grid { grid-template-columns: 1fr; max-width: 520px; margin-left: auto; margin-right: auto; gap: 56px; } .cmpc__tag { min-height: 0; } }
+
 /* ---------- responsive ---------- */
 @media (max-width: 1180px) {
 }
@@ -978,7 +1007,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <div class="foot__grid">
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
           <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/#angebot">Preise</a></li></ul></div>
-          <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#unterschied">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
+          <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#angebot">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>

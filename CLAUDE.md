@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: eine helle Seite, Zeiten ausgeschrieben — AKTUELL
+## Stand: Vergleich statt Zahlen-Kacheln — AKTUELL
+- Kunde: „Zeit-Kacheln (48 h, 24 h) unübersichtlich, nicht konkret, zu KI-mäßig; überschaubar, deutlich, trotzdem Wow und Profi-Designsprache“. Archiv vorher: `public/v20d/`.
+- Leistungs-Index (Riesen-Schrift) + Zusagen-Bento ersetzt durch **„Was brauchen Sie?“** `#angebot` = Vergleich wie Apples „Modelle vergleichen“: drei Spalten (Website / KI-Roomtour / NFC-Platte) mit Produkt-Bühne (MacBook mit SPIRULI, iPhone mit Wohnung, schräge Platte), Name, Ein-Satz-Nutzen, Preis, Knopf + „Mehr erfahren“, darunter gleiche Zeilen **Sie schicken uns / Sie bekommen / Fertig / Passt zu**. Darunter für alle: Festpreis vorab, Freigabe, kein Abo, Antwort innerhalb eines Tages. Bento `#unterschied` = `@none`.
+- Startseite jetzt: Start → Was brauchen Sie? → Ablauf → drei Filme → SPIRULI → Über uns → Fragen → Kontakt.
+
+## Stand: eine helle Seite, Zeiten ausgeschrieben
 - Kunde: „Zeiten schwer verständlich; weiß nicht, ob das Zweitönige (schwarzer Hintergrund) passt; konkreter, aber besonders“.
 - **Keine dunklen Bänder mehr**: `.night` von Leistungs-Index, Paketen und Preisen entfernt (CSS bleibt ungenutzt), Bento-Kachel 0 € hellgrau. Dunkel ist nur noch das Roomtour-Foto in der 48-Stunden-Kachel.
 - **Zeiten eindeutig**: Bento mit Satz-Anfang oben und Wert darunter („Ihre Roomtour ist fertig in / 48 Stunden“, „Ihre Website ist online in / höchstens 7 Tagen“, „Wir melden uns innerhalb von / 24 Stunden“, „Laufende Kosten bei uns / 0 €“, „Ihre Anfrage dauert / 1 Minute“, „Ihre Ansprechpartner / 2 Gründer“); keine Kürzel „h“ mehr; Vertrauenszeile „Roomtour in 48 Stunden, Website in höchstens 7 Tagen“; Index-Texte „Online in höchstens 7 Tagen“ / „Fertig in 48 Stunden“.
