@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>foav.de · Aus Handyfotos wird ein Film</title>
+<meta name="description" content="KI-Roomtours aus Ihren Handyfotos in 48 Stunden, Websites ab 300 € und NFC-Platten für Google-Bewertungen. Zwei Gründer aus München.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/icon.svg" type="image/svg+xml">
+<link rel="preload" href="/site/fonts/sora-latin.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face { font-family: "Sora"; src: url(/site/fonts/sora-latin.woff2) format("woff2"); font-weight: 100 800; font-display: swap; }
+@font-face { font-family: "Figtree"; src: url(/site/fonts/figtree-latin.woff2) format("woff2"); font-weight: 300 900; font-display: swap; }
+:root {
+  --lab: #e8e9e5; --white: #fff; --ink: #16181b; --grey: #5f636a; --line: #cfd1cb; --rec: #e0362c;
+  --display: "Sora", system-ui, sans-serif; --text: "Figtree", system-ui, sans-serif;
+  --gut: clamp(16px, 3.4vw, 44px); --max: 1320px;
+  --ease: cubic-bezier(.2,.7,.2,1);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+body { font: 400 1.0625rem/1.6 var(--text); color: var(--ink); background: var(--lab); -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; }
+button, input, select { font: inherit; color: inherit; }
+h1, h2, h3 { font-family: var(--display); font-weight: 600; line-height: 1.02; letter-spacing: -.045em; text-wrap: balance; }
+h2 { font-size: clamp(2.4rem, 5.4vw, 5rem); }
+.wrap { width: min(100% - 2 * var(--gut), var(--max)); margin-inline: auto; }
+.sub { color: var(--grey); font-size: clamp(1.0625rem, 1.3vw, 1.25rem); max-width: 46ch; }
+.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 26px; border: 0; border-radius: 14px; background: var(--ink); color: #fff; font-family: var(--text); font-weight: 700; font-size: 1rem; text-decoration: none; cursor: pointer; transition: transform .2s var(--ease), box-shadow .2s; }
+.btn:hover { transform: translateY(-2px); box-shadow: 0 10px 24px -12px rgba(22,24,27,.6); }
+.btn--plain { background: transparent; color: var(--ink); box-shadow: inset 0 0 0 2px var(--ink); }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+.skip { position: absolute; left: 12px; top: -80px; z-index: 99; padding: 10px 16px; border-radius: 10px; background: var(--ink); color: #fff; }
+.skip:focus { top: 12px; }
+.rec { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--rec); box-shadow: 0 0 0 4px rgba(224,54,44,.18); animation: blink 1.6s steps(2, start) infinite; }
+@keyframes blink { to { opacity: .35; } }
+
+/* header */
+.top { position: fixed; z-index: 40; inset: 14px var(--gut) auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 8px 8px 8px 18px; border-radius: 18px; background: rgba(255,255,255,.78); -webkit-backdrop-filter: blur(18px) saturate(1.4); backdrop-filter: blur(18px) saturate(1.4); box-shadow: 0 1px 0 rgba(0,0,0,.04), 0 12px 30px -20px rgba(0,0,0,.35); max-width: var(--max); margin-inline: auto; }
+.logo { width: 84px; } .logo svg { width: 100%; height: auto; }
+.lg-ink, .lg-tile { fill: var(--ink); } .lg-on, .lg-amp { fill: #fff; }
+.top nav { display: flex; align-items: center; gap: 4px; font-size: .9375rem; font-weight: 600; }
+.top nav a { padding: 10px 14px; border-radius: 10px; text-decoration: none; color: var(--grey); }
+.top nav a:hover { color: var(--ink); background: var(--lab); }
+.top nav a.btn { color: #fff; } .top nav a.btn:hover { background: var(--ink); }
+.top .btn { min-height: 44px; padding: 0 18px; border-radius: 11px; font-size: .9375rem; }
+
+/* ===== hero: camera roll becomes the film ===== */
+.roll { position: relative; height: 260vh; }
+.roll__stage { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.roll__intro { position: absolute; z-index: 3; left: var(--gut); bottom: clamp(32px, 8vh, 80px); width: min(46%, 600px); opacity: calc(1 - var(--p, 0) * 2.2); transform: translateY(calc(var(--p, 0) * -60px)); }
+.roll__intro h1 { font-size: clamp(2.6rem, 5.6vw, 5.4rem); }
+.roll__intro .sub { margin-top: 22px; }
+.roll__cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+.grid { position: absolute; z-index: 1; right: var(--gut); top: 50%; translate: 0 -46%; display: grid; grid-template-columns: repeat(3, var(--s)); gap: 4px; --s: min(13.5vw, 23vh); }
+.grid i { display: block; width: var(--s); height: var(--s); background: #ccc center / cover; border-radius: 4px; transform: translate(calc(var(--dx) * var(--p, 0) * 120%), calc(var(--dy) * var(--p, 0) * 120%)) scale(calc(1 - var(--p, 0) * .3)); opacity: calc(1 - var(--p, 0) * 1.6); }
+.grid i.c { visibility: hidden; }
+.grid b { position: absolute; left: 0; right: 0; bottom: -40px; display: flex; justify-content: space-between; font-size: .875rem; font-weight: 600; color: var(--grey); opacity: calc(1 - var(--p, 0) * 3); }
+.film { position: absolute; z-index: 2; inset: 0; clip-path: inset(var(--ct, 40%) var(--cr, 10%) var(--cb, 40%) var(--cl, 60%) round var(--rad, 4px)); background: #222; }
+.film video, .film img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.film__ui { position: absolute; left: 0; right: 0; bottom: 0; padding: clamp(24px, 5vw, 64px) var(--gut); display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; color: #fff; background: linear-gradient(0deg, rgba(0,0,0,.6), transparent); opacity: calc((var(--p, 0) - .72) * 4); }
+.film__ui h2 { font-size: clamp(2rem, 4.4vw, 4rem); max-width: 16ch; color: #fff; }
+.film__ui p { margin-top: 10px; max-width: 40ch; color: rgba(255,255,255,.85); }
+.film__ui .btn { background: #fff; color: var(--ink); }
+.film__rec { position: absolute; top: calc(var(--ct, 40%) + 12px); left: calc(var(--cl, 60%) + 12px); display: inline-flex; align-items: center; gap: 8px; padding: 6px 10px 6px 8px; border-radius: 8px; background: rgba(0,0,0,.45); color: #fff; font-size: .8125rem; font-weight: 700; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.film__rec .rec { width: 8px; height: 8px; }
+
+/* ===== sentence selector ===== */
+.pick { padding: clamp(96px, 13vw, 180px) 0 clamp(64px, 8vw, 110px); }
+.pick__q { font-family: var(--display); font-size: clamp(2rem, 4.6vw, 4.4rem); font-weight: 600; letter-spacing: -.045em; line-height: 1.12; max-width: 22ch; }
+.pick__q button { display: inline; padding: 0 .12em; border: 0; background: none; cursor: pointer; font-weight: 600; letter-spacing: inherit; color: #a3a6a0; text-decoration: underline; text-decoration-thickness: .06em; text-underline-offset: .14em; text-decoration-color: #b9bbb5; transition: color .3s; }
+.nw { white-space: nowrap; } .nw button { white-space: normal; text-align: left; }
+.pick__q button:hover { color: var(--grey); }
+.pick__q button[aria-selected="true"] { color: var(--ink); text-decoration-color: var(--ink); }
+.panel { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); margin-top: clamp(36px, 5vw, 64px); background: var(--white); border-radius: 26px; overflow: hidden; }
+.panel[hidden] { display: none; }
+.panel__media { position: relative; min-height: clamp(320px, 42vw, 560px); background: #dfe0dc; overflow: hidden; }
+.panel__media video, .panel__media > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.panel__body { display: flex; flex-direction: column; padding: clamp(28px, 4vw, 56px); }
+.panel__body h3 { font-size: clamp(1.75rem, 2.6vw, 2.5rem); }
+.panel__body > p { margin-top: 14px; color: var(--grey); max-width: 40ch; }
+.panel__how { margin-top: 22px; padding: 16px 18px; border-radius: 14px; background: var(--lab); font-size: .9688rem; }
+.panel__how strong { font-weight: 700; }
+.panel__buy { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: auto; padding-top: 32px; }
+.panel__buy b { font-family: var(--display); font-size: clamp(2.6rem, 4vw, 3.6rem); font-weight: 600; letter-spacing: -.05em; line-height: 1; }
+.panel__buy b small { font-family: var(--text); font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--grey); }
+.panel--web .panel__media { background: #d9dcd6; }
+.mac { position: absolute; left: 7%; right: 18%; top: 12%; border-radius: 12px; padding: 8px; background: #1b1c1f; box-shadow: 0 30px 60px -30px rgba(0,0,0,.6); }
+.mac img { width: 100%; border-radius: 5px; aspect-ratio: 16 / 10; object-fit: cover; object-position: top; }
+.phone { position: absolute; right: 7%; bottom: -18%; width: 24%; aspect-ratio: 9 / 19.5; border-radius: 26px; padding: 6px; background: #1b1c1f; box-shadow: 0 30px 60px -20px rgba(0,0,0,.6); overflow: hidden; }
+.phone img { width: 100%; height: 100%; object-fit: cover; object-position: top; border-radius: 20px; }
+.panel--nfc .panel__media { background: #ebebe7; }
+.panel--nfc .panel__media > img { object-fit: contain; padding: 6%; }
+
+/* ===== for whom: one typographic sentence ===== */
+.who { padding: clamp(64px, 9vw, 130px) 0; border-top: 1px solid var(--line); }
+.who p { font-family: var(--display); font-size: clamp(1.75rem, 3.6vw, 3.4rem); font-weight: 500; letter-spacing: -.04em; line-height: 1.2; color: var(--grey); max-width: 26ch; }
+.who p em { font-style: normal; color: var(--ink); }
+.who p span { display: inline-block; vertical-align: -.12em; width: 1.6em; height: 1em; margin: 0 .12em; border-radius: .22em; background: center / cover; }
+
+/* ===== process as a chat ===== */
+.chat { padding: clamp(80px, 10vw, 150px) 0; background: var(--white); }
+.chat__grid { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: 48px clamp(40px, 7vw, 110px); align-items: start; }
+.chat__head { position: sticky; top: 120px; }
+.chat__head .sub { margin-top: 20px; }
+.thread { display: flex; flex-direction: column; gap: 10px; padding: clamp(18px, 3vw, 32px); border-radius: 30px; background: var(--lab); }
+.day { align-self: center; margin: 4px 0 8px; font-size: .8125rem; font-weight: 600; color: var(--grey); }
+.msg { max-width: 82%; padding: 12px 16px; border-radius: 20px; font-size: 1rem; line-height: 1.45; opacity: 0; transform: translateY(14px) scale(.98); transition: opacity .5s var(--ease), transform .5s var(--ease); }
+.msg.in { opacity: 1; transform: none; }
+.msg--you { align-self: flex-end; background: var(--ink); color: #fff; border-bottom-right-radius: 6px; }
+.msg--us { align-self: flex-start; background: var(--white); border-bottom-left-radius: 6px; }
+.msg small { display: block; margin-top: 4px; font-size: .75rem; opacity: .6; }
+.msg__pics { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px; margin-bottom: 8px; }
+.msg__pics i { aspect-ratio: 1; border-radius: 8px; background: center / cover; }
+.msg__offer { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: 10px; padding: 12px 14px; border-radius: 12px; background: var(--lab); font-weight: 700; }
+.msg__offer span { padding: 8px 12px; border-radius: 9px; background: var(--ink); color: #fff; font-size: .875rem; }
+.msg__vid { position: relative; margin-bottom: 8px; border-radius: 12px; overflow: hidden; aspect-ratio: 16 / 9; background: url(/media/tour-md-2.jpg) center / cover; }
+.msg__vid::after { content: ""; position: absolute; left: 50%; top: 50%; translate: -50% -50%; width: 46px; height: 46px; border-radius: 50%; background: rgba(255,255,255,.92) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M8 5v14l11-7z' fill='%2316181b'/%3E%3C/svg%3E") 55% 50% / 20px no-repeat; }
+.chat__note { margin-top: 18px; font-size: .9375rem; color: var(--grey); }
+
+/* ===== founders as business cards ===== */
+.cards { padding: clamp(80px, 10vw, 150px) 0; }
+.cards__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px clamp(40px, 7vw, 110px); align-items: center; }
+.cards__grid .sub { margin-top: 20px; }
+.deck { position: relative; height: clamp(380px, 40vw, 500px); }
+.vcard { position: absolute; width: min(82%, 400px); aspect-ratio: 85 / 55; padding: clamp(20px, 2.4vw, 30px); border-radius: 16px; background: var(--white); box-shadow: 0 1px 0 rgba(0,0,0,.05), 0 30px 50px -30px rgba(0,0,0,.45); display: flex; flex-direction: column; justify-content: space-between; text-decoration: none; transition: transform .5s var(--ease); }
+.vcard:nth-child(1) { left: 0; top: 0; transform: rotate(-4deg); }
+.vcard:nth-child(2) { right: 0; bottom: 0; transform: rotate(3deg); background: var(--ink); color: #fff; }
+.vcard:nth-child(2) .lg-ink, .vcard:nth-child(2) .lg-tile { fill: #fff; } .vcard:nth-child(2) .lg-on, .vcard:nth-child(2) .lg-amp { fill: var(--ink); }
+.vcard:hover { transform: rotate(0) translateY(-6px); z-index: 2; }
+.vcard .logo { width: 70px; }
+.vcard h3 { font-size: clamp(1.4rem, 2vw, 1.75rem); letter-spacing: -.03em; }
+.vcard p { font-size: .9375rem; opacity: .7; }
+.vcard u { text-decoration: none; font-weight: 700; font-size: 1.0625rem; }
+
+/* ===== faq ===== */
+.faq { padding: clamp(72px, 9vw, 130px) 0; border-top: 1px solid var(--line); }
+.faq__grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; margin-top: clamp(32px, 4vw, 52px); }
+details { padding: 0 22px; border-radius: 18px; background: var(--white); }
+summary { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 20px 0; cursor: pointer; list-style: none; font-weight: 700; }
+summary::-webkit-details-marker { display: none; }
+summary::after { content: ""; flex: none; width: 12px; height: 12px; border-right: 2px solid; border-bottom: 2px solid; rotate: 45deg; translate: 0 -3px; transition: rotate .3s; }
+details[open] summary::after { rotate: 225deg; translate: 0 3px; }
+details p { padding-bottom: 20px; color: var(--grey); }
+details a { font-weight: 700; }
+
+/* ===== contact: fill-in sentence ===== */
+.ask { padding: clamp(80px, 10vw, 150px) 0 clamp(64px, 8vw, 110px); background: var(--white); }
+.letter { margin-top: clamp(32px, 4vw, 52px); font-family: var(--display); font-size: clamp(1.5rem, 3vw, 2.75rem); font-weight: 500; letter-spacing: -.035em; line-height: 1.7; max-width: 30ch; }
+.letter input, .letter select { display: inline-block; vertical-align: baseline; min-width: 6ch; max-width: 100%; padding: 0 .2em; border: 0; border-bottom: 3px solid var(--line); border-radius: 0; background: transparent; font-family: var(--display); font-size: inherit; font-weight: 600; letter-spacing: inherit; color: var(--ink); -webkit-appearance: none; appearance: none; }
+.letter input::placeholder { color: #a9aca6; font-weight: 500; }
+.letter input:focus, .letter select:focus { outline: none; border-bottom-color: var(--ink); }
+.letter select { cursor: pointer; padding-right: .9em; background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316181b' stroke-width='2.5'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") right center / .6em no-repeat; }
+.letter .bad { border-bottom-color: var(--rec); }
+.ask__foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 32px; margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line); }
+.consent { display: flex; gap: 12px; align-items: flex-start; max-width: 56ch; font-size: .9375rem; color: var(--grey); }
+.consent input { flex: none; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--ink); }
+.status { margin-top: 18px; padding: 14px 16px; border-radius: 12px; font-size: .9375rem; }
+.status.ok { background: #e9f4ec; color: #165c31; } .status.bad { background: #fbe9e8; color: #8d1f19; }
+.hp { position: absolute; left: -9999px; }
+.ask__alt { margin-top: 28px; font-size: .9375rem; color: var(--grey); }
+.ask__alt a { font-weight: 700; color: var(--ink); }
+
+.foot { padding: 36px 0 calc(36px + env(safe-area-inset-bottom)); font-size: .9375rem; color: var(--grey); }
+.foot .wrap { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 16px; }
+.foot nav { display: flex; flex-wrap: wrap; gap: 6px 22px; }
+.foot a { text-decoration: none; } .foot a:hover { color: var(--ink); }
+
+@media (prefers-reduced-motion: reduce) {
+  .rec { animation: none; }
+  .msg { opacity: 1; transform: none; transition: none; }
+}
+@media (max-width: 900px) {
+  .top nav a:not(.btn) { display: none; }
+  .roll__intro { left: var(--gut); right: var(--gut); width: auto; top: 96px; bottom: auto; }
+  .roll__intro .sub { font-size: 1rem; margin-top: 14px; }
+  .roll__cta { margin-top: 18px; }
+  .grid { left: 50%; right: auto; top: auto; bottom: 7vh; translate: -50% 0; --s: min(27vw, 15vh); gap: 3px; }
+  .grid b { display: none; }
+  .roll__intro h1 { font-size: clamp(2rem, 8.6vw, 2.6rem); }
+  .roll__intro .btn--plain { display: none; }
+  .grid { --s: min(26vw, 12.5vh); bottom: 5vh; }
+  .pick__q { font-size: clamp(1.75rem, 7.4vw, 2.4rem); }
+  .pick { padding-top: 72px; }
+  .panel { grid-template-columns: 1fr; }
+  .panel__media { min-height: 300px; }
+  .chat__grid, .cards__grid { grid-template-columns: 1fr; }
+  .chat__head { position: static; }
+  .faq__grid { grid-template-columns: 1fr; }
+  .deck { height: 400px; }
+  .vcard { width: 84%; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#leistungen">Zum Inhalt springen</a>
+<!--DEFS-->
+<header class="top">
+  <a class="logo" href="/" aria-label="foav.de Startseite"><!--LOGO--></a>
+  <nav aria-label="Hauptnavigation"><a href="#leistungen">Leistungen</a><a href="#ablauf">Ablauf</a><a href="#gruender">Über uns</a><a href="/shop">Shop</a><a class="btn" href="#anfrage">Anfragen</a></nav>
+</header>
+
+<main>
+  <section class="roll" id="roll" aria-labelledby="h1">
+    <div class="roll__stage" id="stage">
+      <div class="roll__intro">
+        <h1 id="h1">Mehr Kunden für Ihr Unternehmen. Schon mit Ihren Handyfotos.</h1>
+        <p class="sub">Aus ein paar Fotos Ihrer Räume macht unsere KI in 48 Stunden einen Video-Rundgang. Ohne Filmteam, für 300 €. Dazu Websites und Google-Bewertungen.</p>
+        <div class="roll__cta"><a class="btn" href="#anfrage">Kostenlos anfragen</a><a class="btn btn--plain" href="#leistungen">Was wir machen</a></div>
+      </div>
+      <div class="grid" id="grid" aria-hidden="true">
+        <i style="--dx:-1;--dy:-1;background-image:url(/media/vorher-1-md.jpg)"></i>
+        <i style="--dx:0;--dy:-1.3;background-image:url(/media/tour-foto-4.jpg)"></i>
+        <i style="--dx:1;--dy:-1;background-image:url(/media/tour-sm-3.jpg)"></i>
+        <i style="--dx:-1.3;--dy:0;background-image:url(/media/tour-foto-1.jpg)"></i>
+        <i class="c" id="center"></i>
+        <i style="--dx:1.3;--dy:0;background-image:url(/media/vorher-3-md.jpg)"></i>
+        <i style="--dx:-1;--dy:1;background-image:url(/media/tour-foto-9.jpg)"></i>
+        <i style="--dx:0;--dy:1.3;background-image:url(/media/vorher-2-md.jpg)"></i>
+        <i style="--dx:1;--dy:1;background-image:url(/media/tour-sm-1.jpg)"></i>
+        <b><span>9 Handyfotos</span><span>Weiter scrollen</span></b>
+      </div>
+      <div class="film" id="film">
+        <video id="heroVid" muted loop playsinline autoplay preload="metadata" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video>
+        <span class="film__rec"><i class="rec" aria-hidden="true"></i>Roomtour</span>
+        <div class="film__ui">
+          <div><h2>Daraus wird ein Rundgang.</h2><p>Ein Beispiel aus unserer KI. Quer für Website und Portale, hochkant für Instagram.</p></div>
+          <a class="btn" href="/anfrage/roomtour">Eigene Fotos senden</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pick" id="leistungen" aria-labelledby="h-pick">
+    <div class="wrap">
+      <h2 id="h-pick" class="pick__q" role="tablist" aria-label="Leistung wählen">Ich brauche <span class="nw"><button role="tab" id="t-room" aria-selected="true" aria-controls="p-room">ein Video meiner Räume</button>,</span> <span class="nw"><button role="tab" id="t-web" aria-selected="false" aria-controls="p-web" tabindex="-1">eine neue Website</button></span> oder <span class="nw"><button role="tab" id="t-nfc" aria-selected="false" aria-controls="p-nfc" tabindex="-1">mehr Google-Bewertungen</button></span></h2>
+
+      <article class="panel" id="p-room" role="tabpanel" aria-labelledby="t-room">
+        <div class="panel__media"><video id="panelVid" muted loop playsinline autoplay preload="none" poster="/media/tour-hd-1.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video></div>
+        <div class="panel__body">
+          <h3>KI-Roomtour</h3>
+          <p>Ein Video-Rundgang durch Ihre Räume. Für Ferienwohnungen, Hotels, Makler, Läden, Restaurants und Praxen.</p>
+          <p class="panel__how"><strong>So geht’s:</strong> Sie fotografieren jeden Raum aus ein paar Ecken. Unser Formular zeigt Ihnen, von wo. Das Video kommt in 48 Stunden.</p>
+          <div class="panel__buy"><b>300 € <small>bis 150 m²</small></b><a class="btn" href="/anfrage/roomtour">Fotos senden</a></div>
+        </div>
+      </article>
+      <article class="panel panel--web" id="p-web" role="tabpanel" aria-labelledby="t-web" hidden>
+        <div class="panel__media"><div class="mac"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="Website von SPIRULI auf dem Laptop" loading="lazy"></div><div class="phone"><img src="/media/ref-spiruli-mob.webp" alt="" loading="lazy"></div></div>
+        <div class="panel__body">
+          <h3>Website</h3>
+          <p>Klar gestaltet, schnell auf dem Handy, mit Impressum und Datenschutz. Im Bild: unsere Arbeit für SPIRULI.</p>
+          <p class="panel__how"><strong>So geht’s:</strong> Sie beantworten unseren Fragebogen in fünf Minuten. In höchstens 7 Tagen ist die Seite online.</p>
+          <div class="panel__buy"><b><small>ab</small> 300 €</b><a class="btn" href="/anfrage/website">Fragebogen starten</a></div>
+        </div>
+      </article>
+      <article class="panel panel--nfc" id="p-nfc" role="tabpanel" aria-labelledby="t-nfc" hidden>
+        <div class="panel__media"><img src="/media/nfc-platten.webp" alt="NFC-Platten in Weiß und Schwarz" loading="lazy"></div>
+        <div class="panel__body">
+          <h3>NFC-Platte</h3>
+          <p>Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, auf iPhone und Android.</p>
+          <p class="panel__how"><strong>So geht’s:</strong> Sie nennen uns Ihr Google-Profil, wir richten jede Platte ein. Versand kostenlos ab 5 Stück.</p>
+          <div class="panel__buy"><b>15 € <small>pro Stück</small></b><a class="btn" href="/shop?weiss=5">Platten bestellen</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="who" aria-label="Für wen">
+    <div class="wrap">
+      <p>Gemacht für <em>Ferienwohnungen</em><span style="background-image:url(/media/tour-sm-2.jpg)"></span>, <em>Hotels</em>, <em>Immobilienmakler</em>, <em>Läden</em>, <em>Restaurants</em><span style="background-image:url(/media/nfc-platten.webp)"></span> und <em>Praxen</em> in München und ganz Deutschland. Kurz: für alle, deren Räume Kunden überzeugen sollen.</p>
+    </div>
+  </section>
+
+  <section class="chat" id="ablauf" aria-labelledby="h-chat">
+    <div class="wrap chat__grid">
+      <div class="chat__head">
+        <h2 id="h-chat">So läuft eine Roomtour ab.</h2>
+        <p class="sub">Ohne Termin vor Ort und ohne lange Formulare. Sie zahlen erst, wenn Sie den Festpreis bestätigt haben.</p>
+      </div>
+      <div>
+        <div class="thread" id="thread" aria-label="Beispiel-Verlauf">
+          <span class="day">Montag</span>
+          <div class="msg msg--you"><div class="msg__pics"><i style="background-image:url(/media/vorher-1-md.jpg)"></i><i style="background-image:url(/media/vorher-2-md.jpg)"></i><i style="background-image:url(/media/vorher-3-md.jpg)"></i></div>Hier sind die Fotos von unserer Wohnung, 68 m².<small>10:12</small></div>
+          <div class="msg msg--us">Danke! Das passt in die Basis-Roomtour.<div class="msg__offer">Festpreis 300 €<span>Bezahlen</span></div><small>11:40</small></div>
+          <div class="msg msg--you">Erledigt.<small>11:52</small></div>
+          <span class="day">Mittwoch</span>
+          <div class="msg msg--us"><div class="msg__vid" aria-hidden="true"></div>Ihre Roomtour ist fertig. Schauen Sie sie an und sagen Sie uns, ob wir etwas ändern sollen.<small>09:05</small></div>
+        </div>
+        <p class="chat__note">Beispiel, wie der Ablauf aussieht. Websites und NFC-Platten laufen genauso: anfragen, Festpreis bestätigen, Ergebnis prüfen.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cards" id="gruender" aria-labelledby="h-cards">
+    <div class="wrap cards__grid">
+      <div>
+        <h2 id="h-cards">Zwei Gründer. Zwei Nummern, die man anrufen kann.</h2>
+        <p class="sub">Wir sind Florian und Davy aus München und setzen jedes Projekt selbst um. Kein Callcenter, kein Ticketsystem.</p>
+      </div>
+      <div class="deck">
+        <a class="vcard" href="tel:+4915566456417"><span class="logo"><!--LOGO--></span><div><h3>Florian Dressler</h3><p>Gründer, foav.de</p></div><u>+49 155 66456417</u></a>
+        <a class="vcard" href="tel:+4917656612709"><span class="logo"><!--LOGO--></span><div><h3>Davy Stubenrauch</h3><p>Gründer, foav.de</p></div><u>+49 176 56612709</u></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" aria-labelledby="h-faq">
+    <div class="wrap">
+      <h2 id="h-faq">Was Kunden uns fragen.</h2>
+      <div class="faq__grid">
+        <details><summary>Welche Fotos brauchen Sie?</summary><p>Ein paar Fotos pro Raum aus verschiedenen Ecken, quer, tagsüber, Licht an. Das <a href="/anfrage/roomtour">Roomtour-Formular</a> zeigt Ihnen Raum für Raum, von wo.</p></details>
+        <details><summary>Ist das Video von der KI?</summary><p>Ja, es entsteht mit KI aus Ihren Fotos. Einzelne Details können abweichen. Deshalb prüfen Sie das Video, bevor es online geht.</p></details>
+        <details><summary>Was kostet eine Website?</summary><p>Basis mit 3 Seiten 300 €, größere Pakete ab 690 €. Den Festpreis bekommen Sie vor dem Start schriftlich.</p></details>
+        <details><summary>Gibt es laufende Kosten?</summary><p>Nein. Sie zahlen einmal. Falls bei einer Website Domain oder Hosting etwas kosten, sagen wir es vorher.</p></details>
+        <details><summary>Wie funktioniert die NFC-Platte?</summary><p>Ein Chip in der Platte ist mit Ihrem Google-Profil verknüpft. Handy dranhalten, Bewertungsseite öffnet sich.</p></details>
+        <details><summary>Arbeiten Sie nur in München?</summary><p>Nein. Roomtours und Websites machen wir für ganz Deutschland, Platten verschicken wir.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="ask" id="anfrage" aria-labelledby="h-ask">
+    <div class="wrap">
+      <h2 id="h-ask">Schreiben Sie uns einen Satz.</h2>
+      <form id="form" novalidate>
+        <p class="letter">Hallo, ich bin <input id="fName" type="text" placeholder="Ihr Name" size="9" autocomplete="name" aria-label="Ihr Name"> und interessiere mich für <select id="fWhat" aria-label="Leistung"><option value="roomtour">eine KI-Roomtour</option><option value="web">eine Website</option><option value="nfc">NFC-Platten</option></select>. Sie erreichen mich unter <input id="fContact" type="text" placeholder="Telefon oder E-Mail" size="15" autocomplete="email" aria-label="Telefon oder E-Mail">.</p>
+        <input class="hp" type="text" id="fWeb" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="ask__foot">
+          <label class="consent"><input type="checkbox" id="fOk"><span>Ich bin einverstanden, dass foav.de meine Angaben nutzt, um auf die Anfrage zu antworten (<a href="/datenschutz">Datenschutz</a>).</span></label>
+          <button class="btn" type="submit" id="send">Anfrage senden</button>
+        </div>
+        <p class="status" id="status" role="status" hidden></p>
+      </form>
+      <p class="ask__alt">Wir antworten innerhalb eines Tages. Oder direkt per E-Mail: <a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></p>
+    </div>
+  </section>
+</main>
+
+<footer class="foot"><div class="wrap"><p>© foav.de, München</p><nav aria-label="Rechtliches"><a href="/shop">Shop</a><a href="/impressum">Impressum</a><a href="/agb">AGB</a><a href="/widerruf">Widerruf</a><a href="/datenschutz">Datenschutz</a></nav></div></footer>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function play(v) { if (!v || reduce) return; if (v.preload === "none") v.preload = "auto"; var p = v.play(); if (p && p.catch) p.catch(function () {}); }
+
+  /* hero: camera roll -> film */
+  var roll = $("#roll"), stage = $("#stage"), center = $("#center"), film = $("#film"), vid = $("#heroVid");
+  function smooth(x) { x = Math.min(1, Math.max(0, x)); return x * x * (3 - 2 * x); }
+  function frame() {
+    var r = roll.getBoundingClientRect(), span = roll.offsetHeight - innerHeight;
+    var p = reduce ? 0 : smooth(-r.top / (span * .8));
+    stage.style.setProperty("--p", p.toFixed(4));
+    var s = stage.getBoundingClientRect(), c = center.getBoundingClientRect(), m = Math.min(12, innerWidth * .02) * p;
+    var t = (c.top - s.top) * (1 - p) + m, l = (c.left - s.left) * (1 - p) + m;
+    var b = (s.bottom - c.bottom) * (1 - p) + m, rr = (s.right - c.right) * (1 - p) + m;
+    film.style.setProperty("--ct", t + "px"); film.style.setProperty("--cl", l + "px");
+    film.style.setProperty("--cb", b + "px"); film.style.setProperty("--cr", rr + "px");
+    film.style.setProperty("--rad", (4 + p * 18) + "px");
+  }
+  var ticking = false;
+  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(function () { frame(); ticking = false; }); } }, { passive: true });
+  addEventListener("resize", frame); frame();
+  if (reduce) roll.style.height = "100svh";
+
+  /* videos only while visible */
+  var vids = [vid, $("#panelVid")];
+  if ("IntersectionObserver" in window) {
+    var vo = new IntersectionObserver(function (es) { es.forEach(function (e) { e.isIntersecting ? play(e.target) : e.target.pause(); }); }, { threshold: .15 });
+    vids.forEach(function (v) { vo.observe(v); });
+  }
+  addEventListener("touchstart", function () { vids.forEach(function (v) { if (v.getBoundingClientRect().top < innerHeight) play(v); }); }, { once: true, passive: true });
+
+  /* sentence selector */
+  var tabs = $$('[role="tab"]');
+  function pick(t, focus) {
+    tabs.forEach(function (x) { var on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; $("#" + x.getAttribute("aria-controls")).hidden = !on; });
+    if (focus) t.focus();
+    if (t.id === "t-room") play($("#panelVid"));
+  }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { pick(t); });
+    t.addEventListener("keydown", function (e) { var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); pick(tabs[(i + d + tabs.length) % tabs.length], true); } });
+  });
+
+  /* chat appears message by message */
+  var msgs = $$(".msg");
+  if (reduce || !("IntersectionObserver" in window)) msgs.forEach(function (m) { m.classList.add("in"); });
+  else {
+    var co = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { msgs.forEach(function (m, i) { setTimeout(function () { m.classList.add("in"); }, 250 + i * 650); }); co.disconnect(); } }, { threshold: .35 });
+    co.observe($("#thread"));
+  }
+
+  /* fill-in form */
+  var form = $("#form"), status = $("#status"), btn = $("#send");
+  ["#fName", "#fContact"].forEach(function (id) { var el = $(id); el.addEventListener("input", function () { el.size = Math.max(el.placeholder.length - 4, el.value.length + 1); el.classList.remove("bad"); }); });
+  function note(t, ok) { status.hidden = false; status.textContent = t; status.className = "status " + (ok ? "ok" : "bad"); }
+  form.addEventListener("submit", function (e) {
+    e.preventDefault(); status.hidden = true;
+    var n = $("#fName"), c = $("#fContact"), name = n.value.trim(), cv = c.value.trim(), isMail = cv.indexOf("@") > -1, what = $("#fWhat").value;
+    var okC = isMail ? /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(cv) : /^[+()\d\s/-]{6,24}$/.test(cv);
+    n.classList.toggle("bad", name.length < 2); c.classList.toggle("bad", !okC);
+    if (name.length < 2) { n.focus(); return note("Bitte tragen Sie Ihren Namen ein.", false); }
+    if (!okC) { c.focus(); return note(cv ? "Bitte prüfen Sie Telefonnummer oder E-Mail." : "Bitte tragen Sie Telefon oder E-Mail ein.", false); }
+    if (!$("#fOk").checked) { $("#fOk").focus(); return note("Bitte setzen Sie das Häkchen, damit wir antworten dürfen.", false); }
+    var body = { services: [what], name: name, company: "", email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: "", consent: true, website: $("#fWeb").value, addOns: [], budget: "", timeline: "",
+      web: { tier: what === "web" ? "Basis" : "", url: "" }, roomtour: { tier: what === "roomtour" ? "Basis" : "", property: what === "roomtour" ? "Räume" : "", area: "" }, nfc: { theme: "", qty: what === "nfc" ? 5 : 0, business: "" } };
+    function mail() {
+      location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über foav.de") + "&body=" + encodeURIComponent("Hallo, ich bin " + name + " und interessiere mich für " + $("#fWhat").selectedOptions[0].text + ". Sie erreichen mich unter " + cv + ".");
+      note("Ihr E-Mail-Programm öffnet sich mit der fertigen Nachricht. Bitte dort noch auf Senden tippen.", true);
+    }
+    btn.disabled = true; btn.textContent = "Wird gesendet …";
+    fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { r: r, d: d }; }); })
+      .then(function (x) { if (x.r.ok) { form.reset(); note("Danke, Ihre Anfrage ist angekommen. Wir melden uns innerhalb eines Tages.", true); } else if (x.r.status === 422 && x.d.errors) note(Object.keys(x.d.errors).map(function (k) { return x.d.errors[k]; })[0], false); else mail(); })
+      .catch(mail).then(function () { btn.disabled = false; btn.textContent = "Anfrage senden"; });
+  });
+})();
+</script>
+</body>
+</html>

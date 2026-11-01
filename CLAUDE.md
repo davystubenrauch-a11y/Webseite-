@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: v22 komplett neu, eigene Module — ZUM VERGLEICH
+- Kunde zu v21: „immer die gleichen Module (Zeitstreifen, untereinander geschrieben), Profi-Niveau, Skills nutzen“. Mit frontend-design-Skill geplant.
+- **Quelle `design/v22-template.html`** → `public/v22/index.html` (Aufruf `/v22/index.html`, noindex, robots gesperrt). Startseite v20 unverändert.
+- Idee: **Die Kamerarolle wird zum Film.** Farben Fotolabor-Grau `#e8e9e5`, Weiß, Tinte `#16181b`, Grau `#5f636a`, nur ein Aufnahme-Rot `#e0362c` für den REC-Punkt. Schrift Sora (Überschriften) + Figtree (Text).
+- Module (bewusst keine Fakten-Leisten, keine nummerierten Listen): Start = 3×3-Raster aus Handyfotos, mittleres Feld ist das Video und wächst beim Scrollen per `clip-path` zum Vollbild („Daraus wird ein Rundgang.“) → Leistungen als **anklickbarer Satz** „Ich brauche [ein Video meiner Räume] [eine neue Website] oder [mehr Google-Bewertungen]“ mit großem Panel → „Gemacht für …“ als ein großer Satz mit kleinen Bildern → Ablauf als **Chat-Verlauf** (Fotos → Festpreis + Bezahlen → „Ihre Roomtour ist fertig“) → Gründer als **zwei Visitenkarten** → Fragen in 2 Spalten → Kontakt als **Lückentext** („Hallo, ich bin [Name] und interessiere mich für [Leistung] …“, `/api/inquiry`, Ersatz mailto).
+
 ## Stand: v21 komplett neue Vergleichs-Seite — ZUM VERGLEICH
 - Kunde: „zu viel mit den Farben gespielt, komplett neue Seite, nicht an vorherigen Ergebnissen orientieren“.
 - **Quelle `design/v21-template.html`** → `public/v21/index.html` (Logo/Disc per Python eingesetzt, `noindex`, in robots gesperrt). Aufruf: `/v21/index.html`. Die Startseite (v20) ist **unverändert**, bis der Kunde wählt.
