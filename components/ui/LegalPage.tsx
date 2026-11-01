@@ -12,7 +12,7 @@ const css = `
 .lp-back { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px rgba(17,17,20,.14); font-weight: 600; text-decoration: none; }
 .lp-back:hover { box-shadow: inset 0 0 0 1.5px #111114; }
 .lp-main { padding: clamp(64px, 9vw, 120px) 0; }
-.lp h1 { font: 500 clamp(40px, 5vw, 64px)/1.02 "Inter", sans-serif; letter-spacing: -.035em; color: #1d1d1f; }
+.lp h1 { font: 500 clamp(30px, 7.6vw, 64px)/1.04 "Inter", sans-serif; letter-spacing: -.035em; color: #1d1d1f; hyphens: auto; overflow-wrap: break-word; }
 .lp-body { max-width: 68ch; margin-top: 48px; }
 .lp-body h2 { margin-top: 40px; font: 600 1.25rem/1.3 "Inter", sans-serif; letter-spacing: -.02em; color: #111114; }
 .lp-body p, .lp-body ul { margin-top: 12px; }
@@ -48,6 +48,7 @@ export default function LegalPage({ title, children }: { title: string; children
           <span>© {new Date().getFullYear()} {site.name}, {site.city}</span>
           <nav aria-label="Rechtliches">
             <a href="/impressum">Impressum</a>
+            <a href="/agb">AGB</a>
             <a href="/datenschutz">Datenschutz</a>
           </nav>
         </div>

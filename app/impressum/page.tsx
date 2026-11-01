@@ -14,7 +14,7 @@ export default function Impressum() {
           <span key={l} className="block">{l}</span>
         ))}
       </p>
-      <h2>Vertreten durch</h2>
+      <h2>Vertreten durch die Gesellschafter</h2>
       <p>{site.founders.map((f) => f.name).join(" und ")}</p>
       <h2>Kontakt</h2>
       <p>
@@ -24,10 +24,10 @@ export default function Impressum() {
         <span className="block">E-Mail: {site.email}</span>
       </p>
       <h2>Umsatzsteuer-ID</h2>
-      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [falls vorhanden ergänzen]</p>
+      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [falls vorhanden ergänzen, sonst diesen Abschnitt löschen]</p>
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p>{site.founders[0].name}, Anschrift wie oben</p>
-      <h2>EU-Streitschlichtung</h2>
+      <h2>Verbraucherstreitbeilegung</h2>
       <p>
         Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
       </p>

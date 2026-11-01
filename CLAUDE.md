@@ -3,7 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand 30.10. spät nachts: Startseite spannender (Skills frontend-design + ui-ux-pro-max) — AKTUELL
+## Stand 1.11.: AGB, Kennzahlen, Überschriften-Effekt — AKTUELL
+- **AGB** neu unter `/agb` (`app/agb/page.tsx`, Entwurf passend zum Ablauf: Festpreis-Angebot → Bestätigung/Zahlung, Vorkasse per Zahlungslink, Lieferzeiten 48 h / bis 7 Tage ab Zahlung + Unterlagen, Mitwirkung/Bildrechte, Änderungen im Umfang inklusive, Abnahme nach 14 Tagen, Nutzungsrechte nach Zahlung, KI-Hinweis Roomtour, Google-Richtlinien NFC, Haftung, Verbraucher → Widerrufsbelehrung fehlt noch). Platzhalter in [eckigen Klammern] (Firmenname, USt/Kleinunternehmer). Links in allen Fußzeilen + Sitemap. **Rechtlich prüfen lassen.**
+- Impressum: „Vertreten durch die Gesellschafter“, „Verbraucherstreitbeilegung“; Adresse/Firmenname weiter offen in `lib/site.ts`.
+- Startseite: Zusagen-Tabelle → **große Kennzahlen** `.kpis` (24 h Antwort, 48 h Roomtour, 7 Tage Website, 0 € laufende Kosten, 2 Ansprechpartner, 3 in 1); Festpreis + Freigabe im Einleitungstext. **Überschriften steigen zeilenweise aus einer Maske** (SplitText + IntersectionObserver, Klasse `.rl`/`.in`, nur mit GSAP). **Lesefortschritt** als 2-px-Linie unter der Kopfzeile (`#prog`, `--pg`). **Münchner Uhrzeit** im Kontakt (`#clock`).
+
+## Stand 30.10. spät nachts: Startseite spannender (Skills frontend-design + ui-ux-pro-max)
 - Kunde: „Layout immer noch gleich langweilig und einheitlich, auf höchstem Niveau, mit Premium-Seiten konkurrieren“. Archiv vorher: `public/v20b/`.
 - **Typo als Held**: Start-Überschrift bis 184 px (10,6 vw, Zeilenabstand .9), h2 bis 88 px, Szenen-h2 bis 68 px, Preise bis 84 px, Über-uns-Satz bis 64 px. Start-Bühne fast randlos (8–16 px Abstand).
 - **Neuer Leistungs-Index** `#angebot` direkt nach dem Start (Agentur-Stil): drei riesige Zeilen Websites / KI-Roomtours / NFC-Platten mit Kurztext + Preis; beim Überfahren werden die anderen Zeilen blass, ein Vorschaubild folgt dem Mauszeiger (`#peek`, nur Maus, nicht bei reduzierter Bewegung).
