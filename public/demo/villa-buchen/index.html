@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Villa Scogliera · Ferienvilla auf der Klippe</title>
 <meta name="description" content="Demo: Ferienvilla am Meer mit Infinity-Pool. Verfügbarkeit prüfen und direkt anfragen.">
-<link rel="preload" as="image" href="day.webp">
+<link rel="preload" as="image" href="/demo/villa-buchen/day.webp">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -34,9 +34,9 @@ button, input, select { font:inherit; color:inherit; }
 /* ---------- hero: plan → villa, day → evening ---------- */
 .hero { position:relative; height:100vh; height:100svh; overflow:hidden; background:#0e2236; }
 .layer { position:absolute; inset:0; background:center 55% / cover no-repeat; will-change:clip-path, opacity, transform; }
-.plan { background-image:url(plan.webp); }
-.day { background-image:url(day.webp); clip-path:inset(100% 0 0 0); }
-.dusk { background-image:url(dusk.webp); opacity:0; }
+.plan { background-image:url(/demo/villa-buchen/plan.webp); }
+.day { background-image:url(/demo/villa-buchen/day.webp); }
+.dusk { background-image:url(/demo/villa-buchen/dusk.webp); opacity:0; }
 .scan { position:absolute; left:0; right:0; height:2px; top:100%; background:linear-gradient(90deg,transparent,#cfe6ff,transparent); box-shadow:0 0 30px 6px rgba(150,200,255,.5); opacity:0; }
 .veil { position:absolute; inset:0; background:linear-gradient(rgba(10,14,20,.5), transparent 32%, transparent 58%, rgba(10,14,20,.6)); pointer-events:none; }
 .intro { position:absolute; left:0; right:0; top:9vh; text-align:center; color:#fff; padding:0 20px; text-shadow:0 2px 24px rgba(10,20,35,.45); }
@@ -115,6 +115,11 @@ section.s { padding:clamp(80px,12vh,140px) 0; }
 footer { padding:28px 0; font-size:14px; color:var(--mid); border-top:1px solid var(--line); }
 footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
 
+.bg { display:none; }
+@media (max-aspect-ratio: 4/5) {
+  .bg { display:block; background:url(/demo/villa-buchen/day.webp) center / cover no-repeat; filter:blur(24px) brightness(.75) saturate(1.2); transform:scale(1.15); }
+  .plan, .day, .dusk { background-size:230% auto; background-position:52% 46%; }
+}
 @media (max-width:900px) {
   .top nav { display:none; }
   .bar { grid-template-columns:1fr 1fr; } .bar label:nth-child(3) { box-shadow:none; } .bar button { grid-column:1 / -1; }
@@ -131,6 +136,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
 
 <main>
 <section class="hero" id="hero" aria-label="Villa Scogliera">
+  <div class="layer bg" aria-hidden="true"></div>
   <div class="layer plan" aria-hidden="true"></div>
   <div class="layer day" role="img" aria-label="Weiße Villa mit Infinity-Pool auf einer Klippe über dem Meer"></div>
   <div class="layer dusk" aria-hidden="true"></div>
@@ -151,10 +157,10 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
   <p class="lead">Fünf Schlafzimmer mit raumhohen Glasfronten, ein offener Wohnbereich über zwei Etagen und ein 18 Meter langer Infinity-Pool, der direkt in den Horizont übergeht.</p>
   <div class="facts"><p><b>5</b>Schlafzimmer</p><p><b>10</b>Gäste</p><p><b>420 m²</b>Wohnfläche</p><p><b>18 m</b>Infinity-Pool</p></div>
   <div class="gal">
-    <figure class="g1"><img src="g-living.webp" alt="Wohnbereich mit Glasfront zum Meer" loading="lazy"><figcaption>Wohnen</figcaption></figure>
-    <figure class="g2"><img src="g-upper.webp" alt="Obergeschoss mit Suiten" loading="lazy"><figcaption>Suiten im Obergeschoss</figcaption></figure>
-    <figure class="g3"><img src="g-bed.webp" alt="Schlafzimmer zum Pool" loading="lazy"><figcaption>Gartenzimmer</figcaption></figure>
-    <figure class="g4"><img src="g-pool.webp" alt="Infinity-Pool über der Klippe" loading="lazy"><figcaption>Infinity-Pool</figcaption></figure>
+    <figure class="g1"><img src="/demo/villa-buchen/g-living.webp" alt="Wohnbereich mit Glasfront zum Meer" loading="lazy"><figcaption>Wohnen</figcaption></figure>
+    <figure class="g2"><img src="/demo/villa-buchen/g-upper.webp" alt="Obergeschoss mit Suiten" loading="lazy"><figcaption>Suiten im Obergeschoss</figcaption></figure>
+    <figure class="g3"><img src="/demo/villa-buchen/g-bed.webp" alt="Schlafzimmer zum Pool" loading="lazy"><figcaption>Gartenzimmer</figcaption></figure>
+    <figure class="g4"><img src="/demo/villa-buchen/g-pool.webp" alt="Infinity-Pool über der Klippe" loading="lazy"><figcaption>Infinity-Pool</figcaption></figure>
   </div>
 </div></section>
 
@@ -200,7 +206,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
     <p class="lead">Die Villa liegt allein auf der Klippe, über eine private Zufahrt erreichbar. Badebucht, Hafen und Restaurants sind trotzdem wenige Minuten entfernt.</p>
     <ul><li>Private Badebucht<span>3 Min. zu Fuß</span></li><li>Hafen &amp; Restaurants<span>8 Min. mit dem Auto</span></li><li>Flughafen<span>45 Min.</span></li></ul>
   </div>
-  <figure><img src="g-sea.webp" alt="Blick von der Terrasse auf das Meer" loading="lazy"></figure>
+  <figure><img src="/demo/villa-buchen/g-sea.webp" alt="Blick von der Terrasse auf das Meer" loading="lazy"></figure>
 </div></section>
 </main>
 <footer><div class="wrap"><span>Villa Scogliera · Demo-Webseite, Inhalte frei erfunden</span><span>Gestaltet von F&amp;D Solutions</span></div></footer>
@@ -220,7 +226,8 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
   if (G && !reduce) {
     G.registerPlugin(ScrollTrigger);
     if (window.Lenis && matchMedia("(pointer: fine)").matches) { var l = new Lenis({ lerp: .1 }); l.on("scroll", ScrollTrigger.update); G.ticker.add(function (t) { l.raf(t * 1000); }); G.ticker.lagSmoothing(0); }
-    var intro = G.timeline({ delay: .3 });
+    G.set(".day", { clipPath: "inset(100% 0 0 0)" });
+    var intro = G.timeline({ delay: .2 });
     intro.fromTo(".plan", { clipPath: "circle(0% at 50% 62%)" }, { clipPath: "circle(80% at 50% 62%)", duration: 1.6, ease: "power2.inOut" })
          .set(".scan", { opacity: 1 })
          .to(".day", { clipPath: "inset(0% 0 0 0)", duration: 2.2, ease: "power2.inOut" }, "+=.2")
@@ -236,7 +243,7 @@ footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:
       .to({}, { duration: .1 });
     var clock = { m: 17 * 60 + 5 };
     tl.to(clock, { m: 19 * 60 + 42, duration: .8, ease: "none", onUpdate: function () { var h = Math.floor(clock.m / 60), m = Math.round(clock.m % 60); $("#moodT").textContent = h + ":" + (m < 10 ? "0" : "") + m + " Uhr"; } }, .1);
-  } else { document.querySelector(".day").style.clipPath = "none"; }
+  }
 
   /* ---------- availability calendar + price ---------- */
   var DAY = 864e5, today = new Date(); today.setHours(0, 0, 0, 0);
