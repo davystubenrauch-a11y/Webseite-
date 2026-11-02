@@ -14,8 +14,8 @@ export type Product = {
 export const products: Product[] = [
   { id: "nfc-weiss", name: "NFC-Platte Weiß", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "nfc-schwarz", name: "NFC-Platte Schwarz", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
-  { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder ein Stockwerk, bis 8 Räume, quer und hochkant, fertig in 48 Stunden nach Ihren Fotos", price: 30000, physical: false, max: 5 },
-  { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume, mit Logo-Abspann und Social-Clip, fertig in 72 Stunden", price: 49000, physical: false, max: 5 },
+  { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder eine Etage, bis 8 Räume, Video 60 bis 90 Sekunden quer und hochkant, fertig in 48 Stunden", price: 30000, physical: false, max: 5 },
+  { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 49000, physical: false, max: 5 },
 ];
 
 export const shipping = { price: 299, freeFrom: 5, label: "Versand innerhalb Deutschlands" };

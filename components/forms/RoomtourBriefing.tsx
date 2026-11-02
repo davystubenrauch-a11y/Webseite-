@@ -7,6 +7,9 @@ const sections: Section[] = [
   {
     title: "Ihre Räume",
     questions: [
+      { id: "firma", label: "Name des Unternehmens oder Objekts", type: "text", placeholder: "z. B. Ferienwohnung Seeblick, Praxis Dr. Huber", half: true },
+      { id: "ort_genau", label: "Adresse des Objekts", type: "text", placeholder: "nur für uns, erscheint nicht im Video", half: true },
+      { id: "paket", label: "Paket", type: "one", options: ["Basis|bis 150 m², 300 €", "Premium|bis 300 m², 490 €", "Individuell|größer oder mehrere Objekte", "Noch unsicher|wir empfehlen Ihnen eins"] },
       { id: "art", label: "Was sollen wir zeigen?", type: "one", options: ["Ferienwohnung / Airbnb", "Hotel / Pension", "Immobilie (Verkauf oder Vermietung)", "Laden / Showroom", "Restaurant / Café", "Praxis / Studio", "Büro", "Sonstiges"] },
       { id: "flaeche", label: "Fläche in m²", type: "number", placeholder: "z. B. 75", half: true },
       { id: "ort", label: "Ort", type: "text", placeholder: "z. B. Garmisch", half: true },
@@ -18,6 +21,10 @@ const sections: Section[] = [
     questions: [
       { id: "format", label: "Format", type: "one", options: ["Querformat 16:9 (Inserat, Website, YouTube)", "Hochformat 9:16 (Instagram, TikTok)", "Beides"] },
       { id: "stimmung", label: "Stimmung", type: "one", options: ["Ruhig und hell", "Modern", "Gemütlich", "Luxuriös", "Entscheiden Sie"] },
+      { id: "musik", label: "Musik", type: "one", options: ["Ruhig", "Modern und lebendig", "Elegant", "Ohne Musik", "Entscheiden Sie"] },
+      { id: "einblendungen", label: "Texte im Video (optional)", type: "textarea", placeholder: "z. B. 68 m², 2 Schlafzimmer, Balkon mit Seeblick, ab 89 € pro Nacht" },
+      { id: "abspann", label: "Abspann: was soll am Ende stehen?", type: "text", placeholder: "z. B. Name, Website, Telefon. Im Premium-Paket auch Ihr Logo." },
+      { id: "nutzung", label: "Wo zeigen Sie das Video?", type: "many", options: ["Airbnb", "Booking.com", "Immobilienportale", "Eigene Website", "Instagram / TikTok", "Google-Profil", "WhatsApp an Kunden"] },
       { id: "highlights", label: "Was sollen Ihre Kunden unbedingt sehen?", type: "textarea", placeholder: "z. B. Seeblick vom Balkon, Sauna, die neue Küche" },
     ],
   },
@@ -121,7 +128,7 @@ export default function RoomtourBriefing() {
             <div className="bf-q" aria-live="polite">
               <div className="bf-quote">
                 <span className="bf-price">{area > 300 ? "Auf Anfrage" : area > 150 ? "490 €" : "300 €"}</span>
-                <span>{area > 300 ? "Über 300 m² nennen wir Ihnen vorher einen schriftlichen Festpreis." : area > 150 ? "Premium: bis 300 m² oder mehrere Etagen, mit Logo-Abspann und Social-Clip." : "Basis: bis 150 m² oder ein ganzes Stockwerk."}</span>
+                <span>{area > 300 ? "Über 300 m² nennen wir Ihnen vorher einen schriftlichen Festpreis." : area > 150 ? "Premium: bis 300 m² oder mehrere Etagen, mit Außenbereich, Logo und drei Kurzclips." : "Basis: bis 150 m² oder ein ganzes Stockwerk."}</span>
               </div>
             </div>
           )}

@@ -27,7 +27,7 @@ export async function POST(req: Request) {
   }
   if (data.website) return NextResponse.json({ ok: true, id: "FOAV-000000" });
   if (!(data.kind in kindLabels)) return NextResponse.json({ ok: false, error: "Ungültige Anfrage." }, { status: 400 });
-  data.answers = (data.answers ?? []).slice(0, 80).map((a) => ({ section: String(a.section), label: String(a.label), value: String(a.value).slice(0, 4000) }));
+  data.answers = (data.answers ?? []).slice(0, 160).map((a) => ({ section: String(a.section), label: String(a.label), value: String(a.value).slice(0, 4000) }));
   data.photos = (data.photos ?? []).slice(0, 200).filter((p) => /^https:\/\/[a-z0-9.-]+\.blob\.vercel-storage\.com\//.test(p.url));
 
   const errors = validateBriefing(data);
