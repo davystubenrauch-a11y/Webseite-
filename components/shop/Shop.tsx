@@ -51,7 +51,7 @@ function Pic({ id }: { id: ProductId }) {
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
 
-export default function Shop() {
+export default function Shop({ online = false }: { online?: boolean }) {
   const [cart, setCart] = useState<Cart>({});
   const [f, setF] = useState({ name: "", email: "", phone: "", company: "", business: "", address: "", consent: false, early: false, website: "" });
   const [ref, setRef] = useState("");
@@ -166,7 +166,7 @@ export default function Shop() {
             <div><label htmlFor="o-phone">Telefon (optional)</label><input id="o-phone" type="tel" autoComplete="tel" value={f.phone} onChange={up("phone")} /></div>
             <div><label htmlFor="o-company">Firma (optional, für die Rechnung)</label><input id="o-company" type="text" autoComplete="organization" value={f.company} onChange={up("company")} /></div>
             {t.plates > 0 && <div><label htmlFor="o-biz">Ihr Betrieb, wie er bei Google heißt</label><input id="o-biz" type="text" value={f.business} onChange={up("business")} placeholder="z. B. Café Sonne, München" />{errors.business && <p className="bf-err">{errors.business}</p>}</div>}
-            <div><label htmlFor="o-addr">{t.plates > 0 ? "Rechnungs- und Lieferadresse" : "Rechnungsadresse"}</label><textarea id="o-addr" autoComplete="street-address" value={f.address} onChange={up("address")} placeholder="Straße und Hausnummer, PLZ und Ort" />{errors.address && <p className="bf-err">{errors.address}</p>}</div>
+            {!online && (<div><label htmlFor="o-addr">{t.plates > 0 ? "Rechnungs- und Lieferadresse" : "Rechnungsadresse"}</label><textarea id="o-addr" autoComplete="street-address" value={f.address} onChange={up("address")} placeholder="Straße und Hausnummer, PLZ und Ort" />{errors.address && <p className="bf-err">{errors.address}</p>}</div>)}
             <input className="bf-hp" tabIndex={-1} aria-hidden="true" value={f.website} onChange={up("website")} />
             <label className="bf-consent" style={{ fontWeight: 400 }}>
               <input type="checkbox" checked={f.consent} onChange={up("consent")} />
@@ -182,6 +182,7 @@ export default function Shop() {
             {errors.early && <p className="bf-err">{errors.early}</p>}
             {errors.cart && <p className="bf-err">{errors.cart}</p>}
             <button className="bf-btn" type="submit" disabled={state === "sending" || !t.lines.length}>{state === "sending" ? "Wird vorbereitet …" : `Zahlungspflichtig bestellen für ${euro(t.total)}`}</button>
+            {online && <p className="bf-hint">Rechnungs{t.plates > 0 ? "- und Liefer" : ""}adresse geben Sie im nächsten Schritt bei Stripe ein. Ihre Rechnung kommt nach der Zahlung per E-Mail.</p>}
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
           </form>
         </aside>

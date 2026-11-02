@@ -3,6 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Stripe Payments + Invoicing
+- Kunde: „mit Stripe starten: Payments, Invoicing“. Stripe-Plugin installiert (Skills `stripe-best-practices` gelesen); MCP mcp.stripe.com braucht Anmeldung durch den Kunden, `npx skills add https://docs.stripe.com` scheiterte am Netz.
+- Offizielles SDK `stripe@23` (`lib/stripe.ts`, Schlüssel nur aus `STRIPE_SECRET_KEY`). Checkout (`app/api/checkout`): `invoice_creation` (Stripe schickt nummerierte Rechnung, Fußzeile `INVOICE_FOOTER` oder `vatNote`), Rechnungsadresse Pflicht bei Stripe, Lieferadresse (DE/AT/CH) nur bei Platten, USt-IdNr. optional, Kunde wird angelegt, `integration_identifier`, Idempotenz-Schlüssel, keine `payment_method_types` (Zahlarten im Dashboard).
+- Mit Stripe fällt das Adressfeld im Shop weg (`Shop online`), Hinweis „Adresse im nächsten Schritt bei Stripe“.
+- **Webhook** `app/api/stripe/webhook` (Signatur geprüft, `STRIPE_WEBHOOK_SECRET`): `checkout.session.completed` / `async_payment_succeeded` (nur wenn nicht `unpaid`) / `async_payment_failed` → E-Mail an FOAV mit Posten, Rechnung, Adressen, Fragebogen-Ref. Dankeseite liest den echten Zahlstatus (`session_id`).
+- Offen: Steuerstatus (dann evtl. Stripe Tax), Schlüssel + Webhook in Vercel/Stripe anlegen, Rechnungs-Einstellungen (Firmenname, Adresse, Steuernummer) im Stripe-Dashboard.
+
 ## Stand: erst Paket, dann Fragebogen; keine Korrekturrunden — AKTUELL
 - Kunde: „Klick auf eine Leistung darf nie direkt in den Fragebogen führen, zuerst Paketübersicht; NFC sofort kaufbar; Impressum erstellen wir (aber keine AGB); ‚Google zur Aufnahme angemeldet‘ und ‚Korrekturrunden‘ raus, stattdessen jederzeit direkter Kontakt; USP: KI-Qualität, Festpreise ohne Abo/versteckte Kosten, Transparenz, schnell“.
 - Alle Knöpfe „Fragebogen starten“/„Fotos hochladen“ → „Pakete ansehen“ (`/websites#pakete`, `/roomtours#pakete`); Fragebogen nur noch aus der Paketwahl. NFC: Film-Knopf „Direkt bestellen“ (`/shop?weiss=5`) + „Mengen und Farben“, Start-Schild NFC → Shop, „Was brauchen Sie?“ „Platten bestellen“.

@@ -1,7 +1,9 @@
 import { NextResponse } from "next/server";
-import { euro, isService, products, shipping, totals, type Cart } from "@/lib/shop";
+import { euro, isService, products, shipping, totals, vatNote, type Cart } from "@/lib/shop";
+import { stripe } from "@/lib/stripe";
 
-// Creates a Stripe Checkout session for the shop (STRIPE_SECRET_KEY). Without a key the order is
+// Creates a Stripe Checkout session for the shop (STRIPE_SECRET_KEY) with a post-purchase invoice.
+// Fulfilment runs in /api/stripe/webhook, not on the thank-you page. Without a key the order is
 // sent like an inquiry (Resend, then webhook); without those the client opens a pre-filled e-mail.
 
 type Order = { cart: Cart; ref?: string; name: string; email: string; phone?: string; company?: string; business?: string; address?: string; consent: boolean; early?: boolean; website?: string };
@@ -24,7 +26,7 @@ export async function POST(req: Request) {
   if (!t.lines.length) errors.cart = "Ihr Warenkorb ist leer.";
   if (!o.name?.trim()) errors.name = "Bitte geben Sie Ihren Namen an.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o.email?.trim() ?? "")) errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
-  if (!o.address?.trim()) errors.address = t.plates ? "Bitte geben Sie die Rechnungs- und Lieferadresse an." : "Bitte geben Sie die Rechnungsadresse an.";
+  if (!stripe() && !o.address?.trim()) errors.address = t.plates ? "Bitte geben Sie die Rechnungs- und Lieferadresse an." : "Bitte geben Sie die Rechnungsadresse an.";
   if (t.plates && !o.business?.trim()) errors.business = "Bitte nennen Sie Ihren Betrieb, wie er bei Google heißt.";
   if (!o.consent) errors.consent = "Bitte bestätigen Sie AGB und Widerrufsbelehrung.";
   if (t.lines.some((l) => isService(l.id)) && !o.early) errors.early = "Bitte bestätigen Sie, dass wir sofort beginnen dürfen. Sonst können wir erst nach Ablauf der Widerrufsfrist starten.";
@@ -32,34 +34,48 @@ export async function POST(req: Request) {
 
   const id = `FOAV-${Date.now().toString(36).toUpperCase().slice(-6)}`;
   const origin = new URL(req.url).origin;
+  const tag = Array.from({ length: 8 }, () => String.fromCharCode(97 + Math.floor(Math.random() * 26))).join("");
 
-  if (process.env.STRIPE_SECRET_KEY) {
-    const f = new URLSearchParams();
-    f.set("mode", "payment");
-    f.set("success_url", `${origin}/shop/danke?id=${id}`);
-    f.set("cancel_url", `${origin}/shop`);
-    f.set("customer_email", o.email.trim());
-    f.set("locale", "de");
-    f.set("client_reference_id", id);
-    let n = 0;
-    const add = (name: string, cents: number, qty: number) => {
-      f.set(`line_items[${n}][price_data][currency]`, "eur");
-      f.set(`line_items[${n}][price_data][product_data][name]`, name);
-      f.set(`line_items[${n}][price_data][unit_amount]`, String(cents));
-      f.set(`line_items[${n}][quantity]`, String(qty));
-      n++;
-    };
-    t.lines.forEach((l) => add(l.name, l.price, l.qty));
-    if (t.ship) add(shipping.label, t.ship, 1);
-    for (const [k, v] of Object.entries({ order: id, ref: String(o.ref ?? "").slice(0, 20), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", address: o.address ?? "", early_start: o.early ? "ja" : "nein" })) f.set(`metadata[${k}]`, v.slice(0, 480));
-    const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
-      method: "POST",
-      headers: { Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`, "Content-Type": "application/x-www-form-urlencoded" },
-      body: f,
-    });
-    const j = await res.json().catch(() => ({}));
-    if (res.ok && j.url) return NextResponse.json({ ok: true, url: j.url, id });
-    console.error("[checkout] stripe failed", res.status, j?.error?.message);
+  const s = stripe();
+  if (s) {
+    const plates = t.plates > 0;
+    const meta = { order: id, ref: String(o.ref ?? "").slice(0, 20), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", note_address: o.address ?? "", early_start: o.early ? "ja" : "nein" };
+    for (const k of Object.keys(meta) as (keyof typeof meta)[]) meta[k] = meta[k].slice(0, 480);
+    const line = (name: string, cents: number, qty: number) => ({ quantity: qty, price_data: { currency: "eur", unit_amount: cents, product_data: { name } } });
+    try {
+      const session = await s.checkout.sessions.create(
+        {
+          mode: "payment",
+          locale: "de",
+          success_url: `${origin}/shop/danke?session_id={CHECKOUT_SESSION_ID}`,
+          cancel_url: `${origin}/shop`,
+          customer_email: o.email.trim(),
+          customer_creation: "always",
+          client_reference_id: id,
+          integration_identifier: `foav-shop-${tag}`,
+          line_items: [...t.lines.map((l) => line(l.name, l.price, l.qty)), ...(t.ship ? [line(shipping.label, t.ship, 1)] : [])],
+          // Invoicing: Stripe issues the invoice (PDF, numbered) after payment and e-mails it.
+          billing_address_collection: "required",
+          tax_id_collection: { enabled: true },
+          ...(plates ? { shipping_address_collection: { allowed_countries: ["DE", "AT", "CH"] } } : {}),
+          phone_number_collection: { enabled: !o.phone },
+          invoice_creation: {
+            enabled: true,
+            invoice_data: {
+              description: o.ref ? `Bestellung ${id}, Fragebogen ${o.ref}` : `Bestellung ${id}`,
+              footer: process.env.INVOICE_FOOTER || vatNote,
+              metadata: { order: id },
+            },
+          },
+          payment_intent_data: { description: `foav.de ${id}`, metadata: { order: id } },
+          metadata: meta,
+        },
+        { idempotencyKey: `checkout-${id}-${tag}` },
+      );
+      if (session.url) return NextResponse.json({ ok: true, url: session.url, id });
+    } catch (err) {
+      console.error("[checkout] stripe failed", err instanceof Error ? err.message : err);
+    }
     return NextResponse.json({ ok: false, error: "Die Zahlung konnte nicht gestartet werden.", fallback: true, id }, { status: 502 });
   }
 

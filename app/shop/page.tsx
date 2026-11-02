@@ -7,6 +7,8 @@ export const metadata: Metadata = {
   alternates: { canonical: "https://foav.de/shop" },
 };
 
+export const dynamic = "force-dynamic";
+
 export default function Page() {
-  return <Shop />;
+  return <Shop online={Boolean(process.env.STRIPE_SECRET_KEY)} />;
 }
