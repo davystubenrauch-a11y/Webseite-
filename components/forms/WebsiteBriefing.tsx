@@ -9,7 +9,7 @@ import { Done, PhotoSlots, Question, Sec, Shell, Submit, usePhotos, usePrefill, 
 const sections: Section[] = [
   {
     title: "Ihr Unternehmen",
-    intro: "Diese Angaben erscheinen auf der Website und im Impressum. Bitte genau so, wie sie offiziell lauten.",
+    intro: "Diese Angaben erscheinen auf der Website, zum Beispiel im Kontaktbereich und in der Fußzeile. Bitte genau so, wie sie offiziell lauten.",
     questions: [
       { id: "firma", label: "Name des Unternehmens", type: "text", placeholder: "z. B. Café Morgenrot", half: true },
       { id: "branche", label: "Branche", type: "text", placeholder: "z. B. Café, Physiotherapie, Elektriker", half: true },
@@ -22,7 +22,6 @@ const sections: Section[] = [
       { id: "gebiet", label: "Wo sind Ihre Kunden?", type: "text", placeholder: "z. B. München und 30 km Umkreis, ganz Deutschland, nur vor Ort" },
       { id: "register", label: "Handelsregister und Nummer (falls vorhanden)", type: "text", placeholder: "z. B. Amtsgericht München, HRB 123456", half: true },
       { id: "ust", label: "USt-IdNr. (falls vorhanden)", type: "text", placeholder: "z. B. DE123456789", half: true },
-      { id: "beruf", label: "Nur bei Berufen mit Kammer oder Zulassung", type: "textarea", placeholder: "z. B. Handwerkskammer München, Zahnärztekammer, Berufsbezeichnung und Land der Verleihung, Aufsichtsbehörde", hint: "Ärzte, Therapeuten, Handwerker, Anwälte, Makler und andere müssen das im Impressum angeben." },
     ],
   },
   {
@@ -89,12 +88,13 @@ const sections: Section[] = [
       { id: "texte", label: "Wer schreibt die Texte?", type: "one", options: ["Wir übernehmen die Antworten oben", "Ich liefere fertige Texte", "Teils, teils"] },
       { id: "fotos", label: "Haben Sie eigene Fotos?", type: "one", options: ["Ja, lade ich unten hoch", "Einige, bitte ergänzen", "Nein, bitte passende Bilder auswählen"], hint: "Ohne eigene Fotos verwenden wir lizenzfreie Bilder, die zu Ihrer Branche passen." },
       { id: "rechte", label: "Bildrechte", type: "one", options: ["Die Fotos gehören mir oder ich darf sie nutzen", "Bin mir nicht sicher"] },
-      { id: "domain", label: "Domain (Internetadresse)", type: "one", options: ["Habe ich schon", "Bitte für mich registrieren", "Weiß ich nicht"], half: true },
+      { id: "domain", label: "Domain (Internetadresse)", type: "one", options: ["Habe ich schon", "Buche ich noch", "Weiß ich nicht"], half: true, hint: "Domain und Hosting buchen Sie selbst, z. B. bei IONOS oder Strato. Wir sagen Ihnen gern, welcher Tarif reicht." },
+      { id: "hosting", label: "Hosting (Speicherplatz für die Website)", type: "one", options: ["Habe ich schon", "Buche ich noch", "Weiß ich nicht"], half: true },
       { id: "adresse_web", label: "Bestehende Website oder Wunsch-Adresse", type: "text", placeholder: "z. B. cafe-morgenrot.de", half: true },
-      { id: "anbieter", label: "Wo liegt Ihre Domain bzw. E-Mail? (falls bekannt)", type: "text", placeholder: "z. B. IONOS, Strato, All-inkl, GoDaddy", hint: "Zugangsdaten bitte nicht hier eintragen. Die besprechen wir sicher am Telefon." },
+      { id: "anbieter", label: "Bei welchem Anbieter liegen Domain und Hosting?", type: "text", placeholder: "z. B. IONOS, Strato, All-inkl", hint: "Zugangsdaten bitte nicht hier eintragen. Die besprechen wir sicher am Telefon." },
+      { id: "rechtstexte", label: "Impressum und Datenschutzerklärung", type: "one", options: ["Habe ich, schicke ich mit", "Erstelle ich noch", "Weiß ich nicht"], hint: "Die Rechtstexte erstellen Sie selbst, z. B. mit einem Rechtstext-Dienst wie eRecht24 oder der IT-Recht Kanzlei. Wir binden sie in die Website ein." },
       { id: "formular_an", label: "An welche E-Mail sollen Anfragen von der Website gehen?", type: "text", half: true },
       { id: "tracking", label: "Besucherstatistik gewünscht?", type: "one", options: ["Nein, ohne Cookie-Banner", "Ja, datenschutzfreundlich", "Weiß ich nicht"], half: true },
-      { id: "dsb", label: "Datenschutzbeauftragter (falls vorhanden)", type: "text" },
     ],
   },
   {
@@ -115,6 +115,13 @@ export default function WebsiteBriefing() {
   const photos = usePhotos("website");
   usePrefill(sections, set);
 
+  // the chosen package decides what is paid next; "Noch unsicher" leads to a call instead
+  const pay = () => {
+    const p = String(v.paket ?? "").split("|")[0];
+    const price: Record<string, string> = { Basis: "300 €", Business: "690 €", Premium: "1.290 €" };
+    return price[p] ? { href: `/shop?web=${p}`, label: `Website ${p} für ${price[p]}` } : null;
+  };
+
   const answers = () =>
     sections.flatMap((s) =>
       s.questions.map((q) => {
@@ -129,8 +136,8 @@ export default function WebsiteBriefing() {
       lead="Mit diesen Angaben können wir Ihre Website komplett bauen, ohne nachzufragen. Nichts ist Pflicht außer Name und Kontakt. Was Sie nicht wissen, klären wir kurz am Telefon. Dauer: etwa 10 Minuten."
       steps={[
         ["Fragebogen senden", "Alles, was Sie schon wissen. Stichpunkte reichen."],
-        ["Festpreis erhalten", "Innerhalb von 24 Stunden, mit Zahlungslink."],
-        ["Entwurf ansehen", "Basis in 5, Business und Premium in 7 Tagen ab Zahlung."],
+        ["Bezahlen", "Direkt im Anschluss, per Karte, Apple Pay oder Google Pay."],
+        ["Entwurf ansehen", "Basis in 5, Business und Premium in 7 Tagen."],
         ["Freigeben, online gehen", "Sie sagen, was wir ändern. Dann ist die Seite live."],
       ]}
       done={done && <Done kind="website" {...done} />}
@@ -155,7 +162,7 @@ export default function WebsiteBriefing() {
           )}
         </Sec>
       ))}
-      <Submit kind="website" n={sections.length + 1} answers={answers} photos={photos} button="Fragebogen senden" onDone={setDone} />
+      <Submit kind="website" n={sections.length + 1} answers={answers} photos={photos} button="Fragebogen senden" onDone={setDone} pay={pay} />
     </Shell>
   );
 }

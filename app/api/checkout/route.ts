@@ -1,10 +1,10 @@
 import { NextResponse } from "next/server";
-import { euro, products, shipping, totals, type Cart } from "@/lib/shop";
+import { euro, isService, products, shipping, totals, type Cart } from "@/lib/shop";
 
 // Creates a Stripe Checkout session for the shop (STRIPE_SECRET_KEY). Without a key the order is
 // sent like an inquiry (Resend, then webhook); without those the client opens a pre-filled e-mail.
 
-type Order = { cart: Cart; name: string; email: string; phone?: string; business?: string; address?: string; consent: boolean; website?: string };
+type Order = { cart: Cart; ref?: string; name: string; email: string; phone?: string; company?: string; business?: string; address?: string; consent: boolean; early?: boolean; website?: string };
 
 export async function POST(req: Request) {
   let o: Order;
@@ -24,9 +24,10 @@ export async function POST(req: Request) {
   if (!t.lines.length) errors.cart = "Ihr Warenkorb ist leer.";
   if (!o.name?.trim()) errors.name = "Bitte geben Sie Ihren Namen an.";
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o.email?.trim() ?? "")) errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
-  if (t.plates && !o.address?.trim()) errors.address = "Bitte geben Sie die Lieferadresse an.";
+  if (!o.address?.trim()) errors.address = t.plates ? "Bitte geben Sie die Rechnungs- und Lieferadresse an." : "Bitte geben Sie die Rechnungsadresse an.";
   if (t.plates && !o.business?.trim()) errors.business = "Bitte nennen Sie Ihren Betrieb, wie er bei Google heißt.";
   if (!o.consent) errors.consent = "Bitte bestätigen Sie AGB und Widerrufsbelehrung.";
+  if (t.lines.some((l) => isService(l.id)) && !o.early) errors.early = "Bitte bestätigen Sie, dass wir sofort beginnen dürfen. Sonst können wir erst nach Ablauf der Widerrufsfrist starten.";
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 422 });
 
   const id = `FOAV-${Date.now().toString(36).toUpperCase().slice(-6)}`;
@@ -50,7 +51,7 @@ export async function POST(req: Request) {
     };
     t.lines.forEach((l) => add(l.name, l.price, l.qty));
     if (t.ship) add(shipping.label, t.ship, 1);
-    for (const [k, v] of Object.entries({ order: id, name: o.name, phone: o.phone ?? "", business: o.business ?? "", address: o.address ?? "" })) f.set(`metadata[${k}]`, v.slice(0, 480));
+    for (const [k, v] of Object.entries({ order: id, ref: String(o.ref ?? "").slice(0, 20), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", address: o.address ?? "", early_start: o.early ? "ja" : "nein" })) f.set(`metadata[${k}]`, v.slice(0, 480));
     const res = await fetch("https://api.stripe.com/v1/checkout/sessions", {
       method: "POST",
       headers: { Authorization: `Bearer ${process.env.STRIPE_SECRET_KEY}`, "Content-Type": "application/x-www-form-urlencoded" },
@@ -72,8 +73,11 @@ export async function POST(req: Request) {
     `Name: ${o.name}`,
     `E-Mail: ${o.email}`,
     o.phone ? `Telefon: ${o.phone}` : "",
+    o.ref ? `Fragebogen: ${o.ref}` : "",
+    o.company ? `Firma: ${o.company}` : "",
     o.business ? `Betrieb bei Google: ${o.business}` : "",
-    o.address ? `Lieferadresse: ${o.address}` : "",
+    o.address ? `Adresse: ${o.address}` : "",
+    o.early ? "Sofortiger Beginn verlangt, Hinweis zum Erlöschen des Widerrufsrechts bestätigt." : "",
   ].filter(Boolean).join("\n");
   try {
     if (process.env.RESEND_API_KEY) {

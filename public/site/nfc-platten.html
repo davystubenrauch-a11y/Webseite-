@@ -1074,6 +1074,32 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
 .cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
 @media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
+
+/* ---------- roomtour film: photos fly into the phone, it plays upright, then turns to landscape ---------- */
+.rt { --pw: min(15vw, 28vh); --cx: 72%; --cy: 50%; }
+.rt::after { display: none; }
+.rt-dev { position: absolute; left: var(--cx); top: var(--cy); width: var(--pw); aspect-ratio: 9 / 19.5; padding: calc(var(--pw) * .035); border-radius: calc(var(--pw) * .16); background: #0b0b0c; box-shadow: 0 0 0 1.5px #c3c5c9, 0 0 0 3px #8f9196, 0 50px 70px -30px rgba(60,40,20,.5); transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * -90deg)) scale(calc(1 + var(--c, 1) * .55)); opacity: min(1, calc(.25 + var(--a, 1))); z-index: 2; }
+.rt-scr { position: relative; width: 100%; height: 100%; border-radius: calc(var(--pw) * .13); overflow: hidden; background: #1d1d1f; }
+.rt-still, .rt-scr video { position: absolute; left: 50%; top: 50%; max-width: none; object-fit: cover; --sw: calc(var(--pw) * .93); --sh: calc(var(--pw) * .93 * 19.5 / 9);
+  width: calc(var(--sw) + (var(--sh) - var(--sw)) * var(--c, 1)); height: calc(var(--sh) + (var(--sw) - var(--sh)) * var(--c, 1));
+  transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * 90deg)); }
+.rt-isl { position: absolute; z-index: 2; left: 50%; top: 2.4%; width: 30%; height: 3.4%; translate: -50% 0; border-radius: 99px; background: #0b0b0c; }
+.rt-ph { position: absolute; z-index: 3; left: var(--cx); top: var(--cy); width: calc(var(--pw) * 1.05); aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid #fff; border-bottom-width: 18px; border-radius: 4px; box-shadow: 0 24px 40px -20px rgba(60,40,20,.45);
+  transform: translate(-50%, -50%) translate(calc((1 - var(--a, 1)) * var(--dx)), calc((1 - var(--a, 1)) * var(--dy))) rotate(calc((1 - var(--a, 1)) * var(--r))) scale(calc(1 - var(--a, 1) * .75));
+  opacity: calc(1 - var(--a, 1) * var(--a, 1)); }
+.rt-lab { position: absolute; z-index: 4; left: var(--cx); translate: -50% 0; margin: 0; padding: 9px 16px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px -14px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.05); font-size: .9375rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.rt-lab0 { top: calc(var(--cy) - var(--pw) * 1.45); opacity: calc(1 - var(--a, 1) * 1.6); }
+.rt-lab1 { top: calc(var(--cy) + var(--pw) * 1.12); opacity: calc(var(--b, 1) * 3 * (1 - var(--c, 1) * 3)); }
+.rt-lab2 { top: calc(var(--cy) + var(--pw) * .95); opacity: calc((var(--c, 1) - .55) * 3); }
+@media (max-width: 1000px) { .rt { --cx: 66%; } }
+@media (max-width: 700px) {
+  .rt { --pw: min(26vw, 14vh); --cx: 50%; --cy: 71%; }
+  .rt-dev { transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * -90deg)) scale(calc(1 + var(--c, 1) * .25)); }
+  .rt-ph { width: calc(var(--pw) * 1.1); }
+  .rt-ph:nth-of-type(1) { --dx: -95% !important; --dy: -20% !important; } .rt-ph:nth-of-type(2) { --dx: 95% !important; --dy: 10% !important; } .rt-ph:nth-of-type(3) { --dx: 0% !important; --dy: -80% !important; }
+  .rt-lab { font-size: .8125rem; padding: 7px 12px; }
+  .rt-lab1 { top: calc(var(--cy) + var(--pw) * 1.08); } .rt-lab2 { top: calc(var(--cy) + var(--pw) * .72); } .rt-lab0 { top: calc(var(--cy) - var(--pw) * 1.35); }
+}
 </style>
 </head>
 <body>
@@ -1132,7 +1158,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="kicker">NFC-Platten</p>
           <h2 id="h-plate">Gäste bewerten Sie mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
-          <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="/nfc-platten#nfc">Platten berechnen</a></div>
+          <div class="scene__foot"><p class="price">15 € <small>pro Stück</small></p><a class="btn btn--light" href="/nfc-platten#pakete">Platten wählen</a></div>
           <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
@@ -1193,11 +1219,11 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
       <div>
-        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Platten und Roomtours können Sie direkt im <a class="inl" href="/shop">Shop</a> bezahlen, bei Websites schicken wir Ihnen nach Ihrer Bestätigung einen Zahlungslink. Die Zahlung läuft sicher über Stripe. Eine Rechnung bekommen Sie immer per E-Mail.</p></details>
+        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus und bezahlen danach sicher per Karte, Apple Pay oder Google Pay. NFC-Platten bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
         <details data-on="nfc-platten"><summary>Kann ich Weiß und Schwarz mischen?<i aria-hidden="true"></i></summary><p>Ja. Im Shop wählen Sie die Anzahl je Farbe. Ab 5 Platten insgesamt ist der Versand kostenlos.</p></details>
         <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
         <details data-on="nfc-platten"><summary>Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></summary><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></details>
-        <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
+        <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Bei uns nicht, Sie zahlen einmal. Für eine Website brauchen Sie eine eigene Domain und ein Hosting, die Sie selbst bei einem Anbieter wie IONOS oder Strato buchen, meist für 5 bis 10 € im Monat. Wir sagen Ihnen gern, welcher Tarif reicht.</p></details>
         <details data-on="nfc-platten"><summary>Funktioniert das mit jedem Handy?<i aria-hidden="true"></i></summary><p>Mit allen aktuellen iPhones und Android-Handys. Eine App braucht Ihr Gast nicht.</p></details>
         <details data-on="nfc-platten"><summary>Darf ich Gäste für Bewertungen belohnen?<i aria-hidden="true"></i></summary><p>Nein, das erlaubt Google nicht. Die Platte macht das Bewerten nur einfacher, damit zufriedene Gäste es auch wirklich tun.</p></details>
       </div>
@@ -1253,7 +1279,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
 </main>
 
-<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#kontakt">Kostenlos anfragen</a></div>
+<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#pakete" data-offers>Angebote ansehen</a></div>
 
 <script src="/site/vendor/gsap-3.13/gsap.min.js" defer></script>
 <script src="/site/vendor/gsap-3.13/ScrollTrigger.min.js" defer></script>
@@ -1571,7 +1597,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       name.textContent = r.dataset.label;
       go.href = r.dataset.href.replace("{c}", color);
-      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Fragebogen starten" : "Festpreis anfragen";
+      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Weiter zum Fragebogen" : "Festpreis anfragen";
       if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });

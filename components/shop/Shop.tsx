@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Shell } from "@/components/forms/Briefing";
 import { site } from "@/lib/site";
-import { euro, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
+import { euro, isService, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
 
 // Shop: NFC plates and the basic roomtour, cart with the shipping rule, then Stripe Checkout
 // (or, while Stripe is not set up, an order by e-mail).
@@ -38,19 +38,23 @@ const css = `
 .sh-form label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 500; color: var(--ink); }
 .sh-form textarea { min-height: 76px; }
 .sh-form .bf-btn { width: 100%; margin-top: 6px; }
+.sh-form .bf-consent { display: flex; gap: 12px; align-items: flex-start; font-size: 14px; line-height: 1.5; }
+.sh-form .bf-consent input { flex: none; width: 22px; height: 22px; margin: 1px 0 0; }
 .sh-empty { color: var(--muted); font-size: 15px; }
 @media (max-width: 960px) { .sh-grid { grid-template-columns: 1fr; } .sh-cart { position: static; } }
 @media (max-width: 600px) { .sh-item { grid-template-columns: 96px 1fr; } .sh-item .sh-qty { grid-column: 1 / -1; justify-self: start; } }
 `;
 
 function Pic({ id }: { id: ProductId }) {
+  if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
   if (id === "roomtour-basis" || id === "roomtour-premium") return <div className="sh-pic"><img src={id === "roomtour-basis" ? "/media/tour-md-2.jpg" : "/media/tour-md-1.jpg"} alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
 
 export default function Shop() {
   const [cart, setCart] = useState<Cart>({});
-  const [f, setF] = useState({ name: "", email: "", phone: "", business: "", address: "", consent: false, website: "" });
+  const [f, setF] = useState({ name: "", email: "", phone: "", company: "", business: "", address: "", consent: false, early: false, website: "" });
+  const [ref, setRef] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending" | "mail" | "sent">("idle");
 
@@ -58,12 +62,21 @@ export default function Shop() {
   useEffect(() => {
     const q = new URLSearchParams(location.search), c: Cart = {};
     const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0);
-    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = r; if (rp) c["roomtour-premium"] = rp;
-    if (!w && !b && !r && !rp) c["nfc-weiss"] = 0;
+    const web = (q.get("web") ?? "").toLowerCase();
+    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = 1; if (rp) c["roomtour-premium"] = 1;
+    if (web === "basis" || web === "business" || web === "premium") c[`web-${web}` as ProductId] = 1;
     setCart(c);
+    setRef((q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20));
+    // contact details from the questionnaire, so nobody types them twice
+    try {
+      const saved = JSON.parse(sessionStorage.getItem("foav-contact") ?? "{}");
+      setF((o) => ({ ...o, name: saved.name ?? o.name, email: saved.email ?? o.email, phone: saved.phone ?? o.phone }));
+    } catch {}
   }, []);
 
   const t = totals(cart);
+  const hasService = t.lines.some((l) => isService(l.id));
+  const shown = products.filter((p) => p.physical || (cart[p.id] ?? 0) > 0);
   const setQty = (id: ProductId, q: number) => setCart((c) => ({ ...c, [id]: Math.max(0, Math.min(q, products.find((p) => p.id === id)!.max)) }));
   const up = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setF((o) => ({ ...o, [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value }));
 
@@ -71,7 +84,7 @@ export default function Shop() {
     e.preventDefault();
     setState("sending"); setErrors({});
     try {
-      const res = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cart, ...f }) });
+      const res = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cart, ref, ...f }) });
       const j = await res.json().catch(() => ({}));
       if (res.ok && j.url) { location.href = j.url; return; }
       if (res.ok && j.ok) { setState("sent"); scrollTo({ top: 0 }); return; }
@@ -101,13 +114,13 @@ export default function Shop() {
 
   return (
     <Shell
-      title="Direkt bestellen."
-      lead="NFC-Platten und KI-Roomtours können Sie hier sofort kaufen. Websites starten wir mit einem kurzen Fragebogen."
+      title={hasService ? "Letzter Schritt: bezahlen." : "Direkt bestellen."}
+      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten bestellen Sie hier direkt. Websites und Roomtours starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
       steps={[
-        ["Auswählen", "Anzahl wählen, der Preis steht sofort fest."],
+        ["Paket wählen", "Der Preis steht vorher fest."],
+        ["Fragebogen", "Websites und Roomtours: Angaben und Fotos senden."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Einrichten", "Wir verknüpfen Ihre Platten mit Ihrem Google-Profil."],
-        ["Erhalten", "Platten per Post, Roomtour 48 Stunden nach Ihren Fotos."],
+        ["Ergebnis erhalten", "Platten per Post, Roomtour in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -115,7 +128,7 @@ export default function Shop() {
       <div className="sh-grid">
         <div>
           <div className="sh-list">
-            {products.map((p) => (
+            {shown.map((p) => (
               <article className="sh-item" key={p.id}>
                 <Pic id={p.id} />
                 <div>
@@ -131,7 +144,8 @@ export default function Shop() {
               </article>
             ))}
           </div>
-          <p className="sh-note">Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Für Restaurants empfehlen wir 5 bis 10 Platten, zum Beispiel eine pro Tisch. Eine Website? <a href="/anfrage/website">Zum Fragebogen</a>.</p>
+          <p className="sh-note">Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Für Restaurants empfehlen wir 5 bis 10 Platten, zum Beispiel eine pro Tisch.</p>
+          {!hasService && <p className="sh-note">Eine Website oder Roomtour? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/roomtours#pakete">KI-Roomtours</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 
         <aside className="sh-cart" aria-label="Warenkorb">
@@ -141,6 +155,7 @@ export default function Shop() {
               {t.lines.map((l) => <div className="sh-row" key={l.id}><span>{l.qty} × {l.name}</span><b>{euro(l.qty * l.price)}</b></div>)}
               {t.plates > 0 && <div className="sh-row"><span>Versand</span><b>{t.ship ? euro(t.ship) : "kostenlos"}</b></div>}
               <div className="sh-row sh-total"><span>Summe</span><b>{euro(t.total)}</b></div>
+              {ref && <p className="sh-hint">Zu Ihrem Fragebogen {ref}</p>}
               <p className="sh-hint">{vatNote}</p>
               {t.plates > 0 && t.plates < shipping.freeFrom && <p className="sh-free">Noch {shipping.freeFrom - t.plates} {shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann ist der Versand kostenlos.</p>}
             </>
@@ -149,18 +164,22 @@ export default function Shop() {
             <div><label htmlFor="o-name">Name</label><input id="o-name" type="text" autoComplete="name" value={f.name} onChange={up("name")} />{errors.name && <p className="bf-err">{errors.name}</p>}</div>
             <div><label htmlFor="o-email">E-Mail</label><input id="o-email" type="email" autoComplete="email" value={f.email} onChange={up("email")} />{errors.email && <p className="bf-err">{errors.email}</p>}</div>
             <div><label htmlFor="o-phone">Telefon (optional)</label><input id="o-phone" type="tel" autoComplete="tel" value={f.phone} onChange={up("phone")} /></div>
-            {t.plates > 0 && (
-              <>
-                <div><label htmlFor="o-biz">Ihr Betrieb, wie er bei Google heißt</label><input id="o-biz" type="text" value={f.business} onChange={up("business")} placeholder="z. B. Café Sonne, München" />{errors.business && <p className="bf-err">{errors.business}</p>}</div>
-                <div><label htmlFor="o-addr">Lieferadresse</label><textarea id="o-addr" autoComplete="street-address" value={f.address} onChange={up("address")} />{errors.address && <p className="bf-err">{errors.address}</p>}</div>
-              </>
-            )}
+            <div><label htmlFor="o-company">Firma (optional, für die Rechnung)</label><input id="o-company" type="text" autoComplete="organization" value={f.company} onChange={up("company")} /></div>
+            {t.plates > 0 && <div><label htmlFor="o-biz">Ihr Betrieb, wie er bei Google heißt</label><input id="o-biz" type="text" value={f.business} onChange={up("business")} placeholder="z. B. Café Sonne, München" />{errors.business && <p className="bf-err">{errors.business}</p>}</div>}
+            <div><label htmlFor="o-addr">{t.plates > 0 ? "Rechnungs- und Lieferadresse" : "Rechnungsadresse"}</label><textarea id="o-addr" autoComplete="street-address" value={f.address} onChange={up("address")} placeholder="Straße und Hausnummer, PLZ und Ort" />{errors.address && <p className="bf-err">{errors.address}</p>}</div>
             <input className="bf-hp" tabIndex={-1} aria-hidden="true" value={f.website} onChange={up("website")} />
             <label className="bf-consent" style={{ fontWeight: 400 }}>
               <input type="checkbox" checked={f.consent} onChange={up("consent")} />
               <span>Ich habe die <a href="/agb" target="_blank">AGB</a> und die <a href="/widerruf" target="_blank">Widerrufsbelehrung</a> gelesen. Meine Angaben werden laut <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> verarbeitet.</span>
             </label>
             {errors.consent && <p className="bf-err">{errors.consent}</p>}
+            {hasService && (
+              <label className="bf-consent" style={{ fontWeight: 400 }}>
+                <input type="checkbox" checked={f.early} onChange={up("early")} />
+                <span>Ich verlange ausdrücklich, dass foav.de vor Ablauf der Widerrufsfrist mit der Arbeit beginnt. Mir ist bekannt, dass mein Widerrufsrecht erlischt, sobald die Leistung vollständig erbracht ist, und dass ich bei einem früheren Widerruf die bis dahin erbrachte Arbeit anteilig bezahle.</span>
+              </label>
+            )}
+            {errors.early && <p className="bf-err">{errors.early}</p>}
             {errors.cart && <p className="bf-err">{errors.cart}</p>}
             <button className="bf-btn" type="submit" disabled={state === "sending" || !t.lines.length}>{state === "sending" ? "Wird vorbereitet …" : `Zahlungspflichtig bestellen für ${euro(t.total)}`}</button>
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}

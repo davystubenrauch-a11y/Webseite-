@@ -1,6 +1,6 @@
 // Products, prices and shipping for the shop at /shop. Prices in cents.
 
-export type ProductId = "nfc-weiss" | "nfc-schwarz" | "roomtour-basis" | "roomtour-premium";
+export type ProductId = "nfc-weiss" | "nfc-schwarz" | "roomtour-basis" | "roomtour-premium" | "web-basis" | "web-business" | "web-premium";
 
 export type Product = {
   id: ProductId;
@@ -15,8 +15,14 @@ export const products: Product[] = [
   { id: "nfc-weiss", name: "NFC-Platte Weiß", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "nfc-schwarz", name: "NFC-Platte Schwarz", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder eine Etage, bis 8 Räume, Video 60 bis 90 Sekunden quer und hochkant, fertig in 48 Stunden", price: 30000, physical: false, max: 5 },
+  { id: "web-basis", name: "Website Basis", short: "3 Seiten, Design nach Ihrem Logo, Kontaktformular, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
+  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, Texte von uns, Google-Unternehmensprofil, Terminbuchung, online in 7 Tagen", price: 69000, physical: false, max: 1 },
+  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten, 3D-Effekte, zweisprachig, inkl. KI-Roomtour Basis oder 10 NFC-Platten, online in 7 Tagen", price: 129000, physical: false, max: 1 },
   { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 49000, physical: false, max: 5 },
 ];
+
+/** Services start right after payment; consumers must agree to that before ordering (§ 356 Abs. 4 BGB). */
+export const isService = (id: ProductId) => !products.find((p) => p.id === id)?.physical;
 
 export const shipping = { price: 299, freeFrom: 5, label: "Versand innerhalb Deutschlands" };
 

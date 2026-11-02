@@ -1074,6 +1074,32 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
 .cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
 @media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
+
+/* ---------- roomtour film: photos fly into the phone, it plays upright, then turns to landscape ---------- */
+.rt { --pw: min(15vw, 28vh); --cx: 72%; --cy: 50%; }
+.rt::after { display: none; }
+.rt-dev { position: absolute; left: var(--cx); top: var(--cy); width: var(--pw); aspect-ratio: 9 / 19.5; padding: calc(var(--pw) * .035); border-radius: calc(var(--pw) * .16); background: #0b0b0c; box-shadow: 0 0 0 1.5px #c3c5c9, 0 0 0 3px #8f9196, 0 50px 70px -30px rgba(60,40,20,.5); transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * -90deg)) scale(calc(1 + var(--c, 1) * .55)); opacity: min(1, calc(.25 + var(--a, 1))); z-index: 2; }
+.rt-scr { position: relative; width: 100%; height: 100%; border-radius: calc(var(--pw) * .13); overflow: hidden; background: #1d1d1f; }
+.rt-still, .rt-scr video { position: absolute; left: 50%; top: 50%; max-width: none; object-fit: cover; --sw: calc(var(--pw) * .93); --sh: calc(var(--pw) * .93 * 19.5 / 9);
+  width: calc(var(--sw) + (var(--sh) - var(--sw)) * var(--c, 1)); height: calc(var(--sh) + (var(--sw) - var(--sh)) * var(--c, 1));
+  transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * 90deg)); }
+.rt-isl { position: absolute; z-index: 2; left: 50%; top: 2.4%; width: 30%; height: 3.4%; translate: -50% 0; border-radius: 99px; background: #0b0b0c; }
+.rt-ph { position: absolute; z-index: 3; left: var(--cx); top: var(--cy); width: calc(var(--pw) * 1.05); aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid #fff; border-bottom-width: 18px; border-radius: 4px; box-shadow: 0 24px 40px -20px rgba(60,40,20,.45);
+  transform: translate(-50%, -50%) translate(calc((1 - var(--a, 1)) * var(--dx)), calc((1 - var(--a, 1)) * var(--dy))) rotate(calc((1 - var(--a, 1)) * var(--r))) scale(calc(1 - var(--a, 1) * .75));
+  opacity: calc(1 - var(--a, 1) * var(--a, 1)); }
+.rt-lab { position: absolute; z-index: 4; left: var(--cx); translate: -50% 0; margin: 0; padding: 9px 16px; border-radius: 999px; background: #fff; box-shadow: 0 10px 30px -14px rgba(0,0,0,.35), 0 0 0 1px rgba(0,0,0,.05); font-size: .9375rem; font-weight: 600; color: var(--ink); white-space: nowrap; }
+.rt-lab0 { top: calc(var(--cy) - var(--pw) * 1.45); opacity: calc(1 - var(--a, 1) * 1.6); }
+.rt-lab1 { top: calc(var(--cy) + var(--pw) * 1.12); opacity: calc(var(--b, 1) * 3 * (1 - var(--c, 1) * 3)); }
+.rt-lab2 { top: calc(var(--cy) + var(--pw) * .95); opacity: calc((var(--c, 1) - .55) * 3); }
+@media (max-width: 1000px) { .rt { --cx: 66%; } }
+@media (max-width: 700px) {
+  .rt { --pw: min(26vw, 14vh); --cx: 50%; --cy: 71%; }
+  .rt-dev { transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * -90deg)) scale(calc(1 + var(--c, 1) * .25)); }
+  .rt-ph { width: calc(var(--pw) * 1.1); }
+  .rt-ph:nth-of-type(1) { --dx: -95% !important; --dy: -20% !important; } .rt-ph:nth-of-type(2) { --dx: 95% !important; --dy: 10% !important; } .rt-ph:nth-of-type(3) { --dx: 0% !important; --dy: -80% !important; }
+  .rt-lab { font-size: .8125rem; padding: 7px 12px; }
+  .rt-lab1 { top: calc(var(--cy) + var(--pw) * 1.08); } .rt-lab2 { top: calc(var(--cy) + var(--pw) * .72); } .rt-lab0 { top: calc(var(--cy) - var(--pw) * 1.35); }
+}
 </style>
 </head>
 <body>
@@ -1161,18 +1187,22 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
   <section class="scene scene--room" id="roomtours" aria-labelledby="h-room">
     <div class="scene__pin">
-      <div class="r-stage" aria-hidden="true">
-        <img class="r-ph r-ph1" src="/media/tour-md-1.jpg" alt=""><img class="r-ph r-ph2" src="/media/tour-md-2.jpg" alt=""><img class="r-ph r-ph3" src="/media/tour-md-3.jpg" alt="">
-        <div class="r-vid"><video id="svcVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="metadata"><source src="/media/roomtour-villa-1280.mp4" type="video/mp4"></video></div>
-        <span class="toast r-toast"><svg><use href="#tick"/></svg>Bereit für Airbnb, Portale und Instagram</span>
+      <div class="r-stage rt" aria-hidden="true">
+        <img class="rt-ph" style="--dx:-260%;--dy:-40%;--r:-9deg" src="/media/vorher-1-md.jpg" alt="">
+        <img class="rt-ph" style="--dx:-210%;--dy:85%;--r:6deg" src="/media/vorher-2-md.jpg" alt="">
+        <img class="rt-ph" style="--dx:-120%;--dy:-115%;--r:-4deg" src="/media/vorher-3-md.jpg" alt="">
+        <div class="rt-dev"><div class="rt-scr"><img class="rt-still" src="/media/tour-md-2.jpg" alt=""><video id="svcVid" poster="/media/tour-md-2.jpg" muted loop playsinline autoplay preload="metadata"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video><i class="rt-isl"></i></div></div>
+        <p class="rt-lab rt-lab1">Hochformat für Instagram und TikTok</p>
+        <p class="rt-lab rt-lab2">Querformat für Airbnb, Portale und Website</p>
+        <p class="rt-lab rt-lab0">Ihre Handyfotos</p>
       </div>
       <div class="wrap scene__grid">
         <div class="scene__text">
           <p class="kicker">KI-Roomtours</p>
           <h2 id="h-room">Ihre Räume überzeugen, bevor Kunden da sind.</h2>
           <ol class="how"><li><b>Fotos.</b> Sie laden Fotos Ihrer Räume hoch, wir sagen Ihnen genau, welche.</li><li><b>Video.</b> In bis zu 48 Stunden entsteht daraus ein Rundgang in Full HD.</li><li><b>Mehr Kunden.</b> Sie zeigen ihn auf Airbnb, Immobilienportalen, Instagram und Ihrer Website.</li></ol>
-          <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div>
-          <p class="scene__fact">Basis bis 150 m² oder ein ganzes Stockwerk. Ohne Fototermin. Im Bild: Beispiel-Roomtour.</p>
+          <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="/roomtours#pakete">Paket wählen</a></div>
+          <p class="scene__fact">Sie bekommen beide Formate. Basis bis 150 m², Premium bis 300 m². Im Bild: Beispiel-Roomtour.</p>
         </div>
       </div>
     </div>
@@ -1199,7 +1229,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Wählen Sie Ihre Roomtour.</h2></div><p class="lead">Fester Preis nach Größe. Sie schicken Handyfotos, wir liefern das fertige Video.</p></div>
       <form class="choose" data-choose="room" onsubmit="return false">
-        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan plan--top"><input type="radio" name="room" value="Basis" data-href="/shop?roomtour=1" data-label="KI-Roomtour Basis, 300 €" checked><h3>Basis</h3><p>Für Wohnungen, Ferienwohnungen, Läden und Praxen</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder eine Etage, bis 8 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video 60 bis 90 Sekunden in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Querformat für Website und Portale</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Hochformat für Instagram und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Raumnamen eingeblendet, lizenzfreie Musik</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Abspann mit Ihrem Namen und Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>1 Korrekturrunde, fertig in 48 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Premium" data-href="/shop?premium=1" data-label="KI-Roomtour Premium, 490 €"><h3>Premium</h3><p>Für Häuser, Hotels und Makler-Objekte</p><p class="plan__big">490 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 300 m² oder mehrere Etagen, bis 15 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Inklusive Außenbereich, Garten oder Terrasse</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video bis 2 Minuten in Full HD, quer und hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Kurzclips à 15 Sekunden für Reels und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ihr Logo und Eckdaten wie m², Zimmer, Preis eingeblendet</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Titelbild für Portale und YouTube</li><li><svg aria-hidden="true"><use href="#tick"/></svg>2 Korrekturrunden, fertig in 72 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Individuell" data-href="#kontakt" data-label="Individuelle Roomtour, Festpreis auf Anfrage"><h3>Individuell</h3><p>Für große Objekte, Hotels und Makler mit mehreren Objekten</p><p class="plan__big plan__big--text">Auf Anfrage</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 300 m² oder viele Zimmertypen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehrere Wohnungen, Häuser oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Paketpreis ab 3 Videos</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Persönliche Beratung am Telefon</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan plan--top"><input type="radio" name="room" value="Basis" data-href="/anfrage/roomtour?paket=Basis" data-label="KI-Roomtour Basis, 300 €" checked><h3>Basis</h3><p>Für Wohnungen, Ferienwohnungen, Läden und Praxen</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder eine Etage, bis 8 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video 60 bis 90 Sekunden in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Querformat für Website und Portale</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Hochformat für Instagram und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Raumnamen eingeblendet, lizenzfreie Musik</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Abspann mit Ihrem Namen und Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>1 Korrekturrunde, fertig in 48 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Premium" data-href="/anfrage/roomtour?paket=Premium" data-label="KI-Roomtour Premium, 490 €"><h3>Premium</h3><p>Für Häuser, Hotels und Makler-Objekte</p><p class="plan__big">490 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 300 m² oder mehrere Etagen, bis 15 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Inklusive Außenbereich, Garten oder Terrasse</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video bis 2 Minuten in Full HD, quer und hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Kurzclips à 15 Sekunden für Reels und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ihr Logo und Eckdaten wie m², Zimmer, Preis eingeblendet</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Titelbild für Portale und YouTube</li><li><svg aria-hidden="true"><use href="#tick"/></svg>2 Korrekturrunden, fertig in 72 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Individuell" data-href="#kontakt" data-label="Individuelle Roomtour, Festpreis auf Anfrage"><h3>Individuell</h3><p>Für große Objekte, Hotels und Makler mit mehreren Objekten</p><p class="plan__big plan__big--text">Auf Anfrage</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 300 m² oder viele Zimmertypen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehrere Wohnungen, Häuser oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Paketpreis ab 3 Videos</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Persönliche Beratung am Telefon</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
         <div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
       </form>
       <p class="plans__note">Alle Preise sind Endpreise. Sie sehen jedes Video vor der Veröffentlichung und dürfen es überall nutzen: Airbnb, Booking.com, Immobilienportale, Website und Social Media.</p>
@@ -1231,8 +1261,9 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <details data-on="home roomtours"><summary>Für welche Betriebe eignet sich eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Für alle, deren Räume verkaufen: Ferienwohnungen und Hotels, Immobilienmakler für Verkauf und Vermietung, Läden und Showrooms, Restaurants, Praxen, Studios und Büros. Sie schicken Fotos, wir machen daraus einen Rundgang.</p></details>
         <details data-on="roomtours"><summary>Darf ich die Roomtour überall verwenden?<i aria-hidden="true"></i></summary><p>Ja. Sie bekommen das Video quer und auf Wunsch hochkant, passend für Airbnb, Booking.com, Immobilienportale, Google, Ihre Website und Social Media.</p></details>
         <details data-on="home roomtours"><summary>Was kostet eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Basis bis 150 m² 300 €, Premium bis 300 m² mit Außenbereich, Logo, Eckdaten und drei Kurzclips für Social Media 490 €. Größere Objekte oder mehrere Wohnungen bekommen einen Festpreis auf Anfrage. Alle Pakete finden Sie auf der Seite <a class="inl" href="/roomtours#pakete">KI-Roomtours</a>.</p></details>
-        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Platten und Roomtours können Sie direkt im <a class="inl" href="/shop">Shop</a> bezahlen, bei Websites schicken wir Ihnen nach Ihrer Bestätigung einen Zahlungslink. Die Zahlung läuft sicher über Stripe. Eine Rechnung bekommen Sie immer per E-Mail.</p></details>
+        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus und bezahlen danach sicher per Karte, Apple Pay oder Google Pay. NFC-Platten bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
         <details data-on="home websites roomtours"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Je nach Paket sind eine bis drei Änderungsrunden im Preis enthalten. Wir passen an, bis es zu dem vereinbarten Umfang passt.</p></details>
+        <details data-on="home roomtours"><summary>Muss ich das Video als KI-Video kennzeichnen?<i aria-hidden="true"></i></summary><p>Seit August 2026 verlangt die EU-KI-Verordnung, dass realistisch wirkende KI-Videos als solche erkennbar sind. Deshalb blenden wir auf Wunsch einen dezenten Hinweis „Mit KI erstellt“ ein. Zeigen Sie das Video zusätzlich mit diesem Hinweis im Text Ihres Inserats.</p></details>
         <details data-on="roomtours"><summary>Wie sieht das Video aus, wenn meine Fotos nicht perfekt sind?<i aria-hidden="true"></i></summary><p>Normale Handyfotos reichen. Das Formular zeigt Ihnen für jeden Raum, von wo aus Sie fotografieren. Fehlt etwas, melden wir uns, bevor wir anfangen.</p></details>
       </div>
     </div>
@@ -1287,7 +1318,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
 </main>
 
-<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#kontakt">Kostenlos anfragen</a></div>
+<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#pakete" data-offers>Angebote ansehen</a></div>
 
 <script src="/site/vendor/gsap-3.13/gsap.min.js" defer></script>
 <script src="/site/vendor/gsap-3.13/ScrollTrigger.min.js" defer></script>
@@ -1605,7 +1636,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       name.textContent = r.dataset.label;
       go.href = r.dataset.href.replace("{c}", color);
-      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Fragebogen starten" : "Festpreis anfragen";
+      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Weiter zum Fragebogen" : "Festpreis anfragen";
       if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });

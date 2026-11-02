@@ -19,16 +19,17 @@ export default function Agb() {
 
       <h2>2. Vertragsschluss</h2>
       <p>
-        Die Preise auf unserer Website sind Startpreise und noch kein verbindliches Angebot. Nach Ihrer Anfrage schicken wir Ihnen einen
-        schriftlichen Festpreis mit dem vereinbarten Umfang. Der Vertrag kommt zustande, wenn Sie dieses Angebot bestätigen, zum Beispiel per
-        E-Mail oder durch Zahlung über den Zahlungslink.
+        Die Pakete und Preise auf unserer Website sind verbindlich. Sie wählen ein Paket, senden bei Websites und Roomtours den Fragebogen
+        und bestellen anschließend über den Knopf „Zahlungspflichtig bestellen“. Damit geben Sie ein verbindliches Angebot ab, das wir mit der
+        Bestellbestätigung per E-Mail annehmen. Für Leistungen außerhalb der Pakete (z. B. „Individuell“) erhalten Sie vorher ein schriftliches
+        Angebot; der Vertrag kommt dann mit Ihrer Bestätigung oder Zahlung zustande.
       </p>
 
       <h2>3. Leistungen</h2>
       <p>
-        <b>Websites:</b> Gestaltung und Umsetzung im vereinbarten Paket (Basis mit 3 Seiten, Business oder Premium) einschließlich Impressum- und
-        Datenschutzseite als Vorlage. Domain, Hosting und kostenpflichtige Dienste Dritter sind nur enthalten, wenn das Angebot sie ausdrücklich
-        nennt.
+        <b>Websites:</b> Gestaltung und Umsetzung im gewählten Paket (Basis, Business oder Premium) mit dem auf der Website beschriebenen Umfang.
+        Nicht enthalten sind Domain, Hosting und kostenpflichtige Dienste Dritter, die Sie selbst auf Ihren Namen buchen, sowie die Rechtstexte
+        (Impressum, Datenschutzerklärung). Diese erstellen Sie selbst oder lassen sie erstellen; wir binden sie ein. Eine Rechtsberatung erbringen wir nicht.
       </p>
       <p>
         <b>KI-Roomtours:</b> Ein Video-Rundgang, der mit Hilfe künstlicher Intelligenz aus Ihren Fotos entsteht, im vereinbarten Format (16:9
@@ -43,9 +44,9 @@ export default function Agb() {
 
       <h2>4. Preise und Zahlung</h2>
       <p>
-        Es gilt der Festpreis aus unserem Angebot. [Bei Unternehmern: Alle Preise zzgl. gesetzlicher Umsatzsteuer. / Als Kleinunternehmer nach § 19
-        UStG weisen wir keine Umsatzsteuer aus. – Zutreffendes wählen.] Der Betrag ist im Voraus fällig. Sie erhalten dafür einen Zahlungslink
-        oder eine Rechnung. Mit der Arbeit beginnen wir nach Zahlungseingang.
+        Es gilt der Preis des gewählten Pakets bzw. aus unserem Angebot. [Bei Unternehmern: Alle Preise zzgl. gesetzlicher Umsatzsteuer. / Als Kleinunternehmer nach § 19
+        UStG weisen wir keine Umsatzsteuer aus. – Zutreffendes wählen.] Der Betrag ist im Voraus fällig. Sie bezahlen bei der Bestellung über unseren Zahlungsdienstleister Stripe
+        und erhalten eine Rechnung per E-Mail. Mit der Arbeit beginnen wir nach Zahlungseingang.
       </p>
 
       <h2>5. Lieferzeiten</h2>

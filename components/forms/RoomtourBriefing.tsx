@@ -96,6 +96,13 @@ export default function RoomtourBriefing() {
   const recommended = groups.reduce((sum, g) => sum + g.room.shots.length, 0);
   const area = Number(v.flaeche) || 0;
 
+  // package from the choice, or from the area if none was chosen; bigger objects get a quote first
+  const pay = () => {
+    const p = String(v.paket ?? "").split("|")[0];
+    const tier = p === "Basis" || p === "Premium" ? p : p ? "" : area > 300 ? "" : area > 150 ? "Premium" : "Basis";
+    return tier === "Basis" ? { href: "/shop?roomtour=1", label: "KI-Roomtour Basis für 300 €" } : tier === "Premium" ? { href: "/shop?premium=1", label: "KI-Roomtour Premium für 490 €" } : null;
+  };
+
   const answers = () => [
     ...sections.flatMap((s) =>
       s.questions.map((q) => {
@@ -113,8 +120,8 @@ export default function RoomtourBriefing() {
       lead="Pro Raum brauchen wir ein paar Fotos aus bestimmten Blickwinkeln. Welche genau, zeigen wir Ihnen unten Raum für Raum."
       steps={[
         ["Fotos senden", "Raum für Raum, so wie unten gezeigt."],
-        ["Festpreis und Zahlungslink", "Innerhalb von 24 Stunden."],
-        ["Video in bis zu 48 Stunden", "Ab Zahlung und vollständigen Fotos."],
+        ["Bezahlen", "Direkt im Anschluss, sicher per Karte."],
+        ["Video erhalten", "Basis in 48, Premium in 72 Stunden."],
         ["Gemeinsam anpassen", "Passt etwas nicht, ändern wir es mit Ihnen."],
       ]}
       done={done && <Done kind="roomtour" {...done} />}
@@ -184,7 +191,7 @@ export default function RoomtourBriefing() {
         })}
       </Sec>
 
-      <Submit kind="roomtour" n={4} answers={answers} photos={photos} button="Roomtour beauftragen" onDone={setDone} />
+      <Submit kind="roomtour" n={4} answers={answers} photos={photos} button="Weiter zur Bezahlung" onDone={setDone} pay={pay} />
     </Shell>
   );
 }

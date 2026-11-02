@@ -345,8 +345,8 @@ export function PhotoSlots({ group, photos, shots = [], accept = "image/*" }: { 
 
 /** Contact block, consent and submit, shared by both forms. */
 export function Submit({
-  kind, n, answers, photos, button, onDone,
-}: { kind: BriefingKind; n: number; answers: () => Briefing["answers"]; photos: ReturnType<typeof usePhotos>; button: string; onDone: (r: DoneInfo) => void }) {
+  kind, n, answers, photos, button, onDone, pay,
+}: { kind: BriefingKind; n: number; answers: () => Briefing["answers"]; photos: ReturnType<typeof usePhotos>; button: string; onDone: (r: DoneInfo) => void; pay?: () => Pay | null }) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [phone2, setPhone2] = useState("");
@@ -374,15 +374,18 @@ export function Submit({
       return;
     }
     setState("sending");
+    const p = pay ? pay() : null;
+    // the checkout pre-fills these, so nobody types them twice
+    try { sessionStorage.setItem("foav-contact", JSON.stringify({ name: body.name, email: body.email, phone: body.phone })); } catch {}
     try {
       const res = await fetch("/api/briefing", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const j = await res.json().catch(() => ({}));
-      if (res.ok && j.ok) { onDone({ id: j.id, mail: false, photos: body.photos.length }); window.scrollTo({ top: 0 }); return; }
+      if (res.ok && j.ok) { onDone({ id: j.id, mail: false, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return; }
       if (res.status === 422 && j.errors) { setErrors(j.errors); setState("idle"); return; }
       if (j.fallback) {
         const text = summarizeBriefing(body).slice(0, 1800);
         window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(`${kind === "website" ? "Website-Fragebogen" : "Roomtour-Auftrag"}: ${body.name}`)}&body=${encodeURIComponent(text)}`;
-        onDone({ id: "", mail: true, photos: body.photos.length }); window.scrollTo({ top: 0 }); return;
+        onDone({ id: "", mail: true, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return;
       }
       throw new Error(j.error);
     } catch {
@@ -397,7 +400,7 @@ export function Submit({
         <div className="bf-sec__h">
           <b>{n}</b>
           <h2 id={`sec-${n}`}>Ihre Kontaktdaten</h2>
-          <p className="bf-intro">Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis.</p>
+          <p className="bf-intro">{pay ? "Nach dem Absenden geht es direkt zur Bezahlung. Danach legen wir los." : "Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis."}</p>
         </div>
         <div className="bf-qs">
           <div className="bf-q half">
@@ -432,7 +435,7 @@ export function Submit({
               <button className="bf-btn" type="submit" disabled={state === "sending" || photos.busy}>
                 {state === "sending" ? "Wird gesendet …" : photos.busy ? "Fotos werden hochgeladen …" : button}
               </button>
-              <span className="bf-small">Unverbindlich. Sie zahlen erst, wenn Sie den Festpreis bestätigen.</span>
+              <span className="bf-small">Noch keine Zahlung. Im nächsten Schritt sehen Sie den Preis und bezahlen.</span>
             </div>
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
             <p className="bf-call" style={{ marginTop: 28 }}>
@@ -448,10 +451,26 @@ export function Submit({
   );
 }
 
-export type DoneInfo = { id: string; mail: boolean; photos: number };
+export type Pay = { href: string; label: string };
+export type DoneInfo = { id: string; mail: boolean; photos: number; pay?: Pay | null };
 
 /** Thank-you screen that replaces the whole form after sending. */
-export function Done({ kind, id, mail, photos }: DoneInfo & { kind: BriefingKind }) {
+export function Done({ kind, id, mail, photos, pay }: DoneInfo & { kind: BriefingKind }) {
+  if (pay) {
+    const href = pay.href + (id ? `${pay.href.includes("?") ? "&" : "?"}ref=${encodeURIComponent(id)}` : "");
+    return (
+      <div className="bf-done" role="status">
+        <h1>{mail ? "Fast geschafft." : "Angaben sind da."}<br />Letzter Schritt: bezahlen.</h1>
+        <p className="bf-lead">
+          {mail ? `Bitte senden Sie zuerst die geöffnete E-Mail${kind === "roomtour" ? " mit den Fotos" : ""}. ` : ""}
+          {pay.label}. Sobald die Zahlung da ist, beginnen wir.
+          {photos > 0 && ` ${photos} ${photos === 1 ? "Foto ist" : "Fotos sind"} dabei.`} {id && <>Ihre Referenz: <code>{id}</code></>}
+        </p>
+        <a className="bf-btn" href={href}>Weiter zur Bezahlung</a>
+        <p className="bf-small" style={{ marginTop: 16 }}>Noch eine Frage vorher? Rufen Sie uns an, die Angaben bleiben gespeichert.</p>
+      </div>
+    );
+  }
   return (
     <div className="bf-done" role="status">
       <h1>{mail ? "Fast geschafft." : "Danke, ist angekommen."}</h1>
