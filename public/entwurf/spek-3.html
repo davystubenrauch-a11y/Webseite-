@@ -1,0 +1,68 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Entwurf Vorher/Nachher · F&amp;D Solutions</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Entwurf „Vorher / Nachher": Die Seite ist schwarz-weiß, Farbe kommt nur aus Ihrem Video.
+   Ein großer Regler zeigt links die Fotos (grau, still), rechts das fertige Video in Farbe. */
+:root{--paper:#f2f2f0;--ink:#0f0f10;--text:#3b3b3d;--muted:#5d5d60;--line:rgba(15,15,16,.14)}
+*{box-sizing:border-box;margin:0;padding:0}img,video{display:block;max-width:100%}a{color:inherit;text-decoration:none}
+body{font-family:"Geist",system-ui,sans-serif;background:var(--paper);color:var(--text);-webkit-font-smoothing:antialiased;overflow-x:clip;font-size:18px;line-height:1.6}
+.wrap{max-width:1440px;margin:0 auto;padding:0 clamp(20px,3vw,40px)}
+.top{height:80px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:21px;color:var(--ink)}.logo b{color:#a8874a}
+.top nav{display:flex;gap:30px;font-weight:500}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:0 26px;border-radius:10px;font-weight:600;font-size:16.5px}
+.btn--ink{background:var(--ink);color:#fff}.btn--line{box-shadow:inset 0 0 0 1.5px var(--line);color:var(--ink)}
+.head{display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:end;padding:36px 0 36px}
+h1{font-size:clamp(44px,6vw,96px);line-height:.95;letter-spacing:-.05em;font-weight:800;color:var(--ink)}
+.head p{font-size:20px;max-width:42ch}.head .cta{display:flex;gap:12px;margin-top:24px;flex-wrap:wrap}
+/* compare */
+.cmp{position:relative;aspect-ratio:21/9;border-radius:22px;overflow:hidden;background:#000;user-select:none;touch-action:pan-y;--x:50%}
+.cmp video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.before{position:absolute;inset:0;display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:#111;clip-path:inset(0 calc(100% - var(--x)) 0 0)}
+.before img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.05) brightness(.95)}
+.tag{position:absolute;z-index:3;top:20px;padding:9px 14px;border-radius:10px;font-size:15px;font-weight:600}
+.tag.l{left:20px;background:rgba(255,255,255,.92);color:var(--ink)}.tag.r{right:20px;background:rgba(15,15,16,.6);color:#fff;backdrop-filter:blur(8px)}
+.handle{position:absolute;z-index:4;top:0;bottom:0;left:var(--x);width:2px;margin-left:-1px;background:#fff}
+.handle button{position:absolute;top:50%;left:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border:0;border-radius:50%;background:#fff;color:var(--ink);font:700 15px "Geist",sans-serif;cursor:ew-resize;box-shadow:0 10px 30px rgba(0,0,0,.35)}
+.facts{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;padding:36px 0 110px;border-bottom:1px solid var(--line)}
+.facts b{display:block;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.03em;color:var(--ink);font-weight:700}
+.facts span{color:var(--muted);font-size:16px}
+.svc{padding:100px 0}
+.svc h2{font-size:clamp(34px,4vw,60px);letter-spacing:-.04em;line-height:1;color:var(--ink);font-weight:800;max-width:18ch}
+.rows{margin-top:44px}
+.rows a{display:grid;grid-template-columns:110px 1fr 1.4fr auto;gap:32px;align-items:center;padding:24px 0;border-top:1px solid var(--line)}
+.rows img{width:110px;aspect-ratio:4/3;object-fit:cover;border-radius:8px;filter:grayscale(1);transition:filter .4s}
+.rows a:hover img{filter:none}
+.rows h3{font-size:28px;letter-spacing:-.03em;color:var(--ink)}.rows b{font-size:24px;color:var(--ink)}
+@media(max-width:900px){.top nav{display:none}.head{grid-template-columns:1fr}.cmp{aspect-ratio:4/5}.before{grid-template-columns:1fr;grid-template-rows:repeat(3,1fr)}.facts{grid-template-columns:1fr 1fr}.rows a{grid-template-columns:80px 1fr auto}.rows img{width:80px}.rows p{display:none}}
+</style></head><body>
+<header class="wrap top"><span class="logo">F<b>&amp;</b>D Solutions</span><nav><a>Roomtours</a><a>Websites</a><a>NFC-Platten</a><a>Preise</a></nav><a class="btn btn--ink" href="#">Anfragen</a></header>
+<main class="wrap">
+  <div class="head"><h1>Ihre Fotos.<br>Unser Video.<br>Mehr Buchungen.</h1><div><p>KI-Roomtours für Airbnb und Ferienwohnungen. Ziehen Sie den Regler und sehen Sie selbst, was aus drei Fotos wird.</p><div class="cta"><a class="btn btn--ink" href="#">Roomtour anfragen</a><a class="btn btn--line" href="#">Preise ab 300 €</a></div></div></div>
+  <div class="cmp" id="cmp">
+    <video src="/media/roomtour-villa.mp4" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay></video>
+    <div class="before"><img src="/media/tour-sm-1.jpg" alt="Foto Flur"><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer"><img src="/media/tour-sm-3.jpg" alt="Foto Balkon"></div>
+    <span class="tag l">Vorher: 3 Fotos</span><span class="tag r">Nachher: Ihr Video</span>
+    <div class="handle"><button type="button" id="grip" aria-label="Vorher und Nachher vergleichen">◀ ▶</button></div>
+  </div>
+  <div class="facts"><div><b>3 Fotos</b><span>genügen uns</span></div><div><b>Full HD</b><span>quer oder hochkant</span></div><div><b>ab 300 €</b><span>Festpreis bis 150 m²</span></div><div><b>24 h</b><span>bis zu unserer Antwort</span></div></div>
+  <section class="svc"><h2>Außerdem: Websites und mehr Google-Bewertungen.</h2>
+    <div class="rows">
+      <a href="#"><img src="/media/tour-sm-2.jpg" alt=""><h3>KI-Roomtours</h3><p>Ein Video-Rundgang aus Ihren Fotos.</p><b>ab 300 €</b></a>
+      <a href="#"><img src="/media/ref-spiruli.jpg" alt=""><h3>Websites</h3><p>Drei professionelle Seiten, perfekt auf dem Handy.</p><b>ab 300 €</b></a>
+      <a href="#"><img src="/media/nfc-front.jpg" alt=""><h3>NFC-Platten</h3><p>Antippen und direkt bei Google bewerten.</p><b>15 €</b></a>
+    </div>
+  </section>
+</main>
+<script>
+(function(){var c=document.getElementById('cmp'),drag=false,auto=true,t0=performance.now();
+function set(p){c.style.setProperty('--x',Math.max(4,Math.min(96,p))+'%');}
+function pos(e){var r=c.getBoundingClientRect();set((e.clientX-r.left)/r.width*100);}
+c.addEventListener('pointerdown',function(e){drag=true;auto=false;pos(e);c.setPointerCapture(e.pointerId);});
+c.addEventListener('pointermove',function(e){if(drag)pos(e);});
+c.addEventListener('pointerup',function(){drag=false;});
+document.getElementById('grip').addEventListener('keydown',function(e){var x=parseFloat(getComputedStyle(c).getPropertyValue('--x'));if(e.key==='ArrowLeft'){auto=false;set(x-5);}if(e.key==='ArrowRight'){auto=false;set(x+5);}});
+if(!matchMedia('(prefers-reduced-motion: reduce)').matches)(function sw(t){if(!auto)return;set(50+Math.sin((t-t0)/1400)*38);requestAnimationFrame(sw);})(t0);
+})();
+</script></body></html>

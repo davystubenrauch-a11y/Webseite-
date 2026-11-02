@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>F&amp;D Solutions · KI-Roomtours, Websites und NFC-Platten aus München</title>
+<meta name="description" content="Aus drei Fotos wird ein Video, das Gäste bucht: KI-Roomtours ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort in 24 Stunden.">
+<meta name="theme-color" content="#1c1c1f">
+<link rel="icon" type="image/svg+xml" href="/media/logo-fd-mark-color.svg">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="de_DE">
+<meta property="og:site_name" content="F&amp;D Solutions">
+<meta property="og:title" content="Aus drei Fotos wird ein Video, das Gäste bucht · F&amp;D Solutions">
+<meta property="og:description" content="KI-Roomtours ab 300 €, Websites ab 300 €, NFC-Platten für Google-Bewertungen 15 € pro Stück. Persönlich aus München.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="/media/roomtour-villa.jpg">
+<!--LD-->
+<style>
+/* =====================================================================
+   F&D Solutions · Design v14 „Kino“
+   Idee     Das Roomtour-Video füllt beim Öffnen den ganzen Bildschirm und zieht sich
+            beim Scrollen zu einem gerahmten Bild zusammen. Danach ruhige, große Abschnitte
+            ohne Kachel-Raster; ein Vorher/Nachher-Regler zeigt Fotos gegen Video,
+            die Referenz-Website „scrollt“ im Rahmen mit, die NFC-Szene steht auf Graphit.
+   Farben   Stein #ebe8e2 (Seite) · Graphit #1c1c1f (Hero-Rand, NFC-Band) · Tinte #151517
+            Text #3d3b37 · gedämpft #5f5b54 · Champagner #c9ad7c (Flächen/Knöpfe),
+            #74572c (Text auf hell)
+   Schrift  Hanken Grotesk 400–800 · H1 bis 124 · H2 60 · H3 26 · Text 18
+   Bewegung Hero-Zeilen steigen auf (einmal), Video-Zoom an Scroll gekoppelt, Regler
+            schwingt bis zur ersten Berührung, NFC-Demo solange sichtbar.
+            Reduzierte Bewegung: alles im Endzustand.
+   ===================================================================== */
+:root {
+  --stone: #ebe8e2; --stone-2: #e2ded6; --white: #fff; --graphite: #1c1c1f; --ink: #151517;
+  --text: #3d3b37; --muted: #5f5b54; --line: rgba(21,21,23,.14); --line-d: rgba(255,255,255,.14);
+  --champ: #c9ad7c; --champ-t: #74572c; --on-dark: #f3f1ec; --on-dark-m: #b5afa5; --ok: #1d7a52; --bad: #b42318;
+  --ease: cubic-bezier(.2,.8,.2,1); --r: 20px;
+  --font: "Hanken Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  --shadow: 0 40px 80px -40px rgba(21,21,23,.45);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
+@media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+body { background: var(--stone); color: var(--text); font-family: var(--font); font-size: 18px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: clip; }
+img, video, svg { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+:focus-visible { outline: 3px solid var(--champ-t); outline-offset: 3px; border-radius: 6px; }
+.dark :focus-visible, .hero :focus-visible { outline-color: var(--champ); }
+.skip { position: fixed; z-index: 200; left: 16px; top: -80px; min-height: 44px; display: inline-flex; align-items: center; padding: 0 18px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; }
+.skip:focus-visible { top: 16px; }
+.wrap { width: 100%; max-width: 1320px; margin: 0 auto; padding: 0 clamp(20px, 4vw, 48px); }
+@media (min-width: 1600px) { .wrap { max-width: 1520px; } }
+
+h1, h2, h3 { color: var(--ink); font-weight: 800; }
+h2 { font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -.04em; max-width: 17ch; }
+h3 { font-size: clamp(22px, 1.9vw, 27px); line-height: 1.15; letter-spacing: -.02em; font-weight: 700; }
+.lead { margin-top: 22px; font-size: clamp(18px, 1.4vw, 20.5px); max-width: 50ch; }
+.sec { padding: clamp(96px, 12vw, 170px) 0 0; scroll-margin-top: 70px; }
+.dark { background: var(--graphite); color: var(--on-dark-m); }
+.dark h2, .dark h3 { color: var(--on-dark); }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 54px; padding: 0 28px; border-radius: 999px; font-weight: 700; font-size: 17px; white-space: nowrap; transition: background-color .2s, box-shadow .2s, color .2s, transform .15s; -webkit-tap-highlight-color: transparent; }
+.btn:active { transform: scale(.97); }
+.btn svg { width: 18px; height: 18px; flex: none; }
+.btn--champ { background: var(--champ); color: var(--ink); } .btn--champ:hover { background: #d6bd90; }
+.btn--ink { background: var(--ink); color: #fff; } .btn--ink:hover { background: #2c2c30; }
+.btn--glass { color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.55); } .btn--glass:hover { background: rgba(255,255,255,.12); }
+.btn--line { color: var(--ink); box-shadow: inset 0 0 0 1.5px var(--line); } .btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.dark .btn--line { color: var(--on-dark); box-shadow: inset 0 0 0 1.5px var(--line-d); } .dark .btn--line:hover { box-shadow: inset 0 0 0 1.5px var(--on-dark); }
+.link { display: inline-flex; align-items: center; min-height: 44px; font-weight: 700; color: var(--ink); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 7px; text-decoration-color: var(--champ); }
+.link:hover { text-decoration-color: var(--ink); }
+.dark .link { color: var(--on-dark); }
+
+/* ---------- header: transparent over the film, solid afterwards ---------- */
+.head { position: fixed; z-index: 100; inset: 0 0 auto; padding-top: env(safe-area-inset-top); transition: background-color .4s, box-shadow .4s, color .4s; color: #fff; }
+.head.solid { background: rgba(235,232,226,.9); -webkit-backdrop-filter: saturate(160%) blur(14px); backdrop-filter: saturate(160%) blur(14px); box-shadow: 0 1px 0 var(--line); color: var(--ink); }
+.head__in { position: relative; height: 80px; display: flex; align-items: center; gap: 24px; }
+.logo { display: inline-flex; align-items: center; min-height: 44px; margin-right: auto; }
+.logo svg, .foot .logo__svg { height: 30px; width: auto; }
+.lg-ink { fill: #14275c; } .lg-amp { fill: #a8874a; }
+.head:not(.solid) .lg-ink { fill: #fff; } .head:not(.solid) .lg-amp { fill: var(--champ); }
+.lg-ink, .lg-amp { transition: fill .4s; }
+.nav { display: flex; gap: 4px; }
+.nav a { display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px; font-size: 16px; font-weight: 600; opacity: .88; transition: opacity .2s; }
+.nav a:hover, .nav a[aria-current="true"] { opacity: 1; }
+.nav a[aria-current="true"] { text-decoration: underline; text-decoration-color: var(--champ); text-decoration-thickness: 2px; text-underline-offset: 8px; }
+.head .btn { min-height: 46px; padding: 0 22px; font-size: 16px; }
+.menu-btn { display: none; align-items: center; gap: 10px; min-height: 44px; min-width: 44px; padding: 0 10px; font-weight: 700; }
+.menu-btn i { position: relative; width: 18px; height: 12px; }
+.menu-btn i::before, .menu-btn i::after { content: ""; position: absolute; left: 0; right: 0; height: 2px; border-radius: 2px; background: currentColor; transition: transform .3s var(--ease), top .3s var(--ease); }
+.menu-btn i::before { top: 1px; } .menu-btn i::after { top: 9px; }
+.menu-btn[aria-expanded="true"] i::before { top: 5px; transform: rotate(45deg); } .menu-btn[aria-expanded="true"] i::after { top: 5px; transform: rotate(-45deg); }
+.head.open { background: var(--stone); color: var(--ink); } .head.open .lg-ink { fill: #14275c; } .head.open .lg-amp { fill: #a8874a; }
+.mnav { position: absolute; left: 0; right: 0; top: 100%; padding: 8px 0 22px; background: var(--stone); box-shadow: 0 1px 0 var(--line), 0 30px 40px -30px rgba(0,0,0,.35); color: var(--ink); }
+.mnav a:not(.btn) { display: flex; justify-content: space-between; align-items: center; min-height: 56px; border-bottom: 1px solid var(--line); font-size: 20px; font-weight: 700; }
+.mnav a span { font-size: 15px; font-weight: 500; color: var(--muted); }
+.mnav .btn { width: 100%; margin-top: 18px; }
+
+/* ---------- hero: the film fills the screen, then settles into a frame ---------- */
+.hero { position: relative; height: 165vh; background: var(--stone); }
+.stick { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; }
+.film { position: absolute; inset: 0; overflow: hidden; background: var(--graphite); transform-origin: 50% 45%; will-change: transform; }
+.film video, .film img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.film::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,12,.55), rgba(10,10,12,.12) 38%, rgba(10,10,12,.62)); transition: opacity .3s; }
+.copy { position: absolute; z-index: 2; left: 0; right: 0; bottom: clamp(36px, 8vh, 90px); color: #fff; will-change: opacity, transform; }
+.copy h1 { color: #fff; font-size: clamp(48px, 7.8vw, 124px); line-height: .92; letter-spacing: -.05em; max-width: 11.5ch; }
+.copy h1 span { display: block; overflow: hidden; padding-bottom: .04em; }
+.copy h1 span i { display: block; font-style: normal; transform: translateY(105%); animation: up 1.1s var(--ease) forwards; }
+.copy h1 span:nth-child(2) i { animation-delay: .12s; } .copy h1 span:nth-child(3) i { animation-delay: .24s; }
+.copy .row { display: flex; justify-content: space-between; align-items: flex-end; gap: 28px; flex-wrap: wrap; margin-top: 34px; opacity: 0; animation: fade .9s .7s forwards; }
+.copy p { font-size: clamp(18px, 1.5vw, 21px); max-width: 44ch; color: rgba(255,255,255,.9); }
+.copy .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+.facts { position: absolute; z-index: 2; right: clamp(20px, 4vw, 48px); top: 120px; display: grid; gap: 8px; justify-items: end; list-style: none; }
+.facts li { opacity: 0; animation: fade .9s 1.1s forwards; }
+.facts li + li { animation-delay: 1.25s; } .facts li + li + li { animation-delay: 1.4s; }
+.facts li { padding: 9px 15px; border-radius: 999px; background: rgba(20,20,22,.45); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-size: 15px; font-weight: 600; }
+.mute { position: absolute; z-index: 3; right: clamp(20px, 4vw, 48px); bottom: clamp(36px, 8vh, 90px); display: none; }
+@keyframes up { to { transform: none; } }
+@keyframes fade { to { opacity: 1; } }
+
+/* ---------- services ---------- */
+.intro { position: relative; z-index: 2; padding-top: clamp(40px, 6vw, 80px); }
+.three { margin-top: 64px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 4vw, 64px); list-style: none; }
+.three a { display: block; padding-top: 24px; border-top: 2px solid var(--ink); }
+.three .pic { margin-bottom: 26px; aspect-ratio: 4 / 3; border-radius: 8px; overflow: hidden; background: var(--stone-2); }
+.three .pic img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s var(--ease); }
+.three a:hover .pic img { transform: scale(1.05); }
+.three p { margin-top: 10px; }
+.three b { display: block; margin-top: 18px; font-size: 30px; font-weight: 800; letter-spacing: -.03em; color: var(--champ-t); }
+.three b small { font-size: 15px; font-weight: 600; letter-spacing: 0; color: var(--muted); }
+
+/* ---------- roomtours: before / after ---------- */
+.cmp { position: relative; margin-top: 56px; aspect-ratio: 21 / 9; border-radius: var(--r); overflow: hidden; background: #000; user-select: none; touch-action: pan-y; --x: 50%; box-shadow: var(--shadow); }
+.cmp video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.before { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; background: #111; clip-path: inset(0 calc(100% - var(--x)) 0 0); }
+.before img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.05) brightness(.92); }
+.cmp .tag { position: absolute; z-index: 3; top: 18px; padding: 9px 15px; border-radius: 999px; font-size: 15px; font-weight: 700; }
+.cmp .tag.l { left: 18px; background: rgba(255,255,255,.94); color: var(--ink); }
+.cmp .tag.r { right: 18px; background: var(--champ); color: var(--ink); }
+.grip { position: absolute; z-index: 4; top: 0; bottom: 0; left: var(--x); width: 2px; margin-left: -1px; background: #fff; }
+.grip button { position: absolute; top: 50%; left: 50%; display: grid; place-items: center; width: 64px; height: 64px; margin: -32px 0 0 -32px; border-radius: 50%; background: #fff; color: var(--ink); cursor: ew-resize; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.grip svg { width: 28px; height: 28px; }
+.tour__foot { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) auto; gap: 24px 56px; align-items: start; margin-top: 48px; }
+.ticks { list-style: none; display: grid; gap: 12px; }
+.ticks li { position: relative; padding-left: 30px; }
+.ticks li::before { content: ""; position: absolute; left: 0; top: .78em; width: 16px; height: 2px; border-radius: 2px; background: var(--champ); }
+.dark .ticks li { color: var(--on-dark); }
+.price { font-size: 46px; font-weight: 800; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
+.price small { display: block; margin-top: 10px; font-size: 15.5px; font-weight: 500; letter-spacing: 0; color: var(--muted); max-width: 26ch; line-height: 1.45; }
+.dark .price { color: var(--on-dark); } .dark .price small { color: var(--on-dark-m); }
+.buy { display: grid; gap: 20px; justify-items: start; }
+
+/* ---------- websites: the reference scrolls inside its frame ---------- */
+.web { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
+.packs { margin-top: 30px; list-style: none; }
+.packs li { display: grid; grid-template-columns: 1fr auto; gap: 2px 16px; padding: 16px 0; border-top: 1px solid var(--line); }
+.packs li:last-child { border-bottom: 1px solid var(--line); }
+.packs b { color: var(--ink); font-weight: 700; } .packs span { color: var(--ink); font-weight: 800; white-space: nowrap; } .packs span small { font-weight: 500; color: var(--muted); }
+.packs p { grid-column: 1 / -1; font-size: 16px; color: var(--muted); }
+.web .row { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 26px; margin-top: 30px; }
+.devices { position: relative; padding-bottom: 8%; }
+.laptop { border-radius: 14px; background: var(--white); box-shadow: var(--shadow); overflow: hidden; }
+.laptop__bar { display: flex; align-items: center; gap: 12px; padding: 10px 14px; border-bottom: 1px solid var(--line); }
+.laptop__bar i { display: flex; gap: 6px; } .laptop__bar i b, .laptop__bar i::before, .laptop__bar i::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #d8d4cc; }
+.laptop__bar span { flex: 1; padding: 6px 12px; border-radius: 8px; background: var(--stone); font-size: 13.5px; color: var(--muted); }
+.screen { aspect-ratio: 16 / 10; overflow: hidden; background: #eef0ec; }
+.screen img { width: 100%; will-change: transform; }
+.handy { position: absolute; right: -3%; bottom: 0; width: 26%; aspect-ratio: 9 / 19.5; padding: 6px; border-radius: 28px; background: var(--ink); box-shadow: 0 40px 60px -24px rgba(0,0,0,.55); overflow: hidden; }
+.handy div { height: 100%; border-radius: 22px; overflow: hidden; background: #eef0ec; }
+.handy img { width: 100%; will-change: transform; }
+
+/* ---------- NFC on graphite ---------- */
+.nfcband { margin-top: clamp(96px, 12vw, 170px); padding: clamp(80px, 10vw, 140px) 0; }
+.nfc { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(36px, 6vw, 96px); align-items: center; }
+.nfc .lead { color: var(--on-dark-m); }
+.stage { position: relative; aspect-ratio: 1 / .92; max-height: 640px; perspective: 1000px; }
+.stage::before { content: ""; position: absolute; left: 10%; right: 10%; top: 40%; bottom: 0; background: radial-gradient(closest-side, rgba(201,173,124,.22), transparent); }
+.plate { position: absolute; left: 50%; top: 70%; width: 54%; transform: translate(-50%, -50%) rotateX(55deg); }
+.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 1px 0 #dcd8d0, 0 3px 0 #cdc8be, 0 5px 0 #bfb9ae, 0 40px 50px -16px rgba(0,0,0,.7); }
+.disc svg { width: 100%; height: 100%; }
+.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: 0 1px 0 #3a3a3e, 0 3px 0 #2c2c30, 0 5px 0 #222226, 0 40px 50px -16px rgba(0,0,0,.8); }
+.rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--champ); opacity: 0; }
+.phone { position: absolute; left: 50%; top: 2%; width: 32%; aspect-ratio: 71.5 / 149.6; margin-left: -16%; padding: 2.4%; border-radius: 16% / 7.6%; background: linear-gradient(150deg, #48474c, #151517 55%, #2a2a2e); box-shadow: 0 40px 60px -26px rgba(0,0,0,.8), inset 0 0 0 1px rgba(255,255,255,.2); container-type: inline-size; transition: transform .9s var(--ease); }
+.scr { position: relative; height: 100%; border-radius: 13% / 6.2%; overflow: hidden; background: #fff; color: #202124; }
+.scr > div { position: absolute; inset: 0; background: #fff; transition: opacity .35s; }
+.s-lock { display: grid; align-content: start; justify-items: center; padding-top: 26%; color: #fff; background: linear-gradient(170deg, #5a4a33, #1c1c1f) !important; }
+.s-lock small { font-size: 6cqw; opacity: .85; } .s-lock b { font-size: 21cqw; font-weight: 600; line-height: 1.05; letter-spacing: -.03em; }
+.s-lock span { position: absolute; bottom: 9%; left: 8%; right: 8%; padding: 3.5cqw; border-radius: 99px; background: rgba(255,255,255,.2); text-align: center; font-size: 5.6cqw; font-weight: 600; }
+.s-rev, .s-done { opacity: 0; }
+.g-head { padding: 24% 8% 0; display: flex; align-items: center; gap: 4cqw; font-size: 6.4cqw; font-weight: 600; }
+.g-head b { font: 700 10cqw/1 Arial, sans-serif; color: #4285f4; }
+.g-biz { margin: 7cqw 8% 0; display: flex; gap: 4cqw; align-items: center; font-size: 6.6cqw; font-weight: 600; line-height: 1.2; }
+.g-biz i { display: grid; place-items: center; width: 14cqw; height: 14cqw; border-radius: 50%; background: var(--graphite); color: #fff; font-style: normal; }
+.g-biz small { display: block; font-size: 5.2cqw; color: #70757a; font-weight: 400; }
+.g-stars { margin: 9cqw 7% 0; display: flex; justify-content: space-between; }
+.g-stars svg { width: 15.5cqw; height: 15.5cqw; fill: #e3e6ea; transition: fill .25s, transform .35s var(--ease); }
+.g-stars svg.on { fill: #fbbc05; transform: scale(1.1); }
+.g-text { margin: 8cqw 8% 0; padding: 4cqw; min-height: 20cqw; border-radius: 3cqw; box-shadow: inset 0 0 0 1px #dadce0; font-size: 5.4cqw; color: #3c4043; }
+.s-done { display: grid; place-content: center; justify-items: center; gap: 2cqw; text-align: center; }
+.s-done i { display: grid; place-items: center; width: 24cqw; height: 24cqw; margin-bottom: 4cqw; border-radius: 50%; background: var(--ok); color: #fff; }
+.s-done i svg { width: 50%; } .s-done b { font-size: 9cqw; } .s-done small { font-size: 5.4cqw; color: #70757a; }
+.counter { position: absolute; z-index: 5; left: 0; top: 4%; padding: 14px 18px; border-radius: 16px; background: var(--white); box-shadow: var(--shadow); color: var(--ink); font-size: 14.5px; font-weight: 700; line-height: 1.25; }
+.counter b { display: block; font-size: 32px; letter-spacing: -.03em; font-variant-numeric: tabular-nums; }
+.counter em { font-style: normal; color: var(--ok); opacity: 0; transition: opacity .3s; } .counter.up em { opacity: 1; }
+.stage.p1 .phone { transform: translateY(32%); }
+.stage.p1 .rings i { animation: ring 1s var(--ease) forwards; } .stage.p1 .rings i:nth-child(2) { animation-delay: .15s; } .stage.p1 .rings i:nth-child(3) { animation-delay: .3s; }
+.stage.p2 .s-rev { opacity: 1; } .stage.p4 .s-done { opacity: 1; }
+@keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
+.ctrl { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 10px; }
+.seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: rgba(255,255,255,.08); }
+.seg button { min-height: 44px; min-width: 44px; padding: 0 18px; border-radius: 999px; font-size: 15.5px; font-weight: 700; color: var(--on-dark-m); transition: background-color .2s, color .2s; }
+.seg button[aria-pressed="true"] { background: var(--champ); color: var(--ink); }
+.calc { margin-top: 36px; padding-top: 28px; border-top: 1px solid var(--line-d); }
+.calc__sum { display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.calc__sum b { font-size: 46px; font-weight: 800; letter-spacing: -.04em; color: var(--on-dark); font-variant-numeric: tabular-nums; }
+.range input { -webkit-appearance: none; appearance: none; width: 100%; height: 44px; margin-top: 6px; background: transparent; cursor: pointer; }
+.range input::-webkit-slider-runnable-track { height: 6px; border-radius: 6px; background: linear-gradient(90deg, var(--champ) var(--fill, 47%), rgba(255,255,255,.16) var(--fill, 47%)); }
+.range input::-moz-range-track { height: 6px; border-radius: 6px; background: rgba(255,255,255,.16); }
+.range input::-moz-range-progress { height: 6px; border-radius: 6px; background: var(--champ); }
+.range input::-webkit-slider-thumb { -webkit-appearance: none; width: 28px; height: 28px; margin-top: -11px; border-radius: 50%; background: #fff; box-shadow: 0 4px 12px rgba(0,0,0,.4); }
+.range input::-moz-range-thumb { width: 26px; height: 26px; border: 0; border-radius: 50%; background: #fff; }
+.hint { min-height: 26px; font-weight: 700; color: var(--champ); }
+
+/* ---------- process ---------- */
+.flow { position: relative; margin-top: 60px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 32px; list-style: none; counter-reset: s; }
+.flow::before { content: ""; position: absolute; left: 0; right: 0; top: 27px; height: 2px; background: var(--line); }
+.flow .line { position: absolute; left: 0; right: 0; top: 27px; height: 2px; background: var(--champ); transform: scaleX(0); transform-origin: left; transition: transform 1.8s var(--ease); }
+.flow.on .line { transform: none; }
+.flow li { position: relative; counter-increment: s; }
+.flow li::before { content: counter(s); position: relative; display: grid; place-items: center; width: 56px; height: 56px; border-radius: 50%; background: var(--ink); color: var(--champ); font-weight: 800; font-size: 20px; }
+.flow h3 { margin-top: 22px; } .flow p { margin-top: 6px; font-size: 17px; }
+
+/* ---------- prices ---------- */
+.table { width: 100%; margin-top: 48px; border-collapse: collapse; }
+.table th, .table td { padding: 20px 16px 20px 0; text-align: left; vertical-align: top; border-bottom: 1px solid var(--line); }
+.table thead th { padding-bottom: 14px; font-size: 15px; font-weight: 700; color: var(--muted); border-bottom: 2px solid var(--ink); }
+.table tbody th { color: var(--ink); font-weight: 800; font-size: 20px; }
+.table td.p { text-align: right; padding-right: 0; color: var(--ink); font-weight: 800; font-size: 20px; white-space: nowrap; }
+.table td.p small { font-weight: 500; color: var(--muted); font-size: 15px; }
+.table tr.hl td.p { color: var(--champ-t); }
+.table tr.grp > * { border-top: 2px solid var(--line); }
+.notes { display: flex; flex-wrap: wrap; gap: 10px 32px; margin-top: 28px; font-size: 16px; font-weight: 600; color: var(--muted); }
+
+/* ---------- team + faq ---------- */
+.two { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(36px, 6vw, 96px); align-items: start; }
+.people { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.mono { display: grid; place-items: center; width: 92px; height: 92px; border-radius: 50%; background: var(--graphite); color: var(--champ); font-size: 28px; font-weight: 800; }
+.person h3 { margin-top: 22px; } .person p { margin-top: 2px; color: var(--muted); }
+.person .link { margin-top: 8px; }
+details { border-bottom: 1px solid var(--line); } details:first-child { border-top: 1px solid var(--line); }
+summary { display: flex; justify-content: space-between; align-items: center; gap: 20px; min-height: 66px; padding: 16px 0; cursor: pointer; list-style: none; font-size: 19px; font-weight: 700; color: var(--ink); }
+summary::-webkit-details-marker { display: none; }
+summary i { position: relative; flex: none; width: 34px; height: 34px; border-radius: 50%; background: var(--ink); }
+summary i::before, summary i::after { content: ""; position: absolute; left: 10px; right: 10px; top: 16px; height: 2px; border-radius: 2px; background: var(--champ); transition: transform .3s var(--ease); }
+summary i::after { transform: rotate(90deg); } details[open] summary i::after { transform: none; }
+details p { padding: 0 50px 22px 0; max-width: 62ch; }
+
+/* ---------- contact ---------- */
+.contact { margin-top: clamp(96px, 12vw, 170px); padding: clamp(80px, 10vw, 140px) 0; background: var(--stone-2); }
+.reach { margin-top: 32px; list-style: none; }
+.reach a { display: flex; align-items: center; gap: 16px; min-height: 66px; border-top: 1px solid var(--line); }
+.reach li:last-child a { border-bottom: 1px solid var(--line); }
+.reach svg { width: 22px; height: 22px; color: var(--champ-t); flex: none; }
+.reach b { display: block; color: var(--ink); font-weight: 700; } .reach span { font-size: 16px; color: var(--muted); }
+.form legend, .form label { display: block; font-size: 15.5px; font-weight: 700; color: var(--ink); }
+.form fieldset { border: 0; }
+.form .f { margin-top: 20px; display: grid; gap: 8px; }
+.form .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; }
+.form input:not([type=checkbox]), .form textarea { width: 100%; min-height: 56px; padding: 14px 16px; border: 0; border-radius: 14px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); font: inherit; font-size: 17px; transition: box-shadow .2s; }
+.form textarea { min-height: 120px; resize: vertical; }
+.form input:focus, .form textarea:focus { outline: none; box-shadow: inset 0 0 0 2px var(--ink); }
+.form .bad input { box-shadow: inset 0 0 0 2px var(--bad); }
+.err { font-size: 14.5px; color: var(--bad); }
+.picks { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+.picks label { position: relative; display: inline-flex; align-items: center; min-height: 48px; padding: 0 20px; border-radius: 999px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); font-weight: 700; cursor: pointer; transition: background-color .2s, color .2s, box-shadow .2s; }
+.picks input { position: absolute; opacity: 0; pointer-events: none; }
+.picks label:has(input:checked) { background: var(--ink); color: #fff; box-shadow: none; }
+.picks label:has(input:focus-visible) { outline: 3px solid var(--champ-t); outline-offset: 3px; }
+.form .btn { width: 100%; margin-top: 28px; }
+.ok { margin-top: 14px; font-weight: 700; color: var(--ok); }
+
+.foot { padding: 48px 0 calc(48px + env(safe-area-inset-bottom)); background: var(--stone-2); border-top: 1px solid var(--line); }
+.foot__in { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 32px; font-size: 15px; color: var(--muted); }
+.foot nav { display: flex; flex-wrap: wrap; gap: 0 22px; } .foot nav a { min-height: 44px; display: inline-flex; align-items: center; } .foot nav a:hover { color: var(--ink); }
+
+.dock { position: fixed; z-index: 90; left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); display: none; grid-template-columns: 1fr 1.5fr; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(28,28,31,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: 0 20px 40px -20px rgba(0,0,0,.6); transition: transform .45s var(--ease); }
+.dock .btn { min-height: 48px; font-size: 16px; } .dock .btn--line { color: #fff; box-shadow: inset 0 0 0 1.5px var(--line-d); }
+.dock.away { transform: translateY(160%); }
+
+/* ---------- responsive ---------- */
+@media (max-width: 1023px) {
+  .nav { display: none; } .menu-btn { display: inline-flex; }
+  .three { grid-template-columns: minmax(0, 1fr); gap: 48px; }
+  .three a { display: grid; grid-template-columns: 38% minmax(0, 1fr); gap: 0 24px; align-items: start; }
+  .three .pic { grid-row: span 3; margin-bottom: 0; }
+  .tour__foot { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .buy { grid-column: 1 / -1; grid-template-columns: auto auto; align-items: center; justify-content: start; gap: 24px; }
+  .web, .nfc, .two { grid-template-columns: minmax(0, 1fr); }
+  .nfc > div:last-child { order: -1; }
+  .stage { max-width: 540px; width: 100%; margin: 0 auto; }
+  .flow { grid-template-columns: 1fr 1fr; row-gap: 44px; } .flow::before, .flow .line { display: none; }
+}
+@media (max-width: 700px) {
+  body { font-size: 17px; }
+  .head__in { height: 68px; } .head__in > .btn { display: none; }
+  .logo svg { height: 26px; }
+  .hero { height: 150vh; }
+  .facts { top: 90px; } .facts li { font-size: 13.5px; padding: 7px 12px; }
+  .copy .btn { flex: 1; }
+  .three a { grid-template-columns: minmax(0, 1fr); } .three .pic { grid-row: auto; margin-bottom: 20px; }
+  .cmp { aspect-ratio: 4 / 5; }
+  .cmp .tag { font-size: 13.5px; padding: 7px 12px; } .cmp .tag.l { top: 12px; left: 12px; } .cmp .tag.r { top: auto; bottom: 12px; right: 12px; }
+  .before { grid-template-columns: minmax(0, 1fr); grid-template-rows: repeat(3, minmax(0, 1fr)); }
+  .tour__foot, .buy { grid-template-columns: minmax(0, 1fr); }
+  .handy { width: 30%; right: 0; }
+  .flow { grid-template-columns: minmax(0, 1fr); }
+  .people, .form .pair { grid-template-columns: minmax(0, 1fr); }
+  .counter { top: -64px; display: flex; align-items: baseline; gap: 10px; padding: 9px 14px; font-size: 13px; } .counter b { font-size: 22px; }
+  .stage { margin-top: 72px; }
+  .table thead { display: none; }
+  .table, .table tbody, .table tr, .table th, .table td { display: block; }
+  .table tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; grid-auto-flow: dense; gap: 2px 16px; padding: 16px 0; border-bottom: 1px solid var(--line); }
+  .table tr.grp { margin-top: 20px; }
+  .table th, .table td { border: 0 !important; padding: 0; }
+  .table tbody th { grid-column: 1 / -1; margin-bottom: 6px; font-size: 22px; }
+  .table tbody th:empty { display: none; }
+  .table td:nth-child(2) { grid-column: 1; color: var(--ink); font-weight: 700; }
+  .table td:nth-child(3) { grid-column: 1; font-size: 15.5px; color: var(--muted); }
+  .table td.p { grid-column: 2; font-size: 18px; }
+  .dock { display: grid; }
+  .foot { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; transition-duration: .001ms !important; }
+  .hero { height: auto; } .stick { position: relative; }
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#leistungen">Zum Inhalt springen</a>
+<!--DEFS-->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  <symbol id="star" viewBox="0 0 24 24"><path d="m12 2.2 2.9 6.6 7.1.6-5.4 4.7 1.6 7L12 17.4l-6.2 3.7 1.6-7L2 9.4l7.1-.6z"/></symbol>
+  <symbol id="tick" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="phone-i" viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="mail" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></g></symbol>
+  <symbol id="lr" viewBox="0 0 24 24"><path d="M9 6 3 12l6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</defs></svg>
+
+<header class="head" id="head">
+  <div class="wrap head__in">
+    <a class="logo" href="#start" aria-label="F&amp;D Solutions – zum Anfang"><!--LOGO--></a>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="#roomtours">Roomtours</a><a href="#websites">Websites</a><a href="#nfc">NFC-Platten</a><a href="#preise">Preise</a><a href="#team">Über uns</a></nav>
+    <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
+    <a class="btn btn--champ" href="#kontakt">Anfragen</a>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="#roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="#websites">Websites <span>ab 300 €</span></a><a href="#nfc">NFC-Platten <span>15 €</span></a><a href="#preise">Preise</a><a href="#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+  </div>
+</header>
+
+<main id="start">
+  <section class="hero" id="hero" aria-labelledby="h-start">
+    <div class="stick">
+      <div class="film" id="film"><img src="/media/roomtour-villa.jpg" alt=""><video id="heroVid" poster="/media/roomtour-villa.jpg" muted loop playsinline autoplay preload="auto" aria-hidden="true"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video></div>
+      <ul class="facts" aria-label="Auf einen Blick"><li>Aus 3 Fotos</li><li>Full HD, quer oder hochkant</li><li>ab 300 € Festpreis</li></ul>
+      <div class="wrap copy" id="copy">
+        <h1 id="h-start"><span><i>Aus drei Fotos</i></span><span><i>wird ein Video,</i></span><span><i>das Gäste bucht.</i></span></h1>
+        <div class="row"><p>KI-Roomtours für Airbnb und Ferienwohnungen. Sie schicken uns Fotos, wir liefern das fertige Video. Dazu Websites und NFC-Platten für mehr Google-Bewertungen.</p><div class="cta"><a class="btn btn--champ" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a><a class="btn btn--glass" href="#roomtours">Vorher und nachher</a></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="intro" id="leistungen" aria-labelledby="h-svc">
+    <div class="wrap">
+      <h2 id="h-svc">Drei Leistungen, die Ihnen Kunden bringen.</h2>
+      <ul class="three">
+        <li><a href="#roomtours"><div class="pic"><img src="/media/tour-hd-2.jpg" alt="Wohnzimmer aus einer KI-Roomtour" loading="lazy"></div><h3>KI-Roomtours</h3><p>Ein Video-Rundgang aus Ihren Fotos, fertig für Airbnb, Booking.com und Ihre Website.</p><b><small>ab </small>300 €</b></a></li>
+        <li><a href="#websites"><div class="pic"><img src="/media/ref-spiruli.jpg" alt="Website von SPIRULI" loading="lazy"></div><h3>Websites</h3><p>Drei professionell gestaltete Seiten, perfekt auf dem Handy, inklusive Impressum und Datenschutz.</p><b><small>ab </small>300 €</b></a></li>
+        <li><a href="#nfc"><div class="pic"><img src="/media/nfc-front.jpg" alt="NFC-Platte für Google-Bewertungen" loading="lazy"></div><h3>NFC-Platten</h3><p>Gäste tippen mit dem Handy auf die Platte und bewerten Sie direkt bei Google, ohne App.</p><b>15 € <small>pro Stück</small></b></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" id="roomtours" aria-labelledby="h-tour">
+    <div class="wrap">
+      <h2 id="h-tour">Ziehen Sie den Regler: So wird aus Fotos ein Video.</h2>
+      <p class="lead">Links die drei Fotos, die wir bekommen haben. Rechts das fertige Video. Gäste sehen sofort, wie sich Ihre Unterkunft anfühlt.</p>
+      <div class="cmp" id="cmp">
+        <video id="tourVid" poster="/media/roomtour-villa.jpg" muted loop playsinline preload="metadata" aria-label="Fertige KI-Roomtour"><source src="/media/roomtour-villa-960.mp4" type="video/mp4" media="(max-width: 700px)"><source src="/media/roomtour-villa.mp4" type="video/mp4"></video>
+        <div class="before"><img src="/media/tour-sm-1.jpg" alt="Foto Flur" loading="lazy"><img src="/media/tour-sm-2.jpg" alt="Foto Wohnzimmer" loading="lazy"><img src="/media/tour-sm-3.jpg" alt="Foto Balkon" loading="lazy"></div>
+        <span class="tag l">Vorher: 3 Fotos</span><span class="tag r">Nachher: Ihr Video</span>
+        <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
+      </div>
+      <div class="tour__foot">
+        <ul class="ticks"><li>Full HD, quer (16:9) oder hochkant (9:16)</li><li>Fertig für Airbnb, Booking.com, Website und Social Media</li></ul>
+        <ul class="ticks"><li>Kein Termin vor Ort, Handyfotos genügen</li><li>Sie prüfen das Video, bevor es online geht</li></ul>
+        <div class="buy"><p class="price">ab 300 €<small>Festpreis bis 150 m² oder ein Stockwerk. Größere Objekte nach Größe.</small></p><a class="btn btn--ink" href="#kontakt" data-pick="Roomtour">Roomtour anfragen</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="websites" aria-labelledby="h-web">
+    <div class="wrap web">
+      <div>
+        <h2 id="h-web">Websites, die Kunden überzeugen.</h2>
+        <p class="lead">Wir planen, gestalten und bauen Ihre Website und stellen sie online. Klar und schnell im Basis-Paket, mit Animationen und 3D in den größeren Paketen.</p>
+        <ul class="packs"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, Inhalte selbst bearbeitbar</p></li></ul>
+        <div class="row"><a class="btn btn--ink" href="#kontakt" data-pick="Website">Website anfragen</a><a class="link" href="https://webseite-spiruli-rp1j-qccufwve3-davy-stubenrauch1.vercel.app/" target="_blank" rel="noopener">Referenz SPIRULI ansehen</a></div>
+      </div>
+      <div class="devices" id="devices">
+        <div class="laptop"><div class="laptop__bar"><i><b></b></i><span>spiruli.de</span></div><div class="screen"><img id="deskImg" src="/media/ref-spiruli.jpg" alt="Website von SPIRULI auf dem Computer" loading="lazy" width="1440" height="900"></div></div>
+        <div class="handy"><div><img id="mobImg" src="/media/ref-spiruli-mobile.jpg" alt="Website von SPIRULI auf dem Handy" loading="lazy"></div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="dark nfcband" id="nfc" aria-labelledby="h-nfc">
+    <div class="wrap nfc">
+      <div>
+        <div class="stage" id="stage" role="img" aria-label="Animation: Ein Handy tippt auf die NFC-Platte, die Google-Bewertung öffnet sich und wird veröffentlicht">
+          <div class="counter" id="counter">Google-Bewertungen<b><span id="revN">128</span> <em>+1</em></b></div>
+          <div class="plate"><span class="rings" aria-hidden="true"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
+          <div class="phone" aria-hidden="true"><div class="scr">
+            <div class="s-lock"><small>Dienstag, 27. Oktober</small><b>9:41</b><span>An die Platte halten</span></div>
+            <div class="s-rev"><div class="g-head"><b>G</b>Bewertung schreiben</div><div class="g-biz"><i>R</i><div>Ihr Restaurant<small>München</small></div></div><div class="g-stars" id="gStars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><p class="g-text">Super Essen, sehr freundlich!</p></div>
+            <div class="s-done"><i><svg><use href="#tick"/></svg></i><b>Danke!</b><small>Bewertung veröffentlicht</small></div>
+          </div></div>
+        </div>
+        <div class="ctrl"><div class="seg" role="group" aria-label="Farbe der Platte"><button type="button" aria-pressed="true" data-color="Weiß">Weiß</button><button type="button" aria-pressed="false" data-color="Schwarz">Schwarz</button></div><button class="btn btn--line" type="button" id="try">Antippen ausprobieren</button></div>
+      </div>
+      <div>
+        <h2 id="h-nfc">Mehr Google-Bewertungen mit einem Antippen.</h2>
+        <p class="lead">Zufriedene Gäste halten ihr Handy an die Platte und landen direkt auf Ihrer Bewertungsseite. Kein Suchen, kein Umweg, ohne App.</p>
+        <ul class="ticks" style="margin-top:26px"><li>Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz</li><li>Wir verknüpfen jede Platte mit Ihrem Google-Profil</li><li>Für Restaurants 5 bis 10 Stück, z. B. in jede Rechnungsmappe</li></ul>
+        <div class="calc">
+          <div class="calc__sum"><b id="sum">150 €</b><span id="qtyLabel">für 10 Platten</span></div>
+          <div class="range"><input type="range" id="qty" min="1" max="20" value="10" aria-label="Anzahl NFC-Platten" aria-valuetext="10 Platten"></div>
+          <p class="hint" id="hint">Unsere Empfehlung für Restaurants</p>
+          <a class="btn btn--champ" href="#kontakt" id="calcBuy" style="margin-top:18px">Platten anfragen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ablauf" aria-labelledby="h-flow">
+    <div class="wrap">
+      <h2 id="h-flow">So einfach geht es.</h2>
+      <ol class="flow" id="flow"><span class="line" aria-hidden="true"></span>
+        <li><h3>Anfragen</h3><p>Formular ausfüllen oder anrufen. Unverbindlich, in zwei Minuten.</p></li>
+        <li><h3>Gespräch</h3><p>Wir melden uns innerhalb von 24 Stunden persönlich.</p></li>
+        <li><h3>Festpreis</h3><p>Sie bekommen ein klares Angebot ohne versteckte Kosten.</p></li>
+        <li><h3>Fertig</h3><p>Video geliefert, Website online oder Platten verknüpft.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sec" id="preise" aria-labelledby="h-preise">
+    <div class="wrap">
+      <h2 id="h-preise">Alle Preise auf einen Blick.</h2>
+      <p class="lead">Einmalig bezahlen, kein Abo. Alle Preise zzgl. MwSt.</p>
+      <table class="table">
+        <thead><tr><th scope="col">Leistung</th><th scope="col">Paket</th><th scope="col">Umfang</th><th scope="col" style="text-align:right">Preis</th></tr></thead>
+        <tbody>
+          <tr class="hl"><th scope="row">KI-Roomtours</th><td>Basis</td><td>Bis 150 m² oder ein Stockwerk</td><td class="p">300 €</td></tr>
+          <tr><th scope="row"></th><td>Premium</td><td>Größere Objekte, Hotels und Villen</td><td class="p">nach Größe</td></tr>
+          <tr class="grp"><th scope="row">Websites</th><td>Basis</td><td>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</td><td class="p">300 €</td></tr>
+          <tr><th scope="row"></th><td>Business</td><td>Mehr Seiten, Animationen, Bewertungen</td><td class="p"><small>ab </small>690 €</td></tr>
+          <tr><th scope="row"></th><td>Premium</td><td>Individuelles Design, 3D, selbst bearbeitbar</td><td class="p"><small>ab </small>1.290 €</td></tr>
+          <tr class="grp"><th scope="row">NFC-Platten</th><td>1 Platte</td><td>Einzeln jederzeit möglich</td><td class="p">15 €</td></tr>
+          <tr><th scope="row"></th><td>5 Platten</td><td>Für kleine Betriebe</td><td class="p">75 €</td></tr>
+          <tr><th scope="row"></th><td>10 Platten</td><td>Unsere Empfehlung für Restaurants</td><td class="p">150 €</td></tr>
+        </tbody>
+      </table>
+      <p class="notes"><span>Festpreis vor dem Start</span><span>Keine laufenden Kosten</span><span>Ein Ansprechpartner von Anfang bis Ende</span></p>
+    </div>
+  </section>
+
+  <section class="sec" id="team" aria-labelledby="h-team">
+    <div class="wrap two">
+      <div><h2 id="h-team">Zwei Gründer aus München. Kein Callcenter.</h2><p class="lead">Wir setzen jedes Projekt selbst um. Sie sprechen immer direkt mit uns, vom ersten Anruf bis zur fertigen Lösung.</p></div>
+      <div class="people">
+        <div class="person"><span class="mono" aria-hidden="true">FD</span><h3>Florian Dressler</h3><p>Gründer</p><a class="link" href="tel:+4915566456417">+49 155 66456417</a></div>
+        <div class="person"><span class="mono" aria-hidden="true">DS</span><h3>Davy Stubenrauch</h3><p>Gründer</p><a class="link" href="tel:+4917656612709">+49 176 56612709</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="fragen" aria-labelledby="h-faq">
+    <div class="wrap two">
+      <div><h2 id="h-faq">Häufige Fragen</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
+      <div>
+        <details><summary>Was brauchen Sie für eine Roomtour?<i aria-hidden="true"></i></summary><p>Nur Fotos Ihrer Räume, am besten aus mehreren Blickwinkeln. Das Basis-Paket (300 €) gilt bis 150 m² oder ein ganzes Stockwerk. Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p></details>
+        <details><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
+        <details><summary>Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></summary><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></details>
+        <details><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
+        <details><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="kontakt" aria-labelledby="h-kontakt">
+    <div class="wrap two">
+      <div>
+        <h2 id="h-kontakt">Erzählen Sie uns, was Sie brauchen.</h2>
+        <p class="lead">Wir melden uns innerhalb von 24 Stunden mit einem Festpreis-Angebot. Unverbindlich und kostenlos.</p>
+        <ul class="reach">
+          <li><a href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone-i"/></svg><div><b>Florian Dressler</b><span>+49 155 66456417</span></div></a></li>
+          <li><a href="tel:+4917656612709"><svg aria-hidden="true"><use href="#phone-i"/></svg><div><b>Davy Stubenrauch</b><span>+49 176 56612709</span></div></a></li>
+          <li><a href="mailto:fd.solutions@web.de"><svg aria-hidden="true"><use href="#mail"/></svg><div><b>E-Mail</b><span>fd.solutions@web.de</span></div></a></li>
+        </ul>
+      </div>
+      <form class="form" id="form" novalidate>
+        <fieldset><legend>Worum geht es?</legend><div class="picks"><label><input type="checkbox" name="s" value="Roomtour">Roomtour</label><label><input type="checkbox" name="s" value="Website">Website</label><label><input type="checkbox" name="s" value="NFC-Platten">NFC-Platten</label></div></fieldset>
+        <div class="pair">
+          <div class="f"><label for="fName">Name</label><input id="fName" autocomplete="name" aria-describedby="eName"><span class="err" id="eName" aria-live="polite"></span></div>
+          <div class="f"><label for="fContact">Telefon oder E-Mail</label><input id="fContact" autocomplete="email" aria-describedby="eContact"><span class="err" id="eContact" aria-live="polite"></span></div>
+        </div>
+        <div class="f"><label for="fMsg">Nachricht (optional)</label><textarea id="fMsg"></textarea></div>
+        <button class="btn btn--ink" type="submit">Anfrage senden</button>
+        <p class="ok" id="ok" hidden>Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Sie können uns auch einfach anrufen.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__in">
+    <!--LOGO-->
+    <nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></nav>
+    <span>© <span id="year">2026</span> F&amp;D Solutions, München</span>
+  </div>
+</footer>
+
+<div class="dock away" id="dock"><a class="btn btn--line" href="tel:+4915566456417">Anrufen</a><a class="btn btn--champ" href="#kontakt">Kostenlos anfragen</a></div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+  var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
+  function whileVisible(el, on, off, t) { new IntersectionObserver(function (es) { es[0].isIntersecting ? on() : off(); }, { threshold: t || .3 }).observe(el); }
+  $("#year").textContent = new Date().getFullYear();
+
+  /* ---------- scroll-linked: header, hero zoom, website frames, dock ---------- */
+  var head = $("#head"), dock = $("#dock"), hero = $("#hero"), film = $("#film"), copy = $("#copy"), facts = $(".facts");
+  var devices = $("#devices"), deskImg = $("#deskImg"), mobImg = $("#mobImg"), ticking = false;
+  function frame() {
+    ticking = false;
+    var vh = innerHeight, r = hero.getBoundingClientRect(), k = clamp(-r.top / (vh * .75), 0, 1);
+    head.classList.toggle("solid", k > .3 || head.classList.contains("open"));
+    if (!reduce) {
+      film.style.transform = "scale(" + (1 - k * .22).toFixed(4) + ")";
+      film.style.borderRadius = (k * 28).toFixed(1) + "px";
+      copy.style.opacity = (1 - k * 1.8).toFixed(3);
+      copy.style.transform = "translateY(" + (-k * 60).toFixed(1) + "px)";
+      facts.style.opacity = (1 - k * 2.2).toFixed(3);
+      var d = devices.getBoundingClientRect();
+      if (d.top < vh && d.bottom > 0) {
+        var p = clamp((vh - d.top) / (vh + d.height), 0, 1);
+        var dh = deskImg.offsetHeight - deskImg.parentNode.offsetHeight, mh = mobImg.offsetHeight - mobImg.parentNode.offsetHeight;
+        deskImg.style.transform = "translateY(" + (-Math.max(0, dh) * p).toFixed(1) + "px)";
+        mobImg.style.transform = "translateY(" + (-Math.max(0, mh) * p).toFixed(1) + "px)";
+      }
+    }
+    dock.classList.toggle("away", r.bottom > vh * .4 || $("#kontakt").getBoundingClientRect().top < vh * .8);
+  }
+  addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  addEventListener("resize", frame); frame();
+  var hv = $("#heroVid"); if (reduce) hv.pause(); else whileVisible(hero, function () { hv.play().catch(function () {}); }, function () { hv.pause(); }, .05);
+
+  /* ---------- menu ---------- */
+  var menuBtn = $("#menuBtn"), mnav = $("#mnav");
+  function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; head.classList.toggle("open", open); frame(); }
+  menuBtn.addEventListener("click", function () { menu(mnav.hidden); });
+  mnav.addEventListener("click", function (e) { if (e.target.closest("a")) menu(false); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !mnav.hidden) { menu(false); menuBtn.focus(); } });
+  addEventListener("resize", function () { if (innerWidth > 1023 && !mnav.hidden) menu(false); });
+  var navLinks = $$(".nav a");
+  $$("main section[id]").forEach(function (s) {
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting) navLinks.forEach(function (a) { a.setAttribute("aria-current", String(a.getAttribute("href") === "#" + s.id)); }); }, { rootMargin: "-45% 0px -50% 0px" }).observe(s);
+  });
+
+  /* ---------- before / after ---------- */
+  var cmp = $("#cmp"), grip = $("#grip"), tv = $("#tourVid"), drag = false, auto = !reduce, t0 = 0;
+  function setX(p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
+  function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
+  cmp.addEventListener("pointerdown", function (e) { drag = true; auto = false; pos(e); cmp.setPointerCapture(e.pointerId); });
+  cmp.addEventListener("pointermove", function (e) { if (drag) pos(e); });
+  cmp.addEventListener("pointerup", function () { drag = false; });
+  grip.addEventListener("keydown", function (e) { var x = parseFloat(cmp.style.getPropertyValue("--x")) || 50; if (e.key === "ArrowLeft" || e.key === "ArrowRight") { e.preventDefault(); auto = false; setX(x + (e.key === "ArrowLeft" ? -5 : 5)); } });
+  var swinging = false;
+  function swing(t) { if (!auto || !swinging) return; if (!t0) t0 = t; setX(50 + Math.sin((t - t0) / 1500) * 34); requestAnimationFrame(swing); }
+  whileVisible(cmp, function () { tv.play().catch(function () {}); if (auto && !swinging) { swinging = true; requestAnimationFrame(swing); } }, function () { tv.pause(); swinging = false; }, .3);
+  if (reduce) setX(50);
+
+  /* ---------- NFC demo ---------- */
+  var stage = $("#stage"), gStars = $$("#gStars svg"), revN = $("#revN"), counter = $("#counter"), n = 128, timers = [], loop = null;
+  function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
+  function tap() {
+    timers.forEach(clearTimeout); timers = []; stage.className = "stage"; gStars.forEach(function (s) { s.classList.remove("on"); }); counter.classList.remove("up");
+    later(function () { stage.classList.add("p1"); }, 60);
+    later(function () { stage.classList.remove("p1"); stage.classList.add("p2"); }, 1300);
+    gStars.forEach(function (s, i) { later(function () { s.classList.add("on"); }, 1900 + i * 140); });
+    later(function () { stage.classList.add("p4"); n++; revN.textContent = n; counter.classList.add("up"); }, 3600);
+  }
+  function startLoop() { if (loop) return; tap(); loop = setInterval(tap, 7000); }
+  function stopLoop() { clearInterval(loop); loop = null; }
+  $("#try").addEventListener("click", function () { stopLoop(); tap(); });
+  if (reduce) { stage.classList.add("p2"); gStars.forEach(function (s) { s.classList.add("on"); }); }
+  else whileVisible(stage, startLoop, stopLoop, .4);
+  $$("[data-color]").forEach(function (b) { b.addEventListener("click", function () {
+    $$("[data-color]").forEach(function (x) { x.setAttribute("aria-pressed", String(x === b)); });
+    $("#disc").classList.toggle("disc--black", b.getAttribute("data-color") === "Schwarz");
+  }); });
+
+  /* ---------- calculator ---------- */
+  var qty = $("#qty");
+  function setQty() {
+    var q = +qty.value;
+    $("#sum").textContent = (q * 15).toLocaleString("de-DE") + " €";
+    $("#qtyLabel").textContent = "für " + q + (q === 1 ? " Platte" : " Platten");
+    qty.setAttribute("aria-valuetext", q + (q === 1 ? " Platte" : " Platten"));
+    qty.style.setProperty("--fill", ((q - 1) / 19 * 100) + "%");
+    $("#hint").textContent = q < 5 ? "Für Restaurants empfehlen wir 5 bis 10 Platten" : q > 10 ? "Ideal für größere Betriebe" : "Unsere Empfehlung für Restaurants";
+  }
+  qty.addEventListener("input", setQty); setQty();
+
+  /* ---------- process line ---------- */
+  var flow = $("#flow"); new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { flow.classList.add("on"); o.disconnect(); } }, { threshold: .5 }).observe(flow);
+
+  /* ---------- form ---------- */
+  var msg = $("#fMsg");
+  function pick(service, note) {
+    $$(".picks input").forEach(function (c) { if (c.value === service) c.checked = true; });
+    if (note && msg.value.indexOf(note) < 0) msg.value = (msg.value ? msg.value + "\n" : "") + "Interesse: " + note;
+  }
+  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () { pick(b.getAttribute("data-pick")); }); });
+  $("#calcBuy").addEventListener("click", function () { pick("NFC-Platten", qty.value + " NFC-Platten (" + (+qty.value * 15).toLocaleString("de-DE") + " €), " + $("[data-color][aria-pressed=true]").getAttribute("data-color")); });
+  $("#form").addEventListener("submit", function (e) {
+    e.preventDefault(); var first = null;
+    [["#fName", "Bitte geben Sie Ihren Namen an."], ["#fContact", "Bitte geben Sie eine Telefonnummer oder E-Mail an."]].forEach(function (x) {
+      var f = $(x[0]), box = f.parentNode, bad = !f.value.trim();
+      box.classList.toggle("bad", bad); f.setAttribute("aria-invalid", String(bad)); $(".err", box).textContent = bad ? x[1] : "";
+      if (bad && !first) first = f;
+    });
+    if (first) { first.focus(); return; }
+    var s = $$(".picks input:checked").map(function (c) { return c.value; });
+    var body = "Name: " + $("#fName").value.trim() + "\nKontakt: " + $("#fContact").value.trim() + "\nLeistung: " + (s.join(", ") || "noch offen") + (msg.value.trim() ? "\n\n" + msg.value.trim() : "");
+    location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über die Website" + (s.length ? ": " + s.join(" + ") : "")) + "&body=" + encodeURIComponent(body);
+    $("#ok").hidden = false;
+  });
+});
+</script>
+</body>
+</html>
