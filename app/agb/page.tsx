@@ -28,8 +28,8 @@ export default function Agb() {
       <h2>3. Leistungen</h2>
       <p>
         <b>Websites:</b> Gestaltung und Umsetzung im gewählten Paket (Basis, Business oder Premium) mit dem auf der Website beschriebenen Umfang.
-        Nicht enthalten sind Domain, Hosting und kostenpflichtige Dienste Dritter, die Sie selbst auf Ihren Namen buchen, sowie die Rechtstexte
-        (Impressum, Datenschutzerklärung). Diese erstellen Sie selbst oder lassen sie erstellen; wir binden sie ein. Eine Rechtsberatung erbringen wir nicht.
+        Nicht enthalten sind Domain, Hosting und kostenpflichtige Dienste Dritter, die Sie selbst auf Ihren Namen buchen, sowie Datenschutzerklärung und AGB.
+        Diese erstellen Sie selbst oder lassen sie erstellen; wir binden sie ein. Das Impressum erstellen wir aus Ihren Angaben, für deren Richtigkeit Sie verantwortlich sind. Eine Rechtsberatung erbringen wir nicht.
       </p>
       <p>
         <b>KI-Roomtours:</b> Ein Video-Rundgang, der mit Hilfe künstlicher Intelligenz aus Ihren Fotos entsteht, im vereinbarten Format (16:9

@@ -9,7 +9,7 @@ import { Done, PhotoSlots, Question, Sec, Shell, Submit, usePhotos, usePrefill, 
 const sections: Section[] = [
   {
     title: "Ihr Unternehmen",
-    intro: "Diese Angaben erscheinen auf der Website, zum Beispiel im Kontaktbereich und in der Fußzeile. Bitte genau so, wie sie offiziell lauten.",
+    intro: "Aus diesen Angaben erstellen wir Ihr Impressum und den Kontaktbereich. Bitte genau so, wie sie offiziell lauten.",
     questions: [
       { id: "firma", label: "Name des Unternehmens", type: "text", placeholder: "z. B. Café Morgenrot", half: true },
       { id: "branche", label: "Branche", type: "text", placeholder: "z. B. Café, Physiotherapie, Elektriker", half: true },
@@ -92,7 +92,8 @@ const sections: Section[] = [
       { id: "hosting", label: "Hosting (Speicherplatz für die Website)", type: "one", options: ["Habe ich schon", "Buche ich noch", "Weiß ich nicht"], half: true },
       { id: "adresse_web", label: "Bestehende Website oder Wunsch-Adresse", type: "text", placeholder: "z. B. cafe-morgenrot.de", half: true },
       { id: "anbieter", label: "Bei welchem Anbieter liegen Domain und Hosting?", type: "text", placeholder: "z. B. IONOS, Strato, All-inkl", hint: "Zugangsdaten bitte nicht hier eintragen. Die besprechen wir sicher am Telefon." },
-      { id: "rechtstexte", label: "Impressum und Datenschutzerklärung", type: "one", options: ["Habe ich, schicke ich mit", "Erstelle ich noch", "Weiß ich nicht"], hint: "Die Rechtstexte erstellen Sie selbst, z. B. mit einem Rechtstext-Dienst wie eRecht24 oder der IT-Recht Kanzlei. Wir binden sie in die Website ein." },
+      { id: "rechtstexte", label: "Datenschutzerklärung (und ggf. AGB)", type: "one", options: ["Habe ich, schicke ich mit", "Erstelle ich noch", "Weiß ich nicht"], hint: "Das Impressum erstellen wir aus Ihren Angaben. Datenschutzerklärung und AGB erstellen Sie selbst, z. B. mit eRecht24 oder der IT-Recht Kanzlei. Wir binden sie ein." },
+      { id: "beruf", label: "Nur falls zutreffend: Kammer, Berufsbezeichnung, Aufsichtsbehörde", type: "text", placeholder: "z. B. Handwerkskammer München, Zahnärztekammer Bayern", hint: "Für Handwerker, Ärzte, Therapeuten, Makler und andere zulassungspflichtige Berufe gehört das ins Impressum." },
       { id: "formular_an", label: "An welche E-Mail sollen Anfragen von der Website gehen?", type: "text", half: true },
       { id: "tracking", label: "Besucherstatistik gewünscht?", type: "one", options: ["Nein, ohne Cookie-Banner", "Ja, datenschutzfreundlich", "Weiß ich nicht"], half: true },
     ],

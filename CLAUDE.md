@@ -3,7 +3,13 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Kauf komplett auf der Website, Roomtour-Film neu — AKTUELL
+## Stand: erst Paket, dann Fragebogen; keine Korrekturrunden — AKTUELL
+- Kunde: „Klick auf eine Leistung darf nie direkt in den Fragebogen führen, zuerst Paketübersicht; NFC sofort kaufbar; Impressum erstellen wir (aber keine AGB); ‚Google zur Aufnahme angemeldet‘ und ‚Korrekturrunden‘ raus, stattdessen jederzeit direkter Kontakt; USP: KI-Qualität, Festpreise ohne Abo/versteckte Kosten, Transparenz, schnell“.
+- Alle Knöpfe „Fragebogen starten“/„Fotos hochladen“ → „Pakete ansehen“ (`/websites#pakete`, `/roomtours#pakete`); Fragebogen nur noch aus der Paketwahl. NFC: Film-Knopf „Direkt bestellen“ (`/shop?weiss=5`) + „Mengen und Farben“, Start-Schild NFC → Shop, „Was brauchen Sie?“ „Platten bestellen“.
+- Pakete: Basis „Impressum-Seite aus Ihren Angaben erstellt“, „Schnelle Ladezeiten und sauberer Code für Google“; Korrekturrunden überall entfernt (Premium stattdessen „Individuelle Module“); Hinweis „ohne Abo und ohne versteckte Kosten. Fragen und Änderungswünsche klären Sie jederzeit direkt mit uns. Nicht enthalten: Domain/Hosting, Datenschutzerklärung und AGB“. FAQ/AGB/Fragebogen entsprechend (Kammer-Angaben fürs Impressum wieder im Fragebogen).
+- Start-USPs: Festpreise ab 15 € – ohne Abo, ohne versteckte Kosten / KI-gestützte Profi-Qualität / Extrem schnell – Roomtour in 48 Stunden, Website in 7 Tagen.
+
+## Stand: Kauf komplett auf der Website, Roomtour-Film neu
 - Kunde: „alles auf der Website abwickeln: Preise → Fragebogen → Checkout; keine Domain/Hosting/Rechtliches; Roomtour-Animation ändern“. Recherche: IT-Recht Kanzlei (gesonderte Checkbox vorzeitiger Beginn, § 356 Abs. 4 BGB), Button-Lösung, IHK zu AI-Act Art. 50 (KI-Videos kennzeichnen), Mitbewerber mit „direkt online buchen“.
 - Ablauf: `#pakete` → „Weiter zum Fragebogen“ (`/anfrage/website?paket=…`, `/anfrage/roomtour?paket=…`) → Dankeseite „Letzter Schritt: bezahlen“ → `/shop?web=Business&ref=FOAV-…` bzw. `?roomtour=1`/`?premium=1` → Checkout (Kontakt aus `sessionStorage` `foav-contact`) → Stripe. NFC direkt in den Shop. „Individuell“/„Noch unsicher“ → Kontakt.
 - Shop: Produkte `web-basis/business/premium`; Rechnungsadresse Pflicht, Firma optional; bei Dienstleistungen Pflicht-Checkbox vorzeitiger Beginn (Server prüft `early`).
