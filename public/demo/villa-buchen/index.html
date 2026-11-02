@@ -1,0 +1,321 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Villa Scogliera · Ferienvilla auf der Klippe</title>
+<meta name="description" content="Demo: Ferienvilla am Meer mit Infinity-Pool. Verfügbarkeit prüfen und direkt anfragen.">
+<link rel="preload" as="image" href="/demo/villa-buchen/day.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Villa Scogliera – Demo
+   Ein Moment: die Villa entsteht aus dem Bauplan, beim Scrollen wird aus Tag Abend und die Fenster gehen an.
+   Farben: Kalkstein #f5f2ec · Fels #e6e0d5 · Tiefsee #0f4b57 · Nacht #121820 · Abendlicht #e9a66a
+   Schrift: Instrument Serif (Namen, Überschriften), Inter Tight (alles andere) */
+:root { --stone:#f5f2ec; --rock:#e6e0d5; --sea:#0f4b57; --night:#121820; --glow:#e9a66a; --ink:#1a1f24; --mid:#555a60; --line:rgba(26,31,36,.14); --ease:cubic-bezier(.22,1,.36,1); }
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+body { background:var(--stone); color:var(--ink); font:400 17px/1.6 "Inter Tight",system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:clip; }
+img { display:block; max-width:100%; } a { color:inherit; text-decoration:none; }
+button, input, select { font:inherit; color:inherit; }
+:focus-visible { outline:2px solid var(--glow); outline-offset:3px; }
+.wrap { max-width:1280px; margin:0 auto; padding:0 clamp(20px,4vw,56px); }
+.serif { font-family:"Instrument Serif",Georgia,serif; font-weight:400; letter-spacing:-.01em; line-height:1; }
+
+/* header */
+.top { position:fixed; z-index:30; inset:0 0 auto; padding:18px 0; color:#fff; transition:background-color .4s, color .4s, box-shadow .4s; }
+.top.solid { background:rgba(245,242,236,.9); color:var(--ink); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); box-shadow:0 1px 0 var(--line); }
+.top .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; }
+.name { font-family:"Instrument Serif"; font-size:28px; }
+.top nav { display:flex; gap:26px; font-size:15px; }
+.top .book { padding:11px 20px; border-radius:999px; background:#fff; color:var(--ink); font-weight:600; font-size:15px; }
+.top.solid .book { background:var(--ink); color:#fff; }
+
+/* ---------- hero: plan → villa, day → evening ---------- */
+.hero { position:relative; height:100vh; height:100svh; overflow:hidden; background:#0e2236; }
+.layer { position:absolute; inset:0; background:center 55% / cover no-repeat; will-change:clip-path, opacity, transform; }
+.plan { background-image:url(/demo/villa-buchen/plan.webp); }
+.day { background-image:url(/demo/villa-buchen/day.webp); }
+.dusk { background-image:url(/demo/villa-buchen/dusk.webp); opacity:0; }
+.scan { position:absolute; left:0; right:0; height:2px; top:100%; background:linear-gradient(90deg,transparent,#cfe6ff,transparent); box-shadow:0 0 30px 6px rgba(150,200,255,.5); opacity:0; }
+.veil { position:absolute; inset:0; background:linear-gradient(rgba(10,14,20,.5), transparent 32%, transparent 58%, rgba(10,14,20,.6)); pointer-events:none; }
+.intro { position:absolute; left:0; right:0; top:9vh; text-align:center; color:#fff; padding:0 20px; text-shadow:0 2px 24px rgba(10,20,35,.45); }
+.intro p { font-size:15px; opacity:.85; }
+.intro h1 { margin-top:6px; font-size:clamp(3rem,7vw,6.4rem); }
+.intro .line2 { display:block; font-style:italic; font-size:.5em; margin-top:.2em; opacity:.92; }
+.mood { position:absolute; right:clamp(20px,4vw,56px); top:46vh; color:#fff; text-align:right; font-size:15px; opacity:0; }
+.mood b { display:block; font-family:"Instrument Serif"; font-size:34px; font-weight:400; }
+
+/* booking bar */
+.bar { position:absolute; left:50%; bottom:clamp(20px,4vh,40px); transform:translateX(-50%); width:min(980px,calc(100% - 32px)); display:grid; grid-template-columns:1fr 1fr .8fr auto; gap:0; padding:8px; border-radius:20px; background:rgba(255,255,255,.92); -webkit-backdrop-filter:blur(16px); backdrop-filter:blur(16px); box-shadow:0 30px 70px -30px rgba(0,0,0,.6); }
+.bar label { display:grid; gap:2px; padding:10px 18px; border-radius:14px; cursor:pointer; transition:background-color .2s; }
+.bar label:hover { background:rgba(26,31,36,.05); }
+.bar label + label { box-shadow:inset 1px 0 0 var(--line); }
+.bar span { font-size:12.5px; font-weight:600; }
+.bar input, .bar select { border:0; background:none; font-size:16px; color:var(--ink); outline:none; min-height:28px; }
+.bar button { padding:0 28px; border:0; border-radius:14px; background:var(--sea); color:#fff; font-weight:600; cursor:pointer; min-height:56px; }
+.bar button:hover { background:#0b3a43; }
+
+/* ---------- sections ---------- */
+section.s { padding:clamp(80px,12vh,140px) 0; }
+.s h2 { font-size:clamp(2.8rem,6vw,5rem); max-width:16ch; }
+.lead { margin-top:18px; max-width:60ch; font-size:19px; color:var(--mid); }
+.facts { margin-top:40px; display:flex; flex-wrap:wrap; gap:12px 40px; font-size:16px; }
+.facts b { font-family:"Instrument Serif"; font-weight:400; font-size:40px; display:block; line-height:1; }
+/* gallery: one large, two stacked, wide pool strip */
+.gal { margin-top:48px; display:grid; grid-template-columns:1.6fr 1fr; grid-template-rows:auto auto; gap:12px; }
+.gal figure { position:relative; overflow:hidden; border-radius:10px; background:var(--rock); }
+.gal img { width:100%; height:100%; object-fit:cover; transition:transform 1.2s var(--ease); }
+.gal figure:hover img { transform:scale(1.04); }
+.gal figcaption { position:absolute; left:14px; bottom:12px; padding:5px 11px; border-radius:999px; background:rgba(255,255,255,.9); font-size:13px; font-weight:500; }
+.g1 { grid-row:1 / 3; aspect-ratio:4 / 3; } .g2, .g3 { aspect-ratio:16 / 8; }
+.g4 { grid-column:1 / -1; aspect-ratio:21 / 5; }
+.amen { margin-top:56px; display:grid; grid-template-columns:repeat(4,1fr); gap:28px; }
+.amen h3 { font-size:17px; font-weight:600; }
+.amen p { margin-top:4px; font-size:15px; color:var(--mid); }
+.amen div { padding-top:16px; border-top:1px solid var(--line); }
+
+/* booking */
+.bk { background:var(--night); color:#fff; }
+.bk .lead { color:rgba(255,255,255,.72); }
+.bk__grid { margin-top:44px; display:grid; grid-template-columns:1.15fr .85fr; gap:28px; align-items:start; }
+.cal { padding:24px; border-radius:16px; background:rgba(255,255,255,.05); box-shadow:inset 0 0 0 1px rgba(255,255,255,.1); }
+.cal__head { display:flex; justify-content:space-between; align-items:center; }
+.cal__head b { font-family:"Instrument Serif"; font-weight:400; font-size:30px; }
+.cal__head button { width:44px; height:44px; border-radius:50%; border:0; background:rgba(255,255,255,.08); color:#fff; cursor:pointer; font-size:20px; }
+.months { margin-top:16px; display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+.month h4 { font-size:15px; font-weight:600; margin-bottom:8px; }
+.days { display:grid; grid-template-columns:repeat(7,1fr); gap:3px; text-align:center; font-size:14px; }
+.days i { font-style:normal; font-size:12px; color:rgba(255,255,255,.5); padding:4px 0; }
+.days button { aspect-ratio:1; min-height:36px; border:0; border-radius:8px; background:none; color:#fff; cursor:pointer; font-variant-numeric:tabular-nums; }
+.days button:hover:not(:disabled) { background:rgba(255,255,255,.12); }
+.days button:disabled { color:rgba(255,255,255,.25); text-decoration:line-through; cursor:not-allowed; }
+.days button.in { background:rgba(233,166,106,.25); border-radius:0; }
+.days button.edge { background:var(--glow); color:var(--night); font-weight:600; border-radius:8px; }
+.legend { margin-top:14px; display:flex; gap:18px; font-size:13px; color:rgba(255,255,255,.65); }
+.legend s { color:rgba(255,255,255,.35); }
+.sum { padding:26px; border-radius:16px; background:var(--stone); color:var(--ink); }
+.sum h3 { font-family:"Instrument Serif"; font-weight:400; font-size:34px; }
+.sum .pp { color:var(--mid); font-size:15px; }
+.row { display:flex; justify-content:space-between; gap:12px; padding:10px 0; border-bottom:1px solid var(--line); font-size:15.5px; }
+.row:first-of-type { margin-top:14px; }
+.row.total { border:0; font-weight:600; font-size:19px; }
+.fields { margin-top:12px; display:grid; gap:10px; }
+.fields input, .fields select { width:100%; min-height:48px; padding:10px 14px; border:1px solid var(--line); border-radius:10px; background:#fff; }
+.send { margin-top:14px; width:100%; min-height:52px; border:0; border-radius:12px; background:var(--sea); color:#fff; font-weight:600; cursor:pointer; }
+.note { margin-top:10px; font-size:13px; color:var(--mid); }
+.msg { margin-top:10px; font-size:14.5px; color:#1d6b46; min-height:1.2em; }
+
+.where { display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center; }
+.where ul { list-style:none; margin-top:24px; display:grid; gap:10px; }
+.where li { display:flex; justify-content:space-between; padding-bottom:10px; border-bottom:1px solid var(--line); }
+.where li span { color:var(--mid); }
+.where figure { border-radius:10px; overflow:hidden; aspect-ratio:4 / 3; }
+.where figure img { width:100%; height:100%; object-fit:cover; }
+footer { padding:28px 0; font-size:14px; color:var(--mid); border-top:1px solid var(--line); }
+footer .wrap { display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; }
+
+.bg { display:none; }
+@media (max-aspect-ratio: 4/5) {
+  .bg { display:block; background:url(/demo/villa-buchen/day.webp) center / cover no-repeat; filter:blur(24px) brightness(.75) saturate(1.2); transform:scale(1.15); }
+  .plan, .day, .dusk { background-size:230% auto; background-position:52% 46%; }
+}
+@media (max-width:900px) {
+  .top nav { display:none; }
+  .bar { grid-template-columns:1fr 1fr; } .bar label:nth-child(3) { box-shadow:none; } .bar button { grid-column:1 / -1; }
+  .bk__grid, .where { grid-template-columns:1fr; } .amen { grid-template-columns:1fr 1fr; }
+  .gal { grid-template-columns:1fr; } .g1 { grid-row:auto; } .g4 { aspect-ratio:16 / 7; }
+  .months { grid-template-columns:1fr; } .month + .month { display:none; }
+  .mood { display:none; }
+}
+@media (prefers-reduced-motion:reduce) { .day { clip-path:none; } .gal img { transition:none; } }
+</style>
+</head>
+<body>
+<header class="top" id="top"><div class="wrap"><a class="name" href="#">Villa Scogliera</a><nav><a href="#villa">Die Villa</a><a href="#ausstattung">Ausstattung</a><a href="#lage">Lage</a></nav><a class="book" href="#buchen">Verfügbarkeit</a></div></header>
+
+<main>
+<section class="hero" id="hero" aria-label="Villa Scogliera">
+  <div class="layer bg" aria-hidden="true"></div>
+  <div class="layer plan" aria-hidden="true"></div>
+  <div class="layer day" role="img" aria-label="Weiße Villa mit Infinity-Pool auf einer Klippe über dem Meer"></div>
+  <div class="layer dusk" aria-hidden="true"></div>
+  <div class="scan" aria-hidden="true"></div>
+  <div class="veil" aria-hidden="true"></div>
+  <div class="intro"><p>Ferienvilla auf der Klippe · bis 10 Gäste</p><h1 class="serif">Villa Scogliera<span class="line2">Über dem Meer, unter den Sternen.</span></h1></div>
+  <p class="mood" id="mood"><b id="moodT">19:42 Uhr</b>Sonnenuntergang vom Pool aus</p>
+  <form class="bar" id="quick" aria-label="Verfügbarkeit prüfen">
+    <label><span>Anreise</span><input type="date" id="qIn" required></label>
+    <label><span>Abreise</span><input type="date" id="qOut" required></label>
+    <label><span>Gäste</span><select id="qG"><option>2</option><option>4</option><option selected>6</option><option>8</option><option>10</option></select></label>
+    <button type="submit">Verfügbarkeit prüfen</button>
+  </form>
+</section>
+
+<section class="s" id="villa"><div class="wrap">
+  <h2 class="serif">Ein Haus, das sich zum Meer öffnet.</h2>
+  <p class="lead">Fünf Schlafzimmer mit raumhohen Glasfronten, ein offener Wohnbereich über zwei Etagen und ein 18 Meter langer Infinity-Pool, der direkt in den Horizont übergeht.</p>
+  <div class="facts"><p><b>5</b>Schlafzimmer</p><p><b>10</b>Gäste</p><p><b>420 m²</b>Wohnfläche</p><p><b>18 m</b>Infinity-Pool</p></div>
+  <div class="gal">
+    <figure class="g1"><img src="/demo/villa-buchen/g-living.webp" alt="Wohnbereich mit Glasfront zum Meer" loading="lazy"><figcaption>Wohnen</figcaption></figure>
+    <figure class="g2"><img src="/demo/villa-buchen/g-upper.webp" alt="Obergeschoss mit Suiten" loading="lazy"><figcaption>Suiten im Obergeschoss</figcaption></figure>
+    <figure class="g3"><img src="/demo/villa-buchen/g-bed.webp" alt="Schlafzimmer zum Pool" loading="lazy"><figcaption>Gartenzimmer</figcaption></figure>
+    <figure class="g4"><img src="/demo/villa-buchen/g-pool.webp" alt="Infinity-Pool über der Klippe" loading="lazy"><figcaption>Infinity-Pool</figcaption></figure>
+  </div>
+</div></section>
+
+<section class="s" id="ausstattung" style="padding-top:0"><div class="wrap">
+  <div class="amen">
+    <div><h3>Privater Infinity-Pool</h3><p>Beheizt, mit Liegen und Außendusche.</p></div>
+    <div><h3>Meerblick aus jedem Zimmer</h3><p>Raumhohe Schiebefenster, alle Suiten mit Bad.</p></div>
+    <div><h3>Küche für Köche</h3><p>Kochinsel, Weinkühlschrank, Esstisch für zwölf.</p></div>
+    <div><h3>Concierge vor Ort</h3><p>Transfer, Boot, Privatkoch auf Anfrage.</p></div>
+  </div>
+</div></section>
+
+<section class="s bk" id="buchen"><div class="wrap">
+  <h2 class="serif">Wählen Sie Ihre Tage.</h2>
+  <p class="lead">Mindestaufenthalt 5 Nächte. Sie zahlen erst, wenn wir Ihre Anfrage bestätigt haben.</p>
+  <div class="bk__grid">
+    <div class="cal">
+      <div class="cal__head"><button type="button" id="prev" aria-label="Vorheriger Monat">‹</button><b id="calTitle"></b><button type="button" id="next" aria-label="Nächster Monat">›</button></div>
+      <div class="months" id="months"></div>
+      <p class="legend"><span>Tippen Sie auf Anreise und Abreise.</span><s>21</s> belegt</p>
+    </div>
+    <form class="sum" id="req" novalidate>
+      <h3 id="range">Ihr Aufenthalt</h3>
+      <p class="pp">ab 950 € pro Nacht · Hauptsaison 1.450 €</p>
+      <div class="row"><span id="nightsL">Nächte</span><span id="nightsV">–</span></div>
+      <div class="row"><span>Endreinigung</span><span>250 €</span></div>
+      <div class="row total"><span>Gesamt</span><span id="total">–</span></div>
+      <div class="fields">
+        <select id="rG" aria-label="Gäste"><option>2 Gäste</option><option>4 Gäste</option><option selected>6 Gäste</option><option>8 Gäste</option><option>10 Gäste</option></select>
+        <input id="rName" autocomplete="name" placeholder="Ihr Name" aria-label="Name" required>
+        <input id="rMail" type="email" autocomplete="email" placeholder="E-Mail" aria-label="E-Mail" required>
+      </div>
+      <button class="send" type="submit">Anfrage senden</button>
+      <p class="msg" id="msg" aria-live="polite"></p>
+      <p class="note">Demo-Seite: Die Anfrage öffnet Ihr E-Mail-Programm.</p>
+    </form>
+  </div>
+</div></section>
+
+<section class="s" id="lage"><div class="wrap where">
+  <div>
+    <h2 class="serif">Ganz für sich. Und doch nah.</h2>
+    <p class="lead">Die Villa liegt allein auf der Klippe, über eine private Zufahrt erreichbar. Badebucht, Hafen und Restaurants sind trotzdem wenige Minuten entfernt.</p>
+    <ul><li>Private Badebucht<span>3 Min. zu Fuß</span></li><li>Hafen &amp; Restaurants<span>8 Min. mit dem Auto</span></li><li>Flughafen<span>45 Min.</span></li></ul>
+  </div>
+  <figure><img src="/demo/villa-buchen/g-sea.webp" alt="Blick von der Terrasse auf das Meer" loading="lazy"></figure>
+</div></section>
+</main>
+<footer><div class="wrap"><span>Villa Scogliera · Demo-Webseite, Inhalte frei erfunden</span><span>Gestaltet von foav.de</span></div></footer>
+
+<script src="/site/vendor/gsap.min.js"></script>
+<script src="/site/vendor/ScrollTrigger.min.js"></script>
+<script src="/site/vendor/lenis.min.js"></script>
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); };
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, G = window.gsap;
+
+  /* header turns solid after the hero */
+  addEventListener("scroll", function () { $("#top").classList.toggle("solid", scrollY > innerHeight * 2.2); }, { passive: true });
+
+  /* ---------- hero: plan draws, villa rises out of it, then day turns into evening ---------- */
+  if (G && !reduce) {
+    G.registerPlugin(ScrollTrigger);
+    if (window.Lenis && matchMedia("(pointer: fine)").matches) { var l = new Lenis({ lerp: .1 }); l.on("scroll", ScrollTrigger.update); G.ticker.add(function (t) { l.raf(t * 1000); }); G.ticker.lagSmoothing(0); }
+    G.set(".day", { clipPath: "inset(100% 0 0 0)" });
+    var intro = G.timeline({ delay: .2 });
+    intro.fromTo(".plan", { clipPath: "circle(0% at 50% 62%)" }, { clipPath: "circle(80% at 50% 62%)", duration: 1.6, ease: "power2.inOut" })
+         .set(".scan", { opacity: 1 })
+         .to(".day", { clipPath: "inset(0% 0 0 0)", duration: 2.2, ease: "power2.inOut" }, "+=.2")
+         .fromTo(".scan", { top: "100%" }, { top: "0%", duration: 2.2, ease: "power2.inOut" }, "<")
+         .to(".scan", { opacity: 0, duration: .3 })
+         .from(".intro > *", { y: 24, opacity: 0, duration: 1.2, stagger: .15, ease: "expo.out" }, "-=1")
+         .from(".bar", { y: 30, opacity: 0, duration: 1, ease: "expo.out" }, "-=.8");
+    var tl = G.timeline({ scrollTrigger: { trigger: "#hero", start: "top top", end: "+=140%", pin: true, scrub: 1 } });
+    tl.to(".day, .dusk", { scale: 1.08, duration: 1, ease: "none" }, 0)
+      .to(".dusk", { opacity: 1, duration: .7, ease: "none" }, .2)
+      .to(".intro", { y: -40, opacity: .0, duration: .4 }, 0)
+      .to("#mood", { opacity: 1, duration: .3 }, .55)
+      .to({}, { duration: .1 });
+    var clock = { m: 17 * 60 + 5 };
+    tl.to(clock, { m: 19 * 60 + 42, duration: .8, ease: "none", onUpdate: function () { var h = Math.floor(clock.m / 60), m = Math.round(clock.m % 60); $("#moodT").textContent = h + ":" + (m < 10 ? "0" : "") + m + " Uhr"; } }, .1);
+  }
+
+  /* ---------- availability calendar + price ---------- */
+  var DAY = 864e5, today = new Date(); today.setHours(0, 0, 0, 0);
+  var booked = new Set(), seed = 7;
+  function rnd() { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; }
+  for (var d = 4; d < 300;) { var len = 5 + Math.floor(rnd() * 8); for (var k = 0; k < len; k++) booked.add(new Date(today.getTime() + (d + k) * DAY).toDateString()); d += len + 4 + Math.floor(rnd() * 14); }
+  var view = new Date(today.getFullYear(), today.getMonth(), 1), A = null, B = null;
+  var mNames = ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"];
+  function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function fmt(d) { return d.getDate() + ". " + mNames[d.getMonth()].slice(0, 3) + "."; }
+  function rangeFree(a, b) { for (var t = a.getTime(); t < b.getTime(); t += DAY) if (booked.has(new Date(t).toDateString())) return false; return true; }
+  function render() {
+    var box = $("#months"); box.innerHTML = "";
+    for (var mi = 0; mi < 2; mi++) {
+      var first = new Date(view.getFullYear(), view.getMonth() + mi, 1), mEl = document.createElement("div");
+      mEl.className = "month"; mEl.innerHTML = "<h4>" + mNames[first.getMonth()] + " " + first.getFullYear() + "</h4>";
+      var g = document.createElement("div"); g.className = "days";
+      "Mo Di Mi Do Fr Sa So".split(" ").forEach(function (w) { g.insertAdjacentHTML("beforeend", "<i>" + w + "</i>"); });
+      for (var p = 0; p < (first.getDay() + 6) % 7; p++) g.appendChild(document.createElement("span"));
+      var n = new Date(first.getFullYear(), first.getMonth() + 1, 0).getDate();
+      for (var dd = 1; dd <= n; dd++) {
+        var dt = new Date(first.getFullYear(), first.getMonth(), dd), bt = document.createElement("button");
+        bt.type = "button"; bt.textContent = dd; bt.dataset.t = dt.getTime();
+        bt.disabled = dt < today || booked.has(dt.toDateString());
+        bt.setAttribute("aria-label", dt.toLocaleDateString("de-DE", { day: "numeric", month: "long" }) + (bt.disabled ? ", nicht verfügbar" : ""));
+        if (A && dt.getTime() === A.getTime() || B && dt.getTime() === B.getTime()) bt.classList.add("edge");
+        else if (A && B && dt > A && dt < B) bt.classList.add("in");
+        g.appendChild(bt);
+      }
+      mEl.appendChild(g); box.appendChild(mEl);
+    }
+    $("#calTitle").textContent = mNames[view.getMonth()].slice(0, 3) + " – " + mNames[(view.getMonth() + 1) % 12].slice(0, 3);
+  }
+  function price() {
+    if (!A || !B) { $("#nightsV").textContent = "–"; $("#total").textContent = "–"; $("#range").textContent = A ? "Ab " + fmt(A) + " · Abreise wählen" : "Ihr Aufenthalt"; return; }
+    var n = Math.round((B - A) / DAY), sum = 0;
+    for (var t = A.getTime(); t < B.getTime(); t += DAY) { var m = new Date(t).getMonth(); sum += (m >= 4 && m <= 8) ? 1450 : 950; }
+    $("#range").textContent = fmt(A) + " – " + fmt(B);
+    $("#nightsL").textContent = n + " Nächte";
+    $("#nightsV").textContent = sum.toLocaleString("de-DE") + " €";
+    $("#total").textContent = (sum + 250).toLocaleString("de-DE") + " €";
+    $("#msg").textContent = n < 5 ? "Bitte mindestens 5 Nächte wählen." : "";
+  }
+  $("#months").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b || b.disabled) return;
+    var d = new Date(+b.dataset.t);
+    if (!A || B || d <= A) { A = d; B = null; }
+    else if (rangeFree(A, d)) B = d; else { A = d; B = null; }
+    render(); price();
+  });
+  $("#prev").addEventListener("click", function () { var p = new Date(view.getFullYear(), view.getMonth() - 1, 1); if (p >= new Date(today.getFullYear(), today.getMonth(), 1)) { view = p; render(); } });
+  $("#next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); render(); });
+  render(); price();
+
+  /* quick bar → fills the calendar */
+  var qi = $("#qIn"), qo = $("#qOut");
+  qi.min = iso(today); qo.min = iso(new Date(today.getTime() + DAY));
+  $("#quick").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (qi.value && qo.value && qo.value > qi.value) { A = new Date(qi.value + "T00:00"); B = new Date(qo.value + "T00:00"); if (!rangeFree(A, B)) { $("#msg").textContent = "Leider teilweise belegt. Bitte wählen Sie andere Tage im Kalender."; B = null; } view = new Date(A.getFullYear(), A.getMonth(), 1); render(); price(); }
+    $("#rG").selectedIndex = $("#qG").selectedIndex;
+    $("#buchen").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+  });
+  $("#req").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!A || !B) { $("#msg").textContent = "Bitte zuerst Anreise und Abreise im Kalender wählen."; return; }
+    if (!$("#rName").value.trim() || !/.+@.+\..+/.test($("#rMail").value)) { $("#msg").textContent = "Bitte Name und E-Mail angeben."; return; }
+    location.href = "mailto:anfrage@example.com?subject=" + encodeURIComponent("Anfrage Villa Scogliera " + $("#range").textContent) + "&body=" + encodeURIComponent("Name: " + $("#rName").value + "\nGäste: " + $("#rG").value + "\nZeitraum: " + $("#range").textContent + "\nPreis: " + $("#total").textContent);
+    $("#msg").textContent = "Danke! Ihre Anfrage ist vorbereitet.";
+  });
+})();
+</script>
+</body>
+</html>

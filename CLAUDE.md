@@ -3,6 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Villa-Website als zweites Beispiel
+- Kunde: „nicht überall SPIRULI, die Villa-Seite als Beispiel einbauen“ (`/demo/villa-buchen/`, aus Zweig `fd-solutions-landing-l1x6bu` übernommen, jetzt `noindex`, Fußzeile „Gestaltet von foav.de“, als Demo gekennzeichnet).
+- Neue Aufnahmen per Playwright (leere Pin-Bereiche herausgeschnitten): `ref-villa-desk-top.jpg`, `ref-villa-desk.webp`, `ref-villa-mob.webp`; `hero-lineup.webp` neu (Villa statt SPIRULI).
+- Villa jetzt in: Start-Geräte (Laptop), „Was brauchen Sie?“, Zusagen-Kachel, Website-Film (scrollt durch die Villa, Hinweis „Beispiel-Website für eine Ferienvilla. Live ansehen“). SPIRULI bleibt nur im Referenz-Abschnitt `#referenz`, dort Link „Noch ein Beispiel: Website für eine Ferienvilla“.
+
 ## Stand: Stripe Payments + Invoicing
 - Kunde: „mit Stripe starten: Payments, Invoicing“. Stripe-Plugin installiert (Skills `stripe-best-practices` gelesen); MCP mcp.stripe.com braucht Anmeldung durch den Kunden, `npx skills add https://docs.stripe.com` scheiterte am Netz.
 - Offizielles SDK `stripe@23` (`lib/stripe.ts`, Schlüssel nur aus `STRIPE_SECRET_KEY`). Checkout (`app/api/checkout`): `invoice_creation` (Stripe schickt nummerierte Rechnung, Fußzeile `INVOICE_FOOTER` oder `vatNote`), Rechnungsadresse Pflicht bei Stripe, Lieferadresse (DE/AT/CH) nur bei Platten, USt-IdNr. optional, Kunde wird angelegt, `integration_identifier`, Idempotenz-Schlüssel, keine `payment_method_types` (Zahlarten im Dashboard).
