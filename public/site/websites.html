@@ -362,7 +362,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .plan { position: relative; display: flex; flex-direction: column; padding: clamp(26px, 2.6vw, 36px); border-radius: 26px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .4s, translate .4s var(--ease); }
 
 .plan--top { box-shadow: inset 0 0 0 2px var(--champ); }
-.plan--top::before { content: "Unser Schwerpunkt"; position: absolute; top: -14px; left: 26px; padding: 5px 12px; border-radius: 999px; background: var(--champ); color: #111114; font-size: 0.8125rem; font-weight: 700; }
+.plan--top::before { content: "Empfohlen"; position: absolute; top: -14px; left: 26px; padding: 5px 12px; border-radius: 999px; background: var(--champ); color: #111114; font-size: 0.8125rem; font-weight: 700; }
 .plan h3 { font-size: 1.5rem; }
 .plan > p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
 .plan .plan__big { margin-top: 28px; font-family: var(--head); font-size: clamp(56px, 5.4vw, 84px); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
@@ -1046,6 +1046,34 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc--room .iphone { height: 104%; padding: 6px; border-radius: 34px; transform: translateY(14%); }
 .cmpc--room .iphone__screen { border-radius: 28px; }
 .cmpc--room .rt-chip { left: 16px; top: 16px; bottom: auto; translate: none; transform: none; }
+
+/* ---------- plans: pick one, the bar below shows the choice and the next step ---------- */
+.choose fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.choose .plan { cursor: pointer; transition: box-shadow .25s, transform .35s var(--ease); }
+.choose .plan:hover { transform: translateY(-3px); }
+.choose .plan input { position: absolute; opacity: 0; pointer-events: none; }
+.choose .plan--top { box-shadow: inset 0 0 0 1px var(--line); }
+.choose .plan--top::before { background: var(--ink); color: #fff; }
+.choose .plan:has(input:checked) { box-shadow: inset 0 0 0 2px var(--ink), 0 24px 50px -30px rgba(0,0,0,.35); }
+.choose .plan:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+.plan__pick { position: absolute; top: 24px; right: 24px; width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--line); background: #fff; transition: background .2s, box-shadow .2s; }
+.plan:has(input:checked) .plan__pick { background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat; box-shadow: none; }
+.plan .plan__big--text { font-size: clamp(36px, 3.2vw, 48px); padding-top: .35em; }
+.plan__big { line-height: 1; }
+.choose__color { margin-top: 20px; background: #ececf0; } .choose__color button { border: 0; background: none; cursor: pointer; color: var(--text); font: inherit; font-weight: 700; } .choose__color button[aria-checked="true"] { background: #1d1d1f; color: #fff; }
+.choose__bar { position: relative; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 20px; padding: 14px 14px 14px 24px; border-radius: 20px; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px -24px rgba(0,0,0,.35); }
+.choose__bar p span { display: block; font-size: .8125rem; color: var(--muted); }
+.choose__bar b { font-size: 1.125rem; font-weight: 600; color: var(--ink); }
+@media (max-width: 900px) { .plans { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .choose__bar { padding: 12px 12px 12px 18px; } .choose__bar .btn { flex: 1 1 100%; } }
+
+/* NFC: both colours visible */
+.cmpc__stage--two .disc { position: absolute; width: 40%; }
+.cmpc__stage--two .disc:not(.disc--black) { left: 14%; top: 30%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg); }
+.cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
+@media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
 </style>
 </head>
 <body>
@@ -1081,7 +1109,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <a class="logo" href="/" aria-label="FOAV – zur Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
     <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
-    <a class="btn btn--ink" href="#kontakt">Anfragen</a>
+    <a class="btn btn--ink" href="#pakete" data-offers>Anfragen</a>
     <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
@@ -1119,9 +1147,12 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-pakete">Pakete für Ihre Website.</h2></div><p class="lead">Startpreise für Unternehmen, zzgl. MwSt. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p></div>
-      <div class="plans"><div class="plan"><h3>Basis</h3><p>Klar und fokussiert</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>3 professionell gestaltete Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy und Computer</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kontaktformular und Google Maps</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Impressum und Datenschutz</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Basis">Fragebogen starten</a></div><div class="plan plan--top"><h3>Business</h3><p>Für Betriebe mit mehr Angebot</p><p class="plan__big"><small>ab </small>690 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehr Seiten nach Bedarf</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Animationen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Google-Bewertungen eingebunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Business">Fragebogen starten</a></div><div class="plan"><h3>Premium</h3><p>Ein Auftritt, der auffällt</p><p class="plan__big"><small>ab </small>1.290 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuelles Design</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3D-Modelle und Effekte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Selbst bearbeitbar</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Business</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Premium">Fragebogen starten</a></div></div>
-      <p class="plans__note">Business- und Premium-Preise sind Richtwerte. Den genauen Preis nennen wir Ihnen nach dem Fragebogen oder einem kurzen Gespräch.</p>
+      <div class="sec__head"><div><h2 id="h-pakete">Welche Website passt zu Ihnen?</h2></div><p class="lead">Drei feste Pakete. Sie sehen genau, was drin ist, und bekommen vor dem Start ein schriftliches Angebot zu diesem Preis.</p></div>
+      <form class="choose" data-choose="web" onsubmit="return false">
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="web" value="Basis" data-href="/anfrage/website?paket=Basis" data-label="Website Basis, 300 €"><h3>Basis</h3><p>Der professionelle erste Auftritt</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Seiten, z. B. Start, Leistungen, Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy, Tablet und Computer</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kontaktformular und Google Maps</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Impressum und Datenschutz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Grund-Einstellungen für Google</li><li><svg aria-hidden="true"><use href="#tick"/></svg>1 Änderungsrunde</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 5 Tagen</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="web" value="Business" data-href="/anfrage/website?paket=Business" data-label="Website Business, 690 €" checked><h3>Business</h3><p>Für Unternehmen, die Anfragen wollen</p><p class="plan__big">690 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis zu 6 Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Texte schreiben wir für Sie</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Animationen und Bildergalerie</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Google-Bewertungen auf der Seite</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Termin- oder Buchungsknopf</li><li><svg aria-hidden="true"><use href="#tick"/></svg>2 Änderungsrunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="web" value="Premium" data-href="/anfrage/website?paket=Premium" data-label="Website Premium, 1.290 €"><h3>Premium</h3><p>Ein Auftritt, der auffällt</p><p class="plan__big">1.290 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis zu 10 Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuelles Design mit 3D-Effekten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zweisprachig, Deutsch und Englisch</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Einrichtung Ihres Google-Unternehmensprofils</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Änderungsrunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Business</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
+        <div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+      </form>
+      <p class="plans__note">Alle Preise sind Endpreise. Domain und Hosting laufen auf Ihren Namen beim Anbieter Ihrer Wahl, meist wenige Euro im Monat. Wir richten alles für Sie ein. Mehr Seiten oder Sonderwünsche nennen wir Ihnen vorher als Festpreis.</p>
     </div>
   </section>
 
@@ -1168,8 +1199,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
       <div>
-        <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
-        <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Eine Roomtour ist in bis zu 48 Stunden fertig, eine Website je nach Paket in bis zu 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details><details><summary>Wann bezahle ich?<i aria-hidden="true"></i></summary><p>Erst wenn Sie unseren Festpreis bestätigt haben. Dann schicken wir Ihnen einen Zahlungslink, und sobald die Zahlung da ist, legen wir los. Gefällt Ihnen am Ergebnis etwas nicht, passen wir es gemeinsam mit Ihnen an.</p></details>
+        <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Basis mit 3 Seiten 300 €, Business mit bis zu 6 Seiten und Texten von uns 690 €, Premium mit bis zu 10 Seiten, 3D-Effekten und zwei Sprachen 1.290 €. Was genau in jedem Paket steckt, sehen Sie auf der Seite <a class="inl" href="/websites#pakete">Websites</a>.</p></details>
+        <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Roomtour Basis in 48 Stunden, Premium in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
+        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Platten und Roomtours können Sie direkt im <a class="inl" href="/shop">Shop</a> bezahlen, bei Websites schicken wir Ihnen nach Ihrer Bestätigung einen Zahlungslink. Die Zahlung läuft sicher über Stripe. Eine Rechnung bekommen Sie immer per E-Mail.</p></details>
+        <details data-on="home websites roomtours"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Je nach Paket sind eine bis drei Änderungsrunden im Preis enthalten. Wir passen an, bis es zu dem vereinbarten Umfang passt.</p></details>
         <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
         <details data-on="websites"><summary>Was brauchen Sie von mir für die Website?<i aria-hidden="true"></i></summary><p>Den <a class="inl" href="/anfrage/website">Fragebogen</a> mit ein paar Angaben zu Ihrem Betrieb, Ihr Logo und gern Fotos. Texte können wir für Sie schreiben.</p></details>
         <details data-on="websites"><summary>Kann ich später etwas ändern lassen?<i aria-hidden="true"></i></summary><p>Ja. Vor der Veröffentlichung setzen wir Ihre Wünsche gemeinsam mit Ihnen um. Spätere Änderungen sprechen wir vorher ab und nennen Ihnen den Preis.</p></details>
@@ -1536,6 +1569,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function cur() { place(box.querySelector('.switch button[aria-pressed="true"]')); }
     cur(); addEventListener("resize", cur); addEventListener("load", cur);
   })();
+
+  /* plans: the selected card decides where "Weiter" leads */
+  [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) {
+    var name = f.querySelector(".choose__name"), go = f.querySelector(".choose__go"), color = "weiss";
+    function upd() {
+      var r = f.querySelector("input:checked"); if (!r) return;
+      name.textContent = r.dataset.label;
+      go.href = r.dataset.href.replace("{c}", color);
+      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Fragebogen starten" : "Festpreis anfragen";
+      if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
+    }
+    [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });
+    [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (b) { b.addEventListener("click", function () {
+      color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+    }); });
+    upd();
+  });
 </script>
 </body>
 </html>

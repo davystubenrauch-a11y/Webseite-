@@ -20,8 +20,8 @@ const sections: Section[] = [
     questions: [
       {
         id: "paket", label: "Paket", type: "one",
-        options: ["Basis|3 Seiten, ab 300 €", "Business|ab 690 €", "Premium|ab 1.290 €", "Noch unsicher|Wir beraten Sie"],
-        hint: "Basis: klar und fokussiert. Business und Premium: mehr Seiten, Animationen und 3D.",
+        options: ["Basis|3 Seiten, 300 €", "Business|bis 6 Seiten, 690 €", "Premium|bis 10 Seiten, 1.290 €", "Noch unsicher|Wir beraten Sie"],
+        hint: "Basis: 3 Seiten, online in 5 Tagen. Business: bis 6 Seiten, Texte von uns, Animationen. Premium: bis 10 Seiten, 3D-Effekte, zweisprachig.",
       },
       { id: "seiten", label: "Welche Seiten brauchen Sie?", type: "many", options: ["Startseite", "Leistungen", "Über uns", "Preise", "Speisekarte", "Galerie", "Team", "Termine / Buchung", "Blog / Neuigkeiten", "Kontakt"], hint: "Impressum und Datenschutz sind immer dabei." },
       { id: "funktionen", label: "Welche Funktionen?", type: "many", options: ["Kontaktformular", "Online-Termine", "Google-Karte", "Google-Bewertungen anzeigen", "Mehrsprachig", "Animationen", "Online-Shop"] },

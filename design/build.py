@@ -46,6 +46,8 @@ for key, (fname, path, title, desc) in pages.items():
         page = page.replace('<meta property="og:url" content="https://foav.de/">', f'<meta property="og:url" content="https://foav.de{path}">')
         # the service page does not link to itself
         page = re.sub(r'<a class="more" href="%s">.*?</a>\s*' % re.escape(path), '', page, flags=re.S)
+    if key != 'home':  # on a service page, "Anfragen" leads to its own plans
+        page = page.replace('href="#angebot" data-offers', 'href="#pakete" data-offers')
     ids = set(re.findall(r'\sid="([^"]+)"', page))
     page = re.sub(r'href="#([\w-]+)"', lambda m: m.group(0) if m.group(1) in ids else f'href="/#{m.group(1)}"', page)
     # on the home page, links to its own sections stay in-page

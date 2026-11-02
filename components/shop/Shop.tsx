@@ -44,7 +44,7 @@ const css = `
 `;
 
 function Pic({ id }: { id: ProductId }) {
-  if (id === "roomtour-basis") return <div className="sh-pic"><img src="/media/tour-md-2.jpg" alt="" /></div>;
+  if (id === "roomtour-basis" || id === "roomtour-premium") return <div className="sh-pic"><img src={id === "roomtour-basis" ? "/media/tour-md-2.jpg" : "/media/tour-md-1.jpg"} alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
 
@@ -57,9 +57,9 @@ export default function Shop() {
   // preselect from the link, e.g. /shop?weiss=10 or /shop?roomtour=1
   useEffect(() => {
     const q = new URLSearchParams(location.search), c: Cart = {};
-    const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0);
-    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = r;
-    if (!w && !b && !r) c["nfc-weiss"] = 0;
+    const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0);
+    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = r; if (rp) c["roomtour-premium"] = rp;
+    if (!w && !b && !r && !rp) c["nfc-weiss"] = 0;
     setCart(c);
   }, []);
 
@@ -102,7 +102,7 @@ export default function Shop() {
   return (
     <Shell
       title="Direkt bestellen."
-      lead="NFC-Platten und die KI-Roomtour Basis können Sie hier sofort kaufen. Websites starten wir mit einem kurzen Fragebogen."
+      lead="NFC-Platten und KI-Roomtours können Sie hier sofort kaufen. Websites starten wir mit einem kurzen Fragebogen."
       steps={[
         ["Auswählen", "Anzahl wählen, der Preis steht sofort fest."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],

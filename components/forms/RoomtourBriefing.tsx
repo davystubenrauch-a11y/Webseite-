@@ -120,8 +120,8 @@ export default function RoomtourBriefing() {
           {i === 0 && (
             <div className="bf-q" aria-live="polite">
               <div className="bf-quote">
-                <span className="bf-price">{area > 150 ? "Nach Größe" : "300 €"}</span>
-                <span>{area > 150 ? "Über 150 m² nennen wir Ihnen vorher einen schriftlichen Festpreis." : "Bis 150 m² oder ein ganzes Stockwerk."}</span>
+                <span className="bf-price">{area > 300 ? "Auf Anfrage" : area > 150 ? "490 €" : "300 €"}</span>
+                <span>{area > 300 ? "Über 300 m² nennen wir Ihnen vorher einen schriftlichen Festpreis." : area > 150 ? "Premium: bis 300 m² oder mehrere Etagen, mit Logo-Abspann und Social-Clip." : "Basis: bis 150 m² oder ein ganzes Stockwerk."}</span>
               </div>
             </div>
           )}

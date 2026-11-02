@@ -3,7 +3,18 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
-## Stand: Geräte im Start anklickbar, Roomtour-Handy groß — AKTUELL
+## Stand: feste Preise, Paket-Auswahl, Vollständigkeit — AKTUELL
+- Kunde: „Preise stehen nicht fest, alles muss vorhanden und beantwortet sein; ‚Anfragen‘ führt zu den Angeboten; auf jeder Leistungsseite zwischen Plänen wählen, Pläne sinnvoll beschreiben; NFC auch in Schwarz zeigen“. Marktvergleich (Firecrawl): 360°-/Video-Rundgänge in DE/AT meist 299–990 €.
+- **Vorgeschlagene Festpreise (vom Kunden zu bestätigen):** Website Basis 300 € (3 Seiten, 1 Änderungsrunde, 5 Tage), **Business 690 €** (bis 6 Seiten, Texte von uns, Animationen, Bewertungen, Buchungsknopf, 2 Runden, 7 Tage, „Empfohlen“), **Premium 1.290 €** (bis 10 Seiten, 3D-Effekte, DE/EN, Google-Unternehmensprofil, 3 Runden, 7 Tage). Roomtour **Basis 300 €** (bis 150 m², 8 Räume, 60–90 s, 16:9 + 9:16, Musik, 1 Runde, 48 h), **Premium 490 €** (bis 300 m², 15 Räume inkl. außen, bis 2 Min., Logo-Abspann, 15-s-Social-Clip, 2 Runden, 72 h), **Individuell auf Anfrage**. NFC 1/5/10 Platten = 15/75/150 €, Versand frei ab 5.
+- `#pakete` auf allen drei Leistungsseiten = **Auswahl** (`form.choose[data-choose]`, Karten als Radio, Häkchen-Kreis, Leiste „Ihre Wahl … / Weiter“ → Fragebogen mit `?paket=`, Shop `?roomtour=1` / `?premium=1` / `?weiss|schwarz=N`, „Individuell“ → Kontakt); NFC mit Farbwahl Weiß/Schwarz. „Alle Preise sind Endpreise.“
+- Shop: neues Produkt `roomtour-premium` 490 € (`lib/shop.ts`), URL `?premium=1`; `vatNote` = „Alle Preise sind Endpreise.“ (Steuerstatus noch offen).
+- Navigation „Anfragen“ → `#angebot` (Startseite) bzw. `#pakete` (Leistungsseiten, per `data-offers` in `build.py`); Start-Knöpfe „Angebote ansehen“ / „Kostenlos beraten lassen“.
+- „Was brauchen Sie?“: NFC zeigt **weiße und schwarze Platte** („Weiß und Schwarz“), Roomtour „ab 300 €“.
+- FAQ ergänzt/aktualisiert: Website-Preise, Roomtour-Preise, Bezahlung + Rechnung (Stripe), Änderungsrunden, Farben mischen, Lieferzeiten je Paket; doppelte Frage „Wann bezahle ich?“ entfernt. Fragebögen an die Pakete angepasst (Roomtour-Preisanzeige 300 / 490 € / auf Anfrage).
+- Neue **404-Seite** `app/not-found.tsx`. `next build` sauber, alle Routen 200, Checkout-Ersatzweg mit Premium getestet.
+- **Noch vom Kunden nötig, bevor es live geht:** Adresse + Rechtsform (Impressum, AGB), Steuerstatus (Kleinunternehmer oder 19 % MwSt.), Bestätigung der Paketpreise/-inhalte, Versanddauer NFC, Stripe-Schlüssel + `RESEND_API_KEY` + `BLOB_READ_WRITE_TOKEN` in Vercel, Production Branch in Vercel, AGB/Datenschutz rechtlich prüfen lassen.
+
+## Stand: Geräte im Start anklickbar, Roomtour-Handy groß
 - Kunde: „auf der Startseite die verschiedenen Dinge anklicken können und direkt zum Angebot geführt werden; bei ‚Was brauchen Sie?‘ soll die Roomtour auf dem ganzen Bildschirm des Handys laufen“.
 - Start-Bühne: `.hs` mit drei Links über den Geräten (Laptop → `#websites`, Handy → `#roomtours`, Platte → `#platten`), sichtbar als weiße Schildchen „Website ab 300 €“ / „KI-Roomtour 300 €“ / „NFC-Platte 15 €“ mit pulsierendem Punkt; Überfahren färbt das Schild schwarz und hebt das Gerät 10 px an (`:has`). Funktioniert auch über dem Handy-Bild `hero-lineup.webp`. Klick-Test per Playwright (Desktop + Handy) ok.
 - „Was brauchen Sie?“: Roomtour-iPhone viel größer (104 % Höhe, unten angeschnitten), Video füllt den ganzen Bildschirm, Chip „Roomtour läuft“ oben links.

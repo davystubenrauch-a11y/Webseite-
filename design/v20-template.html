@@ -348,7 +348,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .plan { position: relative; display: flex; flex-direction: column; padding: clamp(26px, 2.6vw, 36px); border-radius: 26px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); transition: box-shadow .4s, translate .4s var(--ease); }
 
 .plan--top { box-shadow: inset 0 0 0 2px var(--champ); }
-.plan--top::before { content: "Unser Schwerpunkt"; position: absolute; top: -14px; left: 26px; padding: 5px 12px; border-radius: 999px; background: var(--champ); color: #111114; font-size: 0.8125rem; font-weight: 700; }
+.plan--top::before { content: "Empfohlen"; position: absolute; top: -14px; left: 26px; padding: 5px 12px; border-radius: 999px; background: var(--champ); color: #111114; font-size: 0.8125rem; font-weight: 700; }
 .plan h3 { font-size: 1.5rem; }
 .plan > p { margin-top: 6px; font-size: 1rem; color: var(--muted); }
 .plan .plan__big { margin-top: 28px; font-family: var(--head); font-size: clamp(56px, 5.4vw, 84px); font-weight: 600; font-variant-numeric: tabular-nums; letter-spacing: -.04em; color: var(--ink); line-height: 1; }
@@ -1032,6 +1032,34 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc--room .iphone { height: 104%; padding: 6px; border-radius: 34px; transform: translateY(14%); }
 .cmpc--room .iphone__screen { border-radius: 28px; }
 .cmpc--room .rt-chip { left: 16px; top: 16px; bottom: auto; translate: none; transform: none; }
+
+/* ---------- plans: pick one, the bar below shows the choice and the next step ---------- */
+.choose fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.choose .plan { cursor: pointer; transition: box-shadow .25s, transform .35s var(--ease); }
+.choose .plan:hover { transform: translateY(-3px); }
+.choose .plan input { position: absolute; opacity: 0; pointer-events: none; }
+.choose .plan--top { box-shadow: inset 0 0 0 1px var(--line); }
+.choose .plan--top::before { background: var(--ink); color: #fff; }
+.choose .plan:has(input:checked) { box-shadow: inset 0 0 0 2px var(--ink), 0 24px 50px -30px rgba(0,0,0,.35); }
+.choose .plan:has(input:focus-visible) { outline: 3px solid var(--ink); outline-offset: 3px; }
+.plan__pick { position: absolute; top: 24px; right: 24px; width: 26px; height: 26px; border-radius: 50%; box-shadow: inset 0 0 0 2px var(--line); background: #fff; transition: background .2s, box-shadow .2s; }
+.plan:has(input:checked) .plan__pick { background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat; box-shadow: none; }
+.plan .plan__big--text { font-size: clamp(36px, 3.2vw, 48px); padding-top: .35em; }
+.plan__big { line-height: 1; }
+.choose__color { margin-top: 20px; background: #ececf0; } .choose__color button { border: 0; background: none; cursor: pointer; color: var(--text); font: inherit; font-weight: 700; } .choose__color button[aria-checked="true"] { background: #1d1d1f; color: #fff; }
+.choose__bar { position: relative; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 20px; padding: 14px 14px 14px 24px; border-radius: 20px; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px -24px rgba(0,0,0,.35); }
+.choose__bar p span { display: block; font-size: .8125rem; color: var(--muted); }
+.choose__bar b { font-size: 1.125rem; font-weight: 600; color: var(--ink); }
+@media (max-width: 900px) { .plans { grid-template-columns: 1fr; } }
+@media (max-width: 700px) { .choose__bar { padding: 12px 12px 12px 18px; } .choose__bar .btn { flex: 1 1 100%; } }
+
+/* NFC: both colours visible */
+.cmpc__stage--two .disc { position: absolute; width: 40%; }
+.cmpc__stage--two .disc:not(.disc--black) { left: 14%; top: 30%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg); }
+.cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
+@media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
 </style>
 </head>
 <body>
@@ -1051,7 +1079,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <a class="logo" href="/" aria-label="FOAV – zur Startseite"><!--LOGO--></a>
     <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
-    <a class="btn btn--ink" href="#kontakt">Anfragen</a>
+    <a class="btn btn--ink" href="#angebot" data-offers>Anfragen</a>
     <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
   </div>
 </header>
@@ -1064,7 +1092,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <h1 id="h-start">Mehr Kunden für Ihr <span class="hl">Unternehmen.</span></h1>
       <div class="hero__row">
         <p class="hero__sub">Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Günstig, zum Festpreis und dank KI in Profi-Qualität.</p>
-        <div class="cta"><a class="btn btn--light" href="#kontakt">Kostenlos anfragen</a><a class="btn btn--line" href="#angebot">Preise ansehen</a></div>
+        <div class="cta"><a class="btn btn--light" href="#angebot">Angebote ansehen</a><a class="btn btn--line" href="#kontakt">Kostenlos beraten lassen</a></div>
       </div>
     </div>
     <div class="hero__stage">
@@ -1155,12 +1183,12 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt="" loading="lazy"><video id="cmpVid" muted loop playsinline autoplay preload="none" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video></div></div><span class="rt-chip"><i></i>Roomtour läuft</span></div>
           <h3>KI-Roomtour</h3>
           <p class="cmpc__tag">Zeigt Ihre Räume als Film, bevor Kunden kommen. Aus Ihren Handyfotos.</p>
-          <p class="cmpc__price">300 €</p>
+          <p class="cmpc__price"><small>ab</small> 300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/anfrage/roomtour">Fotos hochladen</a><a class="more" href="/roomtours">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Handyfotos Ihrer Räume</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Video in Full HD</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Airbnb, Hotels, Makler, Läden</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
-          <div class="cmpc__stage" aria-hidden="true"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></div>
+          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="cmpc__colors">Weiß und Schwarz</span></div>
           <h3>NFC-Platte</h3>
           <p class="cmpc__tag">Macht aus zufriedenen Gästen Google-Bewertungen. Ein Antippen genügt.</p>
           <p class="cmpc__price">15 € <small>pro Stück</small></p>
@@ -1315,27 +1343,36 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 <!--@websites-->
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-pakete">Pakete für Ihre Website.</h2></div><p class="lead">Startpreise für Unternehmen, zzgl. MwSt. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p></div>
-      <div class="plans"><div class="plan"><h3>Basis</h3><p>Klar und fokussiert</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>3 professionell gestaltete Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy und Computer</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kontaktformular und Google Maps</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Impressum und Datenschutz</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Basis">Fragebogen starten</a></div><div class="plan plan--top"><h3>Business</h3><p>Für Betriebe mit mehr Angebot</p><p class="plan__big"><small>ab </small>690 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehr Seiten nach Bedarf</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Animationen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Google-Bewertungen eingebunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Business">Fragebogen starten</a></div><div class="plan"><h3>Premium</h3><p>Ein Auftritt, der auffällt</p><p class="plan__big"><small>ab </small>1.290 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuelles Design</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3D-Modelle und Effekte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Selbst bearbeitbar</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Business</li></ul><a class="btn btn--light" href="/anfrage/website?paket=Premium">Fragebogen starten</a></div></div>
-      <p class="plans__note">Business- und Premium-Preise sind Richtwerte. Den genauen Preis nennen wir Ihnen nach dem Fragebogen oder einem kurzen Gespräch.</p>
+      <div class="sec__head"><div><h2 id="h-pakete">Welche Website passt zu Ihnen?</h2></div><p class="lead">Drei feste Pakete. Sie sehen genau, was drin ist, und bekommen vor dem Start ein schriftliches Angebot zu diesem Preis.</p></div>
+      <form class="choose" data-choose="web" onsubmit="return false">
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="web" value="Basis" data-href="/anfrage/website?paket=Basis" data-label="Website Basis, 300 €"><h3>Basis</h3><p>Der professionelle erste Auftritt</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Seiten, z. B. Start, Leistungen, Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Handy, Tablet und Computer</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kontaktformular und Google Maps</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Impressum und Datenschutz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Grund-Einstellungen für Google</li><li><svg aria-hidden="true"><use href="#tick"/></svg>1 Änderungsrunde</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 5 Tagen</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="web" value="Business" data-href="/anfrage/website?paket=Business" data-label="Website Business, 690 €" checked><h3>Business</h3><p>Für Unternehmen, die Anfragen wollen</p><p class="plan__big">690 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis zu 6 Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Texte schreiben wir für Sie</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Animationen und Bildergalerie</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Google-Bewertungen auf der Seite</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Termin- oder Buchungsknopf</li><li><svg aria-hidden="true"><use href="#tick"/></svg>2 Änderungsrunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="web" value="Premium" data-href="/anfrage/website?paket=Premium" data-label="Website Premium, 1.290 €"><h3>Premium</h3><p>Ein Auftritt, der auffällt</p><p class="plan__big">1.290 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis zu 10 Seiten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuelles Design mit 3D-Effekten</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zweisprachig, Deutsch und Englisch</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Einrichtung Ihres Google-Unternehmensprofils</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Änderungsrunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Online in 7 Tagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Business</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
+        <div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+      </form>
+      <p class="plans__note">Alle Preise sind Endpreise. Domain und Hosting laufen auf Ihren Namen beim Anbieter Ihrer Wahl, meist wenige Euro im Monat. Wir richten alles für Sie ein. Mehr Seiten oder Sonderwünsche nennen wir Ihnen vorher als Festpreis.</p>
     </div>
   </section>
 
 <!--@roomtours-->
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-pakete">Was Ihre Roomtour kostet.</h2></div><p class="lead">Einmal zahlen, das Video gehört Ihnen. Vor dem Start bekommen Sie einen schriftlichen Festpreis.</p></div>
-      <div class="plans"><div class="plan plan--top"><h3>Basis</h3><p>Ferienwohnung, Laden, Praxis, Büro</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder ein ganzes Stockwerk</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Full HD, quer und auf Wunsch hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in bis zu 48 Stunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Änderungen gemeinsam mit Ihnen</li></ul><a class="btn btn--light" href="/shop?roomtour=1">Jetzt kaufen</a></div><div class="plan"><h3>Premium</h3><p>Häuser, Hotels, Makler-Objekte</p><p class="plan__big">nach Größe</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 150 m² oder mehrere Etagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Preis nach Fläche und Detailgrad</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alles aus Basis</li></ul><a class="btn btn--line" href="#kontakt" data-pick="Roomtour">Festpreis anfragen</a></div></div>
-      <p class="plans__note">Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p>
+      <div class="sec__head"><div><h2 id="h-pakete">Wählen Sie Ihre Roomtour.</h2></div><p class="lead">Ein fester Preis nach Größe. Sie schicken die Fotos, wir liefern das fertige Video.</p></div>
+      <form class="choose" data-choose="room" onsubmit="return false">
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan plan--top"><input type="radio" name="room" value="Basis" data-href="/shop?roomtour=1" data-label="KI-Roomtour Basis, 300 €" checked><h3>Basis</h3><p>Wohnung, Ferienwohnung, Laden, Praxis</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder ein Stockwerk</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 8 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video 60 bis 90 Sekunden in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Querformat 16:9 und Hochformat 9:16</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ruhige, lizenzfreie Musik</li><li><svg aria-hidden="true"><use href="#tick"/></svg>1 Änderungsrunde</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 48 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Premium" data-href="/shop?premium=1" data-label="KI-Roomtour Premium, 490 €"><h3>Premium</h3><p>Haus, Hotel, großes Objekt</p><p class="plan__big">490 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 300 m² oder mehrere Etagen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 15 Räume, inklusive Außenbereich</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video bis 2 Minuten in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ihr Logo und Kontakt im Abspann</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Zusätzlich ein 15-Sekunden-Clip für Social Media</li><li><svg aria-hidden="true"><use href="#tick"/></svg>2 Änderungsrunden</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 72 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Individuell" data-href="#kontakt" data-label="Individuelle Roomtour, Festpreis auf Anfrage"><h3>Individuell</h3><p>Über 300 m² oder mehrere Objekte</p><p class="plan__big plan__big--text">Auf Anfrage</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Größere Flächen und Hotels mit vielen Zimmern</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehrere Wohnungen oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Videos im Paket günstiger</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Persönliche Beratung am Telefon</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis vor dem Start</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
+        <div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+      </form>
+      <p class="plans__note">Alle Preise sind Endpreise. Sie sehen jedes Video vor der Veröffentlichung. Die Fotos machen Sie mit dem Handy, unser Formular zeigt Raum für Raum, welche wir brauchen.</p>
     </div>
   </section>
 
 <!--@nfc-platten-->
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-pakete">Platten für jeden Betrieb.</h2></div><p class="lead">15 € pro Platte, einmalig. Wir verknüpfen jede Platte mit Ihrem Google-Profil.</p></div>
-      <div class="plans"><div class="plan"><h3>1 Platte</h3><p>Für Theke oder Eingang</p><p class="plan__big">15 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Einzeln jederzeit möglich</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Weiß oder Schwarz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mit Ihrem Profil verknüpft</li></ul><a class="btn btn--light" href="/shop?weiss=1">1 bestellen</a></div><div class="plan"><h3>5 Platten</h3><p>Für kleine Betriebe</p><p class="plan__big">75 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Für Kasse, Theke und Wartebereich</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Weiß oder Schwarz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alle mit Ihrem Profil verknüpft</li></ul><a class="btn btn--light" href="/shop?weiss=5">5 bestellen</a></div><div class="plan plan--top"><h3>10 Platten</h3><p>Für Restaurants</p><p class="plan__big">150 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Eine pro Tisch oder Rechnungsmappe</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Weiß oder Schwarz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alle mit Ihrem Profil verknüpft</li></ul><a class="btn btn--light" href="/shop?weiss=10">10 bestellen</a></div></div>
-      <p class="plans__note">Die Platten haben ein einheitliches Google-Design. Personalisiert ist der Chip: Er führt immer zu Ihrem Unternehmen.</p>
+      <div class="sec__head"><div><h2 id="h-pakete">Wie viele Platten brauchen Sie?</h2></div><p class="lead">15 € pro Platte, in Weiß oder Schwarz. Ab 5 Platten ist der Versand kostenlos.</p></div>
+      <form class="choose" data-choose="nfc" onsubmit="return false">
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="nfc" value="1 Platte" data-href="/shop?{c}=1" data-label="1 NFC-Platte, 15 €"><h3>1 Platte</h3><p>Zum Ausprobieren oder für die Kasse</p><p class="plan__big">15 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Mit Ihrem Google-Profil verknüpft</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ø 10 cm, Acryl</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ohne App, iPhone und Android</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Versand 2,99 €</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="nfc" value="5 Platten" data-href="/shop?{c}=5" data-label="5 NFC-Platten, 75 €" checked><h3>5 Platten</h3><p>Für Restaurants und Cafés</p><p class="plan__big">75 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Eine Platte pro Tisch oder Rechnungsmappe</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alle mit Ihrem Profil verknüpft</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Farben mischbar im Shop</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Versandkostenfrei</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="nfc" value="10 Platten" data-href="/shop?{c}=10" data-label="10 NFC-Platten, 150 €"><h3>10 Platten</h3><p>Für größere Betriebe und Filialen</p><p class="plan__big">150 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Für mehrere Räume oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Alle mit Ihrem Profil verknüpft</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Farben mischbar im Shop</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Versandkostenfrei</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
+        <div class="seg choose__color" role="radiogroup" aria-label="Farbe"><button type="button" role="radio" aria-checked="true" data-c="weiss">Weiß</button><button type="button" role="radio" aria-checked="false" data-c="schwarz">Schwarz</button></div><div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+      </form>
+      <p class="plans__note">Alle Preise sind Endpreise. Einmal zahlen, keine laufenden Kosten. Wichtig: Google erlaubt keine Belohnung für Bewertungen. Die Platte macht das Bewerten nur einfacher.</p>
     </div>
   </section>
 
@@ -1349,7 +1386,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
                 <div class="prow"><span>Website<small>3 Seiten, für Handy und Computer</small></span><b><small>ab</small> 300 €</b></div>
                 <div class="prow prow--hi"><span>KI-Roomtour<small>bis 150 m², fertig in 48 Stunden</small></span><b>300 €</b></div>
                 <div class="prow"><span>NFC-Platte<small>Weiß oder Schwarz, Ø 10 cm</small></span><b>15 €</b></div>
-              </div></div></div><p class="jno">1</p><h3>Preis sehen</h3><p>Alle Startpreise stehen auf dieser Seite. Sie wissen sofort, womit Sie rechnen können.</p></li>
+              </div></div></div><p class="jno">1</p><h3>Preis sehen</h3><p>Alle Preise stehen auf dieser Seite. Sie wissen sofort, womit Sie rechnen können.</p></li>
         <li class="jlink" aria-hidden="true"><span>1 Minute</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h36M31 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
         <li class="jstep"><div class="jstage" aria-hidden="true"><div class="iphone fp__phone" aria-hidden="true"><div class="iphone__screen"><div class="app">
               <p class="app__h">Kostenlos anfragen</p>
@@ -1402,13 +1439,13 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 <!--@none-->
   <section class="sec" id="preise" aria-labelledby="h-preise">
     <div class="wrap">
-      <div class="sec__head"><div><h2 id="h-preise">Klare Preise. Einmal zahlen, kein Abo.</h2></div><p class="lead">Startpreise für Unternehmen, zzgl. MwSt. Vor dem Start bekommen Sie immer einen schriftlichen Festpreis.</p></div>
+      <div class="sec__head"><div><h2 id="h-preise">Klare Preise. Einmal zahlen, kein Abo.</h2></div><p class="lead">Alle Preise sind Endpreise. Vor dem Start bekommen Sie immer einen schriftlichen Festpreis.</p></div>
       <div class="plans">
         <div class="plan"><h3><a class="plan__link" href="/websites">Websites</a></h3><p>Ihr Auftritt im Netz</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>3 Seiten, Kontakt, Google Maps, Impressum, Datenschutz</p></li><li><b>Business</b><span><small>ab </small>690 €</span><p>Mehr Seiten, Animationen, Bewertungen</p></li><li><b>Premium</b><span><small>ab </small>1.290 €</span><p>Individuelles Design, 3D, selbst bearbeitbar</p></li></ul><a class="btn btn--line" href="/anfrage/website">Fragebogen ausfüllen</a></div>
         <div class="plan plan--top"><h3><a class="plan__link" href="/roomtours">KI-Roomtours</a></h3><p>Video-Rundgang aus Ihren Fotos</p><p class="plan__big"><small>ab </small>300 €</p><ul class="tiers"><li><b>Basis</b><span>300 €</span><p>Bis 150 m² oder ein ganzes Stockwerk</p></li><li><b>Premium</b><span>nach Größe</span><p>Größere Objekte, Hotels und Villen</p></li></ul><a class="btn btn--ink" href="/anfrage/roomtour">Fotos hochladen</a></div>
         <div class="plan"><h3><a class="plan__link" href="/nfc-platten">NFC-Platten</a></h3><p>Mehr Google-Bewertungen</p><p class="plan__big">15 € <small>pro Stück</small></p><ul class="tiers"><li><b>1 Platte</b><span>15 €</span><p>Einzeln jederzeit möglich</p></li><li><b>5 Platten</b><span>75 €</span><p>Für kleine Betriebe</p></li><li><b>10 Platten</b><span>150 €</span><p>Unsere Empfehlung für Restaurants</p></li></ul><a class="btn btn--line" href="#kontakt" data-pick="NFC-Platten">Platten anfragen</a></div>
       </div>
-      <p class="plans__note">Business- und Premium-Preise sind Richtwerte. Den genauen Preis nennen wir Ihnen nach dem ersten Gespräch.</p>
+      <p class="plans__note">Feste Paketpreise. Was genau enthalten ist, sehen Sie auf der Seite der jeweiligen Leistung.</p>
     </div>
   </section>
 
@@ -1455,11 +1492,15 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Rufen Sie uns an, wir antworten persönlich.</p></div>
       <div>
-        <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 300 €. Animationen und 3D-Modelle gibt es in den größeren Paketen ab 690 €. Sie bekommen vorher einen Festpreis.</p></details>
-        <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Eine Roomtour ist in bis zu 48 Stunden fertig, eine Website je nach Paket in bis zu 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details><details><summary>Wann bezahle ich?<i aria-hidden="true"></i></summary><p>Erst wenn Sie unseren Festpreis bestätigt haben. Dann schicken wir Ihnen einen Zahlungslink, und sobald die Zahlung da ist, legen wir los. Gefällt Ihnen am Ergebnis etwas nicht, passen wir es gemeinsam mit Ihnen an.</p></details>
+        <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Basis mit 3 Seiten 300 €, Business mit bis zu 6 Seiten und Texten von uns 690 €, Premium mit bis zu 10 Seiten, 3D-Effekten und zwei Sprachen 1.290 €. Was genau in jedem Paket steckt, sehen Sie auf der Seite <a class="inl" href="/websites#pakete">Websites</a>.</p></details>
+        <details data-on="home websites roomtours"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Roomtour Basis in 48 Stunden, Premium in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
         <details data-on="home roomtours"><summary>Was brauchen Sie für eine Roomtour?<i aria-hidden="true"></i></summary><p>Nur Fotos Ihrer Räume, aus mehreren Blickwinkeln. Welche genau, zeigt Ihnen unser <a class="inl" href="/anfrage/roomtour">Roomtour-Formular</a> Raum für Raum. Das Basis-Paket (300 €) gilt bis 150 m² oder ein ganzes Stockwerk. Sie bekommen die Roomtour zur Freigabe, bevor sie online geht.</p></details>
         <details data-on="home roomtours"><summary>Für welche Betriebe eignet sich eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Für alle, deren Räume verkaufen: Ferienwohnungen und Hotels, Immobilienmakler für Verkauf und Vermietung, Läden und Showrooms, Restaurants, Praxen, Studios und Büros. Sie schicken Fotos, wir machen daraus einen Rundgang.</p></details>
         <details data-on="roomtours"><summary>Darf ich die Roomtour überall verwenden?<i aria-hidden="true"></i></summary><p>Ja. Sie bekommen das Video quer und auf Wunsch hochkant, passend für Airbnb, Booking.com, Immobilienportale, Google, Ihre Website und Social Media.</p></details>
+        <details data-on="home roomtours"><summary>Was kostet eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Basis bis 150 m² 300 €, Premium bis 300 m² mit Logo-Abspann und Social-Media-Clip 490 €. Größere Objekte oder mehrere Wohnungen bekommen einen Festpreis auf Anfrage. Alle Pakete finden Sie auf der Seite <a class="inl" href="/roomtours#pakete">KI-Roomtours</a>.</p></details>
+        <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Platten und Roomtours können Sie direkt im <a class="inl" href="/shop">Shop</a> bezahlen, bei Websites schicken wir Ihnen nach Ihrer Bestätigung einen Zahlungslink. Die Zahlung läuft sicher über Stripe. Eine Rechnung bekommen Sie immer per E-Mail.</p></details>
+        <details data-on="home websites roomtours"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Je nach Paket sind eine bis drei Änderungsrunden im Preis enthalten. Wir passen an, bis es zu dem vereinbarten Umfang passt.</p></details>
+        <details data-on="nfc-platten"><summary>Kann ich Weiß und Schwarz mischen?<i aria-hidden="true"></i></summary><p>Ja. Im Shop wählen Sie die Anzahl je Farbe. Ab 5 Platten insgesamt ist der Versand kostenlos.</p></details>
         <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
         <details data-on="nfc-platten"><summary>Werden die Platten mit meinem Logo bedruckt?<i aria-hidden="true"></i></summary><p>Nein. Die Platten haben ein einheitliches Google-Design in Weiß oder Schwarz. Personalisiert ist nur der Chip: Er führt immer zu Ihrem Unternehmen.</p></details>
         <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Nein, unsere Preise sind einmalige Festpreise. Falls bei einer Website Kosten für Domain oder Hosting anfallen, sagen wir Ihnen das vorher.</p></details>
@@ -1830,6 +1871,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function cur() { place(box.querySelector('.switch button[aria-pressed="true"]')); }
     cur(); addEventListener("resize", cur); addEventListener("load", cur);
   })();
+
+  /* plans: the selected card decides where "Weiter" leads */
+  [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) {
+    var name = f.querySelector(".choose__name"), go = f.querySelector(".choose__go"), color = "weiss";
+    function upd() {
+      var r = f.querySelector("input:checked"); if (!r) return;
+      name.textContent = r.dataset.label;
+      go.href = r.dataset.href.replace("{c}", color);
+      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Fragebogen starten" : "Festpreis anfragen";
+      if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
+    }
+    [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });
+    [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (b) { b.addEventListener("click", function () {
+      color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+    }); });
+    upd();
+  });
 </script>
 </body>
 </html>
