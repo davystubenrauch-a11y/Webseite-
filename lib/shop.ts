@@ -27,8 +27,8 @@ export const isService = (id: ProductId) => !products.find((p) => p.id === id)?.
 export const shipping = { price: 299, freeFrom: 5, label: "Versand innerhalb Deutschlands" };
 
 // TODO: set once it is clear how VAT is handled (small business § 19 UStG or regular VAT).
-// Add "inkl. 19 % MwSt." or "Gemäß § 19 UStG wird keine Umsatzsteuer berechnet." once the tax status is confirmed.
-export const vatNote = "Alle Preise sind Endpreise.";
+// FOAV GbR is a small business (Kleinunternehmer): no VAT is charged. Also printed on every Stripe invoice.
+export const vatNote = "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.";
 
 export type Cart = Partial<Record<ProductId, number>>;
 

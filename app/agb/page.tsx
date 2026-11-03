@@ -44,8 +44,8 @@ export default function Agb() {
 
       <h2>4. Preise und Zahlung</h2>
       <p>
-        Es gilt der Preis des gewählten Pakets bzw. aus unserem Angebot. [Bei Unternehmern: Alle Preise zzgl. gesetzlicher Umsatzsteuer. / Als Kleinunternehmer nach § 19
-        UStG weisen wir keine Umsatzsteuer aus. – Zutreffendes wählen.] Der Betrag ist im Voraus fällig. Sie bezahlen bei der Bestellung über unseren Zahlungsdienstleister Stripe
+        Es gilt der Preis des gewählten Pakets bzw. aus unserem Angebot. Alle Preise sind Endpreise. Als Kleinunternehmer im Sinne von
+        § 19 UStG berechnen wir keine Umsatzsteuer und weisen sie auf unseren Rechnungen nicht aus. Der Betrag ist im Voraus fällig. Sie bezahlen bei der Bestellung über unseren Zahlungsdienstleister Stripe
         und erhalten eine Rechnung per E-Mail. Mit der Arbeit beginnen wir nach Zahlungseingang.
       </p>
 
