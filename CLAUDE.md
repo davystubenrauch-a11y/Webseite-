@@ -3,6 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Fehler aus Kunden-Screenshots behoben
+- Handys in den Produkt-Bühnen hatten dicken schwarzen Rand (Prozent-Padding des `.iphone` rechnete von der Bühnenbreite) → `.pst .iphone { padding: .75cqw }`, Bildschirm randlos.
+- Start-Vorteile (`.hero__usps`) brachen in Spalten um (Lücken) → Zeilen als Fließtext mit Häkchen links (`display: block`, b/span inline).
+- Handy-Start: Knopf „Kostenlos beraten lassen“ ragte über den Rand → mobil „Kostenlos beraten“ (`.hm` ausgeblendet), Knöpfe dürfen umbrechen; Schild „KI-Roomtour“ 8 px vom Rand.
+
 ## Stand: SPIRULI live ansehbar
 - Kunde: „man muss sie live anschauen können“ (Vercel-Vorschau von SPIRULI ist passwortgeschützt). → SPIRULI (`spiruli/`) als **statische Kopie** unter `public/demo/spiruli/` (Next `output: "export"`, `basePath: "/demo/spiruli"`, danach Bildpfade `/can|float|photos|label/…` und `/spiruli-can.jpg` per sed auf `/demo/spiruli/…` umgeschrieben, `noindex`). `spiruli/next.config.mjs` bleibt unverändert (nur für den Export kurz ersetzt).
 - Aufruf `/demo/spiruli` (Rewrite in `next.config.mjs`, ebenso `/demo/villa-buchen`). Links: Websites-Bühne „SPIRULI live ansehen“, Referenz-Abschnitt Knopf „SPIRULI live ansehen“ + „Website-Pakete ansehen“.

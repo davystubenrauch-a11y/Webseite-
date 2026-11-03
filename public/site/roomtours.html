@@ -837,6 +837,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .pst__scroll { display: block; width: 100%; height: 100% !important; object-fit: cover; object-position: 50% 0; animation: pstScroll 22s 1.4s ease-in-out infinite; }
 .pst__scroll--m { animation-duration: 26s; animation-delay: 2s; }
 @keyframes pstScroll { 0%, 8% { object-position: 50% 0; } 46%, 54% { object-position: 50% 100%; } 92%, 100% { object-position: 50% 0; } }
+.pst .iphone { padding: .75cqw; } .pst .iphone__screen { border-radius: 2.6cqw; } .pst .iphone__screen::before { top: 1.6%; }
 @keyframes pstUp { from { opacity: 0; transform: translateY(40px); } }
 /* roomtours: three phone photos fly into the video */
 .pst__pic { position: absolute; left: 6%; top: var(--y); width: 26%; margin: 0; padding: 1.4cqmin 1.4cqmin 4cqmin; background: #fff; border-radius: 6px; box-shadow: 0 14px 30px -14px rgba(0,0,0,.35); rotate: var(--r); z-index: 2; animation: pstFly 9s calc(var(--i) * .5s) cubic-bezier(.65,0,.35,1) infinite; }
@@ -921,7 +922,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .hero h1 { font-size: clamp(40px, 12vw, 56px); }
   .hero__row { margin-top: 16px; gap: 18px; }
   .hero__sub { font-size: 1rem; }
-  .hero .cta { width: 100%; flex-wrap: nowrap; gap: 10px; } .hero .cta .btn { flex: 1 1 auto; min-height: 48px; padding: 0 14px; font-size: .9375rem; }
+  .hero .cta { width: 100%; flex-wrap: wrap; gap: 10px; } .hero .cta .btn { flex: 1 1 auto; min-height: 48px; padding: 0 10px; font-size: .875rem; min-width: 0; } .hero .hm { display: none; }
   .hero__stage { margin-top: 22px; padding-top: 22px; }
   .index { padding-top: 72px; }
   .foot { padding-bottom: calc(110px + env(safe-area-inset-bottom)); }
@@ -1061,7 +1062,8 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .hero__usps .usps span { margin: 0; font-size: .9375rem; color: var(--muted); }
 .hero__usps .usps span::before { content: "\00a0– "; }
 @media (min-width: 1000px) { .hero__usps .usps { flex-direction: column; gap: 8px; } .hero__usps { margin-top: 28px !important; } }
-@media (max-width: 700px) { .hero__usps .usps { flex-direction: column; gap: 6px; } .hero__usps .usps li { display: block; padding-left: 26px; position: relative; } .hero__usps .usps b::before { position: absolute; left: 0; top: 2px; margin: 0; } .hero__usps .usps b, .hero__usps .usps span { display: inline; font-size: .875rem; } }
+.hero__usps .usps li { display: block; padding-left: 28px; position: relative; line-height: 1.4; } .hero__usps .usps b::before { position: absolute; left: 0; top: 2px; margin: 0; } .hero__usps .usps b, .hero__usps .usps span { display: inline; }
+@media (max-width: 700px) { .hero__usps .usps { flex-direction: column; gap: 6px; } .hero__usps .usps b, .hero__usps .usps span { font-size: .875rem; } }
 
 /* ---------- scenes on phones: text on top, the picture keeps to its own space underneath ---------- */
 @media (max-width: 700px) {
@@ -1098,7 +1100,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .hero__stage:has(.hs-web:hover) .lu-mac, .hero__stage:has(.hs-room:hover) .lu-phone, .hero__stage:has(.hs-nfc:hover) .lu-disc { translate: 0 -10px; }
 @media (max-width: 700px) {
   .hs-web { left: 12%; right: 22%; top: 8%; bottom: 10%; }
-  .hs-room { right: 0; width: 24%; top: 26%; bottom: 0; }
+  .hs-room { right: 0; width: 24%; top: 26%; bottom: 0; } .hs-room span { right: 8px; }
   .hs-nfc { left: 0; width: 34%; height: 36%; }
   .hs__a span { padding: 6px 10px 6px 9px; font-size: .75rem; gap: 6px; }
   .hs__a span b { display: none; }
