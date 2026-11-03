@@ -10,8 +10,11 @@ export const site = {
     { name: "Florian Dressler", role: "Co-Founder", phone: "+49 155 66456417" },
     { name: "Davy Stubenrauch", role: "Co-Founder", phone: "+49 176 56612709" },
   ],
-  // TODO: Enter the full postal address before going live (required for the Impressum).
-  address: ["foav.de, Florian Dressler und Davy Stubenrauch [Rechtsform, z. B. GbR]", "Sollner Straße 51", "81479 München"],
+  // Legal name: a GbR (not in the register) names all partners.
+  legalName: "FOAV GbR, Florian Dressler und Davy Stubenrauch",
+  address: ["FOAV GbR, Florian Dressler und Davy Stubenrauch", "Sollner Straße 51", "81479 München"],
+  // USt-IdNr. if the GbR has one; the imprint only shows the section when this is set.
+  vatId: "",
   // Postal address only (no shop, no visits): shown in the imprint, AGB and invoices, nowhere else.
   addressNote: "Kein Ladengeschäft. Termine und Beratung telefonisch oder online.",
   social: [

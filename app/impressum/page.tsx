@@ -4,7 +4,6 @@ import { site } from "@/lib/site";
 
 export const metadata: Metadata = { title: "Impressum | FOAV", robots: { index: false } };
 
-// TODO before going live: complete the address in lib/site.ts and check legal form / tax IDs.
 export default function Impressum() {
   return (
     <LegalPage title="Impressum">
@@ -24,8 +23,12 @@ export default function Impressum() {
         ))}
         <span className="block">E-Mail: {site.email}</span>
       </p>
-      <h2>Umsatzsteuer-ID</h2>
-      <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: [falls vorhanden ergänzen, sonst diesen Abschnitt löschen]</p>
+      {site.vatId && (
+        <>
+          <h2>Umsatzsteuer-ID</h2>
+          <p>Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG: {site.vatId}</p>
+        </>
+      )}
       <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
       <p>{site.founders[0].name}, Anschrift wie oben</p>
       <h2>Verbraucherstreitbeilegung</h2>
