@@ -15,9 +15,9 @@ export const products: Product[] = [
   { id: "nfc-weiss", name: "NFC-Platte Weiß", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "nfc-schwarz", name: "NFC-Platte Schwarz", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder eine Etage, bis 8 Räume, Video 60 bis 90 Sekunden quer und hochkant, fertig in 48 Stunden", price: 30000, physical: false, max: 5 },
-  { id: "web-basis", name: "Website Basis", short: "3 Seiten, Design nach Ihrem Logo, Kontaktformular, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
-  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, Texte von uns, Google-Unternehmensprofil, Terminbuchung, online in 7 Tagen", price: 69000, physical: false, max: 1 },
-  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten, 3D-Effekte, zweisprachig, inkl. KI-Roomtour Basis oder 10 NFC-Platten, online in 7 Tagen", price: 129000, physical: false, max: 1 },
+  { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
+  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, online in 7 Tagen", price: 69000, physical: false, max: 1 },
+  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. KI-Roomtour Basis oder 10 NFC-Platten, online in 7 Tagen", price: 129000, physical: false, max: 1 },
   { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 49000, physical: false, max: 5 },
 ];
 
@@ -32,12 +32,24 @@ export const vatNote = "Alle Preise sind Endpreise.";
 
 export type Cart = Partial<Record<ProductId, number>>;
 
+/** Volume discount on NFC plates, counted over all colours: from 5 plates 10 %, from 10 plates 15 %. */
+export const plateTiers = [
+  { from: 10, off: 15 },
+  { from: 5, off: 10 },
+];
+export const plateDiscount = (plates: number) => plateTiers.find((t) => plates >= t.from)?.off ?? 0;
+export const plateUnit = (plates: number) => Math.round(1500 * (100 - plateDiscount(plates)) / 100);
+
 export function totals(cart: Cart) {
-  const lines = products.filter((p) => (cart[p.id] ?? 0) > 0).map((p) => ({ ...p, qty: Math.min(cart[p.id]!, p.max) }));
-  const plates = lines.filter((l) => l.physical).reduce((n, l) => n + l.qty, 0);
+  const raw = products.filter((p) => (cart[p.id] ?? 0) > 0).map((p) => ({ ...p, list: p.price, qty: Math.min(cart[p.id]!, p.max) }));
+  const plates = raw.filter((l) => l.physical).reduce((n, l) => n + l.qty, 0);
+  const off = plateDiscount(plates);
+  // Discounted unit price on the plate lines, so Stripe and the invoice show the real price per plate.
+  const lines = raw.map((l) => (l.physical && off ? { ...l, price: plateUnit(plates), name: `${l.name} (${off} % Mengenrabatt)` } : l));
   const subtotal = lines.reduce((n, l) => n + l.qty * l.price, 0);
+  const saved = lines.reduce((n, l) => n + l.qty * (l.list - l.price), 0);
   const ship = plates > 0 && plates < shipping.freeFrom ? shipping.price : 0;
-  return { lines, plates, subtotal, ship, total: subtotal + ship };
+  return { lines, plates, off, saved, subtotal, ship, total: subtotal + ship };
 }
 
 export const euro = (cents: number) => (cents / 100).toLocaleString("de-DE", { style: "currency", currency: "EUR" });

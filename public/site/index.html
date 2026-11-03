@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FOAV · Websites, KI-Roomtours und NFC-Platten aus München</title>
-<meta name="description" content="FOAV aus München: Websites ab 300 €, KI-Roomtour-Videos ab 300 € und NFC-Platten für Google-Bewertungen 15 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.">
+<meta name="description" content="FOAV aus München: Websites ab 300 €, KI-Roomtour-Videos ab 300 € und NFC-Platten für Google-Bewertungen ab 12,75 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.">
 <meta name="theme-color" content="#fbfbfd">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://foav.de/">
@@ -796,7 +796,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .jstage { position: relative; display: grid; place-items: center; aspect-ratio: 4 / 4.2; padding: 22px; border-radius: 28px; background: linear-gradient(180deg, #f5f5f7, #eaeaef); overflow: hidden; }
 .jstage--dark { background: linear-gradient(180deg, #2a2a2e, #141416); }
 .jstage .win { width: 100%; } .jstage .win__body { padding: 16px 18px 18px; } .jstage .win__h { font-size: 1.125rem; margin-bottom: 8px; }
-.jstage .prow { padding: 10px 0; } .jstage .prow b { font-size: 1.25rem; } .jstage .prow small { font-size: .75rem; } .jstage .prow span { font-size: .9375rem; }
+.jstage .prow { padding: 10px 0; } .jstage .prow--hi { padding: 10px 14px; } .jstage .prow b { font-size: 1.25rem; } .jstage .prow small { font-size: .75rem; } .jstage .prow span { font-size: .9375rem; }
 .jstage .fp__phone { width: 54%; }
 .jstage .app { font-size: 11px; gap: 6px; } .jstage .app__h { font-size: 15px; } .jstage .app__chips span { font-size: 10px; padding: 4px 8px; }
 .jstage .mail { width: 100%; padding: 16px; } .jstage .mail__txt { font-size: .8125rem; } .jstage .mail__btns span { padding: 8px 12px; font-size: .75rem; }
@@ -815,6 +815,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 }
 @media (prefers-reduced-motion: reduce) { .gs .jour:not(.in) .jstep { opacity: 1; transform: none; } }
 
+.plan__was { margin:10px 0 0 !important; font-size:14px !important; color:var(--muted, #636366) !important; }
 .case-x__more { margin-top:18px; font-size:15px; color:var(--muted, #636366); }
 .case-x__more a, .scene__fact a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
 /* ---------- responsive ---------- */
@@ -1063,6 +1064,8 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .plan:has(input:checked) .plan__pick { background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") center / 14px no-repeat; box-shadow: none; }
 .plan .plan__big--text { font-size: clamp(36px, 3.2vw, 48px); padding-top: .35em; }
 .plan__big { line-height: 1; }
+@media (min-width: 900px) { .plan > p:not([class]) { min-height: 2.6em; } }
+.plan .plan__big--sm { font-size: clamp(48px, 4.4vw, 68px); }
 .choose__color { margin-top: 20px; background: #ececf0; } .choose__color button { border: 0; background: none; cursor: pointer; color: var(--text); font: inherit; font-weight: 700; } .choose__color button[aria-checked="true"] { background: #1d1d1f; color: #fff; }
 .choose__bar { position: relative; z-index: 5; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px; margin-top: 20px; padding: 14px 14px 14px 24px; border-radius: 20px; background: rgba(255,255,255,.92); -webkit-backdrop-filter: blur(14px); backdrop-filter: blur(14px); box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px -24px rgba(0,0,0,.35); }
 .choose__bar p span { display: block; font-size: .8125rem; color: var(--muted); }
@@ -1156,7 +1159,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <img class="lineup-img" src="/media/hero-lineup.webp?v=2" alt="Beispiele von foav.de: Website auf dem Laptop, Roomtour-Video auf dem Handy und eine NFC-Platte" width="1026" height="708">
     <nav class="hs" aria-label="Unsere Angebote">
       <a class="hs__a hs-web" href="#websites"><span>Website <b>ab 300 €</b></span></a>
-      <a class="hs__a hs-room" href="#roomtours"><span>KI-Roomtour <b>300 €</b></span></a>
+      <a class="hs__a hs-room" href="#roomtours"><span>KI-Roomtour <b>ab 300 €</b></span></a>
       <a class="hs__a hs-nfc" href="/shop?weiss=5"><span>NFC-Platte <b>15 €</b></span></a>
     </nav>
     <div class="lineup" id="lineup" aria-hidden="true">
@@ -1186,7 +1189,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="cmpc__tag">Bringt Ihnen Anfragen, auch wenn Sie schlafen.</p>
           <p class="cmpc__price"><small>ab</small> 300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/websites#pakete">Pakete ansehen</a><a class="more" href="/websites">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 Seiten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in höchstens 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen, Gastro</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 bis 10 Seiten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 5 bis 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen, Gastro</dd></div></dl>
         </article>
         <article class="cmpc cmpc--room">
           <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt="" loading="lazy"><video id="cmpVid" muted loop playsinline autoplay preload="none" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video></div></div><span class="rt-chip"><i></i>Roomtour läuft</span></div>
@@ -1194,15 +1197,15 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <p class="cmpc__tag">Zeigt Ihre Räume als Film, bevor Kunden kommen. Aus Ihren Handyfotos.</p>
           <p class="cmpc__price"><small>ab</small> 300 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/roomtours#pakete">Pakete ansehen</a><a class="more" href="/roomtours">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Handyfotos Ihrer Räume</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Video in Full HD</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Airbnb, Hotels, Makler, Läden</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Handyfotos Ihrer Räume</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Video in Full HD</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 bis 72 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Airbnb, Hotels, Makler, Läden</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
           <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="cmpc__colors">Weiß und Schwarz</span></div>
           <h3>NFC-Platte</h3>
           <p class="cmpc__tag">Macht aus zufriedenen Gästen Google-Bewertungen. Ein Antippen genügt.</p>
-          <p class="cmpc__price">15 € <small>pro Stück</small></p>
+          <p class="cmpc__price">15 € <small>pro Stück, ab 5 Stück 10 % Rabatt</small></p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/shop?weiss=5">Platten bestellen</a><a class="more" href="/nfc-platten">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Fertig eingerichtete Platten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Versand nach Zahlung</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Auf Ihr Unternehmen eingerichtete Platten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Versand nach Zahlung</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Praxen, Hotels</dd></div></dl>
         </article>
       </div>
       <ul class="cmpx__all" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Sie geben frei, bevor etwas online geht</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Kein Abo, keine laufenden Kosten bei uns</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Antwort auf Ihre Anfrage innerhalb eines Tages</li></ul>
@@ -1216,7 +1219,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <div class="scene__text">
           <p class="kicker">Websites</p>
           <h2 id="h-web">Ihre Website holt Anfragen, rund um die Uhr.</h2>
-          <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website in bis zu 7 Tagen, Sie geben sie frei.</li><li><b>Online.</b> Wir stellen sie ins Netz, mit Impressum und Datenschutz.</li></ol>
+          <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website in 5 bis 7 Tagen, Sie geben sie frei.</li><li><b>Online.</b> Wir veröffentlichen sie bei Ihrem Anbieter, mit Impressum.</li></ol>
           <div class="scene__foot"><p class="price"><small>ab </small>300 €</p><a class="btn btn--light" href="/websites#pakete">Paket wählen</a></div>
           <a class="more" href="/websites">Alles über Websites<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="scene__fact">Basis-Paket mit 3 Seiten. Im Bild: unsere Beispiel-Website für eine Ferienvilla. <a href="/demo/villa-buchen/index.html" target="_blank" rel="noopener">Live ansehen</a></p>
@@ -1284,7 +1287,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <li class="jstep"><div class="jstage" aria-hidden="true"><div class="win" aria-hidden="true"><div class="win__bar"><i></i><i></i><i></i><span>foav.de/preise</span></div>
               <div class="win__body"><p class="win__h">Klare Preise. Einmal zahlen.</p>
                 <div class="prow"><span>Website<small>3 Seiten, für Handy und Computer</small></span><b><small>ab</small> 300 €</b></div>
-                <div class="prow prow--hi"><span>KI-Roomtour<small>bis 150 m², fertig in 48 Stunden</small></span><b>300 €</b></div>
+                <div class="prow prow--hi"><span>KI-Roomtour<small>bis 150 m², fertig in 48 Stunden</small></span><b><small>ab </small>300 €</b></div>
                 <div class="prow"><span>NFC-Platte<small>Weiß oder Schwarz, Ø 10 cm</small></span><b>15 €</b></div>
               </div></div></div><p class="jno">1</p><h3>Paket wählen</h3><p>Alle Preise und Leistungen stehen auf der Seite. Sie wissen vorher genau, was Sie bekommen.</p></li>
         <li class="jlink" aria-hidden="true"><span>1 Minute</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h36M31 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
@@ -1357,7 +1360,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <details data-on="home roomtours"><summary>Für welche Betriebe eignet sich eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Für alle, deren Räume verkaufen: Ferienwohnungen und Hotels, Immobilienmakler für Verkauf und Vermietung, Läden und Showrooms, Restaurants, Praxen, Studios und Büros. Sie schicken Fotos, wir machen daraus einen Rundgang.</p></details>
         <details data-on="home roomtours"><summary>Was kostet eine KI-Roomtour?<i aria-hidden="true"></i></summary><p>Basis bis 150 m² 300 €, Premium bis 300 m² mit Außenbereich, Logo, Eckdaten und drei Kurzclips für Social Media 490 €. Größere Objekte oder mehrere Wohnungen bekommen einen Festpreis auf Anfrage. Alle Pakete finden Sie auf der Seite <a class="inl" href="/roomtours#pakete">KI-Roomtours</a>.</p></details>
         <details data-on="home websites roomtours nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus und bezahlen danach sicher per Karte, Apple Pay oder Google Pay. NFC-Platten bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
-        <details data-on="home websites roomtours"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Sie erreichen uns jederzeit direkt. Fragen und Änderungswünsche klären Sie direkt mit uns, per Telefon, WhatsApp oder E-Mail. Was zum gebuchten Umfang gehört, passen wir ohne Aufpreis an.</p></details>
+        <details data-on="home websites roomtours"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Änderungswünsche besprechen Sie direkt mit uns, per Telefon, WhatsApp oder E-Mail. Was zum gebuchten Umfang gehört, passen wir ohne Aufpreis an.</p></details>
         <details data-on="home roomtours"><summary>Muss ich das Video als KI-Video kennzeichnen?<i aria-hidden="true"></i></summary><p>Seit August 2026 verlangt die EU-KI-Verordnung, dass realistisch wirkende KI-Videos als solche erkennbar sind. Deshalb blenden wir auf Wunsch einen dezenten Hinweis „Mit KI erstellt“ ein. Zeigen Sie das Video zusätzlich mit diesem Hinweis im Text Ihres Inserats.</p></details>
         <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
         <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Bei uns nicht, Sie zahlen einmal. Für eine Website brauchen Sie eine eigene Domain und ein Hosting, die Sie selbst bei einem Anbieter wie IONOS oder Strato buchen, meist für 5 bis 10 € im Monat. Wir sagen Ihnen gern, welcher Tarif reicht.</p></details>
@@ -1370,7 +1373,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap contact__grid">
       <div>
         <h2 id="h-kontakt">Bereit für mehr Kunden?</h2>
-        <p class="lead">Wir melden uns innerhalb von 24 Stunden mit einem Festpreis-Angebot. Das Angebot ist kostenlos und unverbindlich.</p>
+        <p class="lead">Wir melden uns innerhalb von 24 Stunden und beraten Sie kostenlos und unverbindlich.</p>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
           <li><a href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone-i"/></svg><div><b>Florian Dressler</b><span>+49 155 66456417</span></div></a></li>
@@ -1403,7 +1406,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <div class="foot__grid">
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
           <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
-          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#angebot">Unsere Zusagen</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
+          <div><h3>Unternehmen</h3><ul><li><a href="#team">Über uns</a></li><li><a href="#ablauf">Ablauf</a></li><li><a href="#angebot">Leistungen im Vergleich</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>
@@ -1592,11 +1595,12 @@ document.addEventListener("DOMContentLoaded", function () {
   var qty = $("#qty");
   function setQty() {
     var q = +qty.value;
-    $("#sum").textContent = (q * 15).toLocaleString("de-DE") + " €";
+    var off = q >= 10 ? 15 : q >= 5 ? 10 : 0, cents = Math.round(1500 * (100 - off) / 100) * q;
+    $("#sum").textContent = (cents / 100).toLocaleString("de-DE", { minimumFractionDigits: cents % 100 ? 2 : 0 }) + " €";
     $("#qtyLabel").textContent = "für " + q + (q === 1 ? " Platte" : " Platten");
     qty.setAttribute("aria-valuetext", q + (q === 1 ? " Platte" : " Platten"));
     qty.style.setProperty("--fill", ((q - 1) / 19 * 100) + "%");
-    $("#hint").textContent = q < 5 ? "Für Restaurants empfehlen wir 5 bis 10 Platten" : q > 10 ? "Ideal für größere Betriebe" : "Unsere Empfehlung für Restaurants";
+    $("#hint").textContent = off ? off + " % Mengenrabatt, versandkostenfrei" : "Ab 5 Platten 10 % Rabatt, ab 10 Platten 15 %";
   }
   if (qty) { qty.addEventListener("input", setQty); setQty(); }
 

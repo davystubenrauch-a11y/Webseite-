@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Pakete gestrafft, NFC-Mengenrabatt, Feinschliff
+- Kunde: „Website-Pakete weniger Punkte, konkret was man je Budget bekommt; NFC fast alles weg, nur ‚individuell auf das Unternehmen angepasst‘ + Mengenrabatt 5 Stück 10 %, 10 Stück 15 %; Proportionen, Feinschliff, Inhalte prüfen“.
+- Website-Pakete je 4–5 Punkte, die sich unterscheiden (Basis: 3 Seiten, Ihre Texte, Kontakt/Anruf/WhatsApp, 5 Tage · Business: 6 Seiten, Texte von uns, Terminbuchung, Google-Bewertungen live, 7 Tage · Premium: 10 Seiten DE/EN, Scroll-/3D-Animationen, Roomtour Basis oder 10 Platten inkl., 30 Tage Änderungen, 7 Tage); Gemeinsames steht unter „In jedem Paket: …“.
+- NFC: 1 = 15 €, 5 = 67,50 € (statt 75 €), 10 = 127,50 € (statt 150 €). Rabatt-Staffel in `lib/shop.ts` (`plateTiers`, `plateUnit`): ab 5 Platten 10 %, ab 10 Platten 15 %, über alle Farben; Stripe bekommt den rabattierten Stückpreis. Shop zeigt „Darin gespart“ und „Noch X Platten, dann sparen Sie …“. Doppelter Rechner auf /nfc-platten entfernt (`@none`), FAQ „Was ist an der Platte individuell?“ (= Chip führt zu Ihrem Profil; Design einheitlich).
+- Korrekturen: Website-Film sagte „mit Impressum und Datenschutz“ (Datenschutz nicht enthalten) → „mit Impressum“; Roomtour „ab 300 €“; Kontakt-Text ohne „Festpreis-Angebot“; Fußzeile ohne leeren Eintrag, „Leistungen im Vergleich“; Preisliste im Ablauf bündig; Paketpreise auf gleicher Höhe.
+
 ## Stand: Villa-Website als zweites Beispiel
 - Kunde: „nicht überall SPIRULI, die Villa-Seite als Beispiel einbauen“ (`/demo/villa-buchen/`, aus Zweig `fd-solutions-landing-l1x6bu` übernommen, jetzt `noindex`, Fußzeile „Gestaltet von foav.de“, als Demo gekennzeichnet).
 - Neue Aufnahmen per Playwright (leere Pin-Bereiche herausgeschnitten): `ref-villa-desk-top.jpg`, `ref-villa-desk.webp`, `ref-villa-mob.webp`; `hero-lineup.webp` neu (Villa statt SPIRULI).
