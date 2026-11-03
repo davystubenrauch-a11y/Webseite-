@@ -815,6 +815,66 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 }
 @media (prefers-reduced-motion: reduce) { .gs .jour:not(.in) .jstep { opacity: 1; transform: none; } }
 
+
+/* ---------- product stage in the service-page hero (.pst) ---------- */
+.phero__grid { display: grid; gap: 32px; }
+.phero__grid .phero__row { flex-direction: column; align-items: flex-start; gap: 24px; }
+.pst { position: relative; }
+.pst__dev { position: relative; aspect-ratio: 1 / .92; max-height: 74svh; margin-inline: auto; container-type: size; border-radius: clamp(20px, 2.4vw, 32px); background: linear-gradient(165deg, #f5f5f7, #ececef); overflow: hidden; isolation: isolate; -webkit-mask-image: -webkit-radial-gradient(white, black); }
+.pst__live { display: inline-flex; margin-top: 14px; font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+@media (min-width: 1000px) {
+  .phero__grid { grid-template-columns: minmax(0, .95fr) minmax(0, 1.05fr); align-items: center; gap: clamp(32px, 4vw, 72px); }
+  .phero__grid h1 { font-size: clamp(48px, 5.4vw, 96px); }
+}
+/* tags */
+.pst__tags { position: absolute; inset: 0; list-style: none; pointer-events: none; z-index: 5; }
+.pst__tags li { position: absolute; left: var(--x); right: var(--rx, auto); top: var(--y); display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 99px; background: #fff; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 10px 28px -10px rgba(0,0,0,.22); font-size: clamp(12px, 2.6cqmin, 15px); font-weight: 600; color: var(--ink); white-space: nowrap; animation: pstTag .7s calc(.9s + var(--i) * .45s) cubic-bezier(.22,1,.36,1) both; }
+.pst__tags li::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--ink); }
+@keyframes pstTag { from { opacity: 0; transform: translateY(12px) scale(.94); } }
+/* websites: MacBook and iPhone scroll through the example site */
+.pst--web .pst__mac { position: absolute; left: 6%; right: 14%; top: 18%; animation: pstUp .9s cubic-bezier(.22,1,.36,1) both; }
+.pst--web .pst__phone { right: 6%; bottom: 10%; width: 22%; animation: pstUp .9s .25s cubic-bezier(.22,1,.36,1) both; }
+.pst__scroll { display: block; width: 100%; height: 100% !important; object-fit: cover; object-position: 50% 0; animation: pstScroll 22s 1.4s ease-in-out infinite; }
+.pst__scroll--m { animation-duration: 26s; animation-delay: 2s; }
+@keyframes pstScroll { 0%, 8% { object-position: 50% 0; } 46%, 54% { object-position: 50% 100%; } 92%, 100% { object-position: 50% 0; } }
+@keyframes pstUp { from { opacity: 0; transform: translateY(40px); } }
+/* roomtours: three phone photos fly into the video */
+.pst__pic { position: absolute; left: 6%; top: var(--y); width: 26%; margin: 0; padding: 1.4cqmin 1.4cqmin 4cqmin; background: #fff; border-radius: 6px; box-shadow: 0 14px 30px -14px rgba(0,0,0,.35); rotate: var(--r); z-index: 2; animation: pstFly 9s calc(var(--i) * .5s) cubic-bezier(.65,0,.35,1) infinite; }
+.pst__pic img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 3px; }
+@keyframes pstFly { 0% { opacity: 0; transform: translateX(-20px); } 8%, 58% { opacity: 1; transform: none; } 72% { opacity: 0; transform: translate(48cqw, calc(46cqh - var(--y) - 10cqh)) scale(.35); } 100% { opacity: 0; transform: translate(48cqw, calc(46cqh - var(--y) - 10cqh)) scale(.35); } }
+.pst__lbl { position: absolute; left: 6%; top: 2.4%; font-size: clamp(12px, 2.6cqmin, 14px); font-weight: 600; color: var(--muted); }
+.pst__land { position: absolute; left: 38%; right: 4%; top: 50%; translate: 0 -50%; padding: 2.2cqmin; border-radius: 6.5cqmin; background: #0b0b0c; box-shadow: 0 0 0 1.5px #c3c5c9, 0 0 0 3px #8f9196, 0 40px 60px -24px rgba(0,0,0,.45); z-index: 1; animation: pstUp .9s cubic-bezier(.22,1,.36,1) both; }
+.pst__land-scr { position: relative; aspect-ratio: 19.5 / 9; border-radius: 4.6cqmin; overflow: hidden; background: #ddd; }
+.pst__land-scr img, .pst__land-scr video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.pst__rec { position: absolute; left: 3cqmin; top: 3cqmin; display: inline-flex; align-items: center; gap: 6px; padding: 5px 10px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: clamp(11px, 2.3cqmin, 13px); font-weight: 600; color: var(--ink); }
+.pst__rec::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #e0362c; }
+/* nfc: phone taps the plate, stars fill, +1 review */
+.pst__disc { position: absolute; left: 34%; bottom: 8%; width: 46%; transform: perspective(900px) rotateX(58deg); z-index: 1; }
+.pst__disc--b { left: 6%; bottom: 20%; width: 34%; z-index: 0; opacity: .95; }
+.pst__wave { position: absolute; inset: 20%; border-radius: 50%; border: 3px solid rgba(26,115,232,.55); opacity: 0; animation: pstWave 6s infinite; }
+.pst__wave--2 { animation-delay: .25s; }
+@keyframes pstWave { 0%, 30% { opacity: 0; transform: scale(.6); } 34% { opacity: 1; } 52%, 100% { opacity: 0; transform: scale(1.6); } }
+.pst__tap { left: 46%; right: auto; bottom: 22%; width: 24%; rotate: -10deg; z-index: 3; animation: pstTap 6s cubic-bezier(.65,0,.35,1) infinite; }
+@keyframes pstTap { 0%, 10% { transform: translate(14cqw, -12cqh); } 28%, 46% { transform: translate(0, 0); } 64%, 100% { transform: translate(6cqw, -16cqh) rotate(6deg); } }
+.pg { position: absolute; inset: 0; padding: 22% 9% 8%; background: #fff; display: flex; flex-direction: column; gap: 4cqmin; font-size: clamp(8px, 2.2cqmin, 12px); color: #202124; animation: pstScreen 6s infinite; }
+@keyframes pstScreen { 0%, 30% { opacity: 0; } 36%, 94% { opacity: 1; } 100% { opacity: 0; } }
+.pg__top { display: flex; align-items: center; gap: 6px; font-weight: 600; } .pg__top b { display: grid; place-items: center; width: 1.8em; height: 1.8em; border-radius: 50%; background: #f1f3f4; color: #4285f4; }
+.pg__q { color: #5f6368; }
+.pg__s { display: flex; gap: 2%; } .pg__s i { flex: 1; } .pg__s svg { display: block; width: 100%; fill: #dadce0; animation: pstStar 6s calc(var(--i) * .12s) infinite; }
+@keyframes pstStar { 0%, 40% { fill: #dadce0; } 46%, 96% { fill: #fbbc04; } 100% { fill: #dadce0; } }
+.pg__h { font-weight: 600; animation: pstScreen 6s infinite; }
+.pg__f { height: 18%; border-radius: 8px; border: 1px solid #dadce0; }
+.pg__b { align-self: flex-end; padding: .5em 1.2em; border-radius: 99px; background: #1a73e8; color: #fff; font-weight: 600; }
+.pst__toast { position: absolute; right: 5%; top: 34%; display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 99px; background: var(--ink); color: #fff; font-size: clamp(12px, 2.8cqmin, 15px); font-weight: 600; z-index: 6; animation: pstToast 6s infinite; }
+.pst__toast svg { width: 16px; height: 16px; fill: #fbbc04; }
+@keyframes pstToast { 0%, 58% { opacity: 0; transform: translateY(10px) scale(.95); } 64%, 92% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@media (max-width: 999px) { .pst__dev { aspect-ratio: 1 / 1; } }
+@media (prefers-reduced-motion: reduce) {
+  .pst *, .pst *::before { animation: none !important; }
+  .pst__pic { opacity: 1; } .pst__land-scr video { opacity: 1; } .pg { opacity: 1; } .pst__toast { opacity: 1; } .pst__wave { display: none; }
+  .pg__s svg { fill: #fbbc04; }
+}
+
 .plan__was { margin:10px 0 0 !important; font-size:14px !important; color:var(--muted, #636366) !important; }
 .case-x__more { margin-top:18px; font-size:15px; color:var(--muted, #636366); }
 .case-x__more a, .scene__fact a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
@@ -1480,7 +1540,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
     whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
-  ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#cmpVid"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
+  ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#cmpVid", "#pVid"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
   // Safari may refuse to start videos until the first touch; try again then
   ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function retry() { shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); removeEventListener(ev, retry); }, { passive: true }); });
   function setStill(s) {
