@@ -1,0 +1,6 @@
+:HL["/demo/spiruli/_next/static/chunks/3z88v7sn1igs2.css","style"]
+:HL["/demo/spiruli/_next/static/media/017d9bea37084d9b-s.p.41rroleoq1br7.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/demo/spiruli/_next/static/media/ab57efd000576a30-s.p.3fofz6dws3mg0.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
+:HL["/demo/spiruli/can/spiruli.webp","image"]
+1:[["children",{"s":"__PAGE__","h":160}]]
+0:{"b":"98sNTg-5QL4cek-y9WGtT","t":{"t":{"s":"","h":80,"c":"$Q1"}}}

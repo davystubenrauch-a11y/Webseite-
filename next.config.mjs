@@ -9,7 +9,10 @@ const nextConfig = {
     return { beforeFiles: [{ source: "/", destination: "/site/index.html" },
         { source: "/websites", destination: "/site/websites.html" },
         { source: "/roomtours", destination: "/site/roomtours.html" },
-        { source: "/nfc-platten", destination: "/site/nfc-platten.html" }] };
+        { source: "/nfc-platten", destination: "/site/nfc-platten.html" },
+        { source: "/demo/spiruli", destination: "/demo/spiruli/index.html" },
+        { source: "/demo/spiruli/", destination: "/demo/spiruli/index.html" },
+        { source: "/demo/villa-buchen", destination: "/demo/villa-buchen/index.html" }] };
   },
 };
 

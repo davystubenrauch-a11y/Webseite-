@@ -1,0 +1,5 @@
+:HL["/demo/spiruli/_next/static/chunks/3z88v7sn1igs2.css","style"]
+:HL["/demo/spiruli/can/spiruli.webp","image"]
+2:[["children",{"s":"__PAGE__","h":160}]]
+1:[["children",{"s":"/_not-found","h":96,"c":"$Q2"}]]
+0:{"b":"98sNTg-5QL4cek-y9WGtT","t":{"t":{"s":"","h":80,"c":"$Q1"}}}
