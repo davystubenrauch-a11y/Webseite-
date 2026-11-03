@@ -3,6 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709). **Unternehmens-E-Mail: info@foav.de** (Empfänger aller Anfragen, Fragebögen, Bestellungen; öffentlich auf der Seite). Früher fd.solutions@web.de.
 
+## Stand: Resend-Prüfung (3.11.)
+- DNS geprüft (über Firecrawl/dns.google, Container hat kein direktes Netz): `resend._domainkey.foav.de` (DKIM) und `send.foav.de` (SPF + MX) **gesetzt**; Postfach `info@foav.de` hat MX (secure-mailgate, Checkdomain).
+- **Probleme**: `foav.de` ohne www zeigt auf **Checkdomain-Parkseite** (A 185.3.235.250, falsches Zertifikat); nur `www.foav.de` zeigt auf Vercel – und dort läuft noch der **alte Stand** (v19 „F&D Solutions“, keine `/api/*`). Vorschau des Zweigs: `webseite-git-claude-hopeful-goodall-m39gmd-davy-stubenrauch1.vercel.app`.
+- Neue Statusseite **`/api/status`** (nur Ja/Nein, keine Schlüssel; fragt Resend nach Domain-Status). Vorschau meldet: `resend_key`, `stripe_key`, `photo_upload` = **false** → Variablen fehlen dort (vermutlich nur für „Production“ gesetzt).
+
 ## Stand: Adresse, Lieferzeit, Absender
 - Anschrift **Sollner Straße 51, 81479 München** (Privatadresse, kein Ladengeschäft) nur in Impressum, AGB, Widerruf, Datenschutz und Rechnungen (`lib/site.ts`, `addressNote` „Kein Ladengeschäft …“ im Impressum); schema.org und Seite zeigen weiter nur „München“. Rechtsform noch offen.
 - **NFC-Lieferzeit 3 bis 7 Werktage**: „Was brauchen Sie?“, Pakete-Hinweis, FAQ „Wie lange dauert es?“ (jetzt auch auf /nfc-platten), Shop, Dankeseite, AGB §5.
