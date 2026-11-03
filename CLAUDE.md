@@ -3,6 +3,12 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Villa nicht mehr live, Knöpfe landen auf dem Wesentlichen
+- Kunde: „Villa-Website nicht live ansehen lassen, nur SPIRULI; Knöpfe wie ‚Angebote ansehen‘ müssen direkt die Angebote auf dem Bildschirm zeigen, nicht ‚Was brauchen Sie?‘; alle Knöpfe zum Wesentlichen“.
+- `public/demo/villa-buchen/` gelöscht, Rewrite entfernt, Links „Live ansehen“ / „Noch ein Beispiel“ raus (Villa bleibt nur als Bild in Laptops/Website-Film, `ref-villa-*`).
+- Sprung-Skript am Ende des Templates (`window.__land`): Abschnitte mit `[data-land]` landen auf diesem Element (`.cmpx__grid` = Angebotskarten, `form.choose` = Paketwahl), andere `.sec`/`.contact` auf der Überschrift statt auf dem leeren Abstand; gilt für Klicks auf derselben Seite (Lenis oder `instant`), für `hashchange` und für Links von anderen Seiten (`/websites#pakete`): nach dem Laden wird bis 4,5 s nachgeregelt, bis der Besucher selbst scrollt. Der alte Lenis-Ankerhandler ist entfernt.
+- Geprüft 1440 × 900 und 390 × 844: Angebotskarten, Paketwahl auf allen drei Seiten, Kontakt, Über uns, Referenz landen alle direkt unter der Kopfzeile.
+
 ## Stand: alles auf der Website, Warenkorb, keine E-Mail-Weiterleitung
 - Kunde: „jedes iPhone Vollbild; Anfrage/Abwicklung verbessern; nie ins E-Mail-Programm weiterleiten, alles auf der Website; eigentlich: Produkt wählen → ausfüllen → Warenkorb (oder anfragen) → zahlen; alle Knöpfe sinnvoll“.
 - **Kein `mailto`-Ersatzweg mehr** (Kontaktformular, Fragebogen, Shop). Gemeinsamer Versand `lib/deliver.ts`: Resend → `INQUIRY_WEBHOOK_URL` → Vercel Blob (`eingang/…json`, privat, sonst öffentlich mit Zufallsnamen) → sonst Funktions-Log + `ok: false`; die Seite zeigt dann „bitte gleich noch einmal oder anrufen“ mit Nummern. **`RESEND_API_KEY` in Vercel ist Pflicht**, damit etwas ankommt.
@@ -38,7 +44,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 ## Stand: Villa-Website als zweites Beispiel
 - Kunde: „nicht überall SPIRULI, die Villa-Seite als Beispiel einbauen“ (`/demo/villa-buchen/`, aus Zweig `fd-solutions-landing-l1x6bu` übernommen, jetzt `noindex`, Fußzeile „Gestaltet von foav.de“, als Demo gekennzeichnet).
 - Neue Aufnahmen per Playwright (leere Pin-Bereiche herausgeschnitten): `ref-villa-desk-top.jpg`, `ref-villa-desk.webp`, `ref-villa-mob.webp`; `hero-lineup.webp` neu (Villa statt SPIRULI).
-- Villa jetzt in: Start-Geräte (Laptop), „Was brauchen Sie?“, Zusagen-Kachel, Website-Film (scrollt durch die Villa, Hinweis „Beispiel-Website für eine Ferienvilla. Live ansehen“). SPIRULI bleibt nur im Referenz-Abschnitt `#referenz`, dort Link „Noch ein Beispiel: Website für eine Ferienvilla“.
+- Villa jetzt in: Start-Geräte (Laptop), „Was brauchen Sie?“, Zusagen-Kachel, Website-Film (nur als Bild; Live-Seite inzwischen entfernt).
 
 ## Stand: Stripe Payments + Invoicing
 - Kunde: „mit Stripe starten: Payments, Invoicing“. Stripe-Plugin installiert (Skills `stripe-best-practices` gelesen); MCP mcp.stripe.com braucht Anmeldung durch den Kunden, `npx skills add https://docs.stripe.com` scheiterte am Netz.

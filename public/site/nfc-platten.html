@@ -1256,7 +1256,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Wie viele Platten brauchen Sie?</h2></div><p class="lead">15 € pro Platte, in Weiß oder Schwarz. Je mehr Platten, desto günstiger.</p></div>
-      <form class="choose" data-choose="nfc" onsubmit="return false">
+      <form class="choose" data-land data-choose="nfc" onsubmit="return false">
         <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="nfc" value="1 Platte" data-href="/shop?{c}=1" data-label="1 NFC-Platte, 15 €"><h3>1 Platte</h3><p class="plan__big plan__big--sm">15 €</p><p class="plan__was">Einzelpreis</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="nfc" value="5 Platten" data-href="/shop?{c}=5" data-label="5 NFC-Platten, 67,50 €" checked><h3>5 Platten</h3><p class="plan__big plan__big--sm">67,50 €</p><p class="plan__was">statt <s>75 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>10 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="nfc" value="10 Platten" data-href="/shop?{c}=10" data-label="10 NFC-Platten, 127,50 €"><h3>10 Platten</h3><p class="plan__big plan__big--sm">127,50 €</p><p class="plan__was">statt <s>150 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>15 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
         <div class="seg choose__color" role="radiogroup" aria-label="Farbe"><button type="button" role="radio" aria-checked="true" data-c="weiss">Weiß</button><button type="button" role="radio" aria-checked="false" data-c="schwarz">Schwarz</button></div><div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
       </form>
@@ -1590,7 +1590,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var lenis = new Lenis({ lerp: .1 });
       lenis.on("scroll", ST.update); lenis.on("scroll", chrome);
       G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
-      $$('a[href^="#"]').forEach(function (a) { a.addEventListener("click", function (e) { var id = a.getAttribute("href"), el = id.length > 1 && $(id); if (el) { e.preventDefault(); lenis.scrollTo(el, { offset: -84, duration: 1.3 }); } }); });
+      window.__lenis = lenis;
     }
     // start: the headline rises, the lineup comes up from below: laptop opens, phone and plate join
     // start: on touch devices the first screen shows immediately (iPhone Safari had trouble with the 3D intro)
@@ -1673,6 +1673,58 @@ document.addEventListener("DOMContentLoaded", function () {
     }); });
     upd();
   });
+</script>
+<script>
+/* ---------- landing: every link to a section shows its essential part on screen ----------
+   Sections with [data-land] land on that element (offer cards, package choice); other .sec
+   sections land on their heading instead of the empty top padding. Works for links on the same
+   page and for links from other pages (/websites#pakete), also after GSAP pins changed the layout. */
+(function () {
+  var HEAD = 84;
+  function landY(el) {
+    var t = el.querySelector("[data-land]"), r;
+    if (t) { r = t.getBoundingClientRect(); return r.top + scrollY - HEAD - 12; }
+    r = el.getBoundingClientRect();
+    var pad = el.classList.contains("sec") || el.classList.contains("contact") ? parseFloat(getComputedStyle(el).paddingTop) || 0 : 0;
+    return r.top + scrollY + pad - HEAD - (pad ? 20 : 0);
+  }
+  function go(hash, smooth) {
+    var el = hash && hash.length > 1 && document.getElementById(decodeURIComponent(hash.slice(1)));
+    if (!el) return false;
+    var y = Math.max(0, landY(el));
+    if (window.__lenis) window.__lenis.scrollTo(y, smooth ? { duration: 1.1 } : { immediate: true });
+    else window.scrollTo({ top: y, behavior: smooth ? "smooth" : "instant" });
+    return true;
+  }
+  window.__land = go;
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest && e.target.closest("a[href*='#']");
+    if (!a || e.defaultPrevented || a.target === "_blank") return;
+    var u = new URL(a.href, location.href);
+    var same = u.pathname === location.pathname || (u.pathname === "/" && /\/site\/index\.html$/.test(location.pathname));
+    if (u.origin !== location.origin || !same || !u.hash) return;
+    if (go(u.hash, true)) { e.preventDefault(); history.replaceState(null, "", u.hash); }
+  });
+  if (location.hash) {
+    var h = location.hash;
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    // Pins, fonts and lazy images move the layout for a moment after loading, so the target is
+    // re-checked for a few seconds until the visitor scrolls on their own.
+    var stop = false, t0 = 0, last = -1;
+    ["wheel", "touchstart", "keydown", "mousedown"].forEach(function (ev) { addEventListener(ev, function () { stop = true; }, { passive: true, once: true }); });
+    var tick = function () {
+      if (stop || Date.now() - t0 > 4500) return;
+      var el = document.getElementById(decodeURIComponent(h.slice(1)));
+      if (el) { var y = Math.max(0, landY(el)); if (Math.abs(y - scrollY) > 3 && Math.abs(y - last) > 0.5) go(h, false); last = y; }
+      setTimeout(tick, 150);
+    };
+    var begin = function () { t0 = Date.now(); go(h, false); tick(); };
+    if (document.readyState === "complete") begin(); else addEventListener("load", begin);
+  }
+  addEventListener("hashchange", function () { go(location.hash, true); });
+  if (false) {
+  }
+})();
 </script>
 </body>
 </html>
