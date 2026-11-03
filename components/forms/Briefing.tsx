@@ -16,6 +16,8 @@ export type Q = {
   hint?: string;
   placeholder?: string;
   half?: boolean;
+  /** needed before we can start; checked before the order goes to the cart */
+  req?: boolean;
 };
 export type Section = { title: string; intro?: string; questions: Q[] };
 export type Values = Record<string, string | string[]>;
@@ -46,6 +48,10 @@ const css = `
 .bf-q { grid-column:1/-1; min-width:0; } .bf-q.half { grid-column:auto; }
 .bf-q > label, .bf-q > .lab { display:block; margin-bottom:8px; font-weight:500; font-size:15px; color:var(--ink); }
 .bf-hint { margin:-4px 0 8px; font-size:14px; color:var(--muted); }
+.bf-req { margin-left:8px; padding:2px 8px; border-radius:99px; background:var(--bg2, #f2f2f4); font-size:12px; font-weight:600; color:var(--muted); vertical-align:1px; }
+.bf-miss { margin:12px 0 0; padding:14px 16px; border-radius:14px; background:#fff4f2; color:#9a2b1f; font-size:14px; }
+.bf-miss button { margin:6px 8px 0 0; padding:6px 12px; border:0; border-radius:99px; background:#fff; box-shadow:0 0 0 1px rgba(154,43,31,.25); color:#9a2b1f; font:500 13px/1.2 inherit; cursor:pointer; }
+.bf-saved { font-size:13px; color:var(--muted); }
 .bf input[type=text], .bf input[type=email], .bf input[type=tel], .bf input[type=number], .bf input[type=url], .bf input[type=date], .bf textarea {
   width:100%; min-height:48px; padding:12px 14px; border:0; border-radius:12px; background:var(--bg2); color:var(--ink);
   font:inherit; box-shadow:inset 0 0 0 1px transparent; transition:box-shadow .15s, background .15s; }
@@ -172,8 +178,8 @@ export function Question({ q, value, onChange }: { q: Q; value: string | string[
   if (q.type === "one" || q.type === "many") {
     const list = Array.isArray(value) ? value : value ? [value] : [];
     return (
-      <fieldset className={`bf-q${q.half ? " half" : ""}`} style={{ border: 0, padding: 0, margin: 0 }}>
-        <legend className="lab" style={{ padding: 0, marginBottom: 8, fontWeight: 500, fontSize: 15, color: "var(--ink)" }}>{q.label}</legend>
+      <fieldset id={id} tabIndex={-1} className={`bf-q${q.half ? " half" : ""}`} style={{ border: 0, padding: 0, margin: 0 }}>
+        <legend className="lab" style={{ padding: 0, marginBottom: 8, fontWeight: 500, fontSize: 15, color: "var(--ink)" }}>{q.label}{q.req && <span className="bf-req">Pflicht</span>}</legend>
         {q.hint && <p className="bf-hint">{q.hint}</p>}
         <div className="bf-chips">
           {q.options!.map((o) => (
@@ -200,7 +206,7 @@ export function Question({ q, value, onChange }: { q: Q; value: string | string[
   const common = { id, value: (value as string) ?? "", placeholder: q.placeholder, onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => onChange(e.target.value) };
   return (
     <div className={`bf-q${q.half ? " half" : ""}`}>
-      <label htmlFor={id}>{q.label}</label>
+      <label htmlFor={id}>{q.label}{q.req && <span className="bf-req">Pflicht</span>}</label>
       {q.hint && <p className="bf-hint">{q.hint}</p>}
       {q.type === "textarea" ? <textarea {...common} /> : <input type={q.type} inputMode={q.type === "number" ? "numeric" : undefined} min={q.type === "number" ? 0 : undefined} {...common} />}
     </div>
@@ -219,6 +225,21 @@ export function Sec({ n, title, intro, children }: { n: number; title: string; i
     </section>
   );
 }
+
+/** Keeps the answers in this browser while the form is filled in, so nothing is lost on reload. */
+export function useDraft<T>(key: string, value: T, restore: (v: T) => void) {
+  const loaded = useRef(false);
+  useEffect(() => {
+    try { const raw = localStorage.getItem(`foav-draft-${key}`); if (raw) restore(JSON.parse(raw)); } catch {}
+    loaded.current = true;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
+    if (!loaded.current) return;
+    try { localStorage.setItem(`foav-draft-${key}`, JSON.stringify(value)); } catch {}
+  }, [key, value]);
+}
+export const clearDraft = (key: string) => { try { localStorage.removeItem(`foav-draft-${key}`); localStorage.removeItem(`foav-draft-photos-${key}`); } catch {} };
 
 /** Pre-fills answers from the query string, e.g. /anfrage/website?paket=Business. */
 export function usePrefill(sections: Section[], set: (id: string, v: string | string[]) => void) {
@@ -271,6 +292,16 @@ export function usePhotos(kind: BriefingKind) {
     }
   }
   const remove = (id: string) => setItems((list) => list.filter((x) => x.id !== id));
+  // uploaded files survive a reload, like the answers
+  const restored = useRef(false);
+  useEffect(() => {
+    try { const saved: Photo[] = JSON.parse(localStorage.getItem(`foav-draft-photos-${kind}`) ?? "[]"); if (saved.length) setItems((l) => [...saved.map((x) => ({ ...x, id: Math.random().toString(36).slice(2), preview: x.url, progress: 100 })), ...l]); } catch {}
+    restored.current = true;
+  }, [kind]);
+  useEffect(() => {
+    if (!restored.current) return;
+    try { localStorage.setItem(`foav-draft-photos-${kind}`, JSON.stringify(items.filter((x) => x.url).map(({ group, name, url }) => ({ group, name, url })))); } catch {}
+  }, [items, kind]);
   const busy = items.some((x) => !x.url && !x.error);
   const done: Photo[] = items.filter((x) => x.url).map(({ group, name, url }) => ({ group, name, url }));
   return { enabled, items, add, remove, busy, done };
@@ -345,8 +376,8 @@ export function PhotoSlots({ group, photos, shots = [], accept = "image/*" }: { 
 
 /** Contact block, consent and submit, shared by both forms. */
 export function Submit({
-  kind, n, answers, photos, button, onDone, pay,
-}: { kind: BriefingKind; n: number; answers: () => Briefing["answers"]; photos: ReturnType<typeof usePhotos>; button: string; onDone: (r: DoneInfo) => void; pay?: () => Pay | null }) {
+  kind, n, answers, photos, button, onDone, pay, missing,
+}: { kind: BriefingKind; n: number; answers: () => Briefing["answers"]; photos: ReturnType<typeof usePhotos>; button: string; onDone: (r: DoneInfo) => void; pay?: () => Pay | null; missing?: () => { id: string; label: string }[] }) {
   const [name, setName] = useState("");
   const [contact, setContact] = useState("");
   const [phone2, setPhone2] = useState("");
@@ -354,11 +385,13 @@ export function Submit({
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending">("idle");
+  const [miss, setMiss] = useState<{ id: string; label: string }[]>([]);
   const isMail = contact.includes("@");
+  const jump = (id: string) => { const el = document.getElementById(id); if (el) { el.scrollIntoView({ behavior: "smooth", block: "center" }); (el as HTMLElement).focus({ preventScroll: true }); } };
 
   const data = useMemo<Briefing>(() => ({
     kind, answers: [], photos: [], name: name.trim(),
-    email: isMail ? contact.trim() : "", phone: isMail ? phone2.trim() : contact.trim(), consent, website: hp,
+    email: contact.trim(), phone: phone2.trim(), consent, website: hp,
   }), [kind, name, contact, phone2, consent, hp, isMail]);
 
   async function send(e: React.FormEvent) {
@@ -366,8 +399,12 @@ export function Submit({
     const body: Briefing = { ...data, answers: answers(), photos: photos.done };
     const errs: Record<string, string> = {};
     if (!body.name) errs.name = "Bitte geben Sie Ihren Namen an.";
-    if (!body.email && !body.phone) errs.contact = "Bitte geben Sie eine Telefonnummer oder E-Mail an.";
+    if (!body.email) errs.contact = "Bitte geben Sie Ihre E-Mail-Adresse an. Dorthin kommen Rechnung, Entwurf und fertiges Ergebnis.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(body.email)) errs.contact = "Bitte prüfen Sie die E-Mail-Adresse.";
     if (!consent) errs.consent = "Bitte stimmen Sie der Datenschutzerklärung zu.";
+    const m = missing ? missing() : [];
+    setMiss(m);
+    if (m.length && !Object.keys(errs).length) { setErrors({}); jump(m[0].id); return; }
     setErrors(errs);
     if (Object.keys(errs).length) {
       document.getElementById(errs.name ? "c-name" : errs.contact ? "c-contact" : "c-consent")?.focus();
@@ -381,6 +418,7 @@ export function Submit({
       const res = await fetch("/api/briefing", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const j = await res.json().catch(() => ({}));
       if (res.ok && j.ok) {
+        clearDraft(kind);
         // Package + questionnaire number go straight into the cart, the visitor pays there.
         if (p) { location.href = `${p.href}${p.href.includes("?") ? "&" : "?"}ref=${encodeURIComponent(j.id)}`; return; }
         onDone({ id: j.id, mail: false, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return;
@@ -408,16 +446,14 @@ export function Submit({
             {errors.name && <p className="bf-err" id="e-name">{errors.name}</p>}
           </div>
           <div className="bf-q half">
-            <label htmlFor="c-contact">Telefon oder E-Mail</label>
-            <input id="c-contact" type="text" autoComplete="email" inputMode="email" value={contact} onChange={(e) => setContact(e.target.value)} aria-invalid={!!errors.contact} aria-describedby={errors.contact ? "e-contact" : undefined} />
+            <label htmlFor="c-contact">E-Mail<span className="bf-req">Pflicht</span></label>
+            <input id="c-contact" type="email" autoComplete="email" inputMode="email" value={contact} onChange={(e) => setContact(e.target.value)} aria-invalid={!!errors.contact} aria-describedby={errors.contact ? "e-contact" : undefined} />
             {errors.contact && <p className="bf-err" id="e-contact">{errors.contact}</p>}
           </div>
-          {isMail && (
-            <div className="bf-q half">
-              <label htmlFor="c-phone">Telefon (optional)</label>
-              <input id="c-phone" type="tel" autoComplete="tel" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
-            </div>
-          )}
+          <div className="bf-q half">
+            <label htmlFor="c-phone">Telefon (für Rückfragen, optional)</label>
+            <input id="c-phone" type="tel" autoComplete="tel" value={phone2} onChange={(e) => setPhone2(e.target.value)} />
+          </div>
           <div className="bf-hp" aria-hidden="true">
             <label>Website<input tabIndex={-1} autoComplete="off" value={hp} onChange={(e) => setHp(e.target.value)} /></label>
           </div>
@@ -436,6 +472,12 @@ export function Submit({
               </button>
               <span className="bf-small">{pay && pay() ? `Ihre Angaben werden gespeichert, dann liegt ${pay()!.label} in Ihrem Warenkorb. Bezahlt wird im nächsten Schritt.` : "Noch keine Zahlung. Wir melden uns mit Ihrem Festpreis."}</span>
             </div>
+            {miss.length > 0 && (
+              <div className="bf-miss" role="alert">
+                Damit wir ohne Rückfragen starten können, fehlt noch:
+                <div>{miss.map((x) => <button type="button" key={x.id} onClick={() => jump(x.id)}>{x.label}</button>)}</div>
+              </div>
+            )}
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
             <p className="bf-call" style={{ marginTop: 28 }}>
               Lieber telefonieren?
@@ -459,9 +501,8 @@ export function Done({ kind, id, mail, photos, pay }: DoneInfo & { kind: Briefin
     const href = pay.href + (id ? `${pay.href.includes("?") ? "&" : "?"}ref=${encodeURIComponent(id)}` : "");
     return (
       <div className="bf-done" role="status">
-        <h1>{mail ? "Fast geschafft." : "Angaben sind da."}<br />Letzter Schritt: bezahlen.</h1>
+        <h1>Angaben sind da.<br />Letzter Schritt: bezahlen.</h1>
         <p className="bf-lead">
-          {mail ? `Bitte senden Sie zuerst die geöffnete E-Mail${kind === "roomtour" ? " mit den Fotos" : ""}. ` : ""}
           {pay.label}. Sobald die Zahlung da ist, beginnen wir.
           {photos > 0 && ` ${photos} ${photos === 1 ? "Foto ist" : "Fotos sind"} dabei.`} {id && <>Ihre Referenz: <code>{id}</code></>}
         </p>
@@ -472,12 +513,10 @@ export function Done({ kind, id, mail, photos, pay }: DoneInfo & { kind: Briefin
   }
   return (
     <div className="bf-done" role="status">
-      <h1>{mail ? "Fast geschafft." : "Danke, ist angekommen."}</h1>
-      {mail ? (
-        <p className="bf-lead">Ihr E-Mail-Programm hat sich mit allen Angaben geöffnet. Bitte dort noch auf Senden tippen{kind === "roomtour" ? " und die Fotos an die E-Mail anhängen" : ""}.</p>
-      ) : (
+      <h1>Danke, ist angekommen.</h1>
+      {(
         <p className="bf-lead">
-          Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis und dem Zahlungslink.
+          Wir melden uns innerhalb von 24 Stunden mit unserer Empfehlung und Ihrem Festpreis. Danach können Sie hier auf der Website bezahlen.
           {photos > 0 && ` ${photos} ${photos === 1 ? "Foto ist" : "Fotos sind"} dabei.`} {id && <>Ihre Referenz: <code>{id}</code></>}
         </p>
       )}

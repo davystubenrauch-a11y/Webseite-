@@ -1,17 +1,17 @@
 "use client";
 
 import { useState } from "react";
-import { Done, PhotoSlots, ShotHint, Question, Sec, Shell, Submit, usePhotos, usePrefill, type DoneInfo, type Section, type Shot, type Values } from "./Briefing";
+import { Done, PhotoSlots, ShotHint, Question, Sec, Shell, Submit, useDraft, usePhotos, usePrefill, type DoneInfo, type Section, type Shot, type Values } from "./Briefing";
 
 const sections: Section[] = [
   {
     title: "Ihre Räume",
     questions: [
-      { id: "firma", label: "Name des Unternehmens oder Objekts", type: "text", placeholder: "z. B. Ferienwohnung Seeblick, Praxis Dr. Huber", half: true },
+      { id: "firma", label: "Name des Unternehmens oder Objekts", type: "text", placeholder: "z. B. Ferienwohnung Seeblick, Praxis Dr. Huber", half: true, req: true },
       { id: "ort_genau", label: "Adresse des Objekts", type: "text", placeholder: "nur für uns, erscheint nicht im Video", half: true },
-      { id: "paket", label: "Paket", type: "one", options: ["Basis|bis 150 m², 300 €", "Premium|bis 300 m², 490 €", "Individuell|größer oder mehrere Objekte", "Noch unsicher|wir empfehlen Ihnen eins"] },
-      { id: "art", label: "Was sollen wir zeigen?", type: "one", options: ["Ferienwohnung / Airbnb", "Hotel / Pension", "Immobilie (Verkauf oder Vermietung)", "Laden / Showroom", "Restaurant / Café", "Praxis / Studio", "Büro", "Sonstiges"] },
-      { id: "flaeche", label: "Fläche in m²", type: "number", placeholder: "z. B. 75", half: true },
+      { id: "paket", label: "Paket", type: "one", options: ["Basis|bis 150 m², 300 €", "Premium|bis 300 m², 490 €", "Individuell|größer oder mehrere Objekte", "Noch unsicher|wir empfehlen Ihnen eins"], req: true },
+      { id: "art", label: "Was sollen wir zeigen?", type: "one", options: ["Ferienwohnung / Airbnb", "Hotel / Pension", "Immobilie (Verkauf oder Vermietung)", "Laden / Showroom", "Restaurant / Café", "Praxis / Studio", "Büro", "Sonstiges"], req: true },
+      { id: "flaeche", label: "Fläche in m²", type: "number", placeholder: "z. B. 75", half: true, req: true },
       { id: "ort", label: "Ort", type: "text", placeholder: "z. B. Garmisch", half: true },
       { id: "inserat", label: "Link zum Inserat (falls vorhanden)", type: "url", placeholder: "Airbnb, Immobilienportal, Google oder Ihre Website" },
     ],
@@ -19,13 +19,17 @@ const sections: Section[] = [
   {
     title: "Ihr Video",
     questions: [
-      { id: "format", label: "Format", type: "one", options: ["Querformat 16:9 (Inserat, Website, YouTube)", "Hochformat 9:16 (Instagram, TikTok)", "Beides"] },
       { id: "stimmung", label: "Stimmung", type: "one", options: ["Ruhig und hell", "Modern", "Gemütlich", "Luxuriös", "Entscheiden Sie"] },
       { id: "musik", label: "Musik", type: "one", options: ["Ruhig", "Modern und lebendig", "Elegant", "Ohne Musik", "Entscheiden Sie"] },
       { id: "einblendungen", label: "Texte im Video (optional)", type: "textarea", placeholder: "z. B. 68 m², 2 Schlafzimmer, Balkon mit Seeblick, ab 89 € pro Nacht" },
-      { id: "abspann", label: "Abspann: was soll am Ende stehen?", type: "text", placeholder: "z. B. Name, Website, Telefon. Im Premium-Paket auch Ihr Logo." },
+      { id: "abspann", label: "Abspann: was soll am Ende stehen?", type: "text", placeholder: "z. B. Ferienwohnung Seeblick · seeblick-garmisch.de · 0171 2345678", req: true, hint: "Genau so, wie es im Video stehen soll. Im Premium-Paket kommt Ihr Logo dazu (unten hochladen)." },
+      { id: "reihenfolge", label: "Reihenfolge des Rundgangs", type: "textarea", placeholder: "z. B. Eingang → Flur → Wohnzimmer → Küche → Schlafzimmer → Bad → Balkon", hint: "So führt die Kamera durch Ihre Räume. Leer lassen, dann wählen wir die natürliche Reihenfolge." },
+      { id: "raumnamen", label: "Besondere Raumnamen im Video (optional)", type: "text", placeholder: "z. B. Schlafzimmer „Seeblick“, Suite 2" },
+      { id: "ki_hinweis", label: "Hinweis „Mit KI erstellt“ im Video", type: "one", options: ["Ja, dezent einblenden (empfohlen)", "Nein, ich kennzeichne selbst im Inserat"], req: true, hint: "Seit August 2026 müssen realistisch wirkende KI-Videos erkennbar sein (EU-KI-Verordnung)." },
+      { id: "nicht_zeigen", label: "Was darf nicht zu sehen sein?", type: "text", placeholder: "z. B. Hausnummer, Nachbarhaus, Fotos an der Wand, Personen" },
       { id: "nutzung", label: "Wo zeigen Sie das Video?", type: "many", options: ["Airbnb", "Booking.com", "Immobilienportale", "Eigene Website", "Instagram / TikTok", "Google-Profil", "WhatsApp an Kunden"] },
       { id: "highlights", label: "Was sollen Ihre Kunden unbedingt sehen?", type: "textarea", placeholder: "z. B. Seeblick vom Balkon, Sauna, die neue Küche" },
+      { id: "clips", label: "Nur Premium: Themen der 3 Kurzclips", type: "text", placeholder: "z. B. Aussicht, Küche, Wellness. Leer lassen, dann wählen wir." },
     ],
   },
 ];
@@ -88,6 +92,7 @@ export default function RoomtourBriefing() {
   const [done, setDone] = useState<DoneInfo | null>(null);
   const set = (id: string, value: string | string[]) => setV((o) => ({ ...o, [id]: value }));
   const photos = usePhotos("roomtour");
+  useDraft("roomtour", { v, count }, (d) => { if (d.v) setV((o) => ({ ...d.v, ...o })); if (d.count) setCount(d.count); });
   usePrefill(sections, set);
 
   const groups = rooms.flatMap((r) =>
@@ -101,6 +106,18 @@ export default function RoomtourBriefing() {
     const p = String(v.paket ?? "").split("|")[0];
     const tier = p === "Basis" || p === "Premium" ? p : p ? "" : area > 300 ? "" : area > 150 ? "Premium" : "Basis";
     return tier === "Basis" ? { href: "/shop?roomtour=1", label: "KI-Roomtour Basis für 300 €" } : tier === "Premium" ? { href: "/shop?premium=1", label: "KI-Roomtour Premium für 490 €" } : null;
+  };
+
+  // Without these we would have to ask back: every chosen room needs at least two photos.
+  const missing = () => {
+    const out = sections.flatMap((s) => s.questions).filter((q) => q.req && !String(v[q.id] ?? "").trim()).map((q) => ({ id: `q-${q.id}`, label: q.label }));
+    if (!groups.length) out.push({ id: "rooms", label: "Räume wählen" });
+    if (photos.enabled) for (const g of groups) {
+      const have = photos.done.filter((x) => x.group === g.label).length;
+      if (have < Math.min(2, g.room.shots.length)) out.push({ id: `room-${g.label}`, label: `Fotos: ${g.label} (${have} von mind. 2)` });
+    }
+    if (photos.enabled && String(v.paket ?? "").startsWith("Premium") && !photos.done.some((x) => x.group === "Logo")) out.push({ id: "up-logo", label: "Logo für den Abspann" });
+    return out;
   };
 
   const answers = () => [
@@ -117,11 +134,11 @@ export default function RoomtourBriefing() {
   return (
     <Shell
       title="Ihre Roomtour: Fotos senden, Video erhalten."
-      lead="Pro Raum brauchen wir ein paar Fotos aus bestimmten Blickwinkeln. Welche genau, zeigen wir Ihnen unten Raum für Raum."
+      lead="Pro Raum brauchen wir ein paar Fotos aus bestimmten Blickwinkeln. Welche genau, zeigen wir Ihnen unten Raum für Raum. Mindestens zwei Fotos pro Raum, besser alle vorgeschlagenen. Ihre Angaben bleiben in diesem Browser gespeichert; Fotos laden Sie am besten direkt vom Handy hoch."
       steps={[
-        ["Fotos senden", "Raum für Raum, so wie unten gezeigt."],
-        ["Bezahlen", "Direkt im Anschluss, sicher per Karte."],
-        ["Video erhalten", "Basis in 48, Premium in 72 Stunden."],
+        ["Fotos hochladen", "Raum für Raum, so wie unten gezeigt."],
+        ["In den Warenkorb, bezahlen", "Direkt im Anschluss, sicher über Stripe."],
+        ["Video erhalten", "Per E-Mail-Link: Basis in 48, Premium in 72 Stunden ab Zahlung."],
         ["Gemeinsam anpassen", "Passt etwas nicht, ändern wir es mit Ihnen."],
       ]}
       done={done && <Done kind="roomtour" {...done} />}
@@ -147,7 +164,7 @@ export default function RoomtourBriefing() {
           <h3>So werden die Fotos gut</h3>
           <ul className="bf-tips">{tips.map((t) => <li key={t}>{t}</li>)}</ul>
         </div>
-        <fieldset className="bf-q" style={{ border: 0, padding: 0, margin: 0 }}>
+        <fieldset className="bf-q" id="rooms" tabIndex={-1} style={{ border: 0, padding: 0, margin: 0 }}>
           <legend className="lab" style={{ padding: 0, marginBottom: 8, fontWeight: 500, fontSize: 15, color: "var(--ink)" }}>Welche Räume sollen ins Video?</legend>
           <div className="bf-chips">
             {rooms.map((r) => {
@@ -177,7 +194,7 @@ export default function RoomtourBriefing() {
         {groups.map((g) => {
           const have = photos.items.filter((x) => x.group === g.label && !x.error).length;
           return (
-            <div className="bf-q bf-room" key={g.label}>
+            <div className="bf-q bf-room" key={g.label} id={`room-${g.label}`} tabIndex={-1}>
               <div className="lab">{g.label}<span>{have} von {g.room.shots.length}</span></div>
               {photos.enabled === false ? (
                 <div className="bf-shots">
@@ -189,9 +206,19 @@ export default function RoomtourBriefing() {
             </div>
           );
         })}
+        {photos.enabled && (
+          <>
+            <div className="bf-q" id="up-logo" tabIndex={-1}>
+              <span className="lab">Logo (Premium) und Grundriss (optional)</span>
+              <p className="bf-hint">Das Logo kommt in den Abspann. Ein Grundriss, auch abfotografiert, hilft uns bei der Reihenfolge des Rundgangs.</p>
+              <PhotoSlots group="Logo" photos={photos} accept="image/*,.pdf,.svg" />
+              <PhotoSlots group="Grundriss" photos={photos} accept="image/*,.pdf" />
+            </div>
+          </>
+        )}
       </Sec>
 
-      <Submit kind="roomtour" n={4} answers={answers} photos={photos} button="Weiter zur Bezahlung" onDone={setDone} pay={pay} />
+      <Submit kind="roomtour" n={4} answers={answers} photos={photos} button="Weiter zur Bezahlung" onDone={setDone} pay={pay} missing={missing} />
     </Shell>
   );
 }

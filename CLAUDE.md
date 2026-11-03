@@ -3,6 +3,14 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: Qualitäts-Check (4 Personas + KI-Workflow), Fragebögen lückenlos
+- Kunde: Doppelrolle Kunden-Perspektive (Restaurant, Boutique, Handwerk, Café) + interner KI-Workflow; Ziel: nach dem Fragebogen alles da, ohne Nachfragen, Zahlung direkt danach.
+- **Fragebögen**: `Q.req` (Schild „Pflicht“); `Submit` bekommt `missing()` → rote Box „Damit wir ohne Rückfragen starten können, fehlt noch: …“ mit Knöpfen, die zum Feld springen; ohne Vollständigkeit kein Warenkorb. **E-Mail jetzt Pflicht**, Telefon optional. **Entwurf wird gespeichert** (`useDraft`, `foav-draft-website|roomtour`, Fotos `foav-draft-photos-*`), gelöscht nach Absenden.
+- Website: Pflicht = Firma, Branche, Rechtsform, Inhaber (GbR: alle), Anschrift, Telefon + E-Mail für die Website, Öffnungszeiten, Ein-Satz, Leistungen, USP, gewünschte Handlung, Google-Suchbegriffe, Paket, Stil, Logo, Texte, Fotos, Domain. Neu: Verantwortlich i. S. d. § 18 MStV, Ansprache Sie/Du, Sprache, Premium-Extra (Roomtour oder Platten/Farbe), alte Website zum Übernehmen getrennt von Wunsch-Domain, Google-Link-Anleitung, Uploads getrennt in **Logo / Fotos / Dokumente** (Speisekarte, Texte, Datenschutz); Logo-Upload Pflicht wenn „Ja“, Fotos Pflicht wenn „Ja“. „Formular-Empfänger“ entfällt (= E-Mail für die Website). Zugangsdaten-Hinweis ohne Telefonat.
+- Roomtour: Pflicht = Name, Paket, Art, Fläche, Abspann-Text, KI-Hinweis ja/nein; Format-Frage entfernt (beide Formate immer dabei); neu: Reihenfolge des Rundgangs, Raumnamen, „Was darf nicht zu sehen sein?“, Premium-Clip-Themen, Upload Logo + Grundriss; **mind. 2 Fotos pro gewähltem Raum** (wenn Upload aktiv), Premium braucht Logo.
+- Versand: E-Mail an uns mit **JSON-Anhang** `FOAV-…-website.json` (alle Antworten + Foto-URLs, direkt für Claude); Kunde bekommt per Resend eine **Bestätigung mit allen Angaben**.
+- Website-Texte: neue FAQ „Was passiert nach der Bezahlung?“, „Brauche ich technisches Wissen?“, „Kann ich verkaufen oder reservieren?“; FAQ „Was brauchen Sie von mir“ verweist auf Paketwahl statt direkt auf den Fragebogen; Business-Punkt „Terminbuchung, Tischreservierung oder Anfrageformular“.
+
 ## Stand: Villa nicht mehr live, Knöpfe landen auf dem Wesentlichen
 - Kunde: „Villa-Website nicht live ansehen lassen, nur SPIRULI; Knöpfe wie ‚Angebote ansehen‘ müssen direkt die Angebote auf dem Bildschirm zeigen, nicht ‚Was brauchen Sie?‘; alle Knöpfe zum Wesentlichen“.
 - `public/demo/villa-buchen/` gelöscht, Rewrite entfernt, Links „Live ansehen“ / „Noch ein Beispiel“ raus (Villa bleibt nur als Bild in Laptops/Website-Film, `ref-villa-*`).

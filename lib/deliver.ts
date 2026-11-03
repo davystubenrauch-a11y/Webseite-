@@ -8,7 +8,14 @@ import { put } from "@vercel/blob";
 // Nothing is ever handed to the visitor's mail program. If none works, the caller gets ok: false
 // and the page asks the visitor to try again or call.
 
-export type Delivery = { id: string; kind: string; subject: string; text: string; replyTo?: string; data?: unknown };
+export type Delivery = {
+  id: string; kind: string; subject: string; text: string; replyTo?: string; data?: unknown;
+  /** optional confirmation to the customer (only sent via Resend) */
+  copy?: { to: string; subject: string; text: string };
+};
+
+/** Structured copy of everything, attached to the e-mail so it can go straight into Claude. */
+const attachment = (d: Delivery) => ({ filename: `${d.id}-${d.kind}.json`, content: Buffer.from(JSON.stringify({ id: d.id, kind: d.kind, at: new Date().toISOString(), data: d.data }, null, 2)).toString("base64") });
 
 export async function deliver(d: Delivery): Promise<boolean> {
   if (process.env.RESEND_API_KEY) {
@@ -16,9 +23,18 @@ export async function deliver(d: Delivery): Promise<boolean> {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": d.id },
-        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text }),
+        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text, ...(d.data ? { attachments: [attachment(d)] } : {}) }),
       });
-      if (res.ok) return true;
+      if (res.ok) {
+        if (d.copy) {
+          await fetch("https://api.resend.com/emails", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `${d.id}-copy` },
+            body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [d.copy.to], reply_to: process.env.INQUIRY_TO ?? "fd.solutions@web.de", subject: d.copy.subject, text: d.copy.text }),
+          }).catch(() => {});
+        }
+        return true;
+      }
       console.error(`[deliver] resend ${res.status}`);
     } catch (e) { console.error("[deliver] resend", e); }
   }
