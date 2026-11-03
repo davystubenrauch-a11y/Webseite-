@@ -3,7 +3,7 @@ import LegalPage from "@/components/ui/LegalPage";
 import { stripe } from "@/lib/stripe";
 import ClearCart from "@/components/shop/ClearCart";
 
-export const metadata: Metadata = { title: "Danke für Ihre Bestellung | foav.de", robots: { index: false } };
+export const metadata: Metadata = { title: "Danke für Ihre Bestellung | FOAV", robots: { index: false } };
 export const dynamic = "force-dynamic";
 
 // Shows the real payment state of the session. Fulfilment itself happens in the Stripe webhook.

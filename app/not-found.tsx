@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/ui/LegalPage";
 
-export const metadata: Metadata = { title: "Seite nicht gefunden | foav.de", robots: { index: false } };
+export const metadata: Metadata = { title: "Seite nicht gefunden | FOAV", robots: { index: false } };
 
 // Shown for every address that does not exist, in the same look as the legal pages.
 export default function NotFound() {

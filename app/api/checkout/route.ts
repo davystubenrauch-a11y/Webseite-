@@ -68,7 +68,7 @@ export async function POST(req: Request) {
               metadata: { order: id },
             },
           },
-          payment_intent_data: { description: `foav.de ${id}`, metadata: { order: id } },
+          payment_intent_data: { description: `FOAV ${id}`, metadata: { order: id } },
           metadata: meta,
         },
         { idempotencyKey: `checkout-${id}-${tag}` },

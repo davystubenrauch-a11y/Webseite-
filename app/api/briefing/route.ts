@@ -40,8 +40,8 @@ export async function POST(req: Request) {
 
   const copy = data.email ? {
     to: data.email,
-    subject: `Ihre Angaben bei foav.de (${id})`,
-    text: `Hallo ${data.name},\n\ndanke, Ihre Angaben sind bei uns angekommen. Ihre Referenz: ${id}.\n\nSo geht es weiter: Sobald die Zahlung da ist, beginnen wir. Den Entwurf bzw. das Video bekommen Sie per E-Mail als Link. Fehlt etwas, melden wir uns, aber in der Regel reicht, was Sie uns geschickt haben.\n\nIhre Angaben im Überblick:\n\n${summarizeBriefing(data)}\n\nFragen? Antworten Sie einfach auf diese E-Mail oder rufen Sie an: 0155 66456417 (Florian) oder 0176 56612709 (Davy).\n\nfoav.de, München`,
+    subject: `Ihre Angaben bei FOAV (${id})`,
+    text: `Hallo ${data.name},\n\ndanke, Ihre Angaben sind bei uns angekommen. Ihre Referenz: ${id}.\n\nSo geht es weiter: Sobald die Zahlung da ist, beginnen wir. Den Entwurf bzw. das Video bekommen Sie per E-Mail als Link. Fehlt etwas, melden wir uns, aber in der Regel reicht, was Sie uns geschickt haben.\n\nIhre Angaben im Überblick:\n\n${summarizeBriefing(data)}\n\nFragen? Antworten Sie einfach auf diese E-Mail oder rufen Sie an: 0155 66456417 (Florian) oder 0176 56612709 (Davy).\n\nFOAV, München`,
   } : undefined;
   if (await deliver({ id, kind: data.kind, subject, text, replyTo: data.email || undefined, data: { ...data, website: undefined }, copy })) return NextResponse.json({ ok: true, id });
   return NextResponse.json({ ok: false, error: "Ihre Angaben konnten gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });

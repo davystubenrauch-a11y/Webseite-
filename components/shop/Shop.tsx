@@ -182,7 +182,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
             {hasService && (
               <label className="bf-consent" style={{ fontWeight: 400 }}>
                 <input type="checkbox" checked={f.early} onChange={up("early")} />
-                <span>Ich verlange ausdrücklich, dass foav.de vor Ablauf der Widerrufsfrist mit der Arbeit beginnt. Mir ist bekannt, dass mein Widerrufsrecht erlischt, sobald die Leistung vollständig erbracht ist, und dass ich bei einem früheren Widerruf die bis dahin erbrachte Arbeit anteilig bezahle.</span>
+                <span>Ich verlange ausdrücklich, dass FOAV vor Ablauf der Widerrufsfrist mit der Arbeit beginnt. Mir ist bekannt, dass mein Widerrufsrecht erlischt, sobald die Leistung vollständig erbracht ist, und dass ich bei einem früheren Widerruf die bis dahin erbrachte Arbeit anteilig bezahle.</span>
               </label>
             )}
             {errors.early && <p className="bf-err">{errors.early}</p>}

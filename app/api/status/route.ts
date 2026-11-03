@@ -11,7 +11,7 @@ export async function GET() {
     stripe_webhook_secret: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
     photo_upload: Boolean(process.env.BLOB_READ_WRITE_TOKEN),
     mail_to: process.env.INQUIRY_TO || "info@foav.de",
-    mail_from: process.env.INQUIRY_FROM || "foav.de <info@foav.de>",
+    mail_from: process.env.INQUIRY_FROM || "FOAV <info@foav.de>",
   };
   if (process.env.RESEND_API_KEY) {
     try {

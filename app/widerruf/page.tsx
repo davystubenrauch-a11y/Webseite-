@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import LegalPage from "@/components/ui/LegalPage";
 import { site } from "@/lib/site";
 
-export const metadata: Metadata = { title: "Widerrufsbelehrung | foav.de", robots: { index: false } };
+export const metadata: Metadata = { title: "Widerrufsbelehrung | FOAV", robots: { index: false } };
 
 // Based on the statutory model (Anlage 1 zu Art. 246a § 1 Abs. 2 EGBGB). Have it checked before going live.
 export default function Widerruf() {

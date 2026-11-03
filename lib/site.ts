@@ -1,7 +1,7 @@
 // Central company data. Everything that appears in the footer, legal pages and
 // contact sections is read from here, so update it in one place before going live.
 export const site = {
-  name: "foav.de",
+  name: "FOAV",
   url: "https://foav.de",
   claim: "Websites, KI-Roomtours und NFC-Platten aus München.",
   email: "info@foav.de",
