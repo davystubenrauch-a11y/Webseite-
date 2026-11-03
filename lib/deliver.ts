@@ -2,7 +2,7 @@ import { put } from "@vercel/blob";
 
 // One way for every message the site receives (inquiries, questionnaires, orders without Stripe).
 // Tried in order, the first that works wins:
-//   1. RESEND_API_KEY        -> e-mail to INQUIRY_TO (default fd.solutions@web.de)
+//   1. RESEND_API_KEY        -> e-mail to INQUIRY_TO (default info@foav.de)
 //   2. INQUIRY_WEBHOOK_URL   -> JSON POST (Make, Zapier, n8n, Slack …)
 //   3. BLOB_READ_WRITE_TOKEN -> saved as a private JSON file under eingang/ in Vercel Blob
 // Nothing is ever handed to the visitor's mail program. If none works, the caller gets ok: false
@@ -23,14 +23,14 @@ export async function deliver(d: Delivery): Promise<boolean> {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": d.id },
-        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text, ...(d.data ? { attachments: [attachment(d)] } : {}) }),
+        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "info@foav.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text, ...(d.data ? { attachments: [attachment(d)] } : {}) }),
       });
       if (res.ok) {
         if (d.copy) {
           await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `${d.id}-copy` },
-            body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [d.copy.to], reply_to: process.env.INQUIRY_TO ?? "fd.solutions@web.de", subject: d.copy.subject, text: d.copy.text }),
+            body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [d.copy.to], reply_to: process.env.INQUIRY_TO ?? "info@foav.de", subject: d.copy.subject, text: d.copy.text }),
           }).catch(() => {});
         }
         return true;

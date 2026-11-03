@@ -67,7 +67,7 @@ export async function POST(req: Request) {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `${event.id}` },
-        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"], ...(cd?.email ? { reply_to: cd.email } : {}), subject, text }),
+        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "info@foav.de"], ...(cd?.email ? { reply_to: cd.email } : {}), subject, text }),
       });
       if (!res.ok) throw new Error(`Resend ${res.status}`);
     } else if (process.env.INQUIRY_WEBHOOK_URL) {

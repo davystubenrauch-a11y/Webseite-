@@ -1,7 +1,7 @@
 # FOAV (früher F&D Solutions) – Design-Briefing
 
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
-Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
+Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709). **Unternehmens-E-Mail: info@foav.de** (Empfänger aller Anfragen, Fragebögen, Bestellungen; öffentlich auf der Seite). Früher fd.solutions@web.de.
 
 ## Stand: Qualitäts-Check (4 Personas + KI-Workflow), Fragebögen lückenlos
 - Kunde: Doppelrolle Kunden-Perspektive (Restaurant, Boutique, Handwerk, Café) + interner KI-Workflow; Ziel: nach dem Fragebogen alles da, ohne Nachfragen, Zahlung direkt danach.

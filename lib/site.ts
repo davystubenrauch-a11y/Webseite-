@@ -4,7 +4,7 @@ export const site = {
   name: "foav.de",
   url: "https://foav.de",
   claim: "Websites, KI-Roomtours und NFC-Platten aus München.",
-  email: "fd.solutions@web.de",
+  email: "info@foav.de",
   city: "München",
   founders: [
     { name: "Florian Dressler", role: "Co-Founder", phone: "+49 155 66456417" },
