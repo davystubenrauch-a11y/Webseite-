@@ -1174,6 +1174,57 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .rt-lab { font-size: .8125rem; padding: 7px 12px; }
   .rt-lab1 { top: calc(var(--cy) + var(--pw) * 1.08); } .rt-lab2 { top: calc(var(--cy) + var(--pw) * .72); } .rt-lab0 { top: calc(var(--cy) - var(--pw) * 1.35); }
 }
+
+/* ---------- phone polish: spacing, proportions and alignment on small screens ---------- */
+@media (max-width: 700px) {
+  /* headlines: a little more air between letters and lines, use the full width */
+  .hero h1 { letter-spacing: -.038em; line-height: .98; }
+  h2, .phero h1 { letter-spacing: -.034em; line-height: 1.04; max-width: none; }
+  .scene h2 { max-width: none; font-size: clamp(30px, 8.6vw, 40px); }
+  .say { font-size: clamp(24px, 7vw, 30px); line-height: 1.16; letter-spacing: -.028em; }
+  /* promise list under the offer cards: one clean column, ticks aligned */
+  .cmpx__all { flex-direction: column; align-items: stretch; gap: 12px; margin-top: 32px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cmpx__all li { display: flex; align-items: flex-start; gap: 12px; font-size: 1rem; line-height: 1.45; }
+  .cmpx__all svg { flex: none; width: 18px; height: 18px; margin-top: 3px; }
+  /* bottom bar: slimmer so it hides less of the page */
+  .dock { left: 12px; right: 12px; padding: 6px; gap: 6px; }
+  .dock .btn { min-height: 46px; font-size: .9375rem; }
+  /* product films: bigger devices, less empty stage */
+  .rt { --pw: min(34vw, 18vh); --cy: 68%; }
+  .n-stage { --w: min(42vw, 21vh); }
+  .n-floor { top: 76%; }
+  .n-phone { top: calc(76% - var(--w) * 1.3); }
+  .w-phone { width: 31%; }
+  /* founders: compact cards side by side */
+  .people { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .person { padding: 18px; border-radius: 20px; }
+  .mono { width: 52px; height: 52px; font-size: 1.125rem; }
+  .person h3 { margin-top: 14px; font-size: 1.0625rem; line-height: 1.25; }
+  .person p { font-size: .9375rem; }
+  .person .link { font-size: .9375rem; }
+  /* contact form */
+  .consent-more { margin-left: 40px; }
+  .consent-more a { display: inline; min-height: 0; }
+  /* footer: links in two columns, tighter lines */
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 28px 20px; }
+  .foot__brand, .foot__grid > div:last-child { grid-column: 1 / -1; }
+  .foot li a { min-height: 40px; font-size: .9688rem; }
+  .foot__base { flex-direction: column; gap: 6px; }
+  .foot__base nav { flex-wrap: wrap; gap: 0 20px; }
+  .foot__mark { margin-top: 48px; }
+}
+@media (max-width: 360px) { .people { grid-template-columns: 1fr; } }
+/* product stages on phones: fewer, smaller labels that never overlap each other */
+@media (max-width: 700px) {
+  .pst__tags li { padding: 6px 11px; font-size: 12px; gap: 6px; }
+  .pst__tags li::before { width: 6px; height: 6px; }
+  .pst--web .pst__tags li:nth-child(1) { --x: 4% !important; --y: 4% !important; }
+  .pst--web .pst__tags li:nth-child(2) { --y: 15% !important; }
+  .pst--web .pst__tags li:nth-child(3) { display: none; }
+  .pst--room .pst__tags li:nth-child(2) { display: none; }
+  .pst--room .pst__tags li:nth-child(3) { --x: auto !important; --rx: 4% !important; --y: 88% !important; }
+  .pst--nfc .pst__tags li:nth-child(2) { display: none; }
+}
 </style>
 </head>
 <body>
