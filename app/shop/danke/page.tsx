@@ -31,7 +31,7 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
       )}
       <h2>So geht es weiter</h2>
       <p>
-        <b>NFC-Platten:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil und schicken sie Ihnen per Post.
+        <b>NFC-Platten:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil und schicken sie Ihnen per Post. Sie sind in 3 bis 7 Werktagen bei Ihnen.
       </p>
       <p>
         <b>KI-Roomtour:</b> Falls noch nicht geschehen, laden Sie jetzt die Fotos Ihrer Räume hoch. 48 Stunden danach bekommen Sie Ihr Video.{" "}

@@ -11,7 +11,9 @@ export const site = {
     { name: "Davy Stubenrauch", role: "Co-Founder", phone: "+49 176 56612709" },
   ],
   // TODO: Enter the full postal address before going live (required for the Impressum).
-  address: ["foav.de, Florian Dressler und Davy Stubenrauch [Rechtsform, z. B. GbR]", "[Straße Hausnummer]", "[PLZ] München"],
+  address: ["foav.de, Florian Dressler und Davy Stubenrauch [Rechtsform, z. B. GbR]", "Sollner Straße 51", "81479 München"],
+  // Postal address only (no shop, no visits): shown in the imprint, AGB and invoices, nowhere else.
+  addressNote: "Kein Ladengeschäft. Termine und Beratung telefonisch oder online.",
   social: [
     { label: "Instagram", href: "https://instagram.com/" },
     { label: "LinkedIn", href: "https://linkedin.com/" },

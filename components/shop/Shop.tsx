@@ -125,7 +125,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
         ["Paket wählen", "Der Preis steht vorher fest."],
         ["Fragebogen", "Websites und Roomtours: Angaben und Fotos senden."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Ergebnis erhalten", "Platten per Post, Roomtour in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
+        ["Ergebnis erhalten", "Platten in 3 bis 7 Werktagen per Post, Roomtour in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -149,7 +149,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
               </article>
             ))}
           </div>
-          <p className="sh-note">Mengenrabatt auf alle Platten zusammen, Farben gemischt: ab 5 Stück 10 %, ab 10 Stück 15 %. Ab {shipping.freeFrom} Platten ist auch der Versand kostenlos, darunter kostet er {euro(shipping.price)}.</p>
+          <p className="sh-note">Mengenrabatt auf alle Platten zusammen, Farben gemischt: ab 5 Stück 10 %, ab 10 Stück 15 %. Ab {shipping.freeFrom} Platten ist auch der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
           {!hasService && <p className="sh-note">Eine Website oder Roomtour? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/roomtours#pakete">KI-Roomtours</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 

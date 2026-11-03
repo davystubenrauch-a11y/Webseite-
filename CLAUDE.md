@@ -3,6 +3,11 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709). **Unternehmens-E-Mail: info@foav.de** (Empfänger aller Anfragen, Fragebögen, Bestellungen; öffentlich auf der Seite). Früher fd.solutions@web.de.
 
+## Stand: Adresse, Lieferzeit, Absender
+- Anschrift **Sollner Straße 51, 81479 München** (Privatadresse, kein Ladengeschäft) nur in Impressum, AGB, Widerruf, Datenschutz und Rechnungen (`lib/site.ts`, `addressNote` „Kein Ladengeschäft …“ im Impressum); schema.org und Seite zeigen weiter nur „München“. Rechtsform noch offen.
+- **NFC-Lieferzeit 3 bis 7 Werktage**: „Was brauchen Sie?“, Pakete-Hinweis, FAQ „Wie lange dauert es?“ (jetzt auch auf /nfc-platten), Shop, Dankeseite, AGB §5.
+- Absender-Standard jetzt `foav.de <info@foav.de>` (deliver + Stripe-Webhook), Empfänger-Standard `info@foav.de` → in Vercel nur noch `RESEND_API_KEY` nötig (Domain bei Resend bestätigen). Zusagen-Zeile in „Was brauchen Sie?“: „Festpreis, den Sie vor dem Kauf sehen“ / „Änderungswünsche vor der Freigabe inklusive“.
+
 ## Stand: Qualitäts-Check (4 Personas + KI-Workflow), Fragebögen lückenlos
 - Kunde: Doppelrolle Kunden-Perspektive (Restaurant, Boutique, Handwerk, Café) + interner KI-Workflow; Ziel: nach dem Fragebogen alles da, ohne Nachfragen, Zahlung direkt danach.
 - **Fragebögen**: `Q.req` (Schild „Pflicht“); `Submit` bekommt `missing()` → rote Box „Damit wir ohne Rückfragen starten können, fehlt noch: …“ mit Knöpfen, die zum Feld springen; ohne Vollständigkeit kein Warenkorb. **E-Mail jetzt Pflicht**, Telefon optional. **Entwurf wird gespeichert** (`useDraft`, `foav-draft-website|roomtour`, Fotos `foav-draft-photos-*`), gelöscht nach Absenden.

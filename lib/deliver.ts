@@ -23,14 +23,14 @@ export async function deliver(d: Delivery): Promise<boolean> {
       const res = await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": d.id },
-        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "info@foav.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text, ...(d.data ? { attachments: [attachment(d)] } : {}) }),
+        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <info@foav.de>", to: [process.env.INQUIRY_TO ?? "info@foav.de"], ...(d.replyTo ? { reply_to: d.replyTo } : {}), subject: d.subject, text: d.text, ...(d.data ? { attachments: [attachment(d)] } : {}) }),
       });
       if (res.ok) {
         if (d.copy) {
           await fetch("https://api.resend.com/emails", {
             method: "POST",
             headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json", "Idempotency-Key": `${d.id}-copy` },
-            body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [d.copy.to], reply_to: process.env.INQUIRY_TO ?? "info@foav.de", subject: d.copy.subject, text: d.copy.text }),
+            body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <info@foav.de>", to: [d.copy.to], reply_to: process.env.INQUIRY_TO ?? "info@foav.de", subject: d.copy.subject, text: d.copy.text }),
           }).catch(() => {});
         }
         return true;

@@ -13,6 +13,7 @@ export default function Impressum() {
         {site.address.map((l) => (
           <span key={l} className="block">{l}</span>
         ))}
+        <span className="block">{site.addressNote}</span>
       </p>
       <h2>Vertreten durch die Gesellschafter</h2>
       <p>{site.founders.map((f) => f.name).join(" und ")}</p>
