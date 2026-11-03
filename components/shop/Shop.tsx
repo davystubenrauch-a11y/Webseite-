@@ -6,7 +6,8 @@ import { site } from "@/lib/site";
 import { euro, isService, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
 
 // Shop: NFC plates and the basic roomtour, cart with the shipping rule, then Stripe Checkout
-// (or, while Stripe is not set up, an order by e-mail).
+// (or, while Stripe is not set up, the order is delivered to us and we send a payment link).
+// Cart persists in localStorage ("foav-cart").
 
 const css = `
 .sh-grid { display: grid; grid-template-columns: minmax(0, 1fr) 380px; gap: clamp(24px, 4vw, 56px); align-items: start; padding-bottom: 96px; }
@@ -56,23 +57,35 @@ export default function Shop({ online = false }: { online?: boolean }) {
   const [f, setF] = useState({ name: "", email: "", phone: "", company: "", business: "", address: "", consent: false, early: false, website: "" });
   const [ref, setRef] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [state, setState] = useState<"idle" | "sending" | "mail" | "sent">("idle");
+  const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
 
-  // preselect from the link, e.g. /shop?weiss=10 or /shop?roomtour=1
+  // The cart lives in localStorage, so it survives the questionnaire and a page reload.
+  // Links add to it, e.g. /shop?weiss=10, /shop?roomtour=1 or /shop?web=Business&ref=FOAV-…
+  const [ready, setReady] = useState(false);
   useEffect(() => {
-    const q = new URLSearchParams(location.search), c: Cart = {};
+    const q = new URLSearchParams(location.search);
+    let c: Cart = {}, refs: string[] = [];
+    try { const saved = JSON.parse(localStorage.getItem("foav-cart") ?? "{}"); c = saved.cart ?? {}; refs = saved.refs ?? []; } catch {}
     const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0);
     const web = (q.get("web") ?? "").toLowerCase();
     if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = 1; if (rp) c["roomtour-premium"] = 1;
-    if (web === "basis" || web === "business" || web === "premium") c[`web-${web}` as ProductId] = 1;
+    if (web === "basis" || web === "business" || web === "premium") { delete c["web-basis"]; delete c["web-business"]; delete c["web-premium"]; c[`web-${web}` as ProductId] = 1; }
+    const nr = (q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20);
+    if (nr && !refs.includes(nr)) refs.push(nr);
     setCart(c);
-    setRef((q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20));
+    setRef(refs.slice(-3).join(", "));
+    if (q.toString()) history.replaceState(null, "", location.pathname);
     // contact details from the questionnaire, so nobody types them twice
     try {
       const saved = JSON.parse(sessionStorage.getItem("foav-contact") ?? "{}");
       setF((o) => ({ ...o, name: saved.name ?? o.name, email: saved.email ?? o.email, phone: saved.phone ?? o.phone }));
     } catch {}
+    setReady(true);
   }, []);
+  useEffect(() => {
+    if (!ready) return;
+    try { localStorage.setItem("foav-cart", JSON.stringify({ cart, refs: ref ? ref.split(", ") : [] })); } catch {}
+  }, [cart, ref, ready]);
 
   const t = totals(cart);
   const hasService = t.lines.some((l) => isService(l.id));
@@ -87,27 +100,19 @@ export default function Shop({ online = false }: { online?: boolean }) {
       const res = await fetch("/api/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ cart, ref, ...f }) });
       const j = await res.json().catch(() => ({}));
       if (res.ok && j.url) { location.href = j.url; return; }
-      if (res.ok && j.ok) { setState("sent"); scrollTo({ top: 0 }); return; }
+      if (res.ok && j.ok) { try { localStorage.removeItem("foav-cart"); } catch {} setState("sent"); scrollTo({ top: 0 }); return; }
       if (res.status === 422 && j.errors) { setErrors(j.errors); setState("idle"); return; }
-      if (j.fallback && j.text) {
-        location.href = `mailto:${site.email}?subject=${encodeURIComponent(`Bestellung ${j.id}`)}&body=${encodeURIComponent(j.text)}`;
-        setState("mail"); scrollTo({ top: 0 }); return;
-      }
-      throw new Error();
-    } catch {
-      setErrors({ form: "Das hat nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie uns an." });
+      throw new Error(j.error);
+    } catch (err) {
+      setErrors({ form: (err instanceof Error && err.message) || "Das hat nicht geklappt. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an." });
       setState("idle");
     }
   }
 
-  const done = state === "sent" || state === "mail" ? (
+  const done = state === "sent" ? (
     <div className="bf-done" role="status">
-      <h1>{state === "mail" ? "Fast geschafft." : "Danke für Ihre Bestellung."}</h1>
-      <p className="bf-lead">
-        {state === "mail"
-          ? "Ihr E-Mail-Programm hat sich mit der fertigen Bestellung geöffnet. Bitte dort noch auf Senden tippen. Wir schicken Ihnen dann den Zahlungslink."
-          : "Wir schicken Ihnen innerhalb eines Tages den Zahlungslink. Nach der Zahlung geht Ihre Bestellung auf den Weg."}
-      </p>
+      <h1>Danke für Ihre Bestellung.</h1>
+      <p className="bf-lead">Ihre Bestellung ist bei uns. Wir schicken Ihnen innerhalb eines Tages den Zahlungslink per E-Mail. Nach der Zahlung geht Ihre Bestellung auf den Weg.</p>
       <a className="bf-btn" href="/">Zur Startseite</a>
     </div>
   ) : undefined;
@@ -185,6 +190,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
             <button className="bf-btn" type="submit" disabled={state === "sending" || !t.lines.length}>{state === "sending" ? "Wird vorbereitet …" : `Zahlungspflichtig bestellen für ${euro(t.total)}`}</button>
             {online && <p className="bf-hint">Rechnungs{t.plates > 0 ? "- und Liefer" : ""}adresse geben Sie im nächsten Schritt bei Stripe ein. Ihre Rechnung kommt nach der Zahlung per E-Mail.</p>}
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
+            {errors.form && <p className="bf-hint">Telefon: {site.founders.map((p, i) => <span key={p.phone}>{i ? " oder " : ""}<a href={`tel:${p.phone.replace(/\s/g, "")}`}>{p.phone}</a></span>)}</p>}
           </form>
         </aside>
       </div>

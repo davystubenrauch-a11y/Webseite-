@@ -1,10 +1,11 @@
 import { NextResponse } from "next/server";
 import { euro, isService, products, shipping, totals, vatNote, type Cart } from "@/lib/shop";
 import { stripe } from "@/lib/stripe";
+import { deliver } from "@/lib/deliver";
 
 // Creates a Stripe Checkout session for the shop (STRIPE_SECRET_KEY) with a post-purchase invoice.
 // Fulfilment runs in /api/stripe/webhook, not on the thank-you page. Without a key the order is
-// sent like an inquiry (Resend, then webhook); without those the client opens a pre-filled e-mail.
+// delivered like an inquiry (lib/deliver.ts) and we send a payment link.
 
 type Order = { cart: Cart; ref?: string; name: string; email: string; phone?: string; company?: string; business?: string; address?: string; consent: boolean; early?: boolean; website?: string };
 
@@ -39,7 +40,7 @@ export async function POST(req: Request) {
   const s = stripe();
   if (s) {
     const plates = t.plates > 0;
-    const meta = { order: id, ref: String(o.ref ?? "").slice(0, 20), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", note_address: o.address ?? "", early_start: o.early ? "ja" : "nein" };
+    const meta = { order: id, ref: String(o.ref ?? "").slice(0, 70), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", note_address: o.address ?? "", early_start: o.early ? "ja" : "nein" };
     for (const k of Object.keys(meta) as (keyof typeof meta)[]) meta[k] = meta[k].slice(0, 480);
     const line = (name: string, cents: number, qty: number) => ({ quantity: qty, price_data: { currency: "eur", unit_amount: cents, product_data: { name } } });
     try {
@@ -76,7 +77,7 @@ export async function POST(req: Request) {
     } catch (err) {
       console.error("[checkout] stripe failed", err instanceof Error ? err.message : err);
     }
-    return NextResponse.json({ ok: false, error: "Die Zahlung konnte nicht gestartet werden.", fallback: true, id }, { status: 502 });
+    return NextResponse.json({ ok: false, error: "Die Zahlung konnte gerade nicht gestartet werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 502 });
   }
 
   const text = [
@@ -95,23 +96,6 @@ export async function POST(req: Request) {
     o.address ? `Adresse: ${o.address}` : "",
     o.early ? "Sofortiger Beginn verlangt, Hinweis zum Erlöschen des Widerrufsrechts bestätigt." : "",
   ].filter(Boolean).join("\n");
-  try {
-    if (process.env.RESEND_API_KEY) {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({ from: process.env.INQUIRY_FROM ?? "foav.de <onboarding@resend.dev>", to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"], reply_to: o.email, subject: `Bestellung ${id}: ${euro(t.total)}`, text }),
-      });
-      if (!res.ok) throw new Error(`Resend ${res.status}`);
-      return NextResponse.json({ ok: true, id, manual: true });
-    }
-    if (process.env.INQUIRY_WEBHOOK_URL) {
-      const res = await fetch(process.env.INQUIRY_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ id, text, order: o }) });
-      if (!res.ok) throw new Error(`Webhook ${res.status}`);
-      return NextResponse.json({ ok: true, id, manual: true });
-    }
-  } catch (err) {
-    console.error("[checkout] delivery failed", err);
-  }
-  return NextResponse.json({ ok: false, fallback: true, id, text }, { status: 503 });
+  if (await deliver({ id, kind: "bestellung", subject: `Bestellung ${id}: ${euro(t.total)}`, text, replyTo: o.email, data: { ...o, website: undefined } })) return NextResponse.json({ ok: true, id, manual: true });
+  return NextResponse.json({ ok: false, error: "Die Bestellung konnte gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });
 }

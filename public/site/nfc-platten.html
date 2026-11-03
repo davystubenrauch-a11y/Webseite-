@@ -629,7 +629,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .case-x .lead { margin-top: 18px; }
 .case-x .btn { margin-top: 8px; }
 .case-x__media { position: relative; padding: 0 6% 6% 0; }
-.case-x__media .iphone { position: absolute; right: 0; bottom: 0; width: 22%; }
+.case-x__media .iphone { position: absolute; right: 0; bottom: 0; width: 22%; padding: clamp(3px, .45vw, 7px); }
 .team__note { margin-top: 28px; max-width: 46ch; font-size: 1.0625rem; color: var(--text); }
 @media (max-width: 1023px) { .fw { grid-template-columns: 1fr 1fr; } .case-x__grid { grid-template-columns: 1fr; } }
 @media (max-width: 560px) { .fw { grid-template-columns: 1fr; } }
@@ -797,7 +797,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .jstage--dark { background: linear-gradient(180deg, #2a2a2e, #141416); }
 .jstage .win { width: 100%; } .jstage .win__body { padding: 16px 18px 18px; } .jstage .win__h { font-size: 1.125rem; margin-bottom: 8px; }
 .jstage .prow { padding: 10px 0; } .jstage .prow--hi { padding: 10px 14px; } .jstage .prow b { font-size: 1.25rem; } .jstage .prow small { font-size: .75rem; } .jstage .prow span { font-size: .9375rem; }
-.jstage .fp__phone { width: 54%; }
+.jstage .fp__phone { width: 54%; padding: clamp(4px, .5vw, 7px); }
 .jstage .app { font-size: 11px; gap: 6px; } .jstage .app__h { font-size: 15px; } .jstage .app__chips span { font-size: 10px; padding: 4px 8px; }
 .jstage .mail { width: 100%; padding: 16px; } .jstage .mail__txt { font-size: .8125rem; } .jstage .mail__btns span { padding: 8px 12px; font-size: .75rem; }
 .jno { margin-top: 26px; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: var(--ink); color: #fff; font-weight: 600; }
@@ -877,6 +877,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 }
 
 .plan__was { margin:10px 0 0 !important; font-size:14px !important; color:var(--muted, #636366) !important; }
+.order { list-style: none; display: grid; gap: 10px; margin: 24px 0 8px; }
+.order a { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 20px; border-radius: 18px; background: var(--ink); color: #fff; text-decoration: none; transition: background .15s; }
+.order a:hover { background: #000; } .order a::after { content: "→"; font-size: 1.1rem; }
+.order b { font-weight: 600; } .order span { margin-left: auto; font-size: .9375rem; color: rgba(255,255,255,.72); }
 .case-x__cta { display: flex; flex-wrap: wrap; gap: 12px; }
 .case-x__more { margin-top:18px; font-size:15px; color:var(--muted, #636366); }
 .case-x__more a, .scene__fact a { color:inherit; text-decoration:underline; text-underline-offset:3px; }
@@ -1150,7 +1154,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .rt-scr { position: relative; width: 100%; height: 100%; border-radius: calc(var(--pw) * .13); overflow: hidden; background: #1d1d1f; }
 .rt-still, .rt-scr video { position: absolute; left: 50%; top: 50%; max-width: none; object-fit: cover; --sw: calc(var(--pw) * .93); --sh: calc(var(--pw) * .93 * 19.5 / 9);
   width: calc(var(--sw) + (var(--sh) - var(--sw)) * var(--c, 1)); height: calc(var(--sh) + (var(--sw) - var(--sh)) * var(--c, 1));
-  transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * 90deg)); }
+  transform: translate(-50%, -50%) rotate(calc(var(--c, 1) * 90deg)) scale(calc(1 + .52 * sin(var(--c, 1) * 180deg))); }
 .rt-isl { position: absolute; z-index: 2; left: 50%; top: 2.4%; width: 30%; height: 3.4%; translate: -50% 0; border-radius: 99px; background: #0b0b0c; }
 .rt-ph { position: absolute; z-index: 3; left: var(--cx); top: var(--cy); width: calc(var(--pw) * 1.05); aspect-ratio: 4 / 3; object-fit: cover; border: 6px solid #fff; border-bottom-width: 18px; border-radius: 4px; box-shadow: 0 24px 40px -20px rgba(60,40,20,.45);
   transform: translate(-50%, -50%) translate(calc((1 - var(--a, 1)) * var(--dx)), calc((1 - var(--a, 1)) * var(--dy))) rotate(calc((1 - var(--a, 1)) * var(--r))) scale(calc(1 - var(--a, 1) * .75));
@@ -1204,7 +1208,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/roomtours">KI-Roomtours</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#pakete" data-offers>Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="#kontakt">Kostenlos anfragen</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 300 €</span></a><a href="/roomtours">KI-Roomtours <span>ab 300 €</span></a><a href="/nfc-platten">NFC-Platten <span>15 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="/shop">Warenkorb</a></div></nav>
   </div>
 </header>
 
@@ -1214,7 +1218,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">NFC-Platten</span></nav>
       <h1 id="h-p-nfc">Mehr Sterne bei Google. Mit einem Antippen.</h1>
-      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#kontakt" data-pick="NFC-Platten">Kostenlos anfragen</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="/shop?weiss=5">Direkt bestellen</a></div></div></div>
       <div class="pst pst--nfc">
         <div class="pst__dev" aria-hidden="true">
           <span class="pst__disc pst__disc--b"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></span>
@@ -1296,7 +1300,12 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
     <div class="wrap contact__grid">
       <div>
         <h2 id="h-kontakt">Bereit für mehr Kunden?</h2>
-        <p class="lead">Wir melden uns innerhalb von 24 Stunden und beraten Sie kostenlos und unverbindlich.</p>
+        <p class="lead">So bestellen Sie: Paket wählen, Angaben ausfüllen, in den Warenkorb legen und sicher online bezahlen. Alles hier auf der Website.</p>
+        <ul class="order" role="list">
+          <li><a href="/websites#pakete"><b>Website</b><span>Paket wählen, ab 300 €</span></a></li>
+          <li><a href="/roomtours#pakete"><b>KI-Roomtour</b><span>Paket wählen, ab 300 €</span></a></li>
+          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Menge wählen, ab 15 €</span></a></li>
+        </ul>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
           <li><a href="tel:+4915566456417"><svg aria-hidden="true"><use href="#phone-i"/></svg><div><b>Florian Dressler</b><span>+49 155 66456417</span></div></a></li>
@@ -1306,7 +1315,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         </ul>
       </div>
       <form class="form" id="form" novalidate>
-        <h3>Kostenlos anfragen</h3><p class="form__sub">Name und Telefon oder E-Mail genügen. Die Anfrage ist unverbindlich. Schon entschieden? <a class="inl" href="/websites#pakete">Website-Pakete</a>, <a class="inl" href="/roomtours#pakete">Roomtour-Pakete</a> oder <a class="inl" href="/shop?weiss=5">NFC-Platten direkt bestellen</a>.</p>
+        <h3>Noch Fragen? Wir beraten Sie kostenlos.</h3><p class="form__sub">Sie wissen noch nicht, welches Paket passt, oder haben einen besonderen Wunsch? Name und Telefon oder E-Mail genügen, wir melden uns innerhalb von 24 Stunden.</p>
         <fieldset><legend>Worum geht es?</legend><div class="picks"><label><input type="checkbox" name="s" value="Website">Website</label><label><input type="checkbox" name="s" value="Roomtour">Roomtour</label><label><input type="checkbox" name="s" value="NFC-Platten">NFC-Platten</label></div><span class="err" id="eServices" aria-live="polite"></span></fieldset>
         <div class="pair">
           <div class="f"><label for="fName">Name</label><input id="fName" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="eName" required><span class="err" id="eName" aria-live="polite"></span></div>
@@ -1320,7 +1329,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
         <label class="consent"><input type="checkbox" id="fConsent" aria-describedby="eConsent"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.</span></label>
         <p class="consent-more">Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a></p>
         <span class="err" id="eConsent" aria-live="polite"></span>
-        <button class="btn btn--ink" type="submit" id="send">Anfrage senden</button>
+        <button class="btn btn--ink" type="submit" id="send">Beratung anfragen</button>
         <p class="status" id="status" role="status" hidden></p>
       </form>
     </div>
@@ -1330,7 +1339,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
           <div class="foot__brand"><p>Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
           <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/roomtours">KI-Roomtours</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
           <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#angebot">Leistungen im Vergleich</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
-          <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Anfrage senden</a></li></ul></div>
+          <div><h3>Kontakt</h3><ul><li><a href="tel:+4915566456417">+49 155 66456417</a></li><li><a href="tel:+4917656612709">+49 176 56612709</a></li><li><a href="mailto:fd.solutions@web.de">fd.solutions@web.de</a></li><li><a href="#kontakt">Kostenlose Beratung</a></li></ul></div>
         </div>
         <div class="foot__mark" id="footMark" aria-hidden="true"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></div>
         <div class="foot__base"><span>© <span id="year">2026</span> foav.de, München</span><nav aria-label="Rechtliches"><a href="/impressum">Impressum</a><a href="/agb">AGB</a><a href="/widerruf">Widerruf</a><a href="/datenschutz">Datenschutz</a><a class="totop" href="#start">Nach oben</a></nav></div>
@@ -1558,22 +1567,18 @@ document.addEventListener("DOMContentLoaded", function () {
     var col = $("[data-color][aria-pressed=true]");
     body.nfc = { theme: col ? col.getAttribute("data-color") : "", qty: qty ? +qty.value : 0, business: "" };
     body.budget = ""; body.timeline = "";
-    function mail() {
-      var text = "Leistungen: " + picked.join(", ") + "\nName: " + body.name + (body.company ? "\nFirma: " + body.company : "") + (body.email ? "\nE-Mail: " + body.email : "") + (body.phone ? "\nTelefon: " + body.phone : "") + (body.message ? "\n\n" + body.message : "");
-      location.href = "mailto:fd.solutions@web.de?subject=" + encodeURIComponent("Anfrage über die Website: " + picked.join(", ")) + "&body=" + encodeURIComponent(text);
-      note("Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage. Bitte dort noch auf Senden tippen.", true);
-    }
+    function fail(m) { note((m || "Das Senden hat gerade nicht geklappt. Bitte versuchen Sie es in einer Minute noch einmal") + " Oder rufen Sie uns direkt an: 0155 66456417 oder 0176 56612709.", false); }
     sendBtn.disabled = true; sendBtn.textContent = "Wird gesendet …";
     fetch("/api/inquiry", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) })
       .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { r: r, d: d }; }); })
       .then(function (x) {
-        if (x.r.ok) { form.reset(); note("Danke! Ihre Anfrage ist da. Wir melden uns innerhalb von 24 Stunden.", true); }
+        if (x.r.ok) { form.reset(); note("Danke! Ihre Nachricht ist bei uns. Wir melden uns innerhalb von 24 Stunden.", true); }
         else if (x.r.status === 422 && x.d && x.d.errors) note(Object.keys(x.d.errors).map(function (k) { return x.d.errors[k]; })[0], false);
         else if (x.r.status === 429) note(x.d.error || "Zu viele Anfragen. Bitte später erneut versuchen.", false);
-        else mail();
+        else fail(x.d && x.d.error);
       })
-      .catch(mail)
-      .then(function () { sendBtn.disabled = false; sendBtn.textContent = "Anfrage senden"; });
+      .catch(function () { fail(); })
+      .then(function () { sendBtn.disabled = false; sendBtn.textContent = "Beratung anfragen"; });
   });
 
 

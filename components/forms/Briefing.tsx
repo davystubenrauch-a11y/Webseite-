@@ -380,16 +380,15 @@ export function Submit({
     try {
       const res = await fetch("/api/briefing", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body) });
       const j = await res.json().catch(() => ({}));
-      if (res.ok && j.ok) { onDone({ id: j.id, mail: false, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return; }
-      if (res.status === 422 && j.errors) { setErrors(j.errors); setState("idle"); return; }
-      if (j.fallback) {
-        const text = summarizeBriefing(body).slice(0, 1800);
-        window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(`${kind === "website" ? "Website-Fragebogen" : "Roomtour-Auftrag"}: ${body.name}`)}&body=${encodeURIComponent(text)}`;
-        onDone({ id: "", mail: true, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return;
+      if (res.ok && j.ok) {
+        // Package + questionnaire number go straight into the cart, the visitor pays there.
+        if (p) { location.href = `${p.href}${p.href.includes("?") ? "&" : "?"}ref=${encodeURIComponent(j.id)}`; return; }
+        onDone({ id: j.id, mail: false, photos: body.photos.length, pay: p }); window.scrollTo({ top: 0 }); return;
       }
+      if (res.status === 422 && j.errors) { setErrors(j.errors); setState("idle"); return; }
       throw new Error(j.error);
-    } catch {
-      setErrors({ form: "Das hat nicht geklappt. Bitte versuchen Sie es erneut oder rufen Sie uns an." });
+    } catch (err) {
+      setErrors({ form: (err instanceof Error && err.message) || "Das hat nicht geklappt. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an." });
       setState("idle");
     }
   }
@@ -400,7 +399,7 @@ export function Submit({
         <div className="bf-sec__h">
           <b>{n}</b>
           <h2 id={`sec-${n}`}>Ihre Kontaktdaten</h2>
-          <p className="bf-intro">{pay ? "Nach dem Absenden geht es direkt zur Bezahlung. Danach legen wir los." : "Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis."}</p>
+          <p className="bf-intro">{pay && pay() ? "Danach liegt Ihr Paket im Warenkorb und Sie bezahlen sicher online. Dann legen wir los." : "Wir melden uns innerhalb von 24 Stunden mit Ihrem Festpreis."}</p>
         </div>
         <div className="bf-qs">
           <div className="bf-q half">
@@ -433,9 +432,9 @@ export function Submit({
           <div className="bf-q">
             <div className="bf-submit">
               <button className="bf-btn" type="submit" disabled={state === "sending" || photos.busy}>
-                {state === "sending" ? "Wird gesendet …" : photos.busy ? "Fotos werden hochgeladen …" : button}
+                {state === "sending" ? "Wird gespeichert …" : photos.busy ? "Fotos werden hochgeladen …" : pay && pay() ? "In den Warenkorb und bezahlen" : button}
               </button>
-              <span className="bf-small">Noch keine Zahlung. Im nächsten Schritt sehen Sie den Preis und bezahlen.</span>
+              <span className="bf-small">{pay && pay() ? `Ihre Angaben werden gespeichert, dann liegt ${pay()!.label} in Ihrem Warenkorb. Bezahlt wird im nächsten Schritt.` : "Noch keine Zahlung. Wir melden uns mit Ihrem Festpreis."}</span>
             </div>
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
             <p className="bf-call" style={{ marginTop: 28 }}>

@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { deliver } from "@/lib/deliver";
 import { kindLabels, summarizeBriefing, validateBriefing, type Briefing } from "@/lib/briefing";
 
 // Receives the website questionnaire and the roomtour order (answers + photo links)
@@ -37,34 +38,6 @@ export async function POST(req: Request) {
   const subject = `${kindLabels[data.kind]} ${id}: ${data.name}`;
   const text = `${summarizeBriefing(data)}\n\nReferenz: ${id}`;
 
-  try {
-    if (process.env.RESEND_API_KEY) {
-      const res = await fetch("https://api.resend.com/emails", {
-        method: "POST",
-        headers: { Authorization: `Bearer ${process.env.RESEND_API_KEY}`, "Content-Type": "application/json" },
-        body: JSON.stringify({
-          from: process.env.INQUIRY_FROM ?? "FOAV <onboarding@resend.dev>",
-          to: [process.env.INQUIRY_TO ?? "fd.solutions@web.de"],
-          reply_to: data.email || undefined,
-          subject,
-          text,
-        }),
-      });
-      if (!res.ok) throw new Error(`Resend ${res.status}`);
-      return NextResponse.json({ ok: true, id });
-    }
-    if (process.env.INQUIRY_WEBHOOK_URL) {
-      const res = await fetch(process.env.INQUIRY_WEBHOOK_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ id, subject, text, ...data, website: undefined }),
-      });
-      if (!res.ok) throw new Error(`Webhook ${res.status}`);
-      return NextResponse.json({ ok: true, id });
-    }
-  } catch (err) {
-    console.error("[briefing] delivery failed", err);
-    return NextResponse.json({ ok: false, error: "Zustellung fehlgeschlagen.", fallback: true, id }, { status: 502 });
-  }
-  return NextResponse.json({ ok: false, error: "Versand nicht konfiguriert.", fallback: true, id }, { status: 503 });
+  if (await deliver({ id, kind: data.kind, subject, text, replyTo: data.email || undefined, data: { ...data, website: undefined } })) return NextResponse.json({ ok: true, id });
+  return NextResponse.json({ ok: false, error: "Ihre Angaben konnten gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });
 }

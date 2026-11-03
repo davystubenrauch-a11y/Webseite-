@@ -3,6 +3,15 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709), fd.solutions@web.de.
 
+## Stand: alles auf der Website, Warenkorb, keine E-Mail-Weiterleitung
+- Kunde: „jedes iPhone Vollbild; Anfrage/Abwicklung verbessern; nie ins E-Mail-Programm weiterleiten, alles auf der Website; eigentlich: Produkt wählen → ausfüllen → Warenkorb (oder anfragen) → zahlen; alle Knöpfe sinnvoll“.
+- **Kein `mailto`-Ersatzweg mehr** (Kontaktformular, Fragebogen, Shop). Gemeinsamer Versand `lib/deliver.ts`: Resend → `INQUIRY_WEBHOOK_URL` → Vercel Blob (`eingang/…json`, privat, sonst öffentlich mit Zufallsnamen) → sonst Funktions-Log + `ok: false`; die Seite zeigt dann „bitte gleich noch einmal oder anrufen“ mit Nummern. **`RESEND_API_KEY` in Vercel ist Pflicht**, damit etwas ankommt.
+- **Warenkorb** in `localStorage` `foav-cart` (`{cart, refs}`): Links `/shop?…` legen dazu, URL wird danach bereinigt; mehrere Fragebogen-Nummern als `ref` (Server nimmt bis 70 Zeichen). Geleert nach Bestellung ohne Stripe bzw. auf `/shop/danke` (`ClearCart`).
+- **Fragebogen** (Website/Roomtour mit Paket): Knopf „In den Warenkorb und bezahlen“, nach dem Speichern direkt `/shop?web=…&ref=FOAV-…` (kein Zwischenbildschirm). Ohne Paket (Individuell/unsicher) bleibt die Dankeseite.
+- **Kontakt** jetzt Bestell-Wegweiser: „So bestellen Sie: Paket wählen, Angaben ausfüllen, in den Warenkorb legen und sicher online bezahlen“ + drei schwarze Zeilen (Website / KI-Roomtour / NFC-Platten → `#pakete`); Formular = „Noch Fragen? Wir beraten Sie kostenlos.“, Knopf „Beratung anfragen“. Menü-Knopf „Warenkorb“ → `/shop`, NFC-Einstieg zweiter Knopf „Direkt bestellen“, Fußzeile „Kostenlose Beratung“. Ablauf-Bild Schritt 2 = „Ihr Fragebogen“ → „In den Warenkorb“ → „Bezahlt“.
+- **iPhones**: Referenz- und Ablauf-Handy hatten dicken Rand (Prozent-Padding) → feste px; gedrehtes Roomtour-Handy füllt jetzt in jeder Drehphase (`scale(1 + .52·sin(c·180°))`). Alle `.iphone`/`.rt-dev` per Playwright einzeln geprüft (Desktop + Handy).
+- Link-Prüfung aller 4 Seiten: kein toter Anker, keine unbekannte Route. Durchgang getestet: Paket → Fragebogen → Warenkorb (690 €) → NFC dazu (757,50 € inkl. Rabatt) → Bestellung → Dank; Kontaktformular → Bestätigung.
+
 ## Stand: Fehler aus Kunden-Screenshots behoben
 - Handys in den Produkt-Bühnen hatten dicken schwarzen Rand (Prozent-Padding des `.iphone` rechnete von der Bühnenbreite) → `.pst .iphone { padding: .75cqw }`, Bildschirm randlos.
 - Start-Vorteile (`.hero__usps`) brachen in Spalten um (Lücken) → Zeilen als Fließtext mit Häkchen links (`display: block`, b/span inline).

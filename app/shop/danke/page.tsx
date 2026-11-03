@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import LegalPage from "@/components/ui/LegalPage";
 import { stripe } from "@/lib/stripe";
+import ClearCart from "@/components/shop/ClearCart";
 
 export const metadata: Metadata = { title: "Danke für Ihre Bestellung | foav.de", robots: { index: false } };
 export const dynamic = "force-dynamic";
@@ -22,6 +23,7 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
   const st = await status((await searchParams).session_id);
   return (
     <LegalPage title="Danke für Ihre Bestellung.">
+      {st !== "unknown" && <ClearCart />}
       {st === "pending" ? (
         <p>Ihre Bestellung ist eingegangen. Die Zahlung wird noch bestätigt (bei Lastschrift dauert das ein paar Tage). Sobald sie da ist, bekommen Sie die Rechnung per E-Mail.</p>
       ) : (
