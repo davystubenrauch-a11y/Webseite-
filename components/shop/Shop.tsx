@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Shell } from "@/components/forms/Briefing";
 import { site } from "@/lib/site";
 import { euro, isService, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
@@ -48,7 +48,7 @@ const css = `
 
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
-  if (id === "roomtour-basis" || id === "roomtour-premium") return <div className="sh-pic"><img src={id === "roomtour-basis" ? "/media/tour-md-2.jpg" : "/media/tour-md-1.jpg"} alt="" /></div>;
+  if (id.startsWith("roomtour-")) return <div className="sh-pic"><img src={id === "roomtour-basis" ? "/media/tour-md-2.jpg" : id === "roomtour-premium" ? "/media/tour-md-1.jpg" : "/media/tour-md-3.jpg"} alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
 
@@ -62,13 +62,17 @@ export default function Shop({ online = false }: { online?: boolean }) {
   // The cart lives in localStorage, so it survives the questionnaire and a page reload.
   // Links add to it, e.g. /shop?weiss=10, /shop?roomtour=1 or /shop?web=Business&ref=FOAV-…
   const [ready, setReady] = useState(false);
+  const loaded = useRef(false);
   useEffect(() => {
+    // read the link only once (React may run this twice in development)
+    if (loaded.current) return;
+    loaded.current = true;
     const q = new URLSearchParams(location.search);
     let c: Cart = {}, refs: string[] = [];
     try { const saved = JSON.parse(localStorage.getItem("foav-cart") ?? "{}"); c = saved.cart ?? {}; refs = saved.refs ?? []; } catch {}
-    const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0);
+    const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0), rx = +(q.get("exklusiv") ?? 0);
     const web = (q.get("web") ?? "").toLowerCase();
-    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = 1; if (rp) c["roomtour-premium"] = 1;
+    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = 1; if (rp) c["roomtour-premium"] = 1; if (rx) c["roomtour-exklusiv"] = 1;
     if (web === "basis" || web === "business" || web === "premium") { delete c["web-basis"]; delete c["web-business"]; delete c["web-premium"]; c[`web-${web}` as ProductId] = 1; }
     const nr = (q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20);
     if (nr && !refs.includes(nr)) refs.push(nr);
@@ -125,7 +129,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
         ["Paket wählen", "Der Preis steht vorher fest."],
         ["Fragebogen", "Websites und Roomtours: Angaben und Fotos senden."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Ergebnis erhalten", "Platten in 3 bis 7 Werktagen per Post, Roomtour in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
+        ["Ergebnis erhalten", "Platten in 3 bis 7 Werktagen per Post, Roomtour in 48 Stunden bis 5 Werktagen, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >

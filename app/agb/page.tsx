@@ -51,7 +51,7 @@ export default function Agb() {
 
       <h2>5. Lieferzeiten</h2>
       <p>
-        Eine Roomtour liefern wir in der Regel innerhalb von 48 Stunden, eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
+        Eine Roomtour liefern wir je nach Paket innerhalb von 48 Stunden (Basis), 72 Stunden (Premium) oder 5 Werktagen (Exklusiv), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
         sobald die Zahlung eingegangen ist und uns alle nötigen Unterlagen vorliegen (Fotos, Texte, Logo, Zugangsdaten). NFC-Platten versenden wir
         nach Zahlungseingang innerhalb Deutschlands; die Lieferung dauert 3 bis 7 Werktage. Verzögerungen, die wir nicht zu vertreten haben, verlängern die Fristen
         entsprechend.

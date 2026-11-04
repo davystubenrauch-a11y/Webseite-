@@ -1,6 +1,6 @@
 // Products, prices and shipping for the shop at /shop. Prices in cents.
 
-export type ProductId = "nfc-weiss" | "nfc-schwarz" | "roomtour-basis" | "roomtour-premium" | "web-basis" | "web-business" | "web-premium";
+export type ProductId = "nfc-weiss" | "nfc-schwarz" | "roomtour-basis" | "roomtour-premium" | "roomtour-exklusiv" | "web-basis" | "web-business" | "web-premium";
 
 export type Product = {
   id: ProductId;
@@ -17,8 +17,9 @@ export const products: Product[] = [
   { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder eine Etage, bis 8 Räume, Video 60 bis 90 Sekunden quer und hochkant, fertig in 48 Stunden", price: 30000, physical: false, max: 5 },
   { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
   { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, online in 7 Tagen", price: 69000, physical: false, max: 1 },
-  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. KI-Roomtour Basis oder 10 NFC-Platten, online in 7 Tagen", price: 129000, physical: false, max: 1 },
-  { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 49000, physical: false, max: 5 },
+  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, online in 7 Tagen", price: 129000, physical: false, max: 1 },
+  { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo und Ihre Farben, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 60000, physical: false, max: 5 },
+  { id: "roomtour-exklusiv", name: "KI-Roomtour Exklusiv", short: "Bis 600 m², bis 30 Räume, Hauptfilm bis 3 Minuten in 4K, Kurzfassung 30 Sekunden, 6 Kurzclips, Deutsch und Englisch, fertig in 5 Werktagen", price: 140000, physical: false, max: 3 },
 ];
 
 /** Services start right after payment; consumers must agree to that before ordering (§ 356 Abs. 4 BGB). */
@@ -26,7 +27,6 @@ export const isService = (id: ProductId) => !products.find((p) => p.id === id)?.
 
 export const shipping = { price: 299, freeFrom: 5, label: "Versand innerhalb Deutschlands" };
 
-// TODO: set once it is clear how VAT is handled (small business § 19 UStG or regular VAT).
 // FOAV GbR is a small business (Kleinunternehmer): no VAT is charged. Also printed on every Stripe invoice.
 export const vatNote = "Alle Preise sind Endpreise. Gemäß § 19 UStG wird keine Umsatzsteuer berechnet.";
 
