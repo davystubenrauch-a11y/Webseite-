@@ -8,6 +8,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: Anrufen nur im Notfall (4.11.)
+- Kunde: „Anrufen nur im Notfall, nicht zum Anfragen; Ablauf = Angebot wählen → Fragebogen → bezahlen oder Warenkorb“. Handy-Leiste jetzt **„Warenkorb“ (/shop) + „Angebot wählen“** (#angebot bzw. #pakete). Telefonnummern raus aus Gründer-Karten, Kontakt-Liste, Fußzeile (dort jetzt „Angebot wählen“ + „Warenkorb“), Fragebogen („Lieber telefonieren?“ entfernt) und Dankeseiten; Texte verweisen aufs Beratungsformular (Antwort in 24 Stunden). Nummern nur noch klein unter Kontakt („Nur in dringenden Fällen telefonisch …“), im Impressum und im Fehlerfall des Shops.
+
 ## Stand: Handy-Feinschliff (3.11.)
 - Kunde: „auf dem Handy Proportionen und Anordnungen falsch“. Block „phone polish“ am Ende des CSS im Template (≤ 700 px): Überschriften mit mehr Laufweite und voller Breite (Szenen-h2 brach vorher in 4 schmale Zeilen), Zusagen-Liste unter den Angeboten als saubere Spalte mit ausgerichteten Häkchen, Dock schlanker, Filme mit größeren Geräten (Roomtour `--pw`, NFC `--w` 42vw/21vh, Handy nicht mehr über dem Text), Gründer-Karten nebeneinander und kompakt, „Über uns“-Satz kleiner, Fußzeile zweispaltig, Schildchen der Produkt-Bühnen kleiner und je Bühne eins weniger (überlappten sich).
 - Favicon für Google: `public/favicon.ico` + `media/icon-foav-192.png`.

@@ -482,12 +482,6 @@ export function Submit({
               </div>
             )}
             {errors.form && <p className="bf-err" role="alert">{errors.form}</p>}
-            <p className="bf-call" style={{ marginTop: 28 }}>
-              Lieber telefonieren?
-              {site.founders.map((f) => (
-                <a key={f.phone} href={`tel:${f.phone.replace(/\s+/g, "")}`}>{f.name.split(" ")[0]} {f.phone}</a>
-              ))}
-            </p>
           </div>
         </div>
       </section>
@@ -510,7 +504,7 @@ export function Done({ kind, id, mail, photos, pay }: DoneInfo & { kind: Briefin
           {photos > 0 && ` ${photos} ${photos === 1 ? "Foto ist" : "Fotos sind"} dabei.`} {id && <>Ihre Referenz: <code>{id}</code></>}
         </p>
         <a className="bf-btn" href={href}>Weiter zur Bezahlung</a>
-        <p className="bf-small" style={{ marginTop: 16 }}>Noch eine Frage vorher? Rufen Sie uns an, die Angaben bleiben gespeichert.</p>
+        <p className="bf-small" style={{ marginTop: 16 }}>Noch eine Frage vorher? Schreiben Sie uns über das Beratungsformular auf foav.de, Ihre Angaben bleiben gespeichert.</p>
       </div>
     );
   }

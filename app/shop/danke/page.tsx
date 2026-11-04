@@ -40,7 +40,7 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
       <p>
         <b>Website:</b> Wir melden uns innerhalb eines Werktags mit den nächsten Schritten.
       </p>
-      <p>Fragen? Rufen Sie uns an oder antworten Sie einfach auf die Bestätigungs-E-Mail.</p>
+      <p>Fragen? Antworten Sie einfach auf die Bestätigungs-E-Mail.</p>
     </LegalPage>
   );
 }
