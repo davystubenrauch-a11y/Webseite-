@@ -15,9 +15,9 @@ export const products: Product[] = [
   { id: "nfc-weiss", name: "NFC-Platte Weiß", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "nfc-schwarz", name: "NFC-Platte Schwarz", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1500, physical: true, max: 50 },
   { id: "roomtour-basis", name: "KI-Roomtour Basis", short: "Bis 150 m² oder eine Etage, bis 8 Räume, Video 60 bis 90 Sekunden quer und hochkant, fertig in 48 Stunden", price: 30000, physical: false, max: 5 },
-  { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
-  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, online in 7 Tagen", price: 69000, physical: false, max: 1 },
-  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, online in 7 Tagen", price: 129000, physical: false, max: 1 },
+  { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, Hosting inklusive, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 30000, physical: false, max: 1 },
+  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, Hosting inklusive, online in 7 Tagen", price: 69000, physical: false, max: 1 },
+  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, Hosting inklusive, online in 7 Tagen", price: 129000, physical: false, max: 1 },
   { id: "roomtour-premium", name: "KI-Roomtour Premium", short: "Bis 300 m² oder mehrere Etagen, bis 15 Räume inkl. Außenbereich, Logo und Ihre Farben, 3 Kurzclips für Social Media, fertig in 72 Stunden", price: 60000, physical: false, max: 5 },
   { id: "roomtour-exklusiv", name: "KI-Roomtour Exklusiv", short: "Bis 600 m², bis 30 Räume, Hauptfilm bis 3 Minuten in 4K, Kurzfassung 30 Sekunden, 6 Kurzclips, Deutsch und Englisch, fertig in 5 Werktagen", price: 140000, physical: false, max: 3 },
 ];
