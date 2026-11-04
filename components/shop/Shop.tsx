@@ -153,7 +153,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
               </article>
             ))}
           </div>
-          <p className="sh-note">Mengenrabatt auf alle Platten zusammen, Farben gemischt: ab 5 Stück 10 %, ab 10 Stück 15 %. Ab {shipping.freeFrom} Platten ist auch der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
+          <p className="sh-note">Mengenpreis für alle Platten zusammen, Farben gemischt: ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist auch der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
           {!hasService && <p className="sh-note">Eine Website oder Roomtour? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/roomtours#pakete">KI-Roomtours</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 
@@ -162,12 +162,12 @@ export default function Shop({ online = false }: { online?: boolean }) {
           {t.lines.length === 0 ? <p className="sh-empty">Noch nichts ausgewählt.</p> : (
             <>
               {t.lines.map((l) => <div className="sh-row" key={l.id}><span>{l.qty} × {l.name}</span><b>{euro(l.qty * l.price)}</b></div>)}
-              {t.saved > 0 && <div className="sh-row"><span>Darin gespart ({t.off} % Mengenrabatt)</span><b>−{euro(t.saved)}</b></div>}
+              {t.saved > 0 && <div className="sh-row"><span>Darin gespart (Mengenpreis)</span><b>−{euro(t.saved)}</b></div>}
               {t.plates > 0 && <div className="sh-row"><span>Versand</span><b>{t.ship ? euro(t.ship) : "kostenlos"}</b></div>}
               <div className="sh-row sh-total"><span>Summe</span><b>{euro(t.total)}</b></div>
               {ref && <p className="sh-hint">Zu Ihrem Fragebogen {ref}</p>}
               <p className="sh-hint">{vatNote}</p>
-              {t.plates > 0 && t.plates < 10 && <p className="sh-free">{t.plates < shipping.freeFrom ? `Noch ${shipping.freeFrom - t.plates} ${shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann sparen Sie 10 % und der Versand ist kostenlos.` : `Noch ${10 - t.plates} ${10 - t.plates === 1 ? "Platte" : "Platten"}, dann sparen Sie 15 %.`}</p>}
+              {t.plates > 0 && t.plates < 10 && <p className="sh-free">{t.plates < shipping.freeFrom ? `Noch ${shipping.freeFrom - t.plates} ${shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann zahlen Sie nur 13,90 € pro Platte und der Versand ist kostenlos.` : `Noch ${10 - t.plates} ${10 - t.plates === 1 ? "Platte" : "Platten"}, dann zahlen Sie nur 12,90 € pro Platte.`}</p>}
             </>
           )}
           <form className="sh-form" onSubmit={order} noValidate>

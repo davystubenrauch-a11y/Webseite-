@@ -8,6 +8,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: alle Preise psychologisch (4.11.)
+- Kunde: „passe alle Preise psychologisch an“. **Roomtours 349 / 649 (Empfohlen) / 1.449 €** (`lib/shop.ts` 34900/64900/144900, Fragebogen, FAQ, AGB-unabhängig). **NFC-Platte 14,90 €**, Mengenpreis statt Prozent-Rabatt: **ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte** (5 = 69,50 € statt 74,50 €, 10 = 129 € statt 149 €; `plateTiers` mit `unit`, Stripe-Posten „Mengenpreis 13,90 €“, Shop „Darin gespart (Mengenpreis)“, Rechner auf /nfc-platten). Start-USP „Festpreise ab 14,90 €“, schema.org priceRange 14,90–1.499 €. Ungenutzte `rec`/`#fuer-wen`-Summen mitgezogen (528 / 363,90 / 468,50 €).
+
 ## Stand: Website-Preise psychologisch (4.11.)
 - Kunde: „Website-Preise etwas höher und psychologisch durchdacht, wie 399 €“. **Basis 399 €, Business 799 € (Empfohlen), Premium 1.499 €** (Schwellenpreise unter 400/800/1.500; Premium als Anker lässt Business günstig wirken). Überall ersetzt: Paketkarten, „Was brauchen Sie?“, Film, Kennzahl, Menü, Start-Schild, Preis-Abschnitt, Ablauf-Preisliste, Kontakt-Wegweiser, FAQ, Meta-Beschreibungen (Template, build.py, layout.tsx), schema.org, Shop (`lib/shop.ts` 39900/79900/149900), Fragebogen. Ungenutzte Blöcke (`#fuer-wen`, `#passend`) mitgezogen (549/474 €). Roomtour-Preise unverändert.
 

@@ -9,7 +9,7 @@ const sections: Section[] = [
     questions: [
       { id: "firma", label: "Name des Unternehmens oder Objekts", type: "text", placeholder: "z. B. Ferienwohnung Seeblick, Praxis Dr. Huber", half: true, req: true },
       { id: "ort_genau", label: "Adresse des Objekts", type: "text", placeholder: "nur für uns, erscheint nicht im Video", half: true },
-      { id: "paket", label: "Paket", type: "one", options: ["Basis|bis 150 m², 300 €", "Premium|bis 300 m², 600 €", "Exklusiv|bis 600 m², 1.400 €", "Größer oder mehrere Objekte|Festpreis auf Anfrage"], req: true },
+      { id: "paket", label: "Paket", type: "one", options: ["Basis|bis 150 m², 349 €", "Premium|bis 300 m², 649 €", "Exklusiv|bis 600 m², 1.449 €", "Größer oder mehrere Objekte|Festpreis auf Anfrage"], req: true },
       { id: "art", label: "Was sollen wir zeigen?", type: "one", options: ["Ferienwohnung / Airbnb", "Hotel / Pension", "Immobilie (Verkauf oder Vermietung)", "Laden / Showroom", "Restaurant / Café", "Praxis / Studio", "Büro", "Sonstiges"], req: true },
       { id: "flaeche", label: "Fläche in m²", type: "number", placeholder: "z. B. 75", half: true, req: true },
       { id: "etagen", label: "Etagen im Video", type: "one", options: ["1", "2", "3 oder mehr"], half: true, req: true },
@@ -155,9 +155,9 @@ export default function RoomtourBriefing() {
   const pay = () => {
     const p = String(v.paket ?? "").split("|")[0];
     const tier = p === "Basis" || p === "Premium" || p === "Exklusiv" ? p : p ? "" : area > 600 ? "" : area > 300 ? "Exklusiv" : area > 150 ? "Premium" : "Basis";
-    return tier === "Basis" ? { href: "/shop?roomtour=1", label: "KI-Roomtour Basis für 300 €" }
-      : tier === "Premium" ? { href: "/shop?premium=1", label: "KI-Roomtour Premium für 600 €" }
-      : tier === "Exklusiv" ? { href: "/shop?exklusiv=1", label: "KI-Roomtour Exklusiv für 1.400 €" } : null;
+    return tier === "Basis" ? { href: "/shop?roomtour=1", label: "KI-Roomtour Basis für 349 €" }
+      : tier === "Premium" ? { href: "/shop?premium=1", label: "KI-Roomtour Premium für 649 €" }
+      : tier === "Exklusiv" ? { href: "/shop?exklusiv=1", label: "KI-Roomtour Exklusiv für 1.449 €" } : null;
   };
 
   // Without these we would have to ask back: every chosen room needs at least two photos.
@@ -207,7 +207,7 @@ export default function RoomtourBriefing() {
           {i === 0 && (
             <div className="bf-q" aria-live="polite">
               <div className="bf-quote">
-                <span className="bf-price">{area > 600 ? "Auf Anfrage" : area > 300 ? "1.400 €" : area > 150 ? "600 €" : "300 €"}</span>
+                <span className="bf-price">{area > 600 ? "Auf Anfrage" : area > 300 ? "1.449 €" : area > 150 ? "649 €" : "349 €"}</span>
                 <span>{area > 600 ? "Über 600 m² nennen wir Ihnen vorher einen schriftlichen Festpreis." : area > 300 ? "Exklusiv: bis 600 m², Hauptfilm in 4K, Kurzfassung, sechs Kurzclips, Deutsch und Englisch." : area > 150 ? "Premium: bis 300 m² oder mehrere Etagen, mit Außenbereich, Logo und drei Kurzclips." : "Basis: bis 150 m² oder ein ganzes Stockwerk."}</span>
               </div>
             </div>

@@ -23,10 +23,10 @@ pages = {
     'home': ('index.html', '/', None, None),
     'websites': ('websites.html', '/websites', 'Websites ab 399 € · FOAV München',
                  'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
-    'roomtours': ('roomtours.html', '/roomtours', 'KI-Roomtours ab 300 € · FOAV München',
-                  'Video-Rundgang aus Ihren Handyfotos für Airbnb, Booking.com und Ihre Website. 300 € bis 150 m², fertig in bis zu 48 Stunden, ohne Fototermin.'),
-    'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · 15 € · FOAV',
-                    'NFC-Platten für mehr Google-Bewertungen: Gast hält das Handy an die Platte, die Bewertungsseite öffnet sich. 15 € pro Stück, Weiß oder Schwarz, ohne App.'),
+    'roomtours': ('roomtours.html', '/roomtours', 'KI-Roomtours ab 349 € · FOAV München',
+                  'Video-Rundgang aus Ihren Handyfotos für Airbnb, Booking.com und Ihre Website. 349 € bis 150 m², fertig in bis zu 48 Stunden, ohne Fototermin.'),
+    'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · 14,90 € · FOAV',
+                    'NFC-Platten für mehr Google-Bewertungen: Gast hält das Handy an die Platte, die Bewertungsseite öffnet sich. 14,90 € pro Stück, Weiß oder Schwarz, ohne App.'),
 }
 a = t.index('<main id="start">') + len('<main id="start">'); b = t.index('</main>')
 head, main, tail = t[:a], t[a:b], t[b:]
