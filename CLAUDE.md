@@ -8,6 +8,11 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: „0 € Hosting“ gut sichtbar, NFC-Preis mittig (4.11.)
+- Kunde: „Preis bei den NFC-Karten nicht mittig; dass wir kein Hosting verlangen, muss klar dastehen, auf der Startseite bei den Vorteilen und auf der Websites-Seite“.
+- Neue schwarze Box **`.hostbar`** („0 € Hosting im Monat. Bei vielen Anbietern zahlen Sie jeden Monat für das Hosting Ihrer Website. Bei uns ist es inklusive, ohne Abo.“): Start über den Vorteilen, /websites im Einstieg unter den Knöpfen und über der Paketwahl. Keine Aussage „besser als alle“ (nicht belegbar), kein „für immer“ (AGB §3a erlaubt Einstellung mit Vorlauf).
+- „Was brauchen Sie?“: Preis nur noch mit kurzem Zusatz, darunter eigene Zeile `.cmpc__sub` (Website „**Hosting inklusive**, 0 € im Monat“, Roomtour „Basis fertig in 48 Stunden“, NFC „ab 5 Stück nur 13,90 €“) → alle drei Preise mittig und auf gleicher Höhe.
+
 ## Stand: alle Preise psychologisch (4.11.)
 - Kunde: „passe alle Preise psychologisch an“. **Roomtours 349 / 649 (Empfohlen) / 1.449 €** (`lib/shop.ts` 34900/64900/144900, Fragebogen, FAQ, AGB-unabhängig). **NFC-Platte 14,90 €**, Mengenpreis statt Prozent-Rabatt: **ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte** (5 = 69,50 € statt 74,50 €, 10 = 129 € statt 149 €; `plateTiers` mit `unit`, Stripe-Posten „Mengenpreis 13,90 €“, Shop „Darin gespart (Mengenpreis)“, Rechner auf /nfc-platten). Start-USP „Festpreise ab 14,90 €“, schema.org priceRange 14,90–1.499 €. Ungenutzte `rec`/`#fuer-wen`-Summen mitgezogen (528 / 363,90 / 468,50 €).
 

@@ -1256,6 +1256,15 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
   .dock { -webkit-backdrop-filter: none; backdrop-filter: none; background: #161618; }
   .choose__bar, .hs__a span { -webkit-backdrop-filter: none; backdrop-filter: none; background: #fff; }
 }
+
+/* ---------- hosting highlight + price sub line */
+.cmpc__sub { margin-top: 6px; font-size: .9375rem; color: var(--muted); } .cmpc__sub b { color: var(--ink); font-weight: 600; }
+.hostbar { display: flex; align-items: flex-start; gap: 12px; max-width: 560px; margin: 0 0 20px; padding: 14px 18px; border-radius: 16px; background: var(--ink); color: #d8d8dc; font-size: .9375rem; line-height: 1.45; }
+.hostbar b { color: #fff; font-weight: 600; }
+.hostbar svg { flex: none; width: 20px; height: 20px; margin-top: 1px; padding: 4px; border-radius: 50%; background: #fff; color: var(--ink); fill: none; stroke: currentColor; stroke-width: 3; }
+.phero__text .hostbar { margin: 28px 0 0; }
+#pakete .sec__head + .hostbar { margin: -8px 0 28px; }
+@media (max-width: 700px) { .hostbar { font-size: .875rem; padding: 12px 14px; } .phero__text .hostbar { margin-top: 20px; } }
 </style>
 </head>
 <body>
@@ -1320,8 +1329,9 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
     </div>
     </div>
     <div class="wrap hero__usps">
+      <p class="hostbar"><svg aria-hidden="true"><use href="#tick"/></svg><span><b>0 € Hosting im Monat.</b> Bei vielen Anbietern zahlen Sie jeden Monat für das Hosting Ihrer Website. Bei uns ist es inklusive, ohne Abo.</span></p>
       <ul class="usps" role="list" aria-label="Was uns ausmacht">
-        <li><b>Festpreise ab 14,90 €</b><span>Website-Hosting inklusive, kein Abo, keine versteckten Kosten</span></li>
+        <li><b>Festpreise ab 14,90 €</b><span>einmal zahlen, keine versteckten Kosten</span></li>
         <li><b>KI-gestützte Profi-Qualität</b><span>durchdachtes Design, sauber umgesetzt</span></li>
         <li><b>Extrem schnell</b><span>Roomtour in 48 Stunden, Website in 7 Tagen</span></li>
       </ul>
@@ -1338,7 +1348,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <div class="cmpc__stage" aria-hidden="true"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-villa-desk-top.jpg" alt="" loading="lazy"></div></div><div class="mac__base"></div></div></div>
           <h3>Website</h3>
           <p class="cmpc__tag">Bringt Ihnen Anfragen, auch wenn Sie schlafen.</p>
-          <p class="cmpc__price"><small>ab</small> 399 €</p>
+          <p class="cmpc__price"><small>ab</small> 399 €</p><p class="cmpc__sub"><b>Hosting inklusive</b>, 0 € im Monat</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/websites#pakete">Pakete ansehen</a><a class="more" href="/websites">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 bis 10 Seiten, Hosting inklusive</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 5 bis 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen, Gastro</dd></div></dl>
         </article>
@@ -1346,7 +1356,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img class="iphone__still" src="/media/tour-md-2.jpg" alt="" loading="lazy"><video id="cmpVid" muted loop playsinline autoplay preload="none" poster="/media/tour-md-2.jpg"><source src="/media/roomtour-villa-960.mp4" type="video/mp4"></video></div></div><span class="rt-chip"><i></i>Roomtour läuft</span></div>
           <h3>KI-Roomtour</h3>
           <p class="cmpc__tag">Zeigt Ihre Räume als Film, bevor Kunden kommen. Aus Ihren Handyfotos.</p>
-          <p class="cmpc__price"><small>ab</small> 349 €</p>
+          <p class="cmpc__price"><small>ab</small> 349 €</p><p class="cmpc__sub">Basis fertig in 48 Stunden</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/roomtours#pakete">Pakete ansehen</a><a class="more" href="/roomtours">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Handyfotos Ihrer Räume</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Video in Full HD</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 Stunden bis 5 Werktagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Airbnb, Hotels, Makler, Läden</dd></div></dl>
         </article>
@@ -1354,7 +1364,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="cmpc__colors">Weiß und Schwarz</span></div>
           <h3>NFC-Platte</h3>
           <p class="cmpc__tag">Macht aus zufriedenen Gästen Google-Bewertungen. Ein Antippen genügt.</p>
-          <p class="cmpc__price">14,90 € <small>pro Stück, ab 5 Stück nur 13,90 €</small></p>
+          <p class="cmpc__price">14,90 € <small>pro Stück</small></p><p class="cmpc__sub">ab 5 Stück nur 13,90 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/shop?weiss=5">Platten bestellen</a><a class="more" href="/nfc-platten">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Auf Ihr Unternehmen eingerichtete Platten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Per Post in 3 bis 7 Werktagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Praxen, Hotels</dd></div></dl>
         </article>

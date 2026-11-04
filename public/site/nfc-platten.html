@@ -1256,6 +1256,15 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
   .dock { -webkit-backdrop-filter: none; backdrop-filter: none; background: #161618; }
   .choose__bar, .hs__a span { -webkit-backdrop-filter: none; backdrop-filter: none; background: #fff; }
 }
+
+/* ---------- hosting highlight + price sub line */
+.cmpc__sub { margin-top: 6px; font-size: .9375rem; color: var(--muted); } .cmpc__sub b { color: var(--ink); font-weight: 600; }
+.hostbar { display: flex; align-items: flex-start; gap: 12px; max-width: 560px; margin: 0 0 20px; padding: 14px 18px; border-radius: 16px; background: var(--ink); color: #d8d8dc; font-size: .9375rem; line-height: 1.45; }
+.hostbar b { color: #fff; font-weight: 600; }
+.hostbar svg { flex: none; width: 20px; height: 20px; margin-top: 1px; padding: 4px; border-radius: 50%; background: #fff; color: var(--ink); fill: none; stroke: currentColor; stroke-width: 3; }
+.phero__text .hostbar { margin: 28px 0 0; }
+#pakete .sec__head + .hostbar { margin: -8px 0 28px; }
+@media (max-width: 700px) { .hostbar { font-size: .875rem; padding: 12px 14px; } .phero__text .hostbar { margin-top: 20px; } }
 </style>
 </head>
 <body>
