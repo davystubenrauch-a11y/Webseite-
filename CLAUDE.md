@@ -8,6 +8,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: Bestellweg deutlich (4.11.)
+- Kunde: „man sieht nur klein ‚zum Fragebogen‘, Leute wissen nicht, dass das der Bestellweg ist“. Über jeder Paketwahl jetzt **3 Schritt-Kacheln `.buy`** (Websites: Paket wählen → Fragebogen ausfüllen ~15 Min. → In den Warenkorb und bezahlen; Roomtour: Paket → Fragebogen und Fotos → bezahlen; NFC: Menge/Farbe → Warenkorb (kein Fragebogen) → bezahlen, 3–7 Werktage). Jede Paketkarte hat unten einen Knopf **„Dieses Paket wählen“ / „✓ Ausgewählt“** (`.plan__cta`, CSS-Text). Leiste `.choose__bar` klebt unten (sticky), zeigt „Ihre Wahl · als Nächstes: Fragebogen, danach bezahlen“; solange die Paketwahl sichtbar ist, wird das Handy-Dock ausgeblendet (`body.in-choose`, IntersectionObserver).
+
 ## Stand: Anrufen nur im Notfall (4.11.)
 - Kunde: „Anrufen nur im Notfall, nicht zum Anfragen; Ablauf = Angebot wählen → Fragebogen → bezahlen oder Warenkorb“. Handy-Leiste jetzt **„Warenkorb“ (/shop) + „Angebot wählen“** (#angebot bzw. #pakete). Telefonnummern raus aus Gründer-Karten, Kontakt-Liste, Fußzeile (dort jetzt „Angebot wählen“ + „Warenkorb“), Fragebogen („Lieber telefonieren?“ entfernt) und Dankeseiten; Texte verweisen aufs Beratungsformular (Antwort in 24 Stunden). Nummern nur noch klein unter Kontakt („Nur in dringenden Fällen telefonisch …“), im Impressum und im Fehlerfall des Shops.
 

@@ -1227,6 +1227,25 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .pst--room .pst__tags li:nth-child(3) { --x: auto !important; --rx: 4% !important; --y: 88% !important; }
   .pst--nfc .pst__tags li:nth-child(2) { display: none; }
 }
+/* ---------- ordering made obvious: 3 steps above the packages, a choose button on every card, sticky bar ---------- */
+.buy { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: clamp(28px, 3vw, 44px) 0 0; }
+.buy + .choose .plans { margin-top: 20px; }
+.buy li { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.buy i { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; font-weight: 700; font-size: .9375rem; }
+.buy b { display: block; font-size: 1.0625rem; font-weight: 650; color: var(--ink); line-height: 1.3; }
+.buy span { display: block; margin-top: 2px; font-size: .9375rem; color: var(--muted); line-height: 1.4; }
+.plan__cta { display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 22px; }
+.plan__cta::before { content: "Dieses Paket wählen"; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--ink); color: var(--ink); font-weight: 600; font-size: 1rem; transition: background .2s, color .2s; }
+.choose .plan:hover .plan__cta::before { background: #f2f2f4; }
+.choose .plan:has(input:checked) .plan__cta::before { content: "✓ Ausgewählt"; background: var(--ink); color: #fff; }
+.choose .plan .feat { margin-bottom: 0; }
+.choose__bar { position: sticky; bottom: 16px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.4), inset 0 0 0 1px var(--line); }
+.choose__bar em { font-style: normal; }
+.choose__go::after { content: " →"; }
+@media (max-width: 900px) { .buy { grid-template-columns: minmax(0, 1fr); gap: 8px; } .buy li { padding: 14px 16px; } }
+@media (max-width: 700px) { .choose__bar { bottom: calc(12px + env(safe-area-inset-bottom)); } }
+/* while the package choice is on screen its own bar replaces the bottom dock */
+body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1366,9 +1385,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Wählen Sie Ihre Roomtour.</h2></div><p class="lead">Fester Preis nach Größe. Sie schicken Handyfotos, wir liefern das fertige Video.</p></div>
+      <ol class="buy" role="list" aria-label="So bestellen Sie"><li><i>1</i><div><b>Paket wählen</b><span>Nach Größe Ihrer Räume.</span></div></li><li><i>2</i><div><b>Fragebogen und Fotos</b><span>Räume wählen, Handyfotos hochladen.</span></div></li><li><i>3</i><div><b>In den Warenkorb und bezahlen</b><span>Sicher online. Video in 48 bis 72 Stunden.</span></div></li></ol>
       <form class="choose" data-land data-choose="room" onsubmit="return false">
-        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan plan--top"><input type="radio" name="room" value="Basis" data-href="/anfrage/roomtour?paket=Basis" data-label="KI-Roomtour Basis, 300 €" checked><h3>Basis</h3><p>Für Wohnungen, Ferienwohnungen, Läden und Praxen</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder eine Etage, bis 8 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video 60 bis 90 Sekunden in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Querformat für Website und Portale</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Hochformat für Instagram und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Raumnamen eingeblendet, lizenzfreie Musik</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Abspann mit Ihrem Namen und Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 48 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Premium" data-href="/anfrage/roomtour?paket=Premium" data-label="KI-Roomtour Premium, 490 €"><h3>Premium</h3><p>Für Häuser, Hotels und Makler-Objekte</p><p class="plan__big">490 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 300 m² oder mehrere Etagen, bis 15 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Inklusive Außenbereich, Garten oder Terrasse</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video bis 2 Minuten in Full HD, quer und hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Kurzclips à 15 Sekunden für Reels und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ihr Logo und Eckdaten wie m², Zimmer, Preis eingeblendet</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Titelbild für Portale und YouTube</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 72 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Individuell" data-href="#kontakt" data-label="Individuelle Roomtour, Festpreis auf Anfrage"><h3>Individuell</h3><p>Für große Objekte, Hotels und Makler mit mehreren Objekten</p><p class="plan__big plan__big--text">Auf Anfrage</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 300 m² oder viele Zimmertypen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehrere Wohnungen, Häuser oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Paketpreis ab 3 Videos</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Persönliche Beratung am Telefon</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
-        <div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan plan--top"><input type="radio" name="room" value="Basis" data-href="/anfrage/roomtour?paket=Basis" data-label="KI-Roomtour Basis, 300 €" checked><h3>Basis</h3><p>Für Wohnungen, Ferienwohnungen, Läden und Praxen</p><p class="plan__big">300 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 150 m² oder eine Etage, bis 8 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video 60 bis 90 Sekunden in Full HD</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Querformat für Website und Portale</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Hochformat für Instagram und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Raumnamen eingeblendet, lizenzfreie Musik</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Abspann mit Ihrem Namen und Kontakt</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 48 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Premium" data-href="/anfrage/roomtour?paket=Premium" data-label="KI-Roomtour Premium, 490 €"><h3>Premium</h3><p>Für Häuser, Hotels und Makler-Objekte</p><p class="plan__big">490 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bis 300 m² oder mehrere Etagen, bis 15 Räume</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Inklusive Außenbereich, Garten oder Terrasse</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Video bis 2 Minuten in Full HD, quer und hochkant</li><li><svg aria-hidden="true"><use href="#tick"/></svg>3 Kurzclips à 15 Sekunden für Reels und TikTok</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Ihr Logo und Eckdaten wie m², Zimmer, Preis eingeblendet</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Titelbild für Portale und YouTube</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Fertig in 72 Stunden</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="room" value="Individuell" data-href="#kontakt" data-label="Individuelle Roomtour, Festpreis auf Anfrage"><h3>Individuell</h3><p>Für große Objekte, Hotels und Makler mit mehreren Objekten</p><p class="plan__big plan__big--text">Auf Anfrage</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Über 300 m² oder viele Zimmertypen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Mehrere Wohnungen, Häuser oder Standorte</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Paketpreis ab 3 Videos</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Persönliche Beratung am Telefon</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Schriftlicher Festpreis vor dem Start</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label></div></fieldset>
+        <div class="choose__bar"><p><span>Ihre Wahl · <em class="choose__next"></em></span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
       </form>
       <p class="plans__note">Alle Preise sind Endpreise (gemäß § 19 UStG ohne Umsatzsteuer). Sie sehen jedes Video vor der Veröffentlichung und dürfen es überall nutzen: Airbnb, Booking.com, Immobilienportale, Website und Social Media.</p>
     </div>
@@ -1769,6 +1789,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cur(); addEventListener("resize", cur); addEventListener("load", cur);
   })();
 
+  /* plans: hide the bottom dock while a package choice (with its own bar) is on screen */
+  if ("IntersectionObserver" in window) {
+    var inView = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) inView.add(e.target); else inView.delete(e.target); });
+      document.body.classList.toggle("in-choose", inView.size > 0);
+    }, { rootMargin: "0px" });
+    [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) { io.observe(f); });
+  }
   /* plans: the selected card decides where "Weiter" leads */
   [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) {
     var name = f.querySelector(".choose__name"), go = f.querySelector(".choose__go"), color = "weiss";
@@ -1776,7 +1805,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       name.textContent = r.dataset.label;
       go.href = r.dataset.href.replace("{c}", color);
-      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var shop = r.dataset.href.indexOf("/shop") === 0, form = r.dataset.href.indexOf("/anfrage") === 0;
+      go.textContent = shop ? "In den Warenkorb" : form ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var nx = f.querySelector(".choose__next"); if (nx) nx.textContent = shop ? "als Nächstes: bezahlen" : form ? "als Nächstes: Fragebogen, danach bezahlen" : "wir melden uns mit einem Festpreis";
       if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });

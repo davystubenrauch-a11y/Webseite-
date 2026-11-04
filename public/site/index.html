@@ -1227,6 +1227,25 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .pst--room .pst__tags li:nth-child(3) { --x: auto !important; --rx: 4% !important; --y: 88% !important; }
   .pst--nfc .pst__tags li:nth-child(2) { display: none; }
 }
+/* ---------- ordering made obvious: 3 steps above the packages, a choose button on every card, sticky bar ---------- */
+.buy { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: clamp(28px, 3vw, 44px) 0 0; }
+.buy + .choose .plans { margin-top: 20px; }
+.buy li { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.buy i { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; font-weight: 700; font-size: .9375rem; }
+.buy b { display: block; font-size: 1.0625rem; font-weight: 650; color: var(--ink); line-height: 1.3; }
+.buy span { display: block; margin-top: 2px; font-size: .9375rem; color: var(--muted); line-height: 1.4; }
+.plan__cta { display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 22px; }
+.plan__cta::before { content: "Dieses Paket wählen"; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--ink); color: var(--ink); font-weight: 600; font-size: 1rem; transition: background .2s, color .2s; }
+.choose .plan:hover .plan__cta::before { background: #f2f2f4; }
+.choose .plan:has(input:checked) .plan__cta::before { content: "✓ Ausgewählt"; background: var(--ink); color: #fff; }
+.choose .plan .feat { margin-bottom: 0; }
+.choose__bar { position: sticky; bottom: 16px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.4), inset 0 0 0 1px var(--line); }
+.choose__bar em { font-style: normal; }
+.choose__go::after { content: " →"; }
+@media (max-width: 900px) { .buy { grid-template-columns: minmax(0, 1fr); gap: 8px; } .buy li { padding: 14px 16px; } }
+@media (max-width: 700px) { .choose__bar { bottom: calc(12px + env(safe-area-inset-bottom)); } }
+/* while the package choice is on screen its own bar replaces the bottom dock */
+body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1851,6 +1870,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cur(); addEventListener("resize", cur); addEventListener("load", cur);
   })();
 
+  /* plans: hide the bottom dock while a package choice (with its own bar) is on screen */
+  if ("IntersectionObserver" in window) {
+    var inView = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) inView.add(e.target); else inView.delete(e.target); });
+      document.body.classList.toggle("in-choose", inView.size > 0);
+    }, { rootMargin: "0px" });
+    [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) { io.observe(f); });
+  }
   /* plans: the selected card decides where "Weiter" leads */
   [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) {
     var name = f.querySelector(".choose__name"), go = f.querySelector(".choose__go"), color = "weiss";
@@ -1858,7 +1886,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       name.textContent = r.dataset.label;
       go.href = r.dataset.href.replace("{c}", color);
-      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var shop = r.dataset.href.indexOf("/shop") === 0, form = r.dataset.href.indexOf("/anfrage") === 0;
+      go.textContent = shop ? "In den Warenkorb" : form ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var nx = f.querySelector(".choose__next"); if (nx) nx.textContent = shop ? "als Nächstes: bezahlen" : form ? "als Nächstes: Fragebogen, danach bezahlen" : "wir melden uns mit einem Festpreis";
       if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });

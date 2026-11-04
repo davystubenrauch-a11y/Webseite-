@@ -1227,6 +1227,25 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .pst--room .pst__tags li:nth-child(3) { --x: auto !important; --rx: 4% !important; --y: 88% !important; }
   .pst--nfc .pst__tags li:nth-child(2) { display: none; }
 }
+/* ---------- ordering made obvious: 3 steps above the packages, a choose button on every card, sticky bar ---------- */
+.buy { list-style: none; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: clamp(28px, 3vw, 44px) 0 0; }
+.buy + .choose .plans { margin-top: 20px; }
+.buy li { display: flex; gap: 14px; align-items: flex-start; padding: 18px 20px; border-radius: 20px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.buy i { flex: none; display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--ink); color: #fff; font-style: normal; font-weight: 700; font-size: .9375rem; }
+.buy b { display: block; font-size: 1.0625rem; font-weight: 650; color: var(--ink); line-height: 1.3; }
+.buy span { display: block; margin-top: 2px; font-size: .9375rem; color: var(--muted); line-height: 1.4; }
+.plan__cta { display: flex; align-items: center; justify-content: center; margin-top: auto; padding-top: 22px; }
+.plan__cta::before { content: "Dieses Paket wählen"; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 48px; border-radius: 999px; box-shadow: inset 0 0 0 1.5px var(--ink); color: var(--ink); font-weight: 600; font-size: 1rem; transition: background .2s, color .2s; }
+.choose .plan:hover .plan__cta::before { background: #f2f2f4; }
+.choose .plan:has(input:checked) .plan__cta::before { content: "✓ Ausgewählt"; background: var(--ink); color: #fff; }
+.choose .plan .feat { margin-bottom: 0; }
+.choose__bar { position: sticky; bottom: 16px; box-shadow: 0 18px 44px -20px rgba(0,0,0,.4), inset 0 0 0 1px var(--line); }
+.choose__bar em { font-style: normal; }
+.choose__go::after { content: " →"; }
+@media (max-width: 900px) { .buy { grid-template-columns: minmax(0, 1fr); gap: 8px; } .buy li { padding: 14px 16px; } }
+@media (max-width: 700px) { .choose__bar { bottom: calc(12px + env(safe-area-inset-bottom)); } }
+/* while the package choice is on screen its own bar replaces the bottom dock */
+body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 </style>
 </head>
 <body>
@@ -1311,9 +1330,10 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   <section class="sec" id="pakete" aria-labelledby="h-pakete">
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Wie viele Platten brauchen Sie?</h2></div><p class="lead">15 € pro Platte, in Weiß oder Schwarz. Je mehr Platten, desto günstiger.</p></div>
+      <ol class="buy" role="list" aria-label="So bestellen Sie"><li><i>1</i><div><b>Menge und Farbe wählen</b><span>Ab 5 Platten 10 %, ab 10 Platten 15 % Rabatt.</span></div></li><li><i>2</i><div><b>In den Warenkorb</b><span>Kein Fragebogen nötig.</span></div></li><li><i>3</i><div><b>Bezahlen</b><span>Lieferung in 3 bis 7 Werktagen.</span></div></li></ol>
       <form class="choose" data-land data-choose="nfc" onsubmit="return false">
-        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="nfc" value="1 Platte" data-href="/shop?{c}=1" data-label="1 NFC-Platte, 15 €"><h3>1 Platte</h3><p class="plan__big plan__big--sm">15 €</p><p class="plan__was">Einzelpreis</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="nfc" value="5 Platten" data-href="/shop?{c}=5" data-label="5 NFC-Platten, 67,50 €" checked><h3>5 Platten</h3><p class="plan__big plan__big--sm">67,50 €</p><p class="plan__was">statt <s>75 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>10 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="nfc" value="10 Platten" data-href="/shop?{c}=10" data-label="10 NFC-Platten, 127,50 €"><h3>10 Platten</h3><p class="plan__big plan__big--sm">127,50 €</p><p class="plan__was">statt <s>150 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>15 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span></label></div></fieldset>
-        <div class="seg choose__color" role="radiogroup" aria-label="Farbe"><button type="button" role="radio" aria-checked="true" data-c="weiss">Weiß</button><button type="button" role="radio" aria-checked="false" data-c="schwarz">Schwarz</button></div><div class="choose__bar"><p><span>Ihre Wahl</span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
+        <fieldset><legend class="sr">Paket wählen</legend><div class="plans"><label class="plan"><input type="radio" name="nfc" value="1 Platte" data-href="/shop?{c}=1" data-label="1 NFC-Platte, 15 €"><h3>1 Platte</h3><p class="plan__big plan__big--sm">15 €</p><p class="plan__was">Einzelpreis</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="nfc" value="5 Platten" data-href="/shop?{c}=5" data-label="5 NFC-Platten, 67,50 €" checked><h3>5 Platten</h3><p class="plan__big plan__big--sm">67,50 €</p><p class="plan__was">statt <s>75 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>10 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="nfc" value="10 Platten" data-href="/shop?{c}=10" data-label="10 NFC-Platten, 127,50 €"><h3>10 Platten</h3><p class="plan__big plan__big--sm">127,50 €</p><p class="plan__was">statt <s>150 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Individuell auf Ihr Unternehmen angepasst</li><li><svg aria-hidden="true"><use href="#tick"/></svg>15 % Mengenrabatt</li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label></div></fieldset>
+        <div class="seg choose__color" role="radiogroup" aria-label="Farbe"><button type="button" role="radio" aria-checked="true" data-c="weiss">Weiß</button><button type="button" role="radio" aria-checked="false" data-c="schwarz">Schwarz</button></div><div class="choose__bar"><p><span>Ihre Wahl · <em class="choose__next"></em></span><b class="choose__name"></b></p><a class="btn btn--light choose__go" href="#">Weiter</a></div>
       </form>
       <p class="plans__note">Alle Preise sind Endpreise (gemäß § 19 UStG ohne Umsatzsteuer). Der Rabatt gilt für alle Platten zusammen, Weiß und Schwarz mischbar, auch bei anderen Mengen (z. B. 7 Stück: 10 %). Ab 5 Platten versandkostenfrei, darunter 2,99 €. Lieferung in 3 bis 7 Werktagen. Einmal zahlen, keine laufenden Kosten.</p>
     </div>
@@ -1712,6 +1732,15 @@ document.addEventListener("DOMContentLoaded", function () {
     cur(); addEventListener("resize", cur); addEventListener("load", cur);
   })();
 
+  /* plans: hide the bottom dock while a package choice (with its own bar) is on screen */
+  if ("IntersectionObserver" in window) {
+    var inView = new Set();
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) inView.add(e.target); else inView.delete(e.target); });
+      document.body.classList.toggle("in-choose", inView.size > 0);
+    }, { rootMargin: "0px" });
+    [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) { io.observe(f); });
+  }
   /* plans: the selected card decides where "Weiter" leads */
   [].forEach.call(document.querySelectorAll("[data-choose]"), function (f) {
     var name = f.querySelector(".choose__name"), go = f.querySelector(".choose__go"), color = "weiss";
@@ -1719,7 +1748,9 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       name.textContent = r.dataset.label;
       go.href = r.dataset.href.replace("{c}", color);
-      go.textContent = r.dataset.href.indexOf("/shop") === 0 ? "In den Warenkorb" : r.dataset.href.indexOf("/anfrage") === 0 ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var shop = r.dataset.href.indexOf("/shop") === 0, form = r.dataset.href.indexOf("/anfrage") === 0;
+      go.textContent = shop ? "In den Warenkorb" : form ? "Weiter zum Fragebogen" : "Festpreis anfragen";
+      var nx = f.querySelector(".choose__next"); if (nx) nx.textContent = shop ? "als Nächstes: bezahlen" : form ? "als Nächstes: Fragebogen, danach bezahlen" : "wir melden uns mit einem Festpreis";
       if (r.dataset.href === "#kontakt") go.setAttribute("data-pick", "Roomtour"); else go.removeAttribute("data-pick");
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });
