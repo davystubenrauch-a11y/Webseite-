@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { upload } from "@vercel/blob/client";
+import { upload, uploadPresigned } from "@vercel/blob/client";
 import { site } from "@/lib/site";
 import { summarizeBriefing, type Briefing, type BriefingKind, type Photo } from "@/lib/briefing";
 
@@ -256,13 +256,13 @@ export function usePrefill(sections: Section[], set: (id: string, v: string | st
   }, []);
 }
 
-/** Whether the server can accept photo uploads (BLOB_READ_WRITE_TOKEN set). */
+/** Whether the server can accept photo uploads, and how (classic token or presigned URL). */
 function useUploadsEnabled() {
-  const [on, setOn] = useState<boolean | null>(null);
+  const [mode, setMode] = useState<"token" | "presigned" | false | null>(null);
   useEffect(() => {
-    fetch("/api/upload").then((r) => r.json()).then((j) => setOn(Boolean(j.enabled))).catch(() => setOn(false));
+    fetch("/api/upload").then((r) => r.json()).then((j) => setMode(j.enabled ? (j.mode === "presigned" ? "presigned" : "token") : false)).catch(() => setMode(false));
   }, []);
-  return on;
+  return mode;
 }
 
 const slug = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^\w.]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "datei";
@@ -270,7 +270,8 @@ const slug = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^\w.]+/g
 /** Photo uploads for one group (room, "Logo", …). Files go straight to Vercel Blob. */
 export function usePhotos(kind: BriefingKind) {
   const ref = useRef(Math.random().toString(36).slice(2, 10));
-  const enabled = useUploadsEnabled();
+  const mode = useUploadsEnabled();
+  const enabled = mode === null ? null : Boolean(mode);
   const [items, setItems] = useState<Upload[]>([]);
   const patch = (id: string, p: Partial<Upload>) => setItems((list) => list.map((x) => (x.id === id ? { ...x, ...p } : x)));
 
@@ -281,7 +282,9 @@ export function usePhotos(kind: BriefingKind) {
       if (file.size > 25 * 1024 * 1024) item.error = "Größer als 25 MB";
       setItems((list) => [...list, item]);
       if (item.error) continue;
-      upload(`${kind}/${ref.current}/${slug(group)}/${slug(file.name)}`, file, {
+      const send = mode === "presigned" ? uploadPresigned : upload;
+      // a short random part keeps two files with the same name apart
+      send(`${kind}/${ref.current}/${slug(group)}/${Math.random().toString(36).slice(2, 7)}-${slug(file.name)}`, file, {
         access: "public",
         handleUploadUrl: "/api/upload",
         multipart: file.size > 8 * 1024 * 1024,

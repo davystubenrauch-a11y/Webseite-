@@ -45,7 +45,7 @@ export async function deliver(d: Delivery): Promise<boolean> {
       console.error(`[deliver] webhook ${res.status}`);
     } catch (e) { console.error("[deliver] webhook", e); }
   }
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
+  if (process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID) {
     const body = JSON.stringify({ id: d.id, kind: d.kind, at: new Date().toISOString(), subject: d.subject, text: d.text, data: d.data }, null, 2);
     for (const access of ["private", "public"] as const) {
       try {

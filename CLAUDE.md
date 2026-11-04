@@ -11,6 +11,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 ## Stand: Handy-Feinschliff (3.11.)
 - Kunde: „auf dem Handy Proportionen und Anordnungen falsch“. Block „phone polish“ am Ende des CSS im Template (≤ 700 px): Überschriften mit mehr Laufweite und voller Breite (Szenen-h2 brach vorher in 4 schmale Zeilen), Zusagen-Liste unter den Angeboten als saubere Spalte mit ausgerichteten Häkchen, Dock schlanker, Filme mit größeren Geräten (Roomtour `--pw`, NFC `--w` 42vw/21vh, Handy nicht mehr über dem Text), Gründer-Karten nebeneinander und kompakt, „Über uns“-Satz kleiner, Fußzeile zweispaltig, Schildchen der Produkt-Bühnen kleiner und je Bühne eins weniger (überlappten sich).
 - Favicon für Google: `public/favicon.ico` + `media/icon-foav-192.png`.
+- **Foto-Upload (4.11.)**: Blob-Store `foav-fotos` (Public, FRA1) angelegt; neue Vercel-Stores setzen nur `BLOB_STORE_ID` + `BLOB_WEBHOOK_PUBLIC_KEY` (OIDC), kein `BLOB_READ_WRITE_TOKEN`. `/api/upload` kann jetzt beides: Token → `handleUpload`, sonst `BLOB_STORE_ID` → `handleUploadPresigned` + `issueSignedToken` (put, Bildtypen, 25 MB); GET liefert `mode`, Formular nutzt `uploadPresigned`; Dateiname mit Zufallsteil. Status/deliver erkennen beides.
 - Fragebogen zeigt ohne `BLOB_READ_WRITE_TOKEN` „Upload schalten wir gerade frei … per E-Mail oder WhatsApp“ → Token in Vercel setzen.
 
 ## Stand: Adresse, Lieferzeit, Absender
