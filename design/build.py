@@ -21,8 +21,8 @@ if '<!--@' not in t:  # older single-page templates
 
 pages = {
     'home': ('index.html', '/', None, None),
-    'websites': ('websites.html', '/websites', 'Websites ab 300 € · FOAV München',
-                 'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 300 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
+    'websites': ('websites.html', '/websites', 'Websites ab 399 € · FOAV München',
+                 'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
     'roomtours': ('roomtours.html', '/roomtours', 'KI-Roomtours ab 300 € · FOAV München',
                   'Video-Rundgang aus Ihren Handyfotos für Airbnb, Booking.com und Ihre Website. 300 € bis 150 m², fertig in bis zu 48 Stunden, ohne Fototermin.'),
     'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · 15 € · FOAV',

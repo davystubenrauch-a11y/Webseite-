@@ -67,7 +67,7 @@ const sections: Section[] = [
     questions: [
       {
         id: "paket", label: "Paket", type: "one",
-        options: ["Basis|3 Seiten, 300 €", "Business|bis 6 Seiten, Texte von uns, 690 €", "Premium|bis 10 Seiten, Deutsch und Englisch, 1.290 €", "Noch unsicher|Wir beraten Sie"], req: true,
+        options: ["Basis|3 Seiten, 399 €", "Business|bis 6 Seiten, Texte von uns, 799 €", "Premium|bis 10 Seiten, Deutsch und Englisch, 1.499 €", "Noch unsicher|Wir beraten Sie"], req: true,
       },
       { id: "extra", label: "Nur Premium: Farbe Ihrer 5 inklusive NFC-Platten", type: "one", options: ["5 Weiß", "5 Schwarz", "3 Weiß und 2 Schwarz", "2 Weiß und 3 Schwarz"], hint: "Die Platten verknüpfen wir mit Ihrem Google-Profil und schicken sie Ihnen per Post (3 bis 7 Werktage)." },
       { id: "seiten", label: "Welche Seiten brauchen Sie?", type: "many", options: ["Startseite", "Leistungen", "Über uns", "Team", "Preise", "Speisekarte", "Galerie / Referenzen", "Termine / Buchung", "Jobs", "Blog / Neuigkeiten", "FAQ", "Kontakt"], hint: "Impressum und Datenschutz sind immer dabei und zählen nicht als Seite." },
@@ -134,7 +134,7 @@ export default function WebsiteBriefing() {
   // the chosen package decides what is paid next; "Noch unsicher" leads to a call instead
   const pay = () => {
     const p = String(v.paket ?? "").split("|")[0];
-    const price: Record<string, string> = { Basis: "300 €", Business: "690 €", Premium: "1.290 €" };
+    const price: Record<string, string> = { Basis: "399 €", Business: "799 €", Premium: "1.499 €" };
     return price[p] ? { href: `/shop?web=${p}`, label: `Website ${p} für ${price[p]}` } : null;
   };
 
