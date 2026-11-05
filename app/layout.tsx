@@ -24,6 +24,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${serif.variable} ${display.variable} ${sans.variable}`}>
       <body className="font-sans">
         {children}
+        {/* Vercel Web Analytics: cookieless visitor counts, enabled in the Vercel dashboard */}
+        <script defer src="/_vercel/insights/script.js" />
       </body>
     </html>
   );

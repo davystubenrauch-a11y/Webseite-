@@ -46,7 +46,9 @@ export default function Datenschutz() {
       <h2>6. Schriftarten</h2>
       <p>Die verwendeten Schriftarten werden lokal von unserem Server ausgeliefert. Es findet keine Verbindung zu Servern von Google statt.</p>
       <h2>7. Cookies und Tracking</h2>
-      <p>Diese Website setzt keine Tracking-Cookies und keine Analyse-Tools ein.</p>
+      <p>
+        Diese Website setzt keine Cookies zu Werbe- oder Analysezwecken. Um zu sehen, wie viele Besucher die Seite nutzen, verwenden wir Vercel Web Analytics (Vercel Inc., USA). Dabei werden keine Cookies gesetzt und keine Daten im Endgerät gespeichert. Erfasst werden nur aufgerufene Seiten, Herkunftsseite, Land, Gerätetyp, Browser und Betriebssystem. Ein Besucher wird nur über einen täglich wechselnden, nicht umkehrbaren Wert unterschieden, eine Wiedererkennung über mehrere Tage findet nicht statt. Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).
+      </p>
       <h2>8. Ihre Rechte</h2>
       <p>
         Sie haben das Recht auf Auskunft, Berichtigung, Löschung, Einschränkung der Verarbeitung, Datenübertragbarkeit sowie Widerspruch
