@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { display, sans, serif } from "@/lib/fonts";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="de" className={`${serif.variable} ${display.variable} ${sans.variable}`}>
       <body className="font-sans">
         {children}
+        <SpeedInsights />
         {/* Vercel Web Analytics: cookieless visitor counts, enabled in the Vercel dashboard */}
         <script defer src="/_vercel/insights/script.js" />
       </body>
