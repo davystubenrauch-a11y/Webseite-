@@ -8,6 +8,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: Google zeigt noch alte Einträge (5.11.)
+- Kunde (Google-Screenshot): Startseite noch als „F&D Solutions“ mit altem Bild unter www.foav.de, Unterseiten mit alten Preisen (300 €), Website-Name „foav.de“ statt „FOAV“, NFC-Seite fehlt. Die Seite selbst ist richtig (Titel, `og:site_name` FOAV, canonical foav.de, Sitemap mit /nfc-platten) → Google hat nur noch nicht neu gecrawlt. `alternateName` im WebSite-Schema ohne „foav.de“ (jetzt „FOAV GbR“, „FOAV München“), damit Google nicht den Domainnamen als Websitenamen nimmt. Kunde soll in der Search Console je URL „Indexierung beantragen“.
+
 ## Stand: Besucherzahlen (5.11.)
 - Kunde: „Kann ich prüfen, wie viele Leute die Website besuchen?“ → **Vercel Web Analytics** (ohne Cookies, kein Banner nötig): `<script defer src="/_vercel/insights/script.js">` im Template-`<head>` und in `app/layout.tsx`. Muss im Vercel-Dashboard unter **Analytics → Enable** eingeschaltet werden, sonst lädt das Skript nicht (harmlos). Datenschutz §7 entsprechend ergänzt. Google-Suche zusätzlich in der Search Console (Leistung).
 
