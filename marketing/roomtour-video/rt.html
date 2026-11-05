@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Inter; src: url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: Sora; src: url(file:///home/user/Webseite-/public/site/fonts/sora-latin.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0c; font-family: Inter, sans-serif; color: #f5f5f7; }
+.L { position: absolute; inset: 0; }
+canvas { position: absolute; display: block; }
+.big { font-weight: 700; letter-spacing: -.05em; line-height: .95; }
+.mask { display: block; overflow: hidden; padding-bottom: .08em; }
+.mask > span { display: inline-block; will-change: transform; }
+.eyebrow { font-size: 30px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: #a1a1a6; }
+.h { position: absolute; left: 80px; right: 80px; font-size: 92px; }
+.cap { font-size: 40px; color: #c7c7cc; line-height: 1.3; letter-spacing: -.01em; }
+.chip { position: absolute; display: inline-flex; align-items: center; gap: 16px; padding: 20px 32px; border-radius: 999px; background: rgba(255,255,255,.12); border: 1.5px solid rgba(255,255,255,.22); font-size: 34px; font-weight: 600; white-space: nowrap; backdrop-filter: blur(20px); }
+.dot { width: 16px; height: 16px; border-radius: 50%; background: #ff453a; box-shadow: 0 0 18px #ff453a; }
+.tile { position: absolute; width: 300px; height: 400px; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 60px rgba(0,0,0,.5); }
+.tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.tile .fl { position: absolute; inset: 0; background: #fff; }
+.tile .ai { clip-path: inset(0 0 100% 0); }
+.scan { position: absolute; left: 40px; right: 40px; height: 6px; border-radius: 6px; background: #fff; box-shadow: 0 0 30px 10px rgba(255,236,200,.9), 0 0 120px 40px rgba(255,220,170,.35); }
+.burst { position: absolute; left: 50%; top: 50%; width: 2400px; height: 2400px; margin: -1200px 0 0 -1200px; border-radius: 50%; background: radial-gradient(circle, #fff 0 8%, rgba(255,240,215,.85) 18%, rgba(255,220,180,0) 55%); }
+.room { position: absolute; left: 80px; bottom: 300px; }
+.room small { display: block; font-size: 30px; font-weight: 600; letter-spacing: .14em; color: rgba(255,255,255,.75); margin-bottom: 18px; }
+.room b { text-shadow: 0 4px 40px rgba(0,0,0,.4); display: block; font-size: 128px; font-weight: 700; letter-spacing: -.05em; line-height: .95; }
+.room i { display: block; height: 4px; width: 160px; background: #fff; margin-top: 30px; transform-origin: left; }
+.note { position: absolute; left: 0; right: 0; bottom: 70px; text-align: center; font-size: 26px; color: rgba(255,255,255,.6); }
+.frame { position: absolute; border-radius: 34px; overflow: hidden; box-shadow: 0 40px 100px rgba(0,0,0,.55); border: 2px solid rgba(255,255,255,.25); }
+.lbl { position: absolute; font-size: 44px; font-weight: 600; color: #fff; white-space: nowrap; }
+.lbl span { display: block; font-size: 30px; font-weight: 500; color: #a1a1a6; margin-top: 6px; }
+.ring { position: absolute; left: 190px; top: 560px; width: 700px; height: 700px; }
+.num { position: absolute; left: 0; right: 0; top: 760px; text-align: center; font-size: 250px; font-weight: 700; letter-spacing: -.06em; line-height: 1; font-variant-numeric: tabular-nums; }
+.tiers { position: absolute; left: 80px; right: 80px; top: 720px; }
+.tier { display: flex; justify-content: space-between; align-items: baseline; padding: 30px 0; border-top: 1.5px solid rgba(255,255,255,.18); font-size: 40px; }
+.tier b { font-weight: 600; } .tier span { color: #a1a1a6; font-size: 32px; margin-left: 14px; } .tier em { font-style: normal; font-weight: 700; font-variant-numeric: tabular-nums; }
+.tier.top { color: #fff; } .tier.top b::after { content: "Empfohlen"; margin-left: 16px; padding: 6px 16px; border-radius: 999px; background: #fff; color: #0b0b0c; font-size: 24px; vertical-align: 6px; }
+.cta { position: absolute; left: 80px; right: 80px; top: 1330px; }
+.pill { display: inline-block; padding: 30px 54px; border-radius: 999px; background: #fff; color: #0b0b0c; font-size: 52px; font-weight: 700; letter-spacing: -.02em; }
+.brand { display: flex; align-items: center; gap: 22px; }
+.brand img { width: 86px; height: 86px; border-radius: 22px; box-shadow: 0 0 0 2px rgba(255,255,255,.8); }
+.brand b { font-family: Sora; font-weight: 650; font-size: 86px; letter-spacing: -.04em; }
+#grain { position: absolute; inset: -200px; opacity: .07; mix-blend-mode: overlay; pointer-events: none; }
+#vig { position: absolute; inset: 0; background: radial-gradient(120% 80% at 50% 45%, transparent 55%, rgba(0,0,0,.55)); pointer-events: none; }
+</style></head><body>
+<video id="v" src="file:///home/user/Webseite-/public/media/roomtour-villa.mp4" muted preload="auto" style="display:none"></video>
+
+<!-- backdrop (blurred video) -->
+<canvas id="bg" width="1080" height="1920" style="left:0;top:0;filter:blur(36px) brightness(.38) saturate(1.1);transform:scale(1.1)"></canvas>
+
+<!-- A hook -->
+<section class="L" id="A">
+  <p class="eyebrow" id="a0" style="position:absolute;left:80px;top:640px">foav · KI-Roomtour</p>
+  <div class="big" style="position:absolute;left:80px;top:720px;font-size:178px">
+    <span class="mask"><span id="a1">Ihre Räume.</span></span>
+    <span class="mask"><span id="a2">Als Film.</span></span>
+  </div>
+</section>
+
+<!-- B/C photos -->
+<section class="L" id="B">
+  <div class="h big" style="top:150px"><span class="mask"><span id="b1">Sie machen nur</span></span><span class="mask"><span id="b2">Handyfotos.</span></span></div>
+  <div class="h big" style="top:150px"><span class="mask"><span id="c1">Unsere KI macht</span></span><span class="mask"><span id="c2">daraus den Film.</span></span></div>
+  <div id="grid"></div>
+  <div class="scan" id="scan"></div>
+  <p class="cap" id="b3" style="position:absolute;left:80px;right:80px;top:1770px;text-align:center">Ganz normal mit dem Handy. Kein Filmteam, kein Termin.</p>
+  <p class="cap" id="c3" style="position:absolute;left:80px;right:80px;top:1770px;text-align:center;font-variant-numeric:tabular-nums">Rundgang wird erstellt … 0 %</p>
+</section>
+<div class="burst" id="burst"></div>
+
+<!-- D reveal -->
+<section class="L" id="D">
+  <canvas id="main" width="1080" height="1920" style="left:0;top:0"></canvas>
+  <div class="L" style="background:linear-gradient(180deg, rgba(0,0,0,.45) 0%, transparent 22%, transparent 55%, rgba(0,0,0,.7) 100%)"></div>
+  <div class="chip" id="d0" style="left:80px;top:120px"><span class="dot"></span>Ihre KI-Roomtour</div>
+  <div class="h big" id="d5" style="top:250px;font-size:96px;text-shadow:0 4px 40px rgba(0,0,0,.45)"><span class="mask"><span id="d6">Kunden sehen</span></span><span class="mask"><span id="d7">Ihre Räume,</span></span><span class="mask"><span id="d8">bevor sie kommen.</span></span></div>
+  <div class="room" id="r1"><small>01</small><b>Flur</b><i></i></div>
+  <div class="room" id="r2"><small>02</small><b>Wohnzimmer</b><i></i></div>
+  <div class="room" id="r3"><small>03</small><b>Balkon</b><i></i></div>
+</section>
+
+<!-- E formats -->
+<section class="L" id="E">
+  <div class="h big" style="top:150px"><span class="mask"><span id="e1">Quer und hochkant.</span></span><span class="mask"><span id="e2">Beides inklusive.</span></span></div>
+  <div class="frame" id="f1" style="left:80px;top:560px;width:920px;height:518px"><canvas id="c169" width="920" height="518"></canvas></div>
+  <p class="lbl" id="l1" style="left:80px;top:1100px">16:9<span>Website, YouTube, Exposé</span></p>
+  <div class="frame" id="f2" style="left:600px;top:1100px;width:400px;height:711px;border-radius:46px;border:10px solid #1d1d1f;box-shadow:0 0 0 2px rgba(255,255,255,.25),0 40px 100px rgba(0,0,0,.6)"><canvas id="c916" width="380" height="691"></canvas></div>
+  <p class="lbl" id="l2" style="left:80px;top:1420px">9:16<span>Instagram, TikTok, Airbnb</span></p>
+</section>
+
+<!-- F 48h -->
+<section class="L" id="F">
+  <div class="h big" style="top:150px"><span class="mask"><span id="g1">Fertig in</span></span><span class="mask"><span id="g2">48 Stunden.</span></span></div>
+  <svg class="ring" viewBox="0 0 700 700"><circle cx="350" cy="350" r="320" fill="none" stroke="rgba(255,255,255,.14)" stroke-width="14"/><circle id="arc" cx="350" cy="350" r="320" fill="none" stroke="#fff" stroke-width="14" stroke-linecap="round" stroke-dasharray="2010.6" stroke-dashoffset="2010.6" transform="rotate(-90 350 350)"/></svg>
+  <div class="num" id="n48">0</div>
+  <p class="cap" id="g3" style="position:absolute;left:0;right:0;top:1040px;text-align:center">Stunden, im Basis-Paket</p>
+  <p class="cap" id="g4" style="position:absolute;left:80px;right:80px;top:1420px;text-align:center">Fotos hochladen, bezahlen, zurücklehnen.<br>Ihr Film kommt per E-Mail.</p>
+</section>
+
+<!-- G price + cta -->
+<section class="L" id="G">
+  <p class="eyebrow" id="p0" style="position:absolute;left:80px;top:300px">KI-Roomtour zum Festpreis</p>
+  <div class="big" style="position:absolute;left:80px;top:360px;font-size:220px;font-variant-numeric:tabular-nums"><span class="mask"><span id="p1">ab 349 €</span></span></div>
+  <div class="tiers">
+    <div class="tier" id="t1"><div><b>Basis</b><span>bis 150 m²</span></div><em>349 €</em></div>
+    <div class="tier top" id="t2"><div><b>Premium</b><span>bis 300 m²</span></div><em>649 €</em></div>
+    <div class="tier" id="t3" style="border-bottom:1.5px solid rgba(255,255,255,.18)"><div><b>Exklusiv</b><span>bis 600 m²</span></div><em>1.449 €</em></div>
+  </div>
+  <div class="cta">
+    <p class="cap" id="p4" style="margin-bottom:34px">Paket wählen, Fotos hochladen, fertig.</p>
+    <p class="pill" id="p5">foav.de/roomtours</p>
+    <div class="brand" id="p6" style="margin-top:70px"><img src="file:///home/user/Webseite-/public/media/icon-foav-512.png"><b>foav</b></div>
+  </div>
+</section>
+
+<p class="note" id="note">Beispiel-Roomtour, mit KI erstellt</p>
+<div id="vig"></div>
+<div id="grain"></div>
+
+<script>
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x));
+const eo = (x) => 1 - Math.pow(1 - cl(x), 3);
+const eio = (x) => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const ebk = (x) => { x = cl(x); const c = 1.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const win = (T, a, b, f = .35) => Math.min(cl((T - a) / f), 1 - cl((T - (b - f)) / f));
+function up(el, t, a, d = .7) { const k = eo((t - a) / d); el.style.transform = `translateY(${(1 - k) * 110}%)`; }
+function rise(el, t, a, d = .6, dy = 50) { const k = eo((t - a) / d); el.style.opacity = k; el.style.transform = `translateY(${(1 - k) * dy}px)`; }
+
+// grid
+const G = $('grid'), tiles = [];
+for (let i = 0; i < 9; i++) {
+  const d = document.createElement('div'); d.className = 'tile';
+  const x = 66 + (i % 3) * 324, y = 470 + Math.floor(i / 3) * 424;
+  d.style.left = x + 'px'; d.style.top = y + 'px'; d.dataset.x = x; d.dataset.y = y;
+  d.innerHTML = `<img src="ph/p${i}.jpg"><img class="ai" src="ph/a${i}.jpg"><div class="fl"></div>`;
+  G.appendChild(d); tiles.push(d);
+}
+// grain tiles
+const noise = []; for (let n = 0; n < 6; n++) { const c = document.createElement('canvas'); c.width = c.height = 256; const x = c.getContext('2d'), im = x.createImageData(256, 256); for (let i = 0; i < im.data.length; i += 4) { const g = Math.random() * 255; im.data[i] = im.data[i + 1] = im.data[i + 2] = g; im.data[i + 3] = 255; } x.putImageData(im, 0, 0); noise.push(c.toDataURL()); }
+
+const V = $('v');
+function cover(ctx, W, H, z = 1, px = .5, py = .5) {
+  const vw = V.videoWidth, vh = V.videoHeight, s = Math.max(W / vw, H / vh) * z, dw = vw * s, dh = vh * s;
+  ctx.drawImage(V, (W - dw) * px, (H - dh) * py, dw, dh);
+}
+window.DUR = 32;
+window.VT = 0;
+window.render = (T, frame = 0) => {
+  // --- scene visibility
+  const vis = { A: win(T, 0, 3.2), B: win(T, 3.0, 10.3, .3), D: win(T, 10.0, 19.6, .4), E: win(T, 19.4, 23.6, .4), F: win(T, 23.4, 27.2, .4), G: win(T, 27.0, 99, .4) };
+  for (const k in vis) $(k).style.opacity = vis[k];
+  $('bg').style.opacity = Math.max(vis.E, vis.F, vis.G);
+  // --- A
+  let t = T;
+  rise($('a0'), t, .1); up($('a1'), t, .25, .8); up($('a2'), t, .75, .8);
+  $('A').style.transform = `scale(${1 + .06 * cl((T - 2.6) / .6)})`; $('A').style.filter = `blur(${12 * cl((T - 2.7) / .5)}px)`;
+  // --- B/C
+  t = T;
+  const phaseC = T >= 7.6;
+  [['b1', 3.3], ['b2', 3.5]].forEach(([id, a]) => { up($(id), t, a); $(id).parentNode.style.opacity = 1 - cl((T - 7.4) / .25); });
+  [['c1', 7.7], ['c2', 7.9]].forEach(([id, a]) => { up($(id), t, a); $(id).parentNode.style.opacity = cl((T - 7.6) / .15) * (1 - cl((T - 9.6) / .3)); });
+  rise($('b3'), t, 5.2); $('b3').style.opacity *= 1 - cl((T - 7.4) / .25);
+  const pr = cl((T - 7.9) / 1.6), gy0 = 470, gy1 = 470 + 3 * 424 - 24;
+  const sy = gy0 - 40 + (gy1 - gy0 + 80) * eio(pr);
+  $('scan').style.top = sy + 'px'; $('scan').style.opacity = (T > 7.85 && T < 9.6) ? 1 : 0;
+  $('c3').textContent = pr >= 1 ? 'Ihr Rundgang ist fertig.' : `Rundgang wird erstellt … ${Math.round(pr * 100)} %`;
+  $('c3').style.opacity = cl((T - 7.7) / .3) * (1 - cl((T - 9.6) / .3));
+  const fly = eio((T - 9.45) / .75);
+  tiles.forEach((d, i) => {
+    const a = 3.6 + i * .14, k = ebk((T - a) / .5), f = cl((T - a) / .35);
+    const x = +d.dataset.x, y = +d.dataset.y, cx = 540 - 150 - x, cy = 960 - 200 - y;
+    const rot = [-8, 5, -4, 7, -3, 6, -6, 4, -7][i];
+    d.style.opacity = cl((T - a) / .12) * (1 - cl((T - 9.95) / .25));
+    d.style.transform = `translate(${cx * fly}px, ${cy * fly}px) rotate(${rot * fly}deg) scale(${(.55 + .45 * k) * (1 - .55 * fly)})`;
+    d.querySelector('.fl').style.opacity = f < 1 ? (1 - f) * .9 : 0;
+    const iy = 1 - cl((sy - y) / 400);
+    d.querySelector('.ai').style.clipPath = `inset(0 0 ${iy * 100}% 0)`;
+    d.style.boxShadow = (iy < 1 && iy > 0) ? '0 0 60px rgba(255,230,190,.55), 0 30px 60px rgba(0,0,0,.5)' : '0 30px 60px rgba(0,0,0,.5)';
+  });
+  const bu = cl((T - 9.85) / .3) * (1 - cl((T - 10.25) / .5));
+  $('burst').style.opacity = bu; $('burst').style.transform = `scale(${.2 + 1.1 * eo((T - 9.85) / .7)})`;
+  // --- D
+  t = T - 10.0;
+  const rv = eio((t - .1) / .9);
+  $('D').style.clipPath = `circle(${rv * 130}% at 50% 50%)`;
+  const vD = cl(t) * 0 + Math.max(0, t);
+  rise($('d0'), t, 1.0);
+  [['r1', .4, 1.7], ['r2', 2.0, 7.2], ['r3', 7.5, 99]].forEach(([id, a, b]) => {
+    const el = $(id), k = win(t, a, b, .4);
+    el.style.opacity = k; el.style.transform = `translateX(${(1 - eo((t - a) / .5)) * -60}px)`;
+    el.querySelector('i').style.transform = `scaleX(${eo((t - a - .2) / .6)})`;
+  });
+  up($('d6'), t, 4.6); up($('d7'), t, 4.8); up($('d8'), t, 5.0);
+  // --- E
+  t = T - 19.4;
+  up($('e1'), t, .2); up($('e2'), t, .45);
+  const k1 = eo((t - .3) / .8); $('f1').style.opacity = k1; $('f1').style.transform = `translateX(${(1 - k1) * -200}px) scale(${.92 + .08 * k1})`;
+  const k2 = ebk((t - .9) / .8); $('f2').style.opacity = cl((t - .9) / .3); $('f2').style.transform = `translateY(${(1 - k2) * 300}px) rotate(${(1 - k2) * 12}deg)`;
+  rise($('l1'), t, 1.2); rise($('l2'), t, 1.7);
+  // --- F
+  t = T - 23.4;
+  up($('g1'), t, .2); up($('g2'), t, .45);
+  const cnt = eio((t - .5) / 1.8);
+  $('arc').setAttribute('stroke-dashoffset', 2010.6 * (1 - cnt));
+  $('n48').textContent = Math.round(48 * cnt); rise($('n48'), t, .4); rise($('g3'), t, .6); rise($('g4'), t, 1.8);
+  // --- G
+  t = T - 27.0;
+  rise($('p0'), t, .1); up($('p1'), t, .25, .8);
+  const pn = Math.round(349 * eio((t - .25) / 1.0)); $('p1').textContent = `ab ${pn} €`;
+  rise($('t1'), t, .9); rise($('t2'), t, 1.05); rise($('t3'), t, 1.2);
+  rise($('p4'), t, 1.7); rise($('p5'), t, 1.9); rise($('p6'), t, 2.2);
+  const pulse = T > 29.4 ? 1 + .025 * Math.sin((T - 29.4) * 5) : 1; $('p5').style.transform += ` scale(${pulse})`;
+  // --- KI note during video scenes
+  $('note').style.opacity = Math.max(vis.D, vis.E) * .95;
+  // --- video time per scene
+  if (T < 19.4) window.VT = Math.min(10.9, Math.max(0, T - 10.0));
+  else if (T < 23.4) window.VT = Math.min(10.9, 2.6 + (T - 19.4) * .9);
+  else window.VT = Math.min(10.9, 7.4 + (T - 23.4) * .4);
+  window.__T = T;
+  // grain
+  $('grain').style.background = `url(${noise[frame % noise.length]})`; $('grain').style.transform = `translate(${(frame * 37) % 200}px, ${(frame * 53) % 200}px)`;
+};
+window.paint = () => {
+  const T = window.__T;
+  if (T >= 10.0 && T < 19.7) { const c = $('main').getContext('2d'), t = T - 10.0; const z = 1.14 - .1 * cl(t / 9.4); const px = t < 2.6 ? .5 : t < 7.3 ? .5 - .18 * cl((t - 2.6) / 4.6) : .62; cover(c, 1080, 1920, z, px, .5); }
+  if (T >= 19.3) { cover($('bg').getContext('2d'), 1080, 1920, 1.2); }
+  if (T >= 19.3 && T < 23.7) { cover($('c169').getContext('2d'), 920, 518); cover($('c916').getContext('2d'), 380, 691, 1, .42); }
+};
+render(0);
+</script>
+</body></html>
