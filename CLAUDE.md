@@ -8,6 +8,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
+## Stand: Besucherzahlen (5.11.)
+- Kunde: „Kann ich prüfen, wie viele Leute die Website besuchen?“ → **Vercel Web Analytics** (ohne Cookies, kein Banner nötig): `<script defer src="/_vercel/insights/script.js">` im Template-`<head>` und in `app/layout.tsx`. Muss im Vercel-Dashboard unter **Analytics → Enable** eingeschaltet werden, sonst lädt das Skript nicht (harmlos). Datenschutz §7 entsprechend ergänzt. Google-Suche zusätzlich in der Search Console (Leistung).
+
 ## Stand: „0 € Hosting“ gut sichtbar, NFC-Preis mittig (4.11.)
 - Kunde: „Preis bei den NFC-Karten nicht mittig; dass wir kein Hosting verlangen, muss klar dastehen, auf der Startseite bei den Vorteilen und auf der Websites-Seite“.
 - Neue schwarze Box **`.hostbar`** („0 € Hosting im Monat. Bei vielen Anbietern zahlen Sie jeden Monat für das Hosting Ihrer Website. Bei uns ist es inklusive, ohne Abo.“): Start über den Vorteilen, /websites im Einstieg unter den Knöpfen und über der Paketwahl. Keine Aussage „besser als alle“ (nicht belegbar), kein „für immer“ (AGB §3a erlaubt Einstellung mit Vorlauf).
