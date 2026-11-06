@@ -176,6 +176,65 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
 .dock .btn--line { background:#fff; color:var(--ink); box-shadow:0 14px 30px -12px rgba(0,0,0,.45); }
 .dock.away { transform:translateY(160%); }
 
+
+/* ===== Premium-Ebene: Bewegung (nur mit GSAP, ohne reduzierte Bewegung) ===== */
+html.lenis, html.lenis body { height:auto; } .lenis.lenis-smooth { scroll-behavior:auto !important; }
+.serif .line-mask, .split-mask { overflow:hidden; padding-bottom:.08em; margin-bottom:-.08em; }
+/* Ausblick: Fenster öffnet sich zum Panorama */
+.pano { position:relative; background:var(--paper); }
+html.anim .pano { height:240vh; }
+.pano__stick { position:relative; height:100vh; height:100svh; overflow:hidden; }
+html.anim .pano__stick { position:sticky; top:0; }
+.pano__frame { position:absolute; inset:0; overflow:hidden; will-change:clip-path; }
+.pano__frame img { width:100%; height:100%; object-fit:cover; object-position:50% 55%; will-change:transform; }
+.pano__frame::after { content:""; position:absolute; inset:0; background:linear-gradient(transparent 45%, rgba(14,20,16,.62)); }
+.pano__txt { position:absolute; z-index:2; left:0; right:0; bottom:clamp(40px,9vh,90px); color:#fff; }
+.pano__txt p { font-size:clamp(2.6rem,6.4vw,6rem); max-width:13ch; }
+.pano__txt span { display:block; margin-top:14px; font-size:15px; opacity:.85; }
+.pano__lbl { position:absolute; z-index:3; bottom:13vh; left:50%; transform:translateX(-50%); font-family:"Newsreader",serif; font-style:italic; font-size:clamp(20px,2vw,28px); color:var(--ink); white-space:nowrap; opacity:0; }
+html.anim .pano__lbl { opacity:1; }
+
+/* Ein Tag im Johannishof */
+.day { position:relative; background:var(--paper); color:var(--ink); overflow:hidden; }
+.day__pin { padding:clamp(70px,11vh,120px) 0 clamp(60px,9vh,100px); }
+html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:flex; flex-direction:column; justify-content:center; gap:clamp(22px,4vh,44px); }
+.day__head { display:flex; justify-content:space-between; align-items:flex-end; gap:30px; width:100%; }
+.day__head h2 { font-size:clamp(2.4rem,4.6vw,4rem); }
+.clock { width:min(380px,40vw); text-align:right; }
+.clock b { font-family:"Newsreader",serif; font-weight:400; font-size:clamp(34px,3.4vw,52px); line-height:1; font-variant-numeric:tabular-nums; }
+.clock svg { display:block; width:100%; height:auto; margin-top:10px; overflow:visible; }
+.clock .arcbg { fill:none; stroke:currentColor; stroke-opacity:.2; stroke-width:1.2; stroke-dasharray:3 5; }
+.clock .arcfg { fill:none; stroke:var(--gold); stroke-width:1.6; }
+.clock .sun { fill:var(--gold); }
+.day__track { display:flex; gap:clamp(24px,4vw,64px); padding:0 var(--gut); width:max-content; }
+.moment { width:clamp(300px,44vw,640px); flex:none; }
+.moment:nth-child(even) { margin-top:clamp(30px,8vh,90px); }
+.moment figure { overflow:hidden; border-radius:4px; aspect-ratio:3 / 2; }
+.moment:nth-child(3n) figure { aspect-ratio:4 / 3; width:86%; }
+.moment img { width:118%; max-width:none; height:100%; object-fit:cover; margin-left:-9%; will-change:transform; }
+.moment div { display:grid; grid-template-columns:auto 1fr; gap:4px 18px; margin-top:16px; max-width:52ch; }
+.moment time { grid-row:1 / 3; font-family:"Newsreader",serif; font-size:22px; color:var(--gold-t); padding-top:2px; transition:color .6s; }
+.moment h3 { font-family:"Newsreader",serif; font-weight:400; font-size:clamp(22px,1.9vw,28px); line-height:1.15; }
+.moment p { color:var(--mid); font-size:15.5px; transition:color .6s; }
+.day.night .moment p { color:rgba(255,255,255,.72); } .day.night .moment time { color:#d4c189; }
+.day__end { width:clamp(260px,30vw,420px); flex:none; align-self:center; }
+.day__end p { font-family:"Newsreader",serif; font-size:clamp(26px,2.4vw,36px); line-height:1.15; }
+.day__end .btn { margin-top:22px; }
+@media (max-width:899px) {
+  .day__head { flex-direction:column; align-items:flex-start; } .clock { display:none; }
+  .day__track { width:auto; overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:16px; margin-top:28px; scrollbar-width:none; }
+  .day__track::-webkit-scrollbar { display:none; }
+  .moment { width:80vw; scroll-snap-align:center; } .moment:nth-child(even) { margin-top:0; } .moment:nth-child(3n) figure { width:100%; }
+  .moment img { width:100%; margin:0; }
+  .day__end { width:70vw; scroll-snap-align:center; }
+}
+
+/* Bild-Enthüllung, Galerie-Cursor, Wortmarke */
+.cur { position:fixed; z-index:60; left:0; top:0; width:92px; height:92px; margin:-46px 0 0 -46px; border-radius:50%; background:var(--gold); color:#1d1a10; display:grid; place-items:center; font-size:14px; font-weight:500; pointer-events:none; transform:scale(0); }
+@media (pointer:fine) { html.anim .gallery button { cursor:none; } }
+.wordmark { margin-top:34px; font-family:"Newsreader",serif; font-size:clamp(64px,15.5vw,230px); line-height:.8; letter-spacing:-.035em; color:rgba(255,255,255,.12); white-space:nowrap; overflow:hidden; padding-bottom:.06em; text-align:center; }
+.wordmark span { display:inline-block; }
+
 @media (max-width:980px) {
   .nav { display:none; } .menu { display:grid; place-items:center; }
   .nav.open { display:flex; position:fixed; inset:76px 0 auto; flex-direction:column; gap:0; padding:8px var(--gut) 20px; background:var(--shutter); }
@@ -205,7 +264,7 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
 <a class="skip" href="#haus">Zum Inhalt springen</a>
 <header class="top" id="top"><div class="wrap">
   <a class="brand" href="#" aria-label="Der Johannishof – zum Anfang"><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"></a>
-  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
+  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#tag">Ein Tag</a><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
   <a class="btn btn--gold" href="#preise">Jetzt buchen</a>
   <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
 </div></header>
@@ -242,7 +301,28 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
       <p class="signature">Wir freuen uns auf Sie im Johannishof.</p>
     </div>
   </div>
-  <figure class="view"><img src="img/house.webp" alt="Blick vom Garten des Johannishofs über Bäume auf Würzburg" loading="lazy"><figcaption>Der Blick vom Garten auf Würzburg</figcaption></figure>
+</div></section>
+
+<section class="pano" aria-label="Der Blick über Würzburg"><div class="pano__stick">
+  <p class="pano__lbl" aria-hidden="true">Ein Blick aus dem Garten …</p>
+  <div class="pano__frame" id="panoFrame"><img src="img/house.webp" alt="Blick vom Garten des Johannishofs über Bäume auf Würzburg" loading="lazy"></div>
+  <div class="pano__txt wrap" id="panoTxt"><p class="serif">Würzburg liegt Ihnen zu Füßen.</p><span>Unverbaut, von der Nikolaushöhe über Stadt und Maintal</span></div>
+</div></section>
+
+<section class="day" id="tag" aria-label="Ein Tag im Johannishof"><div class="day__pin" id="dayPin">
+  <div class="day__head wrap"><h2 class="serif">Ein Tag im Johannishof.</h2>
+    <div class="clock" aria-hidden="true"><b id="clockT">07:30</b>
+      <svg viewBox="0 0 380 70"><path class="arcbg" d="M6 66 Q190 -40 374 66"/><path class="arcfg" id="arcFg" d="M6 66 Q190 -40 374 66"/><circle class="sun" id="sun" r="7" cx="6" cy="66"/></svg></div>
+  </div>
+  <div class="day__track" id="track">
+    <article class="moment"><figure><img src="img/kueche-sm.webp" alt="Küche mit Kochinsel im Morgenlicht" loading="lazy"></figure><div><time>07:30</time><h3>Kaffee an der Kochinsel</h3><p>Frühstück für alle am großen Küchenblock, die Fenster offen zum Garten.</p></div></article>
+    <article class="moment"><figure><img src="img/garden-sm.webp" alt="Pool mit Hortensien vor dem Haus" loading="lazy"></figure><div><time>10:30</time><h3>Die ersten Bahnen</h3><p>Der Salzwasser-Pool ist beheizt, von Mitte April bis Ende Oktober.</p></div></article>
+    <article class="moment"><figure><img src="img/vineyard-sm.webp" alt="Weinberge über dem Maintal" loading="lazy"></figure><div><time>14:00</time><h3>Durch die Weinberge</h3><p>Direkt vom Hof zu Fuß in die Weinberge und zur Frankenwarte.</p></div></article>
+    <article class="moment"><figure><img src="img/terrace-sm.webp" alt="Gedeckte Tafel auf der Terrasse" loading="lazy"></figure><div><time>18:30</time><h3>Grillen und lange Tafel</h3><p>Outdoor-Küche mit Gasgrill, Teak-Tafel für 6 bis 8 Personen auf der Natursteinterrasse.</p></div></article>
+    <article class="moment"><figure><img src="img/pool-view-sm.webp" alt="Saunahaus am Pool" loading="lazy"></figure><div><time>21:00</time><h3>Sauna am Pool</h3><p>Die finnische Außensauna steht im eigenen Häuschen, zwei Schritte vom Wasser.</p></div></article>
+    <article class="moment"><figure><img src="img/wohnen3-sm.webp" alt="Gute Stube mit historischem Kachelofen" loading="lazy"></figure><div><time>22:30</time><h3>Am Kachelofen</h3><p>Der Abend endet in der Guten Stube am historischen Kachelofen.</p></div></article>
+    <div class="day__end"><p>Und morgen wieder von vorn.</p><a class="btn btn--gold" href="#preise">Termin wählen</a></div>
+  </div>
 </div></section>
 
 <section class="s house" id="haus"><div class="wrap">
@@ -257,18 +337,18 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
     <div><h3>Wohnen, kochen und zusammen essen</h3><ul>
       <li>Große Stube mit Esstisch für bis zu 12 Personen</li><li>Küche mit Kochinsel und 6-flammigem Gasherd</li><li>Gute Stube mit historischem Kachelofen</li><li>Wohnzimmer mit Lounge-Sofa und 65-Zoll-Fernseher, direkt zum Pool</li><li>Kinderspielzimmer, Gäste-WC und Hauswirtschaftsraum</li></ul>
       <p class="cap">Vom Wohnzimmer geht es direkt auf die Terrasse und in den Garten.</p></div>
-    <div class="duo"><img src="img/stube-sm.webp" alt="Große Stube mit langem Esstisch und Holzbalken" loading="lazy"><img src="img/kueche-sm.webp" alt="Küche mit Kochinsel" loading="lazy"></div>
+    <div class="duo rv"><img src="img/stube-sm.webp" alt="Große Stube mit langem Esstisch und Holzbalken" loading="lazy"><img src="img/kueche-sm.webp" alt="Küche mit Kochinsel" loading="lazy"></div>
   </div>
   <div class="floor" id="f2" role="tabpanel" aria-labelledby="t2" hidden>
     <div><h3>Schlafen mit Blick ins Grüne</h3><ul>
       <li>2 Schlafzimmer mit Kingsize-Bett</li><li>1 Schlafzimmer mit 2 Einzelbetten und Sekretär fürs Home-Office</li><li>Durchgangszimmer mit Schlafcouch und Schreibtisch</li><li>Großes Bad mit Badewanne, Walk-in-Dusche und WC</li><li>Schöne Holzböden und hochwertige Bettwäsche</li></ul></div>
-    <div class="duo"><img src="img/bedroom1-sm.webp" alt="Schlafzimmer mit Kingsize-Bett" loading="lazy"><img src="img/bad1-sm.webp" alt="Bad mit Badewanne und zwei Waschbecken" loading="lazy"></div>
+    <div class="duo rv"><img src="img/bedroom1-sm.webp" alt="Schlafzimmer mit Kingsize-Bett" loading="lazy"><img src="img/bad1-sm.webp" alt="Bad mit Badewanne und zwei Waschbecken" loading="lazy"></div>
   </div>
   <div class="floor" id="f3" role="tabpanel" aria-labelledby="t3" hidden>
     <div><h3>Das Apartment für 4 weitere Gäste</h3><ul>
       <li>2 Schlafzimmer mit Doppelbett und Sekretär</li><li>Großes Bad mit Badewanne/Dusche und WC</li><li>Küchenzeile mit Herd, Ofen und Spülmaschine</li><li>Wohnbereich mit Lounge-Sofa und Bartisch</li><li>Eigener Zugang über die Außentreppe mit Blick ins Maintal</li></ul>
       <p class="cap">Das Apartment wird nur zusammen mit dem Haupthaus vermietet.</p></div>
-    <div class="duo"><img src="img/img6236-sm.webp" alt="Wohnbereich im Apartment unter dem Dach" loading="lazy"><img src="img/bedroom2-sm.webp" alt="Schlafzimmer mit Schreibtisch und bemaltem Bauernschrank" loading="lazy"></div>
+    <div class="duo rv"><img src="img/img6236-sm.webp" alt="Wohnbereich im Apartment unter dem Dach" loading="lazy"><img src="img/bedroom2-sm.webp" alt="Schlafzimmer mit Schreibtisch und bemaltem Bauernschrank" loading="lazy"></div>
   </div>
 </div></section>
 
@@ -330,7 +410,7 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
     </ul>
     <p style="margin-top:22px"><a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=Oberer+Steinbachweg+1B+97082+W%C3%BCrzburg" target="_blank" rel="noopener">Route planen</a></p>
   </div>
-  <figure><img src="img/vineyard-sm.webp" alt="Weinberge über dem Maintal bei Würzburg" loading="lazy"></figure>
+  <figure class="rv"><img src="img/vineyard-sm.webp" alt="Weinberge über dem Maintal bei Würzburg" loading="lazy"></figure>
 </div></section>
 
 <section class="s contact" id="kontakt"><div class="wrap cgrid">
@@ -361,6 +441,7 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
     <div><p><a href="tel:+4917624208065">+49 176 24 20 80 65</a><br><a href="mailto:info@derjohannishof.de">info@derjohannishof.de</a></p></div>
     <div><p><a href="https://www.derjohannishof.de/impressum">Impressum</a><br><a href="https://www.derjohannishof.de/datenschutz">Datenschutz</a><br><a href="https://www.derjohannishof.de/agb">AGB</a></p></div>
   </div>
+  <div class="wordmark" aria-hidden="true"><span id="wm">Johannishof</span></div>
   <div class="fbase"><span>© <span id="yr">2026</span> Der Johannishof</span><span>Entwurf einer neuen Website von F&amp;D Solutions</span></div>
 </div></footer>
 <div class="dock" id="dock"><a class="btn btn--line" href="tel:+4917624208065">Anrufen</a><a class="btn btn--gold" href="#preise">Jetzt buchen</a></div>
@@ -439,6 +520,107 @@ footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
     location.href = "mailto:info@derjohannishof.de?subject=" + encodeURIComponent("Anfrage Johannishof") + "&body=" + encodeURIComponent(body);
     $("#aOk").textContent = "Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage.";
   });
+})();
+</script>
+
+<script src="/site/vendor/gsap-3.13/gsap.min.js"></script>
+<script src="/site/vendor/gsap-3.13/ScrollTrigger.min.js"></script>
+<script src="/site/vendor/gsap-3.13/SplitText.min.js"></script>
+<script src="/site/vendor/lenis-1.3/lenis.min.js"></script>
+<script>
+(function () {
+  var G = window.gsap, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (!G || !window.ScrollTrigger || reduce) return;
+  G.registerPlugin(ScrollTrigger); if (window.SplitText) G.registerPlugin(SplitText);
+  var root = document.documentElement; root.classList.add("anim");
+  var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  var desk = matchMedia("(min-width: 900px)").matches, fine = matchMedia("(pointer: fine)").matches;
+
+  /* weiches Scrollen (nur Maus) */
+  if (window.Lenis && fine) {
+    var lenis = new Lenis({ lerp: .1, anchors: { offset: -76 } });
+    lenis.on("scroll", ScrollTrigger.update);
+    G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
+    window.__lenis = lenis;
+  }
+
+  /* Start: Bild öffnet sich, Titel steigt Buchstabe für Buchstabe auf */
+  var hImg = $(".hero img"); hImg.style.animation = "none";
+  var tl = G.timeline({ defaults: { ease: "expo.out" } });
+  tl.fromTo(hImg, { scale: 1.22, clipPath: "inset(14% 18% 14% 18% round 14px)" }, { scale: 1, clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 2.1, ease: "expo.inOut" });
+  if (window.SplitText) {
+    var h1 = new SplitText(".hero h1", { type: "chars,words", mask: "words" });
+    tl.from(h1.chars, { yPercent: 115, duration: 1.3, stagger: .035 }, "-=.9");
+  }
+  tl.from(".hero p", { y: 24, autoAlpha: 0, duration: 1.1 }, "-=1")
+    .from(".book", { y: 50, autoAlpha: 0, duration: 1.2 }, "-=.9")
+    .from(".top .wrap > *", { y: -20, autoAlpha: 0, duration: 1, stagger: .08 }, "-=1.1");
+  G.to(hImg, { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  G.to(".hero__in", { yPercent: -45, autoAlpha: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
+
+  /* Überschriften steigen zeilenweise auf */
+  if (window.SplitText) $$(".s h2.serif, .day__head h2").forEach(function (h) {
+    var sp = new SplitText(h, { type: "lines", mask: "lines" });
+    G.from(sp.lines, { yPercent: 105, duration: 1.2, ease: "expo.out", stagger: .1, scrollTrigger: { trigger: h, start: "top 86%" } });
+  });
+
+  /* Bilder enthüllen sich von unten */
+  $$(".rv, .mosaic figure").forEach(function (el) {
+    var imgs = el.querySelectorAll("img");
+    var t = G.timeline({ scrollTrigger: { trigger: el, start: "top 88%" } });
+    t.fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut" })
+     .from(imgs, { scale: 1.25, duration: 1.8, ease: "expo.out", clearProps: "transform" }, "<.1");
+  });
+
+  /* Ausblick: kleines Fenster wird zum Panorama */
+  var pt = G.timeline({ scrollTrigger: { trigger: ".pano", start: "top top", end: "bottom bottom", scrub: .6 } });
+  pt.fromTo("#panoFrame", { clipPath: "inset(30% 36% 30% 36% round 200px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "power2.inOut", duration: 1 })
+    .fromTo("#panoFrame img", { scale: 1.5 }, { scale: 1, ease: "power2.inOut", duration: 1 }, 0)
+    .to(".pano__lbl", { autoAlpha: 0, y: -30, duration: .25 }, 0)
+    .from("#panoTxt", { autoAlpha: 0, y: 60, duration: .3 }, .7);
+
+  /* Ein Tag: horizontal, Uhr und Sonne laufen mit, Abend wird dunkel */
+  if (desk) {
+    var track = $("#track"), day = $(".day"), arc = $("#arcFg"), sun = $("#sun"), L = arc.getTotalLength();
+    arc.style.strokeDasharray = L; arc.style.strokeDashoffset = L;
+    var times = [7.5, 10.5, 14, 18.5, 21, 22.5];
+    function dist() { return track.scrollWidth - innerWidth; }
+    var ht = G.to(track, { x: function () { return -dist(); }, ease: "none",
+      scrollTrigger: { trigger: "#dayPin", pin: true, start: "top top", end: function () { return "+=" + dist(); }, scrub: .8, invalidateOnRefresh: true,
+        onUpdate: function (st) {
+          var p = st.progress, f = Math.min(p / .86, 1) * (times.length - 1), i = Math.floor(f), h = i >= times.length - 1 ? times[times.length - 1] : times[i] + (times[i + 1] - times[i]) * (f - i);
+          var hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 5) * 5;
+          $("#clockT").textContent = String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0");
+          var q = (h - 7.5) / 15; arc.style.strokeDashoffset = L * (1 - q);
+          var pt2 = arc.getPointAtLength(L * q); sun.setAttribute("cx", pt2.x); sun.setAttribute("cy", pt2.y);
+          day.classList.toggle("night", h > 19.5);
+        } } });
+    G.timeline({ scrollTrigger: { trigger: "#dayPin", start: "top top", end: function () { return "+=" + dist(); }, scrub: true } })
+      .to(day, { backgroundColor: "#f8f6f1", color: "#1f2421", duration: .5 })
+      .to(day, { backgroundColor: "#1c2a23", color: "#f4f1ea", duration: .3, ease: "none" })
+      .to(day, { backgroundColor: "#111a15", duration: .2, ease: "none" });
+    $$(".moment").forEach(function (m) {
+      G.fromTo(m.querySelector("img"), { xPercent: 6 }, { xPercent: -6, ease: "none", scrollTrigger: { trigger: m, containerAnimation: ht, start: "left right", end: "right left", scrub: true } });
+    });
+  }
+
+  /* Galerie: eigener Cursor „Ansehen“ */
+  if (fine) {
+    var cur = document.createElement("div"); cur.className = "cur"; cur.textContent = "Ansehen"; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
+    var qx = G.quickTo(cur, "x", { duration: .45, ease: "power3" }), qy = G.quickTo(cur, "y", { duration: .45, ease: "power3" });
+    var gal = $("#gallery");
+    gal.addEventListener("pointermove", function (e) { qx(e.clientX); qy(e.clientY); });
+    gal.addEventListener("pointerenter", function (e) { G.set(cur, { x: e.clientX, y: e.clientY }); G.to(cur, { scale: 1, duration: .4, ease: "back.out(2)" }); });
+    gal.addEventListener("pointerleave", function () { G.to(cur, { scale: 0, duration: .3 }); });
+    G.from("#gallery button", { y: 60, autoAlpha: 0, duration: 1, ease: "expo.out", stagger: { each: .05, from: "start" }, scrollTrigger: { trigger: "#gallery", start: "top 85%" } });
+  }
+
+  /* Wortmarke steigt aus der Fußzeile */
+  G.from("#wm", { yPercent: 70, ease: "none", scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true } });
+
+  /* Lightbox stoppt weiches Scrollen */
+  var lb = $("#lb"); new MutationObserver(function () { if (window.__lenis) lb.hidden ? __lenis.start() : __lenis.stop(); }).observe(lb, { attributes: true, attributeFilter: ["hidden"] });
+  addEventListener("load", function () { ScrollTrigger.refresh(); });
 })();
 </script>
 </body>
