@@ -302,18 +302,20 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 
 .cellar { position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center; background:#0b0907; color:#f3ead9; overflow:hidden; }
 .cellar__art { position:absolute; inset:0; width:100%; height:100%; display:block; }
-.cellar::before { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(11,9,7,.96) 0%, rgba(11,9,7,.82) 34%, rgba(11,9,7,0) 62%); }
+.cellar::before { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(11,9,7,.94) 0%, rgba(11,9,7,.7) 36%, rgba(11,9,7,0) 60%); }
 .cellar__in { position:relative; z-index:2; width:100%; padding-top:clamp(90px,12vh,140px); padding-bottom:clamp(90px,12vh,140px); }
 .cellar__tag { font-size:14px; letter-spacing:.06em; color:#d4c189; }
 .cellar h2 { margin-top:12px; font-size:clamp(3rem,7vw,6.4rem); color:#f6eedd; }
 .cellar__lead { margin-top:20px; max-width:42ch; font-size:18.5px; color:rgba(243,234,217,.8); }
 .cellar__list { margin-top:30px; list-style:none; display:grid; gap:0; max-width:480px; }
-.cellar__list li { display:grid; grid-template-columns:120px 1fr; gap:16px; padding:14px 0; border-top:1px solid rgba(212,193,137,.22); font-size:15.5px; }
-.cellar__list b { font-weight:500; color:#e9dcb8; } .cellar__list span { color:rgba(243,234,217,.72); }
+.cellar__list li { display:grid; grid-template-columns:96px 1fr auto; gap:16px; align-items:baseline; padding:14px 0; border-top:1px solid rgba(212,193,137,.22); font-size:15.5px; }
+.cellar__list b { font-weight:500; color:#e9dcb8; } .cellar__list em { font-style:normal; font-family:"Newsreader",serif; font-size:24px; color:#f3e6c4; }
+.cellar__fine { margin-top:14px; font-size:13.5px; color:rgba(243,234,217,.55); max-width:46ch; }
+.cellar__light { color:#f3ead9; min-height:50px; } .cellar__list span { color:rgba(243,234,217,.72); }
 .cellar__cta { margin-top:30px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
 .cellar__hint { font-size:13.5px; color:rgba(243,234,217,.55); }
 @media (pointer:coarse) { .cellar__hint { display:none; } }
-@media (max-width:899px) { .cellar::before { background:linear-gradient(rgba(11,9,7,.35), rgba(11,9,7,.88) 45%, rgba(11,9,7,.96)); } .cellar__in { padding-top:42vh; } .cellar__list li { grid-template-columns:1fr; gap:2px; } }
+@media (max-width:899px) { .cellar::before { background:linear-gradient(rgba(11,9,7,0) 25%, rgba(11,9,7,.85) 52%, rgba(11,9,7,.96)); } .cellar__in { padding-top:42vh; } .cellar__list li { grid-template-columns:84px 1fr auto; gap:10px; } .cellar__in { padding-top:46vh; } }
 
 .xtra { display:flex; gap:12px; align-items:flex-start; margin-top:12px; padding:12px 14px; border-radius:10px; background:#f4efe3; cursor:pointer; font-size:15px; }
 .xtra input { width:20px; height:20px; margin-top:2px; accent-color:var(--shutter); flex:none; }
@@ -424,7 +426,8 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
     <article class="moment"><figure><img src="img/garden-sm.webp" alt="Pool mit Hortensien vor dem Haus" loading="lazy"></figure><div><time>10:30</time><h3>Die ersten Bahnen</h3><p>Der Salzwasser-Pool ist beheizt, von Mitte April bis Ende Oktober.</p></div></article>
     <article class="moment"><figure><img src="img/vineyard-sm.webp" alt="Weinberge über dem Maintal" loading="lazy"></figure><div><time>14:00</time><h3>Durch die Weinberge</h3><p>Direkt vom Hof zu Fuß in die Weinberge und zur Frankenwarte.</p></div></article>
     <article class="moment"><figure><img src="img/terrace-sm.webp" alt="Gedeckte Tafel auf der Terrasse" loading="lazy"></figure><div><time>18:30</time><h3>Grillen und lange Tafel</h3><p>Outdoor-Küche mit Gasgrill, Teak-Tafel für 6 bis 8 Personen auf der Natursteinterrasse.</p></div></article>
-    <article class="moment"><figure><img src="img/pool-view-sm.webp" alt="Saunahaus am Pool" loading="lazy"></figure><div><time>21:00</time><h3>Sauna am Pool</h3><p>Die finnische Außensauna steht im eigenen Häuschen, zwei Schritte vom Wasser.</p></div></article>
+    <article class="moment"><figure><img src="img/weinkeller-sm.webp" alt="Gedeckte Tafel im Naturstein-Weinkeller" loading="lazy"></figure><div><time>20:00</time><h3>Weinprobe im Gewölbe</h3><p>Der private Naturstein-Weinkeller, zubuchbar für einen oder zwei Abende.</p></div></article>
+    <article class="moment"><figure><img src="img/pool-view-sm.webp" alt="Saunahaus am Pool" loading="lazy"></figure><div><time>21:30</time><h3>Sauna am Pool</h3><p>Die finnische Außensauna steht im eigenen Häuschen, zwei Schritte vom Wasser.</p></div></article>
     <article class="moment"><figure><img src="img/wohnen3-sm.webp" alt="Gute Stube mit historischem Kachelofen" loading="lazy"></figure><div><time>22:30</time><h3>Am Kachelofen</h3><p>Der Abend endet in der Guten Stube am historischen Kachelofen.</p></div></article>
     <div class="day__end"><p>Und morgen wieder von vorn.</p><a class="btn btn--gold" href="#preise">Termin wählen</a></div>
   </div>
@@ -493,13 +496,14 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   <div class="cellar__in wrap">
     <p class="cellar__tag">Zubuchbar zu Ihrem Aufenthalt</p>
     <h2 class="serif" id="wkT">Der Weinkeller.</h2>
-    <p class="cellar__lead">Für eine Weinprobe mit Freunden, ein langes Abendessen bei Kerzenlicht oder den Ausklang eines Tages in den Weinbergen. Franken ist Weinland, und im Johannishof gehört der Keller einfach dazu.</p>
+    <p class="cellar__lead">Zum Johannishof gehört ein privater Naturstein-Weinkeller: Gewölbe aus Bruchstein, ein großes Holzfass, eine lange Tafel. Ganz für Sie allein, mit Familie oder Freunden, für eine Weinprobe oder einen Abend, über den man noch lange spricht.</p>
     <ul class="cellar__list">
-      <li><b>Weinprobe</b><span>Frankenwein in Ruhe verkosten, mitten im Weinland</span></li>
-      <li><b>Abendessen</b><span>Die besondere Tafel für Geburtstage, Familienfeiern und Gruppen</span></li>
-      <li><b>Buchung</b><span>Einfach zur Unterkunft dazubuchen, Preis und Termin auf Anfrage</span></li>
+      <li><b>1 Abend</b><span>Exklusive Nutzung für Ihre Gruppe</span><em>150 €</em></li>
+      <li><b>2 Abende</b><span>Zwei Abende während Ihres Aufenthalts</span><em>250 €</em></li>
+      <li><b>Kaminholz</b><span>Korb Buchenholz für den Kaminofen</span><em>20 €</em></li>
     </ul>
-    <div class="cellar__cta"><button class="btn btn--gold" type="button" id="wkBtn">Weinkeller dazubuchen</button><span class="cellar__hint">Bewegen Sie die Maus, um den Keller auszuleuchten.</span></div>
+    <p class="cellar__fine">Getränke und Weinbegleitung sind nicht im Preis enthalten. Buchbar direkt bei der Reservierung unter „Extras“.</p>
+    <div class="cellar__cta"><button class="btn btn--gold" type="button" id="wkBtn">Mit Weinkeller buchen</button><button class="btn btn--line cellar__light" type="button" id="wkLight" aria-pressed="false">Licht an</button></div>
   </div>
 </section>
 
@@ -514,17 +518,18 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   <p class="lead">Buchen Sie direkt bei uns und sparen Sie bis zu 10 % gegenüber den Tagesraten der Buchungsportale.</p>
   <div class="pgrid">
     <div class="pcard"><h3>Haupthaus · bis 6 Gäste</h3><p class="amt">389–529 € <small>pro Nacht</small></p><ul><li>Erdgeschoss und 1. Obergeschoss</li><li>Endreinigung 269 €</li><li>Preis je nach Zeitraum</li></ul></div>
-    <div class="pcard"><h3>Apartment · +4 Gäste</h3><p class="amt">+249–299 € <small>pro Nacht</small></p><ul><li>2. Obergeschoss, eigener Eingang</li><li>Endreinigung 100 €</li><li>Nur zusammen mit dem Haupthaus</li></ul></div>
+    <div class="pcard"><h3>Ab 7 Gästen · mit Apartment</h3><p class="amt">+85 € <small>pro weiterer Person und Nacht</small></p><ul><li>Apartment im 2. Obergeschoss</li><li>Bis zu 10 Gäste, ein weiterer auf Anfrage</li><li>Nur zusammen mit dem Haupthaus</li></ul></div>
     <form class="pcard calc" id="calc" aria-label="Preis berechnen">
       <h3>Ihr Aufenthalt</h3>
       <div class="f2" style="margin-top:10px">
         <div class="field" style="margin-top:0"><label for="cIn">Anreise</label><input type="date" id="cIn"></div>
         <div class="field" style="margin-top:0"><label for="cOut">Abreise</label><input type="date" id="cOut"></div>
       </div>
-      <div class="field"><label for="cG">Gäste</label><select id="cG"><option value="2">2 Gäste</option><option value="4">4 Gäste</option><option value="6" selected>6 Gäste</option><option value="8">8 Gäste (mit Apartment)</option><option value="10">10 Gäste (mit Apartment)</option></select></div>
+      <div class="field"><label for="cG">Gäste</label><select id="cG"><option value="2">2 Gäste</option><option value="4">4 Gäste</option><option value="6" selected>6 Gäste</option><option value="7">7 Gäste</option><option value="8">8 Gäste (mit Apartment)</option><option value="9">9 Gäste (mit Apartment)</option><option value="10">10 Gäste (mit Apartment)</option></select></div>
       <div class="row"><span id="cN">Nächte</span><span id="cNV">–</span></div>
       <div class="row"><span>Endreinigung</span><span id="cClean">269 €</span></div>
-      <label class="xtra"><input type="checkbox" id="cWine"><span><b>Weinkeller dazubuchen</b><small>Preis auf Anfrage, wir melden uns persönlich</small></span></label>
+      <div class="field"><label for="cWine">Weinkeller</label><select id="cWine"><option value="0">Ohne Weinkeller</option><option value="150">1 Abend · 150 €</option><option value="250">2 Abende · 250 €</option></select></div>
+      <div class="row" id="cWineRow" hidden><span>Weinkeller</span><span id="cWineV">150 €</span></div>
       <div class="row t"><span>Voraussichtlich</span><span id="cT">–</span></div>
       <button class="btn btn--green" type="submit">Zur Buchung</button>
       <small id="cHint">Den genauen Preis sehen Sie im nächsten Schritt in unserem Buchungssystem. Alle Preise inkl. 7 % MwSt.</small>
@@ -562,7 +567,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
       <div class="field"><label for="aDates">Zeitraum</label><input id="aDates" placeholder="z. B. 12.–16. Juni"></div>
       <div class="field"><label for="aG">Gäste</label><select id="aG"><option>2</option><option>4</option><option selected>6</option><option>8</option><option>10</option></select></div>
     </div>
-    <label class="xtra xtra--form"><input type="checkbox" id="aWine"><span><b>Weinkeller dazubuchen</b><small>Für Weinprobe oder Abendessen, Preis auf Anfrage</small></span></label>
+    <label class="xtra xtra--form"><input type="checkbox" id="aWine"><span><b>Weinkeller dazubuchen</b><small>1 Abend 150 €, 2 Abende 250 €, Getränke nicht enthalten</small></span></label>
     <div class="field"><label for="aMsg">Nachricht</label><textarea id="aMsg"></textarea></div>
     <button class="btn btn--green" type="submit">Anfrage senden</button>
     <p class="msg" id="aOk" aria-live="polite"></p>
@@ -613,31 +618,27 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 
   /* price estimate: low/high season band, minimum stay */
   function calc() {
-    var a = $("#cIn").value, b = $("#cOut").value, g = +$("#cG").value, apt = g > 6;
-    $("#cClean").textContent = (apt ? 369 : 269) + " €";
+    var a = $("#cIn").value, b = $("#cOut").value, g = +$("#cG").value, extra = Math.max(0, g - 6), wine = +$("#cWine").value, clean = extra ? 289 : 269;
+    $("#cClean").textContent = clean + " €";
+    $("#cWineRow").hidden = !wine; $("#cWineV").textContent = wine + " €";
     if (!a || !b || b <= a) { $("#cNV").textContent = "–"; $("#cT").textContent = "–"; return; }
     var A = new Date(a + "T00:00"), B = new Date(b + "T00:00"), n = Math.round((B - A) / DAY), lo = 0, hi = 0, summer = false;
-    for (var t = +A; t < +B; t += DAY) { var m = new Date(t).getMonth(); if (m === 6 || m === 7) summer = true; lo += 389 + (apt ? 249 : 0); hi += 529 + (apt ? 299 : 0); }
-    var min = summer ? 4 : 3, clean = apt ? 369 : 269;
-    $("#cN").textContent = n + (n === 1 ? " Nacht" : " Nächte") + (apt ? " · mit Apartment" : "");
+    for (var t = +A; t < +B; t += DAY) { var m = new Date(t).getMonth(); if (m === 6 || m === 7) summer = true; lo += 389 + extra * 85; hi += 529 + extra * 85; }
+    var min = summer ? 4 : 3;
+    $("#cN").textContent = n + (n === 1 ? " Nacht" : " Nächte") + (extra ? " · " + g + " Gäste" : "");
     $("#cNV").textContent = lo.toLocaleString("de-DE") + "–" + hi.toLocaleString("de-DE") + " €";
-    $("#cT").textContent = (lo + clean).toLocaleString("de-DE") + "–" + (hi + clean).toLocaleString("de-DE") + " €";
-    $("#cHint").textContent = n < min ? "Bitte mindestens " + min + " Nächte wählen" + (summer ? " (Juli/August)." : ".") : "Den genauen Preis für Ihren Zeitraum sehen Sie im nächsten Schritt. Alle Preise inkl. 7 % MwSt.";
+    $("#cT").textContent = (lo + clean + wine).toLocaleString("de-DE") + "–" + (hi + clean + wine).toLocaleString("de-DE") + " €";
+    $("#cHint").textContent = n < min ? "Bitte mindestens " + min + " Nächte wählen" + (summer ? " (Juli/August)." : ".") : (wine ? "Den Weinkeller wählen Sie im nächsten Schritt unter „Extras“ aus. " : "") + "Den genauen Preis sehen Sie im Buchungssystem. Alle Preise inkl. MwSt.";
   }
-  ["#cIn", "#cOut", "#cG"].forEach(function (s) { $(s).addEventListener("change", calc); });
+  ["#cIn", "#cOut", "#cG", "#cWine"].forEach(function (s) { $(s).addEventListener("change", calc); });
   $("#calc").addEventListener("submit", function (e) {
     e.preventDefault(); window.open(bookUrl($("#cIn").value, $("#cOut").value, $("#cG").value), "_blank", "noopener");
-    if ($("#cWine").checked) wineAsk();
   });
-  function wineAsk() {
-    $("#aWine").checked = true; $("#cWine").checked = true;
-    if ($("#cIn").value && $("#cOut").value) $("#aDates").value = new Date($("#cIn").value).toLocaleDateString("de-DE") + " – " + new Date($("#cOut").value).toLocaleDateString("de-DE");
-    $("#aG").value = $("#cG").value;
-    var k = document.getElementById("kontakt"); window.__lenis ? __lenis.scrollTo(k, { offset: -76 }) : k.scrollIntoView();
-    setTimeout(function () { $("#aName").focus({ preventScroll: true }); }, 900);
-    $("#aOk").textContent = "Der Weinkeller ist vorgemerkt. Senden Sie uns kurz Ihre Anfrage.";
-  }
-  $("#wkBtn").addEventListener("click", wineAsk);
+  $("#wkBtn").addEventListener("click", function () {
+    if ($("#cWine").value === "0") $("#cWine").value = "150"; calc();
+    var k = document.getElementById("preise"); window.__lenis ? __lenis.scrollTo(k, { offset: -76 }) : k.scrollIntoView();
+    setTimeout(function () { $("#cIn").focus({ preventScroll: true }); }, 900);
+  });
   calc();
 
   /* floor tabs (arrow keys) */
@@ -649,7 +650,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   });
 
   /* gallery + lightbox */
-  var pics = [["pool-hero","Haus mit Pool"],["wohnen2","Wohnzimmer zum Garten"],["stube","Große Stube"],["garden","Pool und Hortensien"],["schlafen","Schlafzimmer"],["kueche","Küche"],["terrace","Terrasse"],["wohnen3","Gute Stube mit Kachelofen"],["bedroom1","Schlafzimmer mit Kingsize-Bett"],["gal2","Outdoor-Küche"],["bad2","Bad"],["wohnen1","Wohnen"],["img6236","Apartment"],["pool-view","Pool und Sauna"],["wohnen4","Wohnzimmer"],["bad1","Bad mit Badewanne"],["bedroom2","Schlafzimmer mit Schreibtisch"],["carport","Hof und Carport"],["vineyard","Weinberge im Maintal"]];
+  var pics = [["pool-hero","Haus mit Pool"],["wohnen2","Wohnzimmer zum Garten"],["stube","Große Stube"],["garden","Pool und Hortensien"],["schlafen","Schlafzimmer"],["kueche","Küche"],["terrace","Terrasse"],["wohnen3","Gute Stube mit Kachelofen"],["bedroom1","Schlafzimmer mit Kingsize-Bett"],["gal2","Outdoor-Küche"],["bad2","Bad"],["wohnen1","Wohnen"],["img6236","Apartment"],["pool-view","Pool und Sauna"],["wohnen4","Wohnzimmer"],["bad1","Bad mit Badewanne"],["bedroom2","Schlafzimmer mit Schreibtisch"],["weinkeller","Naturstein-Weinkeller"],["kaminholz","Kaminofen"],["carport","Hof und Carport"],["vineyard","Weinberge im Maintal"]];
   var gal = $("#gallery"), lb = $("#lb"), li = $("#lbImg"), cur = 0, last;
   pics.forEach(function (p, i) { var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", p[1] + " vergrößern"); b.innerHTML = '<img src="img/' + p[0] + '-sm.webp" alt="' + p[1] + '" loading="lazy">'; b.addEventListener("click", function () { last = b; open(i); }); gal.appendChild(b); });
   function show(i) { cur = (i + pics.length) % pics.length; li.src = "img/" + pics[cur][0] + ".webp"; li.alt = pics[cur][1]; $("#lbCap").textContent = pics[cur][1] + " · " + (cur + 1) + " / " + pics.length; }
@@ -780,7 +781,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   if (desk) {
     var track = $("#track"), day = $(".day"), arc = $("#arcFg"), sun = $("#sun"), L = arc.getTotalLength(), dayST;
     arc.style.strokeDasharray = L; arc.style.strokeDashoffset = L;
-    var times = [7.5, 10.5, 14, 18.5, 21, 22.5];
+    var times = [7.5, 10.5, 14, 18.5, 20, 21.5, 22.5];
     function dist() { return track.scrollWidth - innerWidth; }
     var ht = G.to(track, { x: function () { return -dist(); }, ease: "none",
       scrollTrigger: { trigger: "#dayPin", pin: true, start: "top top", end: function () { return "+=" + dist(); }, scrub: .8, invalidateOnRefresh: true,
@@ -862,49 +863,47 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 })();
 </script>
 <script>
-/* Weinkeller: Flaschenwand im Kerzenlicht, das Licht folgt der Maus */
+/* Weinkeller: das echte Kellerfoto liegt im Dunkeln, ein Kerzenlicht folgt der Maus; „Licht an“ leuchtet den ganzen Keller aus */
 (function () {
   var cv = document.getElementById("cellarArt"); if (!cv || !cv.getContext) return;
-  var ctx = cv.getContext("2d"), sec = document.getElementById("weinkeller"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, B = [], L = { x: 0, y: 0 }, T = { x: 0, y: 0 }, user = 0, vis = false, t0 = performance.now(), running = false;
-  function build() {
+  var ctx = cv.getContext("2d"), sec = document.getElementById("weinkeller"), btn = document.getElementById("wkLight");
+  var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, L = { x: 0, y: 0 }, T = { x: 0, y: 0 }, user = 0, vis = false, running = false, t0 = performance.now();
+  var lit = reduce ? 1 : 0, litT = lit, img = new Image(), ready = false, box = null;
+  img.onload = function () { ready = true; layout(); start(); };
+  img.src = matchMedia("(max-width: 699px)").matches ? "img/weinkeller-sm.webp" : "img/weinkeller.webp";
+  function layout() {
     W = sec.clientWidth; H = sec.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-    var r = W < 700 ? 16 : 23, gap = r * 2.16, rowH = gap * .87; B = [];
-    for (var row = 0, y = r + 6; y < H + r; row++, y += rowH)
-      for (var x = (row % 2 ? gap / 2 : 0) + r * .6; x < W + r; x += gap) B.push({ x: x, y: y, r: r * (.94 + Math.random() * .08), tint: Math.random() });
-    L.x = T.x = W * (W < 900 ? .5 : .7); L.y = T.y = H * (W < 900 ? .25 : .45);
+    if (!ready) return;
+    var desk = W >= 900, aw = desk ? W * .62 : W, ax = desk ? W - aw : 0;
+    var sc = Math.max(aw / img.width, H / img.height), w = img.width * sc, h = img.height * sc;
+    box = { x: ax + (aw - w) / 2, y: (H - h) * (desk ? .62 : .1), w: w, h: h };
+    L.x = T.x = ax + aw * .5; L.y = T.y = H * .5;
   }
   function frame(now) {
     var t = (now - t0) / 1000;
-    if (!user) { T.x = W * ((W < 900 ? .5 : .7) + .2 * Math.sin(t * .31)); T.y = H * ((W < 900 ? .24 : .46) + .2 * Math.sin(t * .47 + 1)); }
-    L.x += (T.x - L.x) * .07; L.y += (T.y - L.y) * .07;
-    var S = (W < 700 ? 190 : 300) * (1 + .018 * Math.sin(t * 13) + .025 * Math.sin(t * 7.3) + .012 * Math.sin(t * 23));
-    var k = 1 / (2 * S * S);
+    if (!user) { var cx = W >= 900 ? W * .69 : W * .5; T.x = cx + W * .13 * Math.sin(t * .33); T.y = H * ((W >= 900 ? .5 : .24) + (W >= 900 ? .16 : .1) * Math.sin(t * .51 + 1)); }
+    L.x += (T.x - L.x) * .07; L.y += (T.y - L.y) * .07; lit += (litT - lit) * .05;
+    var R = Math.min(W, H) * (W < 700 ? .55 : .42) * (1 + .02 * Math.sin(t * 13) + .03 * Math.sin(t * 7.3) + .015 * Math.sin(t * 23));
     ctx.fillStyle = "#0b0907"; ctx.fillRect(0, 0, W, H);
-    for (var i = 0; i < B.length; i++) {
-      var b = B[i], dx = b.x - L.x, dy = b.y - L.y, I = Math.exp(-(dx * dx + dy * dy) * k), r = b.r;
-      ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, 6.2832);
-      if (I < .012) { ctx.fillStyle = "#110e0b"; ctx.fill(); continue; }
-      var gr = b.tint < .25 ? [26, 20, 14] : b.tint < .6 ? [14, 30, 18] : [20, 30, 14];
-      ctx.fillStyle = "rgb(" + (9 + gr[0] * 1.4 * I | 0) + "," + (8 + gr[1] * 1.4 * I | 0) + "," + (6 + gr[2] * 1.4 * I | 0) + ")"; ctx.fill();
-      ctx.lineWidth = 1.6; ctx.strokeStyle = "rgba(226,166,92," + (.6 * I).toFixed(3) + ")"; ctx.stroke();
-      ctx.beginPath(); ctx.arc(b.x, b.y, r * .46, 0, 6.2832); ctx.lineWidth = 1; ctx.strokeStyle = "rgba(0,0,0," + (.55 * I).toFixed(3) + ")"; ctx.stroke();
-      var a = Math.atan2(-dy, -dx);
-      ctx.beginPath(); ctx.arc(b.x, b.y, r * .78, a - .55, a + .55); ctx.lineWidth = r * .16; ctx.lineCap = "round"; ctx.strokeStyle = "rgba(255,218,160," + (.85 * I * I).toFixed(3) + ")"; ctx.stroke();
-    }
-    var g = ctx.createRadialGradient(L.x, L.y, 0, L.x, L.y, S * 1.5);
-    g.addColorStop(0, "rgba(255,176,90,.20)"); g.addColorStop(.5, "rgba(255,150,70,.06)"); g.addColorStop(1, "rgba(255,140,60,0)");
-    ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.globalCompositeOperation = "source-over";
-    var v = ctx.createRadialGradient(W * .6, H * .5, Math.min(W, H) * .3, W * .6, H * .5, Math.max(W, H) * .8);
-    v.addColorStop(0, "rgba(11,9,7,0)"); v.addColorStop(1, "rgba(11,9,7,.85)"); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+    if (box) { ctx.drawImage(img, box.x, box.y, box.w, box.h); if (W >= 900) { var e = ctx.createLinearGradient(W * .38, 0, W * .38 + 260, 0); e.addColorStop(0, "#0b0907"); e.addColorStop(1, "rgba(11,9,7,0)"); ctx.fillStyle = e; ctx.fillRect(W * .38, 0, 262, H); } }
+    var big = R + lit * Math.max(W, H) * 1.4;
+    var g = ctx.createRadialGradient(L.x, L.y, big * .05, L.x, L.y, big);
+    var dark = .93 * (1 - lit * .82);
+    g.addColorStop(0, "rgba(11,9,7,0)"); g.addColorStop(.45, "rgba(11,9,7," + (dark * .35).toFixed(3) + ")"); g.addColorStop(1, "rgba(11,9,7," + dark.toFixed(3) + ")");
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    var w2 = ctx.createRadialGradient(L.x, L.y, 0, L.x, L.y, R * 1.2);
+    w2.addColorStop(0, "rgba(255,170,80," + (.16 * (1 - lit * .7)).toFixed(3) + ")"); w2.addColorStop(1, "rgba(255,150,60,0)");
+    ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = w2; ctx.fillRect(0, 0, W, H); ctx.globalCompositeOperation = "source-over";
     if (vis && !reduce) requestAnimationFrame(frame); else running = false;
   }
   function start() { if (!running) { running = true; requestAnimationFrame(frame); } }
-  sec.addEventListener("pointermove", function (e) { var r = sec.getBoundingClientRect(); T.x = e.clientX - r.left; T.y = e.clientY - r.top; user = 1; });
+  sec.addEventListener("pointermove", function (e) { if (e.pointerType !== "mouse") return; var r = sec.getBoundingClientRect(); T.x = e.clientX - r.left; T.y = e.clientY - r.top; user = 1; });
   sec.addEventListener("pointerleave", function () { user = 0; });
-  addEventListener("resize", function () { build(); start(); });
+  btn.addEventListener("click", function () { litT = litT ? 0 : 1; btn.textContent = litT ? "Kerzenlicht" : "Licht an"; btn.setAttribute("aria-pressed", litT ? "true" : "false"); start(); if (reduce) { lit = litT; frame(performance.now()); } });
+  addEventListener("resize", function () { layout(); start(); });
   new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis) start(); }, { rootMargin: "100px" }).observe(sec);
-  build(); start();
+  layout();
 })();
 </script>
 <script type="module">
