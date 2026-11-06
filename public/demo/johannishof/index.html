@@ -8,6 +8,7 @@
 <meta name="robots" content="noindex">
 <link rel="preload" as="image" href="img/pool-hero.webp" media="(min-width: 700px)">
 <link rel="preload" as="image" href="img/pool-hero-sm.webp" media="(max-width: 699px)">
+<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("jhPre")){document.documentElement.classList.add("pre-on");setTimeout(function(){document.documentElement.classList.remove("pre-on")},7000)}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -22,6 +23,7 @@
 }
 *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
 html { scroll-behavior:smooth; scroll-padding-top:84px; -webkit-text-size-adjust:100%; }
+html { overflow-x:clip; }
 body { background:var(--paper); color:var(--ink); font:400 17px/1.65 "Jost",Futura,system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:clip; }
 img { display:block; max-width:100%; } a { color:inherit; }
 button, input, select, textarea { font:inherit; color:inherit; }
@@ -235,6 +237,56 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
 .wordmark { margin-top:34px; font-family:"Newsreader",serif; font-size:clamp(64px,15.5vw,230px); line-height:.8; letter-spacing:-.035em; color:rgba(255,255,255,.12); white-space:nowrap; overflow:hidden; padding-bottom:.06em; text-align:center; }
 .wordmark span { display:inline-block; }
 
+/* ===== Premium 2: Ladeintro, Hausmodell, Bildring ===== */
+.hero__media { position:absolute; inset:0; will-change:transform; }
+.hero canvas { position:absolute; inset:0; width:100%; height:100%; opacity:0; transition:opacity .8s; }
+.hero canvas.on { opacity:1; }
+.pre { display:none; position:fixed; z-index:100; inset:0; background:#16201b; color:#efe9dc; }
+html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
+.pre__top { position:absolute; left:var(--gut); right:var(--gut); top:28px; display:flex; justify-content:space-between; font-size:14px; letter-spacing:.04em; opacity:.8; }
+.pre__frame { position:absolute; inset:0; margin:auto; width:min(26vw,300px); height:min(34vw,390px); overflow:hidden; border-radius:3px; }
+.pre__frame > img, .pre__frame picture img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; clip-path:inset(100% 0 0 0); }
+.pre__frame picture img { object-position:50% 60%; }
+.pre__n { position:absolute; right:var(--gut); bottom:18px; font-family:"Newsreader",serif; font-size:clamp(90px,15vw,220px); line-height:.8; font-variant-numeric:tabular-nums; letter-spacing:-.04em; }
+@media (max-width:699px) { .pre__frame { width:56vw; height:72vw; } }
+
+.hgrid { display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(24px,5vw,80px); align-items:start; }
+.hgrid .floor { grid-template-columns:1fr; gap:20px; }
+.hgrid .duo img { min-height:0; aspect-ratio:4 / 3; height:auto; }
+.model { position:sticky; top:90px; height:clamp(460px,66vh,640px); perspective:2200px; perspective-origin:50% 30%; }
+.model__world { position:absolute; left:50%; top:64%; width:400px; height:260px; margin:-130px 0 0 -200px; transform-style:preserve-3d; transform:rotateX(58deg) rotateZ(var(--rz,-34deg)) scale(var(--ms,.74)); --gap:100px; --lift:70px; --ro:.5; }
+.ground { position:absolute; inset:-70px -90px -150px -70px; background:radial-gradient(closest-side, rgba(84,115,105,.32), rgba(84,115,105,.12) 70%, transparent); border-radius:50%; transform-style:preserve-3d; }
+.g-pool { position:absolute; left:120px; bottom:28px; width:200px; height:62px; background:linear-gradient(120deg,#9fd3d3,#6fb7bd); border-radius:3px; box-shadow:0 0 0 6px #e8e0cf; }
+.g-terr { position:absolute; left:70px; bottom:110px; width:120px; height:24px; background:#ddd3bf; }
+.slab { position:absolute; inset:0; transform-style:preserve-3d; transform:translateZ(calc(var(--i) * var(--gap))); transition:opacity .5s, filter .5s; cursor:pointer; }
+.slab[data-f="0"] { --i:0; } .slab[data-f="1"] { --i:1; } .slab[data-f="2"] { --i:2; }
+.plan { position:absolute; inset:0; width:100%; height:100%; overflow:visible; background:#f7f3ea; box-shadow:0 0 0 1px rgba(31,36,33,.18); }
+.pl-out { fill:none; stroke:#2b332e; stroke-width:5; }
+.pl-room { fill:transparent; stroke:#2b332e; stroke-width:2.2; transition:fill .5s; }
+.plan text { font:500 13px "Jost",sans-serif; fill:#3c443f; text-anchor:middle; }
+.plan .pl-title { font:400 24px "Newsreader",serif; text-anchor:start; fill:var(--ink); opacity:0; transition:opacity .5s; }
+.sd { position:absolute; display:block; }
+.sd-f { left:0; top:100%; width:100%; height:14px; transform-origin:top; transform:rotateX(-90deg); background:#cfc5b0; }
+.sd-r { top:0; left:100%; width:14px; height:100%; transform-origin:left; transform:rotateY(90deg); background:#bdb29b; }
+.model.picked .slab:not(.on) .plan { background:#ebe5d8; }
+.model.picked .slab:not(.on) .plan text, .model.picked .slab:not(.on) .pl-room { opacity:.4; }
+.slab:hover .plan { background:#fbf8f1; }
+.slab.on .pl-room { fill:rgba(182,161,93,.16); }
+.slab.on .pl-out { stroke:var(--gold-t); }
+.slab.on .pl-title { opacity:1; }
+.roof { position:absolute; inset:0; transform-style:preserve-3d; transform:translateZ(calc(3 * var(--gap) + var(--lift))); opacity:var(--ro,1); pointer-events:none; }
+.rf { position:absolute; left:0; width:100%; height:170px; background:repeating-linear-gradient(90deg,#5d5752 0 18px,#655f59 18px 20px); box-shadow:inset 0 0 0 1px rgba(0,0,0,.25); }
+.rf1 { top:0; transform-origin:top; transform:rotateX(40deg); }
+.rf2 { bottom:0; transform-origin:bottom; transform:rotateX(-40deg); background:repeating-linear-gradient(90deg,#77706a 0 18px,#7f7871 18px 20px); }
+.model__note { position:absolute; right:0; bottom:0; font-size:13px; color:var(--mid); }
+@media (max-width:980px) { .hgrid { grid-template-columns:1fr; } .model { order:-1; position:relative; top:0; height:400px; --ms:.62; } }
+@media (max-width:560px) { .model { height:330px; --ms:.5; } .gallery.ring { height:440px; } }
+
+.gallery.ring { columns:auto; position:relative; overflow:hidden; margin-left:calc(-1 * var(--gut)); margin-right:calc(-1 * var(--gut)); height:min(78vh,720px); perspective:1700px; display:grid; place-items:center; margin-top:10px; touch-action:pan-y; user-select:none; cursor:grab; }
+.ring__spin { position:relative; transform-style:preserve-3d; will-change:transform; }
+.gallery.ring button { position:absolute; inset:0; margin:0; border-radius:4px; backface-visibility:visible; }
+.gallery.ring img { width:100%; height:100%; object-fit:cover; pointer-events:none; -webkit-user-drag:none; }
+
 @media (max-width:980px) {
   .nav { display:none; } .menu { display:grid; place-items:center; }
   .nav.open { display:flex; position:fixed; inset:76px 0 auto; flex-direction:column; gap:0; padding:8px var(--gut) 20px; background:var(--shutter); }
@@ -261,6 +313,13 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
 </style>
 </head>
 <body>
+<div class="pre" id="pre" aria-hidden="true">
+  <p class="pre__top"><span>Der Johannishof</span><span>Würzburg · Nikolaushöhe</span></p>
+  <div class="pre__frame" id="preFrame">
+    <img src="img/kueche-sm.webp" alt=""><img src="img/stube-sm.webp" alt=""><img src="img/wohnen3-sm.webp" alt=""><img src="img/bedroom1-sm.webp" alt=""><img src="img/terrace-sm.webp" alt=""><img src="img/pool-view-sm.webp" alt=""><picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt=""></picture>
+  </div>
+  <p class="pre__n"><span id="preN">0</span></p>
+</div>
 <a class="skip" href="#haus">Zum Inhalt springen</a>
 <header class="top" id="top"><div class="wrap">
   <a class="brand" href="#" aria-label="Der Johannishof – zum Anfang"><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"></a>
@@ -271,7 +330,7 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
 
 <main>
 <section class="hero" aria-label="Der Johannishof">
-  <picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt="Der Johannishof: weißes Bauernhaus mit grünen Fensterläden, Pool und Liegen im Garten" fetchpriority="high"></picture>
+  <div class="hero__media" id="heroMedia"><picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt="Der Johannishof: weißes Bauernhaus mit grünen Fensterläden, Pool und Liegen im Garten" fetchpriority="high"></picture></div>
   <div class="hero__in wrap">
     <h1 class="serif">Der Johannishof</h1>
     <p>Ein liebevoll renoviertes Bauernhaus auf der Nikolaushöhe, mit Pool, Sauna und Blick über Würzburg. Für Familien und Freunde bis zu 10 Gästen.</p>
@@ -328,6 +387,7 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
 <section class="s house" id="haus"><div class="wrap">
   <h2 class="serif">Viel Platz für alle, auf drei Etagen.</h2>
   <p class="lead">Das Haupthaus beherbergt bis zu 6 Gäste. Für größere Gruppen kommt das Apartment im 2. Obergeschoss mit Platz für 4 weitere Gäste dazu.</p>
+  <div class="hgrid"><div class="hgrid__txt">
   <div class="tabs" role="tablist" aria-label="Etagen">
     <button role="tab" aria-selected="true" aria-controls="f1" id="t1">Erdgeschoss</button>
     <button role="tab" aria-selected="false" aria-controls="f2" id="t2" tabindex="-1">Obergeschoss</button>
@@ -349,6 +409,18 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
       <li>2 Schlafzimmer mit Doppelbett und Sekretär</li><li>Großes Bad mit Badewanne/Dusche und WC</li><li>Küchenzeile mit Herd, Ofen und Spülmaschine</li><li>Wohnbereich mit Lounge-Sofa und Bartisch</li><li>Eigener Zugang über die Außentreppe mit Blick ins Maintal</li></ul>
       <p class="cap">Das Apartment wird nur zusammen mit dem Haupthaus vermietet.</p></div>
     <div class="duo rv"><img src="img/img6236-sm.webp" alt="Wohnbereich im Apartment unter dem Dach" loading="lazy"><img src="img/bedroom2-sm.webp" alt="Schlafzimmer mit Schreibtisch und bemaltem Bauernschrank" loading="lazy"></div>
+  </div>
+  </div>
+    <div class="model" id="model" aria-hidden="true">
+      <div class="model__world" id="world">
+        <div class="ground"><i class="g-pool"></i><i class="g-terr"></i></div>
+        <div class="slab" data-f="0"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="160" height="128"/><text x="82.0" y="62.5">Stube</text><text x="82.0" y="79.5">bis 12 Pers.</text><rect class="pl-room" x="162" y="2" width="108" height="128"/><text x="216.0" y="71.0">Küche</text><rect class="pl-room" x="270" y="2" width="128" height="128"/><text x="334.0" y="62.5">Gute Stube</text><text x="334.0" y="79.5">Kachelofen</text><rect class="pl-room" x="2" y="130" width="200" height="128"/><text x="102.0" y="199.0">Wohnzimmer</text><rect class="pl-room" x="202" y="130" width="90" height="128"/><text x="247.0" y="190.5">Spiel-</text><text x="247.0" y="207.5">zimmer</text><rect class="pl-room" x="292" y="130" width="106" height="128"/><text x="345.0" y="199.0">Flur · WC</text><text class="pl-title" x="8" y="-12">Erdgeschoss</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
+        <div class="slab" data-f="1"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="140" height="128"/><text x="72.0" y="62.5">Schlafen</text><text x="72.0" y="79.5">Kingsize</text><rect class="pl-room" x="142" y="2" width="128" height="128"/><text x="206.0" y="62.5">Schlafen</text><text x="206.0" y="79.5">Kingsize</text><rect class="pl-room" x="270" y="2" width="128" height="128"/><text x="334.0" y="71.0">Bad</text><rect class="pl-room" x="2" y="130" width="170" height="128"/><text x="87.0" y="190.5">Schlafen</text><text x="87.0" y="207.5">2 Einzelbetten</text><rect class="pl-room" x="172" y="130" width="120" height="128"/><text x="232.0" y="190.5">Durchgang</text><text x="232.0" y="207.5">Schlafcouch</text><rect class="pl-room" x="292" y="130" width="106" height="128"/><text x="345.0" y="199.0">Treppe</text><text class="pl-title" x="8" y="-12">Obergeschoss</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
+        <div class="slab" data-f="2"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="150" height="128"/><text x="77.0" y="71.0">Schlafen</text><rect class="pl-room" x="152" y="2" width="96" height="128"/><text x="200.0" y="71.0">Bad</text><rect class="pl-room" x="248" y="2" width="150" height="128"/><text x="323.0" y="71.0">Schlafen</text><rect class="pl-room" x="2" y="130" width="396" height="128"/><text x="200.0" y="199.0">Wohnen · Küchenzeile · Bar</text><text class="pl-title" x="8" y="-12">Apartment 2. OG</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
+        <div class="roof" id="roof"><i class="rf rf1"></i><i class="rf rf2"></i></div>
+      </div>
+      <p class="model__note">Schematische Darstellung</p>
+    </div>
   </div>
 </div></section>
 
@@ -494,8 +566,8 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
   calc();
 
   /* floor tabs (arrow keys) */
-  var tabs = $$('[role="tab"]');
-  function sel(t) { tabs.forEach(function (x) { var on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; }); t.focus(); }
+  var tabs = $$('[role="tab"]'); window.__selFloor = function (i) { sel(tabs[i]); };
+  function sel(t) { tabs.forEach(function (x) { var on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; }); t.focus({ preventScroll: true }); document.dispatchEvent(new CustomEvent("floor", { detail: tabs.indexOf(t) })); }
   tabs.forEach(function (t, i) {
     t.addEventListener("click", function () { sel(t); });
     t.addEventListener("keydown", function (e) { var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); sel(tabs[(i + d + tabs.length) % tabs.length]); } });
@@ -528,100 +600,237 @@ html.anim .day__pin { height:100vh; height:100svh; padding:76px 0 0; display:fle
 <script src="/site/vendor/gsap-3.13/SplitText.min.js"></script>
 <script src="/site/vendor/lenis-1.3/lenis.min.js"></script>
 <script>
+/* Hausmodell: Etage wählen (funktioniert auch ohne Animation) */
 (function () {
-  var G = window.gsap, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  if (!G || !window.ScrollTrigger || reduce) return;
+  var model = document.getElementById("model"); if (!model) return;
+  var slabs = [].slice.call(model.querySelectorAll(".slab"));
+  function pick(i) { model.classList.add("picked"); slabs.forEach(function (s, k) { s.classList.toggle("on", k === i); }); }
+  document.addEventListener("floor", function (e) { pick(e.detail); });
+  slabs.forEach(function (s, k) { s.addEventListener("click", function () { window.__selFloor && __selFloor(k); }); });
+  pick(0);
+})();
+
+(function () {
+  var G = window.gsap, root = document.documentElement, reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function endPre() { root.classList.remove("pre-on"); }
+  if (!G || !window.ScrollTrigger || reduce) { endPre(); return; }
   G.registerPlugin(ScrollTrigger); if (window.SplitText) G.registerPlugin(SplitText);
-  var root = document.documentElement; root.classList.add("anim");
+  root.classList.add("anim");
   var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
   var desk = matchMedia("(min-width: 900px)").matches, fine = matchMedia("(pointer: fine)").matches;
+  var hImg = $(".hero img"); hImg.style.animation = "none";
 
   /* weiches Scrollen (nur Maus) */
+  var lenis = null;
   if (window.Lenis && fine) {
-    var lenis = new Lenis({ lerp: .1, anchors: { offset: -76 } });
+    lenis = new Lenis({ lerp: .1, anchors: { offset: -76 } });
     lenis.on("scroll", ScrollTrigger.update);
     G.ticker.add(function (t) { lenis.raf(t * 1000); }); G.ticker.lagSmoothing(0);
     window.__lenis = lenis;
   }
 
-  /* Start: Bild öffnet sich, Titel steigt Buchstabe für Buchstabe auf */
-  var hImg = $(".hero img"); hImg.style.animation = "none";
-  var tl = G.timeline({ defaults: { ease: "expo.out" } });
-  tl.fromTo(hImg, { scale: 1.22, clipPath: "inset(14% 18% 14% 18% round 14px)" }, { scale: 1, clipPath: "inset(0% 0% 0% 0% round 0px)", duration: 2.1, ease: "expo.inOut" });
-  if (window.SplitText) {
-    var h1 = new SplitText(".hero h1", { type: "chars,words", mask: "words" });
-    tl.from(h1.chars, { yPercent: 115, duration: 1.3, stagger: .035 }, "-=.9");
+  /* Start-Auftritt */
+  var h1 = window.SplitText ? new SplitText(".hero h1", { type: "chars,words", mask: "words" }) : null;
+  function heroIn() {
+    var tl = G.timeline({ defaults: { ease: "expo.out" } });
+    if (h1) tl.from(h1.chars, { yPercent: 115, duration: 1.4, stagger: .04 });
+    tl.from(".hero p", { y: 24, autoAlpha: 0, duration: 1.1 }, "-=1.1")
+      .from(".book", { y: 50, autoAlpha: 0, duration: 1.2 }, "-=.95")
+      .from(".top .wrap > *", { y: -20, autoAlpha: 0, duration: 1, stagger: .08 }, "-=1.1");
   }
-  tl.from(".hero p", { y: 24, autoAlpha: 0, duration: 1.1 }, "-=1")
-    .from(".book", { y: 50, autoAlpha: 0, duration: 1.2 }, "-=.9")
-    .from(".top .wrap > *", { y: -20, autoAlpha: 0, duration: 1, stagger: .08 }, "-=1.1");
-  G.to(hImg, { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+
+  /* Ladeintro: Räume blättern, Zähler läuft, letztes Bild öffnet sich zum Start */
+  if (root.classList.contains("pre-on")) {
+    try { sessionStorage.setItem("jhPre", "1"); } catch (e) {}
+    if (lenis) lenis.stop();
+    var fr = $("#preFrame"), pimgs = [].slice.call(fr.querySelectorAll("img")), cnt = { v: 0 };
+    var pt = G.timeline({ onComplete: function () { endPre(); if (lenis) lenis.start(); ScrollTrigger.refresh(); } });
+    pt.to(pimgs, { clipPath: "inset(0% 0% 0% 0%)", duration: .6, ease: "expo.out", stagger: .24 }, .15)
+      .fromTo(pimgs, { scale: 1.3 }, { scale: 1, duration: 1.1, ease: "expo.out", stagger: .24 }, .15)
+      .to(cnt, { v: 100, duration: 1.95, ease: "power2.inOut", onUpdate: function () { $("#preN").textContent = Math.round(cnt.v); } }, 0)
+      .to(".pre__top, .pre__n", { autoAlpha: 0, y: -10, duration: .45 }, 2.05)
+      .to(fr, { width: function () { return innerWidth; }, height: function () { return Math.max(innerHeight, 620); }, borderRadius: 0, duration: 1.25, ease: "expo.inOut" }, 2.05)
+      .add(heroIn, 3.05)
+      .to("#pre", { autoAlpha: 0, duration: .3 }, 3.3);
+  } else {
+    G.fromTo("#heroMedia", { scale: 1.12 }, { scale: 1, duration: 2.4, ease: "expo.out" });
+    heroIn();
+  }
+  G.to("#heroMedia", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   G.to(".hero__in", { yPercent: -45, autoAlpha: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
 
-  /* Überschriften steigen zeilenweise auf */
+  /* Überschriften zeilenweise aus der Maske */
   if (window.SplitText) $$(".s h2.serif, .day__head h2").forEach(function (h) {
     var sp = new SplitText(h, { type: "lines", mask: "lines" });
-    G.from(sp.lines, { yPercent: 105, duration: 1.2, ease: "expo.out", stagger: .1, scrollTrigger: { trigger: h, start: "top 86%" } });
+    G.from(sp.lines, { yPercent: 105, duration: 1.3, ease: "expo.out", stagger: .1, scrollTrigger: { trigger: h, start: "top 86%" } });
   });
 
-  /* Bilder enthüllen sich von unten */
+  /* Bilder enthüllen sich */
   $$(".rv, .mosaic figure").forEach(function (el) {
-    var imgs = el.querySelectorAll("img");
     var t = G.timeline({ scrollTrigger: { trigger: el, start: "top 88%" } });
     t.fromTo(el, { clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 1.4, ease: "expo.inOut" })
-     .from(imgs, { scale: 1.25, duration: 1.8, ease: "expo.out", clearProps: "transform" }, "<.1");
+     .from(el.querySelectorAll("img"), { scale: 1.3, duration: 1.9, ease: "expo.out", clearProps: "transform" }, "<.1");
   });
 
-  /* Ausblick: kleines Fenster wird zum Panorama */
-  var pt = G.timeline({ scrollTrigger: { trigger: ".pano", start: "top top", end: "bottom bottom", scrub: .6 } });
-  pt.fromTo("#panoFrame", { clipPath: "inset(30% 36% 30% 36% round 200px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "power2.inOut", duration: 1 })
+  /* Ausblick: Fenster wird Panorama */
+  var pa = G.timeline({ scrollTrigger: { trigger: ".pano", start: "top top", end: "bottom bottom", scrub: .6 } });
+  pa.fromTo("#panoFrame", { clipPath: "inset(30% 36% 30% 36% round 200px)" }, { clipPath: "inset(0% 0% 0% 0% round 0px)", ease: "power2.inOut", duration: 1 })
     .fromTo("#panoFrame img", { scale: 1.5 }, { scale: 1, ease: "power2.inOut", duration: 1 }, 0)
     .to(".pano__lbl", { autoAlpha: 0, y: -30, duration: .25 }, 0)
     .from("#panoTxt", { autoAlpha: 0, y: 60, duration: .3 }, .7);
 
-  /* Ein Tag: horizontal, Uhr und Sonne laufen mit, Abend wird dunkel */
+  /* Hausmodell: Dach hebt ab, Etagen schweben auseinander, Modell dreht sich */
+  var world = $("#world");
+  if (world) {
+    var gapMax = desk ? 100 : 80;
+    G.fromTo(world, { "--gap": "16px", "--lift": "0px", "--ro": 1, "--rz": "-62deg" },
+      { "--gap": gapMax + "px", "--lift": "70px", "--ro": .5, "--rz": "-32deg", ease: "power2.inOut",
+        scrollTrigger: { trigger: "#model", start: "top 85%", end: "bottom 45%", scrub: .8 } });
+  }
+
+  /* Ein Tag: horizontal, Uhr, Sonne, Nacht; Bilder neigen sich mit dem Tempo */
   if (desk) {
-    var track = $("#track"), day = $(".day"), arc = $("#arcFg"), sun = $("#sun"), L = arc.getTotalLength();
+    var track = $("#track"), day = $(".day"), arc = $("#arcFg"), sun = $("#sun"), L = arc.getTotalLength(), dayST;
     arc.style.strokeDasharray = L; arc.style.strokeDashoffset = L;
     var times = [7.5, 10.5, 14, 18.5, 21, 22.5];
     function dist() { return track.scrollWidth - innerWidth; }
     var ht = G.to(track, { x: function () { return -dist(); }, ease: "none",
       scrollTrigger: { trigger: "#dayPin", pin: true, start: "top top", end: function () { return "+=" + dist(); }, scrub: .8, invalidateOnRefresh: true,
         onUpdate: function (st) {
+          dayST = st;
           var p = st.progress, f = Math.min(p / .86, 1) * (times.length - 1), i = Math.floor(f), h = i >= times.length - 1 ? times[times.length - 1] : times[i] + (times[i + 1] - times[i]) * (f - i);
           var hh = Math.floor(h), mm = Math.floor((h - hh) * 60 / 5) * 5;
           $("#clockT").textContent = String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0");
           var q = (h - 7.5) / 15; arc.style.strokeDashoffset = L * (1 - q);
-          var pt2 = arc.getPointAtLength(L * q); sun.setAttribute("cx", pt2.x); sun.setAttribute("cy", pt2.y);
+          var s2 = arc.getPointAtLength(L * q); sun.setAttribute("cx", s2.x); sun.setAttribute("cy", s2.y);
           day.classList.toggle("night", h > 19.5);
         } } });
     G.timeline({ scrollTrigger: { trigger: "#dayPin", start: "top top", end: function () { return "+=" + dist(); }, scrub: true } })
       .to(day, { backgroundColor: "#f8f6f1", color: "#1f2421", duration: .5 })
       .to(day, { backgroundColor: "#1c2a23", color: "#f4f1ea", duration: .3, ease: "none" })
       .to(day, { backgroundColor: "#111a15", duration: .2, ease: "none" });
+    var figs = $$(".moment figure"), skew = 0;
     $$(".moment").forEach(function (m) {
-      G.fromTo(m.querySelector("img"), { xPercent: 6 }, { xPercent: -6, ease: "none", scrollTrigger: { trigger: m, containerAnimation: ht, start: "left right", end: "right left", scrub: true } });
+      G.fromTo(m.querySelector("img"), { xPercent: 7 }, { xPercent: -7, ease: "none", scrollTrigger: { trigger: m, containerAnimation: ht, start: "left right", end: "right left", scrub: true } });
+    });
+    G.ticker.add(function () {
+      var target = dayST && dayST.isActive ? G.utils.clamp(-9, 9, dayST.getVelocity() / -260) : 0;
+      skew += (target - skew) * .1;
+      if (Math.abs(skew) > .02 || target) figs.forEach(function (f) { f.style.transform = "skewX(" + skew.toFixed(2) + "deg) scale(" + (1 - Math.abs(skew) * .006).toFixed(3) + ")"; });
     });
   }
 
-  /* Galerie: eigener Cursor „Ansehen“ */
-  if (fine) {
-    var cur = document.createElement("div"); cur.className = "cur"; cur.textContent = "Ansehen"; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
-    var qx = G.quickTo(cur, "x", { duration: .45, ease: "power3" }), qy = G.quickTo(cur, "y", { duration: .45, ease: "power3" });
-    var gal = $("#gallery");
-    gal.addEventListener("pointermove", function (e) { qx(e.clientX); qy(e.clientY); });
-    gal.addEventListener("pointerenter", function (e) { G.set(cur, { x: e.clientX, y: e.clientY }); G.to(cur, { scale: 1, duration: .4, ease: "back.out(2)" }); });
-    gal.addEventListener("pointerleave", function () { G.to(cur, { scale: 0, duration: .3 }); });
-    G.from("#gallery button", { y: 60, autoAlpha: 0, duration: 1, ease: "expo.out", stagger: { each: .05, from: "start" }, scrollTrigger: { trigger: "#gallery", start: "top 85%" } });
+  /* Galerie als 3D-Bildring: dreht beim Scrollen, lässt sich ziehen */
+  var gal = $("#gallery"), btns = [].slice.call(gal.children);
+  if (btns.length) {
+    gal.classList.add("ring");
+    var spin = document.createElement("div"); spin.className = "ring__spin"; btns.forEach(function (b) { spin.appendChild(b); }); gal.appendChild(spin);
+    var N = btns.length, W = desk ? 250 : 150, H = Math.round(W * 1.34), R = Math.round(W / 2 / Math.tan(Math.PI / N) * 1.12);
+    spin.style.width = W + "px"; spin.style.height = H + "px";
+    btns.forEach(function (b, i) { b.style.transform = "rotateY(" + (i * 360 / N) + "deg) translateZ(" + R + "px)"; });
+    var scrollA = 0, dragA = 0, curA = 0, tilt = 0, tiltT = -4, live = false, down = false, lx = 0, moved = 0, last = "";
+    ScrollTrigger.create({ trigger: gal, start: "top bottom", end: "bottom top", onToggle: function (st) { live = st.isActive; if (!live && window.__cur) G.to(__cur, { scale: 0, duration: .2 }); }, onUpdate: function (st) { scrollA = st.progress * -240; } });
+    gal.addEventListener("pointerdown", function (e) { down = true; lx = e.clientX; moved = 0; });
+    addEventListener("pointermove", function (e) { if (down) { var dx = e.clientX - lx; lx = e.clientX; moved += Math.abs(dx); dragA += dx * .22; } if (live && fine) tiltT = (e.clientY / innerHeight - .5) * -10; });
+    addEventListener("pointerup", function () { down = false; });
+    gal.addEventListener("click", function (e) { if (moved > 6) { e.stopPropagation(); e.preventDefault(); } }, true);
+    btns.forEach(function (b, i) { b.addEventListener("focus", function () { dragA = -(i * 360 / N) - scrollA; }); });
+    G.ticker.add(function () {
+      if (!live) return;
+      curA += (scrollA + dragA - curA) * .075; tilt += (tiltT - tilt) * .06;
+      var tf = "translateZ(" + -R + "px) rotateX(" + tilt.toFixed(2) + "deg) rotateY(" + curA.toFixed(2) + "deg)";
+      if (tf === last) return; last = tf; spin.style.transform = tf;
+      btns.forEach(function (b, i) { var a = (i * 360 / N + curA) * Math.PI / 180, c = Math.cos(a); b.style.filter = "brightness(" + (.35 + .65 * Math.max(0, c)).toFixed(2) + ")"; b.style.zIndex = Math.round(c * 100) + 100; });
+    });
+    if (fine) {
+      var cur = document.createElement("div"); cur.className = "cur"; cur.textContent = "Ziehen"; window.__cur = cur; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
+      var qx = G.quickTo(cur, "x", { duration: .45, ease: "power3" }), qy = G.quickTo(cur, "y", { duration: .45, ease: "power3" });
+      gal.addEventListener("pointermove", function (e) { qx(e.clientX); qy(e.clientY); });
+      gal.addEventListener("pointerenter", function (e) { G.set(cur, { x: e.clientX, y: e.clientY }); G.to(cur, { scale: 1, duration: .4, ease: "back.out(2)" }); });
+      gal.addEventListener("pointerleave", function () { G.to(cur, { scale: 0, duration: .3 }); });
+    }
   }
+
+  /* Magnetische Knöpfe */
+  if (fine) $$(".btn--gold, .btn--green").forEach(function (b) {
+    var mx = G.quickTo(b, "x", { duration: .8, ease: "elastic.out(1,.45)" }), my = G.quickTo(b, "y", { duration: .8, ease: "elastic.out(1,.45)" });
+    b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .28); my((e.clientY - r.top - r.height / 2) * .4); });
+    b.addEventListener("pointerleave", function () { mx(0); my(0); });
+  });
 
   /* Wortmarke steigt aus der Fußzeile */
   G.from("#wm", { yPercent: 70, ease: "none", scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true } });
 
-  /* Lightbox stoppt weiches Scrollen */
-  var lb = $("#lb"); new MutationObserver(function () { if (window.__lenis) lb.hidden ? __lenis.start() : __lenis.stop(); }).observe(lb, { attributes: true, attributeFilter: ["hidden"] });
+  var lb = $("#lb"); new MutationObserver(function () { if (lenis) lb.hidden ? lenis.start() : lenis.stop(); }).observe(lb, { attributes: true, attributeFilter: ["hidden"] });
   addEventListener("load", function () { ScrollTrigger.refresh(); });
 })();
+</script>
+<script type="module">
+/* Lebendes Startfoto: Poolwasser bewegt sich, Maus wirkt wie eine Linse (WebGL) */
+import * as THREE from "/demo/vendor/three.module.min.js";
+const media = document.getElementById("heroMedia"), hero = document.querySelector(".hero");
+if (media && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  const mob = matchMedia("(max-width: 699px)").matches, fine = matchMedia("(pointer: fine)").matches;
+  let renderer = null;
+  try { renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" }); } catch (e) {}
+  if (renderer) {
+    renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
+    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+    const cv = renderer.domElement; cv.setAttribute("aria-hidden", "true"); media.appendChild(cv);
+    // Maske des Pools (Bildkoordinaten 0..1), weich gezeichnet
+    const mc = document.createElement("canvas"); mc.width = 480; mc.height = 320;
+    const x = mc.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, 480, 320);
+    const poly = [[.16,.708],[.45,.664],[.625,.653],[.615,.666],[.5,.712],[.3,.8],[.2,.848],[.125,.862],[.125,.725]];
+    x.fillStyle = "#fff"; x.shadowColor = "#fff"; x.shadowBlur = 10;
+    for (let k = 0; k < 2; k++) { x.beginPath(); poly.forEach(([a, b], i) => i ? x.lineTo(a * 480, b * 320) : x.moveTo(a * 480, b * 320)); x.closePath(); x.fill(); }
+    const mask = new THREE.CanvasTexture(mc);
+    const u = { uTex: { value: null }, uMask: { value: mask }, uRes: { value: new THREE.Vector2(1, 1) }, uImg: { value: new THREE.Vector2(1920, 1280) },
+      uMouse: { value: new THREE.Vector2(.5, .5) }, uHover: { value: 0 }, uVel: { value: 0 }, uTime: { value: 0 } };
+    const mat = new THREE.ShaderMaterial({ uniforms: u,
+      vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }",
+      fragmentShader: `precision highp float;
+        uniform sampler2D uTex, uMask; uniform vec2 uRes, uImg, uMouse; uniform float uHover, uVel, uTime; varying vec2 vUv;
+        vec2 cover(vec2 p){ float rs = uRes.x / uRes.y, ri = uImg.x / uImg.y; vec2 s = rs < ri ? vec2(rs / ri, 1.) : vec2(1., ri / rs); return p * s + (1. - s) * vec2(.5, .4); }
+        void main(){
+          vec2 uv = vUv, asp = vec2(uRes.x / uRes.y, 1.);
+          vec2 d = (uv - uMouse) * asp; float dist = length(d); vec2 n = d / (dist + 1e-4);
+          float lens = smoothstep(.34, 0., dist) * uHover;
+          uv -= d / asp * lens * .085;
+          vec2 iuv = cover(uv);
+          float m = texture2D(uMask, iuv).r, t = uTime;
+          vec2 w = vec2(sin(iuv.y * 150. + t * 1.7) + .6 * sin(iuv.x * 95. - t * 1.2 + iuv.y * 40.),
+                        cos(iuv.x * 120. + t * 1.4) + .5 * cos(iuv.y * 70. - t)) * .0017;
+          float ring = sin(dist * 75. - t * 5.) * smoothstep(.3, 0., dist) * uHover * .0045;
+          iuv += (w + n * ring) * m;
+          vec2 sh = n * lens * (.003 + .01 * uVel);
+          vec3 c = vec3(texture2D(uTex, iuv + sh).r, texture2D(uTex, iuv).g, texture2D(uTex, iuv - sh).b);
+          float caus = pow(.5 + .5 * sin(iuv.x * 260. + t * 2.2 + sin(iuv.y * 180. - t * 1.5) * 2.), 6.);
+          c += m * caus * .07;
+          gl_FragColor = vec4(c, 1.);
+        }` });
+    const scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+    const resize = () => { const w = hero.clientWidth, h = hero.clientHeight; renderer.setSize(w, h, false); u.uRes.value.set(w, h); };
+    const tm = new THREE.Vector2(.5, .5), pm = new THREE.Vector2(.5, .5); let hov = 0, vis = true, t0 = performance.now();
+    if (fine) {
+      hero.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); tm.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height); hov = 1; });
+      hero.addEventListener("pointerleave", () => { hov = 0; });
+    }
+    new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hero);
+    const loop = () => {
+      requestAnimationFrame(loop); if (!vis) return;
+      pm.copy(u.uMouse.value); u.uMouse.value.lerp(tm, .08);
+      u.uHover.value += (hov - u.uHover.value) * .05;
+      u.uVel.value += (Math.min(u.uMouse.value.distanceTo(pm) * 40, 1) - u.uVel.value) * .12;
+      u.uTime.value = (performance.now() - t0) / 1000;
+      renderer.render(scene, cam);
+    };
+    new THREE.TextureLoader().load(mob ? "img/pool-hero-sm.webp" : "img/pool-hero.webp", tex => {
+      tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false; u.uTex.value = tex; u.uImg.value.set(tex.image.width, tex.image.height);
+      resize(); addEventListener("resize", resize); loop(); requestAnimationFrame(() => cv.classList.add("on"));
+    });
+  }
+}
 </script>
 </body>
 </html>
