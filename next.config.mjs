@@ -5,6 +5,7 @@ const nextConfig = {
   async redirects() {
     return [
       { source: "/", destination: "/site/index.html", permanent: false },
+      { source: "/johannishof", destination: "/demo/johannishof/index.html", permanent: false },
       { source: "/villa", destination: "/demo/villa-buchen/index.html", permanent: false },
       { source: "/demo/villa-buchen", destination: "/demo/villa-buchen/index.html", permanent: false },
     ];

@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Der Johannishof · Ferienhaus mit Pool &amp; Sauna über Würzburg</title>
+<meta name="description" content="Renoviertes Bauernhaus auf der Nikolaushöhe in Würzburg: bis zu 10 Gäste, beheizter Salzwasser-Pool, finnische Außensauna, Outdoor-Küche und Blick über die Stadt. Direkt buchen und sparen.">
+<meta name="robots" content="noindex">
+<link rel="preload" as="image" href="img/pool-hero.webp" media="(min-width: 700px)">
+<link rel="preload" as="image" href="img/pool-hero-sm.webp" media="(max-width: 699px)">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Der Johannishof – Entwurf F&D Solutions
+   Aus dem Ort abgeleitet: grüne Fensterläden (#4f7065, Markenfarbe), Weinberg (#2e4337),
+   Muschelkalk der Mainfranken-Mauern (#ece5d8), Silvaner-Gold (#b6a15d, Markenfarbe, nur Akzent).
+   Schrift: Newsreader (Überschriften, ruhig, buchnah) + Jost (Futura-Familie wie bisher). */
+:root {
+  --paper:#f8f6f1; --lime:#ece5d8; --shutter:#4f7065; --vine:#2e4337; --gold:#b6a15d; --gold-t:#7d6c33;
+  --ink:#1f2421; --mid:#565c57; --line:rgba(31,36,33,.14); --ease:cubic-bezier(.22,1,.36,1);
+  --gut:clamp(20px,4vw,56px);
+}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; scroll-padding-top:84px; -webkit-text-size-adjust:100%; }
+body { background:var(--paper); color:var(--ink); font:400 17px/1.65 "Jost",Futura,system-ui,sans-serif; -webkit-font-smoothing:antialiased; overflow-x:clip; }
+img { display:block; max-width:100%; } a { color:inherit; }
+button, input, select, textarea { font:inherit; color:inherit; }
+:focus-visible { outline:2px solid var(--gold); outline-offset:3px; }
+.wrap { max-width:1240px; margin:0 auto; padding:0 var(--gut); }
+.serif { font-family:"Newsreader",Georgia,serif; font-weight:400; letter-spacing:-.012em; line-height:1.05; }
+.btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:50px; padding:0 26px; border:0; border-radius:999px; font-weight:500; text-decoration:none; cursor:pointer; transition:background-color .25s, color .25s; }
+.btn--gold { background:var(--gold); color:#1d1a10; } .btn--gold:hover { background:#c6b26c; }
+.btn--green { background:var(--shutter); color:#fff; } .btn--green:hover { background:#3f5c52; }
+.btn--line { background:transparent; box-shadow:inset 0 0 0 1.5px currentColor; }
+.skip { position:fixed; left:12px; top:-60px; z-index:99; padding:10px 16px; background:var(--ink); color:#fff; border-radius:8px; }
+.skip:focus { top:12px; }
+
+/* header */
+.top { position:fixed; z-index:40; inset:0 0 auto; transition:background-color .35s, box-shadow .35s; }
+.top .wrap { display:flex; align-items:center; justify-content:space-between; gap:20px; height:76px; }
+.top.solid { background:var(--shutter); box-shadow:0 8px 30px -18px rgba(0,0,0,.5); }
+.brand img { height:46px; width:auto; }
+.nav { display:flex; gap:26px; color:#fff; font-size:15px; }
+.nav a { text-decoration:none; opacity:.9; } .nav a:hover { opacity:1; text-decoration:underline; text-underline-offset:5px; }
+.top .btn { min-height:44px; padding:0 20px; }
+.menu { display:none; width:44px; height:44px; border:0; background:none; color:#fff; }
+
+/* hero */
+.hero { position:relative; height:100vh; height:100svh; min-height:620px; color:#fff; overflow:hidden; background:var(--vine); }
+.hero picture, .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
+.hero img { animation:settle 9s var(--ease) both; }
+@keyframes settle { from { transform:scale(1.09); } }
+.hero::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(18,24,20,.45), transparent 30%, transparent 45%, rgba(18,24,20,.72)); }
+.hero__in { position:absolute; z-index:2; left:0; right:0; bottom:clamp(180px,24vh,240px); }
+.hero p { font-size:clamp(16px,1.3vw,19px); max-width:48ch; opacity:.92; }
+.hero h1 { font-size:clamp(3rem,7.4vw,6.6rem); max-width:12ch; margin-bottom:16px; }
+
+/* booking bar */
+.book { position:absolute; z-index:3; left:50%; bottom:clamp(52px,7vh,76px); transform:translateX(-50%); width:min(1080px,calc(100% - 2 * var(--gut))); display:grid; grid-template-columns:1fr 1fr .8fr auto; align-items:stretch; padding:8px; border-radius:18px; background:#fff; color:var(--ink); box-shadow:0 30px 70px -30px rgba(0,0,0,.7); }
+.book > * { min-width:0; }
+.book label { display:grid; gap:1px; padding:8px 18px; border-radius:12px; cursor:pointer; }
+.book label:hover { background:var(--paper); }
+.book label + label { box-shadow:inset 1px 0 0 var(--line); }
+.book span { font-size:12.5px; font-weight:600; color:var(--mid); }
+.book input, .book select { width:100%; border:0; background:none; font-size:16.5px; min-height:30px; outline:none; }
+.book .btn { border-radius:12px; min-height:58px; }
+.book__note { white-space:nowrap; position:absolute; left:18px; top:calc(100% + 8px); font-size:13.5px; color:#fff; text-shadow:0 1px 8px rgba(0,0,0,.6); }
+
+/* facts */
+.facts { background:var(--vine); color:#fff; }
+.facts ul { list-style:none; display:grid; grid-template-columns:repeat(5,1fr); }
+.facts li { padding:26px 0; text-align:center; font-size:15px; }
+.facts li + li { box-shadow:inset 1px 0 0 rgba(255,255,255,.14); }
+.facts b { display:block; font-family:"Newsreader",serif; font-weight:400; font-size:30px; line-height:1.1; }
+
+/* sections */
+.s { padding:clamp(80px,12vh,140px) 0; }
+.s h2 { font-size:clamp(2.4rem,4.6vw,4rem); max-width:18ch; }
+.lead { margin-top:18px; max-width:58ch; color:var(--mid); font-size:18.5px; }
+.split { display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(32px,6vw,96px); align-items:center; }
+.view { margin-top:56px; position:relative; border-radius:6px; overflow:hidden; }
+.view img { width:100%; aspect-ratio:21 / 9; object-fit:cover; object-position:50% 55%; }
+.view figcaption { position:absolute; right:16px; bottom:14px; padding:6px 12px; border-radius:999px; background:rgba(255,255,255,.9); font-size:13.5px; }
+.signature { margin-top:26px; font-family:"Newsreader",serif; font-style:italic; font-size:22px; color:var(--shutter); }
+
+/* house: floors */
+.house { background:var(--lime); }
+.tabs { margin-top:36px; display:flex; gap:6px; flex-wrap:wrap; }
+.tabs button { min-height:44px; padding:0 18px; border:0; border-radius:999px; background:transparent; box-shadow:inset 0 0 0 1.5px var(--line); cursor:pointer; font-weight:500; }
+.tabs button[aria-selected="true"] { background:var(--shutter); color:#fff; box-shadow:none; }
+.floor { margin-top:28px; display:grid; grid-template-columns:1fr 1.3fr; gap:clamp(24px,4vw,56px); align-items:start; }
+.floor[hidden] { display:none; }
+.floor h3 { font-family:"Newsreader",serif; font-weight:400; font-size:32px; line-height:1.1; }
+.floor ul { margin-top:16px; list-style:none; display:grid; gap:8px; }
+.floor li { padding-left:22px; position:relative; color:#383d39; }
+.floor li::before { content:""; position:absolute; left:0; top:.72em; width:10px; height:1.5px; background:var(--gold); }
+.floor .cap { margin-top:16px; font-size:14.5px; color:var(--mid); }
+.duo { display:grid; grid-template-columns:1.4fr 1fr; gap:10px; }
+.duo img { width:100%; height:100%; min-height:200px; object-fit:cover; border-radius:6px; }
+.duo img:first-child { aspect-ratio:4 / 3; }
+
+/* outdoor mosaic */
+.mosaic { margin-top:48px; display:grid; grid-template-columns:1.25fr 1fr 1fr; grid-template-rows:290px 290px; gap:10px; }
+.mosaic figure { position:relative; overflow:hidden; border-radius:6px; }
+.mosaic img { width:100%; height:100%; object-fit:cover; transition:transform 1s var(--ease); }
+.mosaic figure:hover img { transform:scale(1.04); }
+.mosaic figcaption { position:absolute; left:0; right:0; bottom:0; padding:28px 18px 14px; color:#fff; background:linear-gradient(transparent, rgba(0,0,0,.6)); }
+.mosaic figcaption b { display:block; font-family:"Newsreader",serif; font-weight:400; font-size:23px; }
+.mosaic figcaption span { font-size:14.5px; opacity:.92; }
+.m1 { grid-row:1 / 3; }
+.amen { margin-top:48px; display:grid; grid-template-columns:repeat(4,1fr); gap:26px 32px; }
+.amen div { padding-top:14px; border-top:1px solid var(--line); }
+.amen h3 { font-size:16.5px; font-weight:600; }
+.amen p { margin-top:4px; font-size:15px; color:var(--mid); }
+
+/* gallery */
+.gallery { margin-top:44px; columns:4 220px; column-gap:10px; }
+.gallery button { display:block; width:100%; margin-bottom:10px; padding:0; border:0; background:none; cursor:zoom-in; border-radius:6px; overflow:hidden; break-inside:avoid; }
+.gallery img { width:100%; transition:transform .8s var(--ease); }
+.gallery button:hover img { transform:scale(1.03); }
+.lb { position:fixed; z-index:80; inset:0; display:grid; place-items:center; background:rgba(14,18,16,.94); padding:5vh 5vw; }
+.lb[hidden] { display:none; }
+.lb img { max-width:100%; max-height:84vh; border-radius:4px; }
+.lb button { position:absolute; width:52px; height:52px; border:0; border-radius:50%; background:rgba(255,255,255,.12); color:#fff; font-size:22px; cursor:pointer; }
+.lb .x { top:18px; right:18px; } .lb .p { left:18px; top:50%; } .lb .n { right:18px; top:50%; }
+.lb p { position:absolute; bottom:18px; color:rgba(255,255,255,.75); font-size:14px; }
+
+/* prices */
+.prices { background:var(--vine); color:#fff; }
+.prices .lead { color:rgba(255,255,255,.75); }
+.pgrid { margin-top:44px; display:grid; grid-template-columns:1fr 1fr 1.1fr; gap:16px; align-items:start; }
+.pcard { padding:28px; border-radius:14px; background:rgba(255,255,255,.06); box-shadow:inset 0 0 0 1px rgba(255,255,255,.12); }
+.pcard h3 { font-size:15px; font-weight:600; color:rgba(255,255,255,.75); }
+.pcard .amt { margin-top:10px; font-family:"Newsreader",serif; font-size:44px; line-height:1; }
+.pcard .amt { white-space:nowrap; }
+.pcard .amt small { display:block; margin-top:8px; font-family:"Jost"; font-size:15px; color:rgba(255,255,255,.7); }
+.pcard ul { margin-top:16px; list-style:none; display:grid; gap:6px; font-size:15px; color:rgba(255,255,255,.82); }
+.calc { background:#fff; color:var(--ink); box-shadow:none; }
+.calc h3 { color:var(--mid); }
+.row { display:flex; justify-content:space-between; gap:12px; padding:9px 0; border-bottom:1px solid var(--line); font-size:15.5px; }
+.row:first-of-type { margin-top:14px; }
+.row.t { border:0; font-weight:600; font-size:18px; }
+.calc .btn { width:100%; margin-top:14px; }
+.calc small { display:block; margin-top:10px; color:var(--mid); font-size:13px; }
+.rules { margin-top:22px; display:flex; flex-wrap:wrap; gap:10px 30px; font-size:15px; color:rgba(255,255,255,.78); }
+.rules b { color:#fff; font-weight:500; }
+
+/* location */
+.loc figure { border-radius:6px; overflow:hidden; }
+.loc figure img { width:100%; aspect-ratio:4 / 3; object-fit:cover; }
+.places { margin-top:24px; list-style:none; display:grid; gap:10px; }
+.places li { display:grid; grid-template-columns:auto 1fr; gap:14px; align-items:baseline; padding-bottom:10px; border-bottom:1px solid var(--line); }
+.places b { font-weight:600; } .places span { color:var(--mid); }
+
+/* contact */
+.contact { background:var(--lime); }
+.cgrid { display:grid; grid-template-columns:.9fr 1.1fr; gap:clamp(32px,6vw,90px); align-items:start; }
+.direct { margin-top:28px; display:grid; gap:12px; font-size:17px; }
+.direct a { text-decoration:none; font-weight:500; } .direct a:hover { color:var(--shutter); }
+.form { padding:clamp(22px,3vw,36px); border-radius:14px; background:#fff; box-shadow:0 30px 60px -40px rgba(31,36,33,.5); }
+.f2 { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.field { display:grid; gap:5px; margin-top:12px; }
+.field label { font-size:14px; font-weight:500; }
+.field input, .field textarea, .field select { width:100%; min-height:48px; padding:11px 14px; border:1px solid var(--line); border-radius:10px; background:var(--paper); }
+.field textarea { min-height:110px; resize:vertical; }
+.form .btn { margin-top:18px; width:100%; }
+.form .msg { margin-top:10px; min-height:1.3em; font-size:14.5px; color:var(--shutter); }
+
+footer { background:var(--shutter); color:rgba(255,255,255,.85); padding:44px 0 calc(30px + env(safe-area-inset-bottom)); font-size:15px; }
+.fgrid { display:grid; grid-template-columns:1.2fr 1fr 1fr; gap:32px; }
+footer img { height:60px; width:auto; }
+footer a { text-decoration:none; } footer a:hover { text-decoration:underline; }
+.fbase { margin-top:32px; padding-top:18px; border-top:1px solid rgba(255,255,255,.18); display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; font-size:13.5px; color:rgba(255,255,255,.7); }
+.dock { position:fixed; z-index:45; left:12px; right:12px; bottom:calc(12px + env(safe-area-inset-bottom)); display:none; grid-template-columns:1fr 1.5fr; gap:8px; transition:transform .4s var(--ease); }
+.dock .btn { min-height:50px; box-shadow:0 14px 30px -12px rgba(0,0,0,.45); }
+.dock .btn--line { background:#fff; color:var(--ink); box-shadow:0 14px 30px -12px rgba(0,0,0,.45); }
+.dock.away { transform:translateY(160%); }
+
+@media (max-width:980px) {
+  .nav { display:none; } .menu { display:grid; place-items:center; }
+  .nav.open { display:flex; position:fixed; inset:76px 0 auto; flex-direction:column; gap:0; padding:8px var(--gut) 20px; background:var(--shutter); }
+  .nav.open a { padding:14px 0; border-bottom:1px solid rgba(255,255,255,.14); }
+  .top .wrap > .btn { display:none; }
+  .book { grid-template-columns:1fr 1fr; } .book label:nth-child(3) { box-shadow:none; grid-column:1 / -1; border-top:1px solid var(--line); border-radius:0; } .book .btn { grid-column:1 / -1; }
+  .book__note { display:none; } .book { bottom:20px; }
+  .hero__in { bottom:270px; }
+  .facts ul { grid-template-columns:repeat(3,1fr); } .facts li:nth-child(4) { box-shadow:none; }
+  .split, .floor, .cgrid, .pgrid { grid-template-columns:1fr; }
+  .mosaic { grid-template-columns:1fr 1fr; grid-template-rows:auto; } .mosaic figure { aspect-ratio:4 / 3; } .m1 { grid-row:auto; grid-column:1 / -1; aspect-ratio:16 / 10; }
+  .amen { grid-template-columns:1fr 1fr; }
+  .fgrid { grid-template-columns:1fr 1fr; }
+  .dock { display:grid; }
+  footer { padding-bottom:96px; }
+}
+@media (max-width:560px) {
+  .facts ul { grid-template-columns:1fr 1fr; } .facts li { box-shadow:none !important; border-top:1px solid rgba(255,255,255,.1); }
+  .mosaic { grid-template-columns:1fr; } .amen, .f2, .fgrid { grid-template-columns:1fr; }
+  .view img { aspect-ratio:4 / 3; }
+  .gallery { columns:2; column-gap:8px; } .gallery button { margin-bottom:8px; }
+}
+@media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } .hero img { animation:none; } .mosaic img, .gallery img { transition:none; } }
+</style>
+</head>
+<body>
+<a class="skip" href="#haus">Zum Inhalt springen</a>
+<header class="top" id="top"><div class="wrap">
+  <a class="brand" href="#" aria-label="Der Johannishof – zum Anfang"><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"></a>
+  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
+  <a class="btn btn--gold" href="#preise">Jetzt buchen</a>
+  <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
+</div></header>
+
+<main>
+<section class="hero" aria-label="Der Johannishof">
+  <picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt="Der Johannishof: weißes Bauernhaus mit grünen Fensterläden, Pool und Liegen im Garten" fetchpriority="high"></picture>
+  <div class="hero__in wrap">
+    <h1 class="serif">Der Johannishof</h1>
+    <p>Ein liebevoll renoviertes Bauernhaus auf der Nikolaushöhe, mit Pool, Sauna und Blick über Würzburg. Für Familien und Freunde bis zu 10 Gästen.</p>
+  </div>
+  <form class="book" id="book" aria-label="Verfügbarkeit prüfen und buchen">
+    <label><span>Anreise</span><input type="date" id="bIn" required></label>
+    <label><span>Abreise</span><input type="date" id="bOut" required></label>
+    <label><span>Gäste</span><select id="bG">
+      <option value="2">2 Gäste</option><option value="4">4 Gäste</option><option value="6" selected>6 Gäste</option><option value="8">8 Gäste (mit Apartment)</option><option value="10">10 Gäste (mit Apartment)</option></select></label>
+    <button class="btn btn--gold" type="submit">Verfügbarkeit prüfen</button>
+    <p class="book__note">Direkt buchen und bis zu 10 % gegenüber Buchungsportalen sparen.</p>
+  </form>
+</section>
+
+<section class="facts" aria-label="Auf einen Blick"><div class="wrap"><ul>
+  <li><b>bis 10</b>Gäste</li><li><b>5</b>Schlafzimmer</li><li><b>Salzwasser</b>Pool, beheizt</li><li><b>Finnische</b>Außensauna</li><li><b>Blick</b>über Würzburg</li>
+</ul></div></section>
+
+<section class="s" id="willkommen"><div class="wrap">
+  <div class="split">
+    <div>
+      <h2 class="serif">Ruhe über der Stadt, mitten in den Weinbergen.</h2>
+    </div>
+    <div>
+      <p class="lead" style="margin-top:0">Der Johannishof liegt auf der Nikolaushöhe im Naherholungsgebiet Frankenwarte: rundherum Weinberge und Felder, vor Ihnen ein unverbauter Blick auf Würzburg. Die Altstadt ist trotzdem nur wenige Kilometer entfernt.</p>
+      <p class="lead">Drinnen trifft ein modernes Farbkonzept auf altfränkische Bauernhaus-Möbel, draußen warten ein beheizter Salzwasser-Pool, eine finnische Sauna und eine Outdoor-Küche.</p>
+      <p class="signature">Wir freuen uns auf Sie im Johannishof.</p>
+    </div>
+  </div>
+  <figure class="view"><img src="img/house.webp" alt="Blick vom Garten des Johannishofs über Bäume auf Würzburg" loading="lazy"><figcaption>Der Blick vom Garten auf Würzburg</figcaption></figure>
+</div></section>
+
+<section class="s house" id="haus"><div class="wrap">
+  <h2 class="serif">Viel Platz für alle, auf drei Etagen.</h2>
+  <p class="lead">Das Haupthaus beherbergt bis zu 6 Gäste. Für größere Gruppen kommt das Apartment im 2. Obergeschoss mit Platz für 4 weitere Gäste dazu.</p>
+  <div class="tabs" role="tablist" aria-label="Etagen">
+    <button role="tab" aria-selected="true" aria-controls="f1" id="t1">Erdgeschoss</button>
+    <button role="tab" aria-selected="false" aria-controls="f2" id="t2" tabindex="-1">Obergeschoss</button>
+    <button role="tab" aria-selected="false" aria-controls="f3" id="t3" tabindex="-1">Apartment 2. OG</button>
+  </div>
+  <div class="floor" id="f1" role="tabpanel" aria-labelledby="t1">
+    <div><h3>Wohnen, kochen und zusammen essen</h3><ul>
+      <li>Große Stube mit Esstisch für bis zu 12 Personen</li><li>Küche mit Kochinsel und 6-flammigem Gasherd</li><li>Gute Stube mit historischem Kachelofen</li><li>Wohnzimmer mit Lounge-Sofa und 65-Zoll-Fernseher, direkt zum Pool</li><li>Kinderspielzimmer, Gäste-WC und Hauswirtschaftsraum</li></ul>
+      <p class="cap">Vom Wohnzimmer geht es direkt auf die Terrasse und in den Garten.</p></div>
+    <div class="duo"><img src="img/stube-sm.webp" alt="Große Stube mit langem Esstisch und Holzbalken" loading="lazy"><img src="img/kueche-sm.webp" alt="Küche mit Kochinsel" loading="lazy"></div>
+  </div>
+  <div class="floor" id="f2" role="tabpanel" aria-labelledby="t2" hidden>
+    <div><h3>Schlafen mit Blick ins Grüne</h3><ul>
+      <li>2 Schlafzimmer mit Kingsize-Bett</li><li>1 Schlafzimmer mit 2 Einzelbetten und Sekretär fürs Home-Office</li><li>Durchgangszimmer mit Schlafcouch und Schreibtisch</li><li>Großes Bad mit Badewanne, Walk-in-Dusche und WC</li><li>Schöne Holzböden und hochwertige Bettwäsche</li></ul></div>
+    <div class="duo"><img src="img/bedroom1-sm.webp" alt="Schlafzimmer mit Kingsize-Bett" loading="lazy"><img src="img/bad1-sm.webp" alt="Bad mit Badewanne und zwei Waschbecken" loading="lazy"></div>
+  </div>
+  <div class="floor" id="f3" role="tabpanel" aria-labelledby="t3" hidden>
+    <div><h3>Das Apartment für 4 weitere Gäste</h3><ul>
+      <li>2 Schlafzimmer mit Doppelbett und Sekretär</li><li>Großes Bad mit Badewanne/Dusche und WC</li><li>Küchenzeile mit Herd, Ofen und Spülmaschine</li><li>Wohnbereich mit Lounge-Sofa und Bartisch</li><li>Eigener Zugang über die Außentreppe mit Blick ins Maintal</li></ul>
+      <p class="cap">Das Apartment wird nur zusammen mit dem Haupthaus vermietet.</p></div>
+    <div class="duo"><img src="img/img6236-sm.webp" alt="Wohnbereich im Apartment unter dem Dach" loading="lazy"><img src="img/bedroom2-sm.webp" alt="Schlafzimmer mit Schreibtisch und bemaltem Bauernschrank" loading="lazy"></div>
+  </div>
+</div></section>
+
+<section class="s" id="draussen"><div class="wrap">
+  <h2 class="serif">Draußen ist hier das schönste Zimmer.</h2>
+  <p class="lead">Ein großer Garten mit Naturstein-Terrasse, Liegewiese und Platz zum Toben. Pool und Sauna gibt es seit Sommer 2024.</p>
+  <div class="mosaic">
+    <figure class="m1"><img src="img/garden.webp" alt="Pool vor dem Haus mit Hortensien" loading="lazy"><figcaption><b>Salzwasser-Pool</b><span>Beheizt von Mitte April bis Ende Oktober, mit Außendusche</span></figcaption></figure>
+    <figure><img src="img/pool-view-sm.webp" alt="Pool mit Saunahaus und Lavendel" loading="lazy"><figcaption><b>Finnische Sauna</b><span>Eigenes Saunahaus direkt am Pool</span></figcaption></figure>
+    <figure><img src="img/gal2-sm.webp" alt="Outdoor-Küche mit Gasgrill an der Natursteinmauer" loading="lazy"><figcaption><b>Outdoor-Küche</b><span>Gasgrill und zusätzlicher Weber-Kohlegrill</span></figcaption></figure>
+    <figure><img src="img/terrace-sm.webp" alt="Gedeckter Tisch auf der Terrasse unter Sonnenschirmen" loading="lazy"><figcaption><b>Terrasse</b><span>Teak-Tafel für 6 bis 8 Personen und Lounge</span></figcaption></figure>
+    <figure><img src="img/house-sm.webp" alt="Garten mit Liegewiese und Blick auf die Stadt" loading="lazy"><figcaption><b>Garten für Kinder</b><span>Fußballplatz, Trampolin und Spielturm</span></figcaption></figure>
+  </div>
+  <div class="amen">
+    <div><h3>Carport &amp; Wallbox</h3><p>Kostenloser Carport für 2 Autos, Ladestation gegen Gebühr.</p></div>
+    <div><h3>Fahrräder</h3><p>Unterstand für mitgebrachte Räder.</p></div>
+    <div><h3>Arbeiten</h3><p>Sekretäre und Schreibtische fürs Home-Office.</p></div>
+    <div><h3>Familien</h3><p>Spielzimmer, Spielwiese und viel Platz im Garten.</p></div>
+  </div>
+</div></section>
+
+<section class="s house" id="galerie" style="padding-top:clamp(70px,10vh,120px)"><div class="wrap">
+  <h2 class="serif">Bilder der Vorfreude.</h2>
+  <div class="gallery" id="gallery"></div>
+</div></section>
+<div class="lb" id="lb" hidden role="dialog" aria-modal="true" aria-label="Bildansicht"><img id="lbImg" alt=""><button class="x" type="button" aria-label="Schließen">×</button><button class="p" type="button" aria-label="Vorheriges Bild">‹</button><button class="n" type="button" aria-label="Nächstes Bild">›</button><p id="lbCap"></p></div>
+
+<section class="s prices" id="preise"><div class="wrap">
+  <h2 class="serif">Preise und Buchung.</h2>
+  <p class="lead">Buchen Sie direkt bei uns und sparen Sie bis zu 10 % gegenüber den Tagesraten der Buchungsportale.</p>
+  <div class="pgrid">
+    <div class="pcard"><h3>Haupthaus · bis 6 Gäste</h3><p class="amt">389–529 € <small>pro Nacht</small></p><ul><li>Erdgeschoss und 1. Obergeschoss</li><li>Endreinigung 269 €</li><li>Preis je nach Zeitraum</li></ul></div>
+    <div class="pcard"><h3>Apartment · +4 Gäste</h3><p class="amt">+249–299 € <small>pro Nacht</small></p><ul><li>2. Obergeschoss, eigener Eingang</li><li>Endreinigung 100 €</li><li>Nur zusammen mit dem Haupthaus</li></ul></div>
+    <form class="pcard calc" id="calc" aria-label="Preis berechnen">
+      <h3>Ihr Aufenthalt</h3>
+      <div class="f2" style="margin-top:10px">
+        <div class="field" style="margin-top:0"><label for="cIn">Anreise</label><input type="date" id="cIn"></div>
+        <div class="field" style="margin-top:0"><label for="cOut">Abreise</label><input type="date" id="cOut"></div>
+      </div>
+      <div class="field"><label for="cG">Gäste</label><select id="cG"><option value="2">2 Gäste</option><option value="4">4 Gäste</option><option value="6" selected>6 Gäste</option><option value="8">8 Gäste (mit Apartment)</option><option value="10">10 Gäste (mit Apartment)</option></select></div>
+      <div class="row"><span id="cN">Nächte</span><span id="cNV">–</span></div>
+      <div class="row"><span>Endreinigung</span><span id="cClean">269 €</span></div>
+      <div class="row t"><span>Voraussichtlich</span><span id="cT">–</span></div>
+      <button class="btn btn--green" type="submit">Zur Buchung</button>
+      <small id="cHint">Den genauen Preis sehen Sie im nächsten Schritt in unserem Buchungssystem. Alle Preise inkl. 7 % MwSt.</small>
+    </form>
+  </div>
+  <div class="rules"><span><b>Mindestaufenthalt</b> 3 Nächte, im Juli und August 4 Nächte</span><span><b>Check-in</b> ab 16 Uhr</span><span><b>Check-out</b> bis 11 Uhr</span><span><b>Ein weiterer Gast</b> auf Anfrage</span></div>
+</div></section>
+
+<section class="s loc" id="lage"><div class="wrap split">
+  <div>
+    <h2 class="serif">Wandern, Wein und Würzburgs Altstadt.</h2>
+    <p class="lead">Rund um den Johannishof laden Weinberge, Wälder und Felder zum Wandern und Joggen ein. Die fränkischen Weingüter liegen vor der Tür, und in der Innenstadt warten Residenz, Festung, Restaurants und Geschäfte.</p>
+    <ul class="places">
+      <li><b>Adresse</b><span>Oberer Steinbachweg 1 B, 97082 Würzburg</span></li>
+      <li><b>Umgebung</b><span>Naherholungsgebiet Frankenwarte, Weinberge, Maintal</span></li>
+      <li><b>Anreise</b><span>Eigener Carport und Stellplatz vor dem Haus</span></li>
+    </ul>
+    <p style="margin-top:22px"><a class="btn btn--line" href="https://www.google.com/maps/search/?api=1&amp;query=Oberer+Steinbachweg+1B+97082+W%C3%BCrzburg" target="_blank" rel="noopener">Route planen</a></p>
+  </div>
+  <figure><img src="img/vineyard-sm.webp" alt="Weinberge über dem Maintal bei Würzburg" loading="lazy"></figure>
+</div></section>
+
+<section class="s contact" id="kontakt"><div class="wrap cgrid">
+  <div>
+    <h2 class="serif">Fragen? Schreiben Sie uns.</h2>
+    <p class="lead">Ob Gruppenreise, Familienfeier oder längerer Aufenthalt: Wir antworten persönlich.</p>
+    <div class="direct"><a href="tel:+4917624208065">+49 176 24 20 80 65</a><a href="mailto:info@derjohannishof.de">info@derjohannishof.de</a><a href="https://www.instagram.com/derjohannishof.de/" target="_blank" rel="noopener">Instagram @derjohannishof.de</a></div>
+  </div>
+  <form class="form" id="ask" novalidate>
+    <div class="f2">
+      <div class="field"><label for="aName">Name</label><input id="aName" autocomplete="name" required></div>
+      <div class="field"><label for="aMail">E-Mail</label><input id="aMail" type="email" autocomplete="email" required></div>
+    </div>
+    <div class="f2">
+      <div class="field"><label for="aDates">Zeitraum</label><input id="aDates" placeholder="z. B. 12.–16. Juni"></div>
+      <div class="field"><label for="aG">Gäste</label><select id="aG"><option>2</option><option>4</option><option selected>6</option><option>8</option><option>10</option></select></div>
+    </div>
+    <div class="field"><label for="aMsg">Nachricht</label><textarea id="aMsg"></textarea></div>
+    <button class="btn btn--green" type="submit">Anfrage senden</button>
+    <p class="msg" id="aOk" aria-live="polite"></p>
+  </form>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="fgrid">
+    <div><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"><p style="margin-top:10px">Hinterer Johannishof<br>Oberer Steinbachweg 1 B, 97082 Würzburg</p></div>
+    <div><p><a href="tel:+4917624208065">+49 176 24 20 80 65</a><br><a href="mailto:info@derjohannishof.de">info@derjohannishof.de</a></p></div>
+    <div><p><a href="https://www.derjohannishof.de/impressum">Impressum</a><br><a href="https://www.derjohannishof.de/datenschutz">Datenschutz</a><br><a href="https://www.derjohannishof.de/agb">AGB</a></p></div>
+  </div>
+  <div class="fbase"><span>© <span id="yr">2026</span> Der Johannishof</span><span>Entwurf einer neuen Website von F&amp;D Solutions</span></div>
+</div></footer>
+<div class="dock" id="dock"><a class="btn btn--line" href="tel:+4917624208065">Anrufen</a><a class="btn btn--gold" href="#preise">Jetzt buchen</a></div>
+
+<script>
+(function () {
+  var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
+  $("#yr").textContent = new Date().getFullYear();
+  var DAY = 864e5, LODGIFY = "https://checkout.lodgify.com/de/sven-stubenrauch-392193/544873/reservation";
+  function iso(d) { return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0") + "-" + String(d.getDate()).padStart(2, "0"); }
+  function bookUrl(a, b, g) { var u = LODGIFY + "?currency=EUR&guests=" + g; if (a) u += "&arrival=" + a; if (b) u += "&departure=" + b; return u; }
+
+  /* header + mobile menu + dock */
+  var top = $("#top"), dock = $("#dock");
+  function chrome() { var y = scrollY; top.classList.toggle("solid", y > innerHeight * .7); dock.classList.toggle("away", y < innerHeight * .8 || $("#kontakt").getBoundingClientRect().top < innerHeight * .6); }
+  addEventListener("scroll", chrome, { passive: true }); chrome();
+  $("#menuBtn").addEventListener("click", function () { var o = $("#nav").classList.toggle("open"); this.setAttribute("aria-expanded", o); top.classList.add("solid"); });
+  $$("#nav a").forEach(function (a) { a.addEventListener("click", function () { $("#nav").classList.remove("open"); $("#menuBtn").setAttribute("aria-expanded", "false"); }); });
+
+  /* date defaults: inputs can't go back in time, departure follows arrival */
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  [["#bIn", "#bOut"], ["#cIn", "#cOut"]].forEach(function (p) {
+    var a = $(p[0]), b = $(p[1]); a.min = iso(today); b.min = iso(new Date(+today + DAY));
+    a.addEventListener("change", function () { if (!a.value) return; var d = new Date(a.value + "T00:00"); b.min = iso(new Date(+d + DAY)); if (!b.value || b.value <= a.value) b.value = iso(new Date(+d + 3 * DAY)); b.dispatchEvent(new Event("change")); });
+  });
+
+  /* hero bar → copies the dates into the calculator and opens booking */
+  $("#book").addEventListener("submit", function (e) {
+    e.preventDefault();
+    $("#cIn").value = $("#bIn").value; $("#cOut").value = $("#bOut").value; $("#cG").value = $("#bG").value; calc();
+    if ($("#bIn").value && $("#bOut").value) window.open(bookUrl($("#bIn").value, $("#bOut").value, $("#bG").value), "_blank", "noopener");
+    else document.getElementById("preise").scrollIntoView();
+  });
+
+  /* price estimate: low/high season band, minimum stay */
+  function calc() {
+    var a = $("#cIn").value, b = $("#cOut").value, g = +$("#cG").value, apt = g > 6;
+    $("#cClean").textContent = (apt ? 369 : 269) + " €";
+    if (!a || !b || b <= a) { $("#cNV").textContent = "–"; $("#cT").textContent = "–"; return; }
+    var A = new Date(a + "T00:00"), B = new Date(b + "T00:00"), n = Math.round((B - A) / DAY), lo = 0, hi = 0, summer = false;
+    for (var t = +A; t < +B; t += DAY) { var m = new Date(t).getMonth(); if (m === 6 || m === 7) summer = true; lo += 389 + (apt ? 249 : 0); hi += 529 + (apt ? 299 : 0); }
+    var min = summer ? 4 : 3, clean = apt ? 369 : 269;
+    $("#cN").textContent = n + (n === 1 ? " Nacht" : " Nächte") + (apt ? " · mit Apartment" : "");
+    $("#cNV").textContent = lo.toLocaleString("de-DE") + "–" + hi.toLocaleString("de-DE") + " €";
+    $("#cT").textContent = (lo + clean).toLocaleString("de-DE") + "–" + (hi + clean).toLocaleString("de-DE") + " €";
+    $("#cHint").textContent = n < min ? "Bitte mindestens " + min + " Nächte wählen" + (summer ? " (Juli/August)." : ".") : "Den genauen Preis für Ihren Zeitraum sehen Sie im nächsten Schritt. Alle Preise inkl. 7 % MwSt.";
+  }
+  ["#cIn", "#cOut", "#cG"].forEach(function (s) { $(s).addEventListener("change", calc); });
+  $("#calc").addEventListener("submit", function (e) { e.preventDefault(); window.open(bookUrl($("#cIn").value, $("#cOut").value, $("#cG").value), "_blank", "noopener"); });
+  calc();
+
+  /* floor tabs (arrow keys) */
+  var tabs = $$('[role="tab"]');
+  function sel(t) { tabs.forEach(function (x) { var on = x === t; x.setAttribute("aria-selected", on); x.tabIndex = on ? 0 : -1; document.getElementById(x.getAttribute("aria-controls")).hidden = !on; }); t.focus(); }
+  tabs.forEach(function (t, i) {
+    t.addEventListener("click", function () { sel(t); });
+    t.addEventListener("keydown", function (e) { var d = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0; if (d) { e.preventDefault(); sel(tabs[(i + d + tabs.length) % tabs.length]); } });
+  });
+
+  /* gallery + lightbox */
+  var pics = [["pool-hero","Haus mit Pool"],["wohnen2","Wohnzimmer zum Garten"],["stube","Große Stube"],["garden","Pool und Hortensien"],["schlafen","Schlafzimmer"],["kueche","Küche"],["terrace","Terrasse"],["wohnen3","Gute Stube mit Kachelofen"],["bedroom1","Schlafzimmer mit Kingsize-Bett"],["gal2","Outdoor-Küche"],["bad2","Bad"],["wohnen1","Wohnen"],["img6236","Apartment"],["pool-view","Pool und Sauna"],["wohnen4","Wohnzimmer"],["bad1","Bad mit Badewanne"],["bedroom2","Schlafzimmer mit Schreibtisch"],["carport","Hof und Carport"],["vineyard","Weinberge im Maintal"]];
+  var gal = $("#gallery"), lb = $("#lb"), li = $("#lbImg"), cur = 0, last;
+  pics.forEach(function (p, i) { var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", p[1] + " vergrößern"); b.innerHTML = '<img src="img/' + p[0] + '-sm.webp" alt="' + p[1] + '" loading="lazy">'; b.addEventListener("click", function () { last = b; open(i); }); gal.appendChild(b); });
+  function show(i) { cur = (i + pics.length) % pics.length; li.src = "img/" + pics[cur][0] + ".webp"; li.alt = pics[cur][1]; $("#lbCap").textContent = pics[cur][1] + " · " + (cur + 1) + " / " + pics.length; }
+  function open(i) { show(i); lb.hidden = false; document.body.style.overflow = "hidden"; $(".lb .x").focus(); }
+  function close() { lb.hidden = true; document.body.style.overflow = ""; if (last) last.focus(); }
+  $(".lb .x").addEventListener("click", close); $(".lb .p").addEventListener("click", function () { show(cur - 1); }); $(".lb .n").addEventListener("click", function () { show(cur + 1); });
+  lb.addEventListener("click", function (e) { if (e.target === lb) close(); });
+  addEventListener("keydown", function (e) { if (lb.hidden) return; if (e.key === "Escape") close(); if (e.key === "ArrowLeft") show(cur - 1); if (e.key === "ArrowRight") show(cur + 1); });
+
+  /* inquiry → e-mail */
+  $("#ask").addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!$("#aName").value.trim() || !/.+@.+\..+/.test($("#aMail").value)) { $("#aOk").textContent = "Bitte Name und E-Mail angeben."; return; }
+    var body = "Name: " + $("#aName").value + "\nE-Mail: " + $("#aMail").value + "\nZeitraum: " + $("#aDates").value + "\nGäste: " + $("#aG").value + "\n\n" + $("#aMsg").value;
+    location.href = "mailto:info@derjohannishof.de?subject=" + encodeURIComponent("Anfrage Johannishof") + "&body=" + encodeURIComponent(body);
+    $("#aOk").textContent = "Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage.";
+  });
+})();
+</script>
+</body>
+</html>
