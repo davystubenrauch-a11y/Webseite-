@@ -8,7 +8,6 @@
 <meta name="robots" content="noindex">
 <link rel="preload" as="image" href="img/pool-hero.webp" media="(min-width: 700px)">
 <link rel="preload" as="image" href="img/pool-hero-sm.webp" media="(max-width: 699px)">
-<script>try{if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!sessionStorage.getItem("jhPre")){document.documentElement.classList.add("pre-on");setTimeout(function(){document.documentElement.classList.remove("pre-on")},7000)}}catch(e){}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -322,6 +321,81 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 .xtra b { display:block; font-weight:600; } .xtra small { display:block; color:var(--mid); font-size:13px; }
 .xtra--form { margin-top:14px; }
 
+/* ===== v4: Startfilm, Gästestimmen, Grundrisse ===== */
+.film .hero__media { overflow:hidden; }
+.film__stack, .film__stack img { position:absolute; inset:0; width:100%; height:100%; }
+.film__stack img { object-fit:cover; opacity:0; transition:opacity 1.6s ease; animation:none; }
+.film__stack img.on { opacity:1; animation:kb 9s linear both; }
+@keyframes kb { from { transform:scale(1); } to { transform:scale(1.08); } }
+.film__stack.gl img { opacity:0 !important; transition:opacity .8s; }
+.film canvas { position:absolute; inset:0; width:100%; height:100%; display:block; opacity:1; transition:none; }
+.film.hero::after { background:linear-gradient(90deg, rgba(14,18,16,.55), rgba(14,18,16,.18) 45%, transparent 65%), linear-gradient(rgba(14,18,16,.42), transparent 26%, transparent 42%, rgba(14,18,16,.8)); }
+.film .hero__in { bottom:clamp(150px,21vh,210px); }
+.hero .film__kick { font:500 15px/1.3 "Jost",sans-serif; letter-spacing:.03em; margin:0 0 14px; max-width:none; }
+.film__kick span { opacity:.75; font-weight:400; margin-left:10px; padding-left:12px; border-left:1px solid rgba(255,255,255,.45); }
+.hero .film__cap { text-shadow:0 2px 30px rgba(0,0,0,.35); font-size:clamp(2.6rem,6vw,5.6rem); line-height:1.02; max-width:15ch; min-height:2.1em; opacity:1; }
+.film__cap.out { animation:capOut .42s ease-in both; }
+@keyframes capOut { to { opacity:0; transform:translateY(-14px); filter:blur(6px); } }
+.film__cap.in { animation:capIn 1.1s var(--ease) both; }
+@keyframes capIn { from { opacity:0; transform:translateY(22px); filter:blur(8px); } to { opacity:1; transform:none; filter:none; } }
+.film__nav { display:flex; gap:10px; margin-top:26px; max-width:720px; }
+.film__nav button { flex:1; min-width:0; display:grid; gap:9px; padding:10px 0 4px; border:0; background:none; color:#fff; text-align:left; cursor:pointer; font-size:13.5px; opacity:.62; transition:opacity .3s; }
+.film__nav button:hover, .film__nav button.on { opacity:1; }
+.film__nav i { display:block; height:2px; background:rgba(255,255,255,.3); overflow:hidden; }
+.film__nav b { display:block; height:100%; background:#fff; transform-origin:left; transform:scaleX(0); }
+.film__nav button.done b { transform:scaleX(1); }
+.film__nav span { white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.film__rate { position:absolute; z-index:3; right:var(--gut); top:96px; display:flex; gap:12px; align-items:center; padding:12px 18px; border-radius:14px; background:rgba(255,255,255,.14); -webkit-backdrop-filter:blur(14px); backdrop-filter:blur(14px); box-shadow:inset 0 0 0 1px rgba(255,255,255,.22); color:#fff; text-decoration:none; font-size:14px; line-height:1.3; }
+.film__rate b { display:block; font-weight:500; } .film__rate small { display:block; opacity:.8; font-size:12.5px; }
+.film__stars { color:#e8cf86; letter-spacing:2px; font-size:15px; }
+@media (max-width:980px) { .film .hero__in { bottom:280px; } .film__rate { display:none; } .film__nav span { font-size:12px; } }
+@media (max-width:560px) { .film__nav { gap:6px; } .film__nav span { display:none; } .film__kick span { display:block; margin:4px 0 0; padding:0; border:0; } }
+
+.proof { background:var(--paper); }
+.proof__head { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:end; }
+.proof__head .lead { margin:0; }
+.proof__grid { margin-top:48px; display:grid; grid-template-columns:.8fr 2fr; gap:clamp(28px,5vw,72px); align-items:start; }
+.scores { display:grid; gap:18px; }
+.scores div { display:grid; grid-template-columns:1fr auto; gap:6px 12px; }
+.scores dt { font-size:15px; } .scores dd { font-family:"Newsreader",serif; font-size:26px; line-height:1; }
+.scores i { grid-column:1 / -1; display:block; height:3px; background:var(--line); }
+.scores i b { display:block; height:100%; width:calc(var(--v) * 100%); background:var(--shutter); transform-origin:left; }
+.quotes { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.q { padding:24px; border-radius:14px; background:#fff; box-shadow:0 1px 0 rgba(31,36,33,.06), 0 20px 40px -32px rgba(31,36,33,.4); }
+.q p { font-family:"Newsreader",serif; font-size:21px; line-height:1.3; }
+.q footer { margin-top:14px; padding:0; background:none; font-size:13.5px; color:var(--mid); }
+.q--big { grid-column:1 / -1; background:var(--vine); color:#f4efe3; }
+.q--big p { font-size:clamp(26px,2.6vw,36px); } .q--big footer { color:rgba(244,239,227,.7); }
+.proof__src { margin-top:18px; font-size:13px; color:var(--mid); }
+@media (max-width:980px) { .proof__head, .proof__grid { grid-template-columns:1fr; } }
+@media (max-width:620px) { .quotes { grid-template-columns:1fr; } }
+
+.plans { position:relative; }
+.plan2 { display:none; width:100%; height:auto; overflow:visible; }
+.plan2.on { display:block; }
+.plan2 .rm rect:first-child { fill:#faf7f0; stroke:#2b332e; stroke-width:2; transition:fill .35s; }
+.plan2 .rm[aria-label] { cursor:pointer; outline:none; }
+.plan2 .rm[aria-label]:hover rect:first-child, .plan2 .rm.act rect:first-child, .plan2 .rm:focus-visible rect:first-child { fill:#efe3bf; }
+.plan2 .rm--priv rect:first-child { fill:url(#hatch); }
+.plan2 .fx { fill:none; stroke:#2b332e; stroke-opacity:.45; stroke-width:1.2; }
+.plan2 .fx--gold { fill:var(--gold); stroke:none; }
+.plan2 text { font:500 14px "Jost",sans-serif; fill:#2b332e; text-anchor:middle; pointer-events:none; }
+.plan2 text.sm { font-size:12px; fill:#5b625d; }
+.plan2 .p-out { font:italic 400 18px "Newsreader",serif; fill:var(--mid); text-anchor:start; }
+.plan2 .p-wall { fill:none; stroke:#1f2421; stroke-width:6; stroke-linejoin:round; }
+html.anim .plan2 [pathLength] { stroke-dasharray:1; stroke-dashoffset:1; }
+html.anim .plan2.drawn [pathLength] { stroke-dashoffset:0; transition:stroke-dashoffset 1.8s cubic-bezier(.65,0,.35,1), fill .35s; }
+html.anim .plan2.drawn .p-wall { transition-duration:2.4s; }
+.plan2--apt { border-radius:8px; overflow:hidden; } .plan2--apt img { width:100%; aspect-ratio:4 / 3; object-fit:cover; }
+.plan__photo { position:absolute; right:-6px; bottom:-14px; width:min(44%,260px); margin:0; padding:6px 6px 10px; background:#fff; border-radius:8px; box-shadow:0 24px 50px -24px rgba(31,36,33,.55); transition:opacity .25s, transform .4s var(--ease); }
+.plan__photo img { width:100%; aspect-ratio:4 / 3; object-fit:cover; border-radius:4px; }
+.plan__photo figcaption { margin-top:8px; font-size:13.5px; padding:0 4px; }
+.plan__photo.swap { opacity:.35; transform:translateY(6px); }
+.plan__photo.noimg img { display:none; }
+.plans__hint { margin-top:14px; font-size:13.5px; color:var(--mid); }
+.plans.apt .plans__hint { display:none; }
+@media (max-width:980px) { .plans { margin-bottom:26px; } .plan__photo { position:relative; right:auto; bottom:auto; width:100%; margin-top:14px; display:grid; grid-template-columns:120px 1fr; gap:12px; align-items:center; } .plan__photo figcaption { margin:0; } }
+
 @media (max-width:980px) { .hgrid { grid-template-columns:1fr; } .model { order:-1; position:relative; top:0; height:400px; --ms:.62; } }
 @media (max-width:560px) { .model { height:330px; --ms:.5; } .gallery.ring { height:440px; } }
 
@@ -356,32 +430,39 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 </style>
 </head>
 <body>
-<div class="pre" id="pre" aria-hidden="true">
-  <p class="pre__top"><span>Der Johannishof</span><span>Würzburg · Nikolaushöhe</span></p>
-  <div class="pre__frame" id="preFrame">
-    <img src="img/kueche-sm.webp" alt=""><img src="img/stube-sm.webp" alt=""><img src="img/wohnen3-sm.webp" alt=""><img src="img/bedroom1-sm.webp" alt=""><img src="img/terrace-sm.webp" alt=""><img src="img/pool-view-sm.webp" alt=""><picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt=""></picture>
-  </div>
-  <p class="pre__n"><span id="preN">0</span></p>
-</div>
 <a class="skip" href="#haus">Zum Inhalt springen</a>
 <header class="top" id="top"><div class="wrap">
   <a class="brand" href="#" aria-label="Der Johannishof – zum Anfang"><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"></a>
-  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#tag">Ein Tag</a><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#weinkeller">Weinkeller</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
+  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#stimmen">Gäste</a><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#weinkeller">Weinkeller</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
   <a class="btn btn--gold" href="#preise">Jetzt buchen</a>
   <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
 </div></header>
 
 <nav class="chap" id="chap" aria-label="Kapitel">
-  <a href="#tag"><i></i><span>Ein Tag</span></a><a href="#haus"><i></i><span>Das Haus</span></a><a href="#draussen"><i></i><span>Pool &amp; Garten</span></a><a href="#weinkeller"><i></i><span>Weinkeller</span></a><a href="#galerie"><i></i><span>Galerie</span></a><a href="#preise"><i></i><span>Preise</span></a><a href="#lage"><i></i><span>Lage</span></a><a href="#kontakt"><i></i><span>Kontakt</span></a>
+  <a href="#stimmen"><i></i><span>Gäste</span></a><a href="#tag"><i></i><span>Ein Tag</span></a><a href="#haus"><i></i><span>Das Haus</span></a><a href="#draussen"><i></i><span>Pool &amp; Garten</span></a><a href="#weinkeller"><i></i><span>Weinkeller</span></a><a href="#galerie"><i></i><span>Galerie</span></a><a href="#preise"><i></i><span>Preise</span></a><a href="#lage"><i></i><span>Lage</span></a><a href="#kontakt"><i></i><span>Kontakt</span></a>
 </nav>
 <main>
-<section class="hero" aria-label="Der Johannishof">
-  <div class="hero__media" id="heroMedia"><picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt="Der Johannishof: weißes Bauernhaus mit grünen Fensterläden, Pool und Liegen im Garten" fetchpriority="high"></picture></div>
-  <h1 class="hero__word" id="heroWord"><span class="hero__der">Der</span><span class="hero__big" id="heroBig">Johannishof</span></h1>
-  <div class="hero__fg" id="heroFg" aria-hidden="true"><picture><source media="(max-width: 699px)" srcset="img/pool-hero-fg-sm.webp"><img src="img/pool-hero-fg.webp" alt=""></picture></div>
+<section class="hero film" aria-label="Der Johannishof">
+  <div class="hero__media" id="heroMedia">
+    <div class="film__stack" id="filmStack">
+      <img class="on" src="img/pool-hero.webp" srcset="img/pool-hero-sm.webp 960w, img/pool-hero.webp 1920w" sizes="100vw" alt="Der Johannishof: Bauernhaus mit grünen Fensterläden und Pool" fetchpriority="high" style="object-position:50% 60%">
+      <img src="img/house.webp" srcset="img/house-sm.webp 960w, img/house.webp 1920w" sizes="100vw" alt="Blick aus dem Garten über Würzburg" style="object-position:60% 55%">
+      <img src="img/stube.webp" srcset="img/stube-sm.webp 960w, img/stube.webp 1920w" sizes="100vw" alt="Große Stube mit langer Tafel" style="object-position:50% 55%">
+      <img src="img/terrace.webp" srcset="img/terrace-sm.webp 960w, img/terrace.webp 1920w" sizes="100vw" alt="Gedeckte Tafel auf der Terrasse am Pool" style="object-position:50% 50%">
+      <img src="img/weinkeller.webp" srcset="img/weinkeller-sm.webp 760w, img/weinkeller.webp 1500w" sizes="100vw" alt="Naturstein-Weinkeller mit Holzfass und Tafel" style="object-position:50% 62%">
+    </div>
+  </div>
+  <a class="film__rate" href="#stimmen"><span class="film__stars" aria-hidden="true">★★★★★</span><span><b>10 von 14 Gästen: „Hervorragend“</b><small>Booking.com · Ausstattung 10,0 · Sauberkeit 9,9</small></span></a>
   <div class="hero__in wrap">
-    <p class="hero__kick serif">Ferienhaus mit Pool &amp; Sauna über Würzburg</p>
-    <p>Ein liebevoll renoviertes Bauernhaus auf der Nikolaushöhe, mit Pool, Sauna und Blick über Würzburg. Für Familien und Freunde bis zu 10 Gästen.</p>
+    <h1 class="film__kick">Der Johannishof <span>Ferienhaus über Würzburg</span></h1>
+    <p class="film__cap serif" id="filmCap">Ein Bauernhaus mit Pool und&nbsp;Sauna.</p>
+    <div class="film__nav" id="filmNav" aria-label="Szenen">
+      <button type="button" class="on" aria-current="true"><i><b></b></i><span>Pool &amp; Sauna</span></button>
+      <button type="button"><i><b></b></i><span>Ausblick</span></button>
+      <button type="button"><i><b></b></i><span>Stube</span></button>
+      <button type="button"><i><b></b></i><span>Terrasse</span></button>
+      <button type="button"><i><b></b></i><span>Weinkeller</span></button>
+    </div>
   </div>
   <form class="book" id="book" aria-label="Verfügbarkeit prüfen und buchen">
     <label><span>Anreise</span><input type="date" id="bIn" required></label>
@@ -396,6 +477,29 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 <section class="facts" aria-label="Auf einen Blick"><div class="wrap"><ul>
   <li><b>bis 10</b>Gäste</li><li><b>5</b>Schlafzimmer</li><li><b>Salzwasser</b>Pool, beheizt</li><li><b>Finnische</b>Außensauna</li><li><b>Blick</b>über Würzburg</li>
 </ul></div></section>
+
+<section class="s proof" id="stimmen"><div class="wrap">
+  <div class="proof__head">
+    <h2 class="serif">Was unsere Gäste sagen.</h2>
+    <p class="lead">14 Bewertungen auf Booking.com, 10 davon „Hervorragend“. Am besten bewertet: die Ausstattung mit 10,0 von 10.</p>
+  </div>
+  <div class="proof__grid">
+    <dl class="scores">
+      <div><dt>Ausstattung</dt><dd>10,0</dd><i><b style="--v:.998"></b></i></div>
+      <div><dt>Sauberkeit</dt><dd>9,9</dd><i><b style="--v:.992"></b></i></div>
+      <div><dt>Komfort</dt><dd>9,0</dd><i><b style="--v:.904"></b></i></div>
+      <div><dt>Gastgeber</dt><dd>9,0</dd><i><b style="--v:.899"></b></i></div>
+    </dl>
+    <div class="quotes">
+      <blockquote class="q q--big"><p>„Ein wirklich einmaliger Ort mit schöner Aussicht und liebevoller Gestaltung, zum Wohlfühlen!“</p><footer>Veronika, mit Freunden · September 2025</footer></blockquote>
+      <blockquote class="q"><p>„Das Haus ist fantastisch. Der Garten mit Pool und Sauna außergewöhnlich und luxuriös.“</p><footer>Andrea, mit Freunden · März 2025</footer></blockquote>
+      <blockquote class="q"><p>„Tolle Lage, richtig gute Ausstattung, sehr sauber und sehr viel Platz.“</p><footer>Christiane, mit Familie · April 2026</footer></blockquote>
+      <blockquote class="q"><p>„Tolles, großzügiges Haus, tolle Garten-Anlage, gute Betten, gut ausgestattete Küche. Top Location!“</p><footer>Bernd, mit Freunden · Oktober 2025</footer></blockquote>
+    </div>
+  </div>
+  <p class="proof__src">Bewertungen und Werte von Booking.com, Stand November 2026.</p>
+</div></section>
+
 
 <section class="s" id="willkommen"><div class="wrap">
   <div class="split">
@@ -460,16 +564,39 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
     <div class="duo rv"><img src="img/img6236-sm.webp" alt="Wohnbereich im Apartment unter dem Dach" loading="lazy"><img src="img/bedroom2-sm.webp" alt="Schlafzimmer mit Schreibtisch und bemaltem Bauernschrank" loading="lazy"></div>
   </div>
   </div>
-    <div class="model" id="model" aria-hidden="true">
-      <div class="model__world" id="world">
-        <div class="ground"><i class="g-pool"></i><i class="g-terr"></i></div>
-        <div class="slab" data-f="0"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="160" height="128"/><text x="82.0" y="62.5">Stube</text><text x="82.0" y="79.5">bis 12 Pers.</text><rect class="pl-room" x="162" y="2" width="108" height="128"/><text x="216.0" y="71.0">Küche</text><rect class="pl-room" x="270" y="2" width="128" height="128"/><text x="334.0" y="62.5">Gute Stube</text><text x="334.0" y="79.5">Kachelofen</text><rect class="pl-room" x="2" y="130" width="200" height="128"/><text x="102.0" y="199.0">Wohnzimmer</text><rect class="pl-room" x="202" y="130" width="90" height="128"/><text x="247.0" y="190.5">Spiel-</text><text x="247.0" y="207.5">zimmer</text><rect class="pl-room" x="292" y="130" width="106" height="128"/><text x="345.0" y="199.0">Flur · WC</text><text class="pl-title" x="8" y="-12">Erdgeschoss</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
-        <div class="slab" data-f="1"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="140" height="128"/><text x="72.0" y="62.5">Schlafen</text><text x="72.0" y="79.5">Kingsize</text><rect class="pl-room" x="142" y="2" width="128" height="128"/><text x="206.0" y="62.5">Schlafen</text><text x="206.0" y="79.5">Kingsize</text><rect class="pl-room" x="270" y="2" width="128" height="128"/><text x="334.0" y="71.0">Bad</text><rect class="pl-room" x="2" y="130" width="170" height="128"/><text x="87.0" y="190.5">Schlafen</text><text x="87.0" y="207.5">2 Einzelbetten</text><rect class="pl-room" x="172" y="130" width="120" height="128"/><text x="232.0" y="190.5">Durchgang</text><text x="232.0" y="207.5">Schlafcouch</text><rect class="pl-room" x="292" y="130" width="106" height="128"/><text x="345.0" y="199.0">Treppe</text><text class="pl-title" x="8" y="-12">Obergeschoss</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
-        <div class="slab" data-f="2"><svg viewBox="0 0 400 260" class="plan"><rect class="pl-out" x="2" y="2" width="396" height="256"/><rect class="pl-room" x="2" y="2" width="150" height="128"/><text x="77.0" y="71.0">Schlafen</text><rect class="pl-room" x="152" y="2" width="96" height="128"/><text x="200.0" y="71.0">Bad</text><rect class="pl-room" x="248" y="2" width="150" height="128"/><text x="323.0" y="71.0">Schlafen</text><rect class="pl-room" x="2" y="130" width="396" height="128"/><text x="200.0" y="199.0">Wohnen · Küchenzeile · Bar</text><text class="pl-title" x="8" y="-12">Apartment 2. OG</text></svg><b class="sd sd-f"></b><b class="sd sd-r"></b></div>
-        <div class="roof" id="roof"><i class="rf rf1"></i><i class="rf rf2"></i></div>
-      </div>
-      <p class="model__note">Schematische Darstellung</p>
+    <div class="plans" id="plans">
+      <svg class="plan2 on" data-f="0" viewBox="-10 -30 455 530" role="img" aria-label="Grundriss Erdgeschoss">
+        <defs><pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="8" stroke="#2b332e" stroke-opacity=".18" stroke-width="2"/></pattern></defs>
+        <text class="p-out" x="70" y="70">Hof</text>
+        <g class="rm" data-img="stube" tabindex="0" aria-label="Große Stube"><rect pathLength="1" x="10" y="175" width="195" height="130"/><rect class="fx" x="45" y="212" width="125" height="34" rx="3"/><text x="107" y="282">Große Stube</text></g>
+        <g class="rm" data-img="wohnen2" tabindex="0" aria-label="Wohnzimmer"><rect pathLength="1" x="10" y="305" width="135" height="170"/><rect class="fx" x="24" y="322" width="90" height="22" rx="4"/><text x="77" y="420">Wohnzimmer</text></g>
+        <g class="rm" data-img="wohnen3" tabindex="0" aria-label="Gute Stube mit Kachelofen"><rect pathLength="1" x="145" y="305" width="155" height="170"/><rect class="fx fx--gold" x="190" y="440" width="34" height="26"/><text x="222" y="380">Gute Stube</text><text class="sm" x="222" y="398">Kachelofen</text></g>
+        <g class="rm" data-img="kueche" tabindex="0" aria-label="Küche"><rect pathLength="1" x="300" y="170" width="125" height="175"/><rect class="fx" x="345" y="225" width="34" height="58" rx="3"/><text x="362" y="320">Küche</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Spielzimmer"><rect pathLength="1" x="300" y="345" width="125" height="130"/><text x="362" y="415">Spielzimmer</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Flur und Treppe"><rect pathLength="1" x="205" y="170" width="95" height="135"/><text x="252" y="245">Flur</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Eingang"><rect pathLength="1" x="205" y="120" width="60" height="50"/><text class="sm" x="235" y="150">Eingang</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Gäste-WC"><rect pathLength="1" x="155" y="120" width="50" height="55"/><text class="sm" x="180" y="152">WC</text></g>
+        <g class="rm rm--x" data-img="" tabindex="0" aria-label="Hauswirtschaftsraum"><rect pathLength="1" x="345" y="10" width="80" height="160"/><text class="sm" x="385" y="95">HWR</text></g>
+        <g class="rm rm--priv"><rect pathLength="1" x="265" y="10" width="80" height="160"/><text class="sm" x="305" y="95">privat</text></g>
+        <polygon class="p-wall" pathLength="1" points="10,175 10,475 425,475 425,10 265,10 265,120 155,120 155,175"/>
+      </svg>
+      <svg class="plan2" data-f="1" viewBox="-10 -30 595 470" role="img" aria-label="Grundriss Obergeschoss">
+        <g class="rm" data-img="bedroom2" tabindex="0" aria-label="Schlafzimmer mit Schreibtisch"><rect pathLength="1" x="10" y="10" width="185" height="175"/><rect class="fx" x="60" y="80" width="80" height="75" rx="3"/><text x="102" y="58">Schlafzimmer</text></g>
+        <g class="rm" data-img="bad1" tabindex="0" aria-label="Bad mit Wanne und Walk-in-Dusche"><rect pathLength="1" x="195" y="10" width="155" height="105"/><rect class="fx" x="208" y="22" width="70" height="26" rx="10"/><text x="272" y="88">Bad</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Treppe"><rect pathLength="1" x="350" y="10" width="40" height="115"/></g>
+        <g class="rm" data-img="bedroom1" tabindex="0" aria-label="Schlafzimmer mit Kingsize-Bett"><rect pathLength="1" x="390" y="10" width="175" height="190"/><rect class="fx" x="430" y="30" width="85" height="80" rx="3"/><text x="477" y="160">Schlafzimmer</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Flur"><rect pathLength="1" x="195" y="115" width="195" height="75"/><text class="sm" x="292" y="158">Flur</text></g>
+        <g class="rm" data-img="schlafen" tabindex="0" aria-label="Schlafzimmer"><rect pathLength="1" x="395" y="200" width="170" height="200"/><rect class="fx" x="440" y="225" width="80" height="75" rx="3"/><text x="480" y="350">Schlafzimmer</text></g>
+        <g class="rm" data-img="" tabindex="0" aria-label="Durchgangszimmer mit Schlafcouch"><rect pathLength="1" x="255" y="190" width="140" height="210"/><rect class="fx" x="285" y="360" width="80" height="24" rx="4"/><text x="325" y="290">Durchgang</text><text class="sm" x="325" y="308">Schlafcouch</text></g>
+        <g class="rm rm--priv"><rect pathLength="1" x="10" y="185" width="245" height="215"/><text class="sm" x="132" y="298">privat</text></g>
+        <polygon class="p-wall" pathLength="1" points="10,10 565,10 565,400 10,400"/>
+        <text class="p-out" x="20" y="430">Balkon</text>
+      </svg>
+      <figure class="plan2 plan2--apt" data-f="2"><img src="img/img6236.webp" alt="Wohnbereich im Apartment" loading="lazy"></figure>
+      <figure class="plan__photo" id="planPhoto"><img src="img/stube-sm.webp" alt="" id="planImg"><figcaption id="planCap">Große Stube</figcaption></figure>
+      <p class="plans__hint">Tippen oder zeigen Sie auf einen Raum.</p>
     </div>
+
   </div>
 </div></section>
 
@@ -676,14 +803,27 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 <script src="/site/vendor/gsap-3.13/SplitText.min.js"></script>
 <script src="/site/vendor/lenis-1.3/lenis.min.js"></script>
 <script>
-/* Hausmodell: Etage wählen (funktioniert auch ohne Animation) */
+/* Grundrisse: Etage wechseln, Raum zeigen (funktioniert auch ohne Animation) */
 (function () {
-  var model = document.getElementById("model"); if (!model) return;
-  var slabs = [].slice.call(model.querySelectorAll(".slab"));
-  function pick(i) { model.classList.add("picked"); slabs.forEach(function (s, k) { s.classList.toggle("on", k === i); }); }
-  document.addEventListener("floor", function (e) { pick(e.detail); });
-  slabs.forEach(function (s, k) { s.addEventListener("click", function () { window.__selFloor && __selFloor(k); }); });
-  pick(0);
+  var box = document.getElementById("plans"); if (!box) return;
+  var plans = [].slice.call(box.querySelectorAll(".plan2")), photo = document.getElementById("planPhoto"), img = document.getElementById("planImg"), cap = document.getElementById("planCap");
+  var first = ["stube", "bedroom1", ""], firstCap = ["Große Stube", "Schlafzimmer mit Kingsize-Bett", ""];
+  function show(src, label) {
+    if (!src) { cap.textContent = label; photo.classList.add("noimg"); return; }
+    photo.classList.remove("noimg"); photo.classList.add("swap");
+    setTimeout(function () { img.src = "img/" + src + "-sm.webp"; cap.textContent = label; photo.classList.remove("swap"); }, 180);
+  }
+  function floor(i) {
+    plans.forEach(function (p) { var on = +p.getAttribute("data-f") === i; p.classList.toggle("on", on); if (on) { p.classList.remove("drawn"); void p.getBoundingClientRect(); p.classList.add("drawn"); } });
+    photo.hidden = i === 2; box.classList.toggle("apt", i === 2);
+    if (i < 2) show(first[i], firstCap[i]);
+  }
+  document.addEventListener("floor", function (e) { floor(e.detail); });
+  [].slice.call(box.querySelectorAll(".rm[aria-label]")).forEach(function (r) {
+    function act() { [].slice.call(box.querySelectorAll(".rm.act")).forEach(function (x) { x.classList.remove("act"); }); r.classList.add("act"); show(r.getAttribute("data-img"), r.getAttribute("aria-label")); }
+    r.addEventListener("pointerenter", act); r.addEventListener("focus", act); r.addEventListener("click", act);
+  });
+  new IntersectionObserver(function (e, o) { if (e[0].isIntersecting) { plans[0].classList.add("drawn"); o.disconnect(); } }, { threshold: .3 }).observe(box);
 })();
 
 (function () {
@@ -694,7 +834,6 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   root.classList.add("anim");
   var $ = function (s) { return document.querySelector(s); }, $$ = function (s) { return [].slice.call(document.querySelectorAll(s)); };
   var desk = matchMedia("(min-width: 900px)").matches, fine = matchMedia("(pointer: fine)").matches;
-  var hImg = $(".hero img"); hImg.style.animation = "none";
 
   /* weiches Scrollen (nur Maus) */
   var lenis = null;
@@ -705,45 +844,14 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
     window.__lenis = lenis;
   }
 
-  /* Start-Auftritt */
-  var h1 = window.SplitText ? new SplitText("#heroBig", { type: "chars", mask: "chars" }) : null;
-  function heroIn() {
-    var tl = G.timeline({ defaults: { ease: "expo.out" } });
-    if (h1) tl.from(h1.chars, { yPercent: 105, duration: 1.8, stagger: .05, ease: "expo.out" });
-    tl.from(".hero__der", { y: 20, autoAlpha: 0, duration: 1.2 }, .5);
-    tl.from(".hero__in > *", { y: 30, autoAlpha: 0, duration: 1.1, stagger: .08 }, .7)
-      .from(".book", { y: 50, autoAlpha: 0, duration: 1.2 }, "-=.95")
-      .from(".top .wrap > *", { y: -20, autoAlpha: 0, duration: 1, stagger: .08 }, "-=1.1");
-  }
-
-  /* Ladeintro: Räume blättern, Zähler läuft, letztes Bild öffnet sich zum Start */
-  if (root.classList.contains("pre-on")) {
-    try { sessionStorage.setItem("jhPre", "1"); } catch (e) {}
-    if (lenis) lenis.stop();
-    var fr = $("#preFrame"), pimgs = [].slice.call(fr.querySelectorAll("img")), cnt = { v: 0 };
-    var pt = G.timeline({ onComplete: function () { endPre(); if (lenis) lenis.start(); ScrollTrigger.refresh(); } });
-    pt.to(pimgs, { clipPath: "inset(0% 0% 0% 0%)", duration: .6, ease: "expo.out", stagger: .24 }, .15)
-      .fromTo(pimgs, { scale: 1.3 }, { scale: 1, duration: 1.1, ease: "expo.out", stagger: .24 }, .15)
-      .to(cnt, { v: 100, duration: 1.95, ease: "power2.inOut", onUpdate: function () { $("#preN").textContent = Math.round(cnt.v); } }, 0)
-      .to(".pre__top, .pre__n", { autoAlpha: 0, y: -10, duration: .45 }, 2.05)
-      .to(fr, { width: function () { return innerWidth; }, height: function () { return Math.max(innerHeight, 620); }, borderRadius: 0, duration: 1.25, ease: "expo.inOut" }, 2.05)
-      .add(heroIn, 3.05)
-      .to("#pre", { autoAlpha: 0, duration: .3 }, 3.3);
-  } else {
-    G.fromTo("#heroMedia, #heroFg", { scale: 1.12 }, { scale: 1, duration: 2.4, ease: "expo.out" });
-    heroIn();
-  }
-  G.to("#heroMedia, #heroFg", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  /* Start-Auftritt: ruhig, Text und Buchung gleiten herein */
+  G.timeline({ defaults: { ease: "expo.out" } })
+    .from(".hero__in > *", { y: 34, autoAlpha: 0, duration: 1.4, stagger: .1 }, .2)
+    .from(".book", { y: 40, autoAlpha: 0, duration: 1.3 }, .5)
+    .from(".film__rate", { y: -14, autoAlpha: 0, duration: 1.2 }, .8);
+  G.to("#heroMedia", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   G.to(".hero__in", { yPercent: -45, autoAlpha: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
 
-
-  /* Schriftzug sinkt beim Scrollen hinter das Haus; Maus erzeugt Tiefe */
-  G.to("#heroWord", { yPercent: 55, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
-  if (fine) {
-    var wx = G.quickTo("#heroWord", "x", { duration: 1.2, ease: "power3" }), wy = G.quickTo("#heroWord", "y", { duration: 1.2, ease: "power3" });
-    var hx = G.quickTo("#heroMedia, #heroFg", "x", { duration: 1.4, ease: "power3" });
-    $(".hero").addEventListener("pointermove", function (e) { var nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5; wx(nx * -34); wy(ny * -18); hx(nx * 12); });
-  }
 
   /* Weinkeller: Überschrift glimmt auf */
   G.from(".cellar__in > *", { y: 40, autoAlpha: 0, duration: 1.3, ease: "expo.out", stagger: .09, scrollTrigger: { trigger: ".cellar", start: "top 60%" } });
@@ -768,15 +876,6 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
     .to(".pano__lbl", { autoAlpha: 0, y: -30, duration: .25 }, 0)
     .from("#panoTxt", { autoAlpha: 0, y: 60, duration: .3 }, .7);
 
-  /* Hausmodell: Dach hebt ab, Etagen schweben auseinander, Modell dreht sich */
-  var world = $("#world");
-  if (world) {
-    var gapMax = desk ? 100 : 80;
-    G.fromTo(world, { "--gap": "16px", "--lift": "0px", "--ro": 1, "--rz": "-62deg" },
-      { "--gap": gapMax + "px", "--lift": "70px", "--ro": .5, "--rz": "-32deg", ease: "power2.inOut",
-        scrollTrigger: { trigger: "#model", start: "top 85%", end: "bottom 45%", scrub: .8 } });
-  }
-
   /* Ein Tag: horizontal, Uhr, Sonne, Nacht; Bilder neigen sich mit dem Tempo */
   if (desk) {
     var track = $("#track"), day = $(".day"), arc = $("#arcFg"), sun = $("#sun"), L = arc.getTotalLength(), dayST;
@@ -798,54 +897,16 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
       .to(day, { backgroundColor: "#f8f6f1", color: "#1f2421", duration: .5 })
       .to(day, { backgroundColor: "#1c2a23", color: "#f4f1ea", duration: .3, ease: "none" })
       .to(day, { backgroundColor: "#111a15", duration: .2, ease: "none" });
-    var figs = $$(".moment figure"), skew = 0;
     $$(".moment").forEach(function (m) {
       G.fromTo(m.querySelector("img"), { xPercent: 7 }, { xPercent: -7, ease: "none", scrollTrigger: { trigger: m, containerAnimation: ht, start: "left right", end: "right left", scrub: true } });
     });
-    G.ticker.add(function () {
-      var target = dayST && dayST.isActive ? G.utils.clamp(-9, 9, dayST.getVelocity() / -260) : 0;
-      skew += (target - skew) * .1;
-      if (Math.abs(skew) > .02 || target) figs.forEach(function (f) { f.style.transform = "skewX(" + skew.toFixed(2) + "deg) scale(" + (1 - Math.abs(skew) * .006).toFixed(3) + ")"; });
-    });
   }
 
-  /* Galerie als 3D-Bildring: dreht beim Scrollen, lässt sich ziehen */
-  var gal = $("#gallery"), btns = [].slice.call(gal.children);
-  if (btns.length) {
-    gal.classList.add("ring");
-    var spin = document.createElement("div"); spin.className = "ring__spin"; btns.forEach(function (b) { spin.appendChild(b); }); gal.appendChild(spin);
-    var N = btns.length, W = desk ? 250 : 150, H = Math.round(W * 1.34), R = Math.round(W / 2 / Math.tan(Math.PI / N) * 1.12);
-    spin.style.width = W + "px"; spin.style.height = H + "px";
-    btns.forEach(function (b, i) { b.style.transform = "rotateY(" + (i * 360 / N) + "deg) translateZ(" + R + "px)"; });
-    var scrollA = 0, dragA = 0, curA = 0, tilt = 0, tiltT = -4, live = false, down = false, lx = 0, moved = 0, last = "";
-    ScrollTrigger.create({ trigger: gal, start: "top bottom", end: "bottom top", onToggle: function (st) { live = st.isActive; if (!live && window.__cur) G.to(__cur, { scale: 0, duration: .2 }); }, onUpdate: function (st) { scrollA = st.progress * -240; } });
-    gal.addEventListener("pointerdown", function (e) { down = true; lx = e.clientX; moved = 0; });
-    addEventListener("pointermove", function (e) { if (down) { var dx = e.clientX - lx; lx = e.clientX; moved += Math.abs(dx); dragA += dx * .22; } if (live && fine) tiltT = (e.clientY / innerHeight - .5) * -10; });
-    addEventListener("pointerup", function () { down = false; });
-    gal.addEventListener("click", function (e) { if (moved > 6) { e.stopPropagation(); e.preventDefault(); } }, true);
-    btns.forEach(function (b, i) { b.addEventListener("focus", function () { dragA = -(i * 360 / N) - scrollA; }); });
-    G.ticker.add(function () {
-      if (!live) return;
-      curA += (scrollA + dragA - curA) * .075; tilt += (tiltT - tilt) * .06;
-      var tf = "translateZ(" + -R + "px) rotateX(" + tilt.toFixed(2) + "deg) rotateY(" + curA.toFixed(2) + "deg)";
-      if (tf === last) return; last = tf; spin.style.transform = tf;
-      btns.forEach(function (b, i) { var a = (i * 360 / N + curA) * Math.PI / 180, c = Math.cos(a); b.style.filter = "brightness(" + (.35 + .65 * Math.max(0, c)).toFixed(2) + ")"; b.style.zIndex = Math.round(c * 100) + 100; });
-    });
-    if (fine) {
-      var cur = document.createElement("div"); cur.className = "cur"; cur.textContent = "Ziehen"; window.__cur = cur; cur.setAttribute("aria-hidden", "true"); document.body.appendChild(cur);
-      var qx = G.quickTo(cur, "x", { duration: .45, ease: "power3" }), qy = G.quickTo(cur, "y", { duration: .45, ease: "power3" });
-      gal.addEventListener("pointermove", function (e) { qx(e.clientX); qy(e.clientY); });
-      gal.addEventListener("pointerenter", function (e) { G.set(cur, { x: e.clientX, y: e.clientY }); G.to(cur, { scale: 1, duration: .4, ease: "back.out(2)" }); });
-      gal.addEventListener("pointerleave", function () { G.to(cur, { scale: 0, duration: .3 }); });
-    }
-  }
+  /* Galerie: Bilder steigen gestaffelt auf */
+  G.from("#gallery button", { y: 50, autoAlpha: 0, duration: 1.2, ease: "expo.out", stagger: .04, scrollTrigger: { trigger: "#gallery", start: "top 85%" } });
 
-  /* Magnetische Knöpfe */
-  if (fine) $$(".btn--gold, .btn--green").forEach(function (b) {
-    var mx = G.quickTo(b, "x", { duration: .8, ease: "elastic.out(1,.45)" }), my = G.quickTo(b, "y", { duration: .8, ease: "elastic.out(1,.45)" });
-    b.addEventListener("pointermove", function (e) { var r = b.getBoundingClientRect(); mx((e.clientX - r.left - r.width / 2) * .28); my((e.clientY - r.top - r.height / 2) * .4); });
-    b.addEventListener("pointerleave", function () { mx(0); my(0); });
-  });
+  /* Gästestimmen: Werte füllen sich */
+  G.from(".scores i b", { scaleX: 0, duration: 1.6, ease: "expo.out", stagger: .12, scrollTrigger: { trigger: ".scores", start: "top 85%" } });
 
   /* Wortmarke steigt aus der Fußzeile */
   G.from("#wm", { yPercent: 70, ease: "none", scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true } });
@@ -907,70 +968,106 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 })();
 </script>
 <script type="module">
-/* Lebendes Startfoto: Poolwasser bewegt sich, Maus wirkt wie eine Linse (WebGL) */
+/* Startfilm: fünf echte Szenen, langsame Kamerafahrt, weicher Licht-Übergang (WebGL, sonst Überblendung) */
 import * as THREE from "/demo/vendor/three.module.min.js";
-const media = document.getElementById("heroMedia"), hero = document.querySelector(".hero");
-if (media && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
-  const mob = matchMedia("(max-width: 699px)").matches, fine = matchMedia("(pointer: fine)").matches;
-  let renderer = null;
-  try { renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" }); } catch (e) {}
-  if (renderer) {
-    renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
-    renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
-    const cv = renderer.domElement; cv.setAttribute("aria-hidden", "true"); media.appendChild(cv);
-    // Maske des Pools (Bildkoordinaten 0..1), weich gezeichnet
-    const mc = document.createElement("canvas"); mc.width = 480; mc.height = 320;
-    const x = mc.getContext("2d"); x.fillStyle = "#000"; x.fillRect(0, 0, 480, 320);
-    const poly = [[.16,.708],[.45,.664],[.625,.653],[.615,.666],[.5,.712],[.3,.8],[.2,.848],[.125,.862],[.125,.725]];
-    x.fillStyle = "#fff"; x.shadowColor = "#fff"; x.shadowBlur = 10;
-    for (let k = 0; k < 2; k++) { x.beginPath(); poly.forEach(([a, b], i) => i ? x.lineTo(a * 480, b * 320) : x.moveTo(a * 480, b * 320)); x.closePath(); x.fill(); }
-    const mask = new THREE.CanvasTexture(mc);
-    const u = { uTex: { value: null }, uMask: { value: mask }, uRes: { value: new THREE.Vector2(1, 1) }, uImg: { value: new THREE.Vector2(1920, 1280) },
-      uMouse: { value: new THREE.Vector2(.5, .5) }, uHover: { value: 0 }, uVel: { value: 0 }, uTime: { value: 0 } };
-    const mat = new THREE.ShaderMaterial({ uniforms: u,
-      vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }",
-      fragmentShader: `precision highp float;
-        uniform sampler2D uTex, uMask; uniform vec2 uRes, uImg, uMouse; uniform float uHover, uVel, uTime; varying vec2 vUv;
-        vec2 cover(vec2 p){ float rs = uRes.x / uRes.y, ri = uImg.x / uImg.y; vec2 s = rs < ri ? vec2(rs / ri, 1.) : vec2(1., ri / rs); return p * s + (1. - s) * vec2(.5, .4); }
-        void main(){
-          vec2 uv = vUv, asp = vec2(uRes.x / uRes.y, 1.);
-          vec2 d = (uv - uMouse) * asp; float dist = length(d); vec2 n = d / (dist + 1e-4);
-          float lens = smoothstep(.34, 0., dist) * uHover;
-                    vec2 iuv = cover(uv);
-          float m = texture2D(uMask, iuv).r, t = uTime;
-          vec2 w = vec2(sin(iuv.y * 150. + t * 1.7) + .6 * sin(iuv.x * 95. - t * 1.2 + iuv.y * 40.),
-                        cos(iuv.x * 120. + t * 1.4) + .5 * cos(iuv.y * 70. - t)) * .0017;
-          float ring = sin(dist * 75. - t * 5.) * smoothstep(.3, 0., dist) * uHover * .0045;
-          iuv += (w + n * ring) * m;
-          vec2 sh = n * m * lens * .002;
-          vec3 c = vec3(texture2D(uTex, iuv + sh).r, texture2D(uTex, iuv).g, texture2D(uTex, iuv - sh).b);
-          float caus = pow(.5 + .5 * sin(iuv.x * 260. + t * 2.2 + sin(iuv.y * 180. - t * 1.5) * 2.), 6.);
-          c += m * caus * .07;
-          gl_FragColor = vec4(c, 1.);
-        }` });
-    const scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
-    scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
-    const resize = () => { const w = hero.clientWidth, h = hero.clientHeight; renderer.setSize(w, h, false); u.uRes.value.set(w, h); };
-    const tm = new THREE.Vector2(.5, .5), pm = new THREE.Vector2(.5, .5); let hov = 0, vis = true, t0 = performance.now();
-    if (fine) {
-      hero.addEventListener("pointermove", e => { const r = hero.getBoundingClientRect(); tm.set((e.clientX - r.left) / r.width, 1 - (e.clientY - r.top) / r.height); hov = 1; });
-      hero.addEventListener("pointerleave", () => { hov = 0; });
-    }
-    new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hero);
-    const loop = () => {
-      requestAnimationFrame(loop); if (!vis) return;
-      pm.copy(u.uMouse.value); u.uMouse.value.lerp(tm, .08);
-      u.uHover.value += (hov - u.uHover.value) * .05;
-      u.uVel.value += (Math.min(u.uMouse.value.distanceTo(pm) * 40, 1) - u.uVel.value) * .12;
-      u.uTime.value = (performance.now() - t0) / 1000;
-      renderer.render(scene, cam);
-    };
-    new THREE.TextureLoader().load(mob ? "img/pool-hero-sm.webp" : "img/pool-hero.webp", tex => {
-      tex.minFilter = THREE.LinearFilter; tex.generateMipmaps = false; u.uTex.value = tex; u.uImg.value.set(tex.image.width, tex.image.height);
-      resize(); addEventListener("resize", resize); loop(); requestAnimationFrame(() => cv.classList.add("on"));
-    });
-  }
+const hero = document.querySelector(".film"), stack = document.getElementById("filmStack"), media = document.getElementById("heroMedia");
+const capEl = document.getElementById("filmCap"), navBtns = [...document.querySelectorAll("#filmNav button")], imgs = [...stack.querySelectorAll("img")];
+const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches, mob = matchMedia("(max-width: 699px)").matches;
+const S = [
+  { cap: "Ein Bauernhaus mit Pool und Sauna.", src: "pool-hero", pos: [.5, .6], pan: [-1, 0] },
+  { cap: "Mit freiem Blick über ganz Würzburg.", src: "house", pos: [.6, .55], pan: [1, 0] },
+  { cap: "Eine Tafel für bis zu zwölf Gäste.", src: "stube", pos: [.5, .55], pan: [0, 1] },
+  { cap: "Sommerabende auf der Terrasse am Pool.", src: "terrace", pos: [.5, .5], pan: [-1, 0] },
+  { cap: "Und ein Weinkeller nur für Ihre Runde.", src: "weinkeller", pos: [.5, .62], pan: [0, -1] }
+];
+const DUR = 6.5, TR = 1.9;
+let pending = null, cur = 0, t = 0, trans = null, playing = !reduce, vis = true, gl = null, last = performance.now();
+const kb = S.map(() => 0);
+
+function caption(i) {
+  capEl.classList.remove("in"); capEl.classList.add("out");
+  setTimeout(() => { capEl.textContent = S[i].cap; capEl.classList.remove("out"); void capEl.offsetWidth; capEl.classList.add("in"); }, 420);
 }
+function nav(i) { navBtns.forEach((b, k) => { b.classList.toggle("on", k === i); b.classList.toggle("done", k < i); if (k === i) b.setAttribute("aria-current", "true"); else b.removeAttribute("aria-current"); b.querySelector("b").style.transform = k < i ? "scaleX(1)" : "scaleX(0)"; }); }
+function go(i) {
+  if (trans) { pending = i; return; }
+  if (i === cur) return;
+  kb[i] = 0; trans = { from: cur, to: i, p: 0 }; caption(i); nav(i);
+  if (!gl) { imgs.forEach((im, k) => im.classList.toggle("on", k === i)); }
+}
+navBtns.forEach((b, i) => b.addEventListener("click", () => { go(i); t = 0; }));
+
+/* WebGL */
+try {
+  const renderer = new THREE.WebGLRenderer({ antialias: false, powerPreference: "high-performance" });
+  renderer.outputColorSpace = THREE.LinearSRGBColorSpace; renderer.setPixelRatio(Math.min(devicePixelRatio, 1.5));
+  const cv = renderer.domElement; cv.setAttribute("aria-hidden", "true");
+  const u = { t0: { value: null }, t1: { value: null }, i0: { value: new THREE.Vector2(1, 1) }, i1: { value: new THREE.Vector2(1, 1) },
+    p0: { value: new THREE.Vector2(.5, .5) }, p1: { value: new THREE.Vector2(.5, .5) }, n0: { value: new THREE.Vector2() }, n1: { value: new THREE.Vector2() },
+    k0: { value: 0 }, k1: { value: 0 }, uP: { value: 0 }, uRes: { value: new THREE.Vector2(1, 1) }, uTime: { value: 0 } };
+  const mat = new THREE.ShaderMaterial({ uniforms: u,
+    vertexShader: "varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0., 1.); }",
+    fragmentShader: `precision highp float;
+      uniform sampler2D t0, t1; uniform vec2 i0, i1, p0, p1, n0, n1, uRes; uniform float k0, k1, uP, uTime; varying vec2 vUv;
+      float h(vec2 p){ return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453); }
+      float no(vec2 p){ vec2 i = floor(p), f = fract(p); f = f * f * (3. - 2. * f); return mix(mix(h(i), h(i + vec2(1, 0)), f.x), mix(h(i + vec2(0, 1)), h(i + vec2(1, 1)), f.x), f.y); }
+      float fbm(vec2 p){ float v = 0., a = .5; for (int i = 0; i < 5; i++) { v += a * no(p); p *= 2.03; a *= .5; } return v; }
+      vec2 cov(vec2 uv, vec2 im, vec2 pos, float k, vec2 pan){
+        float rs = uRes.x / uRes.y, ri = im.x / im.y; vec2 s = rs < ri ? vec2(rs / ri, 1.) : vec2(1., ri / rs);
+        float z = 1.02 + .085 * k; uv = (uv - .5) / z + .5 + pan * (k - .5) * .022;
+        return uv * s + (1. - s) * vec2(pos.x, 1. - pos.y);
+      }
+      void main(){
+        vec2 a = vec2(uRes.x / uRes.y, 1.);
+        float n = fbm(vUv * a * 2.4 + uTime * .03);
+        float m = n * .62 + vUv.x * .22 + (1. - vUv.y) * .16;
+        float th = uP * 1.35 - .17;
+        float w = 1. - smoothstep(th - .09, th + .09, m);
+        vec2 d = (vec2(n, fbm(vUv * a * 2.4 + 7.)) - .5) * .07;
+        vec3 c0 = texture2D(t0, cov(vUv + d * uP, i0, p0, k0, n0)).rgb;
+        vec3 c1 = texture2D(t1, cov(vUv - d * (1. - uP), i1, p1, k1, n1)).rgb;
+        vec3 c = mix(c0, c1, w);
+        float edge = w * (1. - w) * 4.;
+        c += edge * vec3(1., .82, .58) * .22 * sin(uP * 3.1416);
+        gl_FragColor = vec4(c, 1.);
+      }` });
+  const scene = new THREE.Scene(), cam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+  scene.add(new THREE.Mesh(new THREE.PlaneGeometry(2, 2), mat));
+  const loader = new THREE.TextureLoader(), tex = [];
+  const loads = S.map((sc, i) => new Promise(res => loader.load("img/" + sc.src + (mob ? "-sm" : "") + ".webp", tx => { tx.minFilter = THREE.LinearFilter; tx.generateMipmaps = false; tex[i] = tx; res(); }, undefined, () => res())));
+  const resize = () => { renderer.setSize(hero.clientWidth, hero.clientHeight, false); u.uRes.value.set(hero.clientWidth, hero.clientHeight); };
+  await loads[0];
+  if (tex[0]) {
+    media.appendChild(cv); resize(); addEventListener("resize", resize);
+    gl = { renderer, u, scene, cam, tex };
+    stack.classList.add("gl");
+    Promise.all(loads);
+  }
+} catch (e) { gl = null; }
+
+function set(slot, i) {
+  const sc = S[i], tx = gl.tex[i] || gl.tex[0];
+  gl.u["t" + slot].value = tx; gl.u["i" + slot].value.set(tx.image.width, tx.image.height);
+  gl.u["p" + slot].value.set(sc.pos[0], sc.pos[1]); gl.u["n" + slot].value.set(sc.pan[0], sc.pan[1]);
+}
+new IntersectionObserver(e => { vis = e[0].isIntersecting; }).observe(hero);
+document.addEventListener("visibilitychange", () => { last = performance.now(); });
+
+function loop(now) {
+  requestAnimationFrame(loop);
+  const dt = Math.min((now - last) / 1000, .05); last = now;
+  if (!vis || document.hidden) return;
+  if (playing && !trans) { t += dt; if (t > DUR) { t = 0; go((cur + 1) % S.length); } }
+  kb[cur] = Math.min(kb[cur] + dt / (DUR + TR * 2), 1);
+  if (trans) { trans.p = Math.min(trans.p + dt / TR, 1); kb[trans.to] = Math.min(kb[trans.to] + dt / (DUR + TR * 2), 1); if (trans.p >= 1) { cur = trans.to; trans = null; if (pending !== null) { const q = pending; pending = null; t = 0; go(q); } } }
+  const bar = navBtns[trans ? trans.to : cur].querySelector("b"); bar.style.transform = "scaleX(" + (trans ? 0 : Math.min(t / DUR, 1)).toFixed(3) + ")";
+  if (!gl) return;
+  const a = trans ? trans.from : cur, b = trans ? trans.to : cur;
+  set(0, a); set(1, b);
+  gl.u.k0.value = kb[a]; gl.u.k1.value = kb[b]; gl.u.uP.value = trans ? trans.p : 0; gl.u.uTime.value = now / 1000;
+  gl.renderer.render(gl.scene, gl.cam);
+}
+requestAnimationFrame(loop);
 </script>
 </body>
 </html>
