@@ -52,7 +52,7 @@ button, input, select, textarea { font:inherit; color:inherit; }
 .hero picture, .hero img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
 .hero img { animation:settle 9s var(--ease) both; }
 @keyframes settle { from { transform:scale(1.09); } }
-.hero::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(18,24,20,.45), transparent 30%, transparent 45%, rgba(18,24,20,.72)); }
+.hero::after { content:""; position:absolute; inset:0; background:linear-gradient(rgba(18,24,20,.3), transparent 22%, transparent 45%, rgba(18,24,20,.72)); }
 .hero__in { position:absolute; z-index:2; left:0; right:0; bottom:clamp(180px,24vh,240px); }
 .hero p { font-size:clamp(16px,1.3vw,19px); max-width:48ch; opacity:.92; }
 .hero h1 { font-size:clamp(3rem,7.4vw,6.6rem); max-width:12ch; margin-bottom:16px; }
@@ -279,6 +279,47 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 .rf1 { top:0; transform-origin:top; transform:rotateX(40deg); }
 .rf2 { bottom:0; transform-origin:bottom; transform:rotateX(-40deg); background:repeating-linear-gradient(90deg,#77706a 0 18px,#7f7871 18px 20px); }
 .model__note { position:absolute; right:0; bottom:0; font-size:13px; color:var(--mid); }
+/* ===== Premium 3: Schriftzug hinter dem Haus, Weinkeller, Kapitel ===== */
+.hero__word { position:absolute; z-index:0; left:0; right:0; top:clamp(64px,7.5vh,96px); text-align:center; color:#fff; font-family:"Newsreader",serif; font-weight:400; line-height:.8; pointer-events:none; will-change:transform; }
+.hero__der { display:block; font-size:clamp(18px,1.8vw,28px); font-style:italic; letter-spacing:.02em; margin-bottom:.4em; opacity:.92; }
+.hero__big { display:block; font-size:clamp(56px,14vw,280px); letter-spacing:-.045em; white-space:nowrap; text-shadow:0 10px 60px rgba(30,40,35,.18); }
+.hero .hero__word { max-width:none; margin:0; font-size:16px; }
+.hero__fg { position:absolute; inset:0; z-index:1; pointer-events:none; will-change:transform; }
+.hero__fg img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:50% 60%; }
+.hero__media { z-index:0; }
+.hero::after { z-index:1; }
+.hero .hero__kick { font-size:clamp(1.7rem,3.2vw,3rem); line-height:1.08; max-width:16ch; margin-bottom:14px; }
+@media (max-width:699px) { .hero__word { top:86px; } .hero__big { font-size:15vw; } }
+
+.chap { position:fixed; z-index:30; right:22px; top:50%; transform:translateY(-50%); display:grid; gap:4px; mix-blend-mode:difference; color:#fff; opacity:0; transition:opacity .4s; pointer-events:none; }
+.chap.show { opacity:1; pointer-events:auto; }
+.chap a { display:flex; align-items:center; justify-content:flex-end; gap:10px; min-height:26px; text-decoration:none; font-size:13px; }
+.chap i { display:block; width:14px; height:1.5px; background:currentColor; opacity:.55; transition:width .4s var(--ease), opacity .4s; }
+.chap span { opacity:0; transform:translateX(6px); transition:opacity .3s, transform .3s; }
+.chap a:hover span, .chap a:focus-visible span, .chap a.on span { opacity:1; transform:none; }
+.chap a.on i { width:34px; opacity:1; }
+@media (max-width:1180px) { .chap { display:none; } }
+
+.cellar { position:relative; min-height:100vh; min-height:100svh; display:flex; align-items:center; background:#0b0907; color:#f3ead9; overflow:hidden; }
+.cellar__art { position:absolute; inset:0; width:100%; height:100%; display:block; }
+.cellar::before { content:""; position:absolute; inset:0; z-index:1; pointer-events:none; background:linear-gradient(90deg, rgba(11,9,7,.96) 0%, rgba(11,9,7,.82) 34%, rgba(11,9,7,0) 62%); }
+.cellar__in { position:relative; z-index:2; width:100%; padding-top:clamp(90px,12vh,140px); padding-bottom:clamp(90px,12vh,140px); }
+.cellar__tag { font-size:14px; letter-spacing:.06em; color:#d4c189; }
+.cellar h2 { margin-top:12px; font-size:clamp(3rem,7vw,6.4rem); color:#f6eedd; }
+.cellar__lead { margin-top:20px; max-width:42ch; font-size:18.5px; color:rgba(243,234,217,.8); }
+.cellar__list { margin-top:30px; list-style:none; display:grid; gap:0; max-width:480px; }
+.cellar__list li { display:grid; grid-template-columns:120px 1fr; gap:16px; padding:14px 0; border-top:1px solid rgba(212,193,137,.22); font-size:15.5px; }
+.cellar__list b { font-weight:500; color:#e9dcb8; } .cellar__list span { color:rgba(243,234,217,.72); }
+.cellar__cta { margin-top:30px; display:flex; align-items:center; gap:22px; flex-wrap:wrap; }
+.cellar__hint { font-size:13.5px; color:rgba(243,234,217,.55); }
+@media (pointer:coarse) { .cellar__hint { display:none; } }
+@media (max-width:899px) { .cellar::before { background:linear-gradient(rgba(11,9,7,.35), rgba(11,9,7,.88) 45%, rgba(11,9,7,.96)); } .cellar__in { padding-top:42vh; } .cellar__list li { grid-template-columns:1fr; gap:2px; } }
+
+.xtra { display:flex; gap:12px; align-items:flex-start; margin-top:12px; padding:12px 14px; border-radius:10px; background:#f4efe3; cursor:pointer; font-size:15px; }
+.xtra input { width:20px; height:20px; margin-top:2px; accent-color:var(--shutter); flex:none; }
+.xtra b { display:block; font-weight:600; } .xtra small { display:block; color:var(--mid); font-size:13px; }
+.xtra--form { margin-top:14px; }
+
 @media (max-width:980px) { .hgrid { grid-template-columns:1fr; } .model { order:-1; position:relative; top:0; height:400px; --ms:.62; } }
 @media (max-width:560px) { .model { height:330px; --ms:.5; } .gallery.ring { height:440px; } }
 
@@ -323,16 +364,21 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
 <a class="skip" href="#haus">Zum Inhalt springen</a>
 <header class="top" id="top"><div class="wrap">
   <a class="brand" href="#" aria-label="Der Johannishof – zum Anfang"><img src="img/logo.png" alt="Der Johannishof – Würzburg erleben"></a>
-  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#tag">Ein Tag</a><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
+  <nav class="nav" id="nav" aria-label="Hauptmenü"><a href="#tag">Ein Tag</a><a href="#haus">Das Haus</a><a href="#draussen">Pool &amp; Garten</a><a href="#weinkeller">Weinkeller</a><a href="#galerie">Galerie</a><a href="#preise">Preise</a><a href="#lage">Lage</a><a href="#kontakt">Kontakt</a></nav>
   <a class="btn btn--gold" href="#preise">Jetzt buchen</a>
   <button class="menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="nav" aria-label="Menü öffnen"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18M3 12h18M3 17h18"/></svg></button>
 </div></header>
 
+<nav class="chap" id="chap" aria-label="Kapitel">
+  <a href="#tag"><i></i><span>Ein Tag</span></a><a href="#haus"><i></i><span>Das Haus</span></a><a href="#draussen"><i></i><span>Pool &amp; Garten</span></a><a href="#weinkeller"><i></i><span>Weinkeller</span></a><a href="#galerie"><i></i><span>Galerie</span></a><a href="#preise"><i></i><span>Preise</span></a><a href="#lage"><i></i><span>Lage</span></a><a href="#kontakt"><i></i><span>Kontakt</span></a>
+</nav>
 <main>
 <section class="hero" aria-label="Der Johannishof">
   <div class="hero__media" id="heroMedia"><picture><source media="(max-width: 699px)" srcset="img/pool-hero-sm.webp"><img src="img/pool-hero.webp" alt="Der Johannishof: weißes Bauernhaus mit grünen Fensterläden, Pool und Liegen im Garten" fetchpriority="high"></picture></div>
+  <h1 class="hero__word" id="heroWord"><span class="hero__der">Der</span><span class="hero__big" id="heroBig">Johannishof</span></h1>
+  <div class="hero__fg" id="heroFg" aria-hidden="true"><picture><source media="(max-width: 699px)" srcset="img/pool-hero-fg-sm.webp"><img src="img/pool-hero-fg.webp" alt=""></picture></div>
   <div class="hero__in wrap">
-    <h1 class="serif">Der Johannishof</h1>
+    <p class="hero__kick serif">Ferienhaus mit Pool &amp; Sauna über Würzburg</p>
     <p>Ein liebevoll renoviertes Bauernhaus auf der Nikolaushöhe, mit Pool, Sauna und Blick über Würzburg. Für Familien und Freunde bis zu 10 Gästen.</p>
   </div>
   <form class="book" id="book" aria-label="Verfügbarkeit prüfen und buchen">
@@ -442,6 +488,21 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   </div>
 </div></section>
 
+<section class="cellar" id="weinkeller" aria-labelledby="wkT">
+  <canvas class="cellar__art" id="cellarArt" aria-hidden="true"></canvas>
+  <div class="cellar__in wrap">
+    <p class="cellar__tag">Zubuchbar zu Ihrem Aufenthalt</p>
+    <h2 class="serif" id="wkT">Der Weinkeller.</h2>
+    <p class="cellar__lead">Für eine Weinprobe mit Freunden, ein langes Abendessen bei Kerzenlicht oder den Ausklang eines Tages in den Weinbergen. Franken ist Weinland, und im Johannishof gehört der Keller einfach dazu.</p>
+    <ul class="cellar__list">
+      <li><b>Weinprobe</b><span>Frankenwein in Ruhe verkosten, mitten im Weinland</span></li>
+      <li><b>Abendessen</b><span>Die besondere Tafel für Geburtstage, Familienfeiern und Gruppen</span></li>
+      <li><b>Buchung</b><span>Einfach zur Unterkunft dazubuchen, Preis und Termin auf Anfrage</span></li>
+    </ul>
+    <div class="cellar__cta"><button class="btn btn--gold" type="button" id="wkBtn">Weinkeller dazubuchen</button><span class="cellar__hint">Bewegen Sie die Maus, um den Keller auszuleuchten.</span></div>
+  </div>
+</section>
+
 <section class="s house" id="galerie" style="padding-top:clamp(70px,10vh,120px)"><div class="wrap">
   <h2 class="serif">Bilder der Vorfreude.</h2>
   <div class="gallery" id="gallery"></div>
@@ -463,6 +524,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
       <div class="field"><label for="cG">Gäste</label><select id="cG"><option value="2">2 Gäste</option><option value="4">4 Gäste</option><option value="6" selected>6 Gäste</option><option value="8">8 Gäste (mit Apartment)</option><option value="10">10 Gäste (mit Apartment)</option></select></div>
       <div class="row"><span id="cN">Nächte</span><span id="cNV">–</span></div>
       <div class="row"><span>Endreinigung</span><span id="cClean">269 €</span></div>
+      <label class="xtra"><input type="checkbox" id="cWine"><span><b>Weinkeller dazubuchen</b><small>Preis auf Anfrage, wir melden uns persönlich</small></span></label>
       <div class="row t"><span>Voraussichtlich</span><span id="cT">–</span></div>
       <button class="btn btn--green" type="submit">Zur Buchung</button>
       <small id="cHint">Den genauen Preis sehen Sie im nächsten Schritt in unserem Buchungssystem. Alle Preise inkl. 7 % MwSt.</small>
@@ -500,6 +562,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
       <div class="field"><label for="aDates">Zeitraum</label><input id="aDates" placeholder="z. B. 12.–16. Juni"></div>
       <div class="field"><label for="aG">Gäste</label><select id="aG"><option>2</option><option>4</option><option selected>6</option><option>8</option><option>10</option></select></div>
     </div>
+    <label class="xtra xtra--form"><input type="checkbox" id="aWine"><span><b>Weinkeller dazubuchen</b><small>Für Weinprobe oder Abendessen, Preis auf Anfrage</small></span></label>
     <div class="field"><label for="aMsg">Nachricht</label><textarea id="aMsg"></textarea></div>
     <button class="btn btn--green" type="submit">Anfrage senden</button>
     <p class="msg" id="aOk" aria-live="polite"></p>
@@ -562,7 +625,19 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
     $("#cHint").textContent = n < min ? "Bitte mindestens " + min + " Nächte wählen" + (summer ? " (Juli/August)." : ".") : "Den genauen Preis für Ihren Zeitraum sehen Sie im nächsten Schritt. Alle Preise inkl. 7 % MwSt.";
   }
   ["#cIn", "#cOut", "#cG"].forEach(function (s) { $(s).addEventListener("change", calc); });
-  $("#calc").addEventListener("submit", function (e) { e.preventDefault(); window.open(bookUrl($("#cIn").value, $("#cOut").value, $("#cG").value), "_blank", "noopener"); });
+  $("#calc").addEventListener("submit", function (e) {
+    e.preventDefault(); window.open(bookUrl($("#cIn").value, $("#cOut").value, $("#cG").value), "_blank", "noopener");
+    if ($("#cWine").checked) wineAsk();
+  });
+  function wineAsk() {
+    $("#aWine").checked = true; $("#cWine").checked = true;
+    if ($("#cIn").value && $("#cOut").value) $("#aDates").value = new Date($("#cIn").value).toLocaleDateString("de-DE") + " – " + new Date($("#cOut").value).toLocaleDateString("de-DE");
+    $("#aG").value = $("#cG").value;
+    var k = document.getElementById("kontakt"); window.__lenis ? __lenis.scrollTo(k, { offset: -76 }) : k.scrollIntoView();
+    setTimeout(function () { $("#aName").focus({ preventScroll: true }); }, 900);
+    $("#aOk").textContent = "Der Weinkeller ist vorgemerkt. Senden Sie uns kurz Ihre Anfrage.";
+  }
+  $("#wkBtn").addEventListener("click", wineAsk);
   calc();
 
   /* floor tabs (arrow keys) */
@@ -588,7 +663,7 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   $("#ask").addEventListener("submit", function (e) {
     e.preventDefault();
     if (!$("#aName").value.trim() || !/.+@.+\..+/.test($("#aMail").value)) { $("#aOk").textContent = "Bitte Name und E-Mail angeben."; return; }
-    var body = "Name: " + $("#aName").value + "\nE-Mail: " + $("#aMail").value + "\nZeitraum: " + $("#aDates").value + "\nGäste: " + $("#aG").value + "\n\n" + $("#aMsg").value;
+    var body = "Name: " + $("#aName").value + "\nE-Mail: " + $("#aMail").value + "\nZeitraum: " + $("#aDates").value + "\nGäste: " + $("#aG").value + ($("#aWine").checked ? "\nWeinkeller: bitte dazubuchen (Preis und Termin anfragen)" : "") + "\n\n" + $("#aMsg").value;
     location.href = "mailto:info@derjohannishof.de?subject=" + encodeURIComponent("Anfrage Johannishof") + "&body=" + encodeURIComponent(body);
     $("#aOk").textContent = "Danke! Ihr E-Mail-Programm öffnet sich mit der fertigen Anfrage.";
   });
@@ -630,11 +705,12 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   }
 
   /* Start-Auftritt */
-  var h1 = window.SplitText ? new SplitText(".hero h1", { type: "chars,words", mask: "words" }) : null;
+  var h1 = window.SplitText ? new SplitText("#heroBig", { type: "chars", mask: "chars" }) : null;
   function heroIn() {
     var tl = G.timeline({ defaults: { ease: "expo.out" } });
-    if (h1) tl.from(h1.chars, { yPercent: 115, duration: 1.4, stagger: .04 });
-    tl.from(".hero p", { y: 24, autoAlpha: 0, duration: 1.1 }, "-=1.1")
+    if (h1) tl.from(h1.chars, { yPercent: 105, duration: 1.8, stagger: .05, ease: "expo.out" });
+    tl.from(".hero__der", { y: 20, autoAlpha: 0, duration: 1.2 }, .5);
+    tl.from(".hero__in > *", { y: 30, autoAlpha: 0, duration: 1.1, stagger: .08 }, .7)
       .from(".book", { y: 50, autoAlpha: 0, duration: 1.2 }, "-=.95")
       .from(".top .wrap > *", { y: -20, autoAlpha: 0, duration: 1, stagger: .08 }, "-=1.1");
   }
@@ -653,11 +729,23 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
       .add(heroIn, 3.05)
       .to("#pre", { autoAlpha: 0, duration: .3 }, 3.3);
   } else {
-    G.fromTo("#heroMedia", { scale: 1.12 }, { scale: 1, duration: 2.4, ease: "expo.out" });
+    G.fromTo("#heroMedia, #heroFg", { scale: 1.12 }, { scale: 1, duration: 2.4, ease: "expo.out" });
     heroIn();
   }
-  G.to("#heroMedia", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  G.to("#heroMedia, #heroFg", { yPercent: 14, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
   G.to(".hero__in", { yPercent: -45, autoAlpha: 0, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "60% top", scrub: true } });
+
+
+  /* Schriftzug sinkt beim Scrollen hinter das Haus; Maus erzeugt Tiefe */
+  G.to("#heroWord", { yPercent: 55, ease: "none", scrollTrigger: { trigger: ".hero", start: "top top", end: "bottom top", scrub: true } });
+  if (fine) {
+    var wx = G.quickTo("#heroWord", "x", { duration: 1.2, ease: "power3" }), wy = G.quickTo("#heroWord", "y", { duration: 1.2, ease: "power3" });
+    var hx = G.quickTo("#heroMedia, #heroFg", "x", { duration: 1.4, ease: "power3" });
+    $(".hero").addEventListener("pointermove", function (e) { var nx = e.clientX / innerWidth - .5, ny = e.clientY / innerHeight - .5; wx(nx * -34); wy(ny * -18); hx(nx * 12); });
+  }
+
+  /* Weinkeller: Überschrift glimmt auf */
+  G.from(".cellar__in > *", { y: 40, autoAlpha: 0, duration: 1.3, ease: "expo.out", stagger: .09, scrollTrigger: { trigger: ".cellar", start: "top 60%" } });
 
   /* Überschriften zeilenweise aus der Maske */
   if (window.SplitText) $$(".s h2.serif, .day__head h2").forEach(function (h) {
@@ -761,8 +849,62 @@ html.pre-on .pre { display:block; } html.pre-on body { overflow:hidden; }
   /* Wortmarke steigt aus der Fußzeile */
   G.from("#wm", { yPercent: 70, ease: "none", scrollTrigger: { trigger: "footer", start: "top bottom", end: "bottom bottom", scrub: true } });
 
+  /* Kapitel-Leiste */
+  var chap = $("#chap"), links = [].slice.call(chap.querySelectorAll("a"));
+  ScrollTrigger.create({ trigger: ".hero", start: "bottom 40%", end: "max", onToggle: function (st) { chap.classList.toggle("show", st.isActive); } });
+  links.forEach(function (a) {
+    var sec = document.querySelector(a.getAttribute("href")); if (!sec) return;
+    ScrollTrigger.create({ trigger: sec, start: "top 50%", end: "bottom 50%", onToggle: function (st) { if (st.isActive) links.forEach(function (b) { b.classList.toggle("on", b === a); }); } });
+  });
+
   var lb = $("#lb"); new MutationObserver(function () { if (lenis) lb.hidden ? lenis.start() : lenis.stop(); }).observe(lb, { attributes: true, attributeFilter: ["hidden"] });
   addEventListener("load", function () { ScrollTrigger.refresh(); });
+})();
+</script>
+<script>
+/* Weinkeller: Flaschenwand im Kerzenlicht, das Licht folgt der Maus */
+(function () {
+  var cv = document.getElementById("cellarArt"); if (!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d"), sec = document.getElementById("weinkeller"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var dpr = Math.min(window.devicePixelRatio || 1, 2), W = 0, H = 0, B = [], L = { x: 0, y: 0 }, T = { x: 0, y: 0 }, user = 0, vis = false, t0 = performance.now(), running = false;
+  function build() {
+    W = sec.clientWidth; H = sec.clientHeight; cv.width = W * dpr; cv.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    var r = W < 700 ? 16 : 23, gap = r * 2.16, rowH = gap * .87; B = [];
+    for (var row = 0, y = r + 6; y < H + r; row++, y += rowH)
+      for (var x = (row % 2 ? gap / 2 : 0) + r * .6; x < W + r; x += gap) B.push({ x: x, y: y, r: r * (.94 + Math.random() * .08), tint: Math.random() });
+    L.x = T.x = W * (W < 900 ? .5 : .7); L.y = T.y = H * (W < 900 ? .25 : .45);
+  }
+  function frame(now) {
+    var t = (now - t0) / 1000;
+    if (!user) { T.x = W * ((W < 900 ? .5 : .7) + .2 * Math.sin(t * .31)); T.y = H * ((W < 900 ? .24 : .46) + .2 * Math.sin(t * .47 + 1)); }
+    L.x += (T.x - L.x) * .07; L.y += (T.y - L.y) * .07;
+    var S = (W < 700 ? 190 : 300) * (1 + .018 * Math.sin(t * 13) + .025 * Math.sin(t * 7.3) + .012 * Math.sin(t * 23));
+    var k = 1 / (2 * S * S);
+    ctx.fillStyle = "#0b0907"; ctx.fillRect(0, 0, W, H);
+    for (var i = 0; i < B.length; i++) {
+      var b = B[i], dx = b.x - L.x, dy = b.y - L.y, I = Math.exp(-(dx * dx + dy * dy) * k), r = b.r;
+      ctx.beginPath(); ctx.arc(b.x, b.y, r, 0, 6.2832);
+      if (I < .012) { ctx.fillStyle = "#110e0b"; ctx.fill(); continue; }
+      var gr = b.tint < .25 ? [26, 20, 14] : b.tint < .6 ? [14, 30, 18] : [20, 30, 14];
+      ctx.fillStyle = "rgb(" + (9 + gr[0] * 1.4 * I | 0) + "," + (8 + gr[1] * 1.4 * I | 0) + "," + (6 + gr[2] * 1.4 * I | 0) + ")"; ctx.fill();
+      ctx.lineWidth = 1.6; ctx.strokeStyle = "rgba(226,166,92," + (.6 * I).toFixed(3) + ")"; ctx.stroke();
+      ctx.beginPath(); ctx.arc(b.x, b.y, r * .46, 0, 6.2832); ctx.lineWidth = 1; ctx.strokeStyle = "rgba(0,0,0," + (.55 * I).toFixed(3) + ")"; ctx.stroke();
+      var a = Math.atan2(-dy, -dx);
+      ctx.beginPath(); ctx.arc(b.x, b.y, r * .78, a - .55, a + .55); ctx.lineWidth = r * .16; ctx.lineCap = "round"; ctx.strokeStyle = "rgba(255,218,160," + (.85 * I * I).toFixed(3) + ")"; ctx.stroke();
+    }
+    var g = ctx.createRadialGradient(L.x, L.y, 0, L.x, L.y, S * 1.5);
+    g.addColorStop(0, "rgba(255,176,90,.20)"); g.addColorStop(.5, "rgba(255,150,70,.06)"); g.addColorStop(1, "rgba(255,140,60,0)");
+    ctx.globalCompositeOperation = "lighter"; ctx.fillStyle = g; ctx.fillRect(0, 0, W, H); ctx.globalCompositeOperation = "source-over";
+    var v = ctx.createRadialGradient(W * .6, H * .5, Math.min(W, H) * .3, W * .6, H * .5, Math.max(W, H) * .8);
+    v.addColorStop(0, "rgba(11,9,7,0)"); v.addColorStop(1, "rgba(11,9,7,.85)"); ctx.fillStyle = v; ctx.fillRect(0, 0, W, H);
+    if (vis && !reduce) requestAnimationFrame(frame); else running = false;
+  }
+  function start() { if (!running) { running = true; requestAnimationFrame(frame); } }
+  sec.addEventListener("pointermove", function (e) { var r = sec.getBoundingClientRect(); T.x = e.clientX - r.left; T.y = e.clientY - r.top; user = 1; });
+  sec.addEventListener("pointerleave", function () { user = 0; });
+  addEventListener("resize", function () { build(); start(); });
+  new IntersectionObserver(function (e) { vis = e[0].isIntersecting; if (vis) start(); }, { rootMargin: "100px" }).observe(sec);
+  build(); start();
 })();
 </script>
 <script type="module">
@@ -795,14 +937,13 @@ if (media && !matchMedia("(prefers-reduced-motion: reduce)").matches) {
           vec2 uv = vUv, asp = vec2(uRes.x / uRes.y, 1.);
           vec2 d = (uv - uMouse) * asp; float dist = length(d); vec2 n = d / (dist + 1e-4);
           float lens = smoothstep(.34, 0., dist) * uHover;
-          uv -= d / asp * lens * .085;
-          vec2 iuv = cover(uv);
+                    vec2 iuv = cover(uv);
           float m = texture2D(uMask, iuv).r, t = uTime;
           vec2 w = vec2(sin(iuv.y * 150. + t * 1.7) + .6 * sin(iuv.x * 95. - t * 1.2 + iuv.y * 40.),
                         cos(iuv.x * 120. + t * 1.4) + .5 * cos(iuv.y * 70. - t)) * .0017;
           float ring = sin(dist * 75. - t * 5.) * smoothstep(.3, 0., dist) * uHover * .0045;
           iuv += (w + n * ring) * m;
-          vec2 sh = n * lens * (.003 + .01 * uVel);
+          vec2 sh = n * m * lens * .002;
           vec3 c = vec3(texture2D(uTex, iuv + sh).r, texture2D(uTex, iuv).g, texture2D(uTex, iuv - sh).b);
           float caus = pow(.5 + .5 * sin(iuv.x * 260. + t * 2.2 + sin(iuv.y * 180. - t * 1.5) * 2.), 6.);
           c += m * caus * .07;
