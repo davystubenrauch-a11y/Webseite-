@@ -3,6 +3,10 @@
 Website der Agentur **FOAV** (Domain **foav.de**, Name ab 28.10.; vorher „F&D Solutions“) (München): NFC-Platten für Google-Bewertungen, Webseiten-Erstellung, KI-Roomtours.
 Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 56612709). **Unternehmens-E-Mail: info@foav.de** (Empfänger aller Anfragen, Fragebögen, Bestellungen; öffentlich auf der Seite). Früher fd.solutions@web.de.
 
+## FOAV-Handbuch (Skills) – für jede Sitzung
+- `.claude/skills/foav-website` (Kunden-Websites: Ablauf, Pakete, Design-Regeln, Recht), `foav-selbstpruefung` (Pflicht vor jeder Übergabe: Screenshots Handy/Computer, 2 Verbesserungsrunden), `foav-roomtour` (Higgsfield → Treue-Prüfung → ffmpeg), `foav-lernbuch` (`lernbuch.md` = Gedächtnis zwischen Sitzungen; zu Beginn lesen, nach jedem Projekt ergänzen).
+- Kundenprojekte: eigene private Repos; neue Sitzung mit **zwei** Repos starten (`Webseite-` + Kunden-Repo), damit die Skills geladen werden. **Standardzweig des Repos muss `claude/hopeful-goodall-m39gmd` sein** (GitHub → Settings → Default branch), sonst sehen neue Sitzungen den alten Stand.
+
 ## Stand: live auf foav.de, Resend läuft (3.11.)
 - Vercel Production = Zweig `claude/hopeful-goodall-m39gmd` (per Promote; Branch Tracking unter Settings → Environments → Production, falls automatisch gewünscht).
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
