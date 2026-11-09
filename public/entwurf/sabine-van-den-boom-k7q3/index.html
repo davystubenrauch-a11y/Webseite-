@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<title>Entwurf · Sabine van den Boom · Coaching & Begleitung in München-Solln</title>
+<meta name="description" content="Entwurf von FOAV: neue Website für Sabine van den Boom, Systemisches Coaching und therapeutische Begleitung in München-Solln.">
+<style>
+@font-face { font-family: "Instrument Serif"; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/instrument-serif.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: "Instrument Serif"; font-style: italic; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/instrument-serif-italic.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: Figtree; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/figtree-latin.woff2) format("woff2"); font-weight: 300 900; font-display: swap; }
+:root {
+  --paper: #f5f0e8; --paper-2: #ece5d8; --ink: #1d2620; --text: #3d4640; --muted: #6a726c;
+  --sage: #5f7a5a; --sage-2: #dfe6d6; --blush: #b8505a; --line: rgba(29,38,32,.14);
+  --serif: "Instrument Serif", Georgia, serif; --sans: Figtree, system-ui, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; }
+html { scroll-behavior: smooth; }
+body { background: var(--paper); color: var(--text); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+img { display: block; max-width: 100%; }
+a { color: inherit; }
+.wrap { width: min(1180px, 100% - 48px); margin-inline: auto; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); letter-spacing: -.01em; line-height: 1.02; }
+em { font-style: italic; }
+
+/* draft band */
+.draft { background: var(--ink); color: #e9e4da; font-size: .8125rem; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+.draft a { color: #fff; }
+
+/* header */
+header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+header.s { border-color: var(--line); }
+.hd { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
+.brand { text-decoration: none; line-height: 1.1; }
+.brand b { display: block; font: 400 1.5rem var(--serif); color: var(--ink); }
+.brand span { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
+nav { display: flex; align-items: center; gap: 28px; font-size: .9375rem; }
+nav a { text-decoration: none; color: var(--text); }
+nav a:hover { color: var(--ink); }
+.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px; background: var(--ink); color: var(--paper) !important; text-decoration: none; font-weight: 500; font-size: .9375rem; transition: transform .2s, background .2s; }
+.btn:hover { background: #000; transform: translateY(-1px); }
+.btn--ghost { background: transparent; color: var(--ink) !important; box-shadow: inset 0 0 0 1px var(--line); }
+.btn--ghost:hover { background: var(--paper-2); }
+.menu { display: none; }
+
+/* hero */
+.hero { padding: clamp(40px, 7vw, 96px) 0 clamp(56px, 8vw, 120px); }
+.hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
+.eyebrow { font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 28px; }
+.hero h1 { font-size: clamp(3rem, 7.4vw, 6.6rem); }
+.hero h1 em { color: var(--sage); }
+.hero p.lead { margin-top: 28px; max-width: 36ch; font-size: clamp(1.0625rem, 1.4vw, 1.25rem); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 34px; font-size: .875rem; color: var(--muted); }
+.facts span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-right: 9px; vertical-align: 2px; }
+.arch { position: relative; aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; overflow: hidden; background: var(--paper-2); }
+.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(calc(1.12 - var(--p, 0) * .12)); transition: transform .1s linear; }
+.arch__tag { position: absolute; left: -18px; bottom: 34px; background: #fff; border-radius: 16px; padding: 14px 18px; box-shadow: 0 18px 40px rgba(29,38,32,.12); font-size: .8125rem; line-height: 1.35; max-width: 220px; }
+.arch__tag b { display: block; font: 400 1.25rem var(--serif); color: var(--ink); }
+.hero__media { position: relative; }
+
+/* words (scroll moment) */
+.words { position: relative; height: 260vh; background: var(--ink); color: #6d776f; }
+.words__stick { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
+.words__in { width: min(1100px, 100% - 48px); text-align: center; }
+.words__k { font-size: .8125rem; letter-spacing: .16em; text-transform: uppercase; color: #9aa59c; margin-bottom: 32px; }
+.words__list { font: 400 clamp(2.4rem, 6.4vw, 5.8rem)/1.08 var(--serif); }
+.words__list span { transition: color .5s, opacity .5s; opacity: .28; }
+.words__list span.on { color: #f3eee4; opacity: 1; }
+.words__list span.on.hl { color: #c9d8bf; font-style: italic; }
+.words__q { margin: 44px auto 0; max-width: 34ch; color: #c9cfc8; font-size: 1.0625rem; opacity: 0; transform: translateY(16px); transition: opacity .8s, transform .8s; }
+.words__q.on { opacity: 1; transform: none; }
+
+/* sections */
+.sec { padding: clamp(80px, 11vw, 150px) 0; }
+.sec__head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: clamp(40px, 6vw, 72px); }
+.sec__head h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
+.sec__head p { max-width: 42ch; justify-self: end; }
+.k { font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; }
+
+/* offers as editorial rows */
+.offers { border-top: 1px solid var(--line); }
+.offer { display: grid; grid-template-columns: 90px 1.1fr 1.4fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--line); transition: background .3s; }
+.offer:hover { background: linear-gradient(90deg, transparent, var(--paper-2) 30%, transparent); }
+.offer__n { font: 400 1.25rem var(--serif); color: var(--muted); padding-top: 6px; }
+.offer h3 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); }
+.offer h3 small { display: block; margin-top: 10px; font: 500 .875rem var(--sans); color: var(--sage); letter-spacing: .02em; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+.chips span { font-size: .8125rem; padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
+
+/* quote */
+.quote { background: var(--sage-2); }
+.quote blockquote { font: 400 clamp(2.2rem, 5.2vw, 4.6rem)/1.08 var(--serif); color: var(--ink); max-width: 18ch; }
+.quote blockquote em { color: var(--blush); }
+.quote p { margin-top: 26px; color: var(--muted); }
+
+/* about */
+.about { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
+.about__img { border-radius: 28px; overflow: hidden; aspect-ratio: 453 / 293; }
+.about__img img { width: 100%; height: 100%; object-fit: cover; }
+.about__said { margin-top: 26px; font: 400 1.5rem/1.3 var(--serif); color: var(--ink); }
+.about__said span { display: block; margin-top: 8px; font: 400 .875rem var(--sans); color: var(--muted); }
+.cv { list-style: none; padding: 0; border-top: 1px solid var(--line); }
+.cv li { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
+.cv b { color: var(--ink); font-weight: 600; }
+.cv span { color: var(--muted); font-size: .9375rem; text-align: right; }
+.about h3 { font-size: 1.75rem; margin: 40px 0 14px; }
+.about h3:first-child { margin-top: 0; }
+
+/* steps + prices */
+.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); }
+.step { padding: 32px 32px 32px 0; }
+.step + .step { padding-left: 32px; border-left: 1px solid var(--line); }
+.step i { font: italic 400 3rem/1 var(--serif); color: var(--sage); display: block; margin-bottom: 18px; }
+.step h3 { font-size: 1.75rem; margin-bottom: 10px; }
+.price { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.price div { background: #fff; border-radius: 22px; padding: 30px 32px; box-shadow: inset 0 0 0 1px var(--line); }
+.price b { display: block; font: 400 2.6rem/1 var(--serif); color: var(--ink); margin: 10px 0 8px; }
+.price small { color: var(--muted); font-size: .875rem; }
+.note { margin-top: 18px; font-size: .875rem; color: var(--muted); }
+
+/* praxis */
+.praxis { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.praxis__img { border-radius: 28px; overflow: hidden; aspect-ratio: 451 / 337; }
+.praxis__img img { width: 100%; height: 100%; object-fit: cover; }
+.praxis h2 { font-size: clamp(2.4rem, 4.6vw, 3.8rem); margin-bottom: 22px; }
+.praxis address { font-style: normal; margin: 22px 0; color: var(--ink); }
+.praxis ul { padding-left: 18px; color: var(--text); }
+
+/* contact */
+.contact { background: var(--ink); color: #d9ddd6; text-align: center; }
+.contact h2 { color: #f3eee4; font-size: clamp(2.6rem, 6vw, 5rem); }
+.contact h2 em { color: #c9d8bf; }
+.contact p { margin: 22px auto 0; max-width: 46ch; }
+.contact .cta { justify-content: center; }
+.contact .btn { background: #f3eee4; color: var(--ink) !important; }
+.contact .btn--ghost { background: transparent; color: #f3eee4 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+
+footer { padding: 36px 0 120px; font-size: .8125rem; color: var(--muted); }
+.ft { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
+.foav { margin-top: 18px; padding: 16px 20px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); }
+.foav a { font-weight: 600; }
+
+/* reveal */
+.rv { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.rv.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .words { height: auto; } .words__stick { position: static; height: auto; padding: 100px 0; }
+  .words__list span { opacity: 1; color: #f3eee4; } .words__q { opacity: 1; transform: none; }
+  .arch img { transform: none; }
+}
+
+/* mobile */
+@media (max-width: 900px) {
+  nav { display: none; }
+  .hero__grid, .sec__head, .about, .praxis, .price { grid-template-columns: 1fr; }
+  .hero__media { order: -1; max-width: 420px; }
+  .arch { aspect-ratio: 1 / 1.05; }
+  .arch__tag { left: 12px; bottom: 16px; }
+  .sec__head p { justify-self: start; }
+  .offer { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
+  .steps { grid-template-columns: 1fr; }
+  .step, .step + .step { padding: 26px 0; border-left: 0; border-bottom: 1px solid var(--line); }
+  .cv li { grid-template-columns: 1fr; gap: 2px; } .cv span { text-align: left; }
+  .wrap { width: min(1180px, 100% - 32px); }
+  .hd { height: 66px; } .brand b { font-size: 1.3rem; }
+  .btn { padding: 13px 20px; }
+}
+.mbar { display: none; }
+@media (max-width: 900px) {
+  .mbar { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(29,38,32,.92); }
+  .mbar a { flex: 1; justify-content: center; }
+  .mbar .btn { background: #f3eee4; color: var(--ink) !important; }
+  .mbar .btn--ghost { background: transparent; color: #f3eee4 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+}
+</style>
+</head>
+<body>
+<div class="draft">Entwurf von <a href="https://foav.de">FOAV</a> · nur zur Ansicht für Sabine van den Boom · nicht öffentlich</div>
+
+<header id="hd">
+  <div class="wrap hd">
+    <a class="brand" href="#top"><b>Sabine van den Boom</b><span>Coaching · Begleitung · Therapie</span></a>
+    <nav>
+      <a href="#angebot">Angebot</a>
+      <a href="#ueber">Über mich</a>
+      <a href="#ablauf">Ablauf & Kosten</a>
+      <a href="#praxis">Praxis</a>
+      <a class="btn" href="#kontakt">Vorgespräch vereinbaren</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero__grid">
+      <div>
+        <p class="eyebrow rv">Systemisches Coaching & therapeutische Begleitung · München-Solln</p>
+        <h1 class="rv">Die Antworten tragen Sie <em>schon in sich.</em></h1>
+        <p class="lead rv">Ich begleite Sie achtsam dabei, sie zu entdecken: bei beruflichen Fragen genauso wie in persönlichen Krisen. In meiner Praxis in Solln, telefonisch oder online.</p>
+        <div class="cta rv"><a class="btn" href="#kontakt">Vorgespräch vereinbaren</a><a class="btn btn--ghost" href="#angebot">Mein Angebot</a></div>
+        <div class="facts rv"><span>Systemische Coach</span><span>Heilpraktikerin für Psychotherapie</span><span>Coach im Pool der TU München</span></div>
+      </div>
+      <div class="hero__media rv">
+        <div class="arch" id="arch"><img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait.jpg" alt="Sabine van den Boom" width="660" height="644"></div>
+        <div class="arch__tag"><b>Persönlich, telefonisch oder online</b>Sitzungen in München-Solln, nah an der S-Bahn</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="words" id="words" aria-label="Wofür Coaching steht">
+    <div class="words__stick">
+      <div class="words__in">
+        <p class="words__k">Wohin Coaching Sie führen kann</p>
+        <p class="words__list" id="wl"><span>Klarheit.</span> <span>Wachstum.</span> <span>Stärke.</span> <span>Resilienz.</span> <span>Werte.</span> <span>Authentizität.</span> <span>Wohlbefinden.</span> <span class="hl">Souveränität.</span></p>
+        <p class="words__q" id="wq">„Man kann einen Menschen nichts lehren, man kann ihm nur helfen, es in sich selbst zu entdecken.“ · Galileo Galilei</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="angebot">
+    <div class="wrap">
+      <div class="sec__head">
+        <div><p class="k rv">Angebot</p><h2 class="rv">Beruflich wie privat. <em>Immer als ganzer Mensch.</em></h2></div>
+        <p class="rv">Ob Entscheidung, Konflikt oder Neuanfang: Wir bringen uns immer im Ganzen mit. Deshalb verbinde ich Coaching und therapeutische Methoden, lösungsorientiert und aus einer Hand.</p>
+      </div>
+      <div class="offers">
+        <article class="offer rv">
+          <div class="offer__n">01</div>
+          <h3>Business Coaching<small>Für Führungskräfte, Wissenschaft und Wirtschaft</small></h3>
+          <div><p>Ziel- und lösungsorientierte Begleitung bei Veränderungen, Herausforderungen und neuen Rollen. Aus langjähriger Erfahrung als Unternehmensberaterin und Coach für Universitäten kenne ich beide Welten.</p>
+          <div class="chips"><span>Karriere und Neuorientierung</span><span>Führung & Positive Leadership</span><span>Vereinbarkeit</span><span>Stress & Resilienz</span></div></div>
+        </article>
+        <article class="offer rv">
+          <div class="offer__n">02</div>
+          <h3>Personal Coaching<small>Für Ihre persönlichen Anliegen</small></h3>
+          <div><p>Klarheit gewinnen, Entscheidungen mit Überzeugung treffen, Grenzen authentisch setzen. Ziel ist, dass Sie Ihre Anliegen langfristig selbst lösen können: Selbst ist die Devise.</p>
+          <div class="chips"><span>Entscheidungen</span><span>Beziehungen</span><span>Work-Life-Balance</span><span>Selbstwert</span></div></div>
+        </article>
+        <article class="offer rv">
+          <div class="offer__n">03</div>
+          <h3>Therapeutische Begleitung<small>Wenn die Seele Unterstützung braucht</small></h3>
+          <div><p>Bei Krisen, Verlusten, Ängsten oder anhaltendem Stress. Als Heilpraktikerin für Psychotherapie arbeite ich unter anderem mit inneren Anteilen, Bild-, Gestalt- und Traumatherapie sowie Elementen des EMDR.</p>
+          <div class="chips"><span>Krisen & Verluste</span><span>Ängste</span><span>Stressfolgen</span><span>Inneres Kind</span></div></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec quote">
+    <div class="wrap">
+      <blockquote class="rv">Was nützt der beste Verstand, wenn das <em>Herz</em> nicht einverstanden ist?</blockquote>
+      <p class="rv">Sabine van den Boom</p>
+    </div>
+  </section>
+
+  <section class="sec" id="ueber">
+    <div class="wrap about">
+      <div>
+        <p class="k rv">Über mich</p>
+        <div class="about__img rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait2.jpg" alt="Sabine van den Boom" width="453" height="293"></div>
+        <p class="about__said rv">Professionell. Tiefgründig. Klar. Zugewandt. Humorvoll. Direkt. Achtsam.<span>… sagen meine Kundinnen und Kunden.</span></p>
+      </div>
+      <div>
+        <h3 class="rv">Wo ich arbeite</h3>
+        <ul class="cv rv">
+          <li><b>Eigene Praxis am MILD</b><span>Münchner Institut für Lösungsorientiertes Denken</span></li>
+          <li><b>Coaching-Pool der TU München</b><span>TUM Diversity & Equal Opportunities</span></li>
+          <li><b>Coach für die KeCK</b><span>Dekanat der Fakultät für Medizin, TUM</span></li>
+          <li><b>Coach für die fortiss GmbH</b><span>Landesforschungsinstitut des Freistaats Bayern</span></li>
+        </ul>
+        <h3 class="rv">Was mich ausmacht</h3>
+        <ul class="cv rv">
+          <li><b>Systemische Beraterin & Coach</b><span>ICO Augsburg</span></li>
+          <li><b>Heilpraktikerin für Psychotherapie</b><span>Gesundheitsamt Ingolstadt</span></li>
+          <li><b>Positive Leadership PERMA-Lead® Coach</b><span>Dr. Markus Ebner</span></li>
+          <li><b>Bild-, Gestalt- und Traumatherapie, EMDR</b><span>Int. Forum für Psychotherapie</span></li>
+          <li><b>Dipl.-Wirtschaftsgeografin, Unternehmensberaterin</b><span>LMU / KU Eichstätt-Ingolstadt</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="ablauf" style="background:#fff">
+    <div class="wrap">
+      <div class="sec__head">
+        <div><p class="k rv">Ablauf & Kosten</p><h2 class="rv">Ein guter Ausgang braucht <em>einen guten Anfang.</em></h2></div>
+        <p class="rv">Im Vorgespräch klären wir Ihr Anliegen, den Rahmen und alle Ihre Fragen. Danach entscheiden Sie in Ruhe, ob wir zusammenarbeiten.</p>
+      </div>
+      <div class="steps">
+        <div class="step rv"><i>1</i><h3>Vorgespräch</h3><p>Persönlich in Solln, telefonisch oder online. Sie fragen alles, was Sie wissen möchten.</p></div>
+        <div class="step rv"><i>2</i><h3>Sitzungen</h3><p>Bewährt haben sich 90 Minuten im Abstand von etwa zwei Wochen.</p></div>
+        <div class="step rv"><i>3</i><h3>Ihr Weg</h3><p>Viele Themen lassen sich in 4 bis 5 Terminen klären. Tiefer Sitzendes braucht mehr Zeit, und die nehmen wir uns.</p></div>
+      </div>
+      <div class="price">
+        <div class="rv"><small>Coaching für Selbstzahler</small><b>100 €</b><small>je 60 Minuten, zzgl. MwSt. · Unternehmen auf Anfrage · in der Regel steuerlich absetzbar</small></div>
+        <div class="rv"><small>Therapeutische Sitzung</small><b>100 €</b><small>je 60 Minuten, umsatzsteuerfrei (§ 4 Nr. 14 UStG) · Privatleistung</small></div>
+      </div>
+      <p class="note rv">Termine bitte spätestens 2 Werktage vorher absagen, sonst berechne ich 80 € Ausfallhonorar.</p>
+    </div>
+  </section>
+
+  <section class="sec" id="praxis">
+    <div class="wrap praxis">
+      <div class="praxis__img rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/praxis.jpg" alt="Praxisraum mit zwei Sesseln" width="451" height="337"></div>
+      <div>
+        <p class="k rv">Praxis</p>
+        <h2 class="rv">Ein geschützter Raum <em>im Münchner Süden.</em></h2>
+        <address class="rv">Systemische Praxis · Coaching | Beratung | Therapie<br>Wolfratshauser Straße 145, 81479 München-Solln<br>Eingang Rückgebäude MILD</address>
+        <ul class="rv"><li>Sehr gute S-Bahn-Anbindung</li><li>Kostenfreie Parkplätze</li><li>Sitzungen auch online</li></ul>
+        <div class="cta rv"><a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Wolfratshauser+Stra%C3%9Fe+145+81479+M%C3%BCnchen" target="_blank" rel="noopener">Route planen</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec contact" id="kontakt">
+    <div class="wrap">
+      <h2 class="rv">Lassen Sie uns <em>sprechen.</em></h2>
+      <p class="rv">Rufen Sie mich an oder schreiben Sie mir. Ich melde mich und wir finden einen Termin für Ihr Vorgespräch.</p>
+      <div class="cta rv"><a class="btn" href="tel:+491728921091">0172 89 21 091</a><a class="btn btn--ghost" href="mailto:sabinevandenboom@t-online.de">E-Mail schreiben</a></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="ft"><span>© Sabine van den Boom · Coaching & Begleitung · München-Solln</span><span>Impressum · Datenschutz</span></div>
+    <p class="foav">Dies ist ein unverbindlicher Entwurf von <a href="https://foav.de">FOAV</a> aus München-Solln, erstellt mit den öffentlichen Inhalten Ihrer bisherigen Website. Eine Website wie diese gibt es ab 399 € zum Festpreis, Hosting inklusive, ohne monatliche Kosten.</p>
+  </div>
+</footer>
+
+<div class="mbar"><a class="btn" href="#kontakt">Vorgespräch</a><a class="btn btn--ghost" href="tel:+491728921091">Anrufen</a></div>
+
+<script>
+(() => {
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hd = document.getElementById('hd');
+  const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (Math.min(i % 4, 3) * 80) + 'ms'; io.observe(el); });
+  if (reduce) return;
+  const words = document.getElementById('words'), spans = [...document.querySelectorAll('#wl span')], q = document.getElementById('wq'), arch = document.getElementById('arch');
+  let tick = false;
+  function frame() {
+    tick = false;
+    hd.classList.toggle('s', scrollY > 10);
+    const r = words.getBoundingClientRect(), total = r.height - innerHeight;
+    const p = Math.min(1, Math.max(0, -r.top / total));
+    const n = Math.floor(p * (spans.length + 1.5));
+    spans.forEach((s, i) => s.classList.toggle('on', i < n));
+    q.classList.toggle('on', n > spans.length);
+    const a = Math.min(1, Math.max(0, scrollY / (innerHeight * .8)));
+    arch.style.setProperty('--p', a.toFixed(3));
+  }
+  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(frame); } }, { passive: true });
+  frame();
+})();
+</script>
+</body>
+</html>

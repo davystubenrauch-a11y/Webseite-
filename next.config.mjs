@@ -11,7 +11,9 @@ const nextConfig = {
         { source: "/roomtours", destination: "/site/roomtours.html" },
         { source: "/nfc-platten", destination: "/site/nfc-platten.html" },
         { source: "/demo/spiruli", destination: "/demo/spiruli/index.html" },
-        { source: "/demo/spiruli/", destination: "/demo/spiruli/index.html" }] };
+        { source: "/demo/spiruli/", destination: "/demo/spiruli/index.html" }],
+      // Sales drafts for prospective clients: public/entwurf/<slug>/index.html, reachable as /entwurf/<slug> (noindex, robots-blocked).
+      afterFiles: [{ source: "/entwurf/:slug", destination: "/entwurf/:slug/index.html" }] };
   },
 };
 
