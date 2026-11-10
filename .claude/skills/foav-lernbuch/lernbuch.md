@@ -4,6 +4,11 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-10 · Sabine van den Boom, Konzept C „Der Weg“
+- Kritik der Gründer: erster Entwurf „wie jede andere Seite“, weil ich die 3 Konzepte übersprungen habe → **nie ohne 3 Konzepte und Wahl bauen**, auch nicht bei Verkaufsentwürfen.
+- Technik „Der Weg“: SVG-Pfad über alle Abschnitte (Punkte aus Abschnitts-Positionen, Catmull-Rom → Bezier), zeichnet sich per stroke-dash beim Scrollen, Spitze bei 62 % Bildschirmhöhe, Marker leuchten auf; Hintergrund wird von kühl zu warm (Sonnenaufgang). Handy: senkrechte Schiene links.
+- Mittige Abschnitte: Linie nie durch Überschrift/Kreis führen, sondern links vorbei (Selbstprüfung hat das gefunden).
+
 ### 2026-11-09 · Verkaufsentwurf Sabine van den Boom (Coach, München-Solln)
 - Verkaufsentwürfe brauchen kein eigenes Repo: `public/entwurf/<name>-<zufall>/index.html` in diesem Repo, Pfade absolut, Aufruf `foav.de/entwurf/<slug>` (Rewrite `afterFiles` in `next.config.mjs`), `/entwurf/` ist in robots gesperrt + `noindex`. Eigenes Repo erst nach Kauf.
 - Bilder der alten Website: Jimdo-Bildserver ist im Container gesperrt (Proxy 403) → Firecrawl-Screenshot der Seite (1920 px bzw. fullPage) und zuschneiden.

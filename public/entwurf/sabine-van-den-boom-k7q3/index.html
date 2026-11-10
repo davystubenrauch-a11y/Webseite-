@@ -5,321 +5,275 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow, noarchive">
 <title>Entwurf · Sabine van den Boom · Coaching & Begleitung in München-Solln</title>
-<meta name="description" content="Entwurf von FOAV: neue Website für Sabine van den Boom, Systemisches Coaching und therapeutische Begleitung in München-Solln.">
+<meta name="description" content="Entwurf von FOAV: Website-Konzept „Der Weg“ für Sabine van den Boom, Systemisches Coaching und therapeutische Begleitung in München-Solln.">
 <style>
-@font-face { font-family: "Instrument Serif"; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/instrument-serif.woff2) format("woff2"); font-display: swap; }
-@font-face { font-family: "Instrument Serif"; font-style: italic; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/instrument-serif-italic.woff2) format("woff2"); font-display: swap; }
+@font-face { font-family: Sora; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/sora-latin.woff2) format("woff2"); font-weight: 100 800; font-display: swap; }
 @font-face { font-family: Figtree; src: url(/entwurf/sabine-van-den-boom-k7q3/fonts/figtree-latin.woff2) format("woff2"); font-weight: 300 900; font-display: swap; }
 :root {
-  --paper: #f5f0e8; --paper-2: #ece5d8; --ink: #1d2620; --text: #3d4640; --muted: #6a726c;
-  --sage: #5f7a5a; --sage-2: #dfe6d6; --blush: #b8505a; --line: rgba(29,38,32,.14);
-  --serif: "Instrument Serif", Georgia, serif; --sans: Figtree, system-ui, sans-serif;
+  --bg: #e9edf0; --ink: #1f2a27; --text: #3f4a46; --muted: #6c7672;
+  --green: #5e9a50; --green-d: #3f7536; --rose: #d64b63; --sun: #f3c98b;
+  --line: rgba(31,42,39,.13);
+  --head: Sora, system-ui, sans-serif; --sans: Figtree, system-ui, sans-serif;
 }
 * { box-sizing: border-box; margin: 0; }
 html { scroll-behavior: smooth; }
-body { background: var(--paper); color: var(--text); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; }
+body { background: var(--bg); color: var(--text); font: 400 1.0625rem/1.65 var(--sans); -webkit-font-smoothing: antialiased; transition: background-color .2s linear; }
 img { display: block; max-width: 100%; }
 a { color: inherit; }
-.wrap { width: min(1180px, 100% - 48px); margin-inline: auto; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; color: var(--ink); letter-spacing: -.01em; line-height: 1.02; }
-em { font-style: italic; }
+h1, h2, h3 { font-family: var(--head); font-weight: 300; color: var(--ink); letter-spacing: -.035em; line-height: 1.06; }
+h1 b, h2 b { font-weight: 600; }
+.wrap { width: min(1160px, 100% - 48px); margin-inline: auto; }
 
-/* draft band */
-.draft { background: var(--ink); color: #e9e4da; font-size: .8125rem; text-align: center; padding: 8px 16px; letter-spacing: .02em; }
+.draft { background: var(--ink); color: #e4e8e3; font-size: .8125rem; text-align: center; padding: 8px 16px; }
 .draft a { color: #fff; }
 
-/* header */
-header { position: sticky; top: 0; z-index: 20; background: color-mix(in srgb, var(--paper) 88%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid transparent; transition: border-color .3s; }
-header.s { border-color: var(--line); }
-.hd { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 76px; }
-.brand { text-decoration: none; line-height: 1.1; }
-.brand b { display: block; font: 400 1.5rem var(--serif); color: var(--ink); }
-.brand span { font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); }
-nav { display: flex; align-items: center; gap: 28px; font-size: .9375rem; }
-nav a { text-decoration: none; color: var(--text); }
-nav a:hover { color: var(--ink); }
-.btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 999px; background: var(--ink); color: var(--paper) !important; text-decoration: none; font-weight: 500; font-size: .9375rem; transition: transform .2s, background .2s; }
-.btn:hover { background: #000; transform: translateY(-1px); }
-.btn--ghost { background: transparent; color: var(--ink) !important; box-shadow: inset 0 0 0 1px var(--line); }
-.btn--ghost:hover { background: var(--paper-2); }
-.menu { display: none; }
+header { position: sticky; top: 0; z-index: 30; transition: background .3s, box-shadow .3s; }
+header.s { background: color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter: blur(14px); box-shadow: 0 1px 0 var(--line); }
+.hd { display: flex; align-items: center; justify-content: space-between; height: 80px; gap: 20px; }
+.hd img { width: 210px; height: auto; mix-blend-mode: multiply; }
+nav { display: flex; align-items: center; gap: 26px; font-size: .9375rem; }
+nav a { text-decoration: none; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 14px 24px; border-radius: 999px; background: var(--ink); color: #fff !important; text-decoration: none; font-weight: 600; font-size: .9375rem; transition: transform .2s, background .2s; }
+.btn:hover { transform: translateY(-1px); background: #000; }
+.btn--soft { background: rgba(255,255,255,.7); color: var(--ink) !important; box-shadow: inset 0 0 0 1px var(--line); }
+.btn--soft:hover { background: #fff; }
+
+/* ---------- the path */
+.journey { position: relative; }
+#path { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; overflow: visible; }
+#path .p-main { fill: none; stroke: var(--green); stroke-width: 4; stroke-linecap: round; filter: drop-shadow(0 4px 10px rgba(94,154,80,.28)); }
+#path .p-rose { fill: none; stroke: var(--rose); stroke-width: 2.2; stroke-linecap: round; opacity: .85; }
+#path .p-ghost { fill: none; stroke: rgba(31,42,39,.09); stroke-width: 1.4; stroke-dasharray: 2 9; stroke-linecap: round; }
+#path .mk { fill: var(--bg); stroke: rgba(31,42,39,.25); stroke-width: 1.5; transition: fill .4s, stroke .4s, r .4s; }
+#path .mk.on { fill: var(--green); stroke: var(--green); }
+#path .tip { fill: var(--green); r: 8px; filter: drop-shadow(0 0 10px rgba(94,154,80,.6)); }
+.st { position: relative; z-index: 1; padding: clamp(80px, 9vw, 120px) 0; }
+.st__in { width: min(1160px, 100% - 48px); margin-inline: auto; display: flex; }
+.st[data-side="r"] .st__in { justify-content: flex-end; }
+.st[data-side="c"] .st__in { justify-content: center; text-align: center; }
+.st__box { width: min(520px, 100%); }
+.k { font-size: .8125rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--green-d); margin-bottom: 18px; }
+.st h2 { font-size: clamp(2.2rem, 4.6vw, 3.6rem); margin-bottom: 22px; }
 
 /* hero */
-.hero { padding: clamp(40px, 7vw, 96px) 0 clamp(56px, 8vw, 120px); }
-.hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 88px); align-items: center; }
-.eyebrow { font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 28px; }
-.hero h1 { font-size: clamp(3rem, 7.4vw, 6.6rem); }
-.hero h1 em { color: var(--sage); }
-.hero p.lead { margin-top: 28px; max-width: 36ch; font-size: clamp(1.0625rem, 1.4vw, 1.25rem); }
-.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
-.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; margin-top: 34px; font-size: .875rem; color: var(--muted); }
-.facts span::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 50%; background: var(--sage); margin-right: 9px; vertical-align: 2px; }
-.arch { position: relative; aspect-ratio: 4 / 5; border-radius: 999px 999px 28px 28px; overflow: hidden; background: var(--paper-2); }
-.arch img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(calc(1.12 - var(--p, 0) * .12)); transition: transform .1s linear; }
-.arch__tag { position: absolute; left: -18px; bottom: 34px; background: #fff; border-radius: 16px; padding: 14px 18px; box-shadow: 0 18px 40px rgba(29,38,32,.12); font-size: .8125rem; line-height: 1.35; max-width: 220px; }
-.arch__tag b { display: block; font: 400 1.25rem var(--serif); color: var(--ink); }
-.hero__media { position: relative; }
+.hero { position: relative; z-index: 1; padding: clamp(40px, 6vw, 80px) 0 clamp(90px, 12vw, 150px); }
+.hero__grid { display: grid; grid-template-columns: 1.15fr .85fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
+.hero h1 { font-size: clamp(2.8rem, 6.6vw, 5.6rem); }
+.hero h1 span { color: var(--green-d); font-weight: 600; }
+.hero p { margin-top: 26px; max-width: 38ch; font-size: clamp(1.0625rem, 1.4vw, 1.25rem); }
+.cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+.sunrise { position: relative; aspect-ratio: 1; }
+.sunrise::before { content: ""; position: absolute; inset: -14%; border-radius: 50%; background: radial-gradient(circle, rgba(243,201,139,.55), rgba(243,201,139,0) 65%); filter: blur(4px); }
+.sunrise img { position: relative; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; border-radius: 50%; box-shadow: 0 30px 80px rgba(31,42,39,.18); }
+.sunrise__cap { position: absolute; right: -6px; bottom: 6%; background: #fff; border-radius: 14px; padding: 12px 16px; font-size: .8125rem; line-height: 1.35; box-shadow: 0 14px 34px rgba(31,42,39,.12); max-width: 210px; }
+.sunrise__cap b { display: block; color: var(--ink); font: 600 .9375rem var(--head); letter-spacing: -.01em; }
+#pathStart { position: absolute; left: 50%; bottom: -2px; width: 1px; height: 1px; }
 
-/* words (scroll moment) */
-.words { position: relative; height: 260vh; background: var(--ink); color: #6d776f; }
-.words__stick { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; overflow: hidden; }
-.words__in { width: min(1100px, 100% - 48px); text-align: center; }
-.words__k { font-size: .8125rem; letter-spacing: .16em; text-transform: uppercase; color: #9aa59c; margin-bottom: 32px; }
-.words__list { font: 400 clamp(2.4rem, 6.4vw, 5.8rem)/1.08 var(--serif); }
-.words__list span { transition: color .5s, opacity .5s; opacity: .28; }
-.words__list span.on { color: #f3eee4; opacity: 1; }
-.words__list span.on.hl { color: #c9d8bf; font-style: italic; }
-.words__q { margin: 44px auto 0; max-width: 34ch; color: #c9cfc8; font-size: 1.0625rem; opacity: 0; transform: translateY(16px); transition: opacity .8s, transform .8s; }
-.words__q.on { opacity: 1; transform: none; }
+/* questions */
+.qs { list-style: none; padding: 0; margin-top: 8px; }
+.qs li { font: 300 clamp(1.25rem, 2.2vw, 1.6rem)/1.35 var(--head); letter-spacing: -.02em; color: rgba(31,42,39,.28); padding: 10px 0; transition: color .6s; }
+.qs li.on { color: var(--ink); }
+.qs li.on::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--rose); margin-right: 14px; vertical-align: .18em; }
+.st .after { margin-top: 26px; color: var(--muted); }
 
-/* sections */
-.sec { padding: clamp(80px, 11vw, 150px) 0; }
-.sec__head { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: clamp(40px, 6vw, 72px); }
-.sec__head h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); }
-.sec__head p { max-width: 42ch; justify-self: end; }
-.k { font-size: .8125rem; letter-spacing: .14em; text-transform: uppercase; color: var(--sage); margin-bottom: 18px; }
+/* breath */
+.breath { position: relative; width: 240px; height: 240px; margin: 34px auto 28px; display: grid; place-items: center; }
+.breath i { position: absolute; inset: 0; border-radius: 50%; background: radial-gradient(circle at 50% 40%, #fff, rgba(255,255,255,.35) 60%, rgba(94,154,80,.12)); box-shadow: 0 0 0 1px rgba(94,154,80,.35), 0 20px 60px rgba(94,154,80,.18); animation: breathe 10s ease-in-out infinite; }
+.breath span { position: relative; font: 400 1.0625rem var(--head); color: var(--green-d); letter-spacing: .02em; }
+.breath .in, .breath .out { position: absolute; animation: lbl 10s ease-in-out infinite; }
+.breath .out { animation-name: lbl2; }
+@keyframes breathe { 0%,100% { transform: scale(.62); } 40%,50% { transform: scale(1); } }
+@keyframes lbl { 0%,42% { opacity: 1; } 48%,100% { opacity: 0; } }
+@keyframes lbl2 { 0%,46% { opacity: 0; } 52%,96% { opacity: 1; } 100% { opacity: 0; } }
 
-/* offers as editorial rows */
-.offers { border-top: 1px solid var(--line); }
-.offer { display: grid; grid-template-columns: 90px 1.1fr 1.4fr; gap: 32px; padding: 40px 0; border-bottom: 1px solid var(--line); transition: background .3s; }
-.offer:hover { background: linear-gradient(90deg, transparent, var(--paper-2) 30%, transparent); }
-.offer__n { font: 400 1.25rem var(--serif); color: var(--muted); padding-top: 6px; }
-.offer h3 { font-size: clamp(1.9rem, 3.2vw, 2.8rem); }
-.offer h3 small { display: block; margin-top: 10px; font: 500 .875rem var(--sans); color: var(--sage); letter-spacing: .02em; }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.chips span { font-size: .8125rem; padding: 6px 12px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); }
-
-/* quote */
-.quote { background: var(--sage-2); }
-.quote blockquote { font: 400 clamp(2.2rem, 5.2vw, 4.6rem)/1.08 var(--serif); color: var(--ink); max-width: 18ch; }
-.quote blockquote em { color: var(--blush); }
-.quote p { margin-top: 26px; color: var(--muted); }
+/* offers along the path */
+.off { margin-top: 10px; border-top: 1px solid var(--line); }
+.off article { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.off h3 { font-size: clamp(1.5rem, 2.4vw, 1.9rem); margin-bottom: 8px; }
+.off h3 small { display: block; margin-top: 6px; font: 600 .8125rem var(--sans); letter-spacing: .04em; color: var(--green-d); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+.tags span { font-size: .8125rem; padding: 5px 11px; border-radius: 999px; background: rgba(255,255,255,.65); box-shadow: inset 0 0 0 1px var(--line); }
 
 /* about */
-.about { display: grid; grid-template-columns: .9fr 1.1fr; gap: clamp(32px, 6vw, 88px); align-items: start; }
-.about__img { border-radius: 28px; overflow: hidden; aspect-ratio: 453 / 293; }
-.about__img img { width: 100%; height: 100%; object-fit: cover; }
-.about__said { margin-top: 26px; font: 400 1.5rem/1.3 var(--serif); color: var(--ink); }
-.about__said span { display: block; margin-top: 8px; font: 400 .875rem var(--sans); color: var(--muted); }
-.cv { list-style: none; padding: 0; border-top: 1px solid var(--line); }
-.cv li { display: grid; grid-template-columns: 1fr auto; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--line); }
-.cv b { color: var(--ink); font-weight: 600; }
-.cv span { color: var(--muted); font-size: .9375rem; text-align: right; }
-.about h3 { font-size: 1.75rem; margin: 40px 0 14px; }
-.about h3:first-child { margin-top: 0; }
+.photo { border-radius: 26px; overflow: hidden; margin-bottom: 26px; box-shadow: 0 24px 60px rgba(31,42,39,.12); }
+.cv { list-style: none; padding: 0; margin-top: 18px; }
+.cv li { padding: 12px 0; border-bottom: 1px solid var(--line); }
+.cv b { display: block; color: var(--ink); font-weight: 600; }
+.cv span { font-size: .9375rem; color: var(--muted); }
+.said { margin-top: 22px; font: 300 1.25rem/1.4 var(--head); color: var(--ink); letter-spacing: -.02em; }
 
-/* steps + prices */
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 1px solid var(--ink); }
-.step { padding: 32px 32px 32px 0; }
-.step + .step { padding-left: 32px; border-left: 1px solid var(--line); }
-.step i { font: italic 400 3rem/1 var(--serif); color: var(--sage); display: block; margin-bottom: 18px; }
-.step h3 { font-size: 1.75rem; margin-bottom: 10px; }
-.price { margin-top: 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-.price div { background: #fff; border-radius: 22px; padding: 30px 32px; box-shadow: inset 0 0 0 1px var(--line); }
-.price b { display: block; font: 400 2.6rem/1 var(--serif); color: var(--ink); margin: 10px 0 8px; }
-.price small { color: var(--muted); font-size: .875rem; }
-.note { margin-top: 18px; font-size: .875rem; color: var(--muted); }
+/* steps + price */
+.steps { list-style: none; padding: 0; margin-top: 6px; counter-reset: s; }
+.steps li { position: relative; padding: 16px 0 16px 52px; border-bottom: 1px solid var(--line); }
+.steps li::before { counter-increment: s; content: counter(s); position: absolute; left: 0; top: 14px; width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; font: 600 .9375rem var(--head); color: #fff; background: var(--green); }
+.steps b { color: var(--ink); }
+.price { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 22px; }
+.price div { background: rgba(255,255,255,.75); border-radius: 18px; padding: 20px; box-shadow: inset 0 0 0 1px var(--line); font-size: .875rem; color: var(--muted); }
+.price b { display: block; font: 600 2rem/1.1 var(--head); color: var(--ink); letter-spacing: -.03em; margin: 6px 0; }
+.small { margin-top: 14px; font-size: .8125rem; color: var(--muted); }
 
-/* praxis */
-.praxis { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(32px, 6vw, 80px); align-items: center; }
-.praxis__img { border-radius: 28px; overflow: hidden; aspect-ratio: 451 / 337; }
-.praxis__img img { width: 100%; height: 100%; object-fit: cover; }
-.praxis h2 { font-size: clamp(2.4rem, 4.6vw, 3.8rem); margin-bottom: 22px; }
-.praxis address { font-style: normal; margin: 22px 0; color: var(--ink); }
-.praxis ul { padding-left: 18px; color: var(--text); }
+/* goal */
+.goal { position: relative; z-index: 1; text-align: center; padding: clamp(110px, 14vw, 180px) 0 clamp(120px, 14vw, 180px); }
+.goal h2 { font-size: clamp(2.6rem, 6.4vw, 5.2rem); }
+.goal h2 b { color: var(--green-d); }
+.goal p { margin: 22px auto 0; max-width: 44ch; }
+.goal .cta { justify-content: center; }
+#pathEnd { position: relative; width: 120px; height: 120px; margin: 0 auto 34px; border-radius: 50%; background: radial-gradient(circle, #fff6e6 0, var(--sun) 40%, rgba(243,201,139,0) 70%); opacity: .35; transform: scale(.7); transition: opacity 1s, transform 1.2s; }
+#pathEnd.on { opacity: 1; transform: scale(1); }
 
-/* contact */
-.contact { background: var(--ink); color: #d9ddd6; text-align: center; }
-.contact h2 { color: #f3eee4; font-size: clamp(2.6rem, 6vw, 5rem); }
-.contact h2 em { color: #c9d8bf; }
-.contact p { margin: 22px auto 0; max-width: 46ch; }
-.contact .cta { justify-content: center; }
-.contact .btn { background: #f3eee4; color: var(--ink) !important; }
-.contact .btn--ghost { background: transparent; color: #f3eee4 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
-
-footer { padding: 36px 0 120px; font-size: .8125rem; color: var(--muted); }
-.ft { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; }
-.foav { margin-top: 18px; padding: 16px 20px; border-radius: 16px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); }
+footer { position: relative; z-index: 1; padding: 0 0 120px; font-size: .8125rem; color: var(--muted); }
+.ft { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding-top: 26px; border-top: 1px solid var(--line); }
+.foav { margin-top: 18px; padding: 16px 20px; border-radius: 16px; background: rgba(255,255,255,.75); box-shadow: inset 0 0 0 1px var(--line); color: var(--text); }
 .foav a { font-weight: 600; }
 
-/* reveal */
-.rv { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+.rv { opacity: 0; transform: translateY(24px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
 .rv.in { opacity: 1; transform: none; }
-@media (prefers-reduced-motion: reduce) {
-  .rv { opacity: 1; transform: none; transition: none; }
-  .words { height: auto; } .words__stick { position: static; height: auto; padding: 100px 0; }
-  .words__list span { opacity: 1; color: #f3eee4; } .words__q { opacity: 1; transform: none; }
-  .arch img { transform: none; }
-}
 
-/* mobile */
-@media (max-width: 900px) {
-  nav { display: none; }
-  .hero__grid, .sec__head, .about, .praxis, .price { grid-template-columns: 1fr; }
-  .hero__media { order: -1; max-width: 420px; }
-  .arch { aspect-ratio: 1 / 1.05; }
-  .arch__tag { left: 12px; bottom: 16px; }
-  .sec__head p { justify-self: start; }
-  .offer { grid-template-columns: 1fr; gap: 10px; padding: 32px 0; }
-  .steps { grid-template-columns: 1fr; }
-  .step, .step + .step { padding: 26px 0; border-left: 0; border-bottom: 1px solid var(--line); }
-  .cv li { grid-template-columns: 1fr; gap: 2px; } .cv span { text-align: left; }
-  .wrap { width: min(1180px, 100% - 32px); }
-  .hd { height: 66px; } .brand b { font-size: 1.3rem; }
-  .btn { padding: 13px 20px; }
-}
 .mbar { display: none; }
 @media (max-width: 900px) {
-  .mbar { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 30; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(29,38,32,.92); }
-  .mbar a { flex: 1; justify-content: center; }
-  .mbar .btn { background: #f3eee4; color: var(--ink) !important; }
-  .mbar .btn--ghost { background: transparent; color: #f3eee4 !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.25); }
+  nav { display: none; }
+  .hd { height: 66px; } .hd img { width: 140px; }
+  .hero__grid { grid-template-columns: 1fr; }
+  .sunrise { width: min(300px, 78%); margin-left: 44px; }
+  .hero .wrap > div:first-child, .hero__text { padding-left: 0; }
+  .st__in, .st[data-side="r"] .st__in, .st[data-side="c"] .st__in { justify-content: flex-start; text-align: left; width: min(1160px, 100% - 32px); padding-left: 34px; }
+  .hero .wrap, .goal .wrap, footer .wrap { width: min(1160px, 100% - 32px); }
+  .hero__text { padding-left: 34px; }
+  .goal { text-align: left; } .goal .wrap { padding-left: 34px; } .goal .cta { justify-content: flex-start; } #pathEnd { margin: 0 0 30px -60px; }
+  .breath { margin-left: 0; width: 200px; height: 200px; }
+  .price { grid-template-columns: 1fr; }
+  .mbar { display: flex; position: fixed; left: 12px; right: 12px; bottom: 12px; z-index: 40; gap: 8px; padding: 8px; border-radius: 999px; background: rgba(31,42,39,.92); }
+  .mbar a { flex: 1; }
+  .mbar .btn { background: #fff; color: var(--ink) !important; }
+  .mbar .btn--soft { background: transparent; color: #fff !important; box-shadow: inset 0 0 0 1px rgba(255,255,255,.3); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .rv { opacity: 1; transform: none; transition: none; }
+  .breath i, .breath .in, .breath .out { animation: none; }
+  .breath .out { display: none; }
+  .qs li { color: var(--ink); }
 }
 </style>
 </head>
 <body>
-<div class="draft">Entwurf von <a href="https://foav.de">FOAV</a> · nur zur Ansicht für Sabine van den Boom · nicht öffentlich</div>
+<div class="draft">Entwurf von <a href="https://foav.de">FOAV</a> · Konzept „Der Weg“ · nur zur Ansicht für Sabine van den Boom · nicht öffentlich</div>
 
 <header id="hd">
   <div class="wrap hd">
-    <a class="brand" href="#top"><b>Sabine van den Boom</b><span>Coaching · Begleitung · Therapie</span></a>
+    <a href="#top" aria-label="Sabine van den Boom, Coaching & Beratung"><img src="/entwurf/sabine-van-den-boom-k7q3/img/logo.png" alt="Sabine van den Boom · Coaching & Beratung" width="330" height="82"></a>
     <nav>
-      <a href="#angebot">Angebot</a>
-      <a href="#ueber">Über mich</a>
-      <a href="#ablauf">Ablauf & Kosten</a>
-      <a href="#praxis">Praxis</a>
+      <a href="#angebot">Angebot</a><a href="#ueber">Über mich</a><a href="#ablauf">Ablauf & Kosten</a><a href="#praxis">Praxis</a>
       <a class="btn" href="#kontakt">Vorgespräch vereinbaren</a>
     </nav>
   </div>
 </header>
 
-<main id="top">
+<main id="top" class="journey">
+  <svg id="path" aria-hidden="true"></svg>
+
   <section class="hero">
     <div class="wrap hero__grid">
-      <div>
-        <p class="eyebrow rv">Systemisches Coaching & therapeutische Begleitung · München-Solln</p>
-        <h1 class="rv">Die Antworten tragen Sie <em>schon in sich.</em></h1>
-        <p class="lead rv">Ich begleite Sie achtsam dabei, sie zu entdecken: bei beruflichen Fragen genauso wie in persönlichen Krisen. In meiner Praxis in Solln, telefonisch oder online.</p>
-        <div class="cta rv"><a class="btn" href="#kontakt">Vorgespräch vereinbaren</a><a class="btn btn--ghost" href="#angebot">Mein Angebot</a></div>
-        <div class="facts rv"><span>Systemische Coach</span><span>Heilpraktikerin für Psychotherapie</span><span>Coach im Pool der TU München</span></div>
+      <div class="hero__text">
+        <p class="k rv">Coaching · Begleitung · Therapie in München-Solln</p>
+        <h1 class="rv">Ein guter Ausgang braucht einen <span>guten Anfang.</span></h1>
+        <p class="rv">Ich begleite Sie ein Stück Ihres Weges: bei beruflichen Fragen, Entscheidungen und in persönlichen Krisen. Persönlich in meiner Praxis, telefonisch oder online.</p>
+        <div class="cta rv"><a class="btn" href="#kontakt">Vorgespräch vereinbaren</a><a class="btn btn--soft" href="#start">Den Weg ansehen</a></div>
       </div>
-      <div class="hero__media rv">
-        <div class="arch" id="arch"><img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait.jpg" alt="Sabine van den Boom" width="660" height="644"></div>
-        <div class="arch__tag"><b>Persönlich, telefonisch oder online</b>Sitzungen in München-Solln, nah an der S-Bahn</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="words" id="words" aria-label="Wofür Coaching steht">
-    <div class="words__stick">
-      <div class="words__in">
-        <p class="words__k">Wohin Coaching Sie führen kann</p>
-        <p class="words__list" id="wl"><span>Klarheit.</span> <span>Wachstum.</span> <span>Stärke.</span> <span>Resilienz.</span> <span>Werte.</span> <span>Authentizität.</span> <span>Wohlbefinden.</span> <span class="hl">Souveränität.</span></p>
-        <p class="words__q" id="wq">„Man kann einen Menschen nichts lehren, man kann ihm nur helfen, es in sich selbst zu entdecken.“ · Galileo Galilei</p>
+      <div class="rv">
+        <div class="sunrise" id="sun">
+          <img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait.jpg" alt="Sabine van den Boom" width="660" height="644">
+          <div class="sunrise__cap"><b>Sabine van den Boom</b>Systemische Coach · Heilpraktikerin für Psychotherapie</div>
+          <span id="pathStart"></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="sec" id="angebot">
+  <section class="st" data-side="l" id="start">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Wo Sie gerade stehen</p>
+      <h2 class="rv">Vielleicht beschäftigt Sie <b>gerade das:</b></h2>
+      <ul class="qs" id="qs">
+        <li>Wie gestalte ich meine berufliche Zukunft?</li>
+        <li>Wie treffe ich Entscheidungen mit Überzeugung?</li>
+        <li>Wie setze ich Grenzen, ohne mich zu verbiegen?</li>
+        <li>Wie gehe ich besser mit Stress und Druck um?</li>
+        <li>Wie überwinde ich eine Trennung oder einen Verlust?</li>
+        <li>Wie begegne ich Ängsten und Sorgen mit Mut?</li>
+      </ul>
+      <p class="after rv">Die Antworten tragen Sie bereits in sich. Meine Aufgabe ist, den Weg dorthin achtsam zu begleiten.</p>
+    </div></div>
+  </section>
+
+  <section class="st" data-side="c" aria-label="Einen Moment durchatmen">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Ein Moment für Sie</p>
+      <h2 class="rv">Atmen Sie <b>einmal mit.</b></h2>
+      <div class="breath" data-mark><i></i><span class="in">Einatmen</span><span class="out">Ausatmen</span></div>
+      <p class="rv">Ruhe ist oft der erste Schritt. Als Trainerin für Stressbewältigung gehört der Umgang mit Stress und Druck fest zu meiner Arbeit.</p>
+    </div></div>
+  </section>
+
+  <section class="st" data-side="r" id="angebot">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Was wir gemeinsam tun</p>
+      <h2 class="rv">Beruflich wie privat. <b>Immer als ganzer Mensch.</b></h2>
+      <div class="off">
+        <article class="rv"><h3>Business Coaching<small>Wirtschaft und Wissenschaft</small></h3><p>Ziel- und lösungsorientierte Begleitung bei Veränderungen, Führung und neuen Rollen, aus langjähriger Erfahrung als Unternehmensberaterin und Coach für Universitäten.</p><div class="tags"><span>Neuorientierung</span><span>Positive Leadership</span><span>Vereinbarkeit</span></div></article>
+        <article class="rv"><h3>Personal Coaching<small>Ihre persönlichen Anliegen</small></h3><p>Klarheit gewinnen, Beziehungen stärken, die eigene Balance finden. Ziel ist, dass Sie Ihre Anliegen auf Dauer selbst lösen können.</p><div class="tags"><span>Entscheidungen</span><span>Beziehungen</span><span>Selbstwert</span></div></article>
+        <article class="rv"><h3>Therapeutische Begleitung<small>Wenn die Seele Unterstützung braucht</small></h3><p>Bei Krisen, Verlusten, Ängsten oder Stressfolgen, unter anderem mit inneren Anteilen, Bild-, Gestalt- und Traumatherapie und Elementen des EMDR.</p><div class="tags"><span>Krisen</span><span>Ängste</span><span>Verluste</span></div></article>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="st" data-side="l" id="ueber">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Wer Sie begleitet</p>
+      <div class="photo rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait2.jpg" alt="Sabine van den Boom" width="453" height="293" loading="lazy"></div>
+      <h2 class="rv">Mit Herz, Verstand <b>und Humor.</b></h2>
+      <ul class="cv rv">
+        <li><b>Systemische Beraterin & Coach</b><span>ICO Augsburg · zertifiziert (DVCT)</span></li>
+        <li><b>Heilpraktikerin für Psychotherapie</b><span>Amtsärztliche Überprüfung, Gesundheitsamt Ingolstadt</span></li>
+        <li><b>Coach im Coaching-Pool der TU München</b><span>sowie für die KeCK (Fakultät für Medizin) und die fortiss GmbH</span></li>
+        <li><b>Vorher viele Jahre Unternehmensberaterin</b><span>Dipl.-Wirtschaftsgeografin, LMU / KU Eichstätt-Ingolstadt</span></li>
+      </ul>
+      <p class="said rv">„Professionell. Tiefgründig. Klar. Zugewandt.“ So beschreiben mich meine Kundinnen und Kunden.</p>
+    </div></div>
+  </section>
+
+  <section class="st" data-side="r" id="ablauf">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Wie es beginnt</p>
+      <h2 class="rv">Drei Schritte. <b>In Ihrem Tempo.</b></h2>
+      <ol class="steps rv">
+        <li><b>Vorgespräch.</b> Persönlich, telefonisch oder online. Wir klären Ihr Anliegen und den Rahmen, Sie fragen alles, was Sie wissen möchten.</li>
+        <li><b>Sitzungen.</b> Bewährt haben sich 90 Minuten im Abstand von etwa zwei Wochen.</li>
+        <li><b>Ihr Weg.</b> Viele Themen klären sich in 4 bis 5 Terminen. Tiefer Sitzendes braucht mehr Zeit, und die nehmen wir uns.</li>
+      </ol>
+      <div class="price rv">
+        <div>Coaching (Selbstzahler)<b>100 €</b>je 60 Min., zzgl. MwSt. · Unternehmen auf Anfrage</div>
+        <div>Therapeutische Sitzung<b>100 €</b>je 60 Min., umsatzsteuerfrei (§ 4 Nr. 14 UStG)</div>
+      </div>
+      <p class="small rv">Absagen bitte bis 2 Werktage vorher, sonst berechne ich 80 € Ausfallhonorar.</p>
+    </div></div>
+  </section>
+
+  <section class="st" data-side="l" id="praxis">
+    <div class="st__in"><div class="st__box">
+      <p class="k rv">Wo wir uns treffen</p>
+      <div class="photo rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/praxis.jpg" alt="Praxisraum mit zwei Sesseln" width="451" height="337" loading="lazy"></div>
+      <h2 class="rv">Ein geschützter Raum <b>in Solln.</b></h2>
+      <p class="rv">Wolfratshauser Straße 145, 81479 München · Eingang Rückgebäude MILD (Münchner Institut für Lösungsorientiertes Denken). Sehr gute S-Bahn-Anbindung, kostenfreie Parkplätze, Sitzungen auch online.</p>
+      <div class="cta rv"><a class="btn btn--soft" href="https://www.google.com/maps/search/?api=1&query=Wolfratshauser+Stra%C3%9Fe+145+81479+M%C3%BCnchen" target="_blank" rel="noopener">Route planen</a></div>
+    </div></div>
+  </section>
+
+  <section class="goal" id="kontakt">
     <div class="wrap">
-      <div class="sec__head">
-        <div><p class="k rv">Angebot</p><h2 class="rv">Beruflich wie privat. <em>Immer als ganzer Mensch.</em></h2></div>
-        <p class="rv">Ob Entscheidung, Konflikt oder Neuanfang: Wir bringen uns immer im Ganzen mit. Deshalb verbinde ich Coaching und therapeutische Methoden, lösungsorientiert und aus einer Hand.</p>
-      </div>
-      <div class="offers">
-        <article class="offer rv">
-          <div class="offer__n">01</div>
-          <h3>Business Coaching<small>Für Führungskräfte, Wissenschaft und Wirtschaft</small></h3>
-          <div><p>Ziel- und lösungsorientierte Begleitung bei Veränderungen, Herausforderungen und neuen Rollen. Aus langjähriger Erfahrung als Unternehmensberaterin und Coach für Universitäten kenne ich beide Welten.</p>
-          <div class="chips"><span>Karriere und Neuorientierung</span><span>Führung & Positive Leadership</span><span>Vereinbarkeit</span><span>Stress & Resilienz</span></div></div>
-        </article>
-        <article class="offer rv">
-          <div class="offer__n">02</div>
-          <h3>Personal Coaching<small>Für Ihre persönlichen Anliegen</small></h3>
-          <div><p>Klarheit gewinnen, Entscheidungen mit Überzeugung treffen, Grenzen authentisch setzen. Ziel ist, dass Sie Ihre Anliegen langfristig selbst lösen können: Selbst ist die Devise.</p>
-          <div class="chips"><span>Entscheidungen</span><span>Beziehungen</span><span>Work-Life-Balance</span><span>Selbstwert</span></div></div>
-        </article>
-        <article class="offer rv">
-          <div class="offer__n">03</div>
-          <h3>Therapeutische Begleitung<small>Wenn die Seele Unterstützung braucht</small></h3>
-          <div><p>Bei Krisen, Verlusten, Ängsten oder anhaltendem Stress. Als Heilpraktikerin für Psychotherapie arbeite ich unter anderem mit inneren Anteilen, Bild-, Gestalt- und Traumatherapie sowie Elementen des EMDR.</p>
-          <div class="chips"><span>Krisen & Verluste</span><span>Ängste</span><span>Stressfolgen</span><span>Inneres Kind</span></div></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec quote">
-    <div class="wrap">
-      <blockquote class="rv">Was nützt der beste Verstand, wenn das <em>Herz</em> nicht einverstanden ist?</blockquote>
-      <p class="rv">Sabine van den Boom</p>
-    </div>
-  </section>
-
-  <section class="sec" id="ueber">
-    <div class="wrap about">
-      <div>
-        <p class="k rv">Über mich</p>
-        <div class="about__img rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/portrait2.jpg" alt="Sabine van den Boom" width="453" height="293"></div>
-        <p class="about__said rv">Professionell. Tiefgründig. Klar. Zugewandt. Humorvoll. Direkt. Achtsam.<span>… sagen meine Kundinnen und Kunden.</span></p>
-      </div>
-      <div>
-        <h3 class="rv">Wo ich arbeite</h3>
-        <ul class="cv rv">
-          <li><b>Eigene Praxis am MILD</b><span>Münchner Institut für Lösungsorientiertes Denken</span></li>
-          <li><b>Coaching-Pool der TU München</b><span>TUM Diversity & Equal Opportunities</span></li>
-          <li><b>Coach für die KeCK</b><span>Dekanat der Fakultät für Medizin, TUM</span></li>
-          <li><b>Coach für die fortiss GmbH</b><span>Landesforschungsinstitut des Freistaats Bayern</span></li>
-        </ul>
-        <h3 class="rv">Was mich ausmacht</h3>
-        <ul class="cv rv">
-          <li><b>Systemische Beraterin & Coach</b><span>ICO Augsburg</span></li>
-          <li><b>Heilpraktikerin für Psychotherapie</b><span>Gesundheitsamt Ingolstadt</span></li>
-          <li><b>Positive Leadership PERMA-Lead® Coach</b><span>Dr. Markus Ebner</span></li>
-          <li><b>Bild-, Gestalt- und Traumatherapie, EMDR</b><span>Int. Forum für Psychotherapie</span></li>
-          <li><b>Dipl.-Wirtschaftsgeografin, Unternehmensberaterin</b><span>LMU / KU Eichstätt-Ingolstadt</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec" id="ablauf" style="background:#fff">
-    <div class="wrap">
-      <div class="sec__head">
-        <div><p class="k rv">Ablauf & Kosten</p><h2 class="rv">Ein guter Ausgang braucht <em>einen guten Anfang.</em></h2></div>
-        <p class="rv">Im Vorgespräch klären wir Ihr Anliegen, den Rahmen und alle Ihre Fragen. Danach entscheiden Sie in Ruhe, ob wir zusammenarbeiten.</p>
-      </div>
-      <div class="steps">
-        <div class="step rv"><i>1</i><h3>Vorgespräch</h3><p>Persönlich in Solln, telefonisch oder online. Sie fragen alles, was Sie wissen möchten.</p></div>
-        <div class="step rv"><i>2</i><h3>Sitzungen</h3><p>Bewährt haben sich 90 Minuten im Abstand von etwa zwei Wochen.</p></div>
-        <div class="step rv"><i>3</i><h3>Ihr Weg</h3><p>Viele Themen lassen sich in 4 bis 5 Terminen klären. Tiefer Sitzendes braucht mehr Zeit, und die nehmen wir uns.</p></div>
-      </div>
-      <div class="price">
-        <div class="rv"><small>Coaching für Selbstzahler</small><b>100 €</b><small>je 60 Minuten, zzgl. MwSt. · Unternehmen auf Anfrage · in der Regel steuerlich absetzbar</small></div>
-        <div class="rv"><small>Therapeutische Sitzung</small><b>100 €</b><small>je 60 Minuten, umsatzsteuerfrei (§ 4 Nr. 14 UStG) · Privatleistung</small></div>
-      </div>
-      <p class="note rv">Termine bitte spätestens 2 Werktage vorher absagen, sonst berechne ich 80 € Ausfallhonorar.</p>
-    </div>
-  </section>
-
-  <section class="sec" id="praxis">
-    <div class="wrap praxis">
-      <div class="praxis__img rv"><img src="/entwurf/sabine-van-den-boom-k7q3/img/praxis.jpg" alt="Praxisraum mit zwei Sesseln" width="451" height="337"></div>
-      <div>
-        <p class="k rv">Praxis</p>
-        <h2 class="rv">Ein geschützter Raum <em>im Münchner Süden.</em></h2>
-        <address class="rv">Systemische Praxis · Coaching | Beratung | Therapie<br>Wolfratshauser Straße 145, 81479 München-Solln<br>Eingang Rückgebäude MILD</address>
-        <ul class="rv"><li>Sehr gute S-Bahn-Anbindung</li><li>Kostenfreie Parkplätze</li><li>Sitzungen auch online</li></ul>
-        <div class="cta rv"><a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&query=Wolfratshauser+Stra%C3%9Fe+145+81479+M%C3%BCnchen" target="_blank" rel="noopener">Route planen</a></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="sec contact" id="kontakt">
-    <div class="wrap">
-      <h2 class="rv">Lassen Sie uns <em>sprechen.</em></h2>
-      <p class="rv">Rufen Sie mich an oder schreiben Sie mir. Ich melde mich und wir finden einen Termin für Ihr Vorgespräch.</p>
-      <div class="cta rv"><a class="btn" href="tel:+491728921091">0172 89 21 091</a><a class="btn btn--ghost" href="mailto:sabinevandenboom@t-online.de">E-Mail schreiben</a></div>
+      <div id="pathEnd"></div>
+      <h2 class="rv">Am Ende des Weges: <b>Klarheit.</b></h2>
+      <p class="rv">Der erste Schritt ist ein Gespräch. Rufen Sie mich an oder schreiben Sie mir, dann finden wir einen Termin für Ihr Vorgespräch.</p>
+      <div class="cta rv"><a class="btn" href="tel:+491728921091">0172 89 21 091</a><a class="btn btn--soft" href="mailto:sabinevandenboom@t-online.de">E-Mail schreiben</a></div>
     </div>
   </section>
 </main>
@@ -327,34 +281,107 @@ footer { padding: 36px 0 120px; font-size: .8125rem; color: var(--muted); }
 <footer>
   <div class="wrap">
     <div class="ft"><span>© Sabine van den Boom · Coaching & Begleitung · München-Solln</span><span>Impressum · Datenschutz</span></div>
-    <p class="foav">Dies ist ein unverbindlicher Entwurf von <a href="https://foav.de">FOAV</a> aus München-Solln, erstellt mit den öffentlichen Inhalten Ihrer bisherigen Website. Eine Website wie diese gibt es ab 399 € zum Festpreis, Hosting inklusive, ohne monatliche Kosten.</p>
+    <p class="foav">Unverbindlicher Entwurf von <a href="https://foav.de">FOAV</a> aus München-Solln, erstellt mit den öffentlichen Inhalten Ihrer bisherigen Website. Eine Website wie diese gibt es ab 399 € zum Festpreis, Hosting inklusive, ohne monatliche Kosten.</p>
   </div>
 </footer>
 
-<div class="mbar"><a class="btn" href="#kontakt">Vorgespräch</a><a class="btn btn--ghost" href="tel:+491728921091">Anrufen</a></div>
+<div class="mbar"><a class="btn" href="#kontakt">Vorgespräch</a><a class="btn btn--soft" href="tel:+491728921091">Anrufen</a></div>
 
 <script>
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const hd = document.getElementById('hd');
-  const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
-  document.querySelectorAll('.rv').forEach((el, i) => { el.style.transitionDelay = (Math.min(i % 4, 3) * 80) + 'ms'; io.observe(el); });
-  if (reduce) return;
-  const words = document.getElementById('words'), spans = [...document.querySelectorAll('#wl span')], q = document.getElementById('wq'), arch = document.getElementById('arch');
-  let tick = false;
-  function frame() {
-    tick = false;
-    hd.classList.toggle('s', scrollY > 10);
-    const r = words.getBoundingClientRect(), total = r.height - innerHeight;
-    const p = Math.min(1, Math.max(0, -r.top / total));
-    const n = Math.floor(p * (spans.length + 1.5));
-    spans.forEach((s, i) => s.classList.toggle('on', i < n));
-    q.classList.toggle('on', n > spans.length);
-    const a = Math.min(1, Math.max(0, scrollY / (innerHeight * .8)));
-    arch.style.setProperty('--p', a.toFixed(3));
+  const NS = 'http://www.w3.org/2000/svg';
+  const hd = document.getElementById('hd'), main = document.querySelector('.journey'), svg = document.getElementById('path');
+  const qs = [...document.querySelectorAll('#qs li')], end = document.getElementById('pathEnd');
+
+  // reveal
+  const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { rootMargin: '0px 0px -8% 0px' });
+  document.querySelectorAll('.rv').forEach(el => io.observe(el));
+
+  // background: cool morning grey -> warm light
+  const stops = [[233,237,240],[241,238,230],[248,233,210]];
+  function bgAt(p) { const s = p < .5 ? 0 : 1, t = p < .5 ? p / .5 : (p - .5) / .5, a = stops[s], b = stops[s + 1]; return `rgb(${a.map((v, i) => Math.round(v + (b[i] - v) * t)).join(',')})`; }
+
+  let main1, rose, ghost, tip, marks = [], table = [], len = 0, top0 = 0;
+  const off = (el) => { const r = el.getBoundingClientRect(), m = main.getBoundingClientRect(); return { x: r.left - m.left, y: r.top - m.top, w: r.width, h: r.height }; };
+
+  function build() {
+    svg.innerHTML = '';
+    const W = main.clientWidth, mobile = W < 900;
+    svg.setAttribute('viewBox', `0 0 ${W} ${main.scrollHeight}`);
+    const pts = [];
+    const s = off(document.getElementById('pathStart'));
+    const railX = 26;
+    if (mobile) { pts.push([railX, s.y + 10]); }
+    else pts.push([s.x, s.y]);
+    marks = [];
+    document.querySelectorAll('.st').forEach((st, i) => {
+      const b = off(st), side = st.dataset.side, box = off(st.querySelector('.st__box'));
+      let x;
+      if (mobile) x = railX + (i % 2 ? 6 : -6);
+      else if (side === 'l') x = Math.min(W - 60, box.x + box.w + (W - box.x - box.w) * .42);
+      else if (side === 'r') x = Math.max(60, box.x * .58);
+      else x = W / 2;
+      const mid = st.querySelector('[data-mark]') ? off(st.querySelector('[data-mark]')) : null;
+      const cy = mid ? mid.y + mid.h / 2 : b.y + b.h / 2;
+      const mx = mobile ? x : (mid ? mid.x + mid.w / 2 : x);
+      if (!mobile && side === 'c') {
+        // Linie läuft links an Überschrift und Atemkreis vorbei und berührt den Kreis nur
+        const lx = Math.max(40, Math.min(box.x, mid ? mid.x : box.x) - 90);
+        pts.push([lx, b.y + 20]);
+        pts.push([lx + 40, cy]);
+        marks.push([lx + 40, cy, st]);
+        pts.push([lx, b.y + b.h - 20]);
+        return;
+      }
+      pts.push([mobile ? railX : W / 2, b.y + 20]);
+      pts.push([mx, cy]);
+      marks.push([mx, cy, st]);
+      pts.push([mobile ? railX : W / 2, b.y + b.h - 20]);
+    });
+    const e = off(end);
+    pts.push([mobile ? railX : e.x + e.w / 2, e.y + e.h / 2]);
+    // Catmull-Rom -> cubic Bezier
+    let d = `M${pts[0][0]},${pts[0][1]}`;
+    for (let i = 0; i < pts.length - 1; i++) {
+      const p0 = pts[i - 1] || pts[i], p1 = pts[i], p2 = pts[i + 1], p3 = pts[i + 2] || p2, k = 6;
+      d += ` C${p1[0] + (p2[0] - p0[0]) / k},${p1[1] + (p2[1] - p0[1]) / k} ${p2[0] - (p3[0] - p1[0]) / k},${p2[1] - (p3[1] - p1[1]) / k} ${p2[0]},${p2[1]}`;
+    }
+    const mk = (cls) => { const p = document.createElementNS(NS, 'path'); p.setAttribute('d', d); p.setAttribute('class', cls); svg.appendChild(p); return p; };
+    ghost = mk('p-ghost'); rose = mk('p-rose'); rose.setAttribute('transform', 'translate(7 5)'); main1 = mk('p-main');
+    marks = marks.map(([x, y, st]) => { const c = document.createElementNS(NS, 'circle'); c.setAttribute('cx', x); c.setAttribute('cy', y); c.setAttribute('r', 7); c.setAttribute('class', 'mk'); svg.appendChild(c); return { c, y, st }; });
+    tip = document.createElementNS(NS, 'circle'); tip.setAttribute('r', 6); tip.setAttribute('class', 'tip'); svg.appendChild(tip);
+    len = main1.getTotalLength();
+    [main1, rose].forEach(p => { p.style.strokeDasharray = len; p.style.strokeDashoffset = len; });
+    table = []; for (let l = 0; l <= len; l += 6) table.push([l, main1.getPointAtLength(l).y]);
+    top0 = main.getBoundingClientRect().top + scrollY;
+    frame();
   }
-  addEventListener('scroll', () => { if (!tick) { tick = true; requestAnimationFrame(frame); } }, { passive: true });
-  frame();
+
+  function lenAtY(y) { let lo = 0, hi = table.length - 1; if (y <= table[0][1]) return 0; while (lo < hi) { const m = (lo + hi + 1) >> 1; if (table[m][1] <= y) lo = m; else hi = m - 1; } return table[lo][0]; }
+
+  let ticking = false;
+  function frame() {
+    ticking = false;
+    hd.classList.toggle('s', scrollY > 10);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    document.body.style.backgroundColor = bgAt(Math.min(1, scrollY / max));
+    if (!main1) return;
+    const y = scrollY + innerHeight * .62 - top0;
+    const l = reduce ? len : Math.min(len, lenAtY(y));
+    main1.style.strokeDashoffset = len - l;
+    rose.style.strokeDashoffset = len - Math.max(0, l - 60);
+    const pt = main1.getPointAtLength(l); tip.setAttribute('cx', pt.x); tip.setAttribute('cy', pt.y);
+    tip.style.opacity = l > 2 && l < len - 2 ? 1 : 0;
+    marks.forEach(m => m.c.classList.toggle('on', pt.y >= m.y - 2 || reduce));
+    qs.forEach(q => { const r = q.getBoundingClientRect(); q.classList.toggle('on', reduce || r.top + r.height / 2 < innerHeight * .62); });
+    end.classList.toggle('on', l >= len - 4);
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }, { passive: true });
+  let rt; addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(build, 150); });
+  (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(() => setTimeout(build, 50));
+  addEventListener('load', build);
+  document.querySelectorAll('img').forEach(i => i.addEventListener('load', () => { clearTimeout(rt); rt = setTimeout(build, 120); }));
 })();
 </script>
 </body>
