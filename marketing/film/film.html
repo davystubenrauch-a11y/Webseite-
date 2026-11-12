@@ -5,14 +5,16 @@
 @font-face { font-family: Inter; src: url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2"); font-weight: 100 900; }
 * { box-sizing: border-box; margin: 0; }
 :root {
-  --grad: linear-gradient(180deg, #8a5cff 0%, #5b47f0 30%, #3466f2 62%, #7fb8ff 100%);
-  --ribs: repeating-linear-gradient(90deg, rgba(255,255,255,.22) 0 3px, rgba(255,255,255,.07) 3px 84px, rgba(10,10,80,.10) 84px 87px, rgba(10,10,80,.05) 87px 168px);
-  --ink: #0d0d12; --shadow: 0 30px 80px rgba(40,50,140,.18), 0 4px 14px rgba(40,50,140,.08);
+  --grad: linear-gradient(180deg, #4a4b54 0%, #232327 34%, #0b0b0d 70%, #000 100%);
+  --gradT: linear-gradient(180deg, #000 0%, #1d1d1f 38%, #55565e 72%, #a9abb3 100%);
+  --ribs: repeating-linear-gradient(90deg, rgba(255,255,255,.26) 0 3px, rgba(255,255,255,.07) 3px 84px, rgba(0,0,0,.30) 84px 87px, rgba(255,255,255,.015) 87px 168px);
+  --ribsT: repeating-linear-gradient(90deg, rgba(255,255,255,.55) 0 3px, rgba(255,255,255,.10) 3px 84px, rgba(0,0,0,.25) 84px 87px, rgba(0,0,0,.0) 87px 168px);
+  --ink: #0b0b0d; --shadow: 0 30px 80px rgba(0,0,0,.14), 0 4px 14px rgba(0,0,0,.06);
 }
 html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; font-family: Sora, sans-serif; color: var(--ink); }
 .sc { position: absolute; inset: 0; overflow: hidden; opacity: 0; background: #fff; }
 .gbg { background: var(--ribs), var(--grad); background-size: 168px 100%, 100% 100%; }
-.gt { background: var(--ribs), var(--grad); background-size: 168px 100%, 100% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.gt { background: var(--ribsT), var(--gradT); background-size: 168px 100%, 100% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
 .ln { position: absolute; white-space: nowrap; font-weight: 600; letter-spacing: -.045em; line-height: 1.12; overflow: hidden; padding: 0 .06em .08em; }
 .ln i { display: inline-block; font-style: normal; }
 /* phone */
@@ -21,15 +23,24 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
 .phone .scr img, .phone .scr video { width: 100%; display: block; }
 .phone .scr video { height: 100%; object-fit: cover; }
 .island { position: absolute; top: 26px; left: 50%; width: 120px; height: 36px; margin-left: -60px; border-radius: 20px; background: #000; z-index: 3; }
-.tile { position: absolute; border-radius: 26%; background: #fff; box-shadow: 0 30px 60px rgba(20,20,120,.28); display: grid; place-items: center; color: #3d5cf5; font-weight: 700; letter-spacing: -.04em; overflow: hidden; }
+.tile { position: absolute; border-radius: 26%; background: #fff; box-shadow: 0 30px 70px rgba(0,0,0,.55); display: grid; place-items: center; color: #0b0b0d; font-weight: 700; letter-spacing: -.04em; overflow: hidden; }
 .tile svg { width: 56%; height: 56%; } .tile img { width: 100%; height: 100%; object-fit: cover; }
+/* macbook */
+.macw { position: absolute; left: 410px; top: 268px; width: 1100px; perspective: 2400px; }
+.lid { background: #0b0b0d; border-radius: 30px 30px 6px 6px; padding: 16px 16px 20px; box-shadow: 0 0 0 2px #5a5b62, 0 50px 120px rgba(0,0,0,.6); transform-origin: 50% 100%; position: relative; }
+.lid .scr { aspect-ratio: 16/10; overflow: hidden; border-radius: 10px; background: #fff; position: relative; }
+.lid .scr img { width: 100%; display: block; }
+.lid .notch { position: absolute; top: 16px; left: 50%; width: 150px; height: 22px; margin-left: -75px; background: #0b0b0d; border-radius: 0 0 12px 12px; z-index: 3; }
+.lid .shine { position: absolute; inset: 16px 16px 20px; border-radius: 10px; background: linear-gradient(115deg, rgba(255,255,255,.22) 0%, rgba(255,255,255,0) 32%); z-index: 4; }
+.base { height: 30px; margin: 0 -110px; background: linear-gradient(180deg, #e9eaee 0%, #b4b6be 55%, #7c7e86 100%); border-radius: 4px 4px 26px 26px; position: relative; box-shadow: 0 40px 60px rgba(0,0,0,.55); }
+.base::after { content: ""; position: absolute; left: 50%; top: 0; width: 190px; height: 12px; margin-left: -95px; background: #9a9ca4; border-radius: 0 0 12px 12px; }
 /* input bar */
-.bar { position: absolute; left: 280px; top: 430px; width: 1360px; height: 220px; border-radius: 110px; border: 8px solid transparent; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #7fc4ff, #3466f2 40%, #5b47f0 70%, #a070ff) border-box; box-shadow: 0 0 70px rgba(70,90,240,.42), 0 0 20px rgba(120,150,255,.5); display: flex; align-items: center; padding: 0 44px 0 70px; }
-.bar svg.pin { width: 76px; height: 76px; flex: none; color: #3466f2; }
+.bar { position: absolute; left: 280px; top: 430px; width: 1360px; height: 220px; border-radius: 110px; border: 8px solid transparent; background: linear-gradient(#fff, #fff) padding-box, linear-gradient(90deg, #c9cbd3, #55565e 35%, #0b0b0d 70%, #8e9099) border-box; box-shadow: 0 0 80px rgba(0,0,0,.28), 0 0 22px rgba(0,0,0,.18); display: flex; align-items: center; padding: 0 44px 0 70px; }
+.bar svg.pin { width: 76px; height: 76px; flex: none; color: #0b0b0d; }
 .bar .ty { font-size: 108px; font-weight: 600; letter-spacing: -.04em; margin-left: 34px; white-space: nowrap; flex: 1; }
-.bar .ty u { text-decoration: none; display: inline-block; width: 7px; height: 104px; background: #3466f2; vertical-align: -14px; margin-left: 8px; border-radius: 4px; }
-.bar .chip { font-size: 54px; font-weight: 700; color: #2f4fd0; background: #e9eefc; padding: 22px 40px; border-radius: 60px; margin-right: 28px; white-space: nowrap; }
-.bar .go { width: 164px; height: 164px; border-radius: 50%; background: linear-gradient(160deg, #5b47f0, #3466f2); display: grid; place-items: center; flex: none; box-shadow: 0 14px 34px rgba(60,70,230,.45); }
+.bar .ty u { text-decoration: none; display: inline-block; width: 7px; height: 104px; background: #0b0b0d; vertical-align: -14px; margin-left: 8px; border-radius: 4px; }
+.bar .chip { font-size: 54px; font-weight: 700; color: #0b0b0d; background: #ececf0; padding: 22px 40px; border-radius: 60px; margin-right: 28px; white-space: nowrap; }
+.bar .go { width: 164px; height: 164px; border-radius: 50%; background: linear-gradient(160deg, #3a3b42, #000); display: grid; place-items: center; flex: none; box-shadow: 0 14px 34px rgba(0,0,0,.45); }
 .bar .go svg { width: 84px; height: 84px; }
 .cur { position: absolute; width: 70px; height: 70px; z-index: 5; }
 .cur b { position: absolute; left: 52px; top: 62px; background: #0d0d12; color: #fff; font: 600 30px Sora; padding: 10px 24px; border-radius: 30px; white-space: nowrap; }
@@ -37,14 +48,14 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
 #world { position: absolute; left: 0; top: 0; width: 3500px; height: 1100px; transform-origin: 0 0; }
 .cd { position: absolute; border-radius: 56px; background: #fff; box-shadow: var(--shadow); overflow: hidden; padding: 44px 48px; }
 .cd h3 { font-size: 78px; font-weight: 700; letter-spacing: -.045em; line-height: 1; }
-.cd p { font: 500 36px Inter; color: #6b7088; margin-top: 14px; letter-spacing: -.01em; }
+.cd p { font: 500 36px Inter; color: #6e6e73; margin-top: 14px; letter-spacing: -.01em; }
 .cd .num { font-size: 150px; font-weight: 700; letter-spacing: -.06em; line-height: 1; }
 .cd.gbg { background: var(--ribs), var(--grad); background-size: 168px 100%, 100% 100%; }
-.blue { background: linear-gradient(150deg, #2a56e8, #1b2f9c); color: #fff; } .blue p { color: #c9d4ff; }
-.vio { background: linear-gradient(150deg, #e7e2ff, #cfd8ff); }
+.blue { background: linear-gradient(150deg, #2c2c31, #000); color: #fff; } .blue p { color: #b6b8c0; }
+.vio { background: #e9e9ee; }
 .btn { display: inline-block; font-size: 38px; font-weight: 700; padding: 18px 36px; border-radius: 50px; background: #fff; color: #1b2f9c; margin-top: 30px; }
 .row { display: flex; align-items: center; justify-content: space-between; padding: 22px 0; border-bottom: 2px solid #eef0f6; font-size: 44px; font-weight: 650; letter-spacing: -.03em; }
-.row span { font: 700 30px Inter; background: #2a56e8; color: #fff; padding: 10px 22px; border-radius: 30px; margin-left: 16px; }
+.row span { font: 700 30px Inter; background: #0b0b0d; color: #fff; padding: 10px 22px; border-radius: 30px; margin-left: 16px; }
 .pill { position: absolute; display: flex; align-items: center; gap: 22px; background: #fff; border-radius: 80px; padding: 20px 44px 20px 22px; box-shadow: var(--shadow); font-size: 50px; font-weight: 650; letter-spacing: -.03em; white-space: nowrap; }
 .pill em { width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; font-style: normal; background: #fff4d6; }
 .pill em svg { width: 52px; height: 52px; }
@@ -53,8 +64,8 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
 .brand { position: absolute; left: 0; right: 0; top: 330px; display: flex; justify-content: center; align-items: center; gap: 44px; }
 .brand img { width: 220px; height: 220px; border-radius: 56px; }
 .brand b { font-size: 250px; font-weight: 650; letter-spacing: -.05em; line-height: 1; }
-.cta { position: absolute; left: 50%; top: 700px; transform: translateX(-50%); font-size: 76px; font-weight: 700; color: #fff; padding: 30px 80px; border-radius: 100px; background: linear-gradient(90deg, #3466f2, #5b47f0 60%, #8a5cff); box-shadow: 0 24px 60px rgba(70,70,240,.4); white-space: nowrap; }
-.tag { position: absolute; left: 0; right: 0; top: 590px; text-align: center; font: 500 48px Inter; color: #6b7088; letter-spacing: -.01em; }
+.cta { position: absolute; left: 50%; top: 700px; transform: translateX(-50%); font-size: 76px; font-weight: 700; color: #fff; padding: 30px 80px; border-radius: 100px; background: linear-gradient(180deg, #2c2c31, #000); box-shadow: 0 24px 60px rgba(0,0,0,.35); white-space: nowrap; }
+.tag { position: absolute; left: 0; right: 0; top: 590px; text-align: center; font: 500 48px Inter; color: #6e6e73; letter-spacing: -.01em; }
 </style></head><body>
 
 <section class="sc" id="s1">
@@ -64,7 +75,7 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
 
 <section class="sc gbg" id="s2">
   <div class="ln" id="b1" style="left:0;right:0;top:50px;text-align:center;font-size:150px;color:#fff">Ihre neue Website</div>
-  <div class="phone" id="ph2" style="left:740px;top:290px"><div class="island"></div><div class="scr" style="background:#fff"><img id="spi" src="file:///home/user/Webseite-/public/media/ref-spiruli-mob.webp"></div></div>
+  <div class="macw" id="mac"><div class="lid" id="lid"><div class="notch"></div><div class="scr"><img id="spi" src="file:///home/user/Webseite-/public/media/ref-spiruli-desk.webp"></div><div class="shine"></div></div><div class="base"></div></div>
   <div id="tiles2"></div>
   <p class="note" style="left:60px;bottom:40px">Im Bild: unsere Referenz SPIRULI</p>
 </section>
@@ -79,7 +90,7 @@ html, body { width: 1920px; height: 1080px; overflow: hidden; background: #fff; 
   <div class="cur" id="cur"><svg viewBox="0 0 24 24" width="70" height="70"><path d="M4 2l6.5 18 2.6-7.2L20 10.2z" fill="#0d0d12" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg><b>FOAV</b></div>
 </section>
 
-<section class="sc" id="s4" style="background:#f6f7fb"><div id="world">
+<section class="sc" id="s4" style="background:#f2f2f5"><div id="world">
   <div class="cd blue" style="left:100px;top:110px;width:640px;height:440px"><h3>Website</h3><p>3 bis 10 Seiten, fertig gestaltet</p><div class="num" style="margin-top:26px;font-size:120px">ab 399 €</div></div>
   <div class="cd" style="left:780px;top:110px;width:400px;height:440px"><div class="num gt">0 €</div><h3 style="font-size:56px;margin-top:20px">Hosting</h3><p>im Monat, inklusive</p></div>
   <div class="cd" style="left:1220px;top:110px;width:400px;height:440px"><div class="num gt">7</div><h3 style="font-size:56px;margin-top:20px">Tage</h3><p>bis Ihre Seite online ist</p></div>
@@ -122,9 +133,9 @@ const back = (x) => { x = cl(x); const c = 1.9; return 1 + (c + 1) * Math.pow(x 
 // split lines into letters
 document.querySelectorAll('.ln').forEach(l => { const walk = (n) => { [...n.childNodes].forEach(c => { if (c.nodeType === 3) { const f = document.createDocumentFragment(); [...c.textContent].forEach(ch => { const i = document.createElement('i'); i.textContent = ch === ' ' ? ' ' : ch; if (n !== l && n.classList.contains('gt')) i.className = 'gt'; f.appendChild(i); }); n.replaceChild(f, c); } else walk(c); }); }; walk(l); if (l.classList.contains('gt')) { l.classList.remove('gt'); l.querySelectorAll('i').forEach(i => i.classList.add('gt')); } l._i = [...l.querySelectorAll('i')]; });
 function letters(id, t, a, st = .04, d = .7, outAt = 1e9) { const l = $(id); l._i.forEach((el, i) => { const k = eo((t - a - i * st) / d), o = eio((t - outAt - i * .015) / .35); el.style.transform = `translateY(${(1 - k) * 115 - o * 115}%) rotate(${(1 - k) * 6}deg)`; el.style.backgroundPosition = `${-el.offsetLeft - l.offsetLeft + t * 30}px 0, 0 ${-l.offsetTop * .0}px`; }); }
-const ICON = { star: '<svg viewBox="0 0 24 24" fill="#f5b400"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.700 21.400l1.500-7.100L1.800 9.400l7.200-.800z"/></svg>', check: '<svg viewBox="0 0 24 24" fill="none" stroke="#3d5cf5" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.500l5.500 5.500L20 6.500"/></svg>', globe: '<svg viewBox="0 0 24 24" fill="none" stroke="#3d5cf5" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.200 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></svg>', play: '<svg viewBox="0 0 24 24" fill="#3d5cf5"><path d="M7 4l14 8-14 8z"/></svg>' };
+const ICON = { star: '<svg viewBox="0 0 24 24" fill="#f5b400"><path d="M12 2l3 6.6 7.2.8-5.4 4.9 1.5 7.1L12 17.8 5.700 21.400l1.500-7.100L1.800 9.400l7.200-.800z"/></svg>', check: '<svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0d" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.500l5.500 5.500L20 6.500"/></svg>', globe: '<svg viewBox="0 0 24 24" fill="none" stroke="#0b0b0d" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.200 3 14.800 0 18M12 3c-3 3.200-3 14.800 0 18"/></svg>', play: '<svg viewBox="0 0 24 24" fill="#0b0b0d"><path d="M7 4l14 8-14 8z"/></svg>' };
 // floating tiles: x,y,size,blur,content,phase
-const T2 = [[330, 300, 150, 0, ICON.globe], [1420, 250, 130, 2, ICON.star], [200, 640, 210, 7, ICON.check], [1500, 520, 170, 0, '<span style="font-size:64px">0 €</span>'], [520, 800, 170, 12, ICON.star], [1300, 820, 200, 9, ICON.globe], [1680, 800, 120, 4, ICON.check]];
+const T2 = [[170, 300, 150, 0, ICON.globe], [1600, 250, 140, 2, ICON.star], [40, 600, 210, 7, ICON.check], [1650, 540, 180, 0, '<span style="font-size:68px">0 €</span>'], [230, 880, 150, 11, ICON.star], [1560, 860, 190, 9, ICON.globe], [1790, 90, 110, 5, ICON.check]];
 const T5 = [[300, 280, 190, 0, '<img src="file:///home/user/Webseite-/public/media/vorher-1-md.jpg">'], [1400, 240, 170, 3, '<img src="file:///home/user/Webseite-/public/media/vorher-2-md.jpg">'], [170, 640, 230, 8, '<img src="file:///home/user/Webseite-/public/media/vorher-3-md.jpg">'], [1480, 540, 180, 0, ICON.play], [560, 820, 160, 12, '<span style="font-size:52px">48 h</span>'], [1290, 830, 210, 9, '<img src="file:///home/user/Webseite-/public/media/vorher-1-md.jpg">']];
 function mk(host, arr) { return arr.map(([x, y, s, b, c], i) => { const d = document.createElement('div'); d.className = 'tile'; d.style.cssText = `left:${x}px;top:${y}px;width:${s}px;height:${s}px;font-size:${s * .4}px`; d.innerHTML = c; $(host).appendChild(d); return { d, b, i, x, y, s }; }); }
 const tiles2 = mk('tiles2', T2), tiles5 = mk('tiles5', T5);
@@ -143,8 +154,9 @@ window.render = (t) => {
   $('a1').style.transform = `translateX(${-k * 14}px)`; $('a2').style.transform = `translateX(${k * 14}px)`;
   // 2 website phone
   k = t - S[1]; letters('b1', k, .1, .025, .7);
-  const p2 = eo((k - .1) / 1.1); $('ph2').style.transform = `translateY(${(1 - p2) * 900}px) rotate(${-10 + 6 * p2 + Math.sin(k) * 1}deg) scale(${.9 + .1 * p2 + k * .012})`;
-  $('spi').style.transform = `translateY(${-cub((k - .9) / 2.6) * 1500}px)`; tiles(tiles2, k);
+  const p2 = eo((k - .05) / 1.0), op = eo((k - .35) / 1.1); $('mac').style.transform = `translateY(${(1 - p2) * 700}px) scale(${.92 + .08 * p2 + k * .01})`;
+  $('lid').style.transform = `rotateX(${-86 * (1 - op)}deg)`; $('lid').style.filter = `brightness(${.35 + .65 * op})`;
+  $('spi').style.transform = `translateY(${-cub((k - 1.25) / 2.3) * 1280}px)`; tiles(tiles2, k);
   $('s2').style.backgroundPosition = `${k * 40}px 0, 0 0`;
   // 3 input bar
   k = t - S[2]; const bk = back((k - .05) / .6); $('bar').style.transform = `scale(${.6 + .4 * bk})`; $('bar').style.opacity = cl(k * 5);
