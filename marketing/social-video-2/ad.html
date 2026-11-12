@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Inter; src: url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: Sora; src: url(file:///home/user/Webseite-/public/site/fonts/sora-latin.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #0b0b0d; font-family: Inter, sans-serif; color: #fff; }
+#stage { position: absolute; inset: 0; overflow: hidden; }
+.sc { position: absolute; inset: 0; opacity: 0; overflow: hidden; }
+.bg-d { background: radial-gradient(120% 80% at 50% 30%, #1c1c22 0%, #0b0b0d 70%); }
+.bg-l { background: #f5f5f7; color: #111; }
+/* captions: Sicherheitszonen oben 250, unten 420, rechts 130 frei */
+.cap { position: absolute; left: 70px; right: 150px; font-weight: 900; letter-spacing: -.045em; line-height: 1.04; font-size: 98px; }
+.cap span { display: inline-block; margin-right: .22em; opacity: 0; transform-origin: 50% 80%; }
+.cap span.hl { background: #fff; color: #0b0b0d; padding: 0 .16em; border-radius: .14em; margin-left: -.06em; }
+.bg-l .cap span.hl { background: #111; color: #fff; }
+.phone { position: absolute; left: 190px; top: 690px; width: 700px; height: 1420px; border-radius: 96px; background: #26262b; padding: 20px; box-shadow: 0 80px 160px rgba(0,0,0,.7), 0 0 0 3px #3b3b42; }
+.phone .scr { width: 100%; height: 100%; border-radius: 78px; overflow: hidden; position: relative; background: #fff; }
+.island { position: absolute; top: 34px; left: 50%; width: 170px; height: 48px; margin-left: -85px; border-radius: 30px; background: #000; z-index: 5; }
+.url { position: absolute; top: 0; left: 0; right: 0; height: 150px; background: #ececf0; z-index: 3; }
+.url u { position: absolute; left: 40px; right: 40px; bottom: 16px; height: 50px; border-radius: 16px; background: #fff; text-decoration: none; color: #8e8e93; font-size: 26px; line-height: 50px; text-align: center; }
+.old { position: absolute; top: 150px; left: 0; width: 1100px; transform: scale(.6); transform-origin: 0 0; background: #ffffcc; font-family: "Times New Roman", Times, serif; color: #000; padding: 30px 40px 1600px; text-align: center; }
+.old .hd { background: #000080; color: #ffff00; font-size: 60px; font-weight: bold; padding: 20px; border: 8px ridge #c0c0c0; }
+.old .mq { color: #ff0000; font-size: 40px; font-weight: bold; margin: 26px 0; }
+.old .nav { font-size: 36px; color: #0000ee; text-decoration: underline; word-spacing: 22px; }
+.old .box { margin: 30px auto 0; width: 700px; height: 300px; border: 5px inset #999; background: repeating-linear-gradient(45deg, #ddd 0 20px, #eee 20px 40px); display: grid; place-items: center; font-size: 34px; color: #666; }
+.old p { font-size: 30px; margin: 30px 60px; text-align: left; line-height: 1.3; }
+.old .cnt { font-size: 30px; } .old .cnt b { background: #000; color: #0f0; font-family: monospace; padding: 4px 10px; letter-spacing: 6px; }
+.new { position: absolute; top: 150px; left: 0; right: 0; }
+.new img { width: 100%; display: block; }
+.stamp { position: absolute; left: 0; right: 0; top: 820px; text-align: center; font-size: 400px; font-weight: 900; letter-spacing: -.06em; color: #ff3b30; opacity: 0; text-shadow: 0 30px 80px rgba(255,59,48,.45); }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; pointer-events: none; z-index: 20; }
+.card { position: absolute; inset: 0; opacity: 0; display: flex; flex-direction: column; justify-content: center; padding: 0 150px 160px 70px; }
+.card .n { white-space: nowrap; font-size: 300px; font-weight: 900; letter-spacing: -.07em; line-height: .86; }
+.card .l { font-size: 96px; font-weight: 800; letter-spacing: -.04em; line-height: 1; margin-top: 30px; }
+.card .s { font-size: 50px; font-weight: 600; opacity: .6; margin-top: 26px; letter-spacing: -.01em; }
+.plane { position: absolute; left: 70px; top: 1040px; width: 230px; height: 230px; opacity: 0; }
+.end { position: absolute; left: 70px; top: 1200px; display: flex; align-items: center; gap: 26px; opacity: 0; }
+.end img { width: 120px; height: 120px; border-radius: 30px; box-shadow: 0 0 0 3px #fff; }
+.end b { font-family: Sora; font-weight: 650; font-size: 110px; letter-spacing: -.04em; }
+.end i { font-style: normal; font-size: 54px; font-weight: 700; background: #fff; color: #0b0b0d; padding: 16px 34px; border-radius: 999px; margin-left: 14px; }
+.note { position: absolute; left: 74px; top: 618px; font-size: 26px; color: #8e8e93; opacity: 0; }
+.prog { position: absolute; left: 0; top: 0; height: 8px; background: #fff; z-index: 30; mix-blend-mode: difference; }
+</style></head><body>
+<div id="stage">
+<!-- 1+2+3: Handy -->
+<section class="sc bg-d" id="s1">
+  <div class="cap" id="c1" style="top:260px"></div>
+  <div class="cap" id="c2" style="top:260px"></div>
+  <div class="cap" id="c3" style="top:260px"></div>
+  <div class="phone" id="ph"><div class="island"></div><div class="scr">
+    <div class="url"><u id="u">www.dein-betrieb.de</u></div>
+    <div class="old" id="old"><div class="hd">Herzlich Willkommen!!!</div><div class="mq">*** NEU *** Jetzt auch im Internet *** NEU ***</div><div class="nav">Home Über_uns Angebot Gästebuch Kontakt</div><div class="box">bild_01.jpg</div><p>Wir begrüßen Sie recht herzlich auf unserer Homepage. Diese Seite ist optimiert für Internet Explorer 6 und eine Auflösung von 1024 x 768 Pixel.</p><div class="cnt">Sie sind Besucher Nr. <b>004211</b> · Letzte Änderung: 2009</div><div class="box" style="height:420px">bild_02.jpg</div></div>
+    <div class="new" id="new"><img id="spi" src="file:///home/user/Webseite-/public/media/ref-spiruli-mob.webp"></div>
+  </div></div>
+  <div class="stamp" id="weg">WEG.</div>
+  <p class="note" id="n3">Beispiel: unsere Referenz SPIRULI</p>
+</section>
+<!-- 4: Karten -->
+<section class="sc" id="s4">
+  <div class="card bg-l" id="k1"><div class="n">399 €</div><div class="l">einmalig.</div><div class="s">Fertige Website zum Festpreis</div></div>
+  <div class="card bg-d" id="k2"><div class="l" style="font-size:230px;line-height:.9">Kein<br>Abo.</div><div class="s">Keine Vertragslaufzeit</div></div>
+  <div class="card bg-l" id="k3"><div class="n">0 €</div><div class="l">Hosting im Monat.</div><div class="s">Bei uns inklusive</div></div>
+</section>
+<!-- 5: teilen -->
+<section class="sc bg-d" id="s5">
+  <div class="cap" id="c5" style="top:420px;font-size:128px"></div>
+  <svg class="plane" id="pl" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"><path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4 20-7Z"/></svg>
+  <div class="end" id="en"><img src="file:///home/user/Webseite-/public/media/icon-foav-512.png"><b>foav</b><i>foav.de</i></div>
+</section>
+<div class="flash" id="fl"></div>
+</div>
+<div class="prog" id="pg"></div>
+<script src="times.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x));
+const ease = (x) => 1 - Math.pow(1 - cl(x), 3);
+const eio = (x) => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const back = (x) => { x = cl(x); const c = 2.6; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+// captions: words pop in when spoken; * marks highlighted word
+const CAP = {
+  c1: 'So sieht *deine *Website für Kunden aus.',
+  c2: 'Ein *Blick. Und sie sind *weg.',
+  c3: 'Wir bauen sie *neu. In max. *7 *Tagen.',
+  c5: 'Schick das *jemandem, der das *braucht.'
+};
+const W = {};
+for (const id in CAP) { const el = $(id); W[id] = CAP[id].split(' ').map(w => { const s = document.createElement('span'); if (w[0] === '*') { s.className = 'hl'; w = w.slice(1); } s.textContent = w; el.appendChild(s); return s; }); }
+function words(id, t, a, d, instant) {
+  const ws = W[id], tot = ws.reduce((n, w) => n + w.textContent.length + 2, 0); let acc = 0;
+  ws.forEach((w, i) => { const at = a + (acc / tot) * d * .92; acc += w.textContent.length + 2; const x = instant && i < instant ? 1 : (t - at) / .16; w.style.opacity = cl(x * 2.5); w.style.transform = `scale(${x <= 0 ? .5 : .5 + .5 * back(x)}) translateY(${(1 - cl(x)) * 30}px)`; });
+}
+const T = window.TIMES; // [{s,d}] voice lines
+const CUT = [T[1].s - .1, T[2].s - .12, T[3].s - .12, T[4].s - .12];
+window.DUR = window.TOTAL;
+const KC = [0, 1, 2].map(i => T[3].s - .12 + (T[3].d + .2) * [0, .40, .64][i]); window.KC = KC;
+window.render = (t) => {
+  $('pg').style.width = (t / DUR * 1080) + 'px';
+  // global shake on impacts
+  let sh = 0; [CUT[0] + .95, CUT[1], ...KC, CUT[3]].forEach(c => { const k = t - c; if (k >= 0 && k < .35) sh += Math.sin(k * 90) * 16 * (1 - k / .35); });
+  $('stage').style.transform = `translate(${sh}px, ${sh * .6}px)`;
+  let f = 0; [CUT[1], ...KC, CUT[3]].forEach(c => { const k = t - c; if (k >= -.04 && k < .22) f = Math.max(f, k < 0 ? .5 : (1 - k / .22)); });
+  $('fl').style.opacity = f * .85;
+  const on = (id, a, b) => { $(id).style.opacity = t >= a && t < b ? 1 : 0; };
+  const loop = t >= DUR - .2; // letzte Bilder = erstes Bild (Schleife)
+  on('s1', loop ? 0 : 0, loop ? 99 : CUT[2]); if (loop) $('s1').style.opacity = 1;
+  on('s4', CUT[2], CUT[3]); on('s5', CUT[3], DUR - .2);
+  const tt = loop ? 0 : t;
+  // --- scene 1-3: phone
+  const p1 = tt < CUT[0], p2 = tt >= CUT[0] && tt < CUT[1], p3 = tt >= CUT[1];
+  $('c1').style.opacity = p1 ? 1 : 0; $('c2').style.opacity = p2 ? 1 : 0; $('c3').style.opacity = p3 ? 1 : 0;
+  words('c1', tt, T[0].s, T[0].d, 3); words('c2', tt, T[1].s, T[1].d); words('c3', tt, T[2].s, T[2].d);
+  // phone motion: starts moving at frame 0 (zoom-out + drift), punch at cut, swipe away, slam back
+  let sc = 1.22 - .2 * ease(tt / 1.2) + Math.sin(tt * 1.7) * .006, ty = 30 * Math.sin(tt * 1.3), rot = -4 + 3 * ease(tt / 1.4) + Math.sin(tt * 2.1) * .5, op = 1, blur = 0;
+  if (p2) { const k = tt - CUT[0]; sc = 1.1 - .06 * ease(k / .5); rot = 0; const sw = eio((k - .95) / .32); ty = -2300 * sw; rot = -14 * sw; blur = sw > 0 && sw < 1 ? 14 : 0; op = sw < 1 ? 1 : 0; }
+  if (p3) { const k = tt - CUT[1]; sc = 1 + .7 * (1 - ease(k / .38)) ; ty = 0; rot = 3 * (1 - ease(k / .5)); }
+  $('ph').style.transform = `translateY(${ty}px) rotate(${rot}deg) scale(${sc})`; $('ph').style.opacity = op; $('ph').style.filter = blur ? `blur(${blur}px)` : 'none';
+  // old page: nervous tiny scroll; new page: fast scroll
+  $('old').style.opacity = p3 ? 0 : 1; $('new').style.opacity = p3 ? 1 : 0;
+  $('old').style.transform = `scale(.6) translateY(${-ease((tt - .5) / 1.6) * 330}px)`;
+  const k3 = tt - CUT[1]; $('spi').style.transform = `translateY(${-(eio(k3 / 1.1) * 900 + eio((k3 - 1.2) / 1.3) * 1500)}px)`;
+  $('u').textContent = p3 ? 'www.dein-betrieb.de  ·  neu' : 'www.dein-betrieb.de';
+  $('n3').style.opacity = p3 ? ease((k3 - .5) / .4) : 0;
+  const wk = tt - (CUT[0] + .95); $('weg').style.opacity = p2 && wk > .12 ? 1 : 0; $('weg').style.transform = `scale(${wk <= .12 ? 3 : 1 + 2 * (1 - ease((wk - .12) / .22))}) rotate(-6deg)`;
+  // --- scene 4: cards
+  ['k1', 'k2', 'k3'].forEach((id, i) => { const a = KC[i], b = i < 2 ? KC[i + 1] : CUT[3]; const k = t - a, el = $(id); el.style.opacity = t >= a && t < b ? 1 : 0;
+    const z = 1.35 - .35 * ease(k / .28) + .03 * cl(k / 1.5); el.firstElementChild.style.transform = `scale(${z})`; el.firstElementChild.style.transformOrigin = '0 60%';
+    [...el.children].slice(1).forEach((c, j) => { const x = (k - .16 - j * .12) / .3; c.style.opacity = cl(x * 2); c.style.transform = `translateY(${(1 - ease(x)) * 50}px)`; }); });
+  // --- scene 5: share
+  const k5 = t - CUT[3]; words('c5', t, T[4].s, T[4].d);
+  const pk = eio((k5 - .5) / 1.1); $('pl').style.opacity = cl((k5 - .4) * 5) * (1 - cl((pk - .8) * 5));
+  $('pl').style.transform = `translate(${pk * 900}px, ${-pk * pk * 700 + Math.sin(pk * 6) * 30}px) rotate(${-10 - pk * 25}deg) scale(${1 - .3 * pk})`;
+  const ek = (k5 - 1.1) / .4; $('en').style.opacity = cl(ek * 2); $('en').style.transform = `translateY(${(1 - ease(ek)) * 60}px) scale(${1 + (k5 > 1.6 ? Math.sin((k5 - 1.6) * 6) * .012 : 0)})`;
+};
+render(0);
+</script></body></html>

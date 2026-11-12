@@ -5,12 +5,12 @@ const [,, mode, out] = process.argv; // mode: preview | full
   const p = await b.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
   const errs = []; p.on('pageerror', e => errs.push(e.message));
   await p.goto('file://' + __dirname + '/ad.html'); await p.waitForTimeout(800);
-  await p.evaluate(() => new Promise(r => { const v = document.getElementById('vid'); if (v.readyState >= 2) r(); else v.addEventListener('loadeddata', r); }));
+  
   const DUR = await p.evaluate(() => window.DUR), fps = 30;
-  const times = mode === 'preview' ? [1.6, 2.6, 3.4, 4.6, 6.8, 8.2, 9.2, 11.5, 13.3, 15.8, 17.3, 19.5] : [...Array(Math.round(DUR * fps)).keys()].map(i => i / fps);
+  const times = mode === 'preview' ? [0, 0.6, 1.6, 2.5, 3.05, 3.9, 4.3, 5.8, 6.7, 7.6, 8.7, 9.9, 11.6, 12.4, 13.5, 13.9] : [...Array(Math.round(DUR * fps)).keys()].map(i => i / fps);
   let i = 0;
   for (const t of times) {
-    await p.evaluate(async (t) => { render(t); const v = document.getElementById('vid'); const vt = Math.min(window.VT, v.duration - .05); if (Math.abs(v.currentTime - vt) > 1e-3) { await new Promise(r => { v.addEventListener('seeked', r, { once: true }); v.currentTime = vt; }); } }, t);
+    await p.evaluate((t) => render(t), t);
     await p.screenshot({ path: `${out}/f${String(i++).padStart(4, '0')}.${mode === 'preview' ? 'png' : 'jpg'}`, ...(mode === 'preview' ? {} : { type: 'jpeg', quality: 92 }) });
   }
   console.log('frames', i, errs);
