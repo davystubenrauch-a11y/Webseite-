@@ -4,6 +4,12 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-13 · Werbevideos für FOAV
+- Kritik der Gründer: Computerstimme (Piper) „lustlos“, erstes Social-Video „Schwachsinn“ → Stimme nur noch über Higgsfield `elevenlabs_v4` (4 Stimmen erzeugen, Tonhöhen-Spanne messen, lebendigste nehmen; „Nora“ = 15 Halbtöne). 4 Stimmen ≈ 5,5 Credits.
+- Higgsfield-Dateien liegen auf `d8j0ntlcm91z4.cloudfront.net` (in der Umgebung „Standard“ freigegeben) → Download per curl geht.
+- Video-Regeln (Recherche): Hook + Angebot in 3 s, Bewegung ab Bild 0, eine Idee, 7–20 s, Untertitel Wort für Wort, Schnitt alle 1–2 s, Teilen-Aufruf, Schleife. Stil, der gefiel: Glasrippen, Verlaufs-Schrift, MacBook, Kacheln mit Unschärfe, echte Bewegungsunschärfe (90 Bilder/s + `tmix`).
+- Farben auch im Video: Schwarz/Silber/Weiß, nur Sterne gelb (Blau-Violett wurde abgelehnt).
+
 ### 2026-11-10 · Sabine van den Boom, Konzept C „Der Weg“
 - Kritik der Gründer: erster Entwurf „wie jede andere Seite“, weil ich die 3 Konzepte übersprungen habe → **nie ohne 3 Konzepte und Wahl bauen**, auch nicht bei Verkaufsentwürfen.
 - Technik „Der Weg“: SVG-Pfad über alle Abschnitte (Punkte aus Abschnitts-Positionen, Catmull-Rom → Bezier), zeichnet sich per stroke-dash beim Scrollen, Spitze bei 62 % Bildschirmhöhe, Marker leuchten auf; Hintergrund wird von kühl zu warm (Sonnenaufgang). Handy: senkrechte Schiene links.
