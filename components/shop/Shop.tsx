@@ -5,7 +5,7 @@ import { Shell } from "@/components/forms/Briefing";
 import { site } from "@/lib/site";
 import { euro, isService, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
 
-// Shop: NFC plates and the basic roomtour, cart with the shipping rule, then Stripe Checkout
+// Shop: NFC plates (Classic and Custom Brand Edition), KI-Shots and websites, cart with the shipping rule, then Stripe Checkout
 // (or, while Stripe is not set up, the order is delivered to us and we send a payment link).
 // Cart persists in localStorage ("foav-cart").
 
@@ -19,6 +19,9 @@ const css = `
 .sh-pic .plate { width: 70%; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 18px 30px -14px rgba(0,0,0,.35), inset 0 0 0 1px rgba(0,0,0,.06); display: grid; place-items: center; font: 700 15px/1 "Inter", sans-serif; letter-spacing: -.02em; }
 .sh-pic .plate--w { background: radial-gradient(circle at 50% 50%, #fff 55%, transparent 56%), conic-gradient(#ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0); color: #4285f4; }
 .sh-pic .plate--b { background: radial-gradient(circle at 50% 50%, #161618 55%, transparent 56%), conic-gradient(#ea4335 0 25%, #fbbc05 0 50%, #34a853 0 75%, #4285f4 0); color: #fff; }
+.sh-pic .plate--c { position: relative; background: #111113; color: #fff; display: grid; place-items: center; align-content: center; gap: 6%; box-shadow: 0 18px 30px -14px rgba(0,0,0,.45), inset 0 0 0 3px #2a2a2e; }
+.sh-pic .plate--c img { width: 58%; height: auto; object-fit: contain; }
+.sh-pic .plate--c small { font: 600 8px/1.2 "Inter", sans-serif; letter-spacing: .02em; opacity: .75; text-align: center; max-width: 70%; }
 .sh-item h2 { margin: 0; font: 600 22px/1.2 "Inter", sans-serif; letter-spacing: -.025em; color: var(--ink); }
 .sh-item p { margin: 6px 0 0; font-size: 15px; color: var(--muted); }
 .sh-price { margin-top: 12px !important; font: 600 22px/1 "Inter", sans-serif !important; color: var(--ink) !important; font-variant-numeric: tabular-nums; }
@@ -48,19 +51,20 @@ const css = `
 
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
-  if (id.startsWith("roomtour-")) return <div className="sh-pic"><img src={id === "roomtour-basis" ? "/media/tour-md-2.jpg" : id === "roomtour-premium" ? "/media/tour-md-1.jpg" : "/media/tour-md-3.jpg"} alt="" /></div>;
+  if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-shots/spiruli-clean.jpg" : "/images/ki-shots/spiruli-dark.jpg"} alt="" /></div>;
+  if (id === "nfc-custom") return <div className="sh-pic"><img src="/images/ki-shots/nfc-custom-spiruli.jpg" alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
 
 export default function Shop({ online = false }: { online?: boolean }) {
   const [cart, setCart] = useState<Cart>({});
-  const [f, setF] = useState({ name: "", email: "", phone: "", company: "", business: "", address: "", consent: false, early: false, website: "" });
+  const [f, setF] = useState({ name: "", email: "", phone: "", company: "", business: "", glink: "", address: "", consent: false, early: false, website: "" });
   const [ref, setRef] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending" | "sent">("idle");
 
   // The cart lives in localStorage, so it survives the questionnaire and a page reload.
-  // Links add to it, e.g. /shop?weiss=10, /shop?roomtour=1 or /shop?web=Business&ref=FOAV-…
+  // Links add to it, e.g. /shop?weiss=10, /shop?shots=Pro&ref=FOAV-…, /shop?custom=5&ref=FOAV-… or /shop?web=Business&ref=FOAV-…
   const [ready, setReady] = useState(false);
   const loaded = useRef(false);
   useEffect(() => {
@@ -70,9 +74,13 @@ export default function Shop({ online = false }: { online?: boolean }) {
     const q = new URLSearchParams(location.search);
     let c: Cart = {}, refs: string[] = [];
     try { const saved = JSON.parse(localStorage.getItem("foav-cart") ?? "{}"); c = saved.cart ?? {}; refs = saved.refs ?? []; } catch {}
-    const w = +(q.get("weiss") ?? 0), b = +(q.get("schwarz") ?? 0), r = +(q.get("roomtour") ?? 0), rp = +(q.get("premium") ?? 0), rx = +(q.get("exklusiv") ?? 0);
-    const web = (q.get("web") ?? "").toLowerCase();
-    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (r) c["roomtour-basis"] = 1; if (rp) c["roomtour-premium"] = 1; if (rx) c["roomtour-exklusiv"] = 1;
+    // drop products that no longer exist (e.g. old roomtour items in a saved cart)
+    for (const k of Object.keys(c)) if (!products.some((p) => p.id === k)) delete c[k as ProductId];
+    const num = (k: string) => Math.max(0, Math.min(50, Math.floor(+(q.get(k) ?? 0)) || 0));
+    const w = num("weiss"), b = num("schwarz"), cu = num("custom");
+    const web = (q.get("web") ?? "").toLowerCase(), shots = (q.get("shots") ?? "").toLowerCase();
+    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (cu) c["nfc-custom"] = cu;
+    if (shots === "starter" || shots === "pro" || shots === "brand") { delete c["shots-starter"]; delete c["shots-pro"]; delete c["shots-brand"]; c[`shots-${shots}` as ProductId] = 1; }
     if (web === "basis" || web === "business" || web === "premium") { delete c["web-basis"]; delete c["web-business"]; delete c["web-premium"]; c[`web-${web}` as ProductId] = 1; }
     const nr = (q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20);
     if (nr && !refs.includes(nr)) refs.push(nr);
@@ -93,7 +101,8 @@ export default function Shop({ online = false }: { online?: boolean }) {
 
   const t = totals(cart);
   const hasService = t.lines.some((l) => isService(l.id));
-  const shown = products.filter((p) => p.physical || (cart[p.id] ?? 0) > 0);
+  // Custom plates need the logo from the NFC questionnaire, so they only appear after it (or when already in the cart).
+  const shown = products.filter((p) => (p.physical && p.id !== "nfc-custom") || (cart[p.id] ?? 0) > 0);
   const setQty = (id: ProductId, q: number) => setCart((c) => ({ ...c, [id]: Math.max(0, Math.min(q, products.find((p) => p.id === id)!.max)) }));
   const up = (k: keyof typeof f) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setF((o) => ({ ...o, [k]: e.target.type === "checkbox" ? (e.target as HTMLInputElement).checked : e.target.value }));
 
@@ -124,12 +133,12 @@ export default function Shop({ online = false }: { online?: boolean }) {
   return (
     <Shell
       title={hasService ? "Letzter Schritt: bezahlen." : "Direkt bestellen."}
-      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten bestellen Sie hier direkt. Websites und Roomtours starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
+      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten Classic bestellen Sie hier direkt. Websites, KI-Shots und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
       steps={[
         ["Paket wählen", "Der Preis steht vorher fest."],
-        ["Fragebogen", "Websites und Roomtours: Angaben und Fotos senden."],
+        ["Fragebogen", "Websites, KI-Shots und Logo-Platten: Angaben und Fotos senden."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Ergebnis erhalten", "Platten in 3 bis 7 Werktagen per Post, Roomtour in 48 Stunden bis 5 Werktagen, Website in 5 bis 7 Tagen."],
+        ["Ergebnis erhalten", "Platten Classic in 3 bis 7 Werktagen per Post, KI-Shots in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -153,8 +162,9 @@ export default function Shop({ online = false }: { online?: boolean }) {
               </article>
             ))}
           </div>
-          <p className="sh-note">Mengenpreis für alle Platten zusammen, Farben gemischt: ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist auch der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
-          {!hasService && <p className="sh-note">Eine Website oder Roomtour? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/roomtours#pakete">KI-Roomtours</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
+          <p className="sh-note">Classic: Mengenpreis für Weiß und Schwarz zusammen, ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
+          {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (Custom Brand Edition, ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
+          {!hasService && <p className="sh-note">Eine Website oder KI-Shots? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Shots</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 
         <aside className="sh-cart" aria-label="Warenkorb">
@@ -167,7 +177,8 @@ export default function Shop({ online = false }: { online?: boolean }) {
               <div className="sh-row sh-total"><span>Summe</span><b>{euro(t.total)}</b></div>
               {ref && <p className="sh-hint">Zu Ihrem Fragebogen {ref}</p>}
               <p className="sh-hint">{vatNote}</p>
-              {t.plates > 0 && t.plates < 10 && <p className="sh-free">{t.plates < shipping.freeFrom ? `Noch ${shipping.freeFrom - t.plates} ${shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann zahlen Sie nur 13,90 € pro Platte und der Versand ist kostenlos.` : `Noch ${10 - t.plates} ${10 - t.plates === 1 ? "Platte" : "Platten"}, dann zahlen Sie nur 12,90 € pro Platte.`}</p>}
+              {t.plates > 0 && t.plates < shipping.freeFrom && <p className="sh-free">Noch {shipping.freeFrom - t.plates} {shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann ist der Versand kostenlos{t.custom === 0 ? " und Sie zahlen nur 13,90 € pro Platte" : ""}.</p>}
+              {t.classic >= shipping.freeFrom && t.classic < 10 && <p className="sh-free">Noch {10 - t.classic} {10 - t.classic === 1 ? "Platte" : "Platten"} Classic, dann zahlen Sie nur 12,90 € pro Platte.</p>}
             </>
           )}
           <form className="sh-form" onSubmit={order} noValidate>
@@ -175,7 +186,8 @@ export default function Shop({ online = false }: { online?: boolean }) {
             <div><label htmlFor="o-email">E-Mail</label><input id="o-email" type="email" autoComplete="email" value={f.email} onChange={up("email")} />{errors.email && <p className="bf-err">{errors.email}</p>}</div>
             <div><label htmlFor="o-phone">Telefon (optional)</label><input id="o-phone" type="tel" autoComplete="tel" value={f.phone} onChange={up("phone")} /></div>
             <div><label htmlFor="o-company">Firma (optional, für die Rechnung)</label><input id="o-company" type="text" autoComplete="organization" value={f.company} onChange={up("company")} /></div>
-            {t.plates > 0 && <div><label htmlFor="o-biz">Ihr Betrieb, wie er bei Google heißt</label><input id="o-biz" type="text" value={f.business} onChange={up("business")} placeholder="z. B. Café Sonne, München" />{errors.business && <p className="bf-err">{errors.business}</p>}</div>}
+            {t.plates > 0 && <div><label htmlFor="o-biz">Ihr Betrieb, wie er bei Google heißt</label><input id="o-biz" type="text" value={f.business} onChange={up("business")} placeholder="z. B. Café Sonne, Hauptstraße 5, München" />{errors.business && <p className="bf-err">{errors.business}</p>}<p className="bf-hint" style={{ margin: "6px 0 0" }}>Wir suchen Ihren Eintrag bei Google Maps, hinterlegen den Link zur Bewertungsseite auf jeder Platte und testen jede Platte vor dem Versand. Sie müssen nichts einrichten.</p></div>}
+            {t.plates > 0 && <div><label htmlFor="o-glink">Link zu Ihrem Google-Profil (optional)</label><input id="o-glink" type="url" inputMode="url" value={f.glink} onChange={up("glink")} placeholder="https://g.page/r/… oder maps.app.goo.gl/…" /><p className="bf-hint" style={{ margin: "6px 0 0" }}>Nur nötig, wenn es Ihren Namen mehrfach gibt. So finden Sie ihn: Google Maps öffnen, Ihren Betrieb antippen, „Teilen“, Link kopieren.</p></div>}
             {!online && (<div><label htmlFor="o-addr">{t.plates > 0 ? "Rechnungs- und Lieferadresse" : "Rechnungsadresse"}</label><textarea id="o-addr" autoComplete="street-address" value={f.address} onChange={up("address")} placeholder="Straße und Hausnummer, PLZ und Ort" />{errors.address && <p className="bf-err">{errors.address}</p>}</div>)}
             <input className="bf-hp" tabIndex={-1} aria-hidden="true" value={f.website} onChange={up("website")} />
             <label className="bf-consent" style={{ fontWeight: 400 }}>

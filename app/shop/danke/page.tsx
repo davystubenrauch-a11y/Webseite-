@@ -31,11 +31,14 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
       )}
       <h2>So geht es weiter</h2>
       <p>
-        <b>NFC-Platten:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil und schicken sie Ihnen per Post. Sie sind in 3 bis 7 Werktagen bei Ihnen.
+        <b>NFC-Platten Classic:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil, testen sie und schicken sie Ihnen per Post. Sie sind in 3 bis 7 Werktagen bei Ihnen.
       </p>
       <p>
-        <b>KI-Roomtour:</b> Falls noch nicht geschehen, laden Sie jetzt die Fotos Ihrer Räume hoch. 48 Stunden danach bekommen Sie Ihr Video.{" "}
-        <a href="/anfrage/roomtour">Fotos hochladen</a>
+        <b>NFC-Platten mit Ihrem Logo:</b> Sie bekommen innerhalb von 2 Werktagen eine Design-Vorschau per E-Mail. Erst nach Ihrer Freigabe produzieren wir.
+      </p>
+      <p>
+        <b>KI-Shots:</b> Wir starten mit Ihren Fotos aus dem Fragebogen. Starter kommt nach 48 Stunden, Pro und Brand-Paket nach 72 Stunden, jeweils als Download-Link per E-Mail. Noch keine Fotos geschickt?{" "}
+        <a href="/anfrage/ki-shots">Fotos hochladen</a>
       </p>
       <p>
         <b>Website:</b> Wir melden uns innerhalb eines Werktags mit den nächsten Schritten.

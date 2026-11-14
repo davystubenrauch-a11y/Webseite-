@@ -11,7 +11,7 @@ export default function NotFound() {
       <ul>
         <li><a href="/">Startseite</a></li>
         <li><a href="/websites">Websites</a></li>
-        <li><a href="/roomtours">KI-Roomtours</a></li>
+        <li><a href="/ki-shots">KI-Shots</a></li>
         <li><a href="/nfc-platten">NFC-Platten</a></li>
         <li><a href="/shop">Shop</a></li>
       </ul>

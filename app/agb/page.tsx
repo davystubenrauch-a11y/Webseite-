@@ -13,13 +13,13 @@ export default function Agb() {
 
       <h2>1. Geltungsbereich</h2>
       <p>
-        Diese Bedingungen gelten für alle Aufträge an {site.address[0]} („{site.name}“, „wir“) über die Erstellung von Websites, KI-Roomtour-Videos
-        und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
+        Diese Bedingungen gelten für alle Aufträge an {site.address[0]} („{site.name}“, „wir“) über die Erstellung von Websites, KI-Shots (KI-Produktfotos und
+        Werbeclips) und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
       </p>
 
       <h2>2. Vertragsschluss</h2>
       <p>
-        Die Pakete und Preise auf unserer Website sind verbindlich. Sie wählen ein Paket, senden bei Websites und Roomtours den Fragebogen
+        Die Pakete und Preise auf unserer Website sind verbindlich. Sie wählen ein Paket, senden bei Websites, KI-Shots und NFC-Platten mit Logo den Fragebogen
         und bestellen anschließend über den Knopf „Zahlungspflichtig bestellen“. Damit geben Sie ein verbindliches Angebot ab, das wir mit der
         Bestellbestätigung per E-Mail annehmen. Für Leistungen außerhalb der Pakete (z. B. „Individuell“) erhalten Sie vorher ein schriftliches
         Angebot; der Vertrag kommt dann mit Ihrer Bestätigung oder Zahlung zustande.
@@ -39,13 +39,17 @@ export default function Agb() {
         offline nehmen. Die Rechte an Ihren Inhalten und Ihrer Domain bleiben bei Ihnen.
       </p>
       <p>
-        <b>KI-Roomtours:</b> Ein Video-Rundgang, der mit Hilfe künstlicher Intelligenz aus Ihren Fotos entsteht, im vereinbarten Format (16:9
-        und/oder 9:16). Das Video zeigt Ihre Räume nach Ihren Fotos; einzelne Details können vom Original abweichen. Sie prüfen das Video vor der
-        Veröffentlichung und sorgen dafür, dass Ihre Unterkunft auf Buchungsportalen zutreffend dargestellt wird.
+        <b>KI-Shots:</b> Fotos und kurze Werbeclips, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos entstehen, in Anzahl und Formaten
+        des gewählten Pakets (Starter, Pro oder Brand-Paket). Licht, Hintergrund und Umgebung werden neu gestaltet; Ihr Produkt soll dabei
+        unverändert bleiben. Einzelne Details können trotzdem abweichen, deshalb prüfen Sie die Ergebnisse vor der Veröffentlichung. Für eine
+        zutreffende Darstellung Ihres Produkts in Werbung und Shop und für eine nötige Kennzeichnung als KI-Inhalt sind Sie verantwortlich; wir
+        blenden auf Wunsch einen Hinweis ein.
       </p>
       <p>
-        <b>NFC-Platten:</b> Runde Platten (Ø 10 cm, Weiß oder Schwarz) mit NFC-Chip, den wir mit dem von Ihnen genannten Google-Profil
-        verknüpfen. Wir schulden die Platte und die Verknüpfung, keine bestimmte Zahl oder Art von Bewertungen. Bitte beachten Sie die Richtlinien
+        <b>NFC-Platten:</b> Runde Platten (Ø 10 cm) mit NFC-Chip, den wir mit dem von Ihnen genannten Google-Profil verknüpfen, als Classic
+        Edition (Google-Design, Weiß oder Schwarz) oder als Custom Brand Edition mit Ihrem Logo. Bei der Custom Brand Edition erhalten Sie vor
+        der Produktion eine Design-Vorschau; produziert wird erst nach Ihrer Freigabe. Weil diese Platten nach Ihren Vorgaben angefertigt werden,
+        besteht für sie nach § 312g Abs. 2 Nr. 1 BGB kein Widerrufsrecht. Wir schulden die Platte und die Verknüpfung, keine bestimmte Zahl oder Art von Bewertungen. Bitte beachten Sie die Richtlinien
         von Google: Bewertungen dürfen nicht gekauft oder an Gegenleistungen geknüpft werden.
       </p>
 
@@ -58,16 +62,17 @@ export default function Agb() {
 
       <h2>5. Lieferzeiten</h2>
       <p>
-        Eine Roomtour liefern wir je nach Paket innerhalb von 48 Stunden (Basis), 72 Stunden (Premium) oder 5 Werktagen (Exklusiv), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
+        KI-Shots liefern wir je nach Paket innerhalb von 48 Stunden (Starter) oder 72 Stunden (Pro, Brand-Paket), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
         sobald die Zahlung eingegangen ist und uns alle nötigen Unterlagen vorliegen (Fotos, Texte, Logo, Zugangsdaten). NFC-Platten versenden wir
-        nach Zahlungseingang innerhalb Deutschlands; die Lieferung dauert 3 bis 7 Werktage. Verzögerungen, die wir nicht zu vertreten haben, verlängern die Fristen
+        nach Zahlungseingang innerhalb Deutschlands; die Lieferung der Classic Edition dauert 3 bis 7 Werktage. Die Custom Brand Edition
+        versenden wir innerhalb von 10 Werktagen nach Ihrer Freigabe der Design-Vorschau. Verzögerungen, die wir nicht zu vertreten haben, verlängern die Fristen
         entsprechend.
       </p>
 
       <h2>6. Ihre Mitwirkung</h2>
       <p>
         Sie stellen uns die benötigten Inhalte rechtzeitig zur Verfügung und versichern, dass Sie die Rechte daran haben, insbesondere an Fotos,
-        Texten und Logos. Auf Fotos für Roomtours sollen keine Personen zu erkennen sein. Werden Rechte Dritter verletzt, stellen Sie uns von
+        Texten und Logos. Auf Fotos für KI-Shots sollen keine Personen zu erkennen sein, und Sie dürfen nur Produkte und Marken einreichen, die Sie bewerben dürfen. Werden Rechte Dritter verletzt, stellen Sie uns von
         daraus folgenden Ansprüchen frei.
       </p>
 
@@ -80,8 +85,8 @@ export default function Agb() {
 
       <h2>8. Nutzungsrechte</h2>
       <p>
-        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website und das Roomtour-Video für Ihren
-        Betrieb zu nutzen, auch auf Airbnb, Booking.com und in sozialen Medien. Wir dürfen die Arbeit als Referenz zeigen, sofern Sie nicht
+        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website sowie die KI-Shots für Ihren
+        Betrieb zu nutzen, auch in sozialen Medien, Werbeanzeigen, Onlineshops und auf Google. Wir dürfen die Arbeit als Referenz zeigen, sofern Sie nicht
         widersprechen.
       </p>
 

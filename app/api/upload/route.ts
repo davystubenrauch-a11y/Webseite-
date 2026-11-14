@@ -10,7 +10,7 @@ import { issueSignedToken } from "@vercel/blob";
 
 const images = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif", "image/svg+xml", "application/pdf"];
 const maxBytes = 25 * 1024 * 1024;
-const okPath = (p: string) => /^(website|roomtour)\/[\w.\-/]+$/.test(p) && !p.includes("..");
+const okPath = (p: string) => /^(website|shots|nfc|roomtour)\/[\w.\-/]+$/.test(p) && !p.includes("..");
 
 const uploadMode = (): "token" | "presigned" | null =>
   process.env.BLOB_READ_WRITE_TOKEN ? "token" : process.env.BLOB_STORE_ID ? "presigned" : null;

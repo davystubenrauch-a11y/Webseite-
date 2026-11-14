@@ -4,12 +4,12 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://foav.de"),
-  title: "FOAV · Websites, KI-Roomtours und NFC-Platten aus München",
+  title: "FOAV · Websites, KI-Shots und NFC-Platten aus München",
   description:
-    "FOAV aus München: Websites ab 399 €, KI-Roomtour-Videos ab 349 € und NFC-Platten für Google-Bewertungen 14,90 € pro Stück. Festpreis, Antwort innerhalb von 24 Stunden.",
+    "FOAV aus München: Websites ab 399 €, KI-Shots (Studio-Fotos und Werbeclips aus Handyfotos) ab 199 € und NFC-Platten für Google-Bewertungen ab 14,90 €. Festpreis, Antwort innerhalb von 24 Stunden.",
   openGraph: {
     title: "FOAV",
-    description: "Websites, KI-Roomtours und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.",
+    description: "Websites, KI-Shots und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.",
     type: "website",
     locale: "de_DE",
   },

@@ -56,6 +56,7 @@ export async function POST(req: Request) {
     `Rechnungsadresse: ${addr(cd?.address)}`,
     ship ? `Lieferadresse: ${ship.name}, ${addr(ship.address)}` : "",
     m.business ? `Betrieb bei Google: ${m.business}` : "",
+    m.google_link ? `Google-Profil: ${m.google_link}` : "",
     m.ref ? `Fragebogen: ${m.ref}` : "",
     m.early_start === "ja" ? "Sofortiger Beginn verlangt, Hinweis zum Erlöschen des Widerrufsrechts bestätigt." : "",
     `Stripe: https://dashboard.stripe.com/${full.livemode ? "" : "test/"}payments/${typeof full.payment_intent === "string" ? full.payment_intent : full.payment_intent?.id ?? ""}`,

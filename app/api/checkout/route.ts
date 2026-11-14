@@ -7,7 +7,7 @@ import { deliver } from "@/lib/deliver";
 // Fulfilment runs in /api/stripe/webhook, not on the thank-you page. Without a key the order is
 // delivered like an inquiry (lib/deliver.ts) and we send a payment link.
 
-type Order = { cart: Cart; ref?: string; name: string; email: string; phone?: string; company?: string; business?: string; address?: string; consent: boolean; early?: boolean; website?: string };
+type Order = { cart: Cart; ref?: string; name: string; email: string; phone?: string; company?: string; business?: string; glink?: string; address?: string; consent: boolean; early?: boolean; website?: string };
 
 export async function POST(req: Request) {
   let o: Order;
@@ -29,6 +29,9 @@ export async function POST(req: Request) {
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(o.email?.trim() ?? "")) errors.email = "Bitte geben Sie eine gültige E-Mail-Adresse an.";
   if (!stripe() && !o.address?.trim()) errors.address = t.plates ? "Bitte geben Sie die Rechnungs- und Lieferadresse an." : "Bitte geben Sie die Rechnungsadresse an.";
   if (t.plates && !o.business?.trim()) errors.business = "Bitte nennen Sie Ihren Betrieb, wie er bei Google heißt.";
+  if (o.glink?.trim() && !/^https?:\/\/\S+$/i.test(o.glink.trim())) errors.business = "Bitte prüfen Sie den Link zu Ihrem Google-Profil (beginnt mit https://).";
+  // the logo for custom plates comes with the NFC questionnaire, so its reference must be there
+  if (t.custom && !String(o.ref ?? "").trim()) errors.cart = "Für Platten mit Ihrem Logo brauchen wir zuerst den kurzen NFC-Fragebogen mit Ihrem Logo (foav.de/anfrage/nfc).";
   if (!o.consent) errors.consent = "Bitte bestätigen Sie AGB und Widerrufsbelehrung.";
   if (t.lines.some((l) => isService(l.id)) && !o.early) errors.early = "Bitte bestätigen Sie, dass wir sofort beginnen dürfen. Sonst können wir erst nach Ablauf der Widerrufsfrist starten.";
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 422 });
@@ -40,7 +43,7 @@ export async function POST(req: Request) {
   const s = stripe();
   if (s) {
     const plates = t.plates > 0;
-    const meta = { order: id, ref: String(o.ref ?? "").slice(0, 70), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", note_address: o.address ?? "", early_start: o.early ? "ja" : "nein" };
+    const meta = { order: id, ref: String(o.ref ?? "").slice(0, 70), name: o.name, company: o.company ?? "", phone: o.phone ?? "", business: o.business ?? "", google_link: o.glink ?? "", note_address: o.address ?? "", early_start: o.early ? "ja" : "nein" };
     for (const k of Object.keys(meta) as (keyof typeof meta)[]) meta[k] = meta[k].slice(0, 480);
     const line = (name: string, cents: number, qty: number) => ({ quantity: qty, price_data: { currency: "eur", unit_amount: cents, product_data: { name } } });
     try {
@@ -93,6 +96,7 @@ export async function POST(req: Request) {
     o.ref ? `Fragebogen: ${o.ref}` : "",
     o.company ? `Firma: ${o.company}` : "",
     o.business ? `Betrieb bei Google: ${o.business}` : "",
+    o.glink ? `Google-Profil: ${o.glink}` : "",
     o.address ? `Adresse: ${o.address}` : "",
     o.early ? "Sofortiger Beginn verlangt, Hinweis zum Erlöschen des Widerrufsrechts bestätigt." : "",
   ].filter(Boolean).join("\n");

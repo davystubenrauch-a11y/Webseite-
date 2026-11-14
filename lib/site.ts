@@ -3,7 +3,7 @@
 export const site = {
   name: "FOAV",
   url: "https://foav.de",
-  claim: "Websites, KI-Roomtours und NFC-Platten aus München.",
+  claim: "Websites, KI-Shots und NFC-Platten aus München.",
   email: "info@foav.de",
   city: "München",
   founders: [

@@ -30,11 +30,16 @@ export default function Datenschutz() {
       </p>
       <h2>4. Fragebogen und Foto-Upload</h2>
       <p>
-        Im Website-Fragebogen und im Roomtour-Formular können Sie Angaben zu Ihrem Projekt machen und Fotos oder Ihr Logo hochladen. Die Dateien
+        Im Website-Fragebogen, im KI-Shots-Fragebogen und im Fragebogen für NFC-Platten mit Logo können Sie Angaben zu Ihrem Projekt machen und Fotos oder Ihr Logo hochladen. Die Dateien
         werden bei Vercel Blob (Vercel Inc., USA) gespeichert und sind nur über eine zufällig erzeugte, nicht öffentlich verlinkte Adresse
         erreichbar. Wir nutzen sie ausschließlich, um Ihren Auftrag zu erstellen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Vercel ist unter
         dem EU-US Data Privacy Framework zertifiziert. Wir löschen die Dateien spätestens drei Monate nach Abschluss des Auftrags, auf Wunsch
         sofort. Bitte laden Sie keine Fotos hoch, auf denen Personen zu erkennen sind.
+      </p>
+      <p>
+        Für KI-Shots übermitteln wir Ihre Produktfotos und Ihr Logo an unseren KI-Dienstleister Higgsfield (higgsfield.ai), der daraus die
+        Bilder und Clips erzeugt. Dabei können Daten in Länder außerhalb der Europäischen Union übertragen werden. Wir übermitteln nur die Dateien,
+        die für Ihren Auftrag nötig sind, und keine Kontaktdaten. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO.
       </p>
       <h2>5. Bestellungen und Zahlung</h2>
       <p>
