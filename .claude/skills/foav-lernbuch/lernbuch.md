@@ -4,6 +4,12 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-14 · Story-Video (Lisa und die Bäckerei)
+- Kritik der Gründer am Video mit „Nora“: Stimme klingt alt, zu wenig Effekte, gezeigte alte Website war eine Karikatur. → Helle Stimme „Chloe“ (ElevenLabs v4, Median ~267 Hz), jede Zeile einzeln erzeugen (exakte Zeiten, bessere Betonung).
+- Vorher/Nachher immer mit **demselben, echt wirkenden Betrieb** zeigen (hier erfundene Bäckerei „Morgenduft“, alt = typische Seite von 2014, neu = modern); im Abspann „Beispiel-Geschichte · Betrieb und Personen erfunden“. Keine erfundene Erfolgsgeschichte als echt ausgeben.
+- Gewünscht: Videos, die erst wie eine Geschichte wirken und nicht wie Werbung; Preis nicht ins Story-Video, sondern in den Beitragstext.
+- Kosten: 8 Sprechzeilen + 6 Stimmproben + 4 Bilder ≈ 25 Credits.
+
 ### 2026-11-13 · Werbevideos für FOAV
 - Kritik der Gründer: Computerstimme (Piper) „lustlos“, erstes Social-Video „Schwachsinn“ → Stimme nur noch über Higgsfield `elevenlabs_v4` (4 Stimmen erzeugen, Tonhöhen-Spanne messen, lebendigste nehmen; „Nora“ = 15 Halbtöne). 4 Stimmen ≈ 5,5 Credits.
 - Higgsfield-Dateien liegen auf `d8j0ntlcm91z4.cloudfront.net` (in der Umgebung „Standard“ freigegeben) → Download per curl geht.
