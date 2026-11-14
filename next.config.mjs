@@ -7,9 +7,9 @@ const nextConfig = {
   // KI-Roomtours were replaced by KI-Shots (11/2026): old links and search results land on the new pages.
   async redirects() {
     return [
-      { source: "/roomtours", destination: "/ki-shots", permanent: true },
-      { source: "/site/roomtours.html", destination: "/ki-shots", permanent: true },
-      { source: "/anfrage/roomtour", destination: "/anfrage/ki-shots", permanent: true },
+      { source: "/roomtours", destination: "/ki-shots", statusCode: 301 },
+      { source: "/site/roomtours.html", destination: "/ki-shots", statusCode: 301 },
+      { source: "/anfrage/roomtour", destination: "/anfrage/ki-shots", statusCode: 301 },
     ];
   },
   async rewrites() {

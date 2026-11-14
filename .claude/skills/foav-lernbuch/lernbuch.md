@@ -4,6 +4,13 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-14 · KI-Shots statt KI-Roomtours
+- Entscheidung der Gründer: Roomtours sind zu aufwendig und verbrauchen zu viele Higgsfield-Credits → ersetzt durch **KI-Shots** (Studio-Fotos + kurze Werbeclips aus Handyfotos): Starter 199 € (5 Fotos, 1 Clip, 48 h), Pro 449 € (12 Fotos, 3 Clips, 72 h, Empfohlen), Brand-Paket 899 € (25 Fotos, 6 Clips + Spot, 72 h).
+- Kosten Higgsfield: `gpt_image_2_6` mit `image_references` ≈ 0,25 Credits pro Bild, `kling3_0` Bild→Video 5 s ≈ 10 Credits, `seedance_2_5` 1080p ≈ 80 Credits (zu teuer für Pakete), 720p ≈ 35. Upload: media_upload → curl PUT an upload.higgsfield.ai (Host freigegeben) → media_confirm.
+- Marktpreise (Recherche): Packshot 14–40 €/Bild, Studio 85–250 €/h, Shooting vor Ort 500–1.500 €/Tag, klassischer 30-s-Spot mehrere Tausend €.
+- NFC jetzt Classic 14,90 € und **Custom Brand Edition 29,90 €** (ab 5: 27,90 €, ab 10: 24,90 €), mit Logo-Fragebogen `/anfrage/nfc` und Design-Vorschau vor Produktion. Lieferant/Produktionszeit der Logo-Platten noch bestätigen.
+- Weiterleitungen in Next: `statusCode: 301` statt `permanent: true` (gibt 308). Beim lokalen Testen alten `next-server` wirklich beenden, sonst antwortet noch der alte Stand.
+
 ### 2026-11-14 · Story-Video (Lisa und die Bäckerei)
 - Kritik der Gründer am Video mit „Nora“: Stimme klingt alt, zu wenig Effekte, gezeigte alte Website war eine Karikatur. → Helle Stimme „Chloe“ (ElevenLabs v4, Median ~267 Hz), jede Zeile einzeln erzeugen (exakte Zeiten, bessere Betonung).
 - Vorher/Nachher immer mit **demselben, echt wirkenden Betrieb** zeigen (hier erfundene Bäckerei „Morgenduft“, alt = typische Seite von 2014, neu = modern); im Abspann „Beispiel-Geschichte · Betrieb und Personen erfunden“. Keine erfundene Erfolgsgeschichte als echt ausgeben.

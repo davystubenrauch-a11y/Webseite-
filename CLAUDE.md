@@ -7,6 +7,13 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - `.claude/skills/foav-website` (Kunden-Websites: Ablauf, Pakete, Design-Regeln, Recht), `foav-selbstpruefung` (Pflicht vor jeder Übergabe: Screenshots Handy/Computer, 2 Verbesserungsrunden), `foav-roomtour` (Higgsfield → Treue-Prüfung → ffmpeg), `foav-lernbuch` (`lernbuch.md` = Gedächtnis zwischen Sitzungen; zu Beginn lesen, nach jedem Projekt ergänzen).
 - Kundenprojekte: eigene private Repos; neue Sitzung mit **zwei** Repos starten (`Webseite-` + Kunden-Repo), damit die Skills geladen werden. **Standardzweig des Repos muss `claude/hopeful-goodall-m39gmd` sein** (GitHub → Settings → Default branch), sonst sehen neue Sitzungen den alten Stand.
 
+## Stand: KI-Shots statt KI-Roomtours, NFC mit Logo (14.11.)
+- Kunde: „ich mache KI-Werbeshots statt Roomtouren“ + großes Upgrade (Website-Angebot unverändert). Roomtours überall ersetzt durch **KI-Shots & Werbevideos** (`/ki-shots`, Fragebogen `/anfrage/ki-shots`, `components/forms/ShotsBriefing.tsx`), Pakete Starter 199 / Pro 449 (Empfohlen) / Brand-Paket 899 € (`lib/shop.ts` shots-*). 301-Weiterleitungen `/roomtours`, `/site/roomtours.html`, `/anfrage/roomtour`.
+- Medien von Higgsfield: `public/images/ki-shots/` (SPIRULI vorher/nachher, Studio dunkel/clean, NFC-Logo-Platten), `public/videos/spiruli-shot-portrait|wide.mp4`. Vorher/Nachher-Regler mit Stilen Studio dunkel / Clean Studio / Werbeclip. Handy-Startbild `hero-lineup.webp` neu (SPIRULI statt Roomtour).
+- NFC: Abschnitt `#editionen` Classic 14,90 € vs **Custom Brand Edition 29,90 €** (27,90 ab 5, 24,90 ab 10), Paketwahl mit Umschalter, Logo-Fragebogen `/anfrage/nfc` (Logo Pflicht, Vorschau vor Produktion), Checkout verlangt für Logo-Platten eine Fragebogen-Nummer; optionales Feld Google-Link im Shop.
+- AGB §1–§8 und Datenschutz (Higgsfield als KI-Dienst, evtl. Übermittlung außerhalb der EU) angepasst → rechtlich prüfen lassen. Kontaktformular-Fehler (NFC ohne Menge → 422) behoben, toter React-Code und `lib/pricing.ts` u. a. entfernt.
+- Offen: Lieferant und Produktionszeit der Logo-Platten, Higgsfield-Nutzungsbedingungen (kommerziell), Stripe- und Blob-Schlüssel in Vercel. Skill `foav-roomtour` ist veraltet.
+
 ## Stand: live auf foav.de, Resend läuft (3.11.)
 - Vercel Production = Zweig `claude/hopeful-goodall-m39gmd` (per Promote; Branch Tracking unter Settings → Environments → Production, falls automatisch gewünscht).
 - Checkdomain: „Haupt-IP-Adresse“ IPv4 = `216.198.79.1` (Vercel), `www` CNAME auf Vercel, E-Mail-Empfang über Checkdomain (info@foav.de), Resend-Einträge `send`, `rsend`, `resend._domainkey`, `_dmarc` stehen. foav.de leitet auf www.foav.de, Zertifikat von außen gültig.
