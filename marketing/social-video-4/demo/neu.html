@@ -1,0 +1,32 @@
+<!doctype html><html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Morgenduft</title>
+<style>
+@font-face { font-family: Serif; src: url(file:///home/user/Webseite-/public/v24/fonts/instrument-serif.woff2) format("woff2"); }
+@font-face { font-family: SerifI; src: url(file:///home/user/Webseite-/public/v24/fonts/instrument-serif-italic.woff2) format("woff2"); }
+@font-face { font-family: Figtree; src: url(file:///home/user/Webseite-/public/site/fonts/figtree-latin.woff2) format("woff2"); font-weight: 300 900; }
+* { box-sizing: border-box; margin: 0; } body { font-family: Figtree, sans-serif; color: #2a2118; background: #fbf7f0; }
+.hero { position: relative; height: 100vh; min-height: 640px; color: #fff; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 6vw 9vh; background: linear-gradient(180deg, rgba(20,12,4,.35), rgba(20,12,4,.05) 35%, rgba(20,12,4,.72)), url(hero.jpg) center/cover; }
+nav { position: absolute; top: 0; left: 0; right: 0; display: flex; align-items: center; justify-content: space-between; padding: 26px 6vw; font-weight: 600; }
+nav b { font: 34px Serif; letter-spacing: -.01em; } nav div { display: flex; gap: 34px; font-size: 16px; align-items: center; } nav .r { background: #fff; color: #2a2118; padding: 12px 22px; border-radius: 40px; }
+h1 { font: clamp(52px, 8.6vw, 132px)/.95 Serif; letter-spacing: -.02em; } h1 i { font-family: SerifI; }
+.hero p { font-size: clamp(17px, 1.5vw, 22px); max-width: 30em; margin: 22px 0 30px; opacity: .92; line-height: 1.5; }
+.btns { display: flex; gap: 14px; flex-wrap: wrap; } .btn { padding: 17px 30px; border-radius: 40px; font-weight: 700; font-size: 17px; background: #fff; color: #2a2118; } .btn.o { background: transparent; color: #fff; box-shadow: inset 0 0 0 2px #fff; }
+.open { position: absolute; right: 6vw; bottom: 9vh; background: rgba(255,255,255,.94); color: #2a2118; border-radius: 22px; padding: 18px 24px; font-size: 15px; line-height: 1.5; } .open b { display: flex; align-items: center; gap: 8px; } .open b::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: #2fa84f; }
+section { padding: 110px 6vw; } h2 { font: clamp(40px, 5vw, 76px)/1 Serif; letter-spacing: -.02em; max-width: 12em; } h2 i { font-family: SerifI; color: #b0682a; }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; margin-top: 56px; } .c img { width: 100%; aspect-ratio: 4/5; object-fit: cover; border-radius: 26px; display: block; } .c h3 { font: 34px Serif; margin-top: 18px; } .c p { color: #7a6a58; margin-top: 6px; font-size: 17px; }
+.band { background: #2a2118; color: #fbf7f0; display: grid; grid-template-columns: 1.1fr .9fr; gap: 60px; align-items: center; } .band h2 i { color: #e8b77a; } .band p { margin-top: 22px; font-size: 19px; line-height: 1.6; opacity: .85; max-width: 28em; } .band img { width: 100%; border-radius: 26px; aspect-ratio: 1; object-fit: cover; }
+.band .btn { display: inline-block; margin-top: 30px; }
+footer { padding: 46px 6vw; display: flex; justify-content: space-between; color: #7a6a58; font-size: 15px; }
+@media (max-width: 700px) { nav div a:not(.r) { display: none; } .open { position: static; margin-top: 26px; align-self: flex-start; } .hero { padding-bottom: 6vh; } section { padding: 70px 6vw; } .grid { grid-template-columns: 1fr; } .band { grid-template-columns: 1fr; } footer { flex-direction: column; gap: 8px; } }
+a { color: inherit; text-decoration: none; }
+</style></head><body>
+<div class="hero"><nav><b>Morgenduft</b><div><a>Sortiment</a><a>Café</a><a>Über uns</a><a>Anfahrt</a><a class="r">Tisch reservieren</a></div></nav>
+<h1>Frisch gebacken.<br><i>Jeden Morgen.</i></h1><p>Handwerksbäckerei und Café seit 1987. Brot, Gebäck und Kuchen aus eigener Backstube, dazu der beste Platz für Ihre Kaffeepause.</p>
+<div class="btns"><a class="btn">Tisch reservieren</a><a class="btn o">Sortiment ansehen</a></div>
+<div class="open"><b>Jetzt geöffnet</b>heute bis 18 Uhr · Musterstraße 12</div></div>
+<section><h2>Aus unserer <i>Backstube</i></h2><div class="grid">
+<div class="c"><img src="brot.jpg"><h3>Brot &amp; Brötchen</h3><p>Natursauerteig, 24 Stunden Teigruhe</p></div>
+<div class="c"><img src="croissant.jpg"><h3>Feingebäck</h3><p>Buttercroissants, täglich frisch</p></div>
+<div class="c"><img src="kuchen.jpg"><h3>Kuchen &amp; Torten</h3><p>Nach Familienrezept, auch auf Bestellung</p></div></div></section>
+<section class="band"><div><h2>Ihr Platz im <i>Café</i></h2><p>Frühstück ab 6.30 Uhr, hausgemachter Kuchen am Nachmittag. Reservieren Sie Ihren Tisch in zehn Sekunden online.</p><a class="btn">Jetzt reservieren</a></div><img src="croissant.jpg"></section>
+<footer><span>Bäckerei &amp; Café Morgenduft · Beispiel-Website</span><span>Impressum · Datenschutz</span></footer>
+</body></html>

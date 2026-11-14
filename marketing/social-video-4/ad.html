@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8">
+<style>
+@font-face { font-family: Sora; src: url(file:///home/user/Webseite-/public/site/fonts/sora-latin.woff2) format("woff2"); font-weight: 100 900; }
+@font-face { font-family: Inter; src: url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2"); font-weight: 100 900; }
+* { box-sizing: border-box; margin: 0; }
+:root { --grad: linear-gradient(180deg, #4a4b54 0%, #232327 30%, #0b0b0d 62%, #000 100%);
+  --ribs: repeating-linear-gradient(90deg, rgba(255,255,255,.2) 0 3px, rgba(255,255,255,.05) 3px 88px, rgba(0,0,0,.32) 88px 91px, rgba(255,255,255,.012) 91px 180px); }
+html, body { width: 1080px; height: 1920px; overflow: hidden; background: #000; font-family: Sora, sans-serif; color: #fff; }
+#stage { position: absolute; inset: 0; overflow: hidden; background: var(--ribs), var(--grad); background-size: 180px 100%, 100% 100%; }
+.glow { position: absolute; left: 50%; top: 1190px; width: 1500px; height: 1500px; margin: -750px; background: radial-gradient(closest-side, rgba(255,255,255,.5), rgba(255,255,255,0)); opacity: 0; }
+/* Untertitel oben (sichere Zone) */
+.cap { z-index: 48; position: absolute; left: 70px; right: 130px; top: 258px; height: 250px; display: flex; flex-wrap: wrap; align-content: flex-start; font-weight: 800; letter-spacing: -.04em; line-height: 1.08; font-size: 76px; opacity: 0; }
+.cap span { display: inline-block; margin-right: .22em; transform-origin: 30% 90%; }
+.cap span.hl { background: #fff; color: #0b0b0d; padding: 0 .14em; border-radius: .14em; margin-left: -.04em; }
+/* Handy */
+.ph { position: absolute; left: 213px; top: 520px; width: 654px; height: 1340px; border-radius: 84px; background: #1a1a1e; padding: 12px; box-shadow: 0 0 0 3px #4a4b52, 0 70px 140px rgba(0,0,0,.75); transform-origin: 50% 40%; }
+.scr { width: 630px; height: 1316px; border-radius: 72px; overflow: hidden; position: relative; background: #000; font-family: Inter, sans-serif; color: #111; }
+.island { position: absolute; top: 20px; left: 50%; width: 150px; height: 42px; margin-left: -75px; border-radius: 24px; background: #000; z-index: 20; }
+.lay { position: absolute; inset: 0; opacity: 0; }
+/* Sperrbildschirm */
+#lock { background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.1) 40%, rgba(0,0,0,.55)), url(demo/kuchen.jpg) center/cover; color: #fff; text-align: center; }
+#lock .d { margin-top: 120px; font: 600 30px Inter; opacity: .9; } #lock .t { font: 700 170px/1 Sora; letter-spacing: -.04em; margin-top: 6px; }
+.notif { position: absolute; left: 22px; right: 22px; top: 470px; background: rgba(245,245,247,.92); color: #111; border-radius: 32px; padding: 22px 24px; text-align: left; display: flex; gap: 18px; align-items: center; }
+.notif em { flex: none; width: 76px; height: 76px; border-radius: 50%; background: linear-gradient(135deg, #8e8e93, #3a3a3e); color: #fff; font: 700 30px Sora; display: grid; place-items: center; font-style: normal; }
+.notif b { display: block; font: 700 27px Inter; } .notif span { font: 500 27px Inter; color: #333; } .notif i { position: absolute; right: 24px; top: 22px; font: 500 21px Inter; color: #8e8e93; font-style: normal; }
+/* Suche */
+#srch { background: #f5f5f7; padding: 92px 22px 0; }
+.sbar { height: 86px; border-radius: 43px; background: #fff; box-shadow: 0 6px 20px rgba(0,0,0,.08); display: flex; align-items: center; padding: 0 28px; gap: 16px; font: 500 31px Inter; }
+.sbar svg { width: 34px; height: 34px; flex: none; } .sbar u { text-decoration: none; display: inline-block; width: 3px; height: 38px; background: #111; margin-left: 2px; vertical-align: -8px; }
+.hint { font: 600 24px Inter; color: #6e6e73; margin: 28px 8px 14px; }
+.res { background: #fff; border-radius: 34px; padding: 18px; display: flex; gap: 20px; align-items: center; margin-bottom: 18px; box-shadow: 0 6px 20px rgba(0,0,0,.06); position: relative; }
+.res .im { width: 150px; height: 150px; border-radius: 24px; background-size: cover; background-position: center; flex: none; }
+.res b { font: 700 31px/1.15 Sora; letter-spacing: -.03em; display: block; } .res .st { font: 600 25px Inter; margin-top: 8px; color: #111; } .res .st i { color: #f5b400; font-style: normal; }
+.res .mt { font: 500 24px Inter; color: #6e6e73; margin-top: 6px; } .res .mt em { font-style: normal; color: #1a8a3a; font-weight: 600; }
+.res .km { display: inline-block; font-weight: 700; color: #111; border-radius: 10px; padding: 0 8px; margin-left: -8px; }
+.map { height: 520px; border-radius: 34px; margin-top: 6px; position: relative; overflow: hidden; background: linear-gradient(90deg, transparent 48%, #fff 48% 52%, transparent 52%) 0 0/210px 100%, linear-gradient(0deg, transparent 47%, #fff 47% 53%, transparent 53%) 0 0/100% 170px, linear-gradient(35deg, transparent 49%, #fff 49% 51.500%, transparent 51.500%), #e4e6ea; }
+.map i { position: absolute; width: 44px; height: 44px; margin: -44px 0 0 -22px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); background: #0b0b0d; box-shadow: 0 6px 14px rgba(0,0,0,.3); } .map i::after { content: ""; position: absolute; inset: 13px; border-radius: 50%; background: #fff; }
+.map em { position: absolute; width: 26px; height: 26px; margin: -13px; border-radius: 50%; background: #2f7cf6; border: 5px solid #fff; box-shadow: 0 0 0 10px rgba(47,124,246,.2); }
+.map b { position: absolute; font: 700 20px Inter; background: #fff; padding: 4px 10px; border-radius: 10px; box-shadow: 0 3px 8px rgba(0,0,0,.15); }
+.ring { position: absolute; inset: -5px; border-radius: 38px; border: 5px solid #0b0b0d; opacity: 0; }
+.route { position: absolute; right: 18px; bottom: 18px; background: #0b0b0d; color: #fff; font: 700 22px Inter; padding: 10px 20px; border-radius: 30px; opacity: 0; }
+.lost { position: absolute; right: 30px; top: -18px; background: #0b0b0d; color: #fff; font: 700 30px Sora; padding: 12px 24px; border-radius: 30px; opacity: 0; box-shadow: 0 10px 30px rgba(0,0,0,.4); }
+/* Browser */
+.web { background: #fff; } .ubar { position: absolute; top: 0; left: 0; right: 0; height: 132px; background: #ececf0; z-index: 3; } .ubar u { position: absolute; left: 34px; right: 34px; bottom: 14px; height: 46px; border-radius: 16px; background: #fff; text-decoration: none; color: #6e6e73; font: 500 22px/46px Inter; text-align: center; }
+.load { position: absolute; left: 0; bottom: 0; height: 5px; background: #0b0b0d; width: 0; }
+.pg { position: absolute; top: 132px; left: 0; width: 630px; transform-origin: 62% 22%; } .pg img { width: 100%; display: block; }
+.sheet { position: absolute; left: 0; right: 0; bottom: 0; height: 470px; background: #fff; border-radius: 44px 44px 0 0; box-shadow: 0 -20px 60px rgba(0,0,0,.35); z-index: 6; padding: 40px 40px 0; text-align: center; transform: translateY(100%); }
+.sheet .ck { width: 120px; height: 120px; border-radius: 50%; background: #0b0b0d; margin: 0 auto 22px; display: grid; place-items: center; } .sheet .ck svg { width: 64px; height: 64px; }
+.sheet b { font: 700 46px Sora; letter-spacing: -.03em; display: block; } .sheet span { font: 500 28px Inter; color: #6e6e73; display: block; margin-top: 10px; }
+.tap { position: absolute; left: 0; top: 0; width: 96px; height: 96px; margin: -48px; border-radius: 50%; background: rgba(255,255,255,.55); box-shadow: 0 0 0 3px rgba(0,0,0,.35), 0 8px 24px rgba(0,0,0,.4); opacity: 0; z-index: 40; }
+.rip { position: absolute; left: 0; top: 0; width: 96px; height: 96px; margin: -48px; border-radius: 50%; border: 5px solid #fff; opacity: 0; z-index: 39; }
+.dim { position: absolute; inset: 0; background: radial-gradient(closest-side at 50% 55%, rgba(0,0,0,0) 40%, rgba(0,0,0,.85)); opacity: 0; z-index: 45; pointer-events: none; }
+.rw { position: absolute; inset: 0; z-index: 50; opacity: 0; background: repeating-linear-gradient(0deg, rgba(255,255,255,.10) 0 3px, rgba(0,0,0,0) 3px 9px); }
+.rw b { position: absolute; left: 0; right: 0; top: 1040px; text-align: center; font: 800 150px Sora; letter-spacing: -.04em; text-shadow: 0 10px 50px #000; }
+.bar { position: absolute; left: 0; right: 0; height: 46px; background: rgba(255,255,255,.22); mix-blend-mode: difference; }
+.flash { position: absolute; inset: 0; background: #fff; opacity: 0; z-index: 60; }
+.end { position: absolute; left: 70px; right: 130px; top: 1462px; opacity: 0; z-index: 30; }
+.end .br { display: flex; align-items: center; gap: 22px; } .end img { width: 104px; height: 104px; border-radius: 26px; box-shadow: 0 0 0 3px #fff; } .end b { font-size: 96px; font-weight: 650; letter-spacing: -.045em; }
+.end i { font-style: normal; font-size: 46px; font-weight: 700; background: #fff; color: #0b0b0d; padding: 14px 30px; border-radius: 999px; margin-left: 10px; }
+.end p { font: 600 40px Inter; margin-top: 22px; letter-spacing: -.01em; } .end small { display: block; font: 500 24px Inter; color: rgba(255,255,255,.55); margin-top: 14px; }
+.prog { position: absolute; left: 0; top: 0; height: 8px; background: #fff; z-index: 70; mix-blend-mode: difference; }
+</style></head><body>
+<div id="stage">
+  <div class="glow" id="glow"></div>
+  <div id="caps"></div>
+  <div class="ph" id="ph"><div class="scr"><div class="island"></div>
+    <div class="lay" id="lock"><div class="d">Samstag, 14. November</div><div class="t">7:52</div>
+      <div class="notif" id="notif"><em>M</em><div><b>Mia</b><span>Frühstück? Such du was aus!</span></div><i>jetzt</i></div></div>
+    <div class="lay" id="srch"><div id="sload" style="position:absolute;left:0;top:76px;height:6px;background:#0b0b0d;width:0;z-index:5"></div><div class="sbar"><svg viewBox="0 0 24 24" fill="none" stroke="#111" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg><div><span id="q"></span><u id="qc"></u></div></div>
+      <div id="reslist"><div class="hint">2 Ergebnisse in deiner Nähe</div>
+      <div class="res" id="r1"><div class="ring" id="ring1"></div><div class="lost" id="lost">– 1 Gast</div><div class="im" style="background-image:url(demo/hero.jpg)"></div><div><b>Bäckerei &amp; Café Morgenduft</b><div class="st"><i>★★★★★</i> 4,8</div><div class="mt"><span class="km" id="km">300 m</span> · <em>Geöffnet</em></div></div></div>
+      <div class="res" id="r2"><div class="ring" id="ring2"></div><div class="route" id="route">Route starten</div><div class="im" style="background-image:url(demo/croissant.jpg);filter:saturate(.6)"></div><div><b>Café Zeitlos</b><div class="st"><i>★★★★</i> 4,3</div><div class="mt"><span class="km">900 m</span> · <em>Geöffnet</em></div></div></div><div class="map"><em style="left:300px;top:330px"></em><i style="left:380px;top:250px"></i><b style="left:404px;top:206px">Morgenduft</b><i style="left:120px;top:120px;background:#8e8e93"></i><b style="left:144px;top:76px">Zeitlos</b></div></div></div>
+    <div class="lay web" id="old"><div class="ubar"><u>morgenduft-beispiel.de</u><div class="load" id="ld1"></div></div><div class="pg" id="pgo"><img src="demo/alt-mob.jpg"></div></div>
+    <div class="lay web" id="new"><div class="ubar"><u>morgenduft-beispiel.de</u><div class="load" id="ld2"></div></div><div class="pg" id="pgn"><img src="demo/neu-mob.jpg"></div>
+      <div class="sheet" id="sheet"><div class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path id="ckp" d="M4 12.500l5.500 5.500L20 6.500" stroke-dasharray="26" stroke-dashoffset="26"/></svg></div><b>Tisch reserviert</b><span>Heute, 8:30 Uhr · 2 Personen</span></div></div>
+  </div></div>
+  <div class="tap" id="tap"></div><div class="rip" id="rip"></div>
+  <div class="dim" id="dim"></div>
+  <div class="rw" id="rw"><b>◀◀</b><div class="bar" id="b1"></div><div class="bar" id="b2"></div><div class="bar" id="b3"></div></div>
+  <div class="end" id="end"><div class="br"><img src="file:///home/user/Webseite-/public/media/icon-foav-512.png"><b>foav</b><i>foav.de</i></div><p>Deine neue Website. In 7 Tagen.</p><small>Beispiel-Geschichte · Betrieb und Personen erfunden</small></div>
+  <div class="flash" id="fl"></div>
+</div>
+<div class="prog" id="pg"></div>
+<script src="times.js"></script>
+<script>
+const $ = (id) => document.getElementById(id);
+const cl = (x) => Math.max(0, Math.min(1, x));
+const eo = (x) => { x = cl(x); return x === 1 ? 1 : 1 - Math.pow(2, -10 * x); };
+const cub = (x) => { x = cl(x); return x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; };
+const back = (x) => { x = cl(x); const c = 2.2; return 1 + (c + 1) * Math.pow(x - 1, 3) + c * Math.pow(x - 1, 2); };
+const L = window.L, a = (i, j = 0) => L[i][j][0], e = (i, j) => { j = j ?? L[i].length - 1; return L[i][j][0] + L[i][j][1]; };
+// Untertitel-Phrasen: [Zeile, Segment von, Segment bis, Text]
+const PH = [[0, 0, 0, 'Samstag,'], [0, 1, 1, 'kurz vor *acht.'], [0, 2, 2, 'Lisa sucht ein *Café fürs Frühstück.'], [1, 0, 0, 'Das *beste ist nur *300 *Meter entfernt.'], [2, 0, 1, 'Sie tippt drauf …'], [2, 2, 2, 'und sieht *DAS.'], [3, 0, 0, '*Winzige Schrift.'], [3, 1, 1, 'Sie geht *zurück'], [3, 2, 2, 'und frühstückt *woanders.'], [4, 0, 0, 'Die Bäckerei erfährt *nie,', 0, .4], [4, 0, 0, 'dass sie gerade einen *Gast verloren hat.', .42, 1], [5, 0, 0, 'Jetzt *nochmal!'], [5, 1, 1, 'Gleiche Bäckerei –'], [5, 2, 2, '*neue *Website.'], [6, 0, 0, 'Lisa *bleibt.'], [6, 1, 1, 'Und *reserviert direkt einen Tisch!'], [7, 0, 0, 'Und wie viele Gäste verliert *DEINE Website?']];
+const CAPS = PH.map(([li, s0, s1, txt, f0 = 0, f1 = 1], n) => { const d = document.createElement('div'); d.className = 'cap'; $('caps').appendChild(d); const A0 = a(li, s0), A1 = e(li, s1), t0 = A0 + f0 * (A1 - A0), t1 = A0 + f1 * (A1 - A0), ws = txt.split(' '), tot = ws.reduce((k, w) => k + w.replace('*', '').length + 2, 0); let acc = 0;
+  const W = ws.map(w => { const s = document.createElement('span'); if (w[0] === '*') { s.className = 'hl'; w = w.slice(1); } s.textContent = w; d.appendChild(s); const o = { s, t: t0 + (acc / tot) * (t1 - t0) * .9 }; acc += w.length + 2; return o; }); return { d, W, t0, t1 }; });
+CAPS[0].t0 = 0; CAPS.forEach((c, n) => { c.end = n < CAPS.length - 1 ? CAPS[n + 1].t0 - .05 : 1e9; });
+function caps(t) { CAPS.forEach((c, n) => { const on = t >= c.t0 - .08 && t < c.end; c.d.style.opacity = on ? 1 : 0; if (!on) return; c.W.forEach(({ s, t: wt }, i) => { const x = (n === 0 && i === 0) ? 1 : (t - wt + .07) / .15; s.style.opacity = cl(x * 2.5); s.style.transform = `scale(${x <= 0 ? .5 : .5 + .5 * back(x)}) translateY(${(1 - cl(x)) * 26}px)`; }); }); }
+const show = (id, o) => { $(id).style.opacity = o; };
+const QT = 'Café in der Nähe';
+// Zeitmarken
+const M = { swipe: a(0, 2) - .15, type0: a(0, 2) + .1, type1: e(0, 2) - .25, res: e(0, 2) - .05, km: a(1) + L[1][0][1] * .55, tap1: a(2, 1) + .1, old: a(2, 2) + .02, das: a(2, 2) + L[2][2][1] * .55, zoom0: a(3, 0), zoom1: e(3, 0), backT: a(3, 1) + .1, tap2: a(3, 2) + .45, sad: a(4) - .1, lost: a(4) + L[4][0][1] * .62, rw0: a(5, 0) - .1, rw1: e(5, 0) + .12, tap3: a(5, 1) + .55, neu: a(5, 2) + .05, sc0: a(6, 0), sc1: a(6, 1) + .1, tap4: a(6, 1) + .75, q: a(7) - .25, end: a(7) + 1.5 };
+window.M = M; const DUR = window.TOTAL; window.DUR = DUR;
+const R1 = [213 + 12 + 315, 520 + 12 + 92 + 86 + 66 + 93], R2 = [213 + 12 + 315, R1[1] + 204], BTN = [213 + 12 + 190, 520 + 12 + 132 + 739];
+function finger(t, t0, P) { const k = t - t0; if (k < -.45 || k > .5) return false; const m = cub((k + .45) / .4); const x = P[0] + (1 - m) * 160, y = P[1] + (1 - m) * 260; $('tap').style.opacity = k < .25 ? cl((k + .45) * 6) : 1 - cl((k - .25) * 5); $('tap').style.transform = `translate(${x}px, ${y}px) scale(${k > 0 && k < .14 ? .72 : 1})`; const r = cl(k / .45); $('rip').style.opacity = k > 0 ? (1 - r) * .9 : 0; $('rip').style.transform = `translate(${P[0]}px, ${P[1]}px) scale(${1 + r * 2.2})`; return true; }
+// Durchlauf 1 (Geschichte bis "woanders"), auch rückwärts spielbar
+function run1(t) {
+  const sw = cub((t - M.swipe) / .45);
+  show('lock', 1); $('lock').style.transform = `translateY(${-sw * 1316}px)`; show('srch', sw > 0 ? 1 : 0);
+  const nk = eo((t - .35) / .5); $('notif').style.opacity = cl((t - .35) * 4); $('notif').style.transform = `translateY(${(1 - nk) * -90}px) scale(${.9 + .1 * nk})`;
+  const n = Math.round(cl((t - M.type0) / (M.type1 - M.type0)) * QT.length); $('q').textContent = QT.slice(0, n); $('qc').style.opacity = n < QT.length ? 1 : 0;
+  const rk = t - M.res; $('reslist').style.opacity = cl(rk * 5); ['r1', 'r2'].forEach((id, i) => { const k = eo((rk - i * .12) / .5); $(id).style.transform = `translateY(${(1 - k) * 70}px)`; $(id).style.filter = 'none'; $(id).style.opacity = 1; });
+  const hk = cl((t - a(1)) / .3) * (1 - cl((t - M.tap1 - .1) / .2)); $('ring1').style.opacity = hk; const kp = t - M.km; $('km').style.background = kp > 0 && t < M.tap1 ? '#0b0b0d' : 'transparent'; $('km').style.color = kp > 0 && t < M.tap1 ? '#fff' : '#111'; $('km').style.transform = `scale(${kp > 0 && kp < .4 ? 1 + Math.sin(kp / .4 * Math.PI) * .35 : 1})`;
+  $('route').style.opacity = 0; $('ring2').style.opacity = 0; $('lost').style.opacity = 0;
+  // alte Website
+  const lk = cl((t - M.tap1 - .08) / (M.old - M.tap1 - .1)); $('ld1').style.width = (t < M.backT ? lk * 100 : 0) + '%';
+  const ok = t >= M.old - .16 && t < M.backT + .4; const ik = 1 - eo((t - M.old + .16) / .2); const bk = cub((t - M.backT) / .35);
+  show('old', ok ? 1 : 0); $('old').style.transform = `translateX(${bk * 640 + ik * 640}px)`; $('pgo').style.opacity = 1; $('sload').style.width = (t > M.tap1 && t < M.old ? lk * 100 : 0) + '%';
+  const zk = cub((t - M.zoom0) / .45) * (1 - cub((t - M.zoom1 + .05) / .3)); $('pgo').style.transform = `scale(${1 + zk * 1.5}) translate(${Math.sin(t * 9) * zk * 14}px, ${Math.cos(t * 7) * zk * 10}px)`; $('pgo').style.filter = zk > .05 ? `blur(${zk * 1.6}px)` : 'none';
+  // zweites Café
+  const t2 = t - M.tap2; $('ring2').style.opacity = t2 > 0 ? 1 : 0; $('route').style.opacity = cl(t2 * 5); $('route').style.transform = `scale(${t2 > 0 ? .7 + .3 * back(t2 / .3) : .7})`;
+  if (t2 > 0) { $('r1').style.opacity = .45; }
+  show('new', 0);
+}
+window.render = (T) => {
+  $('pg').style.width = (T / DUR * 1080) + 'px';
+  const loop = T >= DUR - .16, t = loop ? 0 : T;
+  caps(t);
+  $('stage').style.backgroundPosition = `${t * 18}px 0, 0 0`;
+  let sh = 0; [M.das, M.neu, M.rw0].forEach(c => { const k = t - c; if (k >= 0 && k < .4) sh += Math.sin(k * 85) * 16 * (1 - k / .4); });
+  let f = 0; [M.neu, M.rw1].forEach(c => { const k = t - c; if (k >= -.03 && k < .28) f = Math.max(f, k < 0 ? .3 : 1 - k / .28); }); $('fl').style.opacity = f * .85;
+  $('tap').style.opacity = 0; $('rip').style.opacity = 0; $('rw').style.opacity = 0; $('dim').style.opacity = 0; $('glow').style.opacity = 0; show('end', 0);
+  let pS = 1 + .06 * (1 - eo(t / 1.2)) + Math.sin(t * .9) * .004, pY = Math.sin(t * 1.1) * 6, pX = 0, pR = 0, pRY = Math.sin(t * .8) * 5;
+  if (t < M.rw0) {
+    run1(t);
+    finger(t, M.tap1, R1) || finger(t, M.tap2, R2);
+    const dk = t - M.das; if (dk > 0 && dk < .6) pS += .1 * (1 - eo(dk / .6));
+    // traurige Szene
+    const sk = cub((t - M.sad) / .6); if (sk > 0) { $('dim').style.opacity = sk * .9; $('r1').style.opacity = 1; $('r1').style.filter = `grayscale(${sk})`; $('r2').style.opacity = 1 - sk * .8; $('route').style.opacity = 1 - sk; $('ring2').style.opacity = 1 - sk; pS += sk * .05;
+      const lk = t - M.lost; $('lost').style.opacity = cl(lk * 5) * (1 - cl((lk - 1.5) / .5)); $('lost').style.transform = `translateY(${-eo(lk / 1.6) * 90}px) scale(${lk > 0 ? .6 + .4 * back(lk / .35) : .6})`; }
+  } else if (t < M.rw1) {
+    const p = cub((t - M.rw0) / (M.rw1 - M.rw0)), tv = M.tap2 + .6 - p * (M.tap2 + .6 - (M.res + .7)); run1(tv);
+    $('rw').style.opacity = 1; pX = Math.sin(t * 190) * 12; pS = 1.02; pRY = -360 * p; [['b1', 300], ['b2', 900], ['b3', 1500]].forEach(([id, y0], i) => { $(id).style.top = ((y0 + t * (900 + i * 400)) % 1920) + 'px'; });
+    $('stage').style.filter = `contrast(1.15) saturate(${1 - .6 * Math.sin(p * Math.PI)})`;
+  } else {
+    // Durchlauf 2
+    run1(M.res + 2); $('ring1').style.opacity = t < M.tap3 + .1 ? 1 : 0; $('km').style.background = 'transparent'; $('km').style.color = '#111';
+    finger(t, M.tap3, R1) || finger(t, M.tap4, BTN);
+    const lk = cl((t - M.tap3 - .08) / (M.neu - M.tap3 - .1)); $('ld2').style.width = (t < M.neu + .3 ? lk * 100 : 0) + '%';
+    show('new', t >= M.neu - .16 ? 1 : 0); $('new').style.transform = `translateX(${(1 - eo((t - M.neu + .16) / .2)) * 640}px)`; $('pgn').style.opacity = 1; $('sload').style.width = (t > M.tap3 && t < M.neu ? lk * 100 : 0) + '%';
+    const nk = t - M.neu; if (nk > -.25) pRY += -75 * (1 - eo((nk + .25) / .75)); if (nk > 0) { pS = 1 + .16 * (1 - eo(nk / .7)) + .03 + cl((t - M.sc0) / 4) * .02; $('glow').style.opacity = .85 * (1 - cl(nk / 1.4)) + .14; }
+    const scr = cub((t - M.sc0) / (M.sc1 - M.sc0 - .1)) * 1250 * (1 - cub((t - M.sc1) / .55)); $('pgn').style.transform = `translateY(${-scr}px)`;
+    const sk = eo((t - M.tap4 - .12) / .5); $('sheet').style.transform = `translateY(${(1 - sk) * 100}%)`; $('ckp').style.strokeDashoffset = 26 * (1 - cub((t - M.tap4 - .4) / .4));
+    const qk = cub((t - M.q) / .7); if (qk > 0) { pS = 1.05 * (1 - .37 * qk); pY = -qk * 170; }
+    const ek = eo((t - M.end) / .6); $('end').style.opacity = cl((t - M.end) * 4); $('end').style.transform = `translateY(${(1 - ek) * 60}px)`;
+  }
+  if (t >= M.rw1 || t < M.rw0) $('stage').style.filter = 'none';
+  $('stage').style.transform = `translate(${sh}px, ${sh * .6}px)`;
+  $('ph').style.transform = `perspective(2000px) translate(${pX}px, ${pY}px) rotateY(${pRY}deg) rotate(${pR}deg) scale(${pS})`;
+};
+render(0);
+</script></body></html>
