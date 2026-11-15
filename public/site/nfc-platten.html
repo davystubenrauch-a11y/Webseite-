@@ -35,7 +35,7 @@
    {"@type":"Offer","name":"NFC-Platte mit Ihrem Logo, Custom Brand Edition","price":"29.90","priceCurrency":"EUR"}]}},
  {"@type":"FAQPage","mainEntity":[
   {"@type":"Question","name":"Was brauchen Sie für ein KI-Werbevideo?","acceptedAnswer":{"@type":"Answer","text":"3 bis 10 normale Handyfotos Ihres Produkts, Gerichts oder Raums. Daraus entsteht ein kurzer Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok, Website und Immobilienportale. Leere Wohnungen richten wir auf Wunsch virtuell ein. Starter ab 199 €, fertig in 48 Stunden."}},
-  {"@type":"Question","name":"Wie funktioniert die NFC-Platte?","acceptedAnswer":{"@type":"Answer","text":"In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku."}},
+  {"@type":"Question","name":"Wie funktioniert die NFC-Platte?","acceptedAnswer":{"@type":"Answer","text":"In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku. Auf Wunsch mit Ihrem Logo statt des Google-Designs."}},
   {"@type":"Question","name":"Was kostet eine Website?","acceptedAnswer":{"@type":"Answer","text":"Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 399 €, Business 799 €, Premium 1.499 €, jeweils mit Hosting inklusive. Sie bekommen vorher einen Festpreis."}},
   {"@type":"Question","name":"Gibt es laufende Kosten?","acceptedAnswer":{"@type":"Answer","text":"Nein, unsere Preise sind einmalige Festpreise. Das Hosting Ihrer Website ist inklusive, ohne monatliche Gebühren. Sie brauchen nur eine eigene Domain, meist rund 1 € im Monat."}}]}
 ]}
@@ -1178,6 +1178,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc__stage--two .disc { position: absolute; width: 40%; }
 .cmpc__stage--two .disc:not(.disc--black) { left: 14%; top: 30%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg); }
 .cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__logo { position: absolute; z-index: 2; right: 6%; bottom: 6%; width: 30%; height: auto; border-radius: 50%; transform: perspective(700px) rotateX(48deg) rotateZ(8deg); filter: drop-shadow(0 22px 22px rgba(0,0,0,.22)); }
 .cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
 @media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
 
@@ -1398,7 +1399,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <span class="pst__disc"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><i class="pst__wave"></i><i class="pst__wave pst__wave--2"></i></span>
           <div class="iphone pst__tap"><div class="iphone__screen"><div class="pg"><p class="pg__top"><b>G</b>Ihr Restaurant</p><p class="pg__q">Wie war Ihr Besuch?</p><p class="pg__s"><i style="--i:0"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:1"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:2"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:3"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:4"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i></p><p class="pg__h">Hervorragend</p><span class="pg__f"></span><span class="pg__b">Posten</span></div></div></div>
           <p class="pst__toast"><svg viewBox="0 0 24 24"><use href="#star"/></svg>+1 Google-Bewertung</p>
-          <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:8%">Ohne App</li><li style="--i:1;--x:auto;--rx:4%;--y:12%">iPhone und Android</li><li style="--i:2;--x:4%;--y:86%">Ø 10 cm, Weiß oder Schwarz</li></ul>
+          <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:8%">Ohne App</li><li style="--i:1;--x:auto;--rx:4%;--y:12%">iPhone und Android</li><li style="--i:2;--x:4%;--y:86%">Auch mit Ihrem Logo</li></ul>
         </div>
       </div></div>
       <ul class="phero__facts" role="list"><li><b>14,90 €</b><span>Classic, ab 5 Stück nur 13,90 €</span></li><li><b>29,90 €</b><span>mit Ihrem Logo, ab 10 Stück 24,90 €</span></li><li><b>0 €</b><span>kein Abo, keine App</span></li></ul>
@@ -1413,8 +1414,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <p class="kicker">NFC-Platten</p>
           <h2 id="h-plate">Gäste bewerten Sie mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
-          <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="/shop?weiss=5">Direkt bestellen</a><a class="btn btn--line" href="/nfc-platten#pakete">Mengen und Farben</a></div>
-          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
+          <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="/shop?weiss=5">Direkt bestellen</a><a class="btn btn--line" href="/nfc-platten#editionen">Mit Ihrem Logo</a></div>
+          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: in Weiß, in Schwarz oder mit Ihrem Logo.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
           <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
@@ -1431,7 +1432,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
       <div class="ed__text">
         <h2 id="h-ed">Classic oder mit Ihrem Logo.</h2>
         <p class="lead">Beide Platten öffnen mit einem Antippen Ihre Google-Bewertungsseite, auf iPhone und Android. Der Unterschied ist der Auftritt.</p>
-        <div class="ed__sw" role="group" aria-label="Ausführung wählen"><button type="button" aria-pressed="true" data-ed="c">Classic Edition</button><button type="button" aria-pressed="false" data-ed="b">Custom Brand Edition</button></div>
+        <div class="ed__sw" role="group" aria-label="Ausführung wählen"><button type="button" aria-pressed="true" data-ed="c">Classic</button><button type="button" aria-pressed="false" data-ed="b">Mit Ihrem Logo</button></div>
         <div class="ed__info" data-ed-info="c"><p class="ed__price">14,90 € <small>pro Platte, ab 10 Stück 12,90 €</small></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bekanntes Google-Design, Weiß oder Schwarz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Sofort bestellbar, ohne Fragebogen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Bei Ihnen in 3 bis 7 Werktagen</li></ul><a class="btn btn--ink" href="/shop?weiss=5">Classic bestellen</a></div>
         <div class="ed__info" data-ed-info="b" hidden><p class="ed__price">29,90 € <small>pro Platte, ab 10 Stück 24,90 €</small></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schlichtes FOAV-Design mit Ihrem Logo</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Passt zu Ihrer Einrichtung und Marke</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Design-Vorschau, erst nach Ihrer Freigabe wird produziert</li></ul><a class="btn btn--ink" href="/anfrage/nfc">Logo hochladen</a></div>
       </div>
@@ -1481,7 +1482,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <details data-on="nfc-platten"><summary>Wie bekomme ich Platten mit meinem Logo?<i aria-hidden="true"></i></summary><p>Wählen Sie bei den Paketen „Mit Ihrem Logo“ und die Menge. In einem kurzen Fragebogen laden Sie Ihr Logo hoch und nennen Ihr Google-Profil. Nach der Zahlung bekommen Sie innerhalb von 2 Werktagen eine Design-Vorschau. Erst nach Ihrer Freigabe produzieren wir.</p></details>
         <details data-on="home websites ki-shots nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb und Sie bezahlen sicher über Stripe, zum Beispiel per Karte, Apple Pay oder Google Pay. NFC-Platten Classic bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
         <details data-on="nfc-platten"><summary>Kann ich Weiß und Schwarz mischen?<i aria-hidden="true"></i></summary><p>Ja. Im Shop wählen Sie die Anzahl je Farbe. Mengenpreis und Versand richten sich nach allen Classic-Platten zusammen: ab 5 Stück 13,90 € pro Platte und kostenloser Versand, ab 10 Stück 12,90 €.</p></details>
-        <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
+        <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku. Auf Wunsch trägt die Platte statt des Google-Designs Ihr Logo.</p></details>
         <details data-on="nfc-platten"><summary>Was ist der Unterschied zwischen Classic und Custom Brand?<i aria-hidden="true"></i></summary><p>Beide funktionieren gleich: Der Chip führt direkt zu Ihrer Google-Bewertungsseite. Die Classic Edition hat das bekannte Google-Design in Weiß oder Schwarz und ist sofort bestellbar. Die Custom Brand Edition trägt in schlichtem Design Ihr Logo und passt so zu Ihrer Marke.</p></details>
         <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Bei uns nicht, Sie zahlen einmal. Auch das Hosting Ihrer Website ist inklusive, ohne monatliche Gebühren. Sie brauchen nur eine eigene Domain auf Ihren Namen, meist rund 1 € im Monat bei Ihrem Anbieter. Haben Sie noch keine, sagen wir Ihnen, wo Sie sie bestellen.</p></details>
         <details data-on="nfc-platten"><summary>Funktioniert das mit jedem Handy?<i aria-hidden="true"></i></summary><p>Mit allen aktuellen iPhones und Android-Handys. Eine App braucht Ihr Gast nicht.</p></details>
@@ -1499,7 +1500,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <ul class="order" role="list">
           <li><a href="/websites#pakete"><b>Website</b><span>Paket wählen, ab 399 €</span></a></li>
           <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>Paket wählen, ab 199 €</span></a></li>
-          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Menge wählen, ab 14,90 €</span></a></li>
+          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Classic oder mit Ihrem Logo, ab 14,90 €</span></a></li>
         </ul>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">

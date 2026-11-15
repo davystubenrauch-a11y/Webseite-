@@ -1162,6 +1162,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 .cmpc__stage--two .disc { position: absolute; width: 40%; }
 .cmpc__stage--two .disc:not(.disc--black) { left: 14%; top: 30%; transform: perspective(700px) rotateX(48deg) rotateZ(-18deg); }
 .cmpc__stage--two .disc--black { right: 12%; top: 14%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__logo { position: absolute; z-index: 2; right: 6%; bottom: 6%; width: 30%; height: auto; border-radius: 50%; transform: perspective(700px) rotateX(48deg) rotateZ(8deg); filter: drop-shadow(0 22px 22px rgba(0,0,0,.22)); }
 .cmpc__colors { position: absolute; left: 16px; top: 16px; padding: 6px 12px; border-radius: 99px; background: rgba(255,255,255,.92); font-size: .8125rem; font-weight: 600; color: var(--ink); }
 @media (max-width: 700px) { .hero--offers .cmpc__colors { display: none; } }
 
@@ -1443,7 +1444,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <span class="pst__disc"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><i class="pst__wave"></i><i class="pst__wave pst__wave--2"></i></span>
           <div class="iphone pst__tap"><div class="iphone__screen"><div class="pg"><p class="pg__top"><b>G</b>Ihr Restaurant</p><p class="pg__q">Wie war Ihr Besuch?</p><p class="pg__s"><i style="--i:0"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:1"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:2"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:3"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:4"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i></p><p class="pg__h">Hervorragend</p><span class="pg__f"></span><span class="pg__b">Posten</span></div></div></div>
           <p class="pst__toast"><svg viewBox="0 0 24 24"><use href="#star"/></svg>+1 Google-Bewertung</p>
-          <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:8%">Ohne App</li><li style="--i:1;--x:auto;--rx:4%;--y:12%">iPhone und Android</li><li style="--i:2;--x:4%;--y:86%">Ø 10 cm, Weiß oder Schwarz</li></ul>
+          <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:8%">Ohne App</li><li style="--i:1;--x:auto;--rx:4%;--y:12%">iPhone und Android</li><li style="--i:2;--x:4%;--y:86%">Auch mit Ihrem Logo</li></ul>
         </div>
       </div></div>
       <ul class="phero__facts" role="list"><li><b>14,90 €</b><span>Classic, ab 5 Stück nur 13,90 €</span></li><li><b>29,90 €</b><span>mit Ihrem Logo, ab 10 Stück 24,90 €</span></li><li><b>0 €</b><span>kein Abo, keine App</span></li></ul>
@@ -1489,12 +1490,12 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>3 bis 10 Handyfotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Werbefilm mit Musik und Text</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 bis 72 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Cafés, Restaurants, Läden, Immobilien</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
-          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="cmpc__colors">Weiß und Schwarz</span></div>
+          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><img class="cmpc__logo" src="/images/ki-shots/nfc-custom-plate.webp" alt="" width="480" height="480" loading="lazy"><span class="cmpc__colors">Weiß, Schwarz oder mit Logo</span></div>
           <h3>NFC-Platte</h3>
-          <p class="cmpc__tag">Macht aus zufriedenen Gästen Google-Bewertungen. Ein Antippen genügt.</p>
-          <p class="cmpc__price">14,90 € <small>pro Stück</small></p><p class="cmpc__sub">ab 5 Stück nur 13,90 €</p>
+          <p class="cmpc__tag">Macht aus Gästen Google-Bewertungen. Auch mit Ihrem Logo.</p>
+          <p class="cmpc__price">14,90 € <small>pro Stück</small></p><p class="cmpc__sub">mit Ihrem Logo ab 29,90 €</p>
           <div class="cmpc__cta"><a class="btn btn--light" href="/shop?weiss=5">Platten bestellen</a><a class="more" href="/nfc-platten">Mehr erfahren<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>
-          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Auf Ihr Unternehmen eingerichtete Platten</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Per Post in 3 bis 7 Werktagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Praxen, Hotels</dd></div></dl>
+          <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Eingerichtete Platten, auf Wunsch mit Logo</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Per Post in 3 bis 7 Werktagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Praxen, Hotels</dd></div></dl>
         </article>
       </div>
       <ul class="cmpx__all" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis, den Sie vor dem Kauf sehen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Änderungswünsche vor der Freigabe inklusive</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Website-Hosting inklusive, keine monatlichen Gebühren</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Antwort auf Ihre Anfrage innerhalb eines Tages</li></ul>
@@ -1619,9 +1620,9 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <p class="kicker">NFC-Platten</p>
           <h2 id="h-plate">Gäste bewerten Sie mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
-          <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="/shop?weiss=5">Direkt bestellen</a><a class="btn btn--line" href="/nfc-platten#pakete">Mengen und Farben</a></div>
+          <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="/shop?weiss=5">Direkt bestellen</a><a class="btn btn--line" href="/nfc-platten#editionen">Mit Ihrem Logo</a></div>
           <a class="more" href="/nfc-platten">Alles über NFC-Platten<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl, in Weiß oder Schwarz.</p>
+          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: in Weiß, in Schwarz oder mit Ihrem Logo.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
           <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
@@ -1682,7 +1683,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
       <div class="ed__text">
         <h2 id="h-ed">Classic oder mit Ihrem Logo.</h2>
         <p class="lead">Beide Platten öffnen mit einem Antippen Ihre Google-Bewertungsseite, auf iPhone und Android. Der Unterschied ist der Auftritt.</p>
-        <div class="ed__sw" role="group" aria-label="Ausführung wählen"><button type="button" aria-pressed="true" data-ed="c">Classic Edition</button><button type="button" aria-pressed="false" data-ed="b">Custom Brand Edition</button></div>
+        <div class="ed__sw" role="group" aria-label="Ausführung wählen"><button type="button" aria-pressed="true" data-ed="c">Classic</button><button type="button" aria-pressed="false" data-ed="b">Mit Ihrem Logo</button></div>
         <div class="ed__info" data-ed-info="c"><p class="ed__price">14,90 € <small>pro Platte, ab 10 Stück 12,90 €</small></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Bekanntes Google-Design, Weiß oder Schwarz</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Sofort bestellbar, ohne Fragebogen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Bei Ihnen in 3 bis 7 Werktagen</li></ul><a class="btn btn--ink" href="/shop?weiss=5">Classic bestellen</a></div>
         <div class="ed__info" data-ed-info="b" hidden><p class="ed__price">29,90 € <small>pro Platte, ab 10 Stück 24,90 €</small></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Schlichtes FOAV-Design mit Ihrem Logo</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Passt zu Ihrer Einrichtung und Marke</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Design-Vorschau, erst nach Ihrer Freigabe wird produziert</li></ul><a class="btn btn--ink" href="/anfrage/nfc">Logo hochladen</a></div>
       </div>
@@ -1717,7 +1718,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
               <div class="win__body"><p class="win__h">Klare Preise. Einmal zahlen.</p>
                 <div class="prow"><span>Website<small>3 Seiten, für Handy und Computer</small></span><b><small>ab</small> 399 €</b></div>
                 <div class="prow prow--hi"><span>KI-Werbevideo<small>Werbefilm aus Fotos, in 48 Stunden</small></span><b><small>ab </small>199 €</b></div>
-                <div class="prow"><span>NFC-Platte<small>Weiß oder Schwarz, Ø 10 cm</small></span><b>14,90 €</b></div>
+                <div class="prow"><span>NFC-Platte<small>Weiß, Schwarz oder mit Ihrem Logo</small></span><b>14,90 €</b></div>
               </div></div></div><p class="jno">1</p><h3>Paket wählen</h3><p>Alle Preise und Leistungen stehen auf der Seite. Sie wissen vorher genau, was Sie bekommen.</p></li>
         <li class="jlink" aria-hidden="true"><span>1 Minute</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h36M31 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
         <li class="jstep"><div class="jstage" aria-hidden="true"><div class="iphone fp__phone" aria-hidden="true"><div class="iphone__screen"><div class="app">
@@ -1842,7 +1843,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <details data-on="home websites ki-shots"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Änderungswünsche besprechen Sie direkt mit uns, per Telefon, WhatsApp oder E-Mail. Was zum gebuchten Umfang gehört, passen wir ohne Aufpreis an.</p></details>
         <details data-on="nfc-platten"><summary>Kann ich Weiß und Schwarz mischen?<i aria-hidden="true"></i></summary><p>Ja. Im Shop wählen Sie die Anzahl je Farbe. Mengenpreis und Versand richten sich nach allen Classic-Platten zusammen: ab 5 Stück 13,90 € pro Platte und kostenloser Versand, ab 10 Stück 12,90 €.</p></details>
         <details data-on="websites"><summary>Wer kümmert sich um Impressum und Datenschutz?<i aria-hidden="true"></i></summary><p>Das Impressum erstellen wir aus Ihren Angaben im Fragebogen. Datenschutzerklärung und AGB sind nicht enthalten: Die erstellen Sie selbst, am einfachsten mit einem Rechtstext-Dienst wie eRecht24 oder der IT-Recht Kanzlei, und wir binden sie ein. Eine Rechtsberatung übernehmen wir nicht.</p></details>
-        <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku.</p></details>
+        <details data-on="home nfc-platten"><summary>Wie funktioniert die NFC-Platte?<i aria-hidden="true"></i></summary><p>In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku. Auf Wunsch trägt die Platte statt des Google-Designs Ihr Logo.</p></details>
         <details data-on="nfc-platten"><summary>Was ist der Unterschied zwischen Classic und Custom Brand?<i aria-hidden="true"></i></summary><p>Beide funktionieren gleich: Der Chip führt direkt zu Ihrer Google-Bewertungsseite. Die Classic Edition hat das bekannte Google-Design in Weiß oder Schwarz und ist sofort bestellbar. Die Custom Brand Edition trägt in schlichtem Design Ihr Logo und passt so zu Ihrer Marke.</p></details>
         <details data-on="home websites nfc-platten"><summary>Gibt es laufende Kosten?<i aria-hidden="true"></i></summary><p>Bei uns nicht, Sie zahlen einmal. Auch das Hosting Ihrer Website ist inklusive, ohne monatliche Gebühren. Sie brauchen nur eine eigene Domain auf Ihren Namen, meist rund 1 € im Monat bei Ihrem Anbieter. Haben Sie noch keine, sagen wir Ihnen, wo Sie sie bestellen.</p></details>
         <details data-on="websites"><summary>Was brauchen Sie von mir für die Website?<i aria-hidden="true"></i></summary><p>Nach der <a class="inl" href="#pakete">Paketwahl</a> füllen Sie einen Fragebogen aus, etwa 15 Minuten: Angaben fürs Impressum, Ihre Leistungen in Stichpunkten, Öffnungszeiten, Stil und Farben. Logo und Fotos laden Sie direkt dort hoch. Mehr brauchen wir nicht, Rückfragen sind die Ausnahme.</p></details>
@@ -1862,7 +1863,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <ul class="order" role="list">
           <li><a href="/websites#pakete"><b>Website</b><span>Paket wählen, ab 399 €</span></a></li>
           <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>Paket wählen, ab 199 €</span></a></li>
-          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Menge wählen, ab 14,90 €</span></a></li>
+          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Classic oder mit Ihrem Logo, ab 14,90 €</span></a></li>
         </ul>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
