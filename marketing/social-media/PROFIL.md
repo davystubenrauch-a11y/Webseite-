@@ -18,7 +18,7 @@ Bilder in `bilder/`. Link-Seite: **https://foav.de/links** (`public/site/links.h
 
 | Feld | Inhalt |
 |---|---|
-| Profilbild | `bilder/profilbild-wortmarke.png` |
+| Profilbild | `bilder/profilbild-zeichen.png` (gleiches Zeichen wie Website-Symbol und Google-Logo) |
 | Name | `FOAV \| Websites & KI-Werbevideos München` |
 | Benutzername | `foav.de` (bleibt) |
 | Bio | siehe unten |
@@ -40,7 +40,7 @@ Highlights (Cover in `bilder/`): KI-Videos · Websites · NFC · Ablauf · Über
 ## TikTok einstellen (Profil → Profil bearbeiten)
 
 1. Erst **Unternehmenskonto**: Einstellungen → Konto → „Zu Unternehmenskonto wechseln“, Kategorie „Dienstleistungen“ oder „Werbung & Marketing“. Erst dann gibt es das Website-Feld.
-2. Profilbild: `bilder/profilbild-wortmarke.png`
+2. Profilbild: `bilder/profilbild-zeichen.png`
 3. Name: `FOAV | Websites & KI-Videos`
 4. Benutzername: `foav.de` (klein, wie Instagram, falls frei)
 5. Bio (64 Zeichen): `Websites, KI-Werbevideos & NFC-Platten für Betriebe in München 👇`
