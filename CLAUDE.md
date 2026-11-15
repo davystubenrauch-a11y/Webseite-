@@ -11,6 +11,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Kunde: „werde mein Social Media Manager, Instagram und TikTok gut gestalten, Werbevideo mit Männerstimme posten“. Metricool verbunden (Instagram @foav.de, TikTok). Anleitung, Bio-Texte, Redaktionsplan: `marketing/social-media/PROFIL.md`; Profilbild, Highlight-Cover, Reel-Titelbild in `marketing/social-media/bilder/`.
 - Neue Link-Seite **foav.de/links** (`public/site/links.html`, Rewrite in `next.config.mjs`, noindex) für die Bio: KI-Werbevideos, Websites, NFC, Beratung, Shop, E-Mail, unten Impressum/Datenschutz/AGB.
 - Öffentliche Social-Videos in `public/social/` (Instagram/TikTok brauchen öffentliche URLs).
+- Google-Unternehmensprofil jetzt auch in Metricool (`gbpData`): Claude kann Beiträge (`gmbData.type` publication) und Galerie-Fotos/Videos (photo) posten, aber Name, Beschreibung, Kategorien, Dienstleistungen und Löschen nur der Mensch. Texte/Bilder: `marketing/google-profil/GOOGLE.md`, öffentlich unter `public/social/google/`. `/roomtours` in der Search Console zum Entfernen beantragt (15.11.).
 
 ## Stand: Angebote zuerst, Neuladen oben, Animationen aufgewertet (15.11.)
 - Kunde: „Klick auf ein Angebot auf der Startseite soll erst zum Angebot führen, nicht zum Checkout; beim Neuladen nach oben; alle Animationen upgraden“.
