@@ -1056,7 +1056,7 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .hero > .wrap { padding: 0; max-width: none; }
   .hero__top { grid-column: 1; grid-row: 1; }
   .hero__usps { grid-column: 1; grid-row: 2; margin-top: 24px !important; }
-  .hero__stage { grid-column: 2; grid-row: 1 / 3; align-self: stretch; display: flex; align-items: flex-end; margin: 0 !important; padding: clamp(28px, 3vw, 48px) clamp(12px, 1.6vw, 24px) 0; }
+  .hero__stage { grid-column: 2; grid-row: 1 / 3; align-self: start; display: flex; align-items: flex-end; margin: 0 !important; padding: clamp(28px, 3vw, 48px) clamp(12px, 1.6vw, 24px) 0; }
   .hero__stage .lineup { aspect-ratio: 16 / 11; }
   .hero__stage .lu-mac { width: 80%; margin-left: -40%; }
   .hero__stage .lu-phone { right: 2%; width: 18%; }
@@ -1325,6 +1325,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 }
 @media (max-width: 700px) { .scene--shots .scene__grid { padding-bottom: 84px; } .scene--shots .scene__fact { display: none; } }
 #vorher-nachher .cmp .before { object-position: 50% 50%; }
+@media (min-width: 1000px) and (max-width: 1299px) { .hero > .pause { padding: 0 14px; } .hero > .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
 
 
 </style>
@@ -1360,7 +1361,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
       <h1 id="h-start">Mehr Kunden für Ihr <span class="hl">Unternehmen.</span></h1>
       <div class="hero__row">
         <p class="hero__sub">Websites, KI-Werbevideos (kurze Werbefilme aus Ihren Handyfotos) und NFC-Platten für Google-Bewertungen. Zum festen Preis, den Sie vorher kennen, in Profi-Qualität dank KI und in wenigen Tagen fertig.</p>
-        <div class="cta"><a class="btn btn--light" href="#angebot">Angebote ansehen</a><a class="btn btn--line" href="#kontakt">Kostenlos beraten<span class="hm"> lassen</span></a></div>
+        <div class="cta"><a class="btn btn--light" href="#angebot">Angebote ansehen</a><a class="btn btn--line" href="#kontakt"><span>Kostenlos beraten<span class="hm"> lassen</span></span></a></div>
       </div>
     </div>
     <div class="hero__stage">
@@ -1412,7 +1413,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
     <div class="wrap">
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">KI-Werbevideos</span></nav>
-      <h1 id="h-p-shots">Aus Ihren Fotos wird ein Werbefilm.</h1>
+      <h1 id="h-p-shots">Werbefilme aus Ihren Handyfotos.</h1>
       <div class="phero__row"><p class="hero__sub">Sie fotografieren Ihr Café, Ihre Gerichte, Ihren Laden oder Ihre Wohnung mit dem Handy. Wir machen daraus einen kurzen Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok, Ihre Website und Immobilienportale. Ohne Filmteam, fertig in 48 bis 72 Stunden.</p><div class="cta"><a class="btn btn--light" href="#pakete">Pakete ansehen</a><a class="btn btn--line" href="#ki-shots">Beispiel ansehen</a></div></div></div>
       <div class="pst pst--room">
         <div class="pst__dev" aria-hidden="true">
@@ -1731,7 +1732,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <li class="jstep"><div class="jstage jstage--dark" aria-hidden="true"><div class="mail" aria-hidden="true">
               <div class="mail__head"><span class="mail__av">f</span><div><b>FOAV</b><small>Ihr Werbefilm ist fertig</small></div><time>vor 2 Min.</time></div>
               <figure class="mail__vid"><img src="/images/ki-videos/immobilie-poster.jpg" alt="" loading="lazy"><span class="mail__play"></span><figcaption>werbefilm-16x9.mp4 · 12 Sekunden</figcaption></figure>
-              <p class="mail__txt">Hallo Frau Berger, Ihr Werbefilm ist fertig. Schauen Sie sie sich in Ruhe an. Passt etwas nicht, ändern wir es mit Ihnen.</p>
+              <p class="mail__txt">Hallo Frau Berger, Ihr Werbefilm ist fertig. Schauen Sie ihn sich in Ruhe an. Passt etwas nicht, ändern wir es mit Ihnen.</p>
               <p class="mail__btns"><span class="b1">Ansehen</span><span class="b2">Änderung wünschen</span></p>
             </div></div><p class="jno">3</p><h3>Ergebnis erhalten</h3><p>Werbefilme in 48 bis 72 Stunden, Website in 5 bis 7 Tagen. Sie prüfen alles, bevor es online geht.</p></li>
       </ol>
@@ -1829,13 +1830,13 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <details data-on="home ki-shots"><summary>Was kosten KI-Werbevideos?<i aria-hidden="true"></i></summary><p>Starter mit einem Werbefilm 199 €, Pro mit drei Filmen in Hoch- und Querformat 449 €, Brand-Paket mit Hauptfilm und fünf Kurzfilmen 899 €. Festpreise, kein Abo.</p></details>
         <details data-on="ki-shots"><summary>Geht das auch für Immobilien?<i aria-hidden="true"></i></summary><p>Ja. Aus Fotos der Wohnung entsteht ein ruhiger Rundgang. Leere Räume richten wir auf Wunsch virtuell ein; Grundriss, Fenster und Böden bleiben dabei exakt. Im Film steht dann sichtbar „virtuell eingerichtet“, wie es in Immobilienanzeigen nötig ist.</p></details>
         <details data-on="ki-shots"><summary>Sieht man, dass es KI ist?<i aria-hidden="true"></i></summary><p>Wir arbeiten bewusst mit ruhigen Kamerafahrten, echtem Licht und ohne Menschen in Bewegung, weil KI genau dort am natürlichsten wirkt. Trotzdem kennzeichnen wir die Filme als mit KI erstellt, das verlangt die EU-KI-Verordnung bei realistischen KI-Videos.</p></details>
-        <details data-on="ki-shots"><summary>Was brauchen Sie von mir?<i aria-hidden="true"></i></summary><p>3 bis 10 normale Handyfotos, auf denen Ihr Produkt ganz und scharf zu sehen ist, bei Tageslicht und ohne Filter. Im Fragebogen wählen Sie Stil und Formate und laden die Fotos hoch. Studio oder Profikamera brauchen Sie nicht.</p></details>
-        <details data-on="ki-shots"><summary>Wird mein Produkt verändert?<i aria-hidden="true"></i></summary><p>Nein, das ist uns besonders wichtig. Im Fragebogen sagen Sie uns, was genau so bleiben muss, zum Beispiel Logo, Schrift und Form. Wir prüfen jedes Bild und jeden Clip auf Abweichungen, bevor Sie sie bekommen. Passt trotzdem etwas nicht, ändern wir es.</p></details>
-        <details data-on="home ki-shots"><summary>Muss ich KI-Bilder kennzeichnen?<i aria-hidden="true"></i></summary><p>Realistisch wirkende KI-Bilder und -Videos müssen nach der EU-KI-Verordnung erkennbar sein. Auf Wunsch blenden wir einen dezenten Hinweis „Mit KI erstellt“ ein. Instagram und TikTok bieten beim Posten zusätzlich ein eigenes KI-Label.</p></details>
-        <details data-on="ki-shots"><summary>Darf ich die Bilder überall verwenden?<i aria-hidden="true"></i></summary><p>Ja, für Ihr Unternehmen ohne Einschränkung: Social Media, Website, Google-Profil, Werbeanzeigen, Onlineshop, Speisekarte und Druck.</p></details>
+        <details data-on="ki-shots"><summary>Was brauchen Sie von mir?<i aria-hidden="true"></i></summary><p>3 bis 10 normale Handyfotos Ihrer Räume, Gerichte oder Produkte, bei Tageslicht und ohne Filter, gern aus verschiedenen Winkeln. Im Fragebogen wählen Sie Stimmung und Musik, sagen uns, was im Film stehen soll, und laden die Fotos hoch. Profikamera oder Filmteam brauchen Sie nicht.</p></details>
+        <details data-on="ki-shots"><summary>Werden meine Räume oder Produkte verändert?<i aria-hidden="true"></i></summary><p>Nein, das ist uns besonders wichtig. Im Fragebogen sagen Sie uns, was genau so bleiben muss, zum Beispiel Grundriss, Fenster, Logo oder die Form eines Kuchens. Wir prüfen jeden Film auf Abweichungen, bevor Sie ihn bekommen. Passt trotzdem etwas nicht, ändern wir es. Nur wenn Sie es wünschen, richten wir leere Räume virtuell ein und kennzeichnen das im Film.</p></details>
+        <details data-on="home ki-shots"><summary>Muss ich KI-Videos kennzeichnen?<i aria-hidden="true"></i></summary><p>Realistisch wirkende KI-Bilder und -Videos müssen nach der EU-KI-Verordnung erkennbar sein. Auf Wunsch blenden wir einen dezenten Hinweis „Mit KI erstellt“ ein. Instagram und TikTok bieten beim Posten zusätzlich ein eigenes KI-Label.</p></details>
+        <details data-on="ki-shots"><summary>Darf ich die Filme überall verwenden?<i aria-hidden="true"></i></summary><p>Ja, für Ihr Unternehmen ohne Einschränkung: Instagram, TikTok, Website, Google-Profil, Immobilienportale, Werbeanzeigen und auf dem Bildschirm in Ihrem Laden.</p></details>
         <details data-on="nfc-platten"><summary>Wie bekomme ich Platten mit meinem Logo?<i aria-hidden="true"></i></summary><p>Wählen Sie bei den Paketen „Mit Ihrem Logo“ und die Menge. In einem kurzen Fragebogen laden Sie Ihr Logo hoch und nennen Ihr Google-Profil. Nach der Zahlung bekommen Sie innerhalb von 2 Werktagen eine Design-Vorschau. Erst nach Ihrer Freigabe produzieren wir.</p></details>
         <details data-on="home websites ki-shots nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb und Sie bezahlen sicher über Stripe, zum Beispiel per Karte, Apple Pay oder Google Pay. NFC-Platten Classic bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
-        <details data-on="home websites ki-shots"><summary>Was passiert nach der Bezahlung?<i aria-hidden="true"></i></summary><p>Sie bekommen sofort die Rechnung und eine Bestätigung Ihrer Angaben per E-Mail. Wir beginnen am selben oder nächsten Werktag. Ihre KI-Werbevideos kommen nach 48 Stunden (Pro und Brand-Paket nach 72 Stunden), der Website-Entwurf nach 5 bis 7 Tagen, jeweils als Link per E-Mail. Sie schauen es an, sagen uns Ihre Änderungswünsche, und nach Ihrer Freigabe geht es online.</p></details>
+        <details data-on="home websites ki-shots"><summary>Was passiert nach der Bezahlung?<i aria-hidden="true"></i></summary><p>Sie bekommen sofort die Rechnung und eine Bestätigung Ihrer Angaben per E-Mail. Wir beginnen am selben oder nächsten Werktag. Ihr Werbefilm kommt nach 48 Stunden (Pro und Brand-Paket nach 72 Stunden), der Website-Entwurf nach 5 bis 7 Tagen, jeweils als Link per E-Mail. Sie schauen es an, sagen uns Ihre Änderungswünsche, und nach Ihrer Freigabe geht es online.</p></details>
         <details data-on="websites"><summary>Brauche ich technisches Wissen?<i aria-hidden="true"></i></summary><p>Nein. Das Hosting übernehmen wir. Sie brauchen nur eine Domain auf Ihren Namen, zum Beispiel bei IONOS oder Strato, meist rund 1 € im Monat. Zum Verbinden schicken wir Ihnen eine kurze Anleitung: ein einziger Eintrag bei Ihrem Anbieter, etwa 5 Minuten. Passwörter müssen Sie uns dafür nicht schicken.</p></details>
         <details data-on="websites"><summary>Kann ich über die Website auch verkaufen oder reservieren?<i aria-hidden="true"></i></summary><p>Ja. Ab Business binden wir Ihre Terminbuchung, Reservierung oder ein Anfrageformular mit Auswahl ein. Haben Sie schon einen Online-Shop oder ein Buchungs-Tool (zum Beispiel Shopify, OpenTable, Treatwell), verknüpfen wir es mit Ihrer Website. Einen kompletten neuen Online-Shop bieten wir als individuelles Angebot an.</p></details>
         <details data-on="home websites ki-shots"><summary>Was passiert, wenn mir das Ergebnis nicht gefällt?<i aria-hidden="true"></i></summary><p>Sie sehen alles vor der Veröffentlichung. Änderungswünsche besprechen Sie direkt mit uns, per Telefon, WhatsApp oder E-Mail. Was zum gebuchten Umfang gehört, passen wir ohne Aufpreis an.</p></details>
