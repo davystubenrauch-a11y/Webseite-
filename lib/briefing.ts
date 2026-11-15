@@ -1,5 +1,5 @@
 // Detailed briefings that follow a short inquiry: what the website should look like,
-// which photos and style belong to a KI-Shots order, or the logo for custom NFC plates.
+// which photos and mood belong to a KI-Werbevideo order, or the logo for custom NFC plates.
 // Shared by the forms and /api/briefing. "roomtour" stays for drafts and mails sent before the switch.
 
 export type BriefingKind = "website" | "shots" | "nfc" | "roomtour";
@@ -19,7 +19,7 @@ export type Briefing = {
   website?: string;
 };
 
-export const kindLabels: Record<BriefingKind, string> = { website: "Website-Fragebogen", shots: "KI-Shots-Auftrag", nfc: "NFC-Custom-Auftrag", roomtour: "Roomtour-Auftrag" };
+export const kindLabels: Record<BriefingKind, string> = { website: "Website-Fragebogen", shots: "KI-Werbevideo-Auftrag", nfc: "NFC-Custom-Auftrag", roomtour: "Roomtour-Auftrag" };
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 

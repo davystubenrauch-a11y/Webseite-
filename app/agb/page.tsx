@@ -13,13 +13,13 @@ export default function Agb() {
 
       <h2>1. Geltungsbereich</h2>
       <p>
-        Diese Bedingungen gelten für alle Aufträge an {site.address[0]} („{site.name}“, „wir“) über die Erstellung von Websites, KI-Shots (KI-Produktfotos und
-        Werbeclips) und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
+        Diese Bedingungen gelten für alle Aufträge an {site.address[0]} („{site.name}“, „wir“) über die Erstellung von Websites, KI-Werbevideos (kurze Werbefilme und Bilder, mit KI
+        aus Ihren Fotos erstellt) und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
       </p>
 
       <h2>2. Vertragsschluss</h2>
       <p>
-        Die Pakete und Preise auf unserer Website sind verbindlich. Sie wählen ein Paket, senden bei Websites, KI-Shots und NFC-Platten mit Logo den Fragebogen
+        Die Pakete und Preise auf unserer Website sind verbindlich. Sie wählen ein Paket, senden bei Websites, KI-Werbevideos und NFC-Platten mit Logo den Fragebogen
         und bestellen anschließend über den Knopf „Zahlungspflichtig bestellen“. Damit geben Sie ein verbindliches Angebot ab, das wir mit der
         Bestellbestätigung per E-Mail annehmen. Für Leistungen außerhalb der Pakete (z. B. „Individuell“) erhalten Sie vorher ein schriftliches
         Angebot; der Vertrag kommt dann mit Ihrer Bestätigung oder Zahlung zustande.
@@ -39,7 +39,7 @@ export default function Agb() {
         offline nehmen. Die Rechte an Ihren Inhalten und Ihrer Domain bleiben bei Ihnen.
       </p>
       <p>
-        <b>KI-Shots:</b> Fotos und kurze Werbeclips, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos entstehen, in Anzahl und Formaten
+        <b>KI-Werbevideos:</b> Kurze Werbefilme und Standbilder, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos entstehen. Bei Immobilien können leere Räume virtuell eingerichtet werden; solche Filme kennzeichnen wir als „virtuell eingerichtet“, in Anzahl und Formaten
         des gewählten Pakets (Starter, Pro oder Brand-Paket). Licht, Hintergrund und Umgebung werden neu gestaltet; Ihr Produkt soll dabei
         unverändert bleiben. Einzelne Details können trotzdem abweichen, deshalb prüfen Sie die Ergebnisse vor der Veröffentlichung. Für eine
         zutreffende Darstellung Ihres Produkts in Werbung und Shop und für eine nötige Kennzeichnung als KI-Inhalt sind Sie verantwortlich; wir
@@ -62,7 +62,7 @@ export default function Agb() {
 
       <h2>5. Lieferzeiten</h2>
       <p>
-        KI-Shots liefern wir je nach Paket innerhalb von 48 Stunden (Starter) oder 72 Stunden (Pro, Brand-Paket), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
+        KI-Werbevideos liefern wir je nach Paket innerhalb von 48 Stunden (Starter) oder 72 Stunden (Pro, Brand-Paket), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
         sobald die Zahlung eingegangen ist und uns alle nötigen Unterlagen vorliegen (Fotos, Texte, Logo, Zugangsdaten). NFC-Platten versenden wir
         nach Zahlungseingang innerhalb Deutschlands; die Lieferung der Classic Edition dauert 3 bis 7 Werktage. Die Custom Brand Edition
         versenden wir innerhalb von 10 Werktagen nach Ihrer Freigabe der Design-Vorschau. Verzögerungen, die wir nicht zu vertreten haben, verlängern die Fristen
@@ -72,7 +72,7 @@ export default function Agb() {
       <h2>6. Ihre Mitwirkung</h2>
       <p>
         Sie stellen uns die benötigten Inhalte rechtzeitig zur Verfügung und versichern, dass Sie die Rechte daran haben, insbesondere an Fotos,
-        Texten und Logos. Auf Fotos für KI-Shots sollen keine Personen zu erkennen sein, und Sie dürfen nur Produkte und Marken einreichen, die Sie bewerben dürfen. Werden Rechte Dritter verletzt, stellen Sie uns von
+        Texten und Logos. Auf Fotos für KI-Werbevideos sollen keine Personen zu erkennen sein, und Sie dürfen nur Produkte und Marken einreichen, die Sie bewerben dürfen. Werden Rechte Dritter verletzt, stellen Sie uns von
         daraus folgenden Ansprüchen frei.
       </p>
 
@@ -85,7 +85,7 @@ export default function Agb() {
 
       <h2>8. Nutzungsrechte</h2>
       <p>
-        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website sowie die KI-Shots für Ihren
+        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website sowie die KI-Werbevideos für Ihren
         Betrieb zu nutzen, auch in sozialen Medien, Werbeanzeigen, Onlineshops und auf Google. Wir dürfen die Arbeit als Referenz zeigen, sofern Sie nicht
         widersprechen.
       </p>

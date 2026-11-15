@@ -28,7 +28,7 @@ export type Errors = Partial<Record<string, string>>;
 export const serviceLabels: Record<ServiceId, string> = {
   nfc: "NFC-Platten",
   web: "Website",
-  shots: "KI-Shots (Fotos und Werbeclips)",
+  shots: "KI-Werbevideos",
   roomtour: "Roomtour",
 };
 
@@ -78,7 +78,7 @@ export function summarize(d: Inquiry) {
   if (d.services.includes("nfc"))
     lines.push(`NFC: ${d.nfc?.qty || "Menge offen"} × Platte (Ø 10 cm) · ${d.nfc?.theme || "Farbe offen"}${d.nfc?.business ? ` · Betrieb "${d.nfc!.business}"` : ""}`);
   if (d.services.includes("web")) lines.push(`Website: Paket ${d.web.tier}${d.web.url ? ` · bestehende Seite ${d.web.url}` : ""}`);
-  if (d.services.includes("shots")) lines.push(`KI-Shots: ${d.shots?.tier || "Paket offen"}`);
+  if (d.services.includes("shots")) lines.push(`KI-Werbevideos: ${d.shots?.tier || "Paket offen"}`);
   if (d.services.includes("roomtour") && d.roomtour) lines.push(`Roomtour: ${d.roomtour.tier || "Paket offen"} · ${d.roomtour.property}${d.roomtour.area ? ` · ${d.roomtour.area} m²` : ""}`);
   if (d.addOns.length) lines.push(`Extras: ${d.addOns.join(", ")}`);
   lines.push(

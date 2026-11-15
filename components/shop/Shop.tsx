@@ -5,7 +5,7 @@ import { Shell } from "@/components/forms/Briefing";
 import { site } from "@/lib/site";
 import { euro, isService, products, shipping, totals, vatNote, type Cart, type ProductId } from "@/lib/shop";
 
-// Shop: NFC plates (Classic and Custom Brand Edition), KI-Shots and websites, cart with the shipping rule, then Stripe Checkout
+// Shop: NFC plates (Classic and Custom Brand Edition), KI-Werbevideos and websites, cart with the shipping rule, then Stripe Checkout
 // (or, while Stripe is not set up, the order is delivered to us and we send a payment link).
 // Cart persists in localStorage ("foav-cart").
 
@@ -51,7 +51,7 @@ const css = `
 
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
-  if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-shots/cafe-nachher.jpg" : "/images/ki-shots/burger-nachher.jpg"} alt="" /></div>;
+  if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-videos/spot-1.jpg" : "/images/ki-videos/wohnung-voll.jpg"} alt="" /></div>;
   if (id === "nfc-custom") return <div className="sh-pic"><img src="/images/ki-shots/nfc-custom-spiruli.jpg" alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }
@@ -133,12 +133,12 @@ export default function Shop({ online = false }: { online?: boolean }) {
   return (
     <Shell
       title={hasService ? "Letzter Schritt: bezahlen." : "Direkt bestellen."}
-      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten Classic bestellen Sie hier direkt. Websites, KI-Shots und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
+      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten Classic bestellen Sie hier direkt. Websites, KI-Werbevideos und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
       steps={[
         ["Paket wählen", "Der Preis steht vorher fest."],
-        ["Fragebogen", "Websites, KI-Shots und Logo-Platten: Angaben und Fotos senden."],
+        ["Fragebogen", "Websites, KI-Werbevideos und Logo-Platten: Angaben und Fotos senden."],
         ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Ergebnis erhalten", "Platten Classic in 3 bis 7 Werktagen per Post, KI-Shots in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
+        ["Ergebnis erhalten", "Platten Classic in 3 bis 7 Werktagen per Post, KI-Werbevideos in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -164,7 +164,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
           </div>
           <p className="sh-note">Classic: Mengenpreis für Weiß und Schwarz zusammen, ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
           {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (Custom Brand Edition, ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
-          {!hasService && <p className="sh-note">Eine Website oder KI-Shots? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Shots</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
+          {!hasService && <p className="sh-note">Eine Website oder ein KI-Werbevideo? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Werbevideos</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 
         <aside className="sh-cart" aria-label="Warenkorb">

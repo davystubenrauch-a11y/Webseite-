@@ -23,8 +23,8 @@ pages = {
     'home': ('index.html', '/', None, None),
     'websites': ('websites.html', '/websites', 'Websites ab 399 € · FOAV München',
                  'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
-    'ki-shots': ('ki-shots.html', '/ki-shots', 'KI-Shots ab 199 € · Werbefotos und Clips aus Handyfotos · FOAV',
-                 'Aus Ihren Handyfotos werden Studio-Fotos und Werbeclips für Instagram, TikTok, Website und Google. Starter 199 €, Pro 449 €, Brand-Paket 899 €. Fertig in 48 bis 72 Stunden.'),
+    'ki-shots': ('ki-shots.html', '/ki-shots', 'KI-Werbevideos ab 199 € · Werbefilme aus Ihren Fotos · FOAV',
+                 'Aus Ihren Handyfotos werden kurze Werbefilme für Cafés, Restaurants, Läden und Immobilien, mit ruhigen Kamerafahrten, Musik und Text. Starter 199 €, Pro 449 €, Brand-Paket 899 €. Fertig in 48 bis 72 Stunden.'),
     'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · ab 14,90 € · FOAV',
                     'NFC-Platten für mehr Google-Bewertungen: Gast hält das Handy an die Platte, die Bewertungsseite öffnet sich. Classic 14,90 €, mit Ihrem Logo 29,90 €, ohne App.'),
 }

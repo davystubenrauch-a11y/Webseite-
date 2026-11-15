@@ -37,7 +37,7 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
         <b>NFC-Platten mit Ihrem Logo:</b> Sie bekommen innerhalb von 2 Werktagen eine Design-Vorschau per E-Mail. Erst nach Ihrer Freigabe produzieren wir.
       </p>
       <p>
-        <b>KI-Shots:</b> Wir starten mit Ihren Fotos aus dem Fragebogen. Starter kommt nach 48 Stunden, Pro und Brand-Paket nach 72 Stunden, jeweils als Download-Link per E-Mail. Noch keine Fotos geschickt?{" "}
+        <b>KI-Werbevideos:</b> Wir starten mit Ihren Fotos aus dem Fragebogen. Der Starter-Film kommt nach 48 Stunden, Pro und Brand-Paket nach 72 Stunden, jeweils als Download-Link per E-Mail. Noch keine Fotos geschickt?{" "}
         <a href="/anfrage/ki-shots">Fotos hochladen</a>
       </p>
       <p>

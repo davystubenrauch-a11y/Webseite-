@@ -4,6 +4,11 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-15 · KI-Werbevideos: was echt wirkt
+- Kritik der Gründer: KI-Bilder „kann jeder gratis“, Restaurant-Film mit Kellner/Stichflamme/Anstoßen „zu sehr KI“, Handy-Look mit Wackeln „nicht professionell“. Gelungen: ruhiger Café-Spot „Draußen grau. Drinnen Apfelkuchen.“
+- Regeln: keine Hände, Menschen, Feuer oder Flüssigkeiten in Bewegung; nur langsame, gleichmäßige Kamerafahrten (Slider/Gimbal, „no shake“ im Prompt); natürliches, gemütliches Licht; Regen am Fenster/Kerze/Dampf als einzige kleine Bewegung; Texte als eigene Overlays statt KI-Schrift; kurze Geschichte in zwei Zeilen + Schlusstafel mit Aufforderung.
+- Immobilien: leere Wohnung + gleiche Perspektive als Referenz einrichten lassen (Geometrie bleibt), kling3_0 Start-/Endbild für „richtet sich ein“; erste ~0,8 s oft mit Bildfehler → abschneiden. Immer „virtuell eingerichtet“ einblenden.
+
 ### 2026-11-15 · KI-Shots: Motiv und Animation
 - Kritik der Gründer: Getränkedose als KI-Shot „schlecht dargestellt“, beiger Hintergrund unpassend, Start erklärt KI-Shots nicht. → Motive nehmen, die Kunden aus dem Alltag kennen (Burger, Cappuccino, Kerze), und **zuerst das Problem zeigen** (schlechtes Handyfoto mit gelbem Licht, Ketchup, Kassenzettel), dann die Lösung.
 - Rezept: Vorher-Foto mit gpt_image_2_6 als „amateur smartphone snapshot … cluttered … unedited“ erzeugen, dann Nachher mit diesem Job als `image_references` („exactly this burger …“) → Motiv bleibt gleich. Kosten: 8 Bilder ≈ 2 Credits, 4 Clips kling3_0 ≈ 40 Credits.
