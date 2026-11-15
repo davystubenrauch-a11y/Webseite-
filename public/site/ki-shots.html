@@ -1342,6 +1342,60 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 }
 @media (max-width: 700px) { .scene--shots .scene__grid { padding-bottom: 84px; } .scene--shots .scene__fact { display: none; } }
 #vorher-nachher .cmp .before { object-position: 50% 50%; }
+/* ---------- improvements: logo plates, outcome toast, photo flash ---------- */
+.pst__logo { display: block; width: 100%; height: auto; border-radius: 50%; filter: drop-shadow(0 20px 18px rgba(0,0,0,.25)); }
+.n-logo { position: absolute; z-index: 4; left: 3%; bottom: 7%; width: calc(var(--w) * .66); margin: 0; text-align: center; opacity: 0; transform: translateY(16px) rotate(-6deg); transition: opacity .6s .9s, transform .8s .9s var(--ease); }
+.n-logo img { display: block; width: 100%; height: auto; border-radius: 50%; filter: drop-shadow(0 22px 22px rgba(0,0,0,.25)); }
+.n-logo figcaption { display: inline-block; margin-top: 10px; padding: 7px 13px; border-radius: 999px; background: #1d1d1f; color: #fff; font-size: .8125rem; font-weight: 600; white-space: nowrap; }
+.scene.s3 .n-logo { opacity: 1; transform: none; }
+.w-toast2 { left: 4%; top: calc(4% + 62px); transition-delay: .9s !important; }
+.w-toast2 svg { background: #1d1d1f; padding: 5px; }
+.kv__pic::after { content: ""; position: absolute; inset: 0; z-index: 2; border-radius: 6px; background: #fff; pointer-events: none; opacity: calc(min(1 - (var(--a, 1) * 3 - var(--i) * .6 - .3) * 5, 1 + (var(--a, 1) * 3 - var(--i) * .6 - .3) * 5)); }
+@media (max-width: 1023px) {
+  .n-logo { width: calc(var(--w) * .55); left: 2%; bottom: 4%; } .n-logo figcaption { font-size: .6875rem; padding: 5px 9px; }
+  .w-toast2 { top: auto; bottom: calc(2% + 56px); }
+}
+/* live logo preview */
+.lp__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
+.lp__text { grid-column: 1; grid-row: 1; } .lp__stage { grid-column: 2; grid-row: 1; }
+.lp__ctrl { display: grid; gap: 16px; margin-top: 26px; }
+.lp__file { justify-self: start; gap: 10px; cursor: pointer; } .lp__file svg { width: 18px; height: 18px; }
+.lp__file:focus-within { outline: 2px solid var(--ink); outline-offset: 3px; }
+.lp__ex { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; } .lp__ex span { color: var(--muted); font-size: .9375rem; margin-right: 2px; }
+.lp__ex button { min-height: 40px; padding: 0 16px; border: 0; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.12); font: 600 .875rem/1 inherit; color: var(--ink); cursor: pointer; }
+.lp__ex button[aria-pressed="true"] { background: #1d1d1f; color: #fff; box-shadow: none; }
+.lp__row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; font-size: .9375rem; } .lp__row > span { color: var(--muted); }
+.lp__sw { margin-top: 0; }
+.lp__check { cursor: pointer; } .lp__check input { width: 20px; height: 20px; accent-color: #1d1d1f; } .lp__check small { color: var(--muted); }
+.lp__field { display: grid; gap: 6px; font-size: .875rem; color: var(--muted); max-width: 360px; }
+.lp__field input { min-height: 46px; padding: 0 14px; border: 0; border-radius: 12px; background: #fff; box-shadow: inset 0 0 0 1px rgba(0,0,0,.14); font: 500 1rem/1 inherit; color: var(--ink); }
+.lp__cta { margin-top: 26px; align-items: center; } .lp__price { color: var(--muted); font-size: .9375rem; }
+.lp__hint { margin: -6px 0 0; font-size: .8125rem; color: var(--muted); }
+.lp__note { margin-top: 14px; font-size: .8125rem; color: var(--muted); max-width: 46ch; }
+.lp__stage { position: relative; display: grid; place-items: center; min-height: min(600px, 74vh); padding: 40px 20px 70px; border-radius: 28px; background: radial-gradient(70% 60% at 50% 38%, #fbfbfd, #e3e3e7); overflow: hidden; }
+.lp__float { perspective: 1000px; animation: lpFloat 7s ease-in-out infinite; z-index: 1; }
+.lp__plate { --size: min(360px, 66vw); position: relative; width: var(--size); aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; border-radius: 50%; overflow: hidden; color: #f3efe8; background: radial-gradient(120% 110% at 30% 18%, #2c2c2f, #0c0c0d 62%);
+  box-shadow: inset 0 0 0 calc(var(--size) * .012) rgba(255,255,255,.14), inset 0 calc(var(--size) * -.04) calc(var(--size) * .08) rgba(0,0,0,.55), 0 0 0 calc(var(--size) * .018) rgba(220,222,226,.55), 0 calc(var(--size) * .16) calc(var(--size) * .2) calc(var(--size) * -.1) rgba(0,0,0,.45);
+  transform: rotateX(16deg) rotateY(-12deg); animation: lpTilt 9s ease-in-out infinite; transition: background .4s, color .4s; }
+.lp__plate[data-c="white"] { color: #1d1d1f; background: radial-gradient(120% 110% at 30% 18%, #ffffff, #e9e9ec 70%); }
+.lp__logo { --lp-acc: #e59a4f; width: 66%; height: 40%; display: grid; place-items: center; margin-top: 8%; }
+.lp__logo svg { width: 100%; height: 100%; }
+.lp__logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.lp__plate.lp-mono .lp__logo { --lp-acc: currentColor; }
+.lp__nfc { width: 10%; margin-top: 5%; }
+.lp__txt { margin: 2% 0 0; max-width: 80%; font-size: calc(var(--size) * .046); font-weight: 500; text-align: center; line-height: 1.2; }
+.lp__shine { position: absolute; inset: -30%; background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.16) 50%, transparent 58%); animation: lpShine 6s ease-in-out infinite; pointer-events: none; }
+.lp__shadow { position: absolute; left: 50%; bottom: 12%; width: min(300px, 54vw); height: 30px; translate: -50% 0; border-radius: 50%; background: radial-gradient(closest-side, rgba(0,0,0,.22), transparent); animation: lpShadow 7s ease-in-out infinite; }
+.lp__cap { position: absolute; left: 50%; bottom: 16px; translate: -50% 0; margin: 0; padding: 7px 14px; border-radius: 999px; background: #fff; font-size: .8125rem; font-weight: 600; white-space: nowrap; box-shadow: 0 6px 20px -12px rgba(0,0,0,.3); }
+.lp__plate.swap { animation: lpSwap .7s var(--ease), lpTilt 9s ease-in-out infinite .7s; }
+@keyframes lpFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+@keyframes lpShadow { 0%, 100% { opacity: 1; scale: 1; } 50% { opacity: .7; scale: .9; } }
+@keyframes lpTilt { 0%, 100% { transform: rotateX(16deg) rotateY(-12deg); } 50% { transform: rotateX(10deg) rotateY(10deg); } }
+@keyframes lpShine { 0%, 30% { transform: translateX(-70%); } 70%, 100% { transform: translateX(70%); } }
+@keyframes lpSwap { 0% { transform: rotateX(16deg) rotateY(-12deg) scale(1); } 45% { transform: rotateX(16deg) rotateY(90deg) scale(.94); } 100% { transform: rotateX(16deg) rotateY(-12deg) scale(1); } }
+@media (max-width: 900px) { .lp__grid { display: block; } .lp__stage { position: sticky; top: 60px; z-index: 3; min-height: 300px; padding: 18px 16px 52px; margin-bottom: 24px; box-shadow: 0 18px 30px -24px rgba(0,0,0,.35); } .lp__plate { --size: min(230px, 58vw); } .lp__cap { bottom: 12px; font-size: .75rem; } .lp__shadow { bottom: 16%; width: min(200px, 48vw); } }
+@media (prefers-reduced-motion: reduce) { .lp__float, .lp__plate, .lp__shine, .lp__shadow { animation: none !important; } }
+
 @media (min-width: 1000px) and (max-width: 1299px) { .hero > .pause { padding: 0 14px; } .hero > .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
 
 
@@ -1655,6 +1709,68 @@ document.addEventListener("DOMContentLoaded", function () {
     whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
   ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#cmpVid", "#pVid", "#kvLand"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
+
+  /* ---------- live logo preview on the NFC page (local only, nothing is uploaded) ---------- */
+  (function () {
+    var pl = document.getElementById("lpPlate"); if (!pl) return;
+    var logo = document.getElementById("lpLogo"), file = document.getElementById("lpFile"), mono = document.getElementById("lpMono"), txt = document.getElementById("lpText"), out = document.getElementById("lpTxt"), url = null;
+    function swap() { pl.classList.remove("swap"); void pl.offsetWidth; pl.classList.add("swap"); }
+    function press(sel, el) { [].forEach.call(document.querySelectorAll(sel), function (b) { b.setAttribute("aria-pressed", String(b === el)); }); }
+    function example(i) {
+      var t = document.querySelector('template[data-lp-logo="' + i + '"]'); if (!t) return;
+      logo.innerHTML = t.innerHTML; logo.style.setProperty("--lp-acc", t.getAttribute("data-acc")); swap();
+    }
+    [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) {
+      b.addEventListener("click", function () { press("[data-lp-ex]", b); example(b.getAttribute("data-lp-ex")); });
+    });
+    [].forEach.call(document.querySelectorAll("[data-lp-c]"), function (b) {
+      b.addEventListener("click", function () { press("[data-lp-c]", b); pl.setAttribute("data-c", b.getAttribute("data-lp-c")); swap(); });
+    });
+    var hint = document.getElementById("lpHint"), src = null, alpha = false, lum = 0, shown = null;
+    function say(t) { if (!hint) return; hint.textContent = t || ""; hint.hidden = !t; }
+    function draw() {
+      if (!src) return;
+      var black = pl.getAttribute("data-c") === "black", out = src.currentSrc || src.src;
+      if (mono.checked && alpha) {
+        var w = Math.min(900, src.naturalWidth || 600), h = Math.round(w * (src.naturalHeight || 300) / (src.naturalWidth || 600));
+        var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.drawImage(src, 0, 0, w, h);
+        var d = x.getImageData(0, 0, w, h), v = black ? 243 : 29;
+        for (var i = 0; i < d.data.length; i += 4) { d.data[i] = d.data[i + 1] = d.data[i + 2] = v; }
+        x.putImageData(d, 0, 0); out = c.toDataURL("image/png");
+      }
+      if (!shown) { shown = new Image(); shown.alt = "Ihr Logo"; }
+      shown.src = out; if (shown.parentNode !== logo) { logo.innerHTML = ""; logo.appendChild(shown); }
+    }
+    function analyse() {
+      var w = 120, h = Math.max(1, Math.round(w * (src.naturalHeight || 1) / (src.naturalWidth || 1)));
+      var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.drawImage(src, 0, 0, w, h);
+      var d = x.getImageData(0, 0, w, h).data, sum = 0, n = 0, tr = 0;
+      for (var i = 0; i < d.length; i += 4) { if (d[i + 3] < 200) { tr++; continue; } sum += (.2126 * d[i] + .7152 * d[i + 1] + .0722 * d[i + 2]) / 255; n++; }
+      alpha = tr > d.length / 4 * .03; lum = n ? sum / n : .5;
+    }
+    function auto() {
+      var black = pl.getAttribute("data-c") === "black";
+      if (!alpha) { mono.checked = false; say("Tipp: Mit einem PNG oder SVG ohne Hintergrund wirkt Ihr Logo auf der Platte am schönsten."); return; }
+      mono.checked = (black && lum < .35) || (!black && lum > .7);
+      pl.classList.toggle("lp-mono", mono.checked);
+      say(mono.checked ? "Ihr Logo ist auf dieser Farbe schwer zu sehen, deshalb zeigen wir es einfarbig." : "");
+    }
+    if (mono) mono.addEventListener("change", function () {
+      pl.classList.toggle("lp-mono", mono.checked);
+      if (src) { if (mono.checked && !alpha) { mono.checked = false; say("Einfarbig geht nur mit einem Logo ohne Hintergrund (PNG oder SVG)."); } draw(); }
+    });
+    [].forEach.call(document.querySelectorAll("[data-lp-c]"), function (b) { b.addEventListener("click", function () { if (src) { auto(); draw(); } }); });
+    if (txt) txt.addEventListener("input", function () { out.textContent = txt.value.trim() || "Tippen für Bewertung"; });
+    if (file) file.addEventListener("change", function () {
+      var f = file.files && file.files[0]; if (!f || !/^image\//.test(f.type) || f.size > 15e6) return;
+      if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(f);
+      var img = new Image(); img.onload = function () {
+        if (!img.naturalWidth) { img.width = 600; }
+        src = img; shown = null; analyse(); auto(); pl.classList.toggle("lp-mono", mono.checked); draw(); press("[data-lp-ex]", null); swap();
+      }; img.src = url;
+    });
+    [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) { b.addEventListener("click", function () { src = null; shown = null; say(""); }); });
+  })();
   /* sound toggle for the example film */
   [].forEach.call(document.querySelectorAll("[data-sound]"), function (b) {
     b.addEventListener("click", function () {
