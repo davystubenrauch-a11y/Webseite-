@@ -1555,7 +1555,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .lp__plate[data-c="white"] { color: #1d1d1f; background: radial-gradient(120% 110% at 30% 18%, #ffffff, #e9e9ec 70%); }
 .lp__logo { --lp-acc: #e59a4f; width: 66%; height: 40%; display: grid; place-items: center; margin-top: 8%; }
 .lp__logo svg { width: 100%; height: 100%; }
-.lp__logo img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.lp__logo img { display: block; width: 100%; height: 100%; max-width: none; object-fit: contain; }
+.lp__logo img.lp-boxed { width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: 10px; }
 .lp__plate.lp-mono .lp__logo { --lp-acc: currentColor; }
 .lp__nfc { width: 10%; margin-top: 5%; }
 .lp__txt { margin: 2% 0 0; max-width: 80%; font-size: calc(var(--size) * .046); font-weight: 500; text-align: center; line-height: 1.2; }
@@ -1671,7 +1672,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>3 bis 10 Handyfotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Werbefilm mit Musik und Text</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 bis 72 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Cafés, Restaurants, Läden, Immobilien</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
-          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><img class="cmpc__logo" src="/images/ki-shots/nfc-custom-plate.webp" alt="" width="480" height="480" loading="lazy"><span class="cmpc__colors">Weiß, Schwarz oder mit Logo</span></div>
+          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><img class="cmpc__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><span class="cmpc__colors">Weiß, Schwarz oder mit Logo</span></div>
           <h3>NFC-Platte</h3>
           <p class="cmpc__tag">Macht aus Gästen Google-Bewertungen. Auch mit Ihrem Logo.</p>
           <p class="cmpc__price">14,90 € <small>pro Stück</small></p><p class="cmpc__sub">mit Ihrem Logo ab 29,90 €</p>
@@ -1778,7 +1779,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
           <div class="n-phone"><div class="gr"><div class="gr-bar">9:41<i></i><u></u></div><div class="gr-head"><b>Ihr Restaurant</b><i>×</i></div><div class="gr-user"><span class="gr-av">G</span><div><b>Ihr Gast</b><small>Beitrag wird Google-weit veröffentlicht</small></div></div><div class="n-stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><p class="gr-word">Hervorragend</p><div class="gr-sub"><p>Essen<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p><p>Service<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p><p>Ambiente<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p></div><div class="gr-text">Anderen von deinen Erfahrungen erzählen</div><div class="gr-photo"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>Fotos &amp; Videos hinzufügen</div><div class="gr-ask">Was hast du bestellt?<div><em>Frühstück</em><em>Brunch</em><em>Mittagessen</em><em>Abendessen</em></div></div><div class="gr-post">Posten</div></div></div>
           <span class="toast n-toast"><svg><use href="#star"/></svg>+1 Google-Bewertung</span>
-          <figure class="n-logo"><img src="/images/ki-shots/nfc-custom-plate.webp" alt="" width="480" height="480" loading="lazy"><figcaption>Auch mit Ihrem Logo</figcaption></figure>
+          <figure class="n-logo"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><figcaption>Auch mit Ihrem Logo</figcaption></figure>
         </div>
       </div>
     </div>
@@ -2010,50 +2011,86 @@ document.addEventListener("DOMContentLoaded", function () {
     [].forEach.call(document.querySelectorAll("[data-lp-c]"), function (b) {
       b.addEventListener("click", function () { press("[data-lp-c]", b); pl.setAttribute("data-c", b.getAttribute("data-lp-c")); swap(); });
     });
-    var hint = document.getElementById("lpHint"), src = null, alpha = false, lum = 0, shown = null;
+    var hint = document.getElementById("lpHint"), prep = null, shown = null;
     function say(t) { if (!hint) return; hint.textContent = t || ""; hint.hidden = !t; }
+    /* clean an uploaded logo: remove a plain background, trim empty margins, measure brightness */
+    function prepare(img) {
+      var sw = img.naturalWidth || 600, sh = img.naturalHeight || 300, k = Math.min(1, 1000 / Math.max(sw, sh));
+      var w = Math.max(1, Math.round(sw * k)), h = Math.max(1, Math.round(sh * k)), n = w * h, i, q, j;
+      var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.drawImage(img, 0, 0, w, h);
+      var d = x.getImageData(0, 0, w, h), px = d.data, tr = 0;
+      for (i = 3; i < px.length; i += 4) if (px[i] < 200) tr++;
+      var hadAlpha = tr > n * .03, removed = false;
+      if (!hadAlpha) {
+        var rs = [], gs = [], bs = [], st = Math.max(1, Math.round(Math.max(w, h) / 80));
+        var add = function (z) { rs.push(px[z]); gs.push(px[z + 1]); bs.push(px[z + 2]); };
+        for (i = 0; i < w; i += st) { add(i * 4); add(((h - 1) * w + i) * 4); }
+        for (i = 0; i < h; i += st) { add(i * w * 4); add((i * w + w - 1) * 4); }
+        var med = function (arr) { var t = arr.slice().sort(function (m, o) { return m - o; }); return t[t.length >> 1]; };
+        var R = med(rs), G2 = med(gs), B = med(bs), close = 0;
+        for (i = 0; i < rs.length; i++) if (Math.abs(rs[i] - R) + Math.abs(gs[i] - G2) + Math.abs(bs[i] - B) < 60) close++;
+        if (close > rs.length * .8) {
+          /* key out every pixel in the background colour, also inside letters; soft edge for anti-aliasing */
+          for (j = 0; j < px.length; j += 4) {
+            var dd = Math.abs(px[j] - R) + Math.abs(px[j + 1] - G2) + Math.abs(px[j + 2] - B);
+            if (dd < 60) px[j + 3] = 0; else if (dd < 120) px[j + 3] = Math.round((dd - 60) / 60 * 255);
+          }
+          removed = true;
+        }
+      }
+      var x0 = w, y0 = h, x1 = -1, y1 = -1, yy, xx;
+      for (yy = 0; yy < h; yy++) for (xx = 0; xx < w; xx++) if (px[(yy * w + xx) * 4 + 3] > 24) { if (xx < x0) x0 = xx; if (xx > x1) x1 = xx; if (yy < y0) y0 = yy; if (yy > y1) y1 = yy; }
+      x.putImageData(d, 0, 0);
+      if (x1 < 0) { x0 = 0; y0 = 0; x1 = w - 1; y1 = h - 1; }
+      var bw = x1 - x0 + 1, bh = y1 - y0 + 1, pad = Math.round(Math.max(bw, bh) * .03);
+      var c2 = document.createElement("canvas"); c2.width = bw + 2 * pad; c2.height = bh + 2 * pad;
+      var x2 = c2.getContext("2d"); x2.drawImage(c, x0, y0, bw, bh, pad, pad, bw, bh);
+      var d2 = x2.getImageData(0, 0, c2.width, c2.height).data, ls = [];
+      for (i = 0; i < d2.length; i += 8) { if (d2[i + 3] < 230) continue; ls.push((.2126 * d2[i] + .7152 * d2[i + 1] + .0722 * d2[i + 2]) / 255); }
+      var dk = 0, lt = 0; for (i = 0; i < ls.length; i++) { if (ls[i] < .22) dk++; else if (ls[i] > .86) lt++; }
+      return { canvas: c2, alpha: hadAlpha || removed, removed: removed, dark: ls.length ? dk / ls.length : 0, light: ls.length ? lt / ls.length : 0, ratio: c2.width / c2.height };
+    }
+    function fit(r) {   /* wide logos use the width, square or tall ones the height */
+      var bw = 70, bh = 34;
+      if (r < 2.2) { bh = 42; bw = Math.min(70, Math.max(30, bh * r * .92)); }
+      logo.style.width = bw + "%"; logo.style.height = bh + "%";
+    }
     function draw() {
-      if (!src) return;
-      var black = pl.getAttribute("data-c") === "black", out = src.currentSrc || src.src;
-      if (mono.checked && alpha) {
-        var w = Math.min(900, src.naturalWidth || 600), h = Math.round(w * (src.naturalHeight || 300) / (src.naturalWidth || 600));
-        var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.drawImage(src, 0, 0, w, h);
-        var d = x.getImageData(0, 0, w, h), v = black ? 243 : 29;
-        for (var i = 0; i < d.data.length; i += 4) { d.data[i] = d.data[i + 1] = d.data[i + 2] = v; }
-        x.putImageData(d, 0, 0); out = c.toDataURL("image/png");
+      if (!prep) return;
+      var black = pl.getAttribute("data-c") === "black", cv = prep.canvas;
+      if (mono.checked && prep.alpha) {
+        var m = document.createElement("canvas"); m.width = cv.width; m.height = cv.height; var mx = m.getContext("2d"); mx.drawImage(cv, 0, 0);
+        var dd = mx.getImageData(0, 0, m.width, m.height), v = black ? 243 : 29;
+        for (var i = 0; i < dd.data.length; i += 4) { dd.data[i] = dd.data[i + 1] = dd.data[i + 2] = v; }
+        mx.putImageData(dd, 0, 0); cv = m;
       }
       if (!shown) { shown = new Image(); shown.alt = "Ihr Logo"; }
-      shown.src = out; if (shown.parentNode !== logo) { logo.innerHTML = ""; logo.appendChild(shown); }
-    }
-    function analyse() {
-      var w = 120, h = Math.max(1, Math.round(w * (src.naturalHeight || 1) / (src.naturalWidth || 1)));
-      var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.drawImage(src, 0, 0, w, h);
-      var d = x.getImageData(0, 0, w, h).data, sum = 0, n = 0, tr = 0;
-      for (var i = 0; i < d.length; i += 4) { if (d[i + 3] < 200) { tr++; continue; } sum += (.2126 * d[i] + .7152 * d[i + 1] + .0722 * d[i + 2]) / 255; n++; }
-      alpha = tr > d.length / 4 * .03; lum = n ? sum / n : .5;
+      shown.className = prep.alpha ? "" : "lp-boxed";
+      shown.src = cv.toDataURL("image/png"); fit(prep.ratio);
+      if (shown.parentNode !== logo) { logo.innerHTML = ""; logo.appendChild(shown); }
     }
     function auto() {
       var black = pl.getAttribute("data-c") === "black";
-      if (!alpha) { mono.checked = false; say("Tipp: Mit einem PNG oder SVG ohne Hintergrund wirkt Ihr Logo auf der Platte am schönsten."); return; }
-      mono.checked = (black && lum < .35) || (!black && lum > .7);
+      if (!prep.alpha) { mono.checked = false; pl.classList.remove("lp-mono"); say("Ihr Logo hat einen Hintergrund mit Bild oder Verlauf. Mit einem PNG oder SVG ohne Hintergrund wirkt es auf der Platte am schönsten."); return; }
+      mono.checked = (black && prep.dark > .35) || (!black && prep.light > .35);
       pl.classList.toggle("lp-mono", mono.checked);
-      say(mono.checked ? "Ihr Logo ist auf dieser Farbe schwer zu sehen, deshalb zeigen wir es einfarbig." : "");
+      say(mono.checked ? "Ihr Logo ist auf dieser Farbe schwer zu sehen, deshalb zeigen wir es einfarbig." : prep.removed ? "Den Hintergrund Ihres Logos haben wir für die Vorschau entfernt." : "");
     }
     if (mono) mono.addEventListener("change", function () {
       pl.classList.toggle("lp-mono", mono.checked);
-      if (src) { if (mono.checked && !alpha) { mono.checked = false; say("Einfarbig geht nur mit einem Logo ohne Hintergrund (PNG oder SVG)."); } draw(); }
+      if (prep) { if (mono.checked && !prep.alpha) { mono.checked = false; say("Einfarbig geht nur mit einem Logo ohne Hintergrund (PNG oder SVG)."); } draw(); }
     });
-    [].forEach.call(document.querySelectorAll("[data-lp-c]"), function (b) { b.addEventListener("click", function () { if (src) { auto(); draw(); } }); });
+    [].forEach.call(document.querySelectorAll("[data-lp-c]"), function (b) { b.addEventListener("click", function () { if (prep) { auto(); draw(); } }); });
     if (txt) txt.addEventListener("input", function () { out.textContent = txt.value.trim() || "Tippen für Bewertung"; });
     if (file) file.addEventListener("change", function () {
       var f = file.files && file.files[0]; if (!f || !/^image\//.test(f.type) || f.size > 15e6) return;
       if (url) URL.revokeObjectURL(url); url = URL.createObjectURL(f);
       var img = new Image(); img.onload = function () {
-        if (!img.naturalWidth) { img.width = 600; }
-        src = img; shown = null; analyse(); auto(); pl.classList.toggle("lp-mono", mono.checked); draw(); press("[data-lp-ex]", null); swap();
+        try { prep = prepare(img); } catch (e) { prep = null; say("Dieses Bild können wir hier nicht anzeigen. Bitte als PNG, JPG oder SVG versuchen."); return; }
+        shown = null; auto(); draw(); press("[data-lp-ex]", null); swap();
       }; img.src = url;
     });
-    [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) { b.addEventListener("click", function () { src = null; shown = null; say(""); }); });
+    [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) { b.addEventListener("click", function () { prep = null; shown = null; say(""); logo.style.width = ""; logo.style.height = ""; }); });
   })();
   /* KI film: start the reel from the beginning when it appears */
   (function () {
