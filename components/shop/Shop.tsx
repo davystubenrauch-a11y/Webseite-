@@ -51,7 +51,7 @@ const css = `
 
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
-  if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-shots/spiruli-clean.jpg" : "/images/ki-shots/spiruli-dark.jpg"} alt="" /></div>;
+  if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-shots/cafe-nachher.jpg" : "/images/ki-shots/burger-nachher.jpg"} alt="" /></div>;
   if (id === "nfc-custom") return <div className="sh-pic"><img src="/images/ki-shots/nfc-custom-spiruli.jpg" alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
 }

@@ -4,6 +4,11 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-15 · KI-Shots: Motiv und Animation
+- Kritik der Gründer: Getränkedose als KI-Shot „schlecht dargestellt“, beiger Hintergrund unpassend, Start erklärt KI-Shots nicht. → Motive nehmen, die Kunden aus dem Alltag kennen (Burger, Cappuccino, Kerze), und **zuerst das Problem zeigen** (schlechtes Handyfoto mit gelbem Licht, Ketchup, Kassenzettel), dann die Lösung.
+- Rezept: Vorher-Foto mit gpt_image_2_6 als „amateur smartphone snapshot … cluttered … unedited“ erzeugen, dann Nachher mit diesem Job als `image_references` („exactly this burger …“) → Motiv bleibt gleich. Kosten: 8 Bilder ≈ 2 Credits, 4 Clips kling3_0 ≈ 40 Credits.
+- Kling-Kamerafahrt endete mit hellem Hintergrund → nur die ersten 3,3 s nehmen und vorwärts+rückwärts zur Schleife machen.
+
 ### 2026-11-14 · KI-Shots statt KI-Roomtours
 - Entscheidung der Gründer: Roomtours sind zu aufwendig und verbrauchen zu viele Higgsfield-Credits → ersetzt durch **KI-Shots** (Studio-Fotos + kurze Werbeclips aus Handyfotos): Starter 199 € (5 Fotos, 1 Clip, 48 h), Pro 449 € (12 Fotos, 3 Clips, 72 h, Empfohlen), Brand-Paket 899 € (25 Fotos, 6 Clips + Spot, 72 h).
 - Kosten Higgsfield: `gpt_image_2_6` mit `image_references` ≈ 0,25 Credits pro Bild, `kling3_0` Bild→Video 5 s ≈ 10 Credits, `seedance_2_5` 1080p ≈ 80 Credits (zu teuer für Pakete), 720p ≈ 35. Upload: media_upload → curl PUT an upload.higgsfield.ai (Host freigegeben) → media_confirm.
