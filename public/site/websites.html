@@ -2,6 +2,7 @@
 <html lang="de">
 <head>
 <meta charset="utf-8">
+<script>try{if("scrollRestoration" in history)history.scrollRestoration="manual";var nv=performance.getEntriesByType("navigation")[0];if(nv&&nv.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.__reload=1;}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Websites ab 399 € · FOAV München</title>
 <meta name="description" content="Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.">
@@ -1302,12 +1303,12 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .kv { container-type: size; border-radius: 28px; overflow: hidden; background: linear-gradient(180deg, #ececee, #e2e2e5); isolation: isolate; }
 .kv::before { content: ""; position: absolute; inset: 0; z-index: 0; opacity: var(--c, 1); background: radial-gradient(70% 60% at 40% 45%, #3a2d22, #141110 75%); }
 .kv__chip { position: absolute; z-index: 8; left: 50%; top: 4cqh; margin: 0; translate: -50% 0; padding: 7px 14px; border-radius: 999px; font-size: .8125rem; font-weight: 600; white-space: nowrap; background: #fff; color: var(--ink); box-shadow: 0 6px 20px -10px rgba(0,0,0,.3); }
-.kv__chip--a { opacity: calc(1 - var(--b, 1) * 3); }
-.kv__chip--b { opacity: calc(min(var(--b, 1) * 3, 1 - var(--c, 1) * 3)); }
+.kv__chip--a { opacity: calc(1 - var(--b, 1) * 7); }
+.kv__chip--b { opacity: calc(min(var(--b, 1) * 4 - .6, 1 - var(--c, 1) * 3)); }
 .kv__chip--c { opacity: calc(var(--c, 1) * 3 - 1.4); background: rgba(255,255,255,.14); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); }
-.kv__pic { --h: 46cqh; position: absolute; z-index: 3; margin: 0; left: calc((var(--ax) + (var(--bx) - var(--ax)) * var(--b, 1)) * 1%); top: calc((var(--ay) + (72.5 - var(--ay)) * var(--b, 1)) * 1cqh); height: var(--h); aspect-ratio: 3 / 4; padding: calc(var(--h) * .025); padding-bottom: calc(var(--h) * .08 * (1 - var(--b, 1))); background: #fff; border-radius: 6px; box-shadow: 0 22px 40px -22px rgba(0,0,0,.45);
-  transform: translate(-50%, -50%) rotate(calc(var(--r) * (1 - var(--b, 1)))) scale(calc(1 - .67 * var(--b, 1))); opacity: calc(min(1, var(--a, 1) * 3 - var(--i) * .6) * (1 - var(--c, 1) * 2.5)); }
-.kv__pic img { position: absolute; inset: calc(var(--h) * .025); bottom: calc(var(--h) * (.025 + .055 * (1 - var(--b, 1)))); width: calc(100% - var(--h) * .05); height: auto; max-width: none; object-fit: cover; border-radius: 3px; }
+.kv__pic { --h: 46cqh; --bl: min(1, calc(var(--b, 1) * 2.2)); position: absolute; z-index: 3; margin: 0; left: calc((var(--ax) + (var(--bx) - var(--ax)) * var(--bl)) * 1%); top: calc((var(--ay) + (72.5 - var(--ay)) * var(--bl)) * 1cqh); height: var(--h); aspect-ratio: 3 / 4; padding: calc(var(--h) * .025); padding-bottom: calc(var(--h) * .08 * (1 - var(--bl))); background: #fff; border-radius: 6px; box-shadow: 0 22px 40px -22px rgba(0,0,0,.45);
+  transform: translate(-50%, -50%) rotate(calc(var(--r) * (1 - var(--bl)))) scale(calc(1 - .67 * var(--bl))); opacity: calc(min(1, var(--a, 1) * 3 - var(--i) * .6) * (1 - var(--c, 1) * 2.5)); }
+.kv__pic img { position: absolute; inset: calc(var(--h) * .025); bottom: calc(var(--h) * (.025 + .055 * (1 - var(--bl)))); width: calc(100% - var(--h) * .05); height: auto; max-width: none; object-fit: cover; border-radius: 3px; }
 .kv__pic .kv__pro { opacity: calc(var(--b, 1) * 2 - .5); }
 .kv__fx { position: absolute; z-index: 6; left: 50%; top: 16cqh; translate: -50% 0; display: flex; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .kv__fx li { padding: 8px 14px; border-radius: 999px; background: #1d1d1f; color: #fff; font-size: .8125rem; font-weight: 600; white-space: nowrap; opacity: calc(min(var(--b, 1) * 5 - var(--i) * .9 - .4, 1 - var(--c, 1) * 3)); transform: translateY(calc((1 - min(1, max(0, var(--b, 1) * 5 - var(--i) * .9 - .4))) * 10px)); }
@@ -1342,6 +1343,63 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 }
 @media (max-width: 700px) { .scene--shots .scene__grid { padding-bottom: 84px; } .scene--shots .scene__fact { display: none; } }
 #vorher-nachher .cmp .before { object-position: 50% 50%; }
+/* ---------- upgrades: website cursor, NFC tap, KI page hero ---------- */
+.w-cursor { position: absolute; z-index: 4; left: calc(46% + var(--c, 1) * 26%); top: calc(34% + var(--c, 1) * 38%); width: 22px; height: 22px; opacity: calc(var(--c, 1) * 4 - .4); transform: scale(calc(1 - min(.18, max(0, (var(--c, 1) - .82) * 1.4)))); filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
+.w-cursor svg { width: 100%; height: 100%; display: block; }
+.w-cursor::after { content: ""; position: absolute; left: -10px; top: -10px; width: 22px; height: 22px; border-radius: 50%; border: 2px solid #1d1d1f; opacity: calc(min((var(--c, 1) - .82) * 12, (1 - var(--c, 1)) * 12)); transform: scale(calc(.4 + (var(--c, 1) - .82) * 6)); }
+@media (max-width: 1023px) { .w-cursor { width: 16px; height: 16px; } }
+.n-floor::after { content: ""; position: absolute; inset: -30%; border-radius: 50%; background: radial-gradient(closest-side, rgba(120,170,255,.55), rgba(120,170,255,0)); opacity: 0; pointer-events: none; transform: translateZ(-1px); }
+.scene.s2 .n-floor::after, .scene.s3 .n-floor::after { animation: nGlow 1.4s var(--ease) both; }
+.scene.s2 .n-phone { animation: nBuzz .45s .15s both; }
+.scene.s3 .n-stars svg { animation: starPop .45s var(--ease) both; } .scene.s3 .n-stars svg:nth-child(2) { animation-delay: .1s; } .scene.s3 .n-stars svg:nth-child(3) { animation-delay: .2s; } .scene.s3 .n-stars svg:nth-child(4) { animation-delay: .3s; } .scene.s3 .n-stars svg:nth-child(5) { animation-delay: .4s; }
+@keyframes nGlow { 0% { opacity: 0; scale: .6; } 30% { opacity: 1; } 100% { opacity: 0; scale: 1.25; } }
+@keyframes nBuzz { 0%, 100% { translate: 0 0; } 20% { translate: -3px 0; } 40% { translate: 3px 0; } 60% { translate: -2px 0; } 80% { translate: 2px 0; } }
+@keyframes starPop { 0% { scale: .4; } 60% { scale: 1.25; } 100% { scale: 1; } }
+.ps-photo { position: absolute; z-index: 2; left: 7%; top: 47%; width: 29%; margin: 0; padding: 1.6cqmin 1.6cqmin 5.4cqmin; background: #fff; border-radius: 6px; box-shadow: 0 18px 34px -16px rgba(0,0,0,.35); transform: translateY(-50%) rotate(-5deg); animation: psIn .9s var(--ease) both; overflow: hidden; }
+.ps-photo img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; border-radius: 3px; }
+.ps-photo figcaption { position: absolute; left: 0; right: 0; bottom: 1.4cqmin; text-align: center; font-size: clamp(11px, 2.5cqmin, 13px); font-weight: 600; color: #1d1d1f; }
+.ps-scan { position: absolute; left: 1.6cqmin; right: 1.6cqmin; top: 1.6cqmin; height: 3px; background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,.9), 0 0 32px 10px rgba(150,190,255,.5); animation: psScan 3.4s ease-in-out 1s infinite; opacity: 0; }
+.ps-arrow { position: absolute; left: 39%; top: 47%; width: 15%; translate: 0 -50%; fill: none; stroke: #1d1d1f; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.ps-dash { stroke-dasharray: 7 9; animation: psDash 1s linear infinite; }
+.ps-phone { --h: 86cqh; position: absolute; z-index: 2; left: 73%; top: 50%; height: var(--h); aspect-ratio: 9 / 19.5; translate: -50% -50%; padding: calc(var(--h) * .016); border-radius: calc(var(--h) * .075); background: #0b0b0c; box-shadow: 0 0 0 1.5px #c3c5c9, 0 0 0 3px #8f9196, 0 40px 60px -30px rgba(0,0,0,.5); animation: psPhone 1s var(--ease) .25s both; }
+.ps-scr { position: relative; width: 100%; height: 100%; border-radius: calc(var(--h) * .062); overflow: hidden; background: #111; }
+.ps-scr img, .ps-scr video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.ps-reel { position: absolute; inset: 0; color: #fff; font-size: calc(var(--h) * .022); pointer-events: none; }
+.ps-reel b { position: absolute; left: 7%; top: 6%; font-size: 1.25em; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+.ps-heart { position: absolute; right: 6%; bottom: 20%; width: 2.2em; height: 2.2em; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(0,0,0,.45)); animation: kvLike 3.2s ease-in-out infinite; }
+.ps-reel em { position: absolute; left: 6%; bottom: 6%; font-style: normal; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.ps-bar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.3); }
+.ps-bar i { position: absolute; inset: 0 auto 0 0; background: #fff; animation: kvBar 12s linear infinite; }
+@keyframes psIn { from { opacity: 0; transform: translateY(-40%) rotate(-12deg); } }
+@keyframes psPhone { from { opacity: 0; translate: -50% -40%; } }
+@keyframes psScan { 0% { top: 1.6cqmin; opacity: 0; } 10% { opacity: 1; } 75% { opacity: 1; } 85%, 100% { top: calc(100% - 6cqmin); opacity: 0; } }
+@keyframes psDash { to { stroke-dashoffset: -16; } }
+@media (prefers-reduced-motion: reduce) { .ps-photo, .ps-phone, .ps-scan, .ps-dash, .ps-heart, .ps-bar i, .scene.s2 .n-phone, .scene .n-floor::after, .scene.s3 .n-stars svg { animation: none !important; } }
+
+/* ---------- KI film v2: render sweep, progress chip, reel UI ---------- */
+.kv__pic { --rp: clamp(0, calc((var(--b, 1) - .42) * 2.6 - var(--i) * .32), 1); }
+.kv__pic .kv__pro { opacity: 1; clip-path: inset(0 calc((1 - var(--rp)) * 100%) 0 0); }
+.kv__sl { position: absolute; z-index: 3; top: calc(var(--h) * .025); bottom: calc(var(--h) * (.025 + .055 * (1 - var(--bl)))); left: calc(var(--h) * .025 + (100% - var(--h) * .05) * var(--rp)); width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 14px 4px rgba(255,255,255,.85), 0 0 40px 10px rgba(160,200,255,.45); opacity: calc(min(var(--rp) * 12, (1 - var(--rp)) * 12)); }
+.kv__chip--b { display: inline-flex; align-items: center; gap: 10px; }
+.kv__pct { position: relative; display: block; width: 64px; height: 6px; border-radius: 99px; background: rgba(0,0,0,.12); overflow: hidden; }
+.kv__pct i { position: absolute; inset: 0 auto 0 0; width: calc(var(--b, 1) * 100%); border-radius: inherit; background: #1d1d1f; }
+.kv__reel { position: absolute; inset: 0; z-index: 4; pointer-events: none; color: #fff; font-size: calc(var(--h) * .019); opacity: calc(var(--c, 1) * 3 - 1.6); }
+.kv__rtop { position: absolute; left: 6%; top: 6.4%; font-weight: 700; font-size: 1.25em; text-shadow: 0 1px 6px rgba(0,0,0,.4); }
+.kv__ract { position: absolute; right: 4%; bottom: 17%; display: grid; gap: 1.6em; margin: 0; padding: 0; list-style: none; }
+.kv__ract svg { width: 2.1em; height: 2.1em; fill: none; stroke: #fff; stroke-width: 1.8; stroke-linejoin: round; filter: drop-shadow(0 1px 3px rgba(0,0,0,.45)); }
+.kv__ract li:first-child svg { animation: kvLike 3.2s ease-in-out infinite; }
+.kv__rname { position: absolute; left: 5%; bottom: 5.5%; display: flex; align-items: center; gap: .6em; margin: 0; font-weight: 600; text-shadow: 0 1px 6px rgba(0,0,0,.5); }
+.kv__rname i { display: grid; place-items: center; width: 2.2em; height: 2.2em; border-radius: 50%; background: linear-gradient(135deg, #f7b267, #e85d75); font-style: normal; font-size: .8em; font-weight: 700; }
+.kv__rname b { padding: .25em .7em; border: 1px solid rgba(255,255,255,.8); border-radius: .5em; font-weight: 600; }
+.kv__rbar { position: absolute; left: 0; right: 0; bottom: 0; height: 3px; background: rgba(255,255,255,.3); }
+.kv__rbar i { position: absolute; inset: 0 auto 0 0; background: #fff; animation: kvBar 12s linear infinite; }
+.kv__phone .kv__snd { left: auto; right: 5%; top: 11%; bottom: auto; translate: none; width: 36px; min-height: 36px; padding: 0; border-radius: 50%; text-indent: -999px; overflow: hidden; background-position: center; background-color: rgba(0,0,0,.45); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H3v6h3l5 4z'/%3E%3Cpath d='m22 9-6 6M16 9l6 6'/%3E%3C/svg%3E"); z-index: 6; pointer-events: auto; }
+.kv__phone .kv__snd[aria-pressed="true"] { background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H3v6h3l5 4z'/%3E%3Cpath d='M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12'/%3E%3C/svg%3E"); }
+.kv__snd::after { content: ""; position: absolute; inset: -8px; }
+@keyframes kvLike { 0%, 70%, 100% { fill: none; stroke: #fff; transform: scale(1); } 76% { fill: #ff3b5c; stroke: #ff3b5c; transform: scale(1.25); } 82%, 95% { fill: #ff3b5c; stroke: #ff3b5c; transform: scale(1); } }
+@keyframes kvBar { from { width: 0; } to { width: 100%; } }
+@media (prefers-reduced-motion: reduce) { .kv__ract li:first-child svg, .kv__rbar i { animation: none; } }
+
 /* ---------- improvements: logo plates, outcome toast, photo flash ---------- */
 .pst__logo { display: block; width: 100%; height: auto; border-radius: 50%; filter: drop-shadow(0 20px 18px rgba(0,0,0,.25)); }
 .n-logo { position: absolute; z-index: 4; left: 3%; bottom: 7%; width: calc(var(--w) * .66); margin: 0; text-align: center; opacity: 0; transform: translateY(16px) rotate(-6deg); transition: opacity .6s .9s, transform .8s .9s var(--ease); }
@@ -1468,11 +1526,11 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <p class="kicker">Websites</p>
           <h2 id="h-web">Ihre Website holt Anfragen, rund um die Uhr.</h2>
           <ol class="how"><li><b>Gespräch.</b> Sie erzählen uns kurz von Ihrem Betrieb.</li><li><b>Gestaltung.</b> Wir bauen Ihre Website in 5 bis 7 Tagen, Sie geben sie frei.</li><li><b>Online.</b> Wir veröffentlichen sie bei Ihrem Anbieter, mit Impressum.</li></ol>
-          <div class="scene__foot"><p class="price"><small>ab </small>399 €</p><a class="btn btn--light" href="/websites#pakete">Paket wählen</a></div>
+          <div class="scene__foot"><p class="price"><small>ab </small>399 €</p><a class="btn btn--light" href="#pakete">Paket wählen</a></div>
           <p class="scene__fact">Basis-Paket mit 3 Seiten. Im Bild: unsere Beispiel-Website für eine Ferienvilla.</p>
         </div>
         <div class="scene__stage w-stage" aria-hidden="true">
-          <div class="w-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img class="scroller" src="/media/ref-villa-desk.webp" alt="" width="1600" height="4782" loading="lazy"></div></div><div class="mac__base"></div></div></div>
+          <div class="w-mac"><i class="w-cursor"><svg viewBox="0 0 24 24"><path d="M5 3l14 8-6 1.6L10 19z" fill="#1d1d1f" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/></svg></i><div class="mac"><div class="mac__lid"><div class="mac__screen"><img class="scroller" src="/media/ref-villa-desk.webp" alt="" width="1600" height="4782" loading="lazy"></div></div><div class="mac__base"></div></div></div>
           <div class="w-phone"><div class="iphone"><div class="iphone__screen"><img class="scroller" src="/media/ref-villa-mob.webp" alt="" width="780" height="10493" loading="lazy"></div></div></div>
           <span class="toast w-toast"><svg><use href="#tick"/></svg>Online: ihr-betrieb.de</span>
           <span class="toast w-toast2"><svg viewBox="0 0 24 24"><path d="M4 6h16v12H4z M4 7l8 6 8-6" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round"/></svg>Neue Anfrage über Ihre Website</span>
@@ -1736,6 +1794,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
     [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) { b.addEventListener("click", function () { src = null; shown = null; say(""); }); });
   })();
+  /* reload: back to the very top */
+  if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
   /* sound toggle for the example film */
   [].forEach.call(document.querySelectorAll("[data-sound]"), function (b) {
     b.addEventListener("click", function () {

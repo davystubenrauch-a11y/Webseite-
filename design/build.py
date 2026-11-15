@@ -46,6 +46,8 @@ for key, (fname, path, title, desc) in pages.items():
         page = page.replace('<meta property="og:url" content="https://foav.de/">', f'<meta property="og:url" content="https://foav.de{path}">')
         # the service page does not link to itself
         page = re.sub(r'<a class="more" href="%s">.*?</a>\s*' % re.escape(path), '', page, flags=re.S)
+        # in a scroll film on its own page, "Zum Angebot" becomes "Paket wählen"
+        page = page.replace(f'href="{path}" data-go>Zum Angebot</a>', 'href="#pakete">Paket wählen</a>')
     if key != 'home':  # on a service page, "Anfragen" leads to its own plans
         page = page.replace('href="#angebot" data-offers', 'href="#pakete" data-offers')
     ids = set(re.findall(r'\sid="([^"]+)"', page))
