@@ -1460,6 +1460,86 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 }
 @media (prefers-reduced-motion: reduce) { .kf__wave i, .kf__tc i, .kf__dot { animation: none; } }
 
+/* ---------- NFC page: one configurator (edition, colour, logo, quantity) with a live plate ---------- */
+.cfg { position: relative; }
+.cfg__anchor { position: absolute; top: 0; }
+.cfg__grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(28px, 4vw, 64px); align-items: start; margin-top: clamp(28px, 4vw, 48px); }
+.cfg__stage { position: sticky; top: 90px; display: grid; place-items: center; min-height: min(560px, 72vh); padding: 30px 20px 66px; border-radius: 28px; background: radial-gradient(70% 60% at 50% 38%, #fbfbfd, #e3e3e7); overflow: hidden; }
+.cfg__stage > .cfg__classic, .cfg__stage > .lp__float { grid-area: 1 / 1; }
+.cfg__classic { width: min(300px, 60vw); transition: opacity .45s, transform .6s var(--ease); }
+.cfg__classic .disc { transform: perspective(900px) rotateX(18deg); }
+.cfg .lp__float { transition: opacity .45s, transform .6s var(--ease); }
+.cfg .lp__plate { --size: min(300px, 60vw); }
+.cfg:not(.is-b) .lp__float { opacity: 0; transform: scale(.9); pointer-events: none; }
+.cfg.is-b .cfg__classic { opacity: 0; transform: scale(.9); }
+.cfg .cfg__b, .cfg.is-b .cfg__c { display: none; } .cfg.is-b .cfg__b { display: inline; }
+.cfg__form { display: grid; gap: 24px; }
+.cfg__lbl { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 10px; font-weight: 600; font-size: 1rem; }
+.cfg__lbl i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #1d1d1f; color: #fff; font-style: normal; font-size: .75rem; }
+.cfg__lbl small { font-weight: 400; font-size: .8125rem; color: var(--muted); }
+.cfg__n::before { content: "3"; } .cfg.is-b .cfg__n::before { content: "4"; }
+.cfg .seg button small { margin-left: 6px; font-weight: 500; opacity: .7; }
+.cfg__logo { display: none; } .cfg.is-b .cfg__logo { display: grid; gap: 12px; padding: 16px; border-radius: 18px; background: #f5f5f7; }
+.cfg__lrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.cfg .lp__field { max-width: none; }
+.cfg .seg { display: inline-flex; gap: 4px; padding: 4px; border-radius: 999px; background: #ececf0; margin: 0; }
+.cfg .seg button { min-height: 44px; padding: 0 18px; border: 0; border-radius: 999px; background: none; color: var(--text); font: inherit; font-size: .9375rem; font-weight: 700; cursor: pointer; transition: background-color .2s, color .2s; }
+.cfg .seg button[aria-checked="true"] { background: #1d1d1f; color: #fff; }
+.cfg .choose.is-b .choose__color { display: inline-flex; }
+.cfg .plans { grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 0; }
+.cfg .plan { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center; column-gap: 14px; row-gap: 2px; padding: 14px 18px; border-radius: 16px; }
+.cfg .plan h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1rem; }
+.cfg .plan .plan__big { grid-column: 3; grid-row: 1 / span 2; margin: 0; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -.02em; }
+.cfg .plan .plan__was { grid-column: 2; grid-row: 2; margin: 0; font-size: .8125rem; color: var(--muted); }
+.cfg .plan .plan__pick { position: static; grid-column: 1; grid-row: 1 / span 2; width: 24px; height: 24px; }
+.cfg .plan .plan__cta, .cfg .plan .feat { display: none; }
+.cfg .plan--top::before { position: static; grid-column: 2; grid-row: 1 / span 2; justify-self: end; align-self: center; margin-right: 4px; font-size: .6875rem; padding: 4px 9px; }
+.cfg .choose__bar { margin-top: 4px; }
+.cfg .plans__note { margin-top: 22px; }
+@media (max-width: 900px) {
+  .cfg__grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .cfg__stage { top: 60px; z-index: 3; min-height: 0; height: 220px; padding: 10px 10px 40px; border-radius: 22px; box-shadow: 0 18px 30px -24px rgba(0,0,0,.35); }
+  .cfg .lp__plate { --size: min(158px, 42vw); }
+  .cfg__classic { width: min(150px, 40vw); }
+  .cfg .lp__cap { bottom: 8px; font-size: .6875rem; padding: 5px 11px; }
+  .cfg .lp__shadow { bottom: 9%; width: min(150px, 40vw); }
+}
+@media (max-width: 700px) {
+  .cfg__form { gap: 20px; }
+  .cfg .seg, .cfg .choose.is-b .choose__color { display: flex; } .cfg .seg button { flex: 1 1 0; padding: 4px 8px; line-height: 1.2; }
+  .cfg .seg button small { display: block; margin: 0; font-size: .6875rem; }
+  .cfg__logo { padding: 14px; }
+  .cfg .plan { padding: 12px 14px; column-gap: 12px; }
+  .cfg .choose__bar p span { display: none; }
+  .cfg .choose__bar b { font-size: 1rem; }
+  .cfg .choose__bar .btn { min-height: 46px; }
+}
+/* ---------- phones: every film gets its own framed stage that fills the space between text and bottom bar; devices centred ---------- */
+@media (max-width: 700px) {
+  .scene__grid { padding-bottom: 88px; }
+  .scene__stage.w-stage, .scene__stage.n-stage { height: 100%; min-height: 0; border-radius: 22px; overflow: hidden; container-type: size; background: linear-gradient(180deg, #f3f3f6, #e8e8ec); }
+  .w-mac { left: 6%; right: 16%; top: 47%; }
+  .w-phone { width: 27%; right: 4%; top: auto; bottom: 8%; }
+  .w-toast { left: 4%; right: auto; top: 4%; bottom: auto; }
+  .w-toast2 { top: calc(4% + 48px); bottom: auto; }
+  .n-stage { --w: min(54cqw, 40cqh); }
+  .n-floor { top: 63%; }
+  .n-phone { top: calc(63% - var(--w) * 1.35); }
+  .n-toast { left: auto; right: 4%; top: 4%; bottom: auto; }
+  .n-logo { left: 4%; bottom: 5%; }
+}
+@media (max-width: 700px) {
+  .scene--shots .scene__stage.kf { min-height: 0; }
+}
+@media (max-width: 700px) and (max-height: 760px) {
+  .scene .more, .scene__foot .btn--line { display: none; }
+  .scene__grid { padding-top: 70px; padding-bottom: 82px; }
+  .scene h2 { font-size: clamp(24px, 6.6vw, 30px); }
+  .scene .how { margin-top: 8px; min-height: 0; }
+  .scene__foot { margin-top: 8px; }
+}
+
+
 /* ---------- upgrades: website cursor, NFC tap, KI page hero ---------- */
 .w-cursor { position: absolute; z-index: 4; left: calc(46% + var(--c, 1) * 26%); top: calc(34% + var(--c, 1) * 38%); width: 22px; height: 22px; opacity: calc(var(--c, 1) * 4 - .4); transform: scale(calc(1 - min(.18, max(0, (var(--c, 1) - .82) * 1.4)))); filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
 .w-cursor svg { width: 100%; height: 100%; display: block; }
@@ -2229,7 +2309,7 @@ document.addEventListener("DOMContentLoaded", function () {
       var r = f.querySelector("input:checked"); if (!r) return;
       var b = ed === "b" && r.dataset.hrefB;
       name.textContent = b ? r.dataset.labelB : r.dataset.label;
-      go.href = b ? r.dataset.hrefB : r.dataset.href.replace("{c}", color);
+      go.href = b ? r.dataset.hrefB + (f.querySelector(".choose__color") ? "&farbe=" + (color === "schwarz" ? "Schwarz" : "Weiß") : "") : r.dataset.href.replace("{c}", color);
       var shop = go.getAttribute("href").indexOf("/shop") === 0, form = go.getAttribute("href").indexOf("/anfrage") === 0;
       go.textContent = shop ? "In den Warenkorb" : form ? "Weiter zum Fragebogen" : "Festpreis anfragen";
       var nx = f.querySelector(".choose__next"); if (nx) nx.textContent = shop ? "als Nächstes: bezahlen" : form ? "als Nächstes: Fragebogen, danach bezahlen" : "wir melden uns mit einem Festpreis";
@@ -2237,18 +2317,18 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     [].forEach.call(f.querySelectorAll("input[type=radio]"), function (r) { r.addEventListener("change", upd); });
     [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (b) { b.addEventListener("click", function () {
-      color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+      color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); var dsc = document.getElementById("cfgDisc"); if (dsc) dsc.classList.toggle("disc--black", color === "schwarz"); upd();
     }); });
     [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (b) { b.addEventListener("click", function () {
-      ed = b.dataset.e; f.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+      ed = b.dataset.e; f.classList.toggle("is-b", ed === "b"); var sec = f.closest("section"); if (sec) sec.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
     }); });
-    if (f.querySelector(".choose__ed") && /[?&]logo=1/.test(location.search)) { var lb = f.querySelector('.choose__ed [data-e="b"]'); if (lb) lb.click(); }
+    if (f.querySelector(".choose__ed") && (/[?&]logo=1/.test(location.search) || location.hash === "#logo-vorschau")) { var lb = f.querySelector('.choose__ed [data-e="b"]'); if (lb) lb.click(); }
     upd();
   });
 
 /* ---------- NFC editions: Classic / Custom Brand switch; flips once by itself when it comes into view ---------- */
 (function () {
-  var ed = document.getElementById("editionen"); if (!ed) return;
+  var ed = document.getElementById("editionen"); if (!ed || !ed.querySelector("[data-ed]")) return;
   var bs = [].slice.call(ed.querySelectorAll("[data-ed]")), touched = false;
   function set(e) {
     ed.classList.toggle("is-b", e === "b");
