@@ -1344,6 +1344,87 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 }
 @media (max-width: 700px) { .scene--shots .scene__grid { padding-bottom: 84px; } .scene--shots .scene__fact { display: none; } }
 #vorher-nachher .cmp .before { object-position: 50% 50%; }
+/* ---------- KI film v3 ".kf": a phone photo turns into a film, then into a reel ---------- */
+@font-face { font-family: "ISI"; src: url(/v24/fonts/instrument-serif-italic.woff2) format("woff2"); font-display: swap; }
+.kf { container-type: size; border-radius: 28px; overflow: hidden; isolation: isolate; background: linear-gradient(180deg, #ededef, #e3e3e6); }
+.kf::before { content: ""; position: absolute; inset: 0; z-index: 0; opacity: var(--b, 1); background: radial-gradient(75% 65% at 42% 48%, #2d241c, #0f0d0c 72%); }
+.kf::after { content: ""; position: absolute; left: 50%; top: 50%; z-index: 1; width: 70cqh; height: 70cqh; translate: -50% -50%; border-radius: 50%; background: radial-gradient(closest-side, rgba(255,190,120,.22), rgba(255,190,120,0)); opacity: calc(var(--b, 1) - var(--c, 1) * .6); pointer-events: none; }
+.kf__dev { --h: 80cqh; --shift: 17cqw; --pad: calc(var(--h) * .014 * var(--c, 1)); position: absolute; z-index: 5; left: 50%; top: 50%; height: var(--h); aspect-ratio: 9 / 18; padding: var(--pad); border-radius: calc(var(--h) * (.028 + .05 * var(--c, 1))); background: rgba(11,11,12, var(--c, 1));
+  box-shadow: 0 0 0 calc(1.5px * var(--c, 1)) #c3c5c9, 0 0 0 calc(3px * var(--c, 1)) #8f9196, 0 calc(14px + 26px * var(--b, 1)) calc(40px + 40px * var(--b, 1)) -24px rgba(0,0,0,.6);
+  transform: translate(calc(-50% - var(--c, 1) * var(--shift)), -50%) rotate(calc((1 - var(--a, 1)) * -6deg)) scale(calc(.88 + .12 * var(--a, 1))); will-change: transform; }
+.kf__shot { --rp: clamp(0, calc((var(--b, 1) - .05) * 1.9), 1); position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: calc(var(--h) * (.022 + .042 * var(--c, 1))); background: #111; }
+.kf__shot > img, .kf__shot > video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.kf__pro { clip-path: inset(0 calc((1 - var(--rp)) * 100%) 0 0); transform: scale(calc(1.18 - .14 * var(--b, 1) - .04 * var(--c, 1))) translateX(calc((1 - var(--b, 1)) * 4%)); transform-origin: 40% 50%; }
+.kf__shot > video { opacity: calc(var(--c, 1) * 3 - .5); }
+.kf__sweep { position: absolute; z-index: 3; top: 0; bottom: 0; left: calc(var(--rp) * 100%); width: 3px; margin-left: -1.5px; background: #fff; box-shadow: 0 0 18px 6px rgba(255,255,255,.85), 0 0 70px 26px rgba(255,200,150,.45); opacity: calc(min(var(--rp) * 14, (1 - var(--rp)) * 14)); }
+.kf__cam { position: absolute; inset: 0; z-index: 4; color: #fff; font-size: calc(var(--h) * .02); opacity: calc(1 - var(--b, 1) * 5); pointer-events: none;
+  background: linear-gradient(180deg, rgba(0,0,0,.35), transparent 14%, transparent 72%, rgba(0,0,0,.6)),
+    linear-gradient(90deg, transparent calc(33.33% - .5px), rgba(255,255,255,.32) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgba(255,255,255,.32) 0 calc(66.66% + .5px), transparent 0),
+    linear-gradient(180deg, transparent calc(33.33% - .5px), rgba(255,255,255,.32) 0 calc(33.33% + .5px), transparent 0 calc(66.66% - .5px), rgba(255,255,255,.32) 0 calc(66.66% + .5px), transparent 0); }
+.kf__zoom { position: absolute; left: 50%; bottom: 24%; translate: -50% 0; display: grid; place-items: center; width: 2.6em; height: 2.6em; border-radius: 50%; background: rgba(0,0,0,.45); font-style: normal; font-weight: 700; color: #ffd60a; }
+.kf__modes { position: absolute; left: 0; right: 0; bottom: 16.5%; display: flex; justify-content: center; gap: 1.4em; font-weight: 600; letter-spacing: .06em; }
+.kf__modes i { font-style: normal; opacity: .7; } .kf__modes b { color: #ffd60a; }
+.kf__shut { position: absolute; left: 50%; bottom: 4.5%; translate: -50% 0; width: 5.2em; height: 5.2em; border-radius: 50%; background: #fff; box-shadow: 0 0 0 .35em rgba(0,0,0,.35), 0 0 0 .6em #fff; }
+.kf__flash { position: absolute; inset: 0; z-index: 7; background: #fff; pointer-events: none; opacity: clamp(0, min(calc((var(--a, 1) - .22) * 9), calc((.4 - var(--a, 1)) * 9)), 1); }
+.kf__cine { --cb: clamp(0, min(calc(var(--b, 1) * 3 - .3), calc(1 - var(--c, 1) * 4)), 1); position: absolute; inset: 0; z-index: 4; color: #fff; pointer-events: none; font-size: calc(var(--h) * .02); }
+.kf__bar { position: absolute; left: 0; right: 0; height: calc(var(--cb) * 8%); background: #000; }
+.kf__bar--t { top: 0; } .kf__bar--b { bottom: 0; }
+.kf__tc, .kf__res { position: absolute; top: 2.2%; display: flex; align-items: center; gap: .45em; font: 700 1em/1 ui-monospace, "SF Mono", Menlo, monospace; letter-spacing: .06em; opacity: var(--cb); }
+.kf__tc { left: 6%; } .kf__res { right: 6%; font-weight: 600; opacity: calc(var(--cb) * .8); }
+.kf__tc i { width: .7em; height: .7em; border-radius: 50%; background: #ff453a; animation: kfRec 1.1s steps(2, jump-none) infinite; }
+.kf__t1, .kf__t2 { position: absolute; left: 0; right: 0; text-align: center; font: 400 calc(var(--h) * .056)/1.05 "ISI", "Instrument Serif", Georgia, serif; font-style: italic; letter-spacing: -.01em; text-shadow: 0 2px 18px rgba(0,0,0,.55); }
+.kf__t1 { top: 15%; --o: clamp(0, min(calc((var(--b, 1) - .42) * 6), calc(1 - var(--c, 1) * 5)), 1); opacity: var(--o); translate: 0 calc((1 - var(--o)) * 8px); }
+.kf__t2 { top: 22%; --o: clamp(0, min(calc((var(--b, 1) - .66) * 6), calc(1 - var(--c, 1) * 5)), 1); opacity: var(--o); translate: 0 calc((1 - var(--o)) * 8px); }
+.kf__wave { position: absolute; left: 14%; right: 14%; bottom: 11%; height: 4.5%; display: flex; align-items: center; gap: 3%; opacity: clamp(0, min(calc((var(--b, 1) - .28) * 5), calc(1 - var(--c, 1) * 5)), 1); }
+.kf__wave i { flex: 1; height: 100%; border-radius: 2px; background: rgba(255,255,255,.9); transform-origin: 50% 50%; animation: kfWave 1.1s ease-in-out infinite; animation-delay: calc(var(--i) * -.17s); }
+.kf__isl { position: absolute; z-index: 8; left: 50%; top: 2%; width: 28%; height: 3%; translate: -50% 0; border-radius: 99px; background: #0b0b0c; opacity: var(--c, 1); }
+.kf .kv__reel { font-size: calc(var(--h) * .019); }
+.kf__dev .kv__snd { position: absolute; z-index: 9; left: auto; right: 5%; top: 9%; bottom: auto; translate: none; width: 36px; min-height: 36px; padding: 0; border: 0; border-radius: 50%; text-indent: -999px; overflow: hidden; cursor: pointer; background: rgba(0,0,0,.45) center no-repeat url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23fff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H3v6h3l5 4z'/%3E%3Cpath d='m22 9-6 6M16 9l6 6'/%3E%3C/svg%3E"); opacity: calc(var(--c, 1) * 3 - 1.6); }
+.kf__dev .kv__snd[aria-pressed="true"] { background-color: #fff; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%231d1d1f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M11 5 6 9H3v6h3l5 4z'/%3E%3Cpath d='M16 9a4 4 0 0 1 0 6M19 6a8 8 0 0 1 0 12'/%3E%3C/svg%3E"); }
+.scene:not(.s3) .kf__dev .kv__snd { pointer-events: none; }
+.kf__chip { position: absolute; z-index: 10; left: 50%; top: 4cqh; translate: -50% 0; margin: 0; display: inline-flex; align-items: center; gap: 9px; padding: 7px 14px; border-radius: 999px; font-size: .8125rem; font-weight: 600; white-space: nowrap; background: #fff; color: #1d1d1f; box-shadow: 0 8px 20px -10px rgba(0,0,0,.35); }
+.kf__chip--a { opacity: calc(1 - var(--b, 1) * 6); }
+.kf__chip--b { background: rgba(255,255,255,.12); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.2); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); opacity: clamp(0, min(calc(var(--b, 1) * 5 - .5), calc(1 - var(--c, 1) * 4)), 1); }
+.kf__chip--c { background: rgba(255,255,255,.14); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.22); opacity: calc(var(--c, 1) * 3 - 1.4); }
+.kf__dot { width: 8px; height: 8px; border-radius: 50%; background: #ff453a; box-shadow: 0 0 8px #ff453a; animation: kfRec 1.1s steps(2, jump-none) infinite; }
+.kf__pct { position: relative; display: block; width: 60px; height: 5px; border-radius: 99px; background: rgba(255,255,255,.2); overflow: hidden; }
+.kf__pct i { position: absolute; inset: 0 auto 0 0; width: calc(var(--b, 1) * 100%); border-radius: inherit; background: #fff; }
+.kf__tags { position: absolute; z-index: 9; top: 50%; translate: 0 -50%; display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+.kf__tags li { display: flex; align-items: center; gap: 8px; padding: 8px 14px 8px 9px; border-radius: 999px; font-size: .8125rem; font-weight: 600; white-space: nowrap; opacity: var(--o); }
+.kf__tags li::before { display: grid; place-items: center; width: 20px; height: 20px; border-radius: 50%; font-size: .6875rem; font-weight: 800; }
+.kf__tags--bad { right: calc(50% + 20cqh + 2.5cqw); justify-items: end; }
+.kf__tags--bad li { --o: clamp(0, min(calc(var(--a, 1) * 4 - .9 - var(--i) * .55), calc(1 - var(--b, 1) * 4)), 1); background: #fff; color: #1d1d1f; box-shadow: 0 8px 20px -12px rgba(0,0,0,.35); translate: calc((1 - var(--o)) * 16px) 0; }
+.kf__tags--bad li::before { content: "✕"; background: #e5e5ea; color: #636366; }
+.kf__tags--good { left: calc(50% + 20cqh + 2.5cqw); }
+.kf__tags--good li { --o: clamp(0, min(calc(var(--b, 1) * 5 - 1.3 - var(--i) * .55), calc(1 - var(--c, 1) * 3.5)), 1); background: rgba(255,255,255,.12); color: #fff; box-shadow: inset 0 0 0 1px rgba(255,255,255,.18); translate: calc((1 - var(--o)) * -16px) 0; }
+.kf__tags--good li::before { content: "✓"; background: #fff; color: #1d1d1f; }
+.kf__post, .kf__land { position: absolute; z-index: 4; margin: 0; border-radius: 12px; overflow: hidden; background: #fff; box-shadow: 0 30px 50px -24px rgba(0,0,0,.75); opacity: var(--o); transform: translate(calc((1 - var(--o)) * 40px), calc((1 - var(--o)) * 16px)) rotate(calc((1 - var(--o)) * 4deg)); }
+.kf__post { --o: clamp(0, calc(var(--c, 1) * 2.6 - .9), 1); right: 6cqw; top: 9cqh; width: 25cqw; }
+.kf__post img { display: block; width: 100%; aspect-ratio: 1; object-fit: cover; }
+.kf__land { --o: clamp(0, calc(var(--c, 1) * 2.6 - 1.4), 1); right: 4cqw; bottom: 9cqh; width: 40cqw; background: #000; }
+.kf__land video { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+.kf__post figcaption, .kf__land figcaption { padding: 8px 11px; background: #fff; color: #1d1d1f; font-size: .75rem; font-weight: 600; }
+@keyframes kfWave { 0%, 100% { transform: scaleY(.25); } 50% { transform: scaleY(1); } }
+@keyframes kfRec { 50% { opacity: .25; } }
+@media (max-width: 1023px) {
+  .scene--shots .scene__stage.kf { height: 100%; min-height: 330px; border-radius: 22px; }
+}
+@media (max-width: 700px) {
+  .kf__dev { --h: 76cqh; --shift: 21cqw; top: 51%; }
+  .kf__tags { top: 3cqh; left: 50%; right: auto; translate: -50% 0; display: flex; gap: 5px; justify-items: initial; }
+  .kf__tags--bad { right: auto; } .kf__tags--good { left: 50%; }
+  .kf__tags li { padding: 5px 9px 5px 5px; gap: 5px; font-size: .6875rem; }
+  .kf__tags li::before { width: 15px; height: 15px; font-size: .5625rem; }
+  .kf__tags--good li:nth-child(2) { display: none; }
+  .kf__tags--bad li, .kf__tags--good li { translate: 0 calc((1 - var(--o)) * 6px); }
+  .kf__chip { top: auto; bottom: 2.5cqh; font-size: .75rem; padding: 6px 11px; }
+  .kf__post { width: 33cqw; right: 3cqw; top: 8cqh; }
+  .kf__land { width: 45cqw; right: 3cqw; bottom: 12cqh; }
+  .kf__post figcaption, .kf__land figcaption { font-size: .625rem; padding: 5px 7px; }
+  .kf__dev .kv__snd { width: 30px; min-height: 30px; }
+}
+@media (prefers-reduced-motion: reduce) { .kf__wave i, .kf__tc i, .kf__dot { animation: none; } }
+
 /* ---------- upgrades: website cursor, NFC tap, KI page hero ---------- */
 .w-cursor { position: absolute; z-index: 4; left: calc(46% + var(--c, 1) * 26%); top: calc(34% + var(--c, 1) * 38%); width: 22px; height: 22px; opacity: calc(var(--c, 1) * 4 - .4); transform: scale(calc(1 - min(.18, max(0, (var(--c, 1) - .82) * 1.4)))); filter: drop-shadow(0 2px 4px rgba(0,0,0,.35)); }
 .w-cursor svg { width: 100%; height: 100%; display: block; }
@@ -1601,17 +1682,27 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <a class="more" href="/ki-shots">Alles über KI-Werbevideos<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
           <p class="scene__fact">Für Cafés, Restaurants, Läden und Immobilien. Im Bild: Beispiel Café Morgenrot, mit KI erstellt.</p>
         </div>
-        <div class="scene__stage kv">
-          <p class="kv__chip kv__chip--a" aria-hidden="true">Ihre Handyfotos</p><p class="kv__chip kv__chip--b" aria-hidden="true">KI rendert Ihren Film <b class="kv__pct"><i></i></b></p><p class="kv__chip kv__chip--c" aria-hidden="true">Fertig in 48 Stunden</p>
-          <div class="kv__pics" aria-hidden="true">
-            <figure class="kv__pic" style="--ax:24;--ay:42;--bx:26;--r:-7deg;--i:0"><img src="/images/ki-videos/handy-3.jpg" alt="" loading="lazy"><img class="kv__pro" src="/images/ki-videos/spot-2.jpg" alt="" loading="lazy"><i class="kv__sl"></i></figure>
-            <figure class="kv__pic" style="--ax:50;--ay:38;--bx:50;--r:2deg;--i:1"><img src="/images/ki-videos/handy-2.jpg" alt="" loading="lazy"><img class="kv__pro" src="/images/ki-videos/spot-3.jpg" alt="" loading="lazy"><i class="kv__sl"></i></figure>
-            <figure class="kv__pic" style="--ax:76;--ay:44;--bx:74;--r:6deg;--i:2"><img src="/images/ki-videos/handy-1.jpg" alt="" loading="lazy"><img class="kv__pro" src="/images/ki-videos/spot-1.jpg" alt="" loading="lazy"><i class="kv__sl"></i></figure>
+        <div class="scene__stage kf">
+          <p class="kf__chip kf__chip--a" aria-hidden="true">Ihr Handyfoto</p>
+          <p class="kf__chip kf__chip--b" aria-hidden="true"><i class="kf__dot"></i>KI macht daraus einen Film <b class="kf__pct"><i></i></b></p>
+          <p class="kf__chip kf__chip--c" aria-hidden="true">Fertig in 48 Stunden</p>
+          <ul class="kf__tags kf__tags--bad" role="list" aria-hidden="true"><li style="--i:0">Nur ein Foto</li><li style="--i:1">Keine Bewegung</li><li style="--i:2">Kein Ton</li></ul>
+          <ul class="kf__tags kf__tags--good" role="list" aria-hidden="true"><li style="--i:0">Kamerafahrt</li><li style="--i:1">Licht und Farbe</li><li style="--i:2">Musik</li><li style="--i:3">Text</li></ul>
+          <figure class="kf__post" aria-hidden="true"><img src="/images/ki-videos/spot-2.jpg" alt="" loading="lazy"><figcaption>Instagram-Beitrag</figcaption></figure>
+          <figure class="kf__land" aria-hidden="true"><video id="kvLand" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline autoplay preload="none"><source src="/videos/wohnung-einrichten.mp4" type="video/mp4"></video><figcaption>Auch für Immobilien: virtuell eingerichtet</figcaption></figure>
+          <div class="kf__dev">
+            <div class="kf__shot">
+              <img class="kf__raw" src="/images/ki-videos/handy-1.jpg" alt="" loading="lazy">
+              <img class="kf__pro" src="/images/ki-videos/spot-1.jpg" alt="" loading="lazy">
+              <video id="svcVid" poster="/images/ki-videos/spot-start.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video>
+              <i class="kf__sweep" aria-hidden="true"></i>
+              <div class="kf__cam" aria-hidden="true"><i class="kf__zoom">1×</i><span class="kf__modes"><i>VIDEO</i><b>FOTO</b><i>PORTRÄT</i></span><i class="kf__shut"></i></div>
+              <div class="kf__cine" aria-hidden="true"><i class="kf__bar kf__bar--t"></i><i class="kf__bar kf__bar--b"></i><span class="kf__tc"><i></i>REC</span><span class="kf__res">4K · 24p</span><em class="kf__t1">Draußen grau.</em><em class="kf__t2">Drinnen Apfelkuchen.</em><span class="kf__wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i></span></div>
+              <i class="kf__flash" aria-hidden="true"></i>
+              <i class="kf__isl" aria-hidden="true"></i>
+              <div class="kv__reel" aria-hidden="true"><span class="kv__rtop">Reels</span><ul class="kv__ract"><li><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></li><li><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.3-6.5L20 4l-.8 4A8 8 0 0 1 20 12z"/></svg></li><li><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></li></ul><p class="kv__rname"><i>CM</i>cafe.morgenrot<b>Folgen</b></p><i class="kv__rbar"><i></i></i></div><button class="kv__snd" type="button" data-sound="svcVid" aria-pressed="false" aria-label="Ton an oder aus">Ton an</button>
+            </div>
           </div>
-          <ul class="kv__fx" role="list" aria-hidden="true"><li style="--i:0">Kamerafahrt</li><li style="--i:1">Licht</li><li style="--i:2">Musik</li><li style="--i:3">Text</li></ul>
-          <div class="kv__tl" aria-hidden="true"><span class="kv__row kv__row--v"></span><span class="kv__row kv__row--t"><i>Draußen grau.</i><i>Drinnen Apfelkuchen.</i><i>Café Morgenrot</i></span><span class="kv__row kv__row--m"></span><i class="kv__head"></i></div>
-          <div class="kv__phone"><div class="kv__scr"><img src="/images/ki-videos/spot-start.jpg" alt="" loading="lazy"><video id="svcVid" poster="/images/ki-videos/spot-start.jpg" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video><i class="kv__isl" aria-hidden="true"></i><div class="kv__reel" aria-hidden="true"><span class="kv__rtop">Reels</span><ul class="kv__ract"><li><svg viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></li><li><svg viewBox="0 0 24 24"><path d="M20 12a8 8 0 1 1-3.3-6.5L20 4l-.8 4A8 8 0 0 1 20 12z"/></svg></li><li><svg viewBox="0 0 24 24"><path d="M21 3 10 14M21 3l-7 18-4-7-7-4z"/></svg></li></ul><p class="kv__rname"><i>CM</i>cafe.morgenrot<b>Folgen</b></p><i class="kv__rbar"><i></i></i></div><button class="kv__snd" type="button" data-sound="svcVid" aria-pressed="false" aria-label="Ton an oder aus">Ton an</button></div></div>
-          <figure class="kv__land" aria-hidden="true"><video id="kvLand" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline autoplay preload="none"><source src="/videos/wohnung-einrichten.mp4" type="video/mp4"></video><figcaption>Auch für Immobilien: virtuell eingerichtet</figcaption></figure>
         </div>
       </div>
     </div>
@@ -1909,6 +2000,16 @@ document.addEventListener("DOMContentLoaded", function () {
       }; img.src = url;
     });
     [].forEach.call(document.querySelectorAll("[data-lp-ex]"), function (b) { b.addEventListener("click", function () { src = null; shown = null; say(""); }); });
+  })();
+  /* KI film: start the reel from the beginning when it appears */
+  (function () {
+    var sc = $("#ki-shots"), v = $("#svcVid"), was = false;
+    if (!sc || !v || !window.MutationObserver) return;
+    new MutationObserver(function () {
+      var now = sc.classList.contains("s3");
+      if (now && !was) { try { v.currentTime = 0; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {} }
+      was = now;
+    }).observe(sc, { attributes: true, attributeFilter: ["class"] });
   })();
   /* reload: back to the very top */
   if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
