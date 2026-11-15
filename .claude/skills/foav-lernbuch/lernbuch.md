@@ -44,6 +44,13 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 - Unaufgeforderte Werbe-E-Mails sind verboten (§ 7 UWG, auch B2B) → Brief per Post mit QR-Code oder persönlicher Besuch.
 - Konzept für ruhige Branchen (Coaching/Therapie): warmes Papier, Serif (Instrument Serif) + Figtree, Porträt im Bogen, ein Scroll-Moment (Werte-Wörter leuchten nacheinander auf), Preise offen nennen.
 
+### 2026-11-15 · Social Media (Instagram + TikTok über Metricool)
+- Metricool-Marke „foav.de“ (blogId 8127810) mit Instagram @foav.de und TikTok verbunden. Bio, Name, Profilbild, Highlights kann nur der Mensch in der App ändern; Beiträge plant Claude über Metricool.
+- Instagram/TikTok laden Videos nur von öffentlichen Adressen → Datei nach `public/social/` legen, pushen (Production folgt dem Zweig), dann planen.
+- Impressum auf Social Media: höchstens 2 Klicks (§ 5 DDG) → eigener Bio-Link „Impressum“ + Fußzeile auf foav.de/links.
+- Instagram: max. 5 Hashtags; KI-Inhalte mit `isAiGenerated`, TikTok `isAigc` + `commercialContentOwnBrand`.
+- Anleitung und Texte: `marketing/social-media/PROFIL.md`.
+
 ### 2026-11-09 · Start des Lernbuchs
 - Gründer-Kritik bisher: Seiten sehen „alle gleich aus“ → immer erst 3 Konzepte, ein Helden-Element, Vorlage des Kunden ernst nehmen (siehe `foav-website`).
 - Gewünscht ist hochwertige Scroll-Animation wie bei Apple/Awwwards; Weg: Higgsfield-Video → Einzelbilder → Canvas + GSAP ScrollTrigger.

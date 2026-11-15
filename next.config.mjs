@@ -18,6 +18,7 @@ const nextConfig = {
         { source: "/websites", destination: "/site/websites.html" },
         { source: "/ki-shots", destination: "/site/ki-shots.html" },
         { source: "/nfc-platten", destination: "/site/nfc-platten.html" },
+        { source: "/links", destination: "/site/links.html" },
         { source: "/demo/spiruli", destination: "/demo/spiruli/index.html" },
         { source: "/demo/spiruli/", destination: "/demo/spiruli/index.html" }],
       // Sales drafts for prospective clients: public/entwurf/<slug>/index.html, reachable as /entwurf/<slug> (noindex, robots-blocked).

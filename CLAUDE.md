@@ -7,6 +7,11 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - `.claude/skills/foav-website` (Kunden-Websites: Ablauf, Pakete, Design-Regeln, Recht), `foav-selbstpruefung` (Pflicht vor jeder Übergabe: Screenshots Handy/Computer, 2 Verbesserungsrunden), `foav-roomtour` (Higgsfield → Treue-Prüfung → ffmpeg), `foav-lernbuch` (`lernbuch.md` = Gedächtnis zwischen Sitzungen; zu Beginn lesen, nach jedem Projekt ergänzen).
 - Kundenprojekte: eigene private Repos; neue Sitzung mit **zwei** Repos starten (`Webseite-` + Kunden-Repo), damit die Skills geladen werden. **Standardzweig des Repos muss `claude/hopeful-goodall-m39gmd` sein** (GitHub → Settings → Default branch), sonst sehen neue Sitzungen den alten Stand.
 
+## Stand: Social Media (15.11.)
+- Kunde: „werde mein Social Media Manager, Instagram und TikTok gut gestalten, Werbevideo mit Männerstimme posten“. Metricool verbunden (Instagram @foav.de, TikTok). Anleitung, Bio-Texte, Redaktionsplan: `marketing/social-media/PROFIL.md`; Profilbild, Highlight-Cover, Reel-Titelbild in `marketing/social-media/bilder/`.
+- Neue Link-Seite **foav.de/links** (`public/site/links.html`, Rewrite in `next.config.mjs`, noindex) für die Bio: KI-Werbevideos, Websites, NFC, Beratung, Shop, E-Mail, unten Impressum/Datenschutz/AGB.
+- Öffentliche Social-Videos in `public/social/` (Instagram/TikTok brauchen öffentliche URLs).
+
 ## Stand: Angebote zuerst, Neuladen oben, Animationen aufgewertet (15.11.)
 - Kunde: „Klick auf ein Angebot auf der Startseite soll erst zum Angebot führen, nicht zum Checkout; beim Neuladen nach oben; alle Animationen upgraden“.
 - Startseite: Schildchen der Start-Bühne → `/websites`, `/ki-shots`, `/nfc-platten`; Angebotskarten „Zum Angebot“ (+ Link „Pakete und Preise“); Scroll-Filme „Zum Angebot“ mit `data-go` (build.py macht daraus auf der eigenen Seite „Paket wählen“ → `#pakete`). Von der Startseite führt nur noch „Shop“/„Warenkorb“ in den Shop.
