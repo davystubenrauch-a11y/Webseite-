@@ -68,3 +68,9 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 - foav.de ist monochrom (Graphit/Weiß/Grau); Akzentfarben wurden dort mehrfach abgelehnt. Für Kundenseiten gilt das nicht – dort die Marke des Kunden.
 - Name der Firma immer „FOAV“, nie „foav.de“ oder „F&D Solutions“.
 - Anrufen ist nur Notfall-Kanal; Bestellweg: Paket wählen → Fragebogen → Warenkorb/Bezahlen.
+
+## 17.11. – Werbefilme, die nicht nach KI aussehen
+- Kritik: alles beige/gleichfarbig, zu glatt. Was geholfen hat: **gemischte Farben und Materialien mit klarer Designsprache** (z. B. Oliv-Samt + Cognac-Leder + Walnuss + Perserteppich + ein Bild in Burgund/Ocker), Abend/Blaue Stunde mit **geschichtetem warmem Licht** (Stehlampe, Tischlampe, Bilderleuchte, gedimmte Papierlampe) gegen kühles Blau draußen, Kamera und Objektiv nennen (Sony A7R V 24 mm bzw. ARRI Alexa Mini 35/50/100 mm), „uncluttered, considered“, keine Wörter wie cozy/luxury/aesthetic.
+- Startbilder immer gpt_image_2_6 **quality high, 2k** (2,75 Credits) – die 0,25-Credit-Bilder waren ein Hauptgrund für den KI-Look. Videos kling4_0 1080p image-to-video (5 s = 16,25, 8 s = 26 Credits); Seedance 2.5 1080p kostet 80 je 5 s.
+- Wohnung: leeres Foto als `image_references` → Geometrie blieb exakt. Start-/Endbild (leer → eingerichtet) mit kling4_0 klappt sauber, auch Tag → Abend. Zwei 8-s-Fahrten vom selben Startbild (eine rückwärts abgespielt) ergeben eine durchgehende 16-s-Fahrt.
+- Café-Szenen ohne Hände/Menschen, Bewegung nur Regen, Dampf, Spiegelungen, Kamerafahrt → alle 4 Clips im ersten Versuch brauchbar. Außenclip brauchte ~17 Minuten Rechenzeit.
