@@ -1,0 +1,245 @@
+<title>FOAV Kundenplan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+<style>
+/* Layout: one reading column, plan sections with a sticky contents rail on wide screens; FOAV monochrome */
+:root{
+  --bg:#fbfbfd; --surface:#ffffff; --tint:#f2f2f5; --ink:#1d1d1f; --text:#3a3a3f; --muted:#6b6b72; --line:#dcdce2; --mark:#1d1d1f; --ok:#1f7a4d; --warn:#9a5b00;
+  --display:"Space Grotesk",system-ui,sans-serif; --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#111113;--surface:#18181b;--tint:#202024;--ink:#f3f3f5;--text:#d4d4d9;--muted:#9a9aa2;--line:#2e2e34;--mark:#f3f3f5;--ok:#5ec496;--warn:#e6a54a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#111113;--surface:#18181b;--tint:#202024;--ink:#f3f3f5;--text:#d4d4d9;--muted:#9a9aa2;--line:#2e2e34;--mark:#f3f3f5;--ok:#5ec496;--warn:#e6a54a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--text);font:16px/1.6 var(--body);margin:0}
+.wrap{max-width:1120px;margin:0 auto;padding-block:40px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:220px minmax(0,1fr);gap:56px}
+nav{position:sticky;top:24px;align-self:start;font-size:14px}
+nav b{display:block;font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+nav a{display:block;color:var(--text);text-decoration:none;padding:5px 0;border-left:2px solid var(--line);padding-left:12px}
+nav a:hover,nav a:focus-visible{border-color:var(--mark);color:var(--ink);outline:none}
+main{min-width:0;max-width:760px}
+h1,h2,h3{font-family:var(--display);color:var(--ink);text-wrap:balance;margin:0}
+h1{font-size:clamp(34px,5vw,52px);line-height:1.05;letter-spacing:-.02em}
+h2{font-size:clamp(24px,3vw,30px);line-height:1.15;margin-top:64px;padding-top:24px;border-top:1px solid var(--line)}
+h3{font-size:18px;margin-top:28px}
+p{margin:12px 0}
+.lead{font-size:19px;color:var(--ink);max-width:62ch}
+.meta{color:var(--muted);font-size:14px;margin-top:10px}
+ul,ol{padding-left:20px;margin:12px 0}
+li{margin:6px 0}
+strong{color:var(--ink)}
+.goal{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:28px 0 8px}
+.goal div{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px}
+.goal span{display:block;font:700 30px/1.1 var(--display);color:var(--ink);font-variant-numeric:tabular-nums}
+.goal small{color:var(--muted);font-size:13px;line-height:1.35;display:block;margin-top:6px}
+.note{font-size:13px;color:var(--muted)}
+.tbl{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:560px}
+th,td{text-align:left;vertical-align:top;padding:11px 14px;border-bottom:1px solid var(--line)}
+th{font-weight:600;color:var(--ink);background:var(--tint);font-size:13px}
+tr:last-child td{border-bottom:0}
+td.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.script{background:var(--tint);border-radius:12px;padding:16px 18px;margin:14px 0;font-size:15.5px;color:var(--ink)}
+.script p{margin:6px 0}
+.script .who{font:600 12px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.law{border-left:3px solid var(--warn);padding:4px 0 4px 16px;margin:16px 0}
+.law strong{color:var(--warn)}
+.check li{list-style:none;position:relative;padding-left:4px}
+.check{padding-left:22px}
+.check li::before{content:"";position:absolute;left:-20px;top:7px;width:12px;height:12px;border:1.5px solid var(--muted);border-radius:3px}
+.tag{display:inline-block;font-size:12px;font-weight:600;padding:2px 8px;border-radius:999px;background:var(--tint);color:var(--ink);margin-right:6px;white-space:nowrap}
+@media (max-width:860px){.wrap{grid-template-columns:minmax(0,1fr);gap:24px}nav{position:static;display:none}.goal{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto}}
+html{scroll-behavior:smooth}
+</style>
+
+<div class="wrap">
+<nav aria-label="Inhalt">
+  <b>Inhalt</b>
+  <a href="#ziel">Ziel und Zahlen</a>
+  <a href="#vorher">Vor dem Start</a>
+  <a href="#strategie">Strategie</a>
+  <a href="#vorort">1 · Vor Ort</a>
+  <a href="#netzwerk">2 · Netzwerk</a>
+  <a href="#partner">3 · Partner</a>
+  <a href="#google">4 · Google</a>
+  <a href="#social">5 · Instagram, TikTok</a>
+  <a href="#angebot">Startkunden-Angebot</a>
+  <a href="#recht">Was erlaubt ist</a>
+  <a href="#fahrplan">8-Wochen-Fahrplan</a>
+  <a href="#zahlen">Wochenzahlen</a>
+  <a href="#budget">Budget</a>
+  <a href="#claude">Was Claude übernimmt</a>
+</nav>
+
+<main>
+<h1>So gewinnt FOAV die ersten Kunden</h1>
+<p class="lead">Ein Plan für Florian und Davy für die nächsten 8 Wochen: wen ihr ansprecht, wie, mit welchem Angebot und was ihr jede Woche tut.</p>
+<p class="meta">Stand 17.11. · München · Leistungen: Websites ab 399 €, KI-Werbevideos ab 199 €, NFC-Platten ab 12,90 €</p>
+
+<h2 id="ziel">Ziel und Zahlen</h2>
+<p><strong>5 zahlende Kunden in 8 Wochen</strong>, davon mindestens eine Website, dazu echte Kundenstimmen und Vorher-Nachher-Beispiele für die Website.</p>
+<div class="goal">
+  <div><span>150</span><small>Betriebe persönlich angesprochen</small></div>
+  <div><span>30</span><small>echte Gespräche (≥ 5 Minuten)</small></div>
+  <div><span>10</span><small>Angebote oder Vorführungen</small></div>
+  <div><span>5</span><small>zahlende Kunden</small></div>
+</div>
+<p class="note">Das sind Planungsannahmen, keine Erfahrungswerte. Nach Woche 3 vergleicht ihr sie mit euren echten Zahlen und passt den Plan an.</p>
+
+<h2 id="vorher">Vor dem Start (Woche 0)</h2>
+<p>Bevor ihr Werbung macht, muss der Kaufweg funktionieren. Sonst verliert ihr genau die Kunden, die ihr gewonnen habt.</p>
+<ul class="check">
+  <li><strong>Stripe-Schlüssel in Vercel eintragen</strong>, damit Kunden online bezahlen können. Ein Testkauf mit einer NFC-Platte.</li>
+  <li><strong>Vercel Pro abschließen</strong> (ca. 20 $/Monat). Der kostenlose Tarif ist nur für private Seiten erlaubt.</li>
+  <li><strong>Foto-Upload freischalten</strong> (Blob-Token), damit Kunden im Fragebogen Fotos hochladen können.</li>
+  <li><strong>Google-Unternehmensprofil fertig</strong>: Beschreibung, Kategorien, Leistungen, neue Fotos (Texte liegen in <code>marketing/google-profil/GOOGLE.md</code>).</li>
+  <li><strong>Vorführ-Set</strong>: 2 NFC-Platten (Weiß und Schwarz, eine mit Logo-Beispiel), ein Handy oder Tablet mit foav.de, dem Café-Film und dem Wohnungs-Rundgang offline gespeichert.</li>
+  <li><strong>Flyer im A6-Format und Visitenkarten</strong> mit QR-Code auf foav.de/links. Eine eigene NFC-Platte auf der Visitenkarte oder am Flyer ist euer bestes Argument.</li>
+  <li><strong>Liste mit 150 Betrieben</strong> in 2–3 Münchner Vierteln anlegen (Name, Branche, Adresse, Website ja/nein, Google-Bewertungen, Notiz).</li>
+</ul>
+
+<h2 id="strategie">Strategie in einem Satz</h2>
+<p><strong>Die NFC-Platte öffnet die Tür, die Website und der Film bringen den Umsatz.</strong> Eine Platte für 14,90 € kauft ein Inhaber spontan, und sie zeigt sofort, dass ihr liefert. Danach folgen Website und Werbefilm.</p>
+<h3>Zielgruppen, in dieser Reihenfolge</h3>
+<div class="tbl"><table>
+  <tr><th>Zielgruppe</th><th>Warum zuerst</th><th>Einstieg</th><th>Großer Auftrag</th></tr>
+  <tr><td>Cafés, Bäckereien, Restaurants</td><td>Viele Laufkunden, Google-Bewertungen entscheiden, Inhaber ist vor Ort</td><td>NFC-Platten (5–10 Stück)</td><td>Werbefilm 199–449 €, Website</td></tr>
+  <tr><td>Friseure, Kosmetik, Nagelstudios</td><td>Terminbuchung ist wichtig, oft nur Instagram und keine Website</td><td>NFC-Platte an der Kasse</td><td>Website Business 799 € mit Terminbuchung</td></tr>
+  <tr><td>Makler und Vermieter</td><td>Leere Wohnungen verkaufen sich schlecht, Film ist neu und sichtbar</td><td>Ein Probe-Rundgang aus ihren Fotos</td><td>Pro-Paket 449 €, wiederkehrend je Objekt</td></tr>
+  <tr><td>Handwerker</td><td>Viele haben keine oder eine sehr alte Website</td><td>Kurzer Website-Check</td><td>Website Basis 399 € oder Business</td></tr>
+</table></div>
+<p>Konzentriert euch in den ersten 4 Wochen auf <strong>Cafés/Gastro und Friseure</strong>. Makler sind der zweite Schritt, sobald es 1–2 Kundenfilme gibt.</p>
+
+<h2 id="vorort">Kanal 1: Persönlich vor Ort (Hauptkanal)</h2>
+<p>Für die ersten Kunden ist das der wirksamste Weg. Er ist rechtlich unproblematisch und kostet nur Zeit. Ihr geht in eure Viertel, sprecht mit dem Inhaber und zeigt die Platte.</p>
+<ul>
+  <li><strong>Wann:</strong> Di–Do, 14–17 Uhr (nach dem Mittag, vor dem Abend). Nie zur Stoßzeit, nie bei vollem Laden.</li>
+  <li><strong>Wie viel:</strong> 2 Nachmittage pro Woche, je 15–20 Betriebe. Zu zweit: einer redet, einer notiert.</li>
+  <li><strong>Was ihr dabei habt:</strong> Vorführ-Set, Flyer, Visitenkarten, Liste auf dem Handy.</li>
+  <li><strong>Nach jedem Besuch:</strong> sofort notieren (Interesse ja/nein, was wurde gesagt, wann wieder melden).</li>
+</ul>
+<div class="script">
+  <div class="who">Gesprächsleitfaden (60 Sekunden)</div>
+  <p>„Hallo, ich bin Davy von FOAV, wir sind zwei Gründer hier aus München. Darf ich Ihnen in einer Minute etwas zeigen?“</p>
+  <p>„Ihre Gäste tippen mit dem Handy auf diese Platte und landen direkt bei Ihrer Google-Bewertung. Ohne App, ohne Suchen.“ <em>(vorführen)</em></p>
+  <p>„Viele zufriedene Gäste würden bewerten, sie vergessen es nur. Eine Platte kostet 14,90 €, ab 5 Stück 13,90 €. Auf Wunsch mit Ihrem Logo.“</p>
+  <p>„Darf ich Ihnen eine Platte für 14 Tage dalassen? Wenn sie Ihnen nichts bringt, hole ich sie wieder ab.“</p>
+</div>
+<p><strong>Testplatte:</strong> Lasst bei echtem Interesse eine Platte 14 Tage da und kommt zum vereinbarten Termin wieder. Beim zweiten Besuch zeigt ihr auf dem Handy, wie viele neue Bewertungen dazugekommen sind, und sprecht über Website oder Film.</p>
+<h3>Häufige Einwände</h3>
+<div class="tbl"><table>
+  <tr><th>Einwand</th><th>Antwort</th></tr>
+  <tr><td>„Keine Zeit.“</td><td>„Verstehe. Ich lasse Ihnen die Karte da, auf der Rückseite ist ein QR-Code zu den Beispielen. Darf ich nächste Woche kurz wiederkommen?“</td></tr>
+  <tr><td>„Wir haben schon eine Website.“</td><td>„Sehr gut. Darf ich sie mir am Handy ansehen?“ Dann ehrlich sagen, was auffällt (Handy-Ansicht, Ladezeit, keine Terminbuchung). Kein Schlechtreden.</td></tr>
+  <tr><td>„Zu teuer.“</td><td>Festpreis zeigen, kein Abo, Hosting inklusive. Einstieg mit Basis 399 € oder nur NFC-Platten.</td></tr>
+  <tr><td>„KI-Videos sehen unecht aus.“</td><td>Café-Film zeigen. „Er entsteht aus Ihren Fotos, und Sie sehen ihn vor der Freigabe.“</td></tr>
+</table></div>
+
+<h2 id="netzwerk">Kanal 2: Eigenes Netzwerk und Empfehlungen</h2>
+<ul>
+  <li>Schreibt beide eine Liste mit <strong>30 Menschen</strong>, die selbstständig sind oder Selbstständige kennen (Familie, Freunde, alte Kollegen, Vereine).</li>
+  <li>Schreibt jeder Person <strong>persönlich</strong>, nicht als Rundmail. Bittet nicht um einen Auftrag, sondern um eine Empfehlung.</li>
+  <li><strong>Empfehlungsprämie:</strong> 50 € Gutschrift oder Überweisung für jede vermittelte Website, offen kommuniziert.</li>
+</ul>
+<div class="script">
+  <div class="who">Nachricht an Bekannte</div>
+  <p>„Hey [Name], Florian und ich haben FOAV gegründet: Websites, kurze Werbefilme und Google-Bewertungs-Platten für kleine Betriebe in München. Kennst du jemanden mit Café, Laden, Salon oder Handwerksbetrieb, der gerade eine neue Website oder mehr Bewertungen braucht? Für jede vermittelte Website gibt es 50 € von uns. Beispiele: foav.de“</p>
+</div>
+
+<h2 id="partner">Kanal 3: Partner, die eure Kunden schon kennen</h2>
+<p>Ein Partner bringt über Monate immer wieder Kunden. Ziel: <strong>5 Partnergespräche in 8 Wochen.</strong></p>
+<div class="tbl"><table>
+  <tr><th>Partner</th><th>Warum</th><th>Was ihr anbietet</th></tr>
+  <tr><td>Steuerberater, Gründungsberater</td><td>Kennen jeden neuen Betrieb</td><td>10 % Provision, Flyer für ihr Wartezimmer</td></tr>
+  <tr><td>Gründerangebote (IHK München, Gründerstammtische, Coworking-Spaces)</td><td>Viele Gründer brauchen sofort eine Website</td><td>Kurzvortrag „Website in 7 Tagen, ohne Abo“, Startkunden-Angebot</td></tr>
+  <tr><td>Hausverwaltungen, Makler</td><td>Leerstand, Exposés</td><td>Probe-Rundgang aus ihren Fotos</td></tr>
+  <tr><td>Fotografen, Druckereien, Grafiker</td><td>Ergänzen sich mit euch, keine Konkurrenz</td><td>Gegenseitige Empfehlung</td></tr>
+</table></div>
+
+<h2 id="google">Kanal 4: Google und die eigene Website</h2>
+<ul>
+  <li><strong>Jede Woche ein Google-Beitrag</strong> (Beispiel, Tipp oder Angebot) und neue Fotos. Claude bereitet sie vor und plant sie über Metricool.</li>
+  <li><strong>Einträge in Verzeichnissen:</strong> Das Örtliche, Gelbe Seiten, Bing Places, Apple Maps, nebenan.de (Gewerbe). Name, Adresse und Telefonnummer überall gleich schreiben.</li>
+  <li><strong>Echte Bewertungen von den ersten Kunden</strong> erbitten, mit eurer eigenen NFC-Platte. Ohne Gegenleistung.</li>
+  <li><strong>Jeder Kunde wird eine Fallstudie</strong> auf foav.de (mit Erlaubnis): Vorher, Nachher, Ergebnis, Zitat.</li>
+  <li>Search Console: neue Seiten zur Indexierung einreichen.</li>
+</ul>
+
+<h2 id="social">Kanal 5: Instagram und TikTok</h2>
+<p>Social Media bringt am Anfang selten direkt Kunden. Es dient als <strong>Beweis</strong>: Wer euch nach dem Besuch googelt oder auf Instagram sucht, sieht echte Arbeit.</p>
+<ul>
+  <li><strong>3 Beiträge pro Woche</strong>, geplant über Metricool:
+    <span class="tag">Vorher → Nachher</span><span class="tag">NFC-Platte im Einsatz</span><span class="tag">Website in 7 Tagen</span><span class="tag">Gründer-Alltag</span></li>
+  <li>Euch selbst zeigen: zwei Gründer aus München schaffen mehr Vertrauen als KI-Bilder.</li>
+  <li>Lokale Betriebe <strong>folgen und ehrlich kommentieren</strong>. Keine Massen-Nachrichten.</li>
+  <li>Jeder fertige Kundenauftrag wird ein Reel (mit Erlaubnis und Markierung des Kunden).</li>
+</ul>
+
+<h2 id="angebot">Startkunden-Angebot</h2>
+<p><strong>Für die ersten 5 Kunden</strong> (wirklich nur 5, auf der Website sichtbar heruntergezählt):</p>
+<ul>
+  <li><strong>20 % auf jedes Website- oder Film-Paket</strong>, z. B. Website Business 639 € statt 799 €.</li>
+  <li>Dafür: Erlaubnis für eine Fallstudie mit Name und Logo und eine ehrliche Google-Bewertung, wenn der Kunde zufrieden ist. Die Bewertung ist freiwillig und keine Bedingung für den Rabatt.</li>
+  <li>Wenn die 5 Plätze vergeben sind, endet das Angebot. Keine künstliche Verlängerung.</li>
+</ul>
+
+<h2 id="recht">Was erlaubt ist und was nicht</h2>
+<div class="law"><p><strong>Keine kalten Werbe-E-Mails und keine unaufgeforderten Werbeanrufe</strong>, auch nicht an Firmen. Ohne Einwilligung ist das in Deutschland unzulässig (UWG § 7) und abmahnfähig. Das gilt auch für Kontaktformulare fremder Websites.</p></div>
+<div class="law"><p><strong>Keine gekauften oder erfundenen Bewertungen</strong> und keine Belohnung für Google-Bewertungen. Das ist gesetzlich verboten und verstößt gegen Googles Regeln. Das gilt auch für eure Kunden mit NFC-Platten.</p></div>
+<ul>
+  <li><strong>Erlaubt:</strong> persönlicher Besuch, Flyer im Laden abgeben, Briefe per Post, Gespräche auf Veranstaltungen, Empfehlungen, Werbeanzeigen.</li>
+  <li><strong>Erlaubt, wenn der Kunde zustimmt:</strong> Nachfass-Nachricht per E-Mail oder WhatsApp nach einem Gespräch, in dem er euch seine Nummer gegeben hat.</li>
+  <li>KI-Beispiele bleiben gekennzeichnet („mit KI erstellt“, bei Wohnungen „virtuell eingerichtet“).</li>
+</ul>
+
+<h2 id="fahrplan">8-Wochen-Fahrplan</h2>
+<div class="tbl"><table>
+  <tr><th>Woche</th><th>Schwerpunkt</th><th>Konkret</th></tr>
+  <tr><td class="n">0</td><td>Vorbereitung</td><td>Stripe, Vercel Pro, Foto-Upload, Google-Profil, Vorführ-Set, Flyer, Liste mit 150 Betrieben</td></tr>
+  <tr><td class="n">1</td><td>Netzwerk + erste Runde vor Ort</td><td>30 persönliche Nachrichten, 30 Betriebe besuchen, 5 Testplatten dalassen</td></tr>
+  <tr><td class="n">2</td><td>Vor Ort</td><td>30 Betriebe, Nachfass-Besuche, erstes Partnergespräch</td></tr>
+  <tr><td class="n">3</td><td>Testplatten auswerten</td><td>Zweite Besuche, Website/Film anbieten, erste Zahlen vergleichen</td></tr>
+  <tr><td class="n">4</td><td>Erste Aufträge liefern</td><td>Website in 7 Tagen, Film in 48 Stunden, alles dokumentieren</td></tr>
+  <tr><td class="n">5</td><td>Beweise sammeln</td><td>Fallstudie 1 auf foav.de, Reel, Bewertung erbitten; Makler ansprechen</td></tr>
+  <tr><td class="n">6</td><td>Partner</td><td>2 Partnergespräche, Kurzvortrag bei Gründerstammtisch oder im Coworking</td></tr>
+  <tr><td class="n">7</td><td>Optional Anzeigen</td><td>Kleiner Test (z. B. 5 €/Tag Instagram, nur München, mit Fallstudie)</td></tr>
+  <tr><td class="n">8</td><td>Bilanz</td><td>Was hat Kunden gebracht? Den Rest streichen, das Beste verdoppeln</td></tr>
+</table></div>
+
+<h2 id="zahlen">Wochenzahlen</h2>
+<p>Jeden Freitag 15 Minuten. Nur diese Zahlen zählen:</p>
+<div class="tbl"><table>
+  <tr><th>Zahl</th><th>Wochenziel</th></tr>
+  <tr><td>Betriebe angesprochen</td><td class="n">30</td></tr>
+  <tr><td>Echte Gespräche</td><td class="n">6</td></tr>
+  <tr><td>Testplatten dagelassen</td><td class="n">3</td></tr>
+  <tr><td>Angebote oder Vorführungen</td><td class="n">2</td></tr>
+  <tr><td>Verkäufe (Platten / Website / Film)</td><td class="n">1</td></tr>
+  <tr><td>Beiträge veröffentlicht (Instagram, TikTok, Google)</td><td class="n">4</td></tr>
+  <tr><td>Partnergespräche</td><td class="n">1</td></tr>
+</table></div>
+
+<h2 id="budget">Budget für 8 Wochen</h2>
+<div class="tbl"><table>
+  <tr><th>Posten</th><th>ca. Kosten</th></tr>
+  <tr><td>Flyer A6 (500 Stück) und Visitenkarten</td><td class="n">60–90 €</td></tr>
+  <tr><td>Testplatten (15 Stück, eure Einkaufskosten)</td><td class="n">eigener Einkaufspreis</td></tr>
+  <tr><td>Vercel Pro (2 Monate)</td><td class="n">ca. 40 $</td></tr>
+  <tr><td>KI-Werkzeuge für Videos (z. B. OpenArt Plus)</td><td class="n">ca. 32 €/Monat</td></tr>
+  <tr><td>Anzeigen-Test ab Woche 7 (optional)</td><td class="n">bis 100 €</td></tr>
+  <tr><td>Empfehlungsprämien (nur bei Erfolg)</td><td class="n">50 € je Website</td></tr>
+</table></div>
+<p class="note">Richtwerte; aktuelle Preise beim jeweiligen Anbieter prüfen.</p>
+
+<h2 id="claude">Was Claude übernehmen kann</h2>
+<ul>
+  <li>Flyer und Visitenkarten gestalten (Druckdatei).</li>
+  <li>Die Liste mit 150 Betrieben aus öffentlichen Google-Maps-Daten vorbereiten (Name, Branche, Website ja/nein, Bewertungen).</li>
+  <li>Wöchentliche Beiträge für Instagram, TikTok und Google schreiben und über Metricool planen.</li>
+  <li>Fallstudien-Seiten für foav.de bauen, sobald der erste Kunde zustimmt.</li>
+  <li>Für Interessenten einen Website-Entwurf der Startseite bauen (als Verkaufsentwurf gekennzeichnet).</li>
+  <li>Den Zähler „noch X Startkunden-Plätze“ auf der Website einbauen.</li>
+</ul>
+<p>Empfohlener nächster Schritt: <strong>Woche 0 abhaken</strong>, dann gemeinsam die Liste mit 150 Betrieben anlegen.</p>
+</main>
+</div>
