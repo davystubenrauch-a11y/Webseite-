@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>FOAV Flyer A5</title>
+<style>
+@font-face{font-family:Inter;src:url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2");font-weight:100 900}
+@page{size:152mm 214mm;margin:0}
+:root{--ink:#1d1d1f;--text:#3a3a3f;--muted:#6e6e73;--tint:#f2f2f5;--line:#dcdce2}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* page = trim 148x210 + 2 mm bleed; content keeps 9 mm from the trim edge */
+.page{width:152mm;height:214mm;position:relative;overflow:hidden;page-break-after:always;background:#fbfbfd}
+.safe{position:absolute;inset:11mm;display:flex;flex-direction:column}
+.logo{height:7.2mm;width:auto;align-self:flex-start}
+h1{font-size:28pt;line-height:1.04;letter-spacing:-.025em;color:var(--ink);font-weight:700;margin-top:10mm}
+.lead{font-size:10.2pt;line-height:1.5;margin-top:4mm;max-width:112mm}
+.lead b{color:var(--ink)}
+.offers{display:grid;gap:3.6mm;margin-top:8mm}
+.o{display:grid;grid-template-columns:38mm 1fr;gap:4mm;align-items:center;background:#fff;border:.25mm solid var(--line);border-radius:4mm;padding:2.6mm}
+.o .pic{height:27mm;border-radius:2.6mm;overflow:hidden;background:var(--tint);display:grid;place-items:center;position:relative}
+.o .pic img{width:100%;height:100%;object-fit:cover}
+.o .pic.disc{background:#e9e9ee;display:flex;justify-content:center;align-items:center;gap:1.5mm}
+.o .pic.disc img{width:16mm;height:16mm;object-fit:contain;filter:drop-shadow(0 1mm 1.2mm rgba(0,0,0,.18))}
+.o .pic small{position:absolute;right:1.2mm;bottom:1mm;font-size:4.6pt;color:#fff;background:rgba(0,0,0,.45);padding:.3mm 1.2mm;border-radius:2mm}
+.o h2{font-size:11.2pt;color:var(--ink);font-weight:700;letter-spacing:-.01em}
+.o p{font-size:8.4pt;line-height:1.42;margin-top:1mm}
+.o .price{display:inline-block;margin-top:1.4mm;font-size:8pt;font-weight:700;color:var(--ink)}
+.foot{margin-top:auto;display:flex;justify-content:space-between;align-items:flex-end;font-size:7.4pt;color:var(--muted)}
+.foot b{color:var(--ink);font-weight:600}
+/* back */
+.back{background:#fff}
+.back h1{margin-top:9mm;font-size:24pt}
+.steps{margin-top:8mm;display:grid;gap:5mm}
+.s{display:grid;grid-template-columns:7mm 1fr;gap:3mm;align-items:start}
+.s i{font-style:normal;width:6.4mm;height:6.4mm;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:8pt;font-weight:700}
+.s b{display:block;color:var(--ink);font-size:10.4pt}
+.s span{font-size:8.8pt;line-height:1.45}
+.test{margin-top:9mm;background:var(--ink);color:#fff;border-radius:4mm;padding:5mm 5.5mm;display:grid;grid-template-columns:1fr 22mm;gap:4mm;align-items:center}
+.test b{display:block;font-size:12.4pt;letter-spacing:-.01em}
+.test p{font-size:8.4pt;line-height:1.45;color:#d9d9de;margin-top:1.4mm}
+.test img{width:22mm;height:auto}
+.promise{margin-top:8mm;display:grid;grid-template-columns:1fr 1fr;gap:2mm 5mm;font-size:8.4pt}
+.promise div{padding-left:4.2mm;position:relative}
+.promise div::before{content:"";position:absolute;left:0;top:1.3mm;width:2.3mm;height:1.2mm;border-left:.45mm solid var(--ink);border-bottom:.45mm solid var(--ink);transform:rotate(-45deg)}
+.contact{margin-top:auto;display:grid;grid-template-columns:24mm 1fr;gap:5mm;align-items:center;border-top:.25mm solid var(--line);padding-top:5mm}
+.contact img{width:24mm}
+.contact b{display:block;font-size:13pt;color:var(--ink);letter-spacing:-.01em}
+.contact span{display:block;font-size:8.6pt;margin-top:.8mm}
+.legal{font-size:5.8pt;color:var(--muted);margin-top:3.4mm;line-height:1.4}
+.founders{display:flex;gap:2mm;margin-top:5mm;align-items:center;font-size:8pt}
+.mono{width:7.4mm;height:7.4mm;border-radius:50%;background:var(--tint);border:.25mm solid var(--line);display:grid;place-items:center;font-size:7pt;font-weight:700;color:var(--ink)}
+</style></head><body>
+
+<section class="page">
+  <div class="safe">
+    <img class="logo" src="file:///home/user/Webseite-/public/media/logo-foav.svg" alt="FOAV">
+    <h1>Hallo aus der Nachbarschaft.</h1>
+    <p class="lead">Wir sind <b>Florian und Davy</b>, zwei Gründer aus München. Wir helfen kleinen Betrieben hier im Viertel, im Internet gefunden und gut bewertet zu werden. Zum Festpreis, ohne Abo.</p>
+    <div class="founders"><span class="mono">FD</span><span class="mono">DS</span><span>Florian Dressler &amp; Davy Stubenrauch</span></div>
+    <div class="offers">
+      <div class="o"><div class="pic"><img src="file:///home/user/Webseite-/public/media/ref-spiruli-desk-top.jpg" alt=""></div>
+        <div><h2>Eine Website, die Kunden bringt</h2><p>Eigenes Design, schnell auf jedem Handy, mit Anfrage- oder Buchungsknopf. Online in höchstens 7 Tagen, Hosting inklusive.</p><span class="price">ab 399 € Festpreis</span></div></div>
+      <div class="o"><div class="pic disc"><img src="file:///home/user/Webseite-/public/media/disc-weiss.svg" alt=""><img src="file:///home/user/Webseite-/public/images/ki-shots/nfc-logo-plate.webp" alt=""></div>
+        <div><h2>Mehr Google-Bewertungen</h2><p>Ihre Gäste tippen mit dem Handy auf die Platte und landen direkt bei Ihrer Bewertung. Ohne App, auf Wunsch mit Ihrem Logo.</p><span class="price">ab 12,90 € pro Platte</span></div></div>
+      <div class="o"><div class="pic"><img src="file:///home/user/Webseite-/public/images/ki-videos/wohnung-voll.jpg" alt=""><small>Beispiel, mit KI erstellt</small></div>
+        <div><h2>Werbefilme aus Ihren Fotos</h2><p>Für Instagram, Ihre Website oder das Exposé. Ihre Räume und Produkte bleiben echt, wir sorgen für Kamerafahrt, Licht und Musik.</p><span class="price">ab 199 €</span></div></div>
+    </div>
+    <div class="foot"><span><b>foav.de</b> · info@foav.de</span><span>Bitte umdrehen →</span></div>
+  </div>
+</section>
+
+<section class="page back">
+  <div class="safe">
+    <img class="logo" src="file:///home/user/Webseite-/public/media/logo-foav.svg" alt="FOAV">
+    <h1>So einfach läuft es.</h1>
+    <div class="steps">
+      <div class="s"><i>1</i><div><b>Paket auf foav.de wählen</b><span>Alle Preise stehen auf der Seite. Sie wissen vorher, was es kostet.</span></div></div>
+      <div class="s"><i>2</i><div><b>Kurzen Fragebogen ausfüllen</b><span>Texte, Fotos, Wünsche. Rund 15 Minuten, Fragen beantworten wir persönlich.</span></div></div>
+      <div class="s"><i>3</i><div><b>Ergebnis ansehen und freigeben</b><span>Erst wenn alles passt, geht Ihre Website oder Ihr Film online.</span></div></div>
+    </div>
+    <div class="test">
+      <div><b>14 Tage kostenlos testen</b><p>Wir bringen Ihnen eine NFC-Platte vorbei. Gefällt sie Ihnen nicht, holen wir sie wieder ab. Einfach den QR-Code scannen oder eine E-Mail schreiben.</p></div>
+      <img src="file:///home/user/Webseite-/public/media/disc-schwarz.svg" alt="">
+    </div>
+    <div class="promise">
+      <div>Festpreis, vorher sichtbar</div><div>Kein Abo, keine Laufzeit</div>
+      <div>Hosting inklusive</div><div>Zwei feste Ansprechpartner</div>
+    </div>
+    <div class="contact">
+      <img src="file:///home/user/Webseite-/marketing/print/qr-flyer.svg" alt="QR-Code zu foav.de">
+      <div><b>foav.de</b><span>info@foav.de · Antwort innerhalb von 24 Stunden</span><span>Beispiele, Preise und Bestellung auf der Website</span></div>
+    </div>
+    <p class="legal">FOAV GbR, Florian Dressler und Davy Stubenrauch, München · Impressum: foav.de/impressum · Bildbeispiele teilweise mit KI erstellt.</p>
+  </div>
+</section>
+</body></html>

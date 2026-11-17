@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>FOAV Brief A4</title>
+<style>
+@font-face{font-family:Inter;src:url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2");font-weight:100 900}
+@page{size:A4;margin:0}
+:root{--ink:#1d1d1f;--text:#2e2e33;--muted:#6e6e73;--line:#dcdce2;--tint:#f2f2f5}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+/* A4 letter, margins after DIN 5008 (left 25 mm, right 20 mm) */
+.page{width:210mm;height:297mm;position:relative;overflow:hidden;background:#fff;padding:16mm 20mm 14mm 25mm;display:flex;flex-direction:column}
+.head{display:flex;justify-content:space-between;align-items:flex-start}
+.head img{height:9mm}
+.head .meta{text-align:right;font-size:8.4pt;line-height:1.55;color:var(--muted)}
+.head .meta b{color:var(--ink);font-weight:600}
+.to{margin-top:14mm;font-size:10.5pt;line-height:1.5}
+.to small{display:block;font-size:7pt;color:var(--muted);margin-bottom:2mm;letter-spacing:.02em}
+.date{margin-top:4mm;text-align:right;font-size:10pt}
+.subj{margin-top:6mm;font-size:12pt;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.body{margin-top:5mm;font-size:10.2pt;line-height:1.56;max-width:160mm}
+.body p+p{margin-top:3.6mm}
+.body b{color:var(--ink)}
+.body ul{margin:3mm 0 3.6mm 0;list-style:none;display:grid;gap:1.6mm}
+.body li{padding-left:5mm;position:relative}
+.body li::before{content:"";position:absolute;left:0;top:2.2mm;width:2.4mm;height:1.2mm;border-left:.45mm solid var(--ink);border-bottom:.45mm solid var(--ink);transform:rotate(-45deg)}
+.sign{margin-top:2mm;display:grid;grid-template-columns:1fr 1fr;gap:10mm;max-width:150mm}
+.sign div{border-top:.3mm solid var(--line);padding-top:2mm;margin-top:13mm;font-size:9.6pt}
+.sign b{display:block;color:var(--ink)}
+.sign span{font-size:8.4pt;color:var(--muted)}
+.ps{margin-top:6mm;font-size:10pt;line-height:1.55;background:var(--tint);border-radius:3mm;padding:4mm 5mm;max-width:160mm}
+.ps b{color:var(--ink)}
+.foot{margin-top:auto;display:grid;grid-template-columns:22mm 1fr;gap:6mm;align-items:center;border-top:.3mm solid var(--line);padding-top:5mm}
+.foot img{width:22mm}
+.foot b{display:block;font-size:12pt;color:var(--ink)}
+.foot span{display:block;font-size:8.6pt;line-height:1.5;color:var(--muted)}
+</style></head><body>
+<section class="page">
+  <div class="head">
+    <img src="file:///home/user/Webseite-/public/media/logo-foav.svg" alt="FOAV">
+    <div class="meta"><b>FOAV GbR</b><br>Florian Dressler &amp; Davy Stubenrauch<br>München · foav.de<br>info@foav.de</div>
+  </div>
+
+  <div class="to"><small>Persönlich eingeworfen</small>An die Inhaberin oder den Inhaber</div>
+  <p class="date">München, im November 2026</p>
+
+  <p class="subj">Mehr Kunden aus dem Viertel: ein kurzer Vorschlag von Ihren Nachbarn</p>
+
+  <div class="body">
+    <p>Guten Tag,</p>
+    <p>wir sind Florian Dressler und Davy Stubenrauch und haben in München <b>FOAV</b> gegründet. Wir sind hier in der Nachbarschaft zu Hause und dachten uns: Statt einer anonymen Werbe-Mail schreiben wir Ihnen lieber einen richtigen Brief.</p>
+    <p>Viele Betriebe hier im Viertel machen eine wirklich gute Arbeit, sind im Internet aber kaum zu finden. Genau dabei helfen wir:</p>
+    <ul>
+      <li><b>Eine eigene Website</b>, die auf jedem Handy schnell lädt und Anfragen oder Buchungen bringt. Ab 399 € Festpreis, Hosting inklusive, online in höchstens 7 Tagen.</li>
+      <li><b>Mehr Google-Bewertungen</b> mit einer kleinen NFC-Platte an Kasse oder Tisch. Ihre Kunden tippen mit dem Handy darauf und landen direkt bei Ihrer Bewertung. Ab 12,90 €.</li>
+      <li><b>Kurze Werbefilme aus Ihren eigenen Fotos</b> für Instagram oder Ihre Website. Ihre Räume und Produkte bleiben echt. Ab 199 €.</li>
+    </ul>
+    <p>Bei uns gibt es keine Abos und keine versteckten Kosten. Sie sehen den Preis vorher auf unserer Website und entscheiden erst, wenn Ihnen das Ergebnis gefällt. Und Sie haben immer dieselben zwei Ansprechpartner.</p>
+    <p>Wir freuen uns, wenn Sie sich unsere Beispiele auf <b>foav.de</b> ansehen, oder wenn wir einfach mal kurz bei Ihnen vorbeischauen dürfen.</p>
+    <p>Herzliche Grüße aus der Nachbarschaft</p>
+  </div>
+
+  <div class="sign">
+    <div><b>Florian Dressler</b><span>Gründer, FOAV</span></div>
+    <div><b>Davy Stubenrauch</b><span>Gründer, FOAV</span></div>
+  </div>
+
+  <p class="ps"><b>PS:</b> Gern bringen wir Ihnen eine NFC-Platte vorbei, die Sie <b>14 Tage kostenlos testen</b> können. Gefällt sie Ihnen nicht, holen wir sie wieder ab. Eine kurze E-Mail an info@foav.de genügt.</p>
+
+  <div class="foot">
+    <img src="file:///home/user/Webseite-/marketing/print/qr-brief.svg" alt="QR-Code zu foav.de">
+    <div><b>foav.de</b><span>Beispiele, Preise und Bestellung · info@foav.de · Antwort innerhalb von 24 Stunden</span><span>Impressum: foav.de/impressum</span></div>
+  </div>
+</section>
+</body></html>
