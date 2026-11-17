@@ -1533,6 +1533,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .cfg .cfg__more > summary::after { content: "+"; font-size: 1rem; } .cfg .cfg__more[open] > summary::after { content: "–"; }
 .cfg__more[open] { display: grid; gap: 10px; }
 @media (max-width: 700px) { .cfg__pick { gap: 8px; } .cfg__pick button { padding: 12px 8px 12px; border-radius: 16px; } .cfg__pi { width: 64px; margin-bottom: 4px; } .cfg__pick b { font-size: .9375rem; } .cfg__pick span:not(.cfg__pi) { font-size: .75rem; } .cfg__pick em { margin-top: 4px; font-size: .875rem; } }
+.ba__real { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: #f2f2f5; font-size: .9375rem; line-height: 1.5; color: #3a3a3f; max-width: 46ch; }
+.ba__real b { color: #1d1d1f; }
 /* ---------- phones: every film gets its own framed stage that fills the space between text and bottom bar; devices centred ---------- */
 @media (max-width: 700px) {
   .scene__grid { padding-bottom: 88px; }
@@ -2120,7 +2122,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
   if (cmp) (function () {
   grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
-  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", "/images/ki-videos/tisch-voll.jpg", ""], befs = ["wohnung-leer", "tisch-leer", "wohnung-leer"], room = 0;
+  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", ""], befs = ["wohnung-leer", "wohnung-leer"], room = 0;
   setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });

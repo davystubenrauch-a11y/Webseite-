@@ -1517,6 +1517,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .cfg .cfg__more > summary::after { content: "+"; font-size: 1rem; } .cfg .cfg__more[open] > summary::after { content: "–"; }
 .cfg__more[open] { display: grid; gap: 10px; }
 @media (max-width: 700px) { .cfg__pick { gap: 8px; } .cfg__pick button { padding: 12px 8px 12px; border-radius: 16px; } .cfg__pi { width: 64px; margin-bottom: 4px; } .cfg__pick b { font-size: .9375rem; } .cfg__pick span:not(.cfg__pi) { font-size: .75rem; } .cfg__pick em { margin-top: 4px; font-size: .875rem; } }
+.ba__real { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: #f2f2f5; font-size: .9375rem; line-height: 1.5; color: #3a3a3f; max-width: 46ch; }
+.ba__real b { color: #1d1d1f; }
 /* ---------- phones: every film gets its own framed stage that fills the space between text and bottom bar; devices centred ---------- */
 @media (max-width: 700px) {
   .scene__grid { padding-bottom: 88px; }
@@ -1940,9 +1942,9 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
   <section class="sec" id="vorher-nachher" aria-labelledby="h-ba">
     <div class="wrap">
       <div class="ba">
-        <div><h2 id="h-ba">Vorher, nachher, als Film.</h2><p class="lead">Links das Foto, wie Sie es uns schicken. Rechts unser Ergebnis. Ziehen Sie den Regler und wählen Sie ein Beispiel.</p><div class="tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Wohnung</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Restaurant</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="2">Als Film</button></div><p class="ba__note">Beispielbilder, mit KI erstellt. Die Wohnung ist virtuell eingerichtet.</p></div>
+        <div><h2 id="h-ba">Vorher, nachher, als Film.</h2><p class="lead">Links das Foto der leeren Wohnung, wie Sie es uns schicken. Rechts unser Ergebnis: virtuell eingerichtet oder als fertiger Rundgang-Film.</p><div class="tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Wohnung</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Als Film</button></div><p class="ba__note">Beispiel, mit KI erstellt. Die Wohnung ist virtuell eingerichtet.</p><p class="ba__real"><b>Bei Cafés, Restaurants und Läden</b> zeigen wir Ihr echtes Essen und Ihre echten Produkte. Aus Ihren Fotos entsteht ein Film mit Kamerafahrt, Licht, Musik und Text. Wir erfinden keine Gerichte und verändern keine Produkte.</p></div>
         <div class="cmp" id="cmp" role="tabpanel" aria-label="Vorher und Nachher">
-          <video id="tourVid" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline preload="metadata" aria-label="Fertiger Werbefilm"><source src="/videos/wohnung-einrichten.mp4" type="video/mp4"></video>
+          <video id="tourVid" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline preload="metadata" aria-label="Rundgang-Film der virtuell eingerichteten Wohnung"><source src="/videos/wohnung-rundgang.mp4" type="video/mp4"></video>
           <img class="after" id="afterImg" src="/images/ki-videos/wohnung-voll.jpg" alt="Nachher: virtuell eingerichtet, mit KI erstellt" loading="lazy">
           <img class="before" id="beforeImg" src="/images/ki-videos/wohnung-leer.jpg" alt="Vorher: Foto der leeren Wohnung" loading="lazy">
           <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
@@ -2483,7 +2485,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
   if (cmp) (function () {
   grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
-  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", "/images/ki-videos/tisch-voll.jpg", ""], befs = ["wohnung-leer", "tisch-leer", "wohnung-leer"], room = 0;
+  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", ""], befs = ["wohnung-leer", "wohnung-leer"], room = 0;
   setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
