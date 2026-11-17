@@ -12,10 +12,14 @@ html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print
 .head img{height:9mm}
 .head .meta{text-align:right;font-size:8.4pt;line-height:1.55;color:var(--muted)}
 .head .meta b{color:var(--ink);font-weight:600}
-.to{margin-top:14mm;font-size:10.5pt;line-height:1.5}
+.to{margin-top:10mm;font-size:10.5pt;line-height:1.5}
 .to small{display:block;font-size:7pt;color:var(--muted);margin-bottom:2mm;letter-spacing:.02em}
 .date{margin-top:4mm;text-align:right;font-size:10pt}
-.subj{margin-top:6mm;font-size:12pt;font-weight:700;color:var(--ink);letter-spacing:-.01em}
+.subj{margin-top:6mm;font-size:15pt;line-height:1.25;font-weight:700;color:var(--ink);letter-spacing:-.015em;max-width:150mm}
+.three{list-style:none;counter-reset:n;margin:3mm 0 3.6mm;display:grid;gap:2.6mm}
+.body .three li{counter-increment:n;padding-left:9.5mm;position:relative}
+.body .three li::before{content:counter(n);position:absolute;left:0;top:.4mm;border:0;transform:none;line-height:1;width:6mm;height:6mm;border-radius:50%;background:var(--ink);color:#fff;font-size:8pt;font-weight:700;display:grid;place-items:center}
+.three li span{display:block;font-weight:600;color:var(--ink);font-size:9.6pt;margin-top:.6mm}
 .body{margin-top:5mm;font-size:10.2pt;line-height:1.56;max-width:160mm}
 .body p+p{margin-top:3.6mm}
 .body b{color:var(--ink)}
@@ -23,10 +27,10 @@ html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print
 .body li{padding-left:5mm;position:relative}
 .body li::before{content:"";position:absolute;left:0;top:2.2mm;width:2.4mm;height:1.2mm;border-left:.45mm solid var(--ink);border-bottom:.45mm solid var(--ink);transform:rotate(-45deg)}
 .sign{margin-top:2mm;display:grid;grid-template-columns:1fr 1fr;gap:10mm;max-width:150mm}
-.sign div{border-top:.3mm solid var(--line);padding-top:2mm;margin-top:13mm;font-size:9.6pt}
+.sign div{border-top:.3mm solid var(--line);padding-top:2mm;margin-top:10mm;font-size:9.6pt}
 .sign b{display:block;color:var(--ink)}
 .sign span{font-size:8.4pt;color:var(--muted)}
-.ps{margin-top:6mm;font-size:10pt;line-height:1.55;background:var(--tint);border-radius:3mm;padding:4mm 5mm;max-width:160mm}
+.ps{margin-top:5mm;font-size:10pt;line-height:1.55;background:var(--tint);border-radius:3mm;padding:4mm 5mm;max-width:160mm}
 .ps b{color:var(--ink)}
 .foot{margin-top:auto;display:grid;grid-template-columns:22mm 1fr;gap:6mm;align-items:center;border-top:.3mm solid var(--line);padding-top:5mm}
 .foot img{width:22mm}
@@ -42,19 +46,18 @@ html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print
   <div class="to"><small>Persönlich eingeworfen</small>An die Inhaberin oder den Inhaber</div>
   <p class="date">München, im November 2026</p>
 
-  <p class="subj">Mehr Kunden aus dem Viertel: ein kurzer Vorschlag von Ihren Nachbarn</p>
+  <p class="subj">Ihre nächsten Kunden suchen Sie gerade auf dem Handy.</p>
 
   <div class="body">
     <p>Guten Tag,</p>
-    <p>wir sind Florian Dressler und Davy Stubenrauch und haben in München <b>FOAV</b> gegründet. Wir sind hier in der Nachbarschaft zu Hause und dachten uns: Statt einer anonymen Werbe-Mail schreiben wir Ihnen lieber einen richtigen Brief.</p>
-    <p>Viele Betriebe hier im Viertel machen eine wirklich gute Arbeit, sind im Internet aber kaum zu finden. Genau dabei helfen wir:</p>
-    <ul>
-      <li><b>Eine eigene Website</b>, die auf jedem Handy schnell lädt und Anfragen oder Buchungen bringt. Ab 399 € Festpreis, Hosting inklusive, online in höchstens 7 Tagen.</li>
-      <li><b>Mehr Google-Bewertungen</b> mit einer kleinen NFC-Platte an Kasse oder Tisch. Ihre Kunden tippen mit dem Handy darauf und landen direkt bei Ihrer Bewertung. Ab 12,90 €.</li>
-      <li><b>Kurze Werbefilme aus Ihren eigenen Fotos</b> für Instagram oder Ihre Website. Ihre Räume und Produkte bleiben echt. Ab 199 €.</li>
-    </ul>
-    <p>Bei uns gibt es keine Abos und keine versteckten Kosten. Sie sehen den Preis vorher auf unserer Website und entscheiden erst, wenn Ihnen das Ergebnis gefällt. Und Sie haben immer dieselben zwei Ansprechpartner.</p>
-    <p>Wir freuen uns, wenn Sie sich unsere Beispiele auf <b>foav.de</b> ansehen, oder wenn wir einfach mal kurz bei Ihnen vorbeischauen dürfen.</p>
+    <p>bevor jemand zum ersten Mal Ihr Geschäft betritt, hat er Sie oft schon auf dem Handy gesucht. Er sieht Ihre <b>Google-Bewertungen</b>, Ihre <b>Website</b> und Ihre <b>Fotos</b> und entscheidet in wenigen Sekunden, ob er kommt oder zur Konkurrenz geht.</p>
+    <p>Wir sorgen dafür, dass er sich für Sie entscheidet:</p>
+    <ol class="three">
+      <li><b>Mehr Bewertungen.</b> Eine kleine Platte an Kasse oder Tisch: Ihre zufriedenen Kunden tippen mit dem Handy darauf und bewerten Sie direkt bei Google. <span>Ab 12,90 €</span></li>
+      <li><b>Eine Website, die Anfragen bringt.</b> Schnell auf jedem Handy, mit Ihren Öffnungszeiten, Ihrem Angebot und einem Knopf zum Anrufen oder Buchen. Online in höchstens 7 Tagen. <span>Ab 399 €, Hosting inklusive</span></li>
+      <li><b>Ein kurzer Werbefilm aus Ihren Fotos</b> für Instagram und Ihre Website. Ihre Räume und Produkte bleiben echt. <span>Ab 199 €</span></li>
+    </ol>
+    <p>Bei uns zahlen Sie einen Festpreis, den Sie vorher kennen. Es gibt kein Abo, und Sie sehen das Ergebnis, bevor es online geht. Ansprechpartner sind immer wir beide: Florian Dressler und Davy Stubenrauch, zwei Gründer hier aus München.</p>
     <p>Herzliche Grüße aus der Nachbarschaft</p>
   </div>
 
@@ -63,7 +66,7 @@ html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print
     <div><b>Davy Stubenrauch</b><span>Gründer, FOAV</span></div>
   </div>
 
-  <p class="ps"><b>PS:</b> Gern bringen wir Ihnen eine NFC-Platte vorbei, die Sie <b>14 Tage kostenlos testen</b> können. Gefällt sie Ihnen nicht, holen wir sie wieder ab. Eine kurze E-Mail an info@foav.de genügt.</p>
+  <p class="ps"><b>Testen Sie es 14 Tage kostenlos:</b> Wir bringen Ihnen eine Bewertungs-Platte vorbei. Bringt sie Ihnen nichts, holen wir sie wieder ab. Schreiben Sie uns einfach an <b>info@foav.de</b> oder scannen Sie den QR-Code unten.</p>
 
   <div class="foot">
     <img src="file:///home/user/Webseite-/marketing/print/qr-brief.svg" alt="QR-Code zu foav.de">
