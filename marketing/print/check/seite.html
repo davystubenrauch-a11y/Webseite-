@@ -1,7 +1,7 @@
 <section class="page">
   <div class="top"><img src="file:///home/user/Webseite-/public/media/logo-foav.svg" alt="FOAV"><span>Persönlich eingeworfen · {datum}</span></div>
 
-  <h1>Ihre Kunden lieben Sie. Google weiß es nur noch nicht.</h1>
+  <h1>{headline}</h1>
 
   <p class="for">Wir haben <b>{name}</b> am {stand} bei Google gesucht. Das sehen Ihre nächsten Kunden:</p>
   <div class="card">
@@ -11,23 +11,28 @@
   </div>
   <p class="src">Öffentliche Angaben aus Google Maps, Stand {stand}.</p>
 
-  <p class="why">Zufriedene Kunden kommen wieder, aber <b>bewerten vergessen sie meistens</b>. Wer neu im Viertel ist, sucht Sie auf dem Handy und entscheidet nach Sternen und Anzahl, bevor er Ihren Laden je gesehen hat.</p>
+  <p class="why">{why}</p>
 
+  <p class="rec">Unsere Empfehlung für Sie</p>
   <div class="fix">
-    <img src="file:///home/user/Webseite-/public/media/disc-weiss.svg" alt="">
-    <div><h2>Ein Antippen, und Ihr Kunde ist auf Ihrer Bewertungsseite.</h2><p>Die Platte steht an Ihrer Kasse oder auf dem Tisch. Kunden halten ihr Handy daran und landen direkt bei Ihrer Google-Bewertung. Ohne App, ohne Suchen, auf iPhone und Android.</p></div>
+    <div class="pimg {p_cls}"><img src="{p_img}" alt="">{p_note}</div>
+    <div><h2>{p_title}</h2><p>{p_text}</p><span class="price">{p_price}</span></div>
+  </div>
+  <div class="more">
+    <div><b>{o1_title}</b><span>{o1_text}</span></div>
+    <div><b>{o2_title}</b><span>{o2_text}</span></div>
   </div>
 
   <div class="offer">
-    <b>Testen Sie es 14 Tage kostenlos.</b>
-    <p>Wir bringen Ihnen eine Platte vorbei und richten sie für Ihr Google-Profil ein. Bringt sie Ihnen nichts, holen wir sie wieder ab. Keine Kosten, kein Vertrag.</p>
-    <div class="visit">Wir schauen am <span></span> kurz bei Ihnen vorbei.</div>
+    <b>Wir kommen kurz vorbei und zeigen es Ihnen.</b>
+    <p>5 Minuten, unverbindlich: Beispiele auf dem Handy und eine Vorführplatte zum Ausprobieren. Kein Vertrag, keine Verkaufsshow.</p>
+    <div class="visit">Wir schauen am <span></span> bei Ihnen vorbei.</div>
   </div>
 
-  <div class="sign"><div>Florian Dressler &amp; Davy Stubenrauch<br><b>FOAV, aus der Nachbarschaft</b></div><div style="text-align:right">Lieber vorher Bescheid geben?<br><b>info@foav.de</b></div></div>
+  <div class="sign"><div>Florian Dressler &amp; Davy Stubenrauch<br><b>Ihre Nachbarn aus Solln</b></div><div style="text-align:right">Passt es Ihnen nicht? Kurze Nachricht an<br><b>info@foav.de</b></div></div>
 
   <div class="foot">
     <img src="file:///home/user/Webseite-/marketing/print/qr-brief.svg" alt="QR-Code">
-    <div><b>foav.de</b> · Danach kostet die Platte ab 12,90 €. Websites und Werbefilme aus Ihren Fotos machen wir auch.<br>FOAV GbR, Florian Dressler und Davy Stubenrauch, München · Impressum: foav.de/impressum</div>
+    <div><b>foav.de</b> · Alle Preise, Beispiele und Bestellung auf der Website. Festpreise, kein Abo.<br>FOAV GbR, Florian Dressler und Davy Stubenrauch, München · Impressum: foav.de/impressum</div>
   </div>
 </section>
