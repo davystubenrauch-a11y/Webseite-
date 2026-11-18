@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><title>Google-Check</title>
+<style>
+@font-face{font-family:Inter;src:url(file:///home/user/Webseite-/public/site/fonts/inter-latin.woff2) format("woff2");font-weight:100 900}
+@page{size:A4;margin:0}
+:root{--ink:#1d1d1f;--text:#2e2e33;--muted:#6e6e73;--line:#dcdce2;--tint:#f2f2f5;--star:#f4b400}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{font-family:Inter,system-ui,sans-serif;color:var(--text);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.page{width:210mm;height:297mm;overflow:hidden;background:#fff;padding:15mm 20mm 13mm 22mm;display:flex;flex-direction:column;page-break-after:always}
+.top{display:flex;justify-content:space-between;align-items:center;font-size:8pt;color:var(--muted)}
+.top img{height:7mm}
+h1{margin-top:12mm;font-size:30pt;line-height:1.05;letter-spacing:-.03em;color:var(--ink);font-weight:800;max-width:160mm}
+.for{margin-top:6mm;font-size:11pt;color:var(--text)}
+.for b{color:var(--ink)}
+.card{margin-top:4mm;border:.35mm solid var(--ink);border-radius:4mm;display:grid;grid-template-columns:repeat(3,1fr)}
+.card div{padding:4.5mm 5mm;border-right:.3mm solid var(--line)}
+.card div:last-child{border-right:0}
+.card small{display:block;font-size:7.6pt;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600}
+.card strong{display:block;font-size:20pt;font-weight:800;color:var(--ink);letter-spacing:-.02em;margin-top:1.4mm;font-variant-numeric:tabular-nums}
+.card strong i{font-style:normal;color:var(--star)}
+.card span{display:block;font-size:8.4pt;margin-top:.6mm;color:var(--text)}
+.src{font-size:7pt;color:var(--muted);margin-top:1.6mm}
+.why{margin-top:8mm;font-size:11.2pt;line-height:1.55;max-width:160mm}
+.why b{color:var(--ink)}
+.fix{margin-top:7mm;display:grid;grid-template-columns:38mm 1fr;gap:7mm;align-items:center}
+.fix img{width:38mm;filter:drop-shadow(0 2mm 3mm rgba(0,0,0,.2))}
+.fix h2{font-size:15pt;color:var(--ink);letter-spacing:-.015em;line-height:1.2}
+.fix p{font-size:10.4pt;line-height:1.5;margin-top:2mm}
+.offer{margin-top:8mm;background:var(--ink);color:#fff;border-radius:4mm;padding:6mm 7mm}
+.offer b{display:block;font-size:17pt;letter-spacing:-.015em}
+.offer p{font-size:10.2pt;line-height:1.5;color:#dcdce0;margin-top:2mm}
+.offer .visit{margin-top:5mm;font-size:10.6pt;color:#fff;display:flex;align-items:flex-end;gap:2mm}
+.offer .visit span{flex:1;border-bottom:.35mm solid #8e8e93;height:6mm}
+.sign{margin-top:7mm;display:flex;justify-content:space-between;align-items:flex-end;font-size:9.4pt}
+.sign b{color:var(--ink)}
+.foot{margin-top:auto;display:grid;grid-template-columns:18mm 1fr;gap:5mm;align-items:center;border-top:.3mm solid var(--line);padding-top:4mm;font-size:8.2pt;color:var(--muted);line-height:1.45}
+.foot img{width:18mm}
+.foot b{color:var(--ink);font-size:10pt}
+</style></head><body>
+<section class="page">
+  <div class="top"><img src="file:///home/user/Webseite-/public/media/logo-foav.svg" alt="FOAV"><span>Persönlich eingeworfen · München, im November 2026</span></div>
+
+  <h1>Ihre Kunden lieben Sie. Google weiß es nur noch nicht.</h1>
+
+  <p class="for">Wir haben <b>Muster-Café Beispielstraße</b> am 18.11.2026 bei Google gesucht. Das sehen Ihre nächsten Kunden:</p>
+  <div class="card">
+    <div><small>Bewertung</small><strong><i>★</i> 4,6</strong><span>Durchschnitt</span></div>
+    <div><small>Bewertungen</small><strong>23</strong><span>Da geht mehr</span></div>
+    <div><small>Website</small><strong>Keine</strong><span>bei Google verlinkt</span></div>
+  </div>
+  <p class="src">Öffentliche Angaben aus Google Maps, Stand 18.11.2026.</p>
+
+  <p class="why">Zufriedene Kunden kommen wieder, aber <b>bewerten vergessen sie meistens</b>. Wer neu im Viertel ist, sucht Sie auf dem Handy und entscheidet nach Sternen und Anzahl, bevor er Ihren Laden je gesehen hat.</p>
+
+  <div class="fix">
+    <img src="file:///home/user/Webseite-/public/media/disc-weiss.svg" alt="">
+    <div><h2>Ein Antippen, und Ihr Kunde ist auf Ihrer Bewertungsseite.</h2><p>Die Platte steht an Ihrer Kasse oder auf dem Tisch. Kunden halten ihr Handy daran und landen direkt bei Ihrer Google-Bewertung. Ohne App, ohne Suchen, auf iPhone und Android.</p></div>
+  </div>
+
+  <div class="offer">
+    <b>Testen Sie es 14 Tage kostenlos.</b>
+    <p>Wir bringen Ihnen eine Platte vorbei und richten sie für Ihr Google-Profil ein. Bringt sie Ihnen nichts, holen wir sie wieder ab. Keine Kosten, kein Vertrag.</p>
+    <div class="visit">Wir schauen am <span></span> kurz bei Ihnen vorbei.</div>
+  </div>
+
+  <div class="sign"><div>Florian Dressler &amp; Davy Stubenrauch<br><b>FOAV, aus der Nachbarschaft</b></div><div style="text-align:right">Lieber vorher Bescheid geben?<br><b>info@foav.de</b></div></div>
+
+  <div class="foot">
+    <img src="file:///home/user/Webseite-/marketing/print/qr-brief.svg" alt="QR-Code">
+    <div><b>foav.de</b> · Danach kostet die Platte ab 12,90 €. Websites und Werbefilme aus Ihren Fotos machen wir auch.<br>FOAV GbR, Florian Dressler und Davy Stubenrauch, München · Impressum: foav.de/impressum</div>
+  </div>
+</section>
+
+</body></html>
