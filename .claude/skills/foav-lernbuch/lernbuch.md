@@ -5,6 +5,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## Einträge
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
+- Selbstprüfung per Übersichtsbogen (Screenshots in Bildschirm-Schritten, mit PIL zu 6er/12er-Bogen zusammengesetzt) spart Zeit und findet Proportionsfehler: schwebende Überschrift (`align-items: end` bei langem Nachbartext), überladene Kontaktknöpfe auf dem Handy, Raster, das durch nicht umbrechende Knöpfe breiter als der Bildschirm wird (`minmax(0, 1fr)`).
 - „Video läuft nicht“, aber Code und Live-Seite laufen in Chromium → iPhone-Stromsparmodus/„Bewegung reduzieren“ verhindert Autoplay. Immer einen Abspielknopf als Rückfall haben und bei jedem Tipp erneut `play()` versuchen.
 - Gründer: Angebote nicht vermischen. Werbevideos sind der Fokus und bekommen eine eigene Seite; Renderings (inkl. Wohnung einrichten) sind eine eigene Seite. Renderings günstig (49 €), weil „das könnte jeder selbst, wir machen es für Leute ohne Ahnung“.
 - Fehler: `img { display: block }` hebt das HTML-Attribut `hidden` auf → für umschaltbare Bilder/Videos `[hidden] { display: none }` ergänzen.

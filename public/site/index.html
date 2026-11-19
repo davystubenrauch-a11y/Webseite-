@@ -1366,6 +1366,16 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .immo__arrow svg { width: 22px; height: 22px; }
 .immo__tag { position: absolute; left: 14px; top: 14px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: .75rem; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .immo__tag i { width: 7px; height: 7px; border-radius: 50%; background: #ff453a; animation: kfRec 1.1s steps(2, jump-none) infinite; }
+.rnd .immo__text { align-items: start; }
+.cmpx__more { display: flex; align-items: center; gap: clamp(14px, 2vw, 24px); margin-top: clamp(16px, 2vw, 24px); padding: 12px clamp(14px, 2vw, 24px) 12px 12px; border-radius: 22px; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); transition: box-shadow .2s; }
+.cmpx__more:hover { box-shadow: inset 0 0 0 1.5px var(--ink); }
+.cmpx__more img { flex: none; width: clamp(96px, 12vw, 150px); aspect-ratio: 16 / 9; height: auto; border-radius: 12px; object-fit: cover; }
+.cmpx__more span { flex: 1; min-width: 0; }
+.cmpx__more b { display: block; font-size: 1.0625rem; }
+.cmpx__more em { display: block; margin-top: 3px; font-style: normal; color: var(--muted); font-size: .9375rem; }
+.cmpx__more i { flex: none; display: inline-flex; align-items: center; gap: 6px; font-style: normal; font-weight: 600; font-size: .9375rem; }
+.cmpx__more i svg { width: 18px; height: 18px; }
+@media (max-width: 600px) { .cmpx__more { align-items: flex-start; } .cmpx__more i { display: none; } .cmpx__more em { font-size: .875rem; } }
 .rnd__plans .plan { display: flex; flex-direction: column; }
 .rnd__plans .plan__btn { margin-top: auto; align-self: flex-start; }
 .rnd__plans .feat { margin: 18px 0 24px; }
@@ -1783,7 +1793,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 
   <section class="sec cmpx" id="angebot" aria-labelledby="h-ix">
     <div class="wrap">
-      <div class="cmpx__head"><h2 id="h-ix">Was brauchen Sie?</h2><p class="lead">Drei Leistungen, ein Ziel: mehr Kunden. Was Sie uns schicken, was Sie bekommen und wann es fertig ist.</p></div>
+      <div class="cmpx__head"><h2 id="h-ix">Was brauchen Sie?</h2><p class="lead">Unsere Leistungen, ein Ziel: mehr Kunden. Was Sie uns schicken, was Sie bekommen und wann es fertig ist.</p></div>
       <div class="cmpx__grid" data-land>
         <article class="cmpc cmpc--web">
           <div class="cmpc__stage" aria-hidden="true"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img src="/media/ref-villa-desk-top.jpg" alt="" loading="lazy"></div></div><div class="mac__base"></div></div></div>
@@ -1810,6 +1820,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Ihr Google-Profil</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Eingerichtete Platten, auf Wunsch mit Logo</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>Per Post in 3 bis 7 Werktagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Restaurants, Läden, Praxen, Hotels</dd></div></dl>
         </article>
       </div>
+      <a class="cmpx__more" href="/renderings"><img src="/images/renderings/cafe-nachher.jpg" alt="" loading="lazy" width="1600" height="904"><span><b>Neu: Renderings</b><em>Leere Wohnung einrichten oder Umbau zeigen, bevor gebaut wird. Ab 49 € pro Bild.</em></span><i aria-hidden="true">Zum Angebot<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a>
       <ul class="cmpx__all" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg>Festpreis, den Sie vor dem Kauf sehen</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Änderungswünsche vor der Freigabe inklusive</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Website-Hosting inklusive, keine monatlichen Gebühren</li><li><svg aria-hidden="true"><use href="#tick"/></svg>Antwort auf Ihre Anfrage innerhalb eines Tages</li></ul>
     </div>
   </section>
@@ -2013,10 +2024,10 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <h2 id="h-kontakt">Bereit für mehr Kunden?</h2>
         <p class="lead">So bestellen Sie: Paket wählen, Angaben ausfüllen, in den Warenkorb legen und sicher online bezahlen. Alles hier auf der Website.</p>
         <ul class="order" role="list">
-          <li><a href="/websites#pakete"><b>Website</b><span>Paket wählen, ab 399 €</span></a></li>
-          <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>Paket wählen, ab 199 €</span></a></li>
-          <li><a href="/renderings#pakete"><b>Renderings</b><span>Wohnung einrichten, Umbau zeigen, 49 € pro Bild</span></a></li>
-          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Classic oder mit Ihrem Logo, ab 14,90 €</span></a></li>
+          <li><a href="/websites#pakete"><b>Website</b><span>ab 399 €</span></a></li>
+          <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>ab 199 €</span></a></li>
+          <li><a href="/renderings#pakete"><b>Renderings</b><span>ab 49 €</span></a></li>
+          <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>ab 14,90 €</span></a></li>
         </ul>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
