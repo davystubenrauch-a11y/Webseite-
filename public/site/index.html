@@ -1754,6 +1754,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .scene--web, .scene--shots { background: linear-gradient(180deg, #fbfbfd 0, #f4f4f6 35vh, #fbfbfd 45%); }
 .scene--nfc { background: linear-gradient(180deg, #fbfbfd 0, #f1f1f4 35vh, #e9e9ee calc(100% - 45vh), #fbfbfd 100%); }
 .contact.dark { margin-top: clamp(64px, 8vw, 120px); background: linear-gradient(180deg, #fbfbfd 0, var(--band) clamp(120px, 14vw, 220px)); }
+
+/* ---------- logo plate in 3D like the plain plates: stacked edge, tilt, sheen ---------- */
+.pst__logo, .cmpc__logo, .n-logo img { filter: none; box-shadow: 0 1px 0 #3a3a3e, 0 2px 0 #333337, 0 3px 0 #2c2c30, 0 4px 0 #26262a, 0 5px 0 #202024, 0 6px 0 #1a1a1d, 0 40px 50px -16px rgba(0,0,0,.75); }
+.pst__disc--b { opacity: 1; }
+.pst__disc--b::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(155deg, rgba(255,255,255,.22), rgba(255,255,255,0) 42%); pointer-events: none; }
+.n-logo img { transform: perspective(700px) rotateX(52deg) rotateZ(-10deg); }
+.n-logo figcaption { margin-top: -6px; position: relative; }
+.cmpc__logo { box-shadow: 0 1px 0 #3a3a3e, 0 2px 0 #2c2c30, 0 3px 0 #202024, 0 4px 0 #1a1a1d, 0 26px 30px -12px rgba(0,0,0,.6); }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
