@@ -61,7 +61,7 @@ export default function NfcBriefing() {
   const answers = () => [
     ...sections.flatMap((s) => s.questions.map((q) => {
       const raw = v[q.id];
-      return { section: s.title, label: q.label, value: Array.isArray(raw) ? raw.join(", ") : raw ?? "" };
+      return { section: s.title, label: q.label, value: Array.isArray(raw) ? raw.join("; ") : raw ?? "" };
     })),
     { section: "Preis", label: "Summe laut Formular", value: ok ? `${n} × ${euro(unit)} = ${euro(n * unit)}${sum > n * unit ? ` + Versand ${euro(shipping.price)}` : ", versandkostenfrei"}` : "" },
   ];

@@ -144,7 +144,7 @@ export default function WebsiteBriefing() {
     sections.flatMap((s) =>
       s.questions.map((q) => {
         const raw = v[q.id];
-        return { section: s.title, label: q.label, value: Array.isArray(raw) ? raw.join(", ") : raw ?? "" };
+        return { section: s.title, label: q.label, value: Array.isArray(raw) ? raw.join("; ") : raw ?? "" };
       }),
     );
 
