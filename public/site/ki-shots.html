@@ -1775,6 +1775,26 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 /* home card: white Google plate, black and white logo plates (no black plate without logo) */
 .cmpc__logo--b { right: auto; left: auto; right: 10%; bottom: auto; top: 12%; width: 34%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
 .cmpc__logo--w { opacity: 1; animation: none; }
+
+/* ---------- compact page end: FAQ, contact, footer ---------- */
+#fragen .two > div:first-child { position: sticky; top: 110px; }
+.faq-hide { display: none; }
+.faq-all { margin-top: 20px; }
+.contact .reach { margin-top: 24px; }
+.foot { padding-top: clamp(48px, 6vw, 72px); }
+.foot__mark { max-width: 560px; margin-top: clamp(40px, 5vw, 64px); }
+@media (max-width: 900px) {
+  #fragen .two > div:first-child { position: static; }
+  .order { grid-template-columns: 1fr 1fr; gap: 8px; }
+  .order a { flex-direction: column; align-items: flex-start; gap: 2px; padding: 14px 16px; border-radius: 16px; }
+  .order a::after { display: none; }
+  .order span { margin-left: 0; font-size: .875rem; }
+  .foot__mark { max-width: 46%; margin-top: 32px; }
+  .foot { padding-top: 40px; }
+  .foot__grid { grid-template-columns: 1fr 1fr; gap: 24px 24px; }
+  .foot__brand { grid-column: 1 / -1; }
+  .foot__grid > div:last-child { display: none; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1959,10 +1979,8 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
           <li><a href="/renderings#pakete"><b>Renderings</b><span>ab 49 €</span></a></li>
           <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>ab 14,90 €</span></a></li>
         </ul>
-        <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
         <ul class="reach">
           <li><a href="mailto:info@foav.de"><svg aria-hidden="true"><use href="#mail"/></svg><div><b>E-Mail</b><span>info@foav.de</span></div></a></li>
-          <li><a href="#kontakt" tabindex="-1" aria-hidden="true"><svg><use href="#pin"/></svg><div><b>Standort</b><span>München</span></div></a></li>
         </ul>
         <p class="reach__urgent">Nur in dringenden Fällen telefonisch: <a href="tel:+4915566456417">0155 66456417</a> (Florian) oder <a href="tel:+4917656612709">0176 56612709</a> (Davy).</p>
       </div>
@@ -2185,6 +2203,16 @@ document.addEventListener("DOMContentLoaded", function () {
       if (now && !was) { try { v.currentTime = 0; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {} }
       was = now;
     }).observe(sc, { attributes: true, attributeFilter: ["class"] });
+  })();
+  /* FAQ: show the first 6 questions, the rest behind one button */
+  (function () {
+    var box = document.querySelector("#fragen .two > div:last-child"); if (!box) return;
+    var ds = [].slice.call(box.querySelectorAll("details")), keep = 6; if (ds.length <= keep + 1) return;
+    ds.slice(keep).forEach(function (d) { d.classList.add("faq-hide"); });
+    var b = document.createElement("button"); b.type = "button"; b.className = "btn btn--line faq-all";
+    b.textContent = "Alle Fragen anzeigen (" + (ds.length - keep) + " weitere)";
+    b.addEventListener("click", function () { ds.forEach(function (d) { d.classList.remove("faq-hide"); }); b.remove(); });
+    box.appendChild(b);
   })();
   /* reload: back to the very top */
   if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
