@@ -315,7 +315,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .tabs button { min-height: 46px; padding: 0 20px; border-radius: 999px; font-weight: 700; color: var(--ink); background: var(--white); box-shadow: inset 0 0 0 1.5px var(--line); transition: background-color .2s, color .2s, box-shadow .2s; }
 .tabs button[aria-selected="true"] { background: var(--fill); color: var(--on-fill); box-shadow: none; }
-.cmp { position: relative; aspect-ratio: 16 / 10; border-radius: var(--r); overflow: hidden; background: #000; user-select: none; touch-action: pan-y; --x: 50%; box-shadow: var(--shadow); }
+.cmp { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #000; user-select: none; touch-action: pan-y; --x: 50%; box-shadow: var(--shadow); }
 .cmp video, .cmp .after { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cmp .after[hidden] { display: none; }
 .ba__note { margin-top: 14px; font-size: .875rem; color: var(--muted); }
@@ -957,7 +957,6 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .head__in { height: 68px; } .head__in > .btn { display: none; }
   .logo svg { height: 24px; }
   .pause { left: auto; right: 20px; bottom: 16px; padding: 0 15px; } .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .cmp { aspect-ratio: 4 / 5; }
   .iphone { width: 27%; }
   .steps, .people, .form .pair, .foot__grid { grid-template-columns: minmax(0, 1fr); }
   .dock { display: grid; }
@@ -1827,6 +1826,46 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .scene .price { font-size: 1.25rem; }
   .scene .price small { font-size: .75rem; }
 }
+
+/* ---------- phone: before/after slider and NFC configurator (19.11.) ---------- */
+@media (max-width: 700px) {
+  .grip button { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+  .grip svg { width: 20px; height: 20px; }
+  .cmp .tag { top: 10px; padding: 5px 10px; font-size: .75rem; }
+  .cmp .tag.l { left: 10px; } .cmp .tag.r { right: 10px; }
+  .ba .tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .ba .tabs button { min-height: 42px; padding: 0 10px; font-size: .875rem; }
+}
+@media (max-width: 900px) {
+  /* order on the phone: 1 choose the plate -> live preview -> colour / logo / quantity -> button; nothing sticks over the choice */
+  .cfg__grid { display: flex; flex-direction: column; align-items: stretch; }
+  .cfg__grid > *, .cfg__form > * { width: 100%; }
+  .cfg__form { display: contents; }
+  .cfg .cfg__stage { position: relative; top: auto; height: 230px; }
+  .cfg__first { order: 1; }
+  .cfg__stage { order: 2; }
+  .cfg__form > .cfg__step:not(.cfg__first) { order: 3; }
+  .cfg .choose__bar { order: 4; position: relative; bottom: auto; }
+  .cfg__pick button { box-shadow: inset 0 0 0 1.5px var(--line); }
+  .cfg__pick button[aria-checked="true"] { box-shadow: inset 0 0 0 2px var(--ink); }
+}
+
+.cmp.is-img .vplay { display: none !important; }
+
+@media (max-width: 700px) {
+  .sec { padding-top: 64px; }
+  .phero { padding-bottom: 28px; }
+  .phero .who { margin-top: 24px; }
+  .rnd + .sec { padding-top: 24px; }
+  .rnd { padding-bottom: 36px; }
+}
+
+@media (min-width: 901px) {
+  .cfg .choose__bar { flex-wrap: nowrap; padding: 10px 10px 10px 20px; gap: 16px; }
+  .cfg .choose__bar p span { display: none; }
+  .cfg .choose__bar b { font-size: 1rem; }
+  .cfg .choose__bar .btn { flex: none; min-height: 46px; white-space: nowrap; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1874,7 +1913,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">NFC-Platten</span></nav>
       <h1 id="h-p-nfc">Mehr Sterne bei Google. Mit einem Antippen.</h1>
-      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><p class="phero__from"><b>ab 12,90 € pro Platte</b> · ohne App, ohne Abo</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#editionen">Mit Ihrem Logo</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><p class="phero__from"><b>ab 12,90 € pro Platte</b> · ohne App, ohne Abo</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#logo-vorschau">Mit Ihrem Logo</a></div></div></div>
       <div class="pst pst--nfc">
         <div class="pst__dev" aria-hidden="true">
           <span class="pst__disc pst__disc--b"><img class="pst__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480"><img class="pst__logo lgw" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480"></span>
@@ -1915,14 +1954,14 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Ihre Platte zusammenstellen.</h2></div><p class="lead">Normal im Google-Design oder mit Ihrem eigenen Logo. Beide öffnen mit einem Antippen Ihre Google-Bewertungsseite, auf iPhone und Android, ohne App.</p></div>
       <div class="cfg__grid">
-        <div class="cfg__stage" data-land-m>
+        <div class="cfg__stage">
           <div class="cfg__classic" aria-hidden="true"><span class="disc" id="cfgDisc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span></div>
           <div class="lp__float"><div class="lp__plate" id="lpPlate" data-c="white" role="img" aria-label="Vorschau der NFC-Platte mit Logo"><div class="lp__logo" id="lpLogo"><svg viewBox="0 0 240 120" aria-hidden="true"><g fill="none" stroke="var(--lp-acc)" stroke-width="3.2" stroke-linecap="round"><path d="M92 54a28 28 0 0 1 56 0"/><path d="M120 12v11M93 24l7 7M147 24l-7 7M80 42l9 3M160 42l-9 3"/><path d="M74 54h92"/></g><text x="120" y="88" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="29" fill="currentColor">Café Morgenrot</text><text x="120" y="110" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="10.5" letter-spacing="4" fill="currentColor" opacity=".75">KAFFEE &amp; KUCHEN</text></svg></div><svg class="lp__nfc" aria-hidden="true" viewBox="0 0 24 24"><path d="M8 8.5a5 5 0 0 1 0 7M11.2 6.5a8 8 0 0 1 0 11M14.4 4.5a11 11 0 0 1 0 15" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><p class="lp__txt" id="lpTxt">Tippen für Bewertung</p><i class="lp__shine" aria-hidden="true"></i></div></div>
           <i class="lp__shadow" aria-hidden="true"></i>
           <p class="lp__cap"><span class="cfg__c">Normal · Ø 10 cm · Acryl mit NFC-Chip</span><span class="cfg__b">Live-Vorschau mit Ihrem Logo</span></p>
         </div>
         <form class="choose cfg__form" data-land data-choose="nfc" onsubmit="return false">
-          <div class="cfg__step"><p class="cfg__lbl"><i>1</i>Welche Platte möchten Sie?</p><div class="choose__ed cfg__pick" role="radiogroup" aria-label="Ausführung"><button type="button" role="radio" aria-checked="true" data-e="c"><span class="cfg__pi" aria-hidden="true"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><b>Normal</b><span>Google-Design in Weiß</span><em>ab 12,90 €</em></button><button type="button" role="radio" aria-checked="false" data-e="b"><span class="cfg__pi" aria-hidden="true"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" loading="lazy"></span><b>Mit eigenem Logo</b><span>In Weiß oder Schwarz</span><em>ab 24,90 €</em></button></div></div>
+          <div class="cfg__step cfg__first" data-land-m><p class="cfg__lbl"><i>1</i>Welche Platte möchten Sie?</p><div class="choose__ed cfg__pick" role="radiogroup" aria-label="Ausführung"><button type="button" role="radio" aria-checked="true" data-e="c"><span class="cfg__pi" aria-hidden="true"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><b>Normal</b><span>Google-Design in Weiß</span><em>ab 12,90 €</em></button><button type="button" role="radio" aria-checked="false" data-e="b"><span class="cfg__pi" aria-hidden="true"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" loading="lazy"></span><b>Mit eigenem Logo</b><span>In Weiß oder Schwarz</span><em>ab 24,90 €</em></button></div></div>
           <div class="cfg__step cfg__color"><p class="cfg__lbl"><i>2</i>Farbe</p><div class="seg choose__color" role="radiogroup" aria-label="Farbe"><button type="button" role="radio" aria-checked="true" data-c="weiss" data-lp-c="white">Weiß</button><button type="button" role="radio" aria-checked="false" data-c="schwarz" data-lp-c="black">Schwarz</button></div></div>
           <div class="cfg__step cfg__logo"><p class="cfg__lbl"><i>3</i>Ihr Logo hochladen <small>Sie sehen es sofort auf der Platte</small></p><div class="cfg__lrow"><label class="btn btn--light lp__file"><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M5 20h14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>Ihr Logo auswählen<input type="file" id="lpFile" class="sr" accept="image/png,image/svg+xml,image/jpeg,image/webp"></label><div class="lp__ex" role="group" aria-label="Beispiel ansehen"><span>oder ansehen:</span><button type="button" data-lp-ex="0" aria-pressed="true">Café</button><button type="button" data-lp-ex="1" aria-pressed="false">Friseur</button><button type="button" data-lp-ex="2" aria-pressed="false">Bäckerei</button></div></div><p class="lp__hint" id="lpHint" hidden></p><details class="cfg__more"><summary>Weitere Optionen</summary><label class="lp__row lp__check"><input type="checkbox" id="lpMono"> Logo einfarbig darstellen <small>(gut für dunkle Logos auf Schwarz)</small></label><label class="lp__field"><span>Text unter dem Logo</span><input type="text" id="lpText" maxlength="30" value="Tippen für Bewertung" autocomplete="off"></label></details></div>
           <div class="cfg__step"><p class="cfg__lbl"><i class="cfg__n"></i>Menge</p><fieldset><legend class="sr">Menge wählen</legend><div class="plans"><label class="plan"><input type="radio" name="nfc" value="1 Platte" data-href="/shop?{c}=1" data-label="1 NFC-Platte normal, 14,90 €" data-href-b="/anfrage/nfc?anzahl=1" data-label-b="1 NFC-Platte mit Ihrem Logo, 29,90 €"><h3>1 Platte</h3><p class="plan__big plan__big--sm"><span class="ed-c">14,90 €</span><span class="ed-b">29,90 €</span></p><p class="plan__was">Einzelpreis</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span class="ed-c">Mit Ihrem Google-Profil verknüpft</span><span class="ed-b">Mit Ihrem Logo, Vorschau vor der Produktion</span></li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan plan--top"><input type="radio" name="nfc" value="5 Platten" data-href="/shop?{c}=5" data-label="5 NFC-Platten normal, 69,50 €" data-href-b="/anfrage/nfc?anzahl=5" data-label-b="5 NFC-Platten mit Ihrem Logo, 139,50 €" checked><h3>5 Platten</h3><p class="plan__big plan__big--sm"><span class="ed-c">69,50 €</span><span class="ed-b">139,50 €</span></p><p class="plan__was">statt <s class="ed-c">74,50 €</s><s class="ed-b">149,50 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span class="ed-c">Mit Ihrem Google-Profil verknüpft</span><span class="ed-b">Mit Ihrem Logo, Vorschau vor der Produktion</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span class="ed-c">13,90 € pro Platte</span><span class="ed-b">27,90 € pro Platte</span></li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label><label class="plan"><input type="radio" name="nfc" value="10 Platten" data-href="/shop?{c}=10" data-label="10 NFC-Platten normal, 129 €" data-href-b="/anfrage/nfc?anzahl=10" data-label-b="10 NFC-Platten mit Ihrem Logo, 249 €"><h3>10 Platten</h3><p class="plan__big plan__big--sm"><span class="ed-c">129 €</span><span class="ed-b">249 €</span></p><p class="plan__was">statt <s class="ed-c">149 €</s><s class="ed-b">299 €</s></p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span class="ed-c">Mit Ihrem Google-Profil verknüpft</span><span class="ed-b">Mit Ihrem Logo, Vorschau vor der Produktion</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span class="ed-c">12,90 € pro Platte</span><span class="ed-b">24,90 € pro Platte</span></li></ul><span class="plan__pick" aria-hidden="true"></span><span class="plan__cta" aria-hidden="true"></span></label></div></fieldset></div>
@@ -2223,6 +2262,18 @@ document.addEventListener("DOMContentLoaded", function () {
     b.addEventListener("click", function () { ds.forEach(function (d) { d.classList.remove("faq-hide"); }); b.remove(); });
     box.appendChild(b);
   })();
+  /* "Mit Ihrem Logo" links: pick the logo plate and show the choice */
+  (function () {
+    var lb = document.querySelector('.cfg .choose__ed [data-e="b"]'); if (!lb) return;
+    [].forEach.call(document.querySelectorAll('a[href="#logo-vorschau"], a[href="#editionen"], a[href="/nfc-platten#logo-vorschau"]'), function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault(); lb.click();
+        var t = document.querySelector(".cfg__first") || lb;
+        var y = t.getBoundingClientRect().top + scrollY - (innerWidth <= 900 ? 80 : 110);
+        scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+  })();
   /* reload: back to the very top */
   if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
   /* sound toggle for the example film */
@@ -2317,6 +2368,7 @@ document.addEventListener("DOMContentLoaded", function () {
     room = i;
     $$("[data-room]").forEach(function (b) { var on = +b.getAttribute("data-room") === i; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
     if (bimg) bimg.src = befs[i];
+    cmp.classList.toggle("is-img", !!looks[i]);
     if (looks[i]) { aimg.src = looks[i]; aimg.hidden = false; tv.pause(); } else { aimg.hidden = true; try { tv.currentTime = 0; } catch (e) {} start(tv); }
   }
   $$("[data-room]").forEach(function (b) {

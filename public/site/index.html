@@ -315,7 +315,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 26px; }
 .tabs button { min-height: 46px; padding: 0 20px; border-radius: 999px; font-weight: 700; color: var(--ink); background: var(--white); box-shadow: inset 0 0 0 1.5px var(--line); transition: background-color .2s, color .2s, box-shadow .2s; }
 .tabs button[aria-selected="true"] { background: var(--fill); color: var(--on-fill); box-shadow: none; }
-.cmp { position: relative; aspect-ratio: 16 / 10; border-radius: var(--r); overflow: hidden; background: #000; user-select: none; touch-action: pan-y; --x: 50%; box-shadow: var(--shadow); }
+.cmp { position: relative; aspect-ratio: 16 / 9; border-radius: var(--r); overflow: hidden; background: #000; user-select: none; touch-action: pan-y; --x: 50%; box-shadow: var(--shadow); }
 .cmp video, .cmp .after { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .cmp .after[hidden] { display: none; }
 .ba__note { margin-top: 14px; font-size: .875rem; color: var(--muted); }
@@ -957,7 +957,6 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
   .head__in { height: 68px; } .head__in > .btn { display: none; }
   .logo svg { height: 24px; }
   .pause { left: auto; right: 20px; bottom: 16px; padding: 0 15px; } .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-  .cmp { aspect-ratio: 4 / 5; }
   .iphone { width: 27%; }
   .steps, .people, .form .pair, .foot__grid { grid-template-columns: minmax(0, 1fr); }
   .dock { display: grid; }
@@ -1827,6 +1826,46 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .scene .price { font-size: 1.25rem; }
   .scene .price small { font-size: .75rem; }
 }
+
+/* ---------- phone: before/after slider and NFC configurator (19.11.) ---------- */
+@media (max-width: 700px) {
+  .grip button { width: 44px; height: 44px; margin: -22px 0 0 -22px; }
+  .grip svg { width: 20px; height: 20px; }
+  .cmp .tag { top: 10px; padding: 5px 10px; font-size: .75rem; }
+  .cmp .tag.l { left: 10px; } .cmp .tag.r { right: 10px; }
+  .ba .tabs { display: grid; grid-template-columns: 1fr 1fr; }
+  .ba .tabs button { min-height: 42px; padding: 0 10px; font-size: .875rem; }
+}
+@media (max-width: 900px) {
+  /* order on the phone: 1 choose the plate -> live preview -> colour / logo / quantity -> button; nothing sticks over the choice */
+  .cfg__grid { display: flex; flex-direction: column; align-items: stretch; }
+  .cfg__grid > *, .cfg__form > * { width: 100%; }
+  .cfg__form { display: contents; }
+  .cfg .cfg__stage { position: relative; top: auto; height: 230px; }
+  .cfg__first { order: 1; }
+  .cfg__stage { order: 2; }
+  .cfg__form > .cfg__step:not(.cfg__first) { order: 3; }
+  .cfg .choose__bar { order: 4; position: relative; bottom: auto; }
+  .cfg__pick button { box-shadow: inset 0 0 0 1.5px var(--line); }
+  .cfg__pick button[aria-checked="true"] { box-shadow: inset 0 0 0 2px var(--ink); }
+}
+
+.cmp.is-img .vplay { display: none !important; }
+
+@media (max-width: 700px) {
+  .sec { padding-top: 64px; }
+  .phero { padding-bottom: 28px; }
+  .phero .who { margin-top: 24px; }
+  .rnd + .sec { padding-top: 24px; }
+  .rnd { padding-bottom: 36px; }
+}
+
+@media (min-width: 901px) {
+  .cfg .choose__bar { flex-wrap: nowrap; padding: 10px 10px 10px 20px; gap: 16px; }
+  .cfg .choose__bar p span { display: none; }
+  .cfg .choose__bar b { font-size: 1rem; }
+  .cfg .choose__bar .btn { flex: none; min-height: 46px; white-space: nowrap; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -2376,6 +2415,18 @@ document.addEventListener("DOMContentLoaded", function () {
     b.addEventListener("click", function () { ds.forEach(function (d) { d.classList.remove("faq-hide"); }); b.remove(); });
     box.appendChild(b);
   })();
+  /* "Mit Ihrem Logo" links: pick the logo plate and show the choice */
+  (function () {
+    var lb = document.querySelector('.cfg .choose__ed [data-e="b"]'); if (!lb) return;
+    [].forEach.call(document.querySelectorAll('a[href="/#logo-vorschau"], a[href="/#editionen"], a[href="/nfc-platten#logo-vorschau"]'), function (a) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault(); lb.click();
+        var t = document.querySelector(".cfg__first") || lb;
+        var y = t.getBoundingClientRect().top + scrollY - (innerWidth <= 900 ? 80 : 110);
+        scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
+      });
+    });
+  })();
   /* reload: back to the very top */
   if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
   /* sound toggle for the example film */
@@ -2470,6 +2521,7 @@ document.addEventListener("DOMContentLoaded", function () {
     room = i;
     $$("[data-room]").forEach(function (b) { var on = +b.getAttribute("data-room") === i; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
     if (bimg) bimg.src = befs[i];
+    cmp.classList.toggle("is-img", !!looks[i]);
     if (looks[i]) { aimg.src = looks[i]; aimg.hidden = false; tv.pause(); } else { aimg.hidden = true; try { tv.currentTime = 0; } catch (e) {} start(tv); }
   }
   $$("[data-room]").forEach(function (b) {
