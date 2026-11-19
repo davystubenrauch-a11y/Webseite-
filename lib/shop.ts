@@ -12,9 +12,8 @@ export type Product = {
 };
 
 export const products: Product[] = [
-  { id: "nfc-weiss", name: "NFC-Platte Weiß", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1490, physical: true, max: 50 },
-  { id: "nfc-schwarz", name: "NFC-Platte Schwarz", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1490, physical: true, max: 50 },
-  { id: "nfc-custom", name: "NFC-Platte Custom Brand Edition", short: "Ø 10 cm, schlichtes FOAV-Design mit Ihrem Logo, Design-Vorschau vor der Produktion, mit Ihrem Google-Profil verknüpft", price: 2990, physical: true, max: 50 },
+  { id: "nfc-weiss", name: "NFC-Platte Weiß (Google-Design)", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1490, physical: true, max: 50 },
+  { id: "nfc-custom", name: "NFC-Platte Custom Brand Edition", short: "Ø 10 cm, in Weiß oder Schwarz mit Ihrem Logo, Design-Vorschau vor der Produktion, mit Ihrem Google-Profil verknüpft", price: 2990, physical: true, max: 50 },
   { id: "shots-starter", name: "KI-Werbevideo Starter", short: "1 Werbefilm (10 bis 15 Sekunden, Hochformat 9:16) aus Ihren Handyfotos, 3 Standbilder, fertig in 48 Stunden", price: 19900, physical: false, max: 3 },
   { id: "shots-pro", name: "KI-Werbevideos Pro", short: "3 Werbefilme (je 10 bis 20 Sekunden) in 9:16 und 16:9, Musik und Texte, 6 Standbilder, fertig in 72 Stunden", price: 44900, physical: false, max: 3 },
   { id: "shots-brand", name: "KI-Werbevideos Brand-Paket", short: "1 Hauptfilm bis 30 Sekunden und 5 Kurzfilme, alle Formate, Musik und Logo-Abspann, 12 Standbilder, fertig in 72 Stunden", price: 89900, physical: false, max: 2 },
@@ -33,7 +32,7 @@ export const vatNote = "Alle Preise sind Endpreise. Gemäß § 19 UStG wird kein
 
 export type Cart = Partial<Record<ProductId, number>>;
 
-/** Volume prices on NFC plates. Classic: 14,90 € each, from 5 plates 13,90 €, from 10 plates 12,90 € (white and black counted together).
+/** Volume prices on NFC plates. Classic: 14,90 € each, from 5 plates 13,90 €, from 10 plates 12,90 € (the normal plate is white only; black exists only with a logo).
  *  Custom Brand Edition: 29,90 € each, from 5 plates 27,90 €, from 10 plates 24,90 €. Free shipping from 5 plates of any kind. */
 export const plateTiers = [
   { from: 10, unit: 1290 },

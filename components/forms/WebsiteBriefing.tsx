@@ -69,7 +69,7 @@ const sections: Section[] = [
         id: "paket", label: "Paket", type: "one",
         options: ["Basis|3 Seiten, 399 €", "Business|bis 6 Seiten, Texte von uns, 799 €", "Premium|bis 10 Seiten, Deutsch und Englisch, 1.499 €", "Noch unsicher|Wir beraten Sie"], req: true,
       },
-      { id: "extra", label: "Nur Premium: Farbe Ihrer 5 inklusive NFC-Platten", type: "one", options: ["5 Weiß", "5 Schwarz", "3 Weiß und 2 Schwarz", "2 Weiß und 3 Schwarz"], hint: "Die Platten verknüpfen wir mit Ihrem Google-Profil und schicken sie Ihnen per Post (3 bis 7 Werktage)." },
+      { id: "extra", label: "Nur Premium: Ihre 5 inklusive NFC-Platten", type: "one", options: ["5 Weiß im Google-Design", "Lieber mit meinem Logo (Weiß oder Schwarz), Aufpreis bitte vorher nennen"], hint: "Die Platten verknüpfen wir mit Ihrem Google-Profil und schicken sie Ihnen per Post (3 bis 7 Werktage)." },
       { id: "seiten", label: "Welche Seiten brauchen Sie?", type: "many", options: ["Startseite", "Leistungen", "Über uns", "Team", "Preise", "Speisekarte", "Galerie / Referenzen", "Termine / Buchung", "Jobs", "Blog / Neuigkeiten", "FAQ", "Kontakt"], hint: "Impressum und Datenschutz sind immer dabei und zählen nicht als Seite." },
       { id: "funktionen", label: "Welche Funktionen?", type: "many", options: ["Kontaktformular", "WhatsApp-Knopf", "Online-Terminbuchung", "Google-Karte mit Anfahrt", "Google-Bewertungen anzeigen", "Speisekarte als PDF", "Newsletter", "Zweisprachig", "Online-Shop"] },
       { id: "tools", label: "Nutzen Sie schon Programme oder Portale?", type: "textarea", placeholder: "z. B. Terminbuchung über Doctolib, Treatwell, Calendly; Lieferando; Booking.com; Shopify" },

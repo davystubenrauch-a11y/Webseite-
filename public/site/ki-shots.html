@@ -1549,7 +1549,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .cfg__lbl { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 10px; font-weight: 600; font-size: 1rem; }
 .cfg__lbl i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #1d1d1f; color: #fff; font-style: normal; font-size: .75rem; }
 .cfg__lbl small { font-weight: 400; font-size: .8125rem; color: var(--muted); }
-.cfg__n::before { content: "3"; } .cfg.is-b .cfg__n::before { content: "4"; }
+.cfg__n::before { content: "2"; } .cfg.is-b .cfg__n::before { content: "4"; }
+.cfg:not(.is-b) .cfg__color { display: none; }
 .cfg .seg button small { margin-left: 6px; font-weight: 500; opacity: .7; }
 .cfg__logo { display: none; } .cfg.is-b .cfg__logo { display: grid; gap: 12px; padding: 16px; border-radius: 18px; background: #f5f5f7; }
 .cfg__lrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
@@ -1766,10 +1767,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 /* ---------- logo plate also in white: black and white cross-fade ---------- */
 .pst__logo.lgw, .n-logo img.lgw { position: absolute; left: 0; top: 0; width: 100%; }
 img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #d5d0c7, 0 3px 0 #cdc8be, 0 4px 0 #c6c0b6, 0 5px 0 #bfb9ae, 0 6px 0 #b8b2a7, 0 40px 50px -16px rgba(0,0,0,.5); }
-.cmpc__logo.lgw { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
+.cmpc__logo--w { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
 @keyframes lgSwap { 0%, 38% { opacity: 0; } 50%, 88% { opacity: 1; } 100% { opacity: 0; } }
 .still img.lgw { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { img.lgw { animation: none; opacity: 0; } }
+
+/* home card: white Google plate, black and white logo plates (no black plate without logo) */
+.cmpc__logo--b { right: auto; left: auto; right: 10%; bottom: auto; top: 12%; width: 34%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__logo--w { opacity: 1; animation: none; }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -2483,7 +2488,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); var dsc = document.getElementById("cfgDisc"); if (dsc) dsc.classList.toggle("disc--black", color === "schwarz"); upd();
     }); });
     [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (b) { b.addEventListener("click", function () {
-      ed = b.dataset.e; f.classList.toggle("is-b", ed === "b"); var sec = f.closest("section"); if (sec) sec.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+      ed = b.dataset.e; if (ed !== "b" && color !== "weiss") { var wb = f.querySelector('.choose__color [data-c="weiss"]'); if (wb) wb.click(); } f.classList.toggle("is-b", ed === "b"); var sec = f.closest("section"); if (sec) sec.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
     }); });
     if (f.querySelector(".choose__ed") && (/[?&]logo=1/.test(location.search) || location.hash === "#logo-vorschau")) { var lb = f.querySelector('.choose__ed [data-e="b"]'); if (lb) lb.click(); }
     upd();

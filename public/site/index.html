@@ -1549,7 +1549,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .cfg__lbl { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; margin: 0 0 10px; font-weight: 600; font-size: 1rem; }
 .cfg__lbl i { display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #1d1d1f; color: #fff; font-style: normal; font-size: .75rem; }
 .cfg__lbl small { font-weight: 400; font-size: .8125rem; color: var(--muted); }
-.cfg__n::before { content: "3"; } .cfg.is-b .cfg__n::before { content: "4"; }
+.cfg__n::before { content: "2"; } .cfg.is-b .cfg__n::before { content: "4"; }
+.cfg:not(.is-b) .cfg__color { display: none; }
 .cfg .seg button small { margin-left: 6px; font-weight: 500; opacity: .7; }
 .cfg__logo { display: none; } .cfg.is-b .cfg__logo { display: grid; gap: 12px; padding: 16px; border-radius: 18px; background: #f5f5f7; }
 .cfg__lrow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
@@ -1766,10 +1767,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 /* ---------- logo plate also in white: black and white cross-fade ---------- */
 .pst__logo.lgw, .n-logo img.lgw { position: absolute; left: 0; top: 0; width: 100%; }
 img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #d5d0c7, 0 3px 0 #cdc8be, 0 4px 0 #c6c0b6, 0 5px 0 #bfb9ae, 0 6px 0 #b8b2a7, 0 40px 50px -16px rgba(0,0,0,.5); }
-.cmpc__logo.lgw { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
+.cmpc__logo--w { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
 @keyframes lgSwap { 0%, 38% { opacity: 0; } 50%, 88% { opacity: 1; } 100% { opacity: 0; } }
 .still img.lgw { animation-play-state: paused; }
 @media (prefers-reduced-motion: reduce) { img.lgw { animation: none; opacity: 0; } }
+
+/* home card: white Google plate, black and white logo plates (no black plate without logo) */
+.cmpc__logo--b { right: auto; left: auto; right: 10%; bottom: auto; top: 12%; width: 34%; transform: perspective(700px) rotateX(48deg) rotateZ(14deg); }
+.cmpc__logo--w { opacity: 1; animation: none; }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1867,7 +1872,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>3 bis 10 Handyfotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Werbefilm mit Musik und Text</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 48 bis 72 Stunden</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Cafés, Restaurants, Läden, Hotels</dd></div></dl>
         </article>
         <article class="cmpc cmpc--nfc">
-          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><span class="disc disc--black"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><img class="cmpc__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><img class="cmpc__logo lgw" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480" loading="lazy"><span class="cmpc__colors">Weiß oder Schwarz, auch mit Logo</span></div>
+          <div class="cmpc__stage cmpc__stage--two" aria-hidden="true"><img class="cmpc__logo cmpc__logo--b" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><img class="cmpc__logo cmpc__logo--w" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480" loading="lazy"><span class="cmpc__colors">Google-Design oder mit Ihrem Logo</span></div>
           <h3>NFC-Platte</h3>
           <p class="cmpc__tag">Macht aus Gästen Google-Bewertungen. Auch mit Ihrem Logo.</p>
           <p class="cmpc__price">14,90 € <small>pro Stück</small></p><p class="cmpc__sub">mit Ihrem Logo ab 29,90 €</p>
@@ -1971,7 +1976,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
           <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="/nfc-platten" data-go>Zum Angebot</a><a class="btn btn--line" href="/nfc-platten#logo-vorschau">Mit Ihrem Logo</a></div>
           <a class="more" href="/nfc-platten">Alles über NFC-Platten<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
-          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: in Weiß oder Schwarz, auch mit Ihrem Logo.</p>
+          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: im Google-Design in Weiß, mit Ihrem Logo in Weiß oder Schwarz.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
           <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
@@ -1992,7 +1997,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
               <div class="win__body"><p class="win__h">Klare Preise. Einmal zahlen.</p>
                 <div class="prow"><span>Website<small>3 Seiten, für Handy und Computer</small></span><b><small>ab</small> 399 €</b></div>
                 <div class="prow prow--hi"><span>KI-Werbevideo<small>Werbefilm aus Fotos, in 48 Stunden</small></span><b><small>ab </small>199 €</b></div>
-                <div class="prow"><span>NFC-Platte<small>Weiß, Schwarz oder mit Ihrem Logo</small></span><b>14,90 €</b></div>
+                <div class="prow"><span>NFC-Platte<small>Weiß oder mit Ihrem Logo</small></span><b>14,90 €</b></div>
               </div></div></div><p class="jno">1</p><h3>Paket wählen</h3><p>Alle Preise und Leistungen stehen auf der Seite. Sie wissen vorher genau, was Sie bekommen.</p></li>
         <li class="jlink" aria-hidden="true"><span>1 Minute</span><svg viewBox="0 0 40 12" aria-hidden="true"><path d="M0 6h36M31 1l6 5-6 5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></li>
         <li class="jstep"><div class="jstage" aria-hidden="true"><div class="iphone fp__phone" aria-hidden="true"><div class="iphone__screen"><div class="app">
@@ -2613,7 +2618,7 @@ document.addEventListener("DOMContentLoaded", function () {
       color = b.dataset.c; [].forEach.call(f.querySelectorAll(".choose__color [data-c]"), function (x) { x.setAttribute("aria-checked", x === b); }); var dsc = document.getElementById("cfgDisc"); if (dsc) dsc.classList.toggle("disc--black", color === "schwarz"); upd();
     }); });
     [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (b) { b.addEventListener("click", function () {
-      ed = b.dataset.e; f.classList.toggle("is-b", ed === "b"); var sec = f.closest("section"); if (sec) sec.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
+      ed = b.dataset.e; if (ed !== "b" && color !== "weiss") { var wb = f.querySelector('.choose__color [data-c="weiss"]'); if (wb) wb.click(); } f.classList.toggle("is-b", ed === "b"); var sec = f.closest("section"); if (sec) sec.classList.toggle("is-b", ed === "b"); [].forEach.call(f.querySelectorAll(".choose__ed [data-e]"), function (x) { x.setAttribute("aria-checked", x === b); }); upd();
     }); });
     if (f.querySelector(".choose__ed") && (/[?&]logo=1/.test(location.search) || location.hash === "#logo-vorschau")) { var lb = f.querySelector('.choose__ed [data-e="b"]'); if (lb) lb.click(); }
     upd();

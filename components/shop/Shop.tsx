@@ -52,8 +52,8 @@ const css = `
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
   if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-videos/spot-1.jpg" : "/images/ki-videos/wohnung-voll.jpg"} alt="" /></div>;
-  if (id === "nfc-custom") return <div className="sh-pic"><img src="/images/ki-shots/nfc-custom-spiruli.jpg" alt="" /></div>;
-  return <div className="sh-pic"><img className="disc-img" src={`/media/disc-${id === "nfc-weiss" ? "weiss" : "schwarz"}.svg`} alt="" /></div>;
+  if (id === "nfc-custom") return <div className="sh-pic"><img className="disc-img" src="/images/ki-shots/nfc-logo-plate.webp" alt="" /></div>;
+  return <div className="sh-pic"><img className="disc-img" src="/media/disc-weiss.svg" alt="" /></div>;
 }
 
 export default function Shop({ online = false }: { online?: boolean }) {
@@ -77,9 +77,9 @@ export default function Shop({ online = false }: { online?: boolean }) {
     // drop products that no longer exist (e.g. old roomtour items in a saved cart)
     for (const k of Object.keys(c)) if (!products.some((p) => p.id === k)) delete c[k as ProductId];
     const num = (k: string) => Math.max(0, Math.min(50, Math.floor(+(q.get(k) ?? 0)) || 0));
-    const w = num("weiss"), b = num("schwarz"), cu = num("custom");
+    const w = num("weiss"), cu = num("custom");
     const web = (q.get("web") ?? "").toLowerCase(), shots = (q.get("shots") ?? "").toLowerCase();
-    if (w) c["nfc-weiss"] = w; if (b) c["nfc-schwarz"] = b; if (cu) c["nfc-custom"] = cu;
+    if (w) c["nfc-weiss"] = w; if (cu) c["nfc-custom"] = cu;
     if (shots === "starter" || shots === "pro" || shots === "brand") { delete c["shots-starter"]; delete c["shots-pro"]; delete c["shots-brand"]; c[`shots-${shots}` as ProductId] = 1; }
     if (web === "basis" || web === "business" || web === "premium") { delete c["web-basis"]; delete c["web-business"]; delete c["web-premium"]; c[`web-${web}` as ProductId] = 1; }
     const nr = (q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20);
@@ -162,7 +162,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
               </article>
             ))}
           </div>
-          <p className="sh-note">Classic: Mengenpreis für Weiß und Schwarz zusammen, ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
+          <p className="sh-note">Normale Platte (Weiß): ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
           {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (Custom Brand Edition, ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
           {!hasService && <p className="sh-note">Eine Website oder ein KI-Werbevideo? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Werbevideos</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>

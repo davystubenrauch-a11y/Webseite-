@@ -66,7 +66,7 @@ Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, individuelle
 
 **NFC-Platte für Google-Bewertungen** · ab 14,90 €
 ```
-Runde Platte (Ø 10 cm) in Weiß oder Schwarz. Gäste halten ihr Handy daran und landen direkt bei Ihrer Google-Bewertung, ohne App. Ab 5 Stück 13,90 €, ab 10 Stück 12,90 €. Lieferung in 3 bis 7 Werktagen.
+Runde Platte (Ø 10 cm) im Google-Design in Weiß, mit Ihrem Logo auch in Schwarz. Gäste halten ihr Handy daran und landen direkt bei Ihrer Google-Bewertung, ohne App. Ab 5 Stück 13,90 €, ab 10 Stück 12,90 €. Lieferung in 3 bis 7 Werktagen.
 ```
 
 **NFC-Platte mit Ihrem Logo** · ab 29,90 €
