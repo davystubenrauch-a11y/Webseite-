@@ -1804,6 +1804,29 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .phero__from { display: inline-block; margin: -6px 0 -8px; padding: 8px 14px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); font-size: .875rem; }
   .phero__from b { color: var(--ink); font-weight: 700; }
 }
+
+/* ---------- phone proportions (19.11.) ---------- */
+@media (max-width: 700px) {
+  /* NFC film: plate and phone fill the frame instead of floating small in the grey */
+  .n-stage { --w: min(64cqw, 47cqh); }
+  .n-floor { top: 70%; }
+  .n-phone { top: calc(70% - var(--w) * 1.4); }
+  /* website film: the phone slides in from inside the frame, never cut off */
+  .w-phone { width: min(27cqw, 30cqh); right: 5cqw; bottom: 7cqh; transform: translateX(calc((1 - var(--c, 1)) * 18%)) translateY(calc((1 - var(--c, 1)) * 8%)); }
+  .w-mac { left: 5cqw; right: 17cqw; }
+  /* after a scroll film the next section starts right away (no empty screen) */
+  .scene + .sec, .scene + section { padding-top: 36px; }
+  .scene__grid { padding-bottom: 90px; }
+}
+@media (max-width: 700px) and (max-height: 760px) {
+  .scene .kicker { display: none; }
+  .scene__grid { padding-top: 66px; padding-bottom: 86px; gap: 6px; }
+  .scene .how li { font-size: .875rem; line-height: 1.4; }
+  .scene__foot { flex-wrap: nowrap; gap: 10px; margin-top: 6px; }
+  .scene__foot .btn { min-height: 40px; padding: 0 16px; font-size: .875rem; white-space: nowrap; }
+  .scene .price { font-size: 1.25rem; }
+  .scene .price small { font-size: .75rem; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1952,7 +1975,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns über das Beratungsformular unten, wir antworten innerhalb von 24 Stunden.</p></div>
       <div>
         <details data-on="home websites"><summary>Was kostet eine Website?<i aria-hidden="true"></i></summary><p>Basis mit 3 Seiten 399 €, Business mit bis zu 6 Seiten und Texten von uns 799 €, Premium mit bis zu 10 Seiten, 3D-Effekten, zwei Sprachen und 5 NFC-Platten inklusive 1.499 €. Was genau in jedem Paket steckt, sehen Sie auf der Seite <a class="inl" href="/websites#pakete">Websites</a>.</p></details>
-        <details data-on="home websites ki-shots nfc-platten"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Werbevideo Starter in 48 Stunden, Pro und Brand-Paket in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. NFC-Platten Classic sind in 3 bis 7 Werktagen bei Ihnen, Platten mit Ihrem Logo kurz nach Freigabe der Design-Vorschau. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
+        <details data-on="home websites ki-shots nfc-platten"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Werbevideo Starter in 48 Stunden, Pro und Brand-Paket in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. Normale NFC-Platten sind in 3 bis 7 Werktagen bei Ihnen, Platten mit Ihrem Logo kurz nach Freigabe der Design-Vorschau. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
         <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb und Sie bezahlen sicher über Stripe, zum Beispiel per Karte, Apple Pay oder Google Pay. NFC-Platten Classic bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
         <details data-on="home websites ki-shots"><summary>Was passiert nach der Bezahlung?<i aria-hidden="true"></i></summary><p>Sie bekommen sofort die Rechnung und eine Bestätigung Ihrer Angaben per E-Mail. Wir beginnen am selben oder nächsten Werktag. Ihr Werbefilm kommt nach 48 Stunden (Pro und Brand-Paket nach 72 Stunden), der Website-Entwurf nach 5 bis 7 Tagen, jeweils als Link per E-Mail. Sie schauen es an, sagen uns Ihre Änderungswünsche, und nach Ihrer Freigabe geht es online.</p></details>
         <details data-on="websites"><summary>Brauche ich technisches Wissen?<i aria-hidden="true"></i></summary><p>Nein. Das Hosting übernehmen wir. Sie brauchen nur eine Domain auf Ihren Namen, zum Beispiel bei IONOS oder Strato, meist rund 1 € im Monat. Zum Verbinden schicken wir Ihnen eine kurze Anleitung: ein einziger Eintrag bei Ihrem Anbieter, etwa 5 Minuten. Passwörter müssen Sie uns dafür nicht schicken.</p></details>

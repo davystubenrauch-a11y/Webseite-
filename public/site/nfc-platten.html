@@ -1804,6 +1804,29 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .phero__from { display: inline-block; margin: -6px 0 -8px; padding: 8px 14px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); font-size: .875rem; }
   .phero__from b { color: var(--ink); font-weight: 700; }
 }
+
+/* ---------- phone proportions (19.11.) ---------- */
+@media (max-width: 700px) {
+  /* NFC film: plate and phone fill the frame instead of floating small in the grey */
+  .n-stage { --w: min(64cqw, 47cqh); }
+  .n-floor { top: 70%; }
+  .n-phone { top: calc(70% - var(--w) * 1.4); }
+  /* website film: the phone slides in from inside the frame, never cut off */
+  .w-phone { width: min(27cqw, 30cqh); right: 5cqw; bottom: 7cqh; transform: translateX(calc((1 - var(--c, 1)) * 18%)) translateY(calc((1 - var(--c, 1)) * 8%)); }
+  .w-mac { left: 5cqw; right: 17cqw; }
+  /* after a scroll film the next section starts right away (no empty screen) */
+  .scene + .sec, .scene + section { padding-top: 36px; }
+  .scene__grid { padding-bottom: 90px; }
+}
+@media (max-width: 700px) and (max-height: 760px) {
+  .scene .kicker { display: none; }
+  .scene__grid { padding-top: 66px; padding-bottom: 86px; gap: 6px; }
+  .scene .how li { font-size: .875rem; line-height: 1.4; }
+  .scene__foot { flex-wrap: nowrap; gap: 10px; margin-top: 6px; }
+  .scene__foot .btn { min-height: 40px; padding: 0 16px; font-size: .875rem; white-space: nowrap; }
+  .scene .price { font-size: 1.25rem; }
+  .scene .price small { font-size: .75rem; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1861,7 +1884,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
           <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:8%">Ohne App</li><li style="--i:1;--x:auto;--rx:4%;--y:12%">iPhone und Android</li><li style="--i:2;--x:4%;--y:86%">Auch mit Ihrem Logo</li></ul>
         </div>
       </div></div>
-      <ul class="phero__facts" role="list"><li><b>14,90 €</b><span>Classic, ab 5 Stück nur 13,90 €</span></li><li><b>29,90 €</b><span>mit Ihrem Logo, ab 10 Stück 24,90 €</span></li><li><b>0 €</b><span>kein Abo, keine App</span></li></ul>
+      <ul class="phero__facts" role="list"><li><b>14,90 €</b><span>Google-Design in Weiß, ab 5 Stück 13,90 €</span></li><li><b>29,90 €</b><span>mit Ihrem Logo, ab 10 Stück 24,90 €</span></li><li><b>0 €</b><span>kein Abo, keine App</span></li></ul>
     </div>
   </section>
 
@@ -1940,7 +1963,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns über das Beratungsformular unten, wir antworten innerhalb von 24 Stunden.</p></div>
       <div>
-        <details data-on="home websites ki-shots nfc-platten"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Werbevideo Starter in 48 Stunden, Pro und Brand-Paket in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. NFC-Platten Classic sind in 3 bis 7 Werktagen bei Ihnen, Platten mit Ihrem Logo kurz nach Freigabe der Design-Vorschau. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
+        <details data-on="home websites ki-shots nfc-platten"><summary>Wie lange dauert es?<i aria-hidden="true"></i></summary><p>Werbevideo Starter in 48 Stunden, Pro und Brand-Paket in 72 Stunden. Website Basis in 5 Tagen, Business und Premium in 7 Tagen. Normale NFC-Platten sind in 3 bis 7 Werktagen bei Ihnen, Platten mit Ihrem Logo kurz nach Freigabe der Design-Vorschau. Die Zeit läuft ab Zahlung und sobald wir Ihre Fotos oder Angaben haben.</p></details>
         <details data-on="nfc-platten"><summary>Wie bekomme ich Platten mit meinem Logo?<i aria-hidden="true"></i></summary><p>Wählen Sie bei den Paketen „Mit Ihrem Logo“ und die Menge. In einem kurzen Fragebogen laden Sie Ihr Logo hoch und nennen Ihr Google-Profil. Nach der Zahlung bekommen Sie innerhalb von 2 Werktagen eine Design-Vorschau. Erst nach Ihrer Freigabe produzieren wir.</p></details>
         <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb und Sie bezahlen sicher über Stripe, zum Beispiel per Karte, Apple Pay oder Google Pay. NFC-Platten Classic bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
         <details data-on="nfc-platten"><summary>Gibt es die Platte auch in Schwarz?<i aria-hidden="true"></i></summary><p>Ja, mit Ihrem Logo: Die Platte mit Logo gibt es in Weiß oder Schwarz. Die normale Platte im Google-Design gibt es in Weiß, ab 5 Stück 13,90 € pro Platte und kostenloser Versand, ab 10 Stück 12,90 €.</p></details>
