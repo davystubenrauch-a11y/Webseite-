@@ -5,6 +5,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## Einträge
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
+- Gründer: „Man darf nicht das Gefühl haben, dass die Website nach jeder Seite aufhört.“ → jede Unterseite endet mit „Mehr von FOAV“ (die anderen Angebote als Bildkarten, `#mehr`, build.py entfernt die Karte der eigenen Seite); leere Bildschirme per Messskript `gaps` suchen (größte leere Fläche > 42 % des Bildschirms), Einblend-Animationen mit `threshold: 0` statt 0.2 bei hohen Listen.
 - Gründer: Abschnitte lieber „Überschrift → Bild → kurzer Text“ statt Text neben leerer Fläche; Bild beweist, Text erklärt danach. Immer auch bei ~1180 px (MacBook-Fenster) prüfen, nicht nur 1440.
 - Selbstprüfung per Übersichtsbogen (Screenshots in Bildschirm-Schritten, mit PIL zu 6er/12er-Bogen zusammengesetzt) spart Zeit und findet Proportionsfehler: schwebende Überschrift (`align-items: end` bei langem Nachbartext), überladene Kontaktknöpfe auf dem Handy, Raster, das durch nicht umbrechende Knöpfe breiter als der Bildschirm wird (`minmax(0, 1fr)`).
 - „Video läuft nicht“, aber Code und Live-Seite laufen in Chromium → iPhone-Stromsparmodus/„Bewegung reduzieren“ verhindert Autoplay. Immer einen Abspielknopf als Rückfall haben und bei jedem Tipp erneut `play()` versuchen.

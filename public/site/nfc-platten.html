@@ -1367,6 +1367,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .immo__tag { position: absolute; left: 14px; top: 14px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: .75rem; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .immo__tag i { width: 7px; height: 7px; border-radius: 50%; background: #ff453a; animation: kfRec 1.1s steps(2, jump-none) infinite; }
 .rnd { padding-bottom: clamp(72px, 8vw, 128px); }
+.rnd + .sec { padding-top: clamp(24px, 3vw, 48px); }
 .rnd .immo__grid { display: flex; flex-direction: column; }
 .rnd .immo__text { display: contents; }
 .rnd .immo__hl { order: 1; } .rnd .immo__media { order: 2; margin-top: clamp(24px, 3vw, 40px); } .rnd .immo__body { order: 3; }
@@ -1383,6 +1384,30 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .cmpx__more i { flex: none; display: inline-flex; align-items: center; gap: 6px; font-style: normal; font-weight: 600; font-size: .9375rem; }
 .cmpx__more i svg { width: 18px; height: 18px; }
 @media (max-width: 600px) { .cmpx__more { align-items: flex-start; } .cmpx__more i { display: none; } .cmpx__more em { font-size: .875rem; } }
+.nx__head { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 16px 48px; }
+.nx__head .lead { max-width: 52ch; margin: 0; }
+.nx__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); margin-top: clamp(28px, 3.5vw, 48px); }
+.nx__card { position: relative; display: flex; flex-direction: column; border-radius: 22px; overflow: hidden; background: var(--white); box-shadow: inset 0 0 0 1px var(--line); color: var(--ink); transition: box-shadow .25s, translate .25s; }
+.nx__card:hover { box-shadow: inset 0 0 0 1.5px var(--ink); translate: 0 -3px; }
+.nx__img { display: block; aspect-ratio: 16 / 10; overflow: hidden; background: #ececef; }
+.nx__img img { width: 100%; height: 100%; object-fit: cover; transition: scale .6s var(--ease); }
+.nx__img--plate img { object-fit: contain; padding: 8%; }
+.nx__card:hover .nx__img img { scale: 1.04; }
+.nx__t { display: block; padding: 18px 56px 20px 20px; }
+.nx__t small { display: block; font-size: .8125rem; font-weight: 600; color: var(--muted); }
+.nx__t b { display: block; margin-top: 4px; font-size: 1.125rem; line-height: 1.3; letter-spacing: -.01em; }
+.nx__t em { display: block; margin-top: 8px; font-style: normal; font-weight: 600; font-size: .9375rem; }
+.nx__card > i { position: absolute; right: 18px; bottom: 20px; display: grid; place-items: center; width: 36px; height: 36px; border-radius: 50%; background: var(--fill); color: var(--on-fill); }
+.nx__card > i svg { width: 18px; height: 18px; }
+@media (max-width: 900px) {
+  .nx__grid { grid-template-columns: 1fr; }
+  .nx__card { flex-direction: row; align-items: center; }
+  .nx__card { align-items: stretch; }
+  .nx__img { flex: none; width: 36%; aspect-ratio: auto; min-height: 112px; }
+  .nx__t { align-self: center; }
+  .nx__t { padding: 14px 52px 14px 16px; } .nx__t b { font-size: 1rem; } .nx__t em { margin-top: 4px; font-size: .875rem; }
+  .nx__card > i { top: 50%; bottom: auto; translate: 0 -50%; right: 14px; width: 32px; height: 32px; }
+}
 .rnd__plans .plan { display: flex; flex-direction: column; }
 .rnd__plans .plan__btn { margin-top: auto; align-self: flex-start; }
 .rnd__plans .feat { margin: 18px 0 24px; }
@@ -1847,6 +1872,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
   </section>
 
 
+  <section class="sec nx" id="mehr" aria-labelledby="h-mehr">
+    <div class="wrap">
+      <div class="nx__head"><h2 id="h-mehr">Mehr von FOAV.</h2><p class="lead">Alles aus einer Hand, zum Festpreis. Viele Kunden kombinieren, zum Beispiel Website und NFC-Platten oder Werbefilm und Renderings.</p></div>
+      <div class="nx__grid"><a class="nx__card" href="/websites"><span class="nx__img"><img src="/media/ref-villa-desk-top.jpg" alt="" loading="lazy"></span><span class="nx__t"><small>Websites</small><b>Eine Website, die Anfragen bringt</b><em>ab 399 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/ki-shots"><span class="nx__img"><img src="/images/ki-videos/spot-start.jpg" alt="" loading="lazy"></span><span class="nx__t"><small>KI-Werbevideos</small><b>Werbefilme aus Ihren Handyfotos</b><em>ab 199 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/renderings"><span class="nx__img"><img src="/images/renderings/haus-nachher.jpg" alt="" loading="lazy"></span><span class="nx__t"><small>Renderings</small><b>Zeigen, wie es aussehen wird</b><em>ab 49 € pro Bild</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a></div>
+    </div>
+  </section>
+
+
   <section class="sec" id="fragen" aria-labelledby="h-faq">
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns über das Beratungsformular unten, wir antworten innerhalb von 24 Stunden.</p></div>
@@ -2144,7 +2177,7 @@ document.addEventListener("DOMContentLoaded", function () {
   })();
 
   var jour = $("#jour");
-  if (jour) new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { jour.classList.add("in"); o.disconnect(); } }, { threshold: .2 }).observe(jour);
+  if (jour) new IntersectionObserver(function (es, o) { if (es[0].isIntersecting) { jour.classList.add("in"); o.disconnect(); } }, { threshold: 0, rootMargin: "0px 0px -15% 0px" }).observe(jour);
 
   /* ---------- "Was passt zu Ihrem Betrieb?" ---------- */
   var ptabs = $$(".pick-tabs [role=tab]");
