@@ -24,7 +24,7 @@ pages = {
     'websites': ('websites.html', '/websites', 'Websites ab 399 € · FOAV München',
                  'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
     'ki-shots': ('ki-shots.html', '/ki-shots', 'KI-Werbevideos und Renderings aus Ihren Fotos · FOAV München',
-                 'Aus Ihren Handyfotos werden kurze Werbefilme für Cafés, Restaurants, Läden und Immobilien (ab 199 €) und Renderings, die Umbau, Sanierung oder Neubau zeigen, bevor gebaut wird (ab 149 € pro Ansicht). Fertig in 48 bis 72 Stunden.'),
+                 'Aus Ihren Handyfotos werden kurze Werbefilme für Cafés, Restaurants, Läden und Immobilien (ab 199 €) und Renderings, die Umbau, Sanierung oder Neubau zeigen, bevor gebaut wird (49 € pro Bild). Fertig in 48 bis 72 Stunden.'),
     'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · ab 14,90 € · FOAV',
                     'NFC-Platten für mehr Google-Bewertungen: Gast hält das Handy an die Platte, die Bewertungsseite öffnet sich. Classic 14,90 €, mit Ihrem Logo 29,90 €, ohne App.'),
 }

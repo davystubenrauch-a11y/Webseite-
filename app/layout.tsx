@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://foav.de"),
   title: "FOAV · Websites, KI-Videos, Renderings und NFC-Platten aus München",
   description:
-    "FOAV aus München: Websites ab 399 €, KI-Werbevideos ab 199 €, Renderings von Umbau und Sanierung ab 149 € und NFC-Platten für Google-Bewertungen ab 14,90 €. Festpreis, Antwort innerhalb von 24 Stunden.",
+    "FOAV aus München: Websites ab 399 €, KI-Werbevideos ab 199 €, Renderings von Umbau und Sanierung ab 49 € und NFC-Platten für Google-Bewertungen ab 14,90 €. Festpreis, Antwort innerhalb von 24 Stunden.",
   openGraph: {
     title: "FOAV",
     description: "Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.",
