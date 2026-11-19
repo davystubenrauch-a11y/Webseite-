@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { deliver } from "@/lib/deliver";
+import { hello, list, signature } from "@/lib/mailtext";
 import { serviceLabels, summarize, validate, type Inquiry } from "@/lib/inquiry";
 
 // Receives inquiries from the wizard, validates them again server-side and delivers them.
@@ -39,6 +40,24 @@ export async function POST(req: Request) {
   const subject = `Anfrage ${id}: ${data.services.map((s) => serviceLabels[s]).join(" + ")}`;
   const text = `${summarize(data)}\n\nReferenz: ${id}`;
 
-  if (await deliver({ id, kind: "anfrage", subject, text, replyTo: data.email || undefined, data: { ...data, website: undefined } })) return NextResponse.json({ ok: true, id });
+  const rendering = /^\[Rendering\]/.test(data.message ?? "");
+  const asked = list(data.services.map((s) => (s === "shots" ? (rendering ? "Renderings" : "KI-Werbevideos") : serviceLabels[s])));
+  const copy = data.email ? {
+    to: data.email,
+    subject: `Danke für Ihre Anfrage bei FOAV (${id})`,
+    text: [
+      hello(data.name),
+      "",
+      `danke für Ihre Anfrage zu ${asked}. Sie ist bei uns angekommen, und einer von uns beiden meldet sich innerhalb von 24 Stunden bei Ihnen${data.contactPref === "phone" && data.phone ? " telefonisch" : ""}.`,
+      "",
+      "Sie bekommen von uns eine ehrliche Empfehlung und einen festen Preis, bevor irgendetwas kostet. Kein Abo, keine versteckten Kosten.",
+      "",
+      "Möchten Sie schon einmal stöbern? Beispiele und alle Preise finden Sie auf foav.de.",
+      "",
+      `Ihre Referenz: ${id}. Antworten Sie einfach auf diese E-Mail, wenn Ihnen noch etwas einfällt.`,
+      signature,
+    ].join("\n"),
+  } : undefined;
+  if (await deliver({ id, kind: "anfrage", subject, text, replyTo: data.email || undefined, data: { ...data, website: undefined }, copy })) return NextResponse.json({ ok: true, id });
   return NextResponse.json({ ok: false, error: "Ihre Angaben konnten gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });
 }

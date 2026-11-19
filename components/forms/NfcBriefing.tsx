@@ -69,10 +69,10 @@ export default function NfcBriefing() {
   return (
     <Shell
       title="NFC-Platten mit Ihrem Logo."
-      lead="Ein Antippen mit dem Handy öffnet Ihre Google-Bewertungsseite, wie bei der Classic-Platte. Statt des Google-Designs trägt die Platte Ihr Logo. Bevor wir produzieren, bekommen Sie eine Design-Vorschau zur Freigabe."
+      lead="Ein Antippen mit dem Handy öffnet Ihre Google-Bewertungsseite, wie bei der normalen Platte. Statt des Google-Designs trägt die Platte Ihr Logo. Bevor wir produzieren, bekommen Sie eine Design-Vorschau zur Freigabe."
       steps={[
         ["Logo und Angaben", "Etwa 3 Minuten."],
-        ["In den Warenkorb, bezahlen", "Sicher über Stripe."],
+        ["Bestellen und bezahlen", "Im Warenkorb bestellen. Bezahlt wird sicher online, die Rechnung kommt per E-Mail."],
         ["Vorschau freigeben", "Innerhalb von 2 Werktagen per E-Mail. Änderungen inklusive."],
         ["Platten erhalten", "Nach Ihrer Freigabe produziert, getestet und per Post verschickt."],
       ]}

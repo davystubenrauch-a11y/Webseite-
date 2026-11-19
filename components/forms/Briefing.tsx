@@ -41,6 +41,13 @@ const css = `
 .bf-lead { max-width:56ch; margin:20px 0 0; font-size:19px; color:var(--text); }
 .bf-sec { display:grid; grid-template-columns:260px minmax(0,1fr); gap:24px clamp(32px,5vw,72px); padding:clamp(36px,5vw,56px) 0; border-top:1px solid var(--line); }
 .bf-sec__h { align-self:start; position:sticky; top:84px; }
+.bf-sec--opt { padding:clamp(24px,3vw,32px) 0; }
+.bf-sec--opt .bf-sec__h { position:static; }
+.bf-fold > summary { list-style:none; display:inline-flex; align-items:center; gap:10px; min-height:48px; padding:0 20px; border-radius:999px; box-shadow:inset 0 0 0 1.5px var(--line); font:600 15px/1 "Inter",sans-serif; color:var(--ink); cursor:pointer; }
+.bf-fold > summary::-webkit-details-marker { display:none; }
+.bf-fold > summary i { width:10px; height:10px; border-right:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(45deg) translateY(-3px); transition:transform .2s; }
+.bf-fold[open] > summary { margin-bottom:20px; }
+.bf-fold[open] > summary i { transform:rotate(225deg) translate(-2px,-1px); }
 .bf-sec__h b { display:block; font:500 15px/1 "Inter",sans-serif; color:var(--muted); font-variant-numeric:tabular-nums; }
 .bf-sec h2 { margin:10px 0 0; font:600 26px/1.15 "Inter",sans-serif; letter-spacing:-.03em; color:var(--ink); }
 .bf-intro { margin:10px 0 0; color:var(--muted); font-size:15px; max-width:30ch; }
@@ -213,15 +220,17 @@ export function Question({ q, value, onChange }: { q: Q; value: string | string[
   );
 }
 
-export function Sec({ n, title, intro, children }: { n: number; title: string; intro?: React.ReactNode; children: React.ReactNode }) {
+export function Sec({ n, title, intro, optional, children }: { n: number; title: string; intro?: React.ReactNode; optional?: boolean; children: React.ReactNode }) {
   return (
-    <section className="bf-sec" aria-labelledby={`sec-${n}`}>
+    <section className={`bf-sec${optional ? " bf-sec--opt" : ""}`} aria-labelledby={`sec-${n}`}>
       <div className="bf-sec__h">
         <b>{n}</b>
         <h2 id={`sec-${n}`}>{title}</h2>
         {intro && <p className="bf-intro">{intro}</p>}
       </div>
-      <div className="bf-qs">{children}</div>
+      {optional ? (
+        <details className="bf-fold"><summary>Freiwillig ausfüllen<i aria-hidden="true" /></summary><div className="bf-qs">{children}</div></details>
+      ) : <div className="bf-qs">{children}</div>}
     </section>
   );
 }

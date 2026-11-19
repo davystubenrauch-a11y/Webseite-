@@ -5,6 +5,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## Einträge
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
+- Fragebögen: Paket mit Preis zuerst, nur das Nötigste Pflicht (Website 11, Video 10, NFC 5), freiwillige Abschnitte eingeklappt (`Sec optional`). Bestätigungs-E-Mails an Kunden für Anfrage, Fragebogen und Bestellung (`lib/mailtext.ts`, Signatur mit beiden Gründern); lokal testen mit Preload `mailtrap.cjs`, das `fetch` an Resend abfängt.
 - Sortiment: normale Google-Platte nur Weiß, Schwarz nur mit Logo. Bei Sortimentsänderungen überall suchen: Template, `lib/shop.ts`, `Shop.tsx`, Fragebögen (`WebsiteBriefing` Premium-Platten), Flyer, `links.html`, `GOOGLE.md`.
 - „Abgehackt / wirkt wie Ende“: harte Farbkanten (weiß → grau) mit leerem Grau darunter. Lösung: Abschnitts-Hintergründe als weiche Verläufe von der Seitenfarbe aus (`#fbfbfd` → Grau → `#fbfbfd`), Abstände `.sec` max. 128 px statt 160 px. Prüfen mit Screenshots an jeder Abschnittsgrenze (Grenze bei 60 % Bildschirmhöhe).
 - Gründer: „Man darf nicht das Gefühl haben, dass die Website nach jeder Seite aufhört.“ → jede Unterseite endet mit „Mehr von FOAV“ (die anderen Angebote als Bildkarten, `#mehr`, build.py entfernt die Karte der eigenen Seite); leere Bildschirme per Messskript `gaps` suchen (größte leere Fläche > 42 % des Bildschirms), Einblend-Animationen mit `threshold: 0` statt 0.2 bei hohen Listen.

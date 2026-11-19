@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { Done, PhotoSlots, Question, Sec, Shell, Submit, useDraft, usePhotos, usePrefill, type DoneInfo, type Section, type Values } from "./Briefing";
 
-// Order form for KI-Werbevideos: package, what the film shows (incl. real estate with virtual staging),
+// Order form for KI-Werbevideos (cafés, restaurants, shops; real estate is under Renderings): package, scenes,
 // mood, music, texts, photos. After saving, the package lands in the cart (/shop?shots=…&ref=FOAV-…).
 
 export const shotPackages = {
@@ -19,8 +19,8 @@ const sections: Section[] = [
     intro: "Den Preis sehen Sie sofort. Unsicher? Wählen Sie „Noch unsicher“, dann empfehlen wir Ihnen ein Paket.",
     questions: [
       { id: "paket", label: "Paket", type: "one", req: true, options: ["Starter|1 Werbefilm, 199 €", "Pro|3 Werbefilme, 449 €", "Brand-Paket|Hauptfilm + 5 Kurzfilme, 899 €", "Noch unsicher|wir empfehlen Ihnen eines"] },
-      { id: "firma", label: "Name Ihres Unternehmens", type: "text", placeholder: "z. B. Café Sonne, Immobilien Huber", half: true, req: true },
-      { id: "branche", label: "Branche", type: "one", req: true, options: ["Café / Bäckerei", "Restaurant / Bar", "Immobilien / Makler", "Ferienwohnung / Hotel", "Laden / Boutique", "Beauty / Friseur", "Handwerk / Manufaktur", "Sonstiges"] },
+      { id: "firma", label: "Name Ihres Unternehmens", type: "text", placeholder: "z. B. Café Sonne", half: true, req: true },
+      { id: "branche", label: "Branche", type: "one", req: true, options: ["Café / Bäckerei", "Restaurant / Bar", "Ferienwohnung / Hotel", "Laden / Boutique", "Beauty / Friseur", "Handwerk / Manufaktur", "Sonstiges"] },
       { id: "link", label: "Ihre Website oder Instagram (optional)", type: "url", placeholder: "https://…", half: true, hint: "Dort sehen wir Ihren Stil und Ihre Farben." },
     ],
   },
@@ -29,19 +29,10 @@ const sections: Section[] = [
     intro: "Ein Raum, ein Produkt oder ein Gericht ist eine Szene. Wie viele Szenen Ihr Paket enthält, steht beim Paket.",
     questions: [
       { id: "motive", label: "Ihre Szenen, eine pro Zeile", type: "textarea", req: true, placeholder: "z. B.\nGastraum mit Fensterplätzen\nApfelkuchen an der Theke\nCappuccino am Fenster" },
-      { id: "anzahl", label: "Anzahl der Szenen", type: "number", placeholder: "z. B. 3", half: true, req: true },
-      { id: "ziel", label: "Was sollen Zuschauer danach tun?", type: "one", req: true, options: ["Vorbeikommen", "Tisch reservieren", "Termin buchen", "Besichtigung anfragen", "Online kaufen", "Anrufen"], hint: "Daraus wird die Aufforderung auf der Schlusstafel, z. B. „Jetzt besichtigen“." },
-      { id: "exakt", label: "Was muss genau so bleiben?", type: "textarea", req: true, placeholder: "z. B. Grundriss, Fenster und Boden der Wohnung, Logo auf der Tasse, Form des Kuchens", hint: "Die KI darf Licht, Stimmung und Kamera gestalten, aber nie Ihre Räume oder Produkte verändern." },
+      { id: "anzahl", label: "Anzahl der Szenen (optional)", type: "number", placeholder: "z. B. 3", half: true },
+      { id: "ziel", label: "Was sollen Zuschauer danach tun?", type: "one", req: true, options: ["Vorbeikommen", "Tisch reservieren", "Termin buchen", "Online kaufen", "Anrufen"], hint: "Daraus wird die Aufforderung auf der Schlusstafel, z. B. „Jetzt vorbeikommen“." },
+      { id: "exakt", label: "Was muss genau so bleiben? (optional)", type: "textarea", placeholder: "z. B. Logo auf der Tasse, Form des Kuchens, Farbe der Wand", hint: "Die KI darf Licht, Stimmung und Kamera gestalten, aber nie Ihre Räume oder Produkte verändern." },
       { id: "nicht", label: "Was darf nicht zu sehen sein? (optional)", type: "text", placeholder: "z. B. Personen, Alkohol, andere Marken, Baustelle nebenan" },
-    ],
-  },
-  {
-    title: "Nur für Immobilien",
-    intro: "Leere Wohnungen richten wir virtuell ein. Im Film steht dann sichtbar „virtuell eingerichtet“, so wie es in Immobilienanzeigen nötig ist.",
-    questions: [
-      { id: "einrichten", label: "Räume virtuell einrichten?", type: "one", options: ["Ja, leere Räume einrichten", "Nein, die Räume sind eingerichtet", "Keine Immobilie"] },
-      { id: "einrichtung", label: "Einrichtungsstil", type: "one", options: ["Modern und hell", "Skandinavisch", "Klassisch, passend zum Altbau", "Entscheiden Sie"], half: true },
-      { id: "eckdaten", label: "Eckdaten für den Film (optional)", type: "text", placeholder: "z. B. 3 Zimmer · 84 m² · Balkon · ab sofort", half: true },
     ],
   },
   {
@@ -49,7 +40,7 @@ const sections: Section[] = [
     questions: [
       { id: "stimmung", label: "Stimmung", type: "one", req: true, options: ["Gemütlich und warm|Lampenlicht, Holz, Ruhe", "Hell und frisch|Tageslicht, klar, freundlich", "Edel und ruhig|dunkel, elegant, wenig Bewegung", "Entscheiden Sie|passend zu Ihrem Betrieb"] },
       { id: "musik", label: "Musik", type: "one", req: true, options: ["Ruhig (Klavier, Gitarre)", "Modern und lebendig", "Nur Raumklang, keine Musik", "Entscheiden Sie"], half: true },
-      { id: "plattformen", label: "Wo zeigen Sie die Filme? (mehrere möglich)", type: "many", req: true, options: ["Instagram Reels / TikTok|Hochformat 9:16", "Website|Querformat 16:9", "Google-Unternehmensprofil", "Immobilienportale / YouTube|Querformat 16:9", "Werbeanzeigen|Meta, Google"] },
+      { id: "plattformen", label: "Wo zeigen Sie die Filme? (mehrere möglich)", type: "many", req: true, options: ["Instagram Reels / TikTok|Hochformat 9:16", "Website|Querformat 16:9", "Google-Unternehmensprofil", "YouTube|Querformat 16:9", "Werbeanzeigen|Meta, Google"] },
       { id: "beispiel", label: "Beispiel, das Ihnen gefällt (optional)", type: "url", placeholder: "Link zu einem Video oder Instagram-Account", hint: "Hilft uns mehr als jede Beschreibung." },
     ],
   },
@@ -57,7 +48,7 @@ const sections: Section[] = [
     title: "Texte und Abschluss",
     questions: [
       { id: "texte", label: "Texte im Film (optional)", type: "textarea", placeholder: "z. B. „Draußen grau.“ · „Drinnen Apfelkuchen.“", hint: "Kurz, eine Zeile pro Szene. Leer lassen, dann schreiben wir die Texte und Sie geben sie frei." },
-      { id: "abschluss", label: "Schlusstafel", type: "text", req: true, placeholder: "z. B. Café Morgenrot · Täglich ab 7:30 Uhr · Vorbeikommen", hint: "Name, eine Info (Öffnungszeit, Ort, Eckdaten) und die Aufforderung." },
+      { id: "abschluss", label: "Schlusstafel", type: "text", placeholder: "z. B. Café Morgenrot · Täglich ab 7:30 Uhr · Vorbeikommen", hint: "Name, eine Info (Öffnungszeit oder Ort) und die Aufforderung. Leer lassen, dann schlagen wir sie vor." },
       { id: "farben", label: "Ihre Markenfarben (optional)", type: "text", placeholder: "z. B. Dunkelgrün und Creme", half: true },
       { id: "ki_hinweis", label: "Kennzeichnung „Mit KI erstellt“", type: "one", req: true, options: ["Ja, dezent im Film (empfohlen)", "Nein, ich kennzeichne selbst beim Posten"], hint: "Realistische KI-Videos müssen erkennbar sein (EU-KI-Verordnung). Instagram und TikTok bieten dafür auch ein eigenes Label." },
     ],
@@ -66,7 +57,7 @@ const sections: Section[] = [
 
 const tips = [
   "Pro Raum oder Produkt 2 bis 3 Fotos aus verschiedenen Winkeln",
-  "Räume im Querformat, aus einer Ecke in den Raum hinein",
+  "Räume aus einer Ecke in den Raum hinein, Gerichte von schräg oben",
   "Tageslicht, Lampen an, kein Blitz",
   "Aufgeräumt: Kabel, Putzmittel und Kassenzettel weg",
   "Keine Personen im Bild",
@@ -91,16 +82,15 @@ export default function ShotsBriefing() {
   const tier = tierOf(v);
   const pk = tier ? shotPackages[tier] : null;
   const shots = photos.done.filter((x) => x.group === "Fotos").length;
-  const immo = String(v.branche ?? "").startsWith("Immobilien") || String(v.einrichten ?? "").startsWith("Ja");
+  const immo = false;
 
   const pay = () => (tier ? { href: `/shop?shots=${tier === "Brand-Paket" ? "Brand" : tier}`, label: `KI-Werbevideos ${tier} für ${shotPackages[tier].price}` } : null);
 
   // Everything we need to start without asking back.
   const missing = () => {
     const out = sections.flatMap((s) => s.questions).filter((q) => q.req && !(Array.isArray(v[q.id]) ? (v[q.id] as string[]).length : String(v[q.id] ?? "").trim())).map((q) => ({ id: `q-${q.id}`, label: q.label }));
-    const n = Number(v.anzahl) || 0;
+    const n = Number(v.anzahl) || String(v.motive ?? "").split("\n").filter((x) => x.trim()).length;
     if (pk && n > pk.scenes) out.push({ id: "q-anzahl", label: `${tier} enthält bis ${pk.scenes} ${pk.scenes === 1 ? "Szene" : "Szenen"}, Sie haben ${n}. Bitte größeres Paket wählen` });
-    if (immo && !String(v.einrichten ?? "").trim()) out.push({ id: "q-einrichten", label: "Räume virtuell einrichten?" });
     if (photos.enabled) {
       if (shots < 3) out.push({ id: "up-fotos", label: `Fotos (${shots} von mind. 3)` });
       if (pk && shots > pk.maxUpload) out.push({ id: "up-fotos", label: `Höchstens ${pk.maxUpload} Fotos für ${tier} (jetzt ${shots})` });
@@ -120,10 +110,10 @@ export default function ShotsBriefing() {
   return (
     <Shell
       title="KI-Werbevideos: aus Ihren Fotos wird ein Werbefilm."
-      lead="Sie fotografieren Ihre Räume, Gerichte oder Produkte mit dem Handy. Wir machen daraus kurze Werbefilme mit ruhigen Kamerafahrten, Musik und Text, fertig für Instagram, TikTok, Website und Immobilienportale. Etwa 10 Minuten. Ihre Angaben bleiben in diesem Browser gespeichert, falls Sie zwischendurch aufhören."
+      lead="Sie fotografieren Ihr Café, Ihre Gerichte oder Ihren Laden mit dem Handy. Wir machen daraus kurze Werbefilme mit ruhigen Kamerafahrten, Musik und Text, fertig für Instagram, TikTok und Ihre Website. Etwa 5 Minuten, Pflicht sind nur die markierten Felder. Ihre Angaben bleiben in diesem Browser gespeichert, falls Sie zwischendurch aufhören."
       steps={[
         ["Paket und Fotos", "3 bis 10 normale Handyfotos reichen."],
-        ["In den Warenkorb, bezahlen", "Direkt im Anschluss, sicher über Stripe."],
+        ["Bestellen und bezahlen", "Im Warenkorb bestellen. Bezahlt wird sicher online, die Rechnung kommt per E-Mail."],
         ["Film erhalten", "Starter in 48 Stunden, Pro und Brand-Paket in 72 Stunden, als Download-Link."],
         ["Gemeinsam anpassen", "Passt etwas nicht, ändern wir es mit Ihnen."],
       ]}
@@ -164,7 +154,7 @@ export default function ShotsBriefing() {
             </div>
             <div className="bf-q">
               <span className="lab">Weitere Unterlagen (optional)</span>
-              <p className="bf-hint">z. B. Grundriss, Exposé, Speisekarte oder Beispielbilder.</p>
+              <p className="bf-hint">z. B. Speisekarte, Flyer oder Beispielbilder.</p>
               <PhotoSlots group="Unterlagen" photos={photos} accept="image/*,.pdf" />
             </div>
           </>
@@ -179,7 +169,6 @@ export default function ShotsBriefing() {
             <li>{pk ? `${pk.stills} Standbilder in hoher Auflösung` : "Festpreis, bevor Sie etwas bezahlen"}</li>
             <li>Stimmung: {String(v.stimmung ?? "noch nicht gewählt").split("|")[0]}</li>
             <li>Plattformen: {Array.isArray(v.plattformen) && v.plattformen.length ? (v.plattformen as string[]).map((x) => x.split("|")[0]).join(", ") : "noch nicht gewählt"}</li>
-            {immo && <li>Immobilie: {String(v.einrichten ?? "noch offen")}</li>}
             <li>Fotos: {shots} hochgeladen</li>
             <li>Lieferung: {pk ? `${pk.time} nach Zahlung, per Download-Link` : "nach Absprache"}</li>
           </ul>

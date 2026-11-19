@@ -43,7 +43,8 @@ export function summarizeBriefing(d: Briefing) {
       section = a.section;
       lines.push("", section.toUpperCase());
     }
-    lines.push(`${a.label}: ${a.value}`);
+    // options are stored as "Pro|3 Werbefilme, 449 €"; show them as "Pro (3 Werbefilme, 449 €)"
+    lines.push(`${a.label}: ${a.value.split(", ").map((x) => x.replace(/\|(.+)$/, " ($1)")).join(", ")}`);
   }
   if (d.photos.length) {
     lines.push("", `FOTOS (${d.photos.length})`);

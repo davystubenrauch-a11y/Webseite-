@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { euro, isService, products, shipping, totals, vatNote, type Cart } from "@/lib/shop";
 import { stripe } from "@/lib/stripe";
 import { deliver } from "@/lib/deliver";
+import { hello, signature } from "@/lib/mailtext";
 
 // Creates a Stripe Checkout session for the shop (STRIPE_SECRET_KEY) with a post-purchase invoice.
 // Fulfilment runs in /api/stripe/webhook, not on the thank-you page. Without a key the order is
@@ -100,6 +101,26 @@ export async function POST(req: Request) {
     o.address ? `Adresse: ${o.address}` : "",
     o.early ? "Sofortiger Beginn verlangt, Hinweis zum Erlöschen des Widerrufsrechts bestätigt." : "",
   ].filter(Boolean).join("\n");
-  if (await deliver({ id, kind: "bestellung", subject: `Bestellung ${id}: ${euro(t.total)}`, text, replyTo: o.email, data: { ...o, website: undefined } })) return NextResponse.json({ ok: true, id, manual: true });
+  const copy = {
+    to: o.email.trim(),
+    subject: `Ihre Bestellung bei FOAV (${id})`,
+    text: [
+      hello(o.name),
+      "",
+      "danke für Ihre Bestellung. Sie ist bei uns angekommen:",
+      "",
+      ...t.lines.map((l) => `${l.qty} × ${l.name}: ${euro(l.qty * l.price)}`),
+      ...(t.plates ? [`Versand: ${t.ship ? euro(t.ship) : "kostenlos"}`] : []),
+      `Gesamt: ${euro(t.total)} (Endpreis, gemäß § 19 UStG ohne Umsatzsteuer)`,
+      "",
+      "So geht es weiter:",
+      "1. Innerhalb eines Werktags schicken wir Ihnen einen sicheren Zahlungslink und die Rechnung.",
+      "2. Nach der Zahlung legen wir sofort los." + (t.plates ? " NFC-Platten sind in 3 bis 7 Werktagen bei Ihnen." : ""),
+      "",
+      `Ihre Bestellnummer: ${id}. Antworten Sie einfach auf diese E-Mail, wenn Sie etwas ändern möchten.`,
+      signature,
+    ].join("\n"),
+  };
+  if (await deliver({ id, kind: "bestellung", subject: `Bestellung ${id}: ${euro(t.total)}`, text, replyTo: o.email, data: { ...o, website: undefined }, copy })) return NextResponse.json({ ok: true, id, manual: true });
   return NextResponse.json({ ok: false, error: "Die Bestellung konnte gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });
 }

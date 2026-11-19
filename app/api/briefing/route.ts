@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { deliver } from "@/lib/deliver";
+import { hello, signature } from "@/lib/mailtext";
 import { kindLabels, summarizeBriefing, validateBriefing, type Briefing } from "@/lib/briefing";
 
 // Receives the website questionnaire and the roomtour order (answers + photo links)
@@ -38,10 +39,30 @@ export async function POST(req: Request) {
   const subject = `${kindLabels[data.kind]} ${id}: ${data.name}`;
   const text = `${summarizeBriefing(data)}\n\nReferenz: ${id}`;
 
+  const next: Record<string, string[]> = {
+    website: ["1. Falls noch nicht geschehen: Paket im Warenkorb bestellen (foav.de/shop).", "2. Nach der Zahlung beginnen wir. Den Entwurf Ihrer Website bekommen Sie als Link per E-Mail: Basis nach 5 Tagen, Business und Premium nach 7 Tagen.", "3. Sie sagen uns, was wir ändern sollen. Erst nach Ihrer Freigabe geht die Seite online."],
+    shots: ["1. Falls noch nicht geschehen: Paket im Warenkorb bestellen (foav.de/shop).", "2. Nach der Zahlung beginnen wir. Ihren Werbefilm bekommen Sie als Download-Link per E-Mail: Starter nach 48 Stunden, Pro und Brand-Paket nach 72 Stunden.", "3. Passt etwas nicht, ändern wir es mit Ihnen. Erst dann verwenden Sie den Film."],
+    nfc: ["1. Falls noch nicht geschehen: Platten im Warenkorb bestellen (foav.de/shop).", "2. Innerhalb von 2 Werktagen schicken wir Ihnen eine Design-Vorschau Ihrer Platte zur Freigabe.", "3. Nach Ihrer Freigabe verknüpfen wir jede Platte mit Ihrem Google-Profil, testen sie und schicken sie per Post."],
+  };
+  const visible = { ...data, photos: [] as typeof data.photos };
   const copy = data.email ? {
     to: data.email,
-    subject: `Ihre Angaben bei FOAV (${id})`,
-    text: `Hallo ${data.name},\n\ndanke, Ihre Angaben sind bei uns angekommen. Ihre Referenz: ${id}.\n\nSo geht es weiter: Sobald die Zahlung da ist, beginnen wir. Den Entwurf bzw. das Video bekommen Sie per E-Mail als Link. Fehlt etwas, melden wir uns, aber in der Regel reicht, was Sie uns geschickt haben.\n\nIhre Angaben im Überblick:\n\n${summarizeBriefing(data)}\n\nFragen? Antworten Sie einfach auf diese E-Mail oder rufen Sie an: 0155 66456417 (Florian) oder 0176 56612709 (Davy).\n\nFOAV, München`,
+    subject: `Ihre Angaben sind bei uns (${id})`,
+    text: [
+      hello(data.name),
+      "",
+      `danke, Ihre Angaben sind vollständig bei uns angekommen${data.photos.length ? `, dazu ${data.photos.length} ${data.photos.length === 1 ? "Datei" : "Dateien"}` : ""}. Ihre Referenz: ${id}.`,
+      "",
+      "So geht es weiter:",
+      ...(next[data.kind] ?? ["Wir melden uns innerhalb von 24 Stunden bei Ihnen."]),
+      "",
+      "Fehlt uns noch etwas, melden wir uns kurz. Meist reicht aber, was Sie geschickt haben.",
+      "",
+      "Ihre Angaben zum Nachlesen:",
+      "",
+      summarizeBriefing(visible),
+      signature,
+    ].join("\n"),
   } : undefined;
   if (await deliver({ id, kind: data.kind, subject, text, replyTo: data.email || undefined, data: { ...data, website: undefined }, copy })) return NextResponse.json({ ok: true, id });
   return NextResponse.json({ ok: false, error: "Ihre Angaben konnten gerade nicht übermittelt werden. Bitte versuchen Sie es in einer Minute noch einmal oder rufen Sie uns an.", id }, { status: 503 });
