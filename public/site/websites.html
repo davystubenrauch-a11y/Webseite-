@@ -1762,6 +1762,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .n-logo img { transform: perspective(700px) rotateX(52deg) rotateZ(-10deg); }
 .n-logo figcaption { margin-top: -6px; position: relative; }
 .cmpc__logo { box-shadow: 0 1px 0 #3a3a3e, 0 2px 0 #2c2c30, 0 3px 0 #202024, 0 4px 0 #1a1a1d, 0 26px 30px -12px rgba(0,0,0,.6); }
+
+/* ---------- logo plate also in white: black and white cross-fade ---------- */
+.pst__logo.lgw, .n-logo img.lgw { position: absolute; left: 0; top: 0; width: 100%; }
+img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #d5d0c7, 0 3px 0 #cdc8be, 0 4px 0 #c6c0b6, 0 5px 0 #bfb9ae, 0 6px 0 #b8b2a7, 0 40px 50px -16px rgba(0,0,0,.5); }
+.cmpc__logo.lgw { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
+@keyframes lgSwap { 0%, 38% { opacity: 0; } 50%, 88% { opacity: 1; } 100% { opacity: 0; } }
+.still img.lgw { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { img.lgw { animation: none; opacity: 0; } }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>

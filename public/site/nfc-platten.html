@@ -1762,6 +1762,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .n-logo img { transform: perspective(700px) rotateX(52deg) rotateZ(-10deg); }
 .n-logo figcaption { margin-top: -6px; position: relative; }
 .cmpc__logo { box-shadow: 0 1px 0 #3a3a3e, 0 2px 0 #2c2c30, 0 3px 0 #202024, 0 4px 0 #1a1a1d, 0 26px 30px -12px rgba(0,0,0,.6); }
+
+/* ---------- logo plate also in white: black and white cross-fade ---------- */
+.pst__logo.lgw, .n-logo img.lgw { position: absolute; left: 0; top: 0; width: 100%; }
+img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #d5d0c7, 0 3px 0 #cdc8be, 0 4px 0 #c6c0b6, 0 5px 0 #bfb9ae, 0 6px 0 #b8b2a7, 0 40px 50px -16px rgba(0,0,0,.5); }
+.cmpc__logo.lgw { box-shadow: 0 1px 0 #dcd8d0, 0 2px 0 #cdc8be, 0 3px 0 #bfb9ae, 0 4px 0 #b8b2a7, 0 26px 30px -12px rgba(0,0,0,.45); }
+@keyframes lgSwap { 0%, 38% { opacity: 0; } 50%, 88% { opacity: 1; } 100% { opacity: 0; } }
+.still img.lgw { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { img.lgw { animation: none; opacity: 0; } }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1812,7 +1820,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
       <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#editionen">Mit Ihrem Logo</a></div></div></div>
       <div class="pst pst--nfc">
         <div class="pst__dev" aria-hidden="true">
-          <span class="pst__disc pst__disc--b"><img class="pst__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480"></span>
+          <span class="pst__disc pst__disc--b"><img class="pst__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480"><img class="pst__logo lgw" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480"></span>
           <span class="pst__disc"><span class="disc"><svg viewBox="0 0 200 200"><use href="#disc" width="200" height="200"/></svg></span><i class="pst__wave"></i><i class="pst__wave pst__wave--2"></i></span>
           <div class="iphone pst__tap"><div class="iphone__screen"><div class="pg"><p class="pg__top"><b>G</b>Ihr Restaurant</p><p class="pg__q">Wie war Ihr Besuch?</p><p class="pg__s"><i style="--i:0"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:1"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:2"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:3"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i><i style="--i:4"><svg viewBox="0 0 24 24"><use href="#star"/></svg></i></p><p class="pg__h">Hervorragend</p><span class="pg__f"></span><span class="pg__b">Posten</span></div></div></div>
           <p class="pst__toast"><svg viewBox="0 0 24 24"><use href="#star"/></svg>+1 Google-Bewertung</p>
@@ -1832,13 +1840,13 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
           <h2 id="h-plate">Gäste bewerten Sie mit einem Antippen.</h2>
           <ol class="how"><li><b>Einrichten.</b> Wir verknüpfen die Platte mit Ihrem Google-Profil.</li><li><b>Antippen.</b> Ihr Gast hält sein Handy an die Platte.</li><li><b>Bewerten.</b> Ihre Bewertungsseite öffnet sich, ohne App.</li></ol>
           <div class="scene__foot"><p class="price">14,90 € <small>pro Stück</small></p><a class="btn btn--light" href="#pakete">Paket wählen</a><a class="btn btn--line" href="/nfc-platten#logo-vorschau">Mit Ihrem Logo</a></div>
-          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: in Weiß, in Schwarz oder mit Ihrem Logo.</p>
+          <p class="scene__fact">Rund, Ø 10 cm, aus Acryl: in Weiß oder Schwarz, auch mit Ihrem Logo.</p>
         </div>
         <div class="scene__stage n-stage" aria-hidden="true">
           <div class="n-floor"><span class="n-rings"><i></i><i></i><i></i></span><span class="disc" id="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div>
           <div class="n-phone"><div class="gr"><div class="gr-bar">9:41<i></i><u></u></div><div class="gr-head"><b>Ihr Restaurant</b><i>×</i></div><div class="gr-user"><span class="gr-av">G</span><div><b>Ihr Gast</b><small>Beitrag wird Google-weit veröffentlicht</small></div></div><div class="n-stars"><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></div><p class="gr-word">Hervorragend</p><div class="gr-sub"><p>Essen<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p><p>Service<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p><p>Ambiente<span><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg><svg><use href="#star"/></svg></span></p></div><div class="gr-text">Anderen von deinen Erfahrungen erzählen</div><div class="gr-photo"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.5"/><path d="M8 6l1.5-2h5L16 6"/></svg>Fotos &amp; Videos hinzufügen</div><div class="gr-ask">Was hast du bestellt?<div><em>Frühstück</em><em>Brunch</em><em>Mittagessen</em><em>Abendessen</em></div></div><div class="gr-post">Posten</div></div></div>
           <span class="toast n-toast"><svg><use href="#star"/></svg>+1 Google-Bewertung</span>
-          <figure class="n-logo"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><figcaption>Auch mit Ihrem Logo</figcaption></figure>
+          <figure class="n-logo"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480" loading="lazy"><img class="lgw" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480" loading="lazy"><figcaption>Mit Ihrem Logo, Schwarz oder Weiß</figcaption></figure>
         </div>
       </div>
     </div>
