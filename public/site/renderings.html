@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <script>try{if("scrollRestoration" in history)history.scrollRestoration="manual";var nv=performance.getEntriesByType("navigation")[0];if(nv&&nv.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.__reload=1;}}catch(e){}</script>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
 <title>Renderings ab 49 € · Wohnung einrichten, Umbau zeigen · FOAV</title>
 <meta name="description" content="Aus Ihrem Handyfoto wird ein fotorealistisches Bild vom Ergebnis: leere Wohnung virtuell eingerichtet, Umbau oder Sanierung gezeigt, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film ab 199 €. Fertig in 48 Stunden.">
 <meta name="theme-color" content="#fbfbfd">
@@ -75,7 +75,9 @@
 }
 .ticks li::before { background-color: var(--gold) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; overflow-x: hidden; }
+/* Safari: nothing may make the page wider than the screen (it would zoom out and pan sideways) */
+main > section, main > div, .foot { overflow-x: clip; }
 /* iPhone/iPad: Grundgröße folgt der eingestellten Textgröße (Dynamic Type) */
 @supports (font: -apple-system-body) and (-webkit-touch-callout: none) { html { font: -apple-system-body; } }
 @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }

@@ -5,6 +5,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## Einträge
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
+- iPhone-Safari zeigte die Seite verkleinert und seitlich verschoben (rechts freier Streifen, weiter unten Kasten bis zum Rand), obwohl Chrome-Emulation sauber war. Safari zoomt heraus, wenn irgendetwas breiter als der Bildschirm ist; `body { overflow-x: clip }` allein reicht in Safari nicht. Fix: `html { overflow-x: hidden }`, `main > section { overflow-x: clip }` (Sticky bleibt heil) und `minimum-scale=1` im Viewport.
 - Kleben (sticky) ist auf dem Handy gefährlich: NFC-Auswahlkarten lagen zwischen klebender Vorschau oben und klebender Warenkorb-Leiste unten und waren nie sichtbar. Auf dem Handy: Auswahl zuerst, Vorschau danach, nichts klebt darüber. Vorher/Nachher-Regler immer im Format der Bilder (16:9), nie 4:5 bei Querformat-Fotos.
 - Handy-Proportionen: Scroll-Filme immer auf iPhone SE (375×667), 13 (390×844) und Pro Max (430×932) prüfen. Geräte in den Filmen mit Container-Einheiten (`cqw`/`cqh`) größenbegrenzen, sonst ragen sie aus dem Rahmen; auf kleinen Handys Kicker ausblenden und Preis + Knopf in eine Zeile, damit die Animation Platz hat.
 - Fragebögen: Paket mit Preis zuerst, nur das Nötigste Pflicht (Website 11, Video 10, NFC 5), freiwillige Abschnitte eingeklappt (`Sec optional`). Bestätigungs-E-Mails an Kunden für Anfrage, Fragebogen und Bestellung (`lib/mailtext.ts`, Signatur mit beiden Gründern); lokal testen mit Preload `mailtrap.cjs`, das `fetch` an Resend abfängt.
