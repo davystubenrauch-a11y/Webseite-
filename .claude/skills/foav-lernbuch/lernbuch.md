@@ -5,6 +5,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## Einträge
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
+- „Abgehackt / wirkt wie Ende“: harte Farbkanten (weiß → grau) mit leerem Grau darunter. Lösung: Abschnitts-Hintergründe als weiche Verläufe von der Seitenfarbe aus (`#fbfbfd` → Grau → `#fbfbfd`), Abstände `.sec` max. 128 px statt 160 px. Prüfen mit Screenshots an jeder Abschnittsgrenze (Grenze bei 60 % Bildschirmhöhe).
 - Gründer: „Man darf nicht das Gefühl haben, dass die Website nach jeder Seite aufhört.“ → jede Unterseite endet mit „Mehr von FOAV“ (die anderen Angebote als Bildkarten, `#mehr`, build.py entfernt die Karte der eigenen Seite); leere Bildschirme per Messskript `gaps` suchen (größte leere Fläche > 42 % des Bildschirms), Einblend-Animationen mit `threshold: 0` statt 0.2 bei hohen Listen.
 - Gründer: Abschnitte lieber „Überschrift → Bild → kurzer Text“ statt Text neben leerer Fläche; Bild beweist, Text erklärt danach. Immer auch bei ~1180 px (MacBook-Fenster) prüfen, nicht nur 1440.
 - Selbstprüfung per Übersichtsbogen (Screenshots in Bildschirm-Schritten, mit PIL zu 6er/12er-Bogen zusammengesetzt) spart Zeit und findet Proportionsfehler: schwebende Überschrift (`align-items: end` bei langem Nachbartext), überladene Kontaktknöpfe auf dem Handy, Raster, das durch nicht umbrechende Knöpfe breiter als der Bildschirm wird (`minmax(0, 1fr)`).

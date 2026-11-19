@@ -1748,6 +1748,12 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 @media (min-width: 1000px) and (max-width: 1299px) { .hero > .pause { padding: 0 14px; } .hero > .pause span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); } }
 
 
+
+/* ---------- soft transitions: no hard grey edges that look like the end of the page ---------- */
+.sec { padding-top: clamp(80px, 9vw, 128px); }
+.scene--web, .scene--shots { background: linear-gradient(180deg, #fbfbfd 0, #f4f4f6 35vh, #fbfbfd 45%); }
+.scene--nfc { background: linear-gradient(180deg, #fbfbfd 0, #f1f1f4 35vh, #e9e9ee calc(100% - 45vh), #fbfbfd 100%); }
+.contact.dark { margin-top: clamp(64px, 8vw, 120px); background: linear-gradient(180deg, #fbfbfd 0, var(--band) clamp(120px, 14vw, 220px)); }
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
