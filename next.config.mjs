@@ -17,6 +17,7 @@ const nextConfig = {
     return { beforeFiles: [{ source: "/", destination: "/site/index.html" },
         { source: "/websites", destination: "/site/websites.html" },
         { source: "/ki-shots", destination: "/site/ki-shots.html" },
+        { source: "/renderings", destination: "/site/renderings.html" },
         { source: "/nfc-platten", destination: "/site/nfc-platten.html" },
         { source: "/links", destination: "/site/links.html" },
         { source: "/demo/spiruli", destination: "/demo/spiruli/index.html" },

@@ -6,6 +6,8 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ### 2026-11-19 · Renderings + Video auf dem iPhone
 - „Video läuft nicht“, aber Code und Live-Seite laufen in Chromium → iPhone-Stromsparmodus/„Bewegung reduzieren“ verhindert Autoplay. Immer einen Abspielknopf als Rückfall haben und bei jedem Tipp erneut `play()` versuchen.
+- Gründer: Angebote nicht vermischen. Werbevideos sind der Fokus und bekommen eine eigene Seite; Renderings (inkl. Wohnung einrichten) sind eine eigene Seite. Renderings günstig (49 €), weil „das könnte jeder selbst, wir machen es für Leute ohne Ahnung“.
+- Fehler: `img { display: block }` hebt das HTML-Attribut `hidden` auf → für umschaltbare Bilder/Videos `[hidden] { display: none }` ergänzen.
 - Renderings (Umbau zeigen, bevor gebaut wird): Vorher als „amateur smartphone snapshot“ erzeugen, Nachher mit `image_references` + „exactly this same room/house from exactly the same camera position“ + genaue Liste der Änderungen und Möbelanordnung → Geometrie bleibt, wirkt echt. 4 Bilder high/2k ≈ 11 Credits.
 
 ### 2026-11-15 · KI-Werbevideos: was echt wirkt
