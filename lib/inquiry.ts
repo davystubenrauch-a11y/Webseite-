@@ -28,7 +28,7 @@ export type Errors = Partial<Record<string, string>>;
 export const serviceLabels: Record<ServiceId, string> = {
   nfc: "NFC-Platten",
   web: "Website",
-  shots: "KI-Werbevideos",
+  shots: "KI-Werbevideos / Renderings",
   roomtour: "Roomtour",
 };
 

@@ -4,6 +4,10 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-19 · Renderings + Video auf dem iPhone
+- „Video läuft nicht“, aber Code und Live-Seite laufen in Chromium → iPhone-Stromsparmodus/„Bewegung reduzieren“ verhindert Autoplay. Immer einen Abspielknopf als Rückfall haben und bei jedem Tipp erneut `play()` versuchen.
+- Renderings (Umbau zeigen, bevor gebaut wird): Vorher als „amateur smartphone snapshot“ erzeugen, Nachher mit `image_references` + „exactly this same room/house from exactly the same camera position“ + genaue Liste der Änderungen und Möbelanordnung → Geometrie bleibt, wirkt echt. 4 Bilder high/2k ≈ 11 Credits.
+
 ### 2026-11-15 · KI-Werbevideos: was echt wirkt
 - Kritik der Gründer: KI-Bilder „kann jeder gratis“, Restaurant-Film mit Kellner/Stichflamme/Anstoßen „zu sehr KI“, Handy-Look mit Wackeln „nicht professionell“. Gelungen: ruhiger Café-Spot „Draußen grau. Drinnen Apfelkuchen.“
 - Regeln: keine Hände, Menschen, Feuer oder Flüssigkeiten in Bewegung; nur langsame, gleichmäßige Kamerafahrten (Slider/Gimbal, „no shake“ im Prompt); natürliches, gemütliches Licht; Regen am Fenster/Kerze/Dampf als einzige kleine Bewegung; Texte als eigene Overlays statt KI-Schrift; kurze Geschichte in zwei Zeilen + Schlusstafel mit Aufforderung.

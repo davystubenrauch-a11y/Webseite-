@@ -28,10 +28,11 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
  {"@type":"WebSite","@id":"https://foav.de/#website","name":"FOAV","alternateName":["FOAV GbR","FOAV München"],"url":"https://foav.de/","inLanguage":"de-DE","publisher":{"@id":"https://foav.de/#firma"}},
- {"@type":"ProfessionalService","@id":"https://foav.de/#firma","name":"FOAV","legalName":"FOAV GbR","alternateName":["FOAV GbR","FOAV München"],"url":"https://foav.de/","logo":"https://foav.de/media/icon-foav-512.png","image":"https://foav.de/media/og-foav.jpg","description":"Agentur aus München für Websites, KI-Werbevideos (Werbefilme aus Fotos, auch virtuell eingerichtete Immobilien) und NFC-Platten für Google-Bewertungen.","email":"info@foav.de","telephone":"+4915566456417","address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},"areaServed":"DE","priceRange":"14,90 € – 1.499 €",
+ {"@type":"ProfessionalService","@id":"https://foav.de/#firma","name":"FOAV","legalName":"FOAV GbR","alternateName":["FOAV GbR","FOAV München"],"url":"https://foav.de/","logo":"https://foav.de/media/icon-foav-512.png","image":"https://foav.de/media/og-foav.jpg","description":"Agentur aus München für Websites, KI-Werbevideos (Werbefilme aus Fotos, auch virtuell eingerichtete Immobilien), Renderings von Umbau und Sanierung und NFC-Platten für Google-Bewertungen.","email":"info@foav.de","telephone":"+4915566456417","address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},"areaServed":"DE","priceRange":"14,90 € – 1.499 €",
   "founder":[{"@type":"Person","name":"Florian Dressler","telephone":"+4915566456417"},{"@type":"Person","name":"Davy Stubenrauch","telephone":"+4917656612709"}],
   "hasOfferCatalog":{"@type":"OfferCatalog","name":"Leistungen","itemListElement":[
    {"@type":"Offer","name":"KI-Werbevideo Starter (1 Werbefilm aus Ihren Fotos)","price":"199","priceCurrency":"EUR"},
+   {"@type":"Offer","name":"Rendering von Umbau, Sanierung oder Neubau (pro Ansicht)","price":"149","priceCurrency":"EUR"},
    {"@type":"Offer","name":"Website Basis (3 Seiten)","price":"399","priceCurrency":"EUR"},
    {"@type":"Offer","name":"NFC-Platte für Google-Bewertungen, Classic Edition","price":"14.90","priceCurrency":"EUR"},
    {"@type":"Offer","name":"NFC-Platte mit Ihrem Logo, Custom Brand Edition","price":"29.90","priceCurrency":"EUR"}]}},
@@ -180,6 +181,9 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .vplay { position: absolute; z-index: 6; left: 50%; top: 50%; translate: -50% -50%; display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 22px 0 18px; border-radius: 999px; background: rgba(17,17,20,.78); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); color: #fff; font-weight: 700; }
 .vplay svg { width: 18px; height: 18px; fill: currentColor; }
 .vplay[hidden] { display: none; }
+.vplay--s { min-height: 0; width: 52px; height: 52px; padding: 0; justify-content: center; pointer-events: auto; }
+.vplay--s svg { width: 20px; height: 20px; margin-left: 3px; }
+#ki-shots:not(.s3) .vplay--s { display: none; }
 .cmp .vplay { top: auto; bottom: 16px; left: auto; right: 16px; translate: none; }
 
 /* ---------- v20 „Bühne“: black stage, white type, gold accent; services told as short scroll films ---------- */
@@ -1362,6 +1366,11 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .immo__arrow svg { width: 22px; height: 22px; }
 .immo__tag { position: absolute; left: 14px; top: 14px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 11px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: .75rem; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
 .immo__tag i { width: 7px; height: 7px; border-radius: 50%; background: #ff453a; animation: kfRec 1.1s steps(2, jump-none) infinite; }
+.rnd { padding-top: 0; }
+.rnd__tabs { grid-column: 1 / -1; justify-self: start; margin-bottom: 4px; }
+.rnd__tag { padding-left: 11px; }
+.rnd__fine { margin-top: 14px; font-size: .8125rem; color: var(--muted); max-width: 60ch; }
+.immo__card figcaption span { min-width: 0; }
 .immo__note { grid-column: 1 / -1; margin: -4px 0 0; font-size: .75rem; color: var(--muted); text-align: right; }
 @media (max-width: 1000px) {
   .immo__grid { display: flex; flex-direction: column; }
@@ -1710,10 +1719,10 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 <header class="head" id="head"><span class="prog" id="prog" aria-hidden="true"></span>
   <div class="wrap head__in">
     <a class="logo" href="/" aria-label="FOAV – zur Startseite"><svg class="logo__svg" viewBox="-10 20 2907 740" role="img" aria-label="FOAV"><rect x="0" y="40" width="700" height="700" rx="170" class="lg-tile"/><path class="lg-on" fill-rule="evenodd" d="M150 390a200 200 0 1 0 400 0a200 200 0 1 0 -400 0zM225 390a125 125 0 1 1 250 0a125 125 0 1 1 -250 0z"/><circle class="lg-amp" cx="350" cy="390" r="62"/><path class="lg-ink" transform="translate(838 739) scale(1 -1)" d="M88.5 0V554.125Q88.5 648.125 141.125 693.5625Q193.75 739 296.625 739H365.75V625.25H288.125Q259.25 625.25 243.625 609.4375Q228 593.625 228 565.125V0ZM22 426V535.5H374.5V426Z"/><path class="lg-ink" transform="translate(1182 739) scale(1 -1)" d="M339.875 -19.25Q268 -19.25 212.5 3.5Q157 26.25 118.625 65.4375Q80.25 104.625 60.5 154.875Q40.75 205.125 40.75 260.5V282.25Q40.75 338.875 61.3125 389.9375Q81.875 441 120.75 480.1875Q159.625 519.375 215.125 541.9375Q270.625 564.5 339.875 564.5Q409.75 564.5 464.9375 541.9375Q520.125 519.375 559.0 480.1875Q597.875 441 618.4375 389.9375Q639 338.875 639 282.25V260.5Q639 205.125 619.25 154.875Q599.5 104.625 561.125 65.4375Q522.75 26.25 467.25 3.5Q411.75 -19.25 339.875 -19.25ZM339.875 108Q388.625 108 421.75 129.1875Q454.875 150.375 472.0625 187.5625Q489.25 224.75 489.25 271.375Q489.25 319.625 471.5625 356.8125Q453.875 394 420.4375 415.625Q387 437.25 339.875 437.25Q293.125 437.25 259.5 415.625Q225.875 394 208.1875 356.8125Q190.5 319.625 190.5 271.375Q190.5 224.75 207.6875 187.5625Q224.875 150.375 258.3125 129.1875Q291.75 108 339.875 108Z"/><path class="lg-ink" transform="translate(1797 739) scale(1 -1)" d="M405.625 0V161.25H380.875V338.75Q380.875 383.125 359.25 405.1875Q337.625 427.25 292 427.25Q268.5 427.25 233.0 426.25Q197.5 425.25 160.625 423.625Q123.75 422 94.25 420V546.5Q117.5 548.5 147.3125 550.3125Q177.125 552.125 209.0625 552.9375Q241 553.75 268.75 553.75Q352.625 553.75 409.3125 530.8125Q466 507.875 495.0625 460.125Q524.125 412.375 524.125 336.125V0ZM230.625 -14Q171.875 -14 127.4375 6.8125Q83 27.625 58.25 66.9375Q33.5 106.25 33.5 161.25Q33.5 221.375 63.6875 259.6875Q93.875 298 148.5 316.5625Q203.125 335.125 275.875 335.125H397.125V249.375H274.375Q229.5 249.375 205.375 227.3125Q181.25 205.25 181.25 169.375Q181.25 134.125 205.375 112.4375Q229.5 90.75 274.375 90.75Q302.125 90.75 325.3125 100.75Q348.5 110.75 363.6875 134.9375Q378.875 159.125 380.875 201.75L416.875 162.5Q411.875 105.5 389.375 66.375Q366.875 27.25 327.375 6.625Q287.875 -14 230.625 -14Z"/><path class="lg-ink" transform="translate(2311 739) scale(1 -1)" d="M183.5 0 16.5 545.25H170.25L328.875 0ZM228.75 0V123.5H382.875V0ZM286 0 422.25 545.25H566.25L422 0Z"/></svg></a>
-    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/ki-shots">KI-Werbevideos</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
+    <nav class="nav" aria-label="Hauptnavigation"><a href="/websites">Websites</a><a href="/ki-shots">Videos &amp; Renderings</a><a href="/nfc-platten">NFC-Platten</a><a href="/shop">Shop</a><a href="/#team">Über uns</a></nav>
     <button class="menu-btn" type="button" id="menuBtn" aria-expanded="false" aria-controls="mnav">Menü<i aria-hidden="true"></i></button>
     <a class="btn btn--ink" href="#pakete" data-offers>Anfragen</a>
-    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 399 €</span></a><a href="/ki-shots">KI-Werbevideos <span>ab 199 €</span></a><a href="/nfc-platten">NFC-Platten <span>14,90 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="/shop">Warenkorb</a></div></nav>
+    <nav class="mnav" id="mnav" aria-label="Menü" hidden><div class="wrap"><a href="/websites">Websites <span>ab 399 €</span></a><a href="/ki-shots">Videos &amp; Renderings <span>ab 149 €</span></a><a href="/nfc-platten">NFC-Platten <span>14,90 €</span></a><a href="/shop">Shop <span>direkt bestellen</span></a><a href="/#ablauf">Ablauf</a><a href="/#team">Über uns</a><a href="#fragen">Fragen</a><a class="btn btn--ink" href="/shop">Warenkorb</a></div></nav>
   </div>
 </header>
 
@@ -1826,6 +1835,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
         <ul class="order" role="list">
           <li><a href="/websites#pakete"><b>Website</b><span>Paket wählen, ab 399 €</span></a></li>
           <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>Paket wählen, ab 199 €</span></a></li>
+          <li><a href="/ki-shots#renderings"><b>Renderings</b><span>Umbau zeigen, ab 149 € pro Ansicht</span></a></li>
           <li><a href="/nfc-platten#pakete"><b>NFC-Platten</b><span>Classic oder mit Ihrem Logo, ab 14,90 €</span></a></li>
         </ul>
         <p class="clock">In München ist es gerade <b id="clock">–</b> Uhr.</p>
@@ -1837,7 +1847,7 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
       </div>
       <form class="form" id="form" novalidate>
         <h3>Noch Fragen? Wir beraten Sie kostenlos.</h3><p class="form__sub">Sie wissen noch nicht, welches Paket passt, oder haben einen besonderen Wunsch? Name und Telefon oder E-Mail genügen, wir melden uns innerhalb von 24 Stunden.</p>
-        <fieldset><legend>Worum geht es?</legend><div class="picks"><label><input type="checkbox" name="s" value="Website">Website</label><label><input type="checkbox" name="s" value="KI-Werbevideos">KI-Werbevideos</label><label><input type="checkbox" name="s" value="NFC-Platten">NFC-Platten</label></div><span class="err" id="eServices" aria-live="polite"></span></fieldset>
+        <fieldset><legend>Worum geht es?</legend><div class="picks"><label><input type="checkbox" name="s" value="Website">Website</label><label><input type="checkbox" name="s" value="KI-Werbevideos">KI-Werbevideos</label><label><input type="checkbox" name="s" value="Renderings">Renderings</label><label><input type="checkbox" name="s" value="NFC-Platten">NFC-Platten</label></div><span class="err" id="eServices" aria-live="polite"></span></fieldset>
         <div class="pair">
           <div class="f"><label for="fName">Name</label><input id="fName" autocomplete="name" autocapitalize="words" enterkeyhint="next" aria-describedby="eName" required><span class="err" id="eName" aria-live="polite"></span></div>
           <div class="f"><label for="fContact">Telefon oder E-Mail</label><input id="fContact" autocomplete="tel" inputmode="email" autocapitalize="off" spellcheck="false" enterkeyhint="send" aria-describedby="eContact" required><span class="err" id="eContact" aria-live="polite"></span></div>
@@ -1857,8 +1867,8 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
     <footer class="foot">
       <div class="wrap">
         <div class="foot__grid">
-          <div class="foot__brand"><p>Websites, KI-Werbevideos und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
-          <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/ki-shots">KI-Werbevideos</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
+          <div class="foot__brand"><p>Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
+          <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/ki-shots">KI-Werbevideos</a></li><li><a href="/ki-shots#renderings">Renderings</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
           <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#angebot">Leistungen im Vergleich</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="#pakete" data-offers>Angebot wählen</a></li><li><a href="/shop">Warenkorb</a></li><li><a href="mailto:info@foav.de">info@foav.de</a></li><li><a href="#kontakt">Kostenlose Beratung</a></li></ul></div>
         </div>
@@ -1933,6 +1943,15 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   function keepPlaying(v) {
     var btn = v.parentNode.querySelector(".vplay");
+    // iPhone in Stromsparmodus or with "Bewegung reduzieren" does not autoplay: offer a play button instead of a frozen poster
+    if (!btn) {
+      btn = document.createElement("button"); btn.type = "button"; btn.className = "vplay vplay--s"; btn.hidden = true;
+      btn.setAttribute("aria-label", "Video abspielen");
+      btn.innerHTML = '<svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>';
+      if (getComputedStyle(v.parentNode).position === "static") v.parentNode.style.position = "relative";
+      v.parentNode.appendChild(btn);
+    }
+    v.addEventListener("playing", function () { btn.hidden = true; });
     if (btn) btn.addEventListener("click", function (e) { e.stopPropagation(); start(v); });
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
     whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
@@ -2058,7 +2077,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
   // Safari may refuse to start videos until the first touch; try again then
-  ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function retry() { shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); removeEventListener(ev, retry); }, { passive: true }); });
+  // every tap counts as a user gesture, so retry paused videos that are on screen (not only on the first tap)
+  ["touchend", "click", "keydown"].forEach(function (ev) { addEventListener(ev, function () { if (reduce) return; shown.forEach(function (v) { if (v.paused && !(still && v.id === "heroVid")) start(v); }); }, { passive: true }); });
   function setStill(s) {
     still = s; document.documentElement.classList.toggle("still", s);
     pauseBtn.setAttribute("aria-pressed", String(s)); pauseBtn.querySelector("span").textContent = s ? "Bewegung fortsetzen" : "Bewegung anhalten";
@@ -2105,11 +2125,24 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 
+  /* renderings: switch between the two examples */
+  (function () {
+    var b = $("#rndB"), a = $("#rndA"); if (!b || !a) return;
+    var ex = { cafe: ["cafe", "altes Café vor dem Umbau", "dasselbe Café nach dem geplanten Umbau", "Ihr Handyfoto: das Café heute", "Unser Rendering: so sieht es nach dem Umbau aus"],
+               haus: ["haus", "Einfamilienhaus vor der Sanierung", "dasselbe Haus nach der geplanten Sanierung", "Ihr Handyfoto: das Haus heute", "Unser Rendering: so sieht es nach der Sanierung aus"] };
+    var tabs = $$("[data-rnd]");
+    function pick(k) { var e = ex[k]; b.src = "/images/renderings/" + e[0] + "-vorher.jpg"; a.src = "/images/renderings/" + e[0] + "-nachher.jpg"; b.alt = "Handyfoto: " + e[1]; a.alt = "Rendering: " + e[2]; $("#rndBc").textContent = e[3]; $("#rndAc").textContent = e[4];
+      tabs.forEach(function (t) { var on = t.getAttribute("data-rnd") === k; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; }); }
+    tabs.forEach(function (t, i) {
+      t.addEventListener("click", function () { pick(t.getAttribute("data-rnd")); });
+      t.addEventListener("keydown", function (e) { if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return; e.preventDefault(); var n = tabs[(i + 1) % tabs.length]; pick(n.getAttribute("data-rnd")); n.focus(); });
+    });
+  })();
   /* ---------- before / after ---------- */
   var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
   if (cmp) (function () {
   grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
-  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", ""], befs = ["wohnung-leer", "wohnung-leer"], room = 0;
+  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", "", "/images/renderings/cafe-nachher.jpg", "/images/renderings/haus-nachher.jpg"], befs = ["/images/ki-videos/wohnung-leer.jpg", "/images/ki-videos/wohnung-leer.jpg", "/images/renderings/cafe-vorher.jpg", "/images/renderings/haus-vorher.jpg"], room = 0;
   setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
@@ -2119,8 +2152,8 @@ document.addEventListener("DOMContentLoaded", function () {
   function pickRoom(i) {
     room = i;
     $$("[data-room]").forEach(function (b) { var on = +b.getAttribute("data-room") === i; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
-    if (bimg) bimg.src = "/images/ki-videos/" + befs[i] + ".jpg";
-    if (looks[i]) { aimg.src = looks[i]; aimg.hidden = false; } else { aimg.hidden = true; try { tv.currentTime = 0; } catch (e) {} start(tv); }
+    if (bimg) bimg.src = befs[i];
+    if (looks[i]) { aimg.src = looks[i]; aimg.hidden = false; tv.pause(); } else { aimg.hidden = true; try { tv.currentTime = 0; } catch (e) {} start(tv); }
   }
   $$("[data-room]").forEach(function (b) {
     b.addEventListener("click", function () { pickRoom(+b.getAttribute("data-room")); });
@@ -2203,8 +2236,8 @@ document.addEventListener("DOMContentLoaded", function () {
       err("#eConsent", consent.checked ? "" : "Bitte stimmen Sie der Verarbeitung Ihrer Angaben zu.")
     ];
     if (ok.indexOf(false) > -1) { var f = form.querySelector(".bad input") || (!picked.length ? $(".picks input") : consent); f.focus(); return; }
-    var map = { "Website": "web", "KI-Werbevideos": "shots", "NFC-Platten": "nfc" }, services = picked.map(function (p) { return map[p]; });
-    var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
+    var map = { "Website": "web", "KI-Werbevideos": "shots", "Renderings": "shots", "NFC-Platten": "nfc" }, services = picked.map(function (p) { return map[p]; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    var body = { services: services, name: name.value.trim(), company: $("#fCompany").value.trim(), email: isMail ? cv : "", phone: isMail ? "" : cv, contactPref: isMail ? "email" : "phone", message: (picked.indexOf("Renderings") > -1 ? "[Rendering] " : "") + msg.value.trim(), consent: true, website: $("#fWeb").value, addOns: [] };
     body.web = { tier: services.indexOf("web") > -1 ? "Basis" : "", url: "" };
     body.shots = { tier: "" };
     var col = $("[data-color][aria-pressed=true]");
