@@ -85,7 +85,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - `/api/status`: `resend_ok: true`, foav.de `verified`; Testanfrage ist angekommen. Stripe- und Blob-Schlüssel fehlen noch (`stripe_key`, `photo_upload` = false).
 
 ## Wichtige Fakten (Kurzfassung, Details in `docs/verlauf-claude.md`)
-- Website-Pakete **399 / 799 (Empfohlen) / 1.499 €**, Hosting inklusive (Cloudflare-Pages-Konto von FOAV), Domain bucht der Kunde. KI-Werbevideos 199 / 449 / 899 €. NFC normal 14,90 € (ab 5: 13,90, ab 10: 12,90), mit Logo 29,90 € (27,90 / 24,90).
+- Website-Pakete **399 / 799 (Empfohlen) / 1.499 €**, Hosting inklusive (Cloudflare-Pages-Konto von FOAV), Domain bucht der Kunde. KI-Werbevideos 199 / 449 / 899 €. NFC normal 14,90 € (ab 5: 13,90, ab 10: 12,90) **nur in Weiß** (FOAV hat keine normalen schwarzen Platten), mit Logo 29,90 € (27,90 / 24,90) in Weiß oder Schwarz. Shop-Produkt `nfc-schwarz` entfernt, Konfigurator zeigt die Farbwahl nur bei „Mit eigenem Logo“.
 - FOAV GbR, Kleinunternehmer § 19 UStG, Anschrift nur in Impressum/AGB/Rechnungen (`lib/site.ts`). Monochromes Design, keine Akzentfarben. Keine erfundenen Bewertungen. KI-Inhalte kennzeichnen.
 - Bauen: `design/v20-template.html` → `python3 design/build.py v20` → `public/site/*.html`. Bestellweg: Paket → Fragebogen → Warenkorb (`/shop`) → Stripe. Versand per Resend.
 - Älterer Verlauf (alle Stände vor dem 5.11., Designversionen v6–v24, frühere Preise) steht in **`docs/verlauf-claude.md`**.
