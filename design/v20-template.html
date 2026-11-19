@@ -1778,6 +1778,15 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .foot__brand { grid-column: 1 / -1; }
   .foot__grid > div:last-child { display: none; }
 }
+
+#form { scroll-margin-top: 92px; }
+
+.phero__from { display: none; }
+@media (max-width: 900px) { .hero .phero__from { margin: 14px 0 4px; } }
+@media (max-width: 900px) {
+  .phero__from { display: inline-block; margin: -6px 0 -8px; padding: 8px 14px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); font-size: .875rem; }
+  .phero__from b { color: var(--ink); font-weight: 700; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1811,7 +1820,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <h1 id="h-start">Mehr Kunden für Ihr <span class="hl">Unternehmen.</span></h1>
       <div class="hero__row">
         <p class="hero__sub">Websites, KI-Werbevideos und Renderings aus Ihren Handyfotos und NFC-Platten für Google-Bewertungen. Zum festen Preis, den Sie vorher kennen, in Profi-Qualität dank KI und in wenigen Tagen fertig.</p>
-        <div class="cta"><a class="btn btn--light" href="#angebot">Angebote ansehen</a><a class="btn btn--line" href="#kontakt"><span>Kostenlos beraten<span class="hm"> lassen</span></span></a></div>
+        <p class="phero__from"><b>Festpreise ab 49 €</b> · kein Abo</p><div class="cta"><a class="btn btn--light" href="#angebot">Angebote ansehen</a><a class="btn btn--line" href="#kontakt"><span>Kostenlos beraten<span class="hm"> lassen</span></span></a></div>
       </div>
     </div>
     <div class="hero__stage">
@@ -1844,7 +1853,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Websites</span></nav>
       <h1 id="h-p-websites">Eine Website, die Kunden überzeugt.</h1>
-      <div class="phero__row"><p class="hero__sub">Klar gestaltet, schnell auf jedem Handy und mit allem, was rechtlich dazugehört. Sie beschreiben Ihren Betrieb, wir bauen die Seite in bis zu 7 Tagen.</p><div class="cta"><a class="btn btn--light" href="#pakete">Pakete ansehen</a><a class="btn btn--line" href="#websites">So läuft's</a></div></div>
+      <div class="phero__row"><p class="hero__sub">Klar gestaltet, schnell auf jedem Handy und mit allem, was rechtlich dazugehört. Sie beschreiben Ihren Betrieb, wir bauen die Seite in bis zu 7 Tagen.</p><p class="phero__from"><b>ab 399 €</b> · Hosting inklusive · online in 7 Tagen</p><div class="cta"><a class="btn btn--light" href="#pakete">Pakete ansehen</a><a class="btn btn--line" href="#websites">So läuft's</a></div></div>
       <p class="hostbar"><svg aria-hidden="true"><use href="#tick"/></svg><span><b>0 € Hosting im Monat.</b> Bei vielen Anbietern zahlen Sie jeden Monat für das Hosting Ihrer Website. Bei uns ist es inklusive, ohne Abo.</span></p></div>
       <div class="pst pst--web">
         <div class="pst__dev" aria-hidden="true">
@@ -1864,7 +1873,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">KI-Werbevideos</span></nav>
       <h1 id="h-p-shots">Werbefilme aus Ihren Handyfotos.</h1>
-      <div class="phero__row"><p class="hero__sub">Sie fotografieren Ihr Café, Ihre Gerichte oder Ihren Laden mit dem Handy. Wir machen daraus einen kurzen Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok und Ihre Website. Ohne Filmteam, fertig in 48 bis 72 Stunden.</p><div class="cta"><a class="btn btn--light" href="#pakete">Pakete ansehen</a><a class="btn btn--line" href="#ki-shots">Beispiel ansehen</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Sie fotografieren Ihr Café, Ihre Gerichte oder Ihren Laden mit dem Handy. Wir machen daraus einen kurzen Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok und Ihre Website. Ohne Filmteam, fertig in 48 bis 72 Stunden.</p><p class="phero__from"><b>ab 199 €</b> · fertig in 48 Stunden</p><div class="cta"><a class="btn btn--light" href="#pakete">Pakete ansehen</a><a class="btn btn--line" href="#ki-shots">Beispiel ansehen</a></div></div></div>
       <div class="pst pst--shots">
         <div class="pst__dev" aria-hidden="true">
           <figure class="ps-photo"><img src="/images/ki-videos/handy-1.jpg" alt=""><i class="ps-scan"></i><figcaption>Ihr Handyfoto</figcaption></figure>
@@ -1884,7 +1893,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Renderings</span></nav>
       <h1 id="h-p-rnd">So sieht es aus, bevor es fertig ist.</h1>
-      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto oder als Rundgang-Film, fertig in 48 Stunden.</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto oder als Rundgang-Film, fertig in 48 Stunden.</p><p class="phero__from"><b>49 € pro Bild</b> · fertig in 48 Stunden</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
       <div class="rhero" aria-hidden="true">
         <figure class="rhero__b"><img src="/images/renderings/haus-vorher.jpg" alt=""><figcaption>Ihr Handyfoto</figcaption></figure>
         <i class="rhero__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
@@ -1901,7 +1910,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">NFC-Platten</span></nav>
       <h1 id="h-p-nfc">Mehr Sterne bei Google. Mit einem Antippen.</h1>
-      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#editionen">Mit Ihrem Logo</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Ihr Gast hält sein Handy an die Platte, und Ihre Google-Bewertungsseite öffnet sich. Ohne App, ohne Suchen, auf iPhone und Android.</p><p class="phero__from"><b>ab 12,90 € pro Platte</b> · ohne App, ohne Abo</p><div class="cta"><a class="btn btn--light" href="#pakete">Mengen und Preise</a><a class="btn btn--line" href="#editionen">Mit Ihrem Logo</a></div></div></div>
       <div class="pst pst--nfc">
         <div class="pst__dev" aria-hidden="true">
           <span class="pst__disc pst__disc--b"><img class="pst__logo" src="/images/ki-shots/nfc-logo-plate.webp" alt="" width="480" height="480"><img class="pst__logo lgw" src="/images/ki-shots/nfc-logo-plate-weiss.webp" alt="" width="480" height="480"></span>
@@ -2755,8 +2764,10 @@ document.addEventListener("DOMContentLoaded", function () {
     $$(".picks input").forEach(function (c) { if (c.value === service) c.checked = true; });
     if (note && msg.value.indexOf(note) < 0) msg.value = (msg.value ? msg.value + "\n" : "") + "Interesse: " + note;
   }
-  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () {
+  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function (e) {
     b.getAttribute("data-pick").split(",").forEach(function (s, i) { pick(s, i === 0 ? b.getAttribute("data-note") : null); });
+    // land on the form itself (on the phone it sits below the offer tiles), not on the top of the contact section
+    if (b.getAttribute("href") === "#kontakt" && form) { e.preventDefault(); form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
   }); });
   function calcLink() { var b = $("#calcBuy"), c = $("[data-color][aria-pressed=true]"); if (b && qty) b.href = "/shop?" + (c && c.getAttribute("data-color") === "Schwarz" ? "schwarz=" : "weiss=") + qty.value; }
   if (qty) { qty.addEventListener("input", calcLink); $$("[data-color]").forEach(function (x) { x.addEventListener("click", calcLink); }); calcLink(); }

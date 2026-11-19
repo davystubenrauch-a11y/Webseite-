@@ -1795,6 +1795,15 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .foot__brand { grid-column: 1 / -1; }
   .foot__grid > div:last-child { display: none; }
 }
+
+#form { scroll-margin-top: 92px; }
+
+.phero__from { display: none; }
+@media (max-width: 900px) { .hero .phero__from { margin: 14px 0 4px; } }
+@media (max-width: 900px) {
+  .phero__from { display: inline-block; margin: -6px 0 -8px; padding: 8px 14px; border-radius: 999px; background: #fff; box-shadow: inset 0 0 0 1px var(--line); color: var(--text); font-size: .875rem; }
+  .phero__from b { color: var(--ink); font-weight: 700; }
+}
 </style>
 <script defer src="/_vercel/insights/script.js"></script>
 </head>
@@ -1842,7 +1851,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Renderings</span></nav>
       <h1 id="h-p-rnd">So sieht es aus, bevor es fertig ist.</h1>
-      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto oder als Rundgang-Film, fertig in 48 Stunden.</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto oder als Rundgang-Film, fertig in 48 Stunden.</p><p class="phero__from"><b>49 € pro Bild</b> · fertig in 48 Stunden</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
       <div class="rhero" aria-hidden="true">
         <figure class="rhero__b"><img src="/images/renderings/haus-vorher.jpg" alt=""><figcaption>Ihr Handyfoto</figcaption></figure>
         <i class="rhero__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
@@ -2343,8 +2352,10 @@ document.addEventListener("DOMContentLoaded", function () {
     $$(".picks input").forEach(function (c) { if (c.value === service) c.checked = true; });
     if (note && msg.value.indexOf(note) < 0) msg.value = (msg.value ? msg.value + "\n" : "") + "Interesse: " + note;
   }
-  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function () {
+  $$("[data-pick]").forEach(function (b) { b.addEventListener("click", function (e) {
     b.getAttribute("data-pick").split(",").forEach(function (s, i) { pick(s, i === 0 ? b.getAttribute("data-note") : null); });
+    // land on the form itself (on the phone it sits below the offer tiles), not on the top of the contact section
+    if (b.getAttribute("href") === "#kontakt" && form) { e.preventDefault(); form.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" }); }
   }); });
   function calcLink() { var b = $("#calcBuy"), c = $("[data-color][aria-pressed=true]"); if (b && qty) b.href = "/shop?" + (c && c.getAttribute("data-color") === "Schwarz" ? "schwarz=" : "weiss=") + qty.value; }
   if (qty) { qty.addEventListener("input", calcLink); $$("[data-color]").forEach(function (x) { x.addEventListener("click", calcLink); }); calcLink(); }

@@ -31,7 +31,7 @@ export default async function Danke({ searchParams }: { searchParams: Promise<{ 
       )}
       <h2>So geht es weiter</h2>
       <p>
-        <b>NFC-Platten Classic:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil, testen sie und schicken sie Ihnen per Post. Sie sind in 3 bis 7 Werktagen bei Ihnen.
+        <b>NFC-Platten:</b> Wir verknüpfen jede Platte mit Ihrem Google-Profil, testen sie und schicken sie Ihnen per Post. Sie sind in 3 bis 7 Werktagen bei Ihnen.
       </p>
       <p>
         <b>NFC-Platten mit Ihrem Logo:</b> Sie bekommen innerhalb von 2 Werktagen eine Design-Vorschau per E-Mail. Erst nach Ihrer Freigabe produzieren wir.

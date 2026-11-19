@@ -133,12 +133,12 @@ export default function Shop({ online = false }: { online?: boolean }) {
   return (
     <Shell
       title={hasService ? "Letzter Schritt: bezahlen." : "Direkt bestellen."}
-      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "NFC-Platten Classic bestellen Sie hier direkt. Websites, KI-Werbevideos und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
+      lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "Normale NFC-Platten (Weiß, Google-Design) bestellen Sie hier direkt. Websites, KI-Werbevideos und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
       steps={[
         ["Paket wählen", "Der Preis steht vorher fest."],
         ["Fragebogen", "Websites, KI-Werbevideos und Logo-Platten: Angaben und Fotos senden."],
-        ["Bezahlen", "Sicher per Karte, Apple Pay oder Google Pay."],
-        ["Ergebnis erhalten", "Platten Classic in 3 bis 7 Werktagen per Post, KI-Werbevideos in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
+        ["Bezahlen", online ? "Sicher per Karte, Apple Pay oder Google Pay." : "Per sicherem Zahlungslink, den wir Ihnen innerhalb eines Tages per E-Mail schicken."],
+        ["Ergebnis erhalten", "NFC-Platten in 3 bis 7 Werktagen per Post, KI-Werbevideos in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -178,7 +178,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
               {ref && <p className="sh-hint">Zu Ihrem Fragebogen {ref}</p>}
               <p className="sh-hint">{vatNote}</p>
               {t.plates > 0 && t.plates < shipping.freeFrom && <p className="sh-free">Noch {shipping.freeFrom - t.plates} {shipping.freeFrom - t.plates === 1 ? "Platte" : "Platten"}, dann ist der Versand kostenlos{t.custom === 0 ? " und Sie zahlen nur 13,90 € pro Platte" : ""}.</p>}
-              {t.classic >= shipping.freeFrom && t.classic < 10 && <p className="sh-free">Noch {10 - t.classic} {10 - t.classic === 1 ? "Platte" : "Platten"} Classic, dann zahlen Sie nur 12,90 € pro Platte.</p>}
+              {t.classic >= shipping.freeFrom && t.classic < 10 && <p className="sh-free">Noch {10 - t.classic} {10 - t.classic === 1 ? "Platte" : "Platten"}, dann zahlen Sie nur 12,90 € pro Platte.</p>}
             </>
           )}
           <form className="sh-form" onSubmit={order} noValidate>
