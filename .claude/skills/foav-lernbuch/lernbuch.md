@@ -4,6 +4,9 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-20 · Startseite kürzer
+- Gründer: „Seite zieht sich, nach dem Renderings-Kasten kommen random Dinge mit Haken“ → Haken-Liste `.cmpx__all` unter „Was brauchen Sie?“ entfernt (stand schon im Startbereich). Regel: keine Vorteils-Haken doppelt; ein Abschnitt endet mit seinem letzten Inhalt, nicht mit einer Zusatzliste.
+
 ### 2026-11-20 · Umzug foav.de zu Cloudflare
 - `wrangler deploy` aus der Claude-Sitzung scheitert beim Hochladen der statischen Dateien (401): der Proxy setzt bei `api.cloudflare.com` immer das API-Token in `Authorization`, auch über das Upload-JWT. Reine API-Aufrufe (R2-Buckets, Skripte) gehen. → Websites mit Dateien über **Workers Builds** (Cloudflare baut aus GitHub) bereitstellen; das gilt auch für Kundenwebsites.
 - Workers Builds: nach „Connect“ im Dashboard baut Cloudflare erst beim nächsten Push. Fehlgeschlagener `wrangler deploy` hinterlässt einen leeren Worker mit dem Namen → Dashboard meldet „name already exists“; Löschen per API wird blockiert, also gleich anderen Namen in `wrangler.jsonc` nehmen. Gründer brauchen Klick-für-Klick-Anleitung mit genauen Feldern (Feld „Path“ ist der Ordner, nicht der Zweig; der Zweig wird erst in Settings → Build gesetzt).
