@@ -17,6 +17,7 @@ const css = `
 .lp-body h2 { margin-top: 40px; font: 600 1.25rem/1.3 "Inter", sans-serif; letter-spacing: -.02em; color: #111114; }
 .lp-body p, .lp-body ul { margin-top: 12px; }
 .lp-body .block { display: block; }
+.lp-body p a, .lp-body li a { text-decoration: underline; text-underline-offset: 2px; }
 .lp-body .note { margin-top: 40px; font-size: .9375rem; color: #66625a; }
 .lp-foot { padding: 32px 0 40px; border-top: 1px solid rgba(17,17,20,.12); font-size: .9375rem; color: #66625a; }
 .lp-foot .lp-wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
