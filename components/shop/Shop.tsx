@@ -163,7 +163,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
             ))}
           </div>
           <p className="sh-note">Normale Platte (Weiß): ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
-          {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (Custom Brand Edition, ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
+          {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
           {!hasService && <p className="sh-note">Eine Website oder ein KI-Werbevideo? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Werbevideos</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 

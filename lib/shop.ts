@@ -13,13 +13,13 @@ export type Product = {
 
 export const products: Product[] = [
   { id: "nfc-weiss", name: "NFC-Platte Weiß (Google-Design)", short: "Ø 10 cm, Acryl, mit Ihrem Google-Profil verknüpft", price: 1490, physical: true, max: 50 },
-  { id: "nfc-custom", name: "NFC-Platte Custom Brand Edition", short: "Ø 10 cm, in Weiß oder Schwarz mit Ihrem Logo, Design-Vorschau vor der Produktion, mit Ihrem Google-Profil verknüpft", price: 2990, physical: true, max: 50 },
+  { id: "nfc-custom", name: "NFC-Platte mit Ihrem Logo", short: "Ø 10 cm, in Weiß oder Schwarz mit Ihrem Logo, Design-Vorschau vor der Produktion, mit Ihrem Google-Profil verknüpft", price: 2990, physical: true, max: 50 },
   { id: "shots-starter", name: "KI-Werbevideo Starter", short: "1 Werbefilm (10 bis 15 Sekunden, Hochformat 9:16) aus Ihren Handyfotos, 3 Standbilder, fertig in 48 Stunden", price: 19900, physical: false, max: 3 },
   { id: "shots-pro", name: "KI-Werbevideos Pro", short: "3 Werbefilme (je 10 bis 20 Sekunden) in 9:16 und 16:9, Musik und Texte, 6 Standbilder, fertig in 72 Stunden", price: 44900, physical: false, max: 3 },
   { id: "shots-brand", name: "KI-Werbevideos Brand-Paket", short: "1 Hauptfilm bis 30 Sekunden und 5 Kurzfilme, alle Formate, Musik und Logo-Abspann, 12 Standbilder, fertig in 72 Stunden", price: 89900, physical: false, max: 2 },
-  { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, Hosting inklusive, online in 5 Tagen nach Zahlung und Ihren Angaben", price: 39900, physical: false, max: 1 },
-  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, Hosting inklusive, online in 7 Tagen", price: 79900, physical: false, max: 1 },
-  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, Hosting inklusive, online in 7 Tagen", price: 149900, physical: false, max: 1 },
+  { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, Hosting inklusive, Entwurf in 5 Tagen nach Zahlung und Ihren Angaben", price: 39900, physical: false, max: 1 },
+  { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, Hosting inklusive, Entwurf in 7 Tagen", price: 79900, physical: false, max: 1 },
+  { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, Hosting inklusive, Entwurf in 7 Tagen", price: 149900, physical: false, max: 1 },
 ];
 
 /** Services start right after payment; consumers must agree to that before ordering (§ 356 Abs. 4 BGB). */
