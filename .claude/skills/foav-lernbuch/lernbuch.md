@@ -4,6 +4,11 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-20 · Textprüfung foav.de (nichts Falsches versprechen)
+- Gründer: „Es darf nichts Falsches drinstehen, du erstellst fast alles, was ich anbiete.“ → Regel: **nur zusagen, was Claude + Gründer wirklich liefern können**, und überall gleich (Template, `lib/shop.ts`, Fragebögen, Mails, AGB, llms.txt, Schema).
+- Gefundene Widersprüche: „online in 5/7 Tagen“ (geliefert wird ein **Entwurf**, online erst nach Freigabe), „mit allem, was rechtlich dazugehört“ (Datenschutz/AGB sind nicht enthalten), KI-Hinweis einmal „auf Wunsch“, einmal „immer“ (jetzt: standardmäßig, außer Kunde kennzeichnet selbst), Rundgang-Film 48 statt 72 h, AGB „Classic in Weiß oder Schwarz“, „Mehr Sterne“ (die Platte bringt mehr Bewertungen, nicht bessere), „mit allen Handys“ (iPhone ab XS, Android mit NFC), Zahlung „über Stripe“ obwohl Stripe noch aus ist.
+- Beim Formulieren keine neuen Leistungen erfinden (z. B. QR-Code auf der Platte) – nur, was die Gründer bestätigt haben.
+
 ### 2026-11-20 · Audit foav.de
 - Werkzeuge im Container: `npx lighthouse` (Chromium unter /opt/pw-browsers) und axe-core per Playwright (`addScriptTag`) – messen statt schätzen; Lighthouse 2× laufen lassen (erster Lauf ohne Cache schlechter).
 - Cloudflare-Zone schaltet Web Analytics (RUM-Beacon) ggf. automatisch ein → Datenschutz prüfen, sobald eine Domain auf Cloudflare läuft.
