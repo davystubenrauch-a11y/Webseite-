@@ -4,6 +4,12 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-20 · Audit foav.de
+- Werkzeuge im Container: `npx lighthouse` (Chromium unter /opt/pw-browsers) und axe-core per Playwright (`addScriptTag`) – messen statt schätzen; Lighthouse 2× laufen lassen (erster Lauf ohne Cache schlechter).
+- Cloudflare-Zone schaltet Web Analytics (RUM-Beacon) ggf. automatisch ein → Datenschutz prüfen, sobald eine Domain auf Cloudflare läuft.
+- `public/_headers` funktioniert bei Workers Static Assets (Cache-Control für /videos, /media …); ohne ihn haben Videos `max-age=0`.
+- Widersprüche zwischen Handy- und Computer-Version suchen (gleiche Aussage, andere Zahl) – Gründer sehen meist nur eine Version.
+
 ### 2026-11-20 · Startseite kürzer
 - Gründer: „Seite zieht sich, nach dem Renderings-Kasten kommen random Dinge mit Haken“ → Haken-Liste `.cmpx__all` unter „Was brauchen Sie?“ entfernt (stand schon im Startbereich). Regel: keine Vorteils-Haken doppelt; ein Abschnitt endet mit seinem letzten Inhalt, nicht mit einer Zusatzliste.
 
