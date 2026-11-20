@@ -50,7 +50,7 @@ const sections: Section[] = [
       { id: "texte", label: "Texte im Film (optional)", type: "textarea", placeholder: "z. B. „Draußen grau.“ · „Drinnen Apfelkuchen.“", hint: "Kurz, eine Zeile pro Szene. Leer lassen, dann schreiben wir die Texte und Sie geben sie frei." },
       { id: "abschluss", label: "Schlusstafel", type: "text", placeholder: "z. B. Café Morgenrot · Täglich ab 7:30 Uhr · Vorbeikommen", hint: "Name, eine Info (Öffnungszeit oder Ort) und die Aufforderung. Leer lassen, dann schlagen wir sie vor." },
       { id: "farben", label: "Ihre Markenfarben (optional)", type: "text", placeholder: "z. B. Dunkelgrün und Creme", half: true },
-      { id: "ki_hinweis", label: "Kennzeichnung „Mit KI erstellt“", type: "one", req: true, options: ["Ja, dezent im Film (empfohlen)", "Nein, ich kennzeichne selbst beim Posten"], hint: "Realistische KI-Videos müssen erkennbar sein (EU-KI-Verordnung). Instagram und TikTok bieten dafür auch ein eigenes Label." },
+      { id: "ki_hinweis", label: "Hinweis „Mit KI erstellt“ im Film?", type: "one", options: ["Nein, ohne Hinweis", "Ja, dezent im Film"], hint: "Freiwillig. Instagram und TikTok bieten beim Posten auch ein eigenes KI-Label." },
     ],
   },
 ];

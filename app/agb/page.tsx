@@ -43,7 +43,7 @@ export default function Agb() {
         des gewählten Pakets (Starter, Pro oder Brand-Paket). Licht, Hintergrund und Umgebung werden neu gestaltet; Ihr Produkt soll dabei
         unverändert bleiben. Einzelne Details können trotzdem abweichen, deshalb prüfen Sie die Ergebnisse vor der Veröffentlichung. Für eine
         zutreffende Darstellung Ihres Produkts in Werbung und Shop und für eine nötige Kennzeichnung als KI-Inhalt sind Sie verantwortlich; wir
-        blenden standardmäßig einen Hinweis „Mit KI erstellt“ ein, sofern Sie nicht selbst kennzeichnen möchten.
+        blenden auf Wunsch einen Hinweis „Mit KI erstellt“ ein.
       </p>
       <p>
         <b>Renderings:</b> Fotorealistische Bilder oder kurze Rundgang-Filme, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos und Ihrer
