@@ -14,6 +14,10 @@ Fragebögen, Foto-Upload auf R2, Weiterleitungen). **Vercel bleibt live, bis Sch
 - Stripe mit `fetch` + Web Crypto (`constructEventAsync`), läuft auf Workers.
 - Vercel Web Analytics entfernt (Skript + Datenschutz), Datenschutz nennt Cloudflare als Hoster und R2.
 
+## Stand 20.11. nachmittags
+- Worker `foav-website` angelegt und mit GitHub verbunden (Zweig `claude/sharp-cerf-sdkvuk`, Preview-Builds aus). Nach dem Verbinden baut Cloudflare erst beim nächsten Push.
+- Der leere Worker `foav` (Fehlversuch) kann gelöscht werden: Workers & Pages → foav → Settings → Danger zone → Delete.
+
 ## Was die Gründer einmalig tun müssen
 Aus der Claude-Sitzung lassen sich die Dateien nicht hochladen (der Sitzungs-Proxy ersetzt das
 Upload-Token von Cloudflare). Deshalb baut Cloudflare die Seite selbst aus GitHub, wie bisher Vercel:
