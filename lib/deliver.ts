@@ -53,7 +53,7 @@ export async function deliver(d: Delivery): Promise<boolean> {
       return true;
     } catch (e) { console.error("[deliver] r2", e instanceof Error ? e.message : e); }
   }
-  // Last resort so nothing is silently lost: the full text lands in the worker log (Cloudflare → Workers → foav → Logs).
+  // Last resort so nothing is silently lost: the full text lands in the worker log (Cloudflare → Workers → foav-website → Logs).
   console.log(`[deliver] NOT DELIVERED ${d.id}\n${d.subject}\n${d.text}`);
   return false;
 }
