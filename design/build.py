@@ -51,6 +51,8 @@ for key, (fname, path, title, desc) in pages.items():
         page = re.sub(r'<a class="nx__card" href="%s">.*?</a>' % re.escape(path), '', page, flags=re.S)
         # in a scroll film on its own page, "Zum Angebot" becomes "Paket wählen"
         page = page.replace(f'href="{path}" data-go>Zum Angebot</a>', 'href="#pakete">Paket wählen</a>')
+    if key != 'home':  # the phone hero image only exists on the home page
+        page = page.replace('<link rel="preload" href="/media/hero-lineup.webp?v=5" as="image" media="(max-width: 700px)" fetchpriority="high">\n', '')
     if key != 'home':  # on a service page, "Anfragen" leads to its own plans
         page = page.replace('href="#angebot" data-offers', 'href="#pakete" data-offers')
     ids = set(re.findall(r'\sid="([^"]+)"', page))

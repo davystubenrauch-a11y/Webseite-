@@ -29,7 +29,7 @@ const css = `
   min-height:100vh; background:var(--bg); color:var(--text); font:400 17px/1.55 "Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   letter-spacing:-.011em; -webkit-font-smoothing:antialiased; }
 .bf *, .bf *::before, .bf *::after { box-sizing:border-box; }
-.bf a { color:var(--ink); }
+.bf a { color:var(--ink); } .bf p a:not([class]) { text-decoration:underline; text-underline-offset:2px; }
 .bf-wrap { max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,40px); }
 .bf-head { position:sticky; top:0; z-index:5; background:rgba(251,251,253,.86); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid var(--line); }
 .bf-head .bf-wrap { height:60px; display:flex; align-items:center; justify-content:space-between; }

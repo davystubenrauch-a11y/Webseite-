@@ -52,7 +52,10 @@ export default function Datenschutz() {
       <p>Die verwendeten Schriftarten werden lokal von unserem Server ausgeliefert. Es findet keine Verbindung zu Servern von Google statt.</p>
       <h2>7. Cookies und Tracking</h2>
       <p>
-        Diese Website setzt keine Cookies zu Werbe- oder Analysezwecken und verwendet keine Analyse- oder Tracking-Dienste.
+        Diese Website setzt keine Cookies zu Werbe- oder Analysezwecken. Um zu sehen, wie viele Besucher die Seite nutzen, verwenden wir Cloudflare Web Analytics
+        (Cloudflare, Inc., USA). Dabei werden keine Cookies gesetzt und keine Daten im Endgerät gespeichert; es wird kein Profil gebildet und keine
+        IP-Adresse dauerhaft gespeichert. Erfasst werden nur aufgerufene Seite, Herkunftsseite, Land, Gerätetyp, Browser und Ladezeiten.
+        Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).
       </p>
       <h2>8. Ihre Rechte</h2>
       <p>
