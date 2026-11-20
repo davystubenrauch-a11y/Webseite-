@@ -18,7 +18,7 @@ function limited(ip: string) {
 }
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+  const ip = (req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for"))?.split(",")[0]?.trim() ?? "local";
   if (limited(ip)) return NextResponse.json({ ok: false, error: "Zu viele Anfragen. Bitte später erneut versuchen." }, { status: 429 });
 
   let data: Briefing;
@@ -30,7 +30,9 @@ export async function POST(req: Request) {
   if (data.website) return NextResponse.json({ ok: true, id: "FOAV-000000" });
   if (!(data.kind in kindLabels)) return NextResponse.json({ ok: false, error: "Ungültige Anfrage." }, { status: 400 });
   data.answers = (data.answers ?? []).slice(0, 160).map((a) => ({ section: String(a.section), label: String(a.label), value: String(a.value).slice(0, 4000) }));
-  data.photos = (data.photos ?? []).slice(0, 200).filter((p) => /^https:\/\/[a-z0-9.-]+\.blob\.vercel-storage\.com\//.test(p.url));
+  // only files from our own upload (R2, /api/datei/…) on our own host
+  const origin = new URL(req.url).origin;
+  data.photos = (data.photos ?? []).slice(0, 200).filter((p) => typeof p.url === "string" && p.url.startsWith(`${origin}/api/datei/`));
 
   const errors = validateBriefing(data);
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 422 });

@@ -5,7 +5,7 @@ import { serviceLabels, summarize, validate, type Inquiry } from "@/lib/inquiry"
 
 // Receives inquiries from the wizard, validates them again server-side and delivers them.
 //
-// Delivery: lib/deliver.ts (Resend, webhook or Vercel Blob). Never falls back to the visitor's mail program.
+// Delivery: lib/deliver.ts (Resend, webhook or Cloudflare R2). Never falls back to the visitor's mail program.
 
 const hits = new Map<string, number[]>();
 
@@ -19,7 +19,7 @@ function limited(ip: string) {
 }
 
 export async function POST(req: Request) {
-  const ip = req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ?? "local";
+  const ip = (req.headers.get("cf-connecting-ip") ?? req.headers.get("x-forwarded-for"))?.split(",")[0]?.trim() ?? "local";
   if (limited(ip)) return NextResponse.json({ ok: false, error: "Zu viele Anfragen. Bitte später erneut versuchen." }, { status: 429 });
 
   let data: Inquiry;

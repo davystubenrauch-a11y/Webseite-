@@ -4,6 +4,10 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-20 · Umzug foav.de zu Cloudflare
+- `wrangler deploy` aus der Claude-Sitzung scheitert beim Hochladen der statischen Dateien (401): der Proxy setzt bei `api.cloudflare.com` immer das API-Token in `Authorization`, auch über das Upload-JWT. Reine API-Aufrufe (R2-Buckets, Skripte) gehen. → Websites mit Dateien über **Workers Builds** (Cloudflare baut aus GitHub) bereitstellen; das gilt auch für Kundenwebsites.
+- OpenNext kann Rewrites auf Dateien in `public/` nicht ausführen (404) → eigener Einstieg `worker.ts`, der diese Pfade aus `env.ASSETS` holt; `assets.html_handling: "none"`, sonst leitet `/site/index.html` auf `/site/` um. Adapter braucht Next ≥ 16.4.5.
+
 ### 2026-11-19 · Renderings + Video auf dem iPhone
 - iPhone-Safari zeigte die Seite verkleinert und seitlich verschoben (rechts freier Streifen, weiter unten Kasten bis zum Rand), obwohl Chrome-Emulation sauber war. Safari zoomt heraus, wenn irgendetwas breiter als der Bildschirm ist; `body { overflow-x: clip }` allein reicht in Safari nicht. Fix: `html { overflow-x: hidden }`, `main > section { overflow-x: clip }` (Sticky bleibt heil) und `minimum-scale=1` im Viewport.
 - Kleben (sticky) ist auf dem Handy gefährlich: NFC-Auswahlkarten lagen zwischen klebender Vorschau oben und klebender Warenkorb-Leiste unten und waren nie sichtbar. Auf dem Handy: Auswahl zuerst, Vorschau danach, nichts klebt darüber. Vorher/Nachher-Regler immer im Format der Bilder (16:9), nie 4:5 bei Querformat-Fotos.
