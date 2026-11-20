@@ -32,7 +32,7 @@ Upload-Token von Cloudflare). Deshalb baut Cloudflare die Seite selbst aus GitHu
    `RESEND_API_KEY` (aus Resend oder Vercel → Settings → Environment Variables),
    `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET` (sobald Stripe eingerichtet ist).
    Danach einmal neu bereitstellen (Deployments → „Erneut bereitstellen“).
-3. **Testen** unter `https://foav-website.aged-bonus-c590.workers.dev` – Claude prüft das in einer Sitzung
+3. ✅ (20.11. erledigt, alle Schritte 1–4) **Testen** unter `https://foav-website.aged-bonus-c590.workers.dev` – Claude prüft das in einer Sitzung
    (Handy/Computer, Formular, Upload, `/api/status` muss `resend_ok: true` zeigen).
 4. **Domain umziehen:** Cloudflare → „Domain hinzufügen“ → `foav.de` (Free-Tarif). Cloudflare liest die
    DNS-Einträge ein – prüfen, dass **MX (Checkdomain-Mail), `send`, `rsend`, `resend._domainkey`, `_dmarc`**
