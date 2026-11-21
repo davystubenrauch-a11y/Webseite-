@@ -1,0 +1,8 @@
+# fremde Bibliotheken, Builds und alte Demos nicht in die Code-Karte
+**/vendor/
+**/_next/
+public/demo/
+public/v*/
+.next/
+*.min.js
+graphify-out/
