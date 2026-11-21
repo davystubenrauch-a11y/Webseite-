@@ -4,6 +4,11 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-21 · Flüssigkeit und Videos auf Cloudflare
+- **Cloudflare Workers Static Assets beantworten Range-Anfragen mit 200 + ganzer Datei** → Safari/iPhone spielt Videos dann schlecht oder gar nicht. Lösung: `assets.run_worker_first: ["/videos/*"]` + `serveVideo()` in `worker.ts` (206/416, Accept-Ranges). Bei jedem Cloudflare-Projekt mit Videos prüfen: `curl -H "Range: bytes=0-1" …` muss 206 liefern.
+- Messen statt schätzen: Playwright mit CPU-Drossel 4× (Handy), rAF-Abstände beim Scrollen (> 34 ms = Ruckler), Long Tasks, CLS; Videos: `currentTime` muss nach 1,5 s weiterlaufen, `waiting`-Ereignisse zählen. Videos in Scroll-Filmen nur abspielen, wenn ihr Schritt sichtbar ist (sonst dekodiert der Browser unsichtbar mit).
+- `decoding="async"` auf allen Bildern außer dem Startbild senkte die größten Hänger von 133–150 ms auf ≤ 50 ms. Rundgang-Video 1600→1280 px, CRF 26: 4,9 → 2,9 MB ohne sichtbaren Unterschied; neue Datei mit `?v=2`, weil Medien 7 Tage gecacht werden.
+
 ### 2026-11-20 · Textprüfung foav.de (nichts Falsches versprechen)
 - Gründer: „Es darf nichts Falsches drinstehen, du erstellst fast alles, was ich anbiete.“ → Regel: **nur zusagen, was Claude + Gründer wirklich liefern können**, und überall gleich (Template, `lib/shop.ts`, Fragebögen, Mails, AGB, llms.txt, Schema).
 - Gefundene Widersprüche: „online in 5/7 Tagen“ (geliefert wird ein **Entwurf**, online erst nach Freigabe), „mit allem, was rechtlich dazugehört“ (Datenschutz/AGB sind nicht enthalten), KI-Hinweis einmal „auf Wunsch“, einmal „immer“ (Gründer: im Kundenfilm **nicht vorgegeben**, nur auf Wunsch; eigene Beispielfilme bleiben gekennzeichnet), Rundgang-Film 48 statt 72 h, AGB „Classic in Weiß oder Schwarz“, „Mehr Sterne“ (die Platte bringt mehr Bewertungen, nicht bessere), „mit allen Handys“ (iPhone ab XS, Android mit NFC), Zahlung „über Stripe“ obwohl Stripe noch aus ist.
