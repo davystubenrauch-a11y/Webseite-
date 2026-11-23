@@ -343,9 +343,9 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 
 /* NFC band */
 .nfcband { margin-top: clamp(100px, 12vw, 170px); padding: clamp(90px, 11vw, 150px) 0; }
-.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 1px 0 #cfcfd4, 0 2px 0 #cfcfd4, 0 3px 0 #cfcfd4, 0 4px 0 #cbcbd0, 0 5px 0 #c7c7cc, 0 6px 0 #c4c4c9, 0 40px 50px -16px rgba(0,0,0,.55); }
+.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; --sx: 0; --cy: 1; box-shadow: calc(var(--sx) * 1px) calc(var(--cy) * 1px) 0 #cfcfd4, calc(var(--sx) * 2px) calc(var(--cy) * 2px) 0 #cfcfd4, calc(var(--sx) * 3px) calc(var(--cy) * 3px) 0 #cfcfd4, calc(var(--sx) * 4px) calc(var(--cy) * 4px) 0 #cbcbd0, calc(var(--sx) * 5px) calc(var(--cy) * 5px) 0 #c7c7cc, calc(var(--sx) * 6px) calc(var(--cy) * 6px) 0 #c4c4c9, 0 40px 50px -16px rgba(0,0,0,.55); }
 .disc svg { width: 100%; height: 100%; }
-.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: 0 1px 0 #2e2e32, 0 2px 0 #2e2e32, 0 3px 0 #2e2e32, 0 4px 0 #2b2b2f, 0 5px 0 #28282c, 0 6px 0 #26262a, 0 40px 50px -16px rgba(0,0,0,.75); }
+.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: calc(var(--sx) * 1px) calc(var(--cy) * 1px) 0 #2e2e32, calc(var(--sx) * 2px) calc(var(--cy) * 2px) 0 #2e2e32, calc(var(--sx) * 3px) calc(var(--cy) * 3px) 0 #2e2e32, calc(var(--sx) * 4px) calc(var(--cy) * 4px) 0 #2b2b2f, calc(var(--sx) * 5px) calc(var(--cy) * 5px) 0 #28282c, calc(var(--sx) * 6px) calc(var(--cy) * 6px) 0 #26262a, 0 40px 50px -16px rgba(0,0,0,.75); }
 .rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--champ); opacity: 0; }
 @keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
 .ctrl { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 10px; }
@@ -1884,6 +1884,11 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 /* ---------- portrait examples (bathroom, 4:5) in the renderings cards and the slider ---------- */
 .rnd.is-tall .immo__pic { aspect-ratio: 4 / 5; width: min(100%, calc(70vh * .8)); margin-inline: auto; }
 .cmp.is-tall { aspect-ratio: 4 / 5; width: min(100%, calc(78vh * .8)); margin-inline: auto; }
+
+/* NFC plate edge: the edge offset is drawn in the plate's own plane, so it is turned against the plate's rotateZ to point straight down on screen (otherwise a gap on one side) */
+.lu-disc .disc { --sx: -.342; --cy: .94; }
+.cmpc__stage--two .disc:not(.disc--black) { --sx: -.309; --cy: .951; }
+.cmpc__stage--two .disc--black { --sx: .242; --cy: .97; }
 </style>
 </head>
 <body>
