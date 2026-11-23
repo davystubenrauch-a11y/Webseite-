@@ -1,10 +1,10 @@
-import { put } from "@vercel/blob";
+import { bucket } from "@/lib/storage";
 
 // One way for every message the site receives (inquiries, questionnaires, orders without Stripe).
 // Tried in order, the first that works wins:
 //   1. RESEND_API_KEY        -> e-mail to INQUIRY_TO (default info@foav.de)
 //   2. INQUIRY_WEBHOOK_URL   -> JSON POST (Make, Zapier, n8n, Slack …)
-//   3. BLOB_READ_WRITE_TOKEN -> saved as a private JSON file under eingang/ in Vercel Blob
+//   3. R2 bucket UPLOADS     -> saved as a private JSON file under eingang/ (Cloudflare R2, never served)
 // Nothing is ever handed to the visitor's mail program. If none works, the caller gets ok: false
 // and the page asks the visitor to try again or call.
 
@@ -45,16 +45,15 @@ export async function deliver(d: Delivery): Promise<boolean> {
       console.error(`[deliver] webhook ${res.status}`);
     } catch (e) { console.error("[deliver] webhook", e); }
   }
-  if (process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID) {
+  const b = bucket();
+  if (b) {
     const body = JSON.stringify({ id: d.id, kind: d.kind, at: new Date().toISOString(), subject: d.subject, text: d.text, data: d.data }, null, 2);
-    for (const access of ["private", "public"] as const) {
-      try {
-        await put(`eingang/${new Date().toISOString().slice(0, 10)}/${d.id}.json`, body, { access, contentType: "application/json", addRandomSuffix: true });
-        return true;
-      } catch (e) { console.error(`[deliver] blob ${access}`, e instanceof Error ? e.message : e); }
-    }
+    try {
+      await b.put(`eingang/${new Date().toISOString().slice(0, 10)}/${d.id}-${crypto.randomUUID().slice(0, 8)}.json`, body, { httpMetadata: { contentType: "application/json" } });
+      return true;
+    } catch (e) { console.error("[deliver] r2", e instanceof Error ? e.message : e); }
   }
-  // Last resort so nothing is silently lost: the full text lands in the Vercel function log.
+  // Last resort so nothing is silently lost: the full text lands in the worker log (Cloudflare → Workers → foav-website → Logs).
   console.log(`[deliver] NOT DELIVERED ${d.id}\n${d.subject}\n${d.text}`);
   return false;
 }

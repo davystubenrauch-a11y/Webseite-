@@ -4,6 +4,32 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-21 · Flüssigkeit und Videos auf Cloudflare
+- **Cloudflare Workers Static Assets beantworten Range-Anfragen mit 200 + ganzer Datei** → Safari/iPhone spielt Videos dann schlecht oder gar nicht. Lösung: `assets.run_worker_first: ["/videos/*"]` + `serveVideo()` in `worker.ts` (206/416, Accept-Ranges). Bei jedem Cloudflare-Projekt mit Videos prüfen: `curl -H "Range: bytes=0-1" …` muss 206 liefern.
+- Messen statt schätzen: Playwright mit CPU-Drossel 4× (Handy), rAF-Abstände beim Scrollen (> 34 ms = Ruckler), Long Tasks, CLS; Videos: `currentTime` muss nach 1,5 s weiterlaufen, `waiting`-Ereignisse zählen. Videos in Scroll-Filmen nur abspielen, wenn ihr Schritt sichtbar ist (sonst dekodiert der Browser unsichtbar mit).
+- `decoding="async"` auf allen Bildern außer dem Startbild senkte die größten Hänger von 133–150 ms auf ≤ 50 ms. Rundgang-Video 1600→1280 px, CRF 26: 4,9 → 2,9 MB ohne sichtbaren Unterschied; neue Datei mit `?v=2`, weil Medien 7 Tage gecacht werden.
+
+### 2026-11-20 · Textprüfung foav.de (nichts Falsches versprechen)
+- Gründer: „Es darf nichts Falsches drinstehen, du erstellst fast alles, was ich anbiete.“ → Regel: **nur zusagen, was Claude + Gründer wirklich liefern können**, und überall gleich (Template, `lib/shop.ts`, Fragebögen, Mails, AGB, llms.txt, Schema).
+- Gefundene Widersprüche: „online in 5/7 Tagen“ (geliefert wird ein **Entwurf**, online erst nach Freigabe), „mit allem, was rechtlich dazugehört“ (Datenschutz/AGB sind nicht enthalten), KI-Hinweis einmal „auf Wunsch“, einmal „immer“ (Gründer: im Kundenfilm **nicht vorgegeben**, nur auf Wunsch; eigene Beispielfilme bleiben gekennzeichnet), Rundgang-Film 48 statt 72 h, AGB „Classic in Weiß oder Schwarz“, „Mehr Sterne“ (die Platte bringt mehr Bewertungen, nicht bessere), „mit allen Handys“ (iPhone ab XS, Android mit NFC), Zahlung „über Stripe“ obwohl Stripe noch aus ist.
+- Beim Formulieren keine neuen Leistungen erfinden (z. B. QR-Code auf der Platte) – nur, was die Gründer bestätigt haben.
+
+### 2026-11-20 · Audit foav.de
+- Werkzeuge im Container: `npx lighthouse` (Chromium unter /opt/pw-browsers) und axe-core per Playwright (`addScriptTag`) – messen statt schätzen; Lighthouse 2× laufen lassen (erster Lauf ohne Cache schlechter).
+- Cloudflare-Zone schaltet Web Analytics (RUM-Beacon) ggf. automatisch ein → Datenschutz prüfen, sobald eine Domain auf Cloudflare läuft.
+- `public/_headers` funktioniert bei Workers Static Assets (Cache-Control für /videos, /media …); ohne ihn haben Videos `max-age=0`.
+- Widersprüche zwischen Handy- und Computer-Version suchen (gleiche Aussage, andere Zahl) – Gründer sehen meist nur eine Version.
+
+### 2026-11-20 · Startseite kürzer
+- Gründer: „Seite zieht sich, nach dem Renderings-Kasten kommen random Dinge mit Haken“ → Haken-Liste `.cmpx__all` unter „Was brauchen Sie?“ entfernt (stand schon im Startbereich). Regel: keine Vorteils-Haken doppelt; ein Abschnitt endet mit seinem letzten Inhalt, nicht mit einer Zusatzliste.
+
+### 2026-11-20 · Umzug foav.de zu Cloudflare
+- `wrangler deploy` aus der Claude-Sitzung scheitert beim Hochladen der statischen Dateien (401): der Proxy setzt bei `api.cloudflare.com` immer das API-Token in `Authorization`, auch über das Upload-JWT. Reine API-Aufrufe (R2-Buckets, Skripte) gehen. → Websites mit Dateien über **Workers Builds** (Cloudflare baut aus GitHub) bereitstellen; das gilt auch für Kundenwebsites.
+- Workers Builds: nach „Connect“ im Dashboard baut Cloudflare erst beim nächsten Push. Fehlgeschlagener `wrangler deploy` hinterlässt einen leeren Worker mit dem Namen → Dashboard meldet „name already exists“; Löschen per API wird blockiert, also gleich anderen Namen in `wrangler.jsonc` nehmen. Gründer brauchen Klick-für-Klick-Anleitung mit genauen Feldern (Feld „Path“ ist der Ordner, nicht der Zweig; der Zweig wird erst in Settings → Build gesetzt).
+- Resend: Domain aus einem nicht mehr zugänglichen Konto lässt sich per „Claim domain“ übernehmen (ein TXT auf der Hauptdomain), danach neuer DKIM-Wert nötig; das alte Konto verliert sofort den Versand. Leere Domainliste bei `/domains` = Schlüssel aus falschem Konto. Senden ohne Erfolg erkennt man daran, dass `deliver()` in R2 `eingang/` speichert.
+- Domain-Umzug zu Cloudflare (Checkdomain): Zone per „Connect a domain“ anlegen, Scan prüfen (send/rsend fehlten!, Mail-Einträge auf „DNS only“), Nameserver bei Checkdomain unter „checkdomain Nameserver“ auf eigene stellen (Seite lädt lange, wird aber gespeichert). Zone wurde in ~10 min aktiv. Danach Gründer löschen A/www-Einträge, Claude legt sofort Worker-Custom-Domains per API an (`PUT /accounts/{id}/workers/domains`) → < 2 min Ausfall.
+- OpenNext kann Rewrites auf Dateien in `public/` nicht ausführen (404) → eigener Einstieg `worker.ts`, der diese Pfade aus `env.ASSETS` holt; `assets.html_handling: "none"`, sonst leitet `/site/index.html` auf `/site/` um. Adapter braucht Next ≥ 16.4.5.
+
 ### 2026-11-19 · Renderings + Video auf dem iPhone
 - iPhone-Safari zeigte die Seite verkleinert und seitlich verschoben (rechts freier Streifen, weiter unten Kasten bis zum Rand), obwohl Chrome-Emulation sauber war. Safari zoomt heraus, wenn irgendetwas breiter als der Bildschirm ist; `body { overflow-x: clip }` allein reicht in Safari nicht. Fix: `html { overflow-x: hidden }`, `main > section { overflow-x: clip }` (Sticky bleibt heil) und `minimum-scale=1` im Viewport.
 - Kleben (sticky) ist auf dem Handy gefährlich: NFC-Auswahlkarten lagen zwischen klebender Vorschau oben und klebender Warenkorb-Leiste unten und waren nie sichtbar. Auf dem Handy: Auswahl zuerst, Vorschau danach, nichts klebt darüber. Vorher/Nachher-Regler immer im Format der Bilder (16:9), nie 4:5 bei Querformat-Fotos.

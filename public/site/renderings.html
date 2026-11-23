@@ -27,8 +27,8 @@
 <link rel="preload" href="/site/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@graph":[
- {"@type":"WebSite","@id":"https://foav.de/#website","name":"FOAV","alternateName":["FOAV GbR","FOAV München"],"url":"https://foav.de/","inLanguage":"de-DE","publisher":{"@id":"https://foav.de/#firma"}},
- {"@type":"ProfessionalService","@id":"https://foav.de/#firma","name":"FOAV","legalName":"FOAV GbR","alternateName":["FOAV GbR","FOAV München"],"url":"https://foav.de/","logo":"https://foav.de/media/icon-foav-512.png","image":"https://foav.de/media/og-foav.jpg","description":"Agentur aus München für Websites, KI-Werbevideos (Werbefilme aus Fotos, auch virtuell eingerichtete Immobilien), Renderings von Umbau und Sanierung und NFC-Platten für Google-Bewertungen.","email":"info@foav.de","telephone":"+4915566456417","address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},"areaServed":"DE","priceRange":"14,90 € – 1.499 €",
+ {"@type":"WebSite","@id":"https://foav.de/#website","name":"FOAV","alternateName":["Focus on Aesthetic Value","FOAV – Focus on Aesthetic Value","FOAV GbR","FOAV München"],"url":"https://foav.de/","inLanguage":"de-DE","publisher":{"@id":"https://foav.de/#firma"}},
+ {"@type":"ProfessionalService","@id":"https://foav.de/#firma","name":"FOAV","legalName":"FOAV GbR","alternateName":["Focus on Aesthetic Value","FOAV – Focus on Aesthetic Value","FOAV GbR","FOAV München","F&D Solutions"],"slogan":"Focus on Aesthetic Value","knowsAbout":["Webdesign","KI-Werbevideos","Renderings","NFC-Platten für Google-Bewertungen"],"url":"https://foav.de/","logo":"https://foav.de/media/icon-foav-512.png","image":"https://foav.de/media/og-foav.jpg","description":"FOAV (Focus on Aesthetic Value) ist eine Agentur aus München für Websites, KI-Werbevideos (Werbefilme aus Fotos, auch virtuell eingerichtete Immobilien), Renderings von Umbau und Sanierung und NFC-Platten für Google-Bewertungen.","email":"info@foav.de","telephone":"+4915566456417","address":{"@type":"PostalAddress","addressLocality":"München","addressCountry":"DE"},"areaServed":"DE","priceRange":"14,90 € – 1.499 €",
   "founder":[{"@type":"Person","name":"Florian Dressler","telephone":"+4915566456417"},{"@type":"Person","name":"Davy Stubenrauch","telephone":"+4917656612709"}],
   "hasOfferCatalog":{"@type":"OfferCatalog","name":"Leistungen","itemListElement":[
    {"@type":"Offer","name":"KI-Werbevideo Starter (1 Werbefilm aus Ihren Fotos)","price":"199","priceCurrency":"EUR"},
@@ -37,6 +37,7 @@
    {"@type":"Offer","name":"NFC-Platte für Google-Bewertungen, Classic Edition","price":"14.90","priceCurrency":"EUR"},
    {"@type":"Offer","name":"NFC-Platte mit Ihrem Logo, Custom Brand Edition","price":"29.90","priceCurrency":"EUR"}]}},
  {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Wofür steht FOAV?","acceptedAnswer":{"@type":"Answer","text":"FOAV steht für Focus on Aesthetic Value. FOAV ist eine Agentur aus München, gegründet von Florian Dressler und Davy Stubenrauch, für Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Früher hieß sie F&D Solutions."}},
   {"@type":"Question","name":"Was brauchen Sie für ein KI-Werbevideo?","acceptedAnswer":{"@type":"Answer","text":"3 bis 10 normale Handyfotos Ihres Produkts, Gerichts oder Raums. Daraus entsteht ein kurzer Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok, Website und Immobilienportale. Leere Wohnungen richten wir auf Wunsch virtuell ein. Starter ab 199 €, fertig in 48 Stunden."}},
   {"@type":"Question","name":"Wie funktioniert die NFC-Platte?","acceptedAnswer":{"@type":"Answer","text":"In der Platte steckt ein NFC-Chip, den wir mit Ihrem Google-Profil verknüpfen. Hält ein Gast sein Handy an die Platte, öffnet sich direkt Ihre Seite zum Bewerten. Mit iPhone und Android, ohne App und ohne Akku. Auf Wunsch mit Ihrem Logo statt des Google-Designs."}},
   {"@type":"Question","name":"Was kostet eine Website?","acceptedAnswer":{"@type":"Answer","text":"Das Basis-Paket mit 3 professionell gestalteten Seiten kostet 399 €, Business 799 €, Premium 1.499 €, jeweils mit Hosting inklusive. Sie bekommen vorher einen Festpreis."}},
@@ -1869,14 +1870,23 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .cfg .choose__bar .btn { flex: none; min-height: 46px; white-space: nowrap; }
 }
 
+/* Handy/Tablet (Gründer 21.11.): in den Scroll-Filmen steht Preis + Knopf unter der Animation, nicht darüber */
+@media (max-width: 1023px) {
+  .scene__grid { display: flex; flex-direction: column; align-items: stretch; }
+  .scene__foot, .scene .more { align-self: flex-start; }
+  .scene__text { display: contents; }
+  .scene__text > * { position: relative; z-index: 5; }
+  .scene__stage { order: 1; flex: 1 1 0; min-height: 0; }
+  .scene__foot { order: 2; margin-top: 4px; }
+  .scene .more { order: 3; }
+}
 /* ---------- portrait examples (bathroom, 4:5) in the renderings cards and the slider ---------- */
 .rnd.is-tall .immo__pic { aspect-ratio: 4 / 5; width: min(100%, calc(70vh * .8)); margin-inline: auto; }
 .cmp.is-tall { aspect-ratio: 4 / 5; width: min(100%, calc(78vh * .8)); margin-inline: auto; }
 </style>
-<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body>
-<a class="skip" href="/#angebot">Zum Inhalt springen</a>
+<a class="skip" href="#start">Zum Inhalt springen</a>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
   <linearGradient id="discSheen" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset=".45" stop-color="#fff" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".06"/></linearGradient>
   <path id="discStar" d="M0,-5.6 1.65,-2 5.6,-1.75 2.6,.85 3.5,4.75 0,2.6 -3.5,4.75 -2.6,.85 -5.6,-1.75 -1.65,-2Z"/>
@@ -1919,11 +1929,11 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="phero__grid"><div class="phero__text">
       <nav class="crumb" aria-label="Brotkrumen"><a href="/">Start</a><span aria-hidden="true">/</span><span aria-current="page">Renderings</span></nav>
       <h1 id="h-p-rnd">So sieht es aus, bevor es fertig ist.</h1>
-      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto oder als Rundgang-Film, fertig in 48 Stunden.</p><p class="phero__from"><b>49 € pro Bild</b> · fertig in 48 Stunden</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
+      <div class="phero__row"><p class="hero__sub">Sie schicken ein Handyfoto: die leere Wohnung, den alten Laden, das Haus vor der Sanierung. Wir zeigen das Ergebnis, eingerichtet, umgebaut oder saniert. Als Foto in 48 Stunden oder als Rundgang-Film in 72 Stunden.</p><p class="phero__from"><b>49 € pro Bild</b> · fertig in 48 Stunden</p><div class="cta"><a class="btn btn--light" href="#pakete">Preise ansehen</a><a class="btn btn--line" href="#renderings">Beispiele ansehen</a></div></div></div>
       <div class="rhero" aria-hidden="true">
-        <figure class="rhero__b"><img src="/images/renderings/haus-vorher.jpg" alt=""><figcaption>Ihr Handyfoto</figcaption></figure>
+        <figure class="rhero__b"><img decoding="async" src="/images/renderings/haus-vorher.jpg" alt=""><figcaption>Ihr Handyfoto</figcaption></figure>
         <i class="rhero__arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-        <figure class="rhero__a"><img src="/images/renderings/haus-nachher.jpg" alt=""><figcaption>Unser Rendering</figcaption></figure>
+        <figure class="rhero__a"><img decoding="async" src="/images/renderings/haus-nachher.jpg" alt=""><figcaption>Unser Rendering</figcaption></figure>
       </div></div>
       <ul class="phero__facts" role="list"><li><b>49 €</b><span>pro Rendering, 3 Bilder 119 €</span></li><li><b>48 Stunden</b><span>vom Handyfoto zum fertigen Bild</span></li><li><b>0 Vorwissen</b><span>Foto schicken, Wunsch beschreiben, fertig</span></li></ul>
       <div class="who"><p>Gemacht für</p><ul role="list"><li>Immobilienmakler</li><li>Vermieter und Eigentümer</li><li>Bauträger</li><li>Ferienwohnungen</li><li>Cafés und Restaurants mit Umbauplänen</li><li>Läden und Praxen</li><li>Handwerk: Küche, Bad, Fassade</li></ul></div>
@@ -1938,15 +1948,15 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
         <div class="immo__hl"><p class="kicker">Renderings · für Immobilien und Unternehmen</p>
         <h2 id="h-rnd">Leer, alt oder erst geplant? Wir zeigen, wie es aussehen wird.</h2></div>
         <div class="immo__body"><p class="lead">Ein Handyfoto genügt. Wir richten leere Wohnungen virtuell ein, als Foto oder als ruhigen Rundgang-Film, und zeigen Umbau oder Sanierung, bevor der erste Handwerker kommt. Mit KI auskennen müssen Sie sich nicht: Foto schicken, Wunsch beschreiben, den Rest machen wir.</p>
-        <ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Leere Wohnung:</b> virtuell eingerichtet, als Foto oder Rundgang-Film für Exposé und Immobilienportale</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Umbau und Sanierung:</b> Laden, Gastraum, Praxis, Fassade, Garten</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Nichts wird verfälscht:</b> Grundriss, Fenster und Blickwinkel bleiben, gekennzeichnet als „virtuell eingerichtet“ oder „Visualisierung“</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>49 € pro Bild</b>, 3 Bilder 119 €, fertig in 48 Stunden</span></li></ul>
+        <ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Leere Wohnung:</b> virtuell eingerichtet, als Foto oder Rundgang-Film für Exposé und Immobilienportale</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Umbau und Sanierung:</b> Laden, Gastraum, Praxis, Fassade, Garten</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>Ehrlich gezeigt:</b> Grundriss, Fenster und Blickwinkel bleiben, wie sie sind, gekennzeichnet als „virtuell eingerichtet“ oder „Visualisierung“</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span><b>49 € pro Bild</b>, 3 Bilder 119 €, fertig in 48 Stunden</span></li></ul>
         <div class="immo__cta"><a class="btn btn--light" href="#pakete">Paket wählen</a><a class="btn btn--line" href="#kontakt" data-pick="Renderings" data-note="Rendering-Anfrage">Rendering anfragen</a></div>
         <p class="rnd__fine">Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung.</p></div>
       </div>
       <div class="immo__media">
         <div class="rnd__tabs tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" data-rnd="wohnung">Leere Wohnung</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="cafe">Café-Umbau</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="haus">Haus-Sanierung</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="bad">Bad-Sanierung</button></div>
-        <figure class="immo__card"><div class="immo__pic"><img id="rndB" src="/images/ki-videos/wohnung-leer.jpg" alt="Handyfoto einer leeren Wohnung" loading="lazy"></div><figcaption><b>1</b><span id="rndBc">Ihr Handyfoto der leeren Wohnung</span></figcaption></figure>
+        <figure class="immo__card"><div class="immo__pic"><img decoding="async" id="rndB" src="/images/ki-videos/wohnung-leer.jpg" alt="Handyfoto einer leeren Wohnung" loading="lazy"></div><figcaption><b>1</b><span id="rndBc">Ihr Handyfoto der leeren Wohnung</span></figcaption></figure>
         <i class="immo__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-        <figure class="immo__card"><div class="immo__pic"><video id="rndVid" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline autoplay preload="none" aria-label="Beispiel: Rundgang durch die virtuell eingerichtete Wohnung"><source src="/videos/wohnung-rundgang.mp4" type="video/mp4"></video><img id="rndA" src="/images/renderings/cafe-nachher.jpg" alt="" loading="lazy" hidden><span class="immo__tag" id="rndTag"><i></i><em>Rundgang-Film</em></span></div><figcaption><b>2</b><span id="rndAc">Unser Rundgang-Film, virtuell eingerichtet</span></figcaption></figure>
+        <figure class="immo__card"><div class="immo__pic"><video id="rndVid" poster="/images/ki-videos/wohnung-voll.webp" muted loop playsinline autoplay preload="none" aria-label="Beispiel: Rundgang durch die virtuell eingerichtete Wohnung"><source src="/videos/wohnung-rundgang.mp4?v=2" type="video/mp4"></video><img decoding="async" id="rndA" src="/images/renderings/cafe-nachher.jpg" alt="" loading="lazy" hidden><span class="immo__tag" id="rndTag"><i></i><em>Rundgang-Film</em></span></div><figcaption><b>2</b><span id="rndAc">Unser Rundgang-Film, virtuell eingerichtet</span></figcaption></figure>
         <p class="immo__note">Beispiele, mit KI erstellt</p>
       </div>
     </div>
@@ -1958,9 +1968,9 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div class="ba">
         <div><h2 id="h-ba">Vorher und nachher.</h2><p class="lead">Links das Foto, wie Sie es uns schicken. Rechts unser Ergebnis. Ziehen Sie den Regler zur Seite.</p><div class="tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Wohnung</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Wohnung als Film</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="2">Café-Umbau</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="3">Haus-Sanierung</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="4">Bad-Sanierung</button></div><p class="ba__note">Beispiele, mit KI erstellt. Wohnung virtuell eingerichtet, Umbauten als Visualisierung.</p></div>
         <div class="cmp" id="cmp" role="tabpanel" aria-label="Vorher und Nachher">
-          <video id="tourVid" poster="/images/ki-videos/wohnung-voll.jpg" muted loop playsinline preload="metadata" aria-label="Rundgang-Film der virtuell eingerichteten Wohnung"><source src="/videos/wohnung-rundgang.mp4" type="video/mp4"></video>
-          <img class="after" id="afterImg" src="/images/ki-videos/wohnung-voll.jpg" alt="Nachher: virtuell eingerichtet, mit KI erstellt" loading="lazy">
-          <img class="before" id="beforeImg" src="/images/ki-videos/wohnung-leer.jpg" alt="Vorher: Foto der leeren Wohnung" loading="lazy">
+          <video id="tourVid" poster="/images/ki-videos/wohnung-voll.webp" muted loop playsinline preload="metadata" aria-label="Rundgang-Film der virtuell eingerichteten Wohnung"><source src="/videos/wohnung-rundgang.mp4?v=2" type="video/mp4"></video>
+          <img decoding="async" class="after" id="afterImg" src="/images/ki-videos/wohnung-voll.webp" alt="Nachher: virtuell eingerichtet, mit KI erstellt" loading="lazy">
+          <img decoding="async" class="before" id="beforeImg" src="/images/ki-videos/wohnung-leer.jpg" alt="Vorher: Foto der leeren Wohnung" loading="lazy">
           <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
           <span class="tag l">Ihr Foto</span><span class="tag r">Unser Ergebnis</span>
           <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
@@ -1974,7 +1984,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     <div class="wrap">
       <div class="sec__head"><div><h2 id="h-pakete">Einfache Preise.</h2></div><p class="lead">Sie schicken Foto und Wunsch über das Formular unten. Wir melden uns innerhalb von 24 Stunden und legen los, sobald alles klar ist.</p></div>
       <div class="plans rnd__plans"><div class="plan"><h3>1 Rendering</h3><p>Ein Raum oder eine Ansicht</p><p class="plan__big">49 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span>1 fotorealistisches Bild aus Ihrem Handyfoto</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Leere Wohnung eingerichtet oder Umbau gezeigt</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>1 Korrekturrunde inklusive</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Fertig in 48 Stunden</span></li></ul><a class="btn btn--line plan__btn" href="#kontakt" data-pick="Renderings" data-note="Rendering: 1 Bild">Anfragen</a></div><div class="plan plan--top"><h3>3 Renderings</h3><p>Mehrere Räume oder Varianten</p><p class="plan__big">119 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span>3 fotorealistische Bilder</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>z. B. 3 Räume oder 3 Varianten zum Vergleichen</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>1 Korrekturrunde inklusive</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Fertig in 48 Stunden</span></li></ul><a class="btn btn--light plan__btn" href="#kontakt" data-pick="Renderings" data-note="Rendering: 3 Bilder">Anfragen</a></div><div class="plan"><h3>Rundgang-Film</h3><p>Für Exposé und Immobilienportale</p><p class="plan__big"><small>ab </small>199 €</p><ul class="feat" role="list"><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Ruhiger Rundgang durch die eingerichteten Räume</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Quer- oder Hochformat</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Gekennzeichnet als „virtuell eingerichtet“</span></li><li><svg aria-hidden="true"><use href="#tick"/></svg><span>Fertig in 72 Stunden</span></li></ul><a class="btn btn--line plan__btn" href="#kontakt" data-pick="Renderings" data-note="Rendering: Rundgang-Film">Anfragen</a></div></div>
-      <p class="plans__note">Alle Preise sind Endpreise (gemäß § 19 UStG ohne Umsatzsteuer). Kein Abo. Sie sehen jedes Bild vor der Verwendung. Mehr Bilder oder ein ganzes Projekt: <a class="inl" href="#kontakt">Festpreis anfragen</a>. Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung; in Anzeigen kennzeichnen wir sie als „Visualisierung“ bzw. „virtuell eingerichtet“.</p>
+      <p class="plans__note">Alle Preise sind Endpreise (gemäß § 19 UStG ohne Umsatzsteuer). Kein Abo. Sie sehen jedes Bild vor der Verwendung. Mehr Bilder oder ein ganzes Projekt: <a class="inl" href="#kontakt">Festpreis anfragen</a>. Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung. In Anzeigen kennzeichnen Sie sie als „Visualisierung“ bzw. „virtuell eingerichtet“; den Hinweis setzen wir auf Wunsch direkt ins Bild.</p>
     </div>
   </section>
 
@@ -1997,7 +2007,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   <section class="sec nx" id="mehr" aria-labelledby="h-mehr">
     <div class="wrap">
       <div class="nx__head"><h2 id="h-mehr">Mehr von FOAV.</h2><p class="lead">Alles aus einer Hand, zum Festpreis. Viele Kunden kombinieren, zum Beispiel Website und NFC-Platten oder Werbefilm und Renderings.</p></div>
-      <div class="nx__grid"><a class="nx__card" href="/websites"><span class="nx__img"><img src="/media/ref-villa-desk-top.jpg" alt="" loading="lazy"></span><span class="nx__t"><small>Websites</small><b>Eine Website, die Anfragen bringt</b><em>ab 399 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/ki-shots"><span class="nx__img"><img src="/images/ki-videos/spot-start.jpg" alt="" loading="lazy"></span><span class="nx__t"><small>KI-Werbevideos</small><b>Werbefilme aus Ihren Handyfotos</b><em>ab 199 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/nfc-platten"><span class="nx__img nx__img--plate"><img src="/images/ki-shots/nfc-logo-plate.webp" alt="" loading="lazy"></span><span class="nx__t"><small>NFC-Platten</small><b>Mehr Google-Bewertungen mit einem Antippen</b><em>ab 12,90 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a></div>
+      <div class="nx__grid"><a class="nx__card" href="/websites"><span class="nx__img"><img decoding="async" src="/media/ref-villa-desk-top.webp" alt="" loading="lazy"></span><span class="nx__t"><small>Websites</small><b>Eine Website, die Anfragen bringt</b><em>ab 399 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/ki-shots"><span class="nx__img"><img decoding="async" src="/images/ki-videos/spot-start.webp" alt="" loading="lazy"></span><span class="nx__t"><small>KI-Werbevideos</small><b>Werbefilme aus Ihren Handyfotos</b><em>ab 199 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a><a class="nx__card" href="/nfc-platten"><span class="nx__img nx__img--plate"><img decoding="async" src="/images/ki-shots/nfc-logo-plate.webp" alt="" loading="lazy"></span><span class="nx__t"><small>NFC-Platten</small><b>Mehr Google-Bewertungen mit einem Antippen</b><em>ab 12,90 €</em></span><i aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i></a></div>
     </div>
   </section>
 
@@ -2006,10 +2016,11 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     <div class="wrap two">
       <div><h2 id="h-faq">Gute Fragen. Klare Antworten.</h2><p class="lead">Ihre Frage ist nicht dabei? Schreiben Sie uns über das Beratungsformular unten, wir antworten innerhalb von 24 Stunden.</p></div>
       <div>
-        <details data-on="home renderings"><summary>Was sind Renderings, und was kosten sie?<i aria-hidden="true"></i></summary><p>Ein Rendering ist ein fotorealistisches Bild von etwas, das es noch nicht gibt: Ihr Laden nach dem Umbau, das Haus nach der Sanierung, die Terrasse, die neue Praxis. Sie schicken ein Handyfoto vom heutigen Zustand und beschreiben, was geplant ist, gern mit Skizze, Grundriss oder Beispielbildern. Ein Rendering kostet 49 €, drei Renderings 119 €, jeweils mit einer Korrekturrunde und fertig in 48 Stunden. Sie müssen sich mit KI nicht auskennen: Sie schicken das Foto und beschreiben Ihren Wunsch, wir machen den Rest. Für mehr Bilder oder einen Film nennen wir Ihnen vorab einen Festpreis. Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung; in Anzeigen kennzeichnen wir sie als „Visualisierung“.</p></details>
-        <details data-on="renderings"><summary>Können Sie eine leere Wohnung einrichten?<i aria-hidden="true"></i></summary><p>Ja. Aus Ihren Handyfotos der leeren Räume entsteht ein Foto oder ein ruhiger Rundgang-Film, virtuell eingerichtet; Grundriss, Fenster und Böden bleiben dabei exakt. Im Film steht dann sichtbar „virtuell eingerichtet“, wie es in Immobilienanzeigen nötig ist.</p></details>
-        <details data-on="home ki-shots renderings"><summary>Muss ich KI-Videos kennzeichnen?<i aria-hidden="true"></i></summary><p>Realistisch wirkende KI-Bilder und -Videos müssen nach der EU-KI-Verordnung erkennbar sein. Auf Wunsch blenden wir einen dezenten Hinweis „Mit KI erstellt“ ein. Instagram und TikTok bieten beim Posten zusätzlich ein eigenes KI-Label.</p></details>
-        <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb und Sie bezahlen sicher über Stripe, zum Beispiel per Karte, Apple Pay oder Google Pay. NFC-Platten Classic bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
+        <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wofür steht FOAV?<i aria-hidden="true"></i></summary><p>FOAV steht für <strong>Focus on Aesthetic Value</strong>. Wir sind eine Agentur aus München, gegründet von Florian Dressler und Davy Stubenrauch, und machen Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Bis Oktober 2026 hießen wir F&amp;D Solutions.</p></details>
+        <details data-on="home renderings"><summary>Was sind Renderings, und was kosten sie?<i aria-hidden="true"></i></summary><p>Ein Rendering ist ein fotorealistisches Bild von etwas, das es noch nicht gibt: Ihr Laden nach dem Umbau, das Haus nach der Sanierung, die Terrasse, die neue Praxis. Sie schicken ein Handyfoto vom heutigen Zustand und beschreiben, was geplant ist, gern mit Skizze, Grundriss oder Beispielbildern. Ein Rendering kostet 49 €, drei Renderings 119 €, jeweils mit einer Korrekturrunde und fertig in 48 Stunden. Sie müssen sich mit KI nicht auskennen: Sie schicken das Foto und beschreiben Ihren Wunsch, wir machen den Rest. Für mehr Bilder oder einen Film nennen wir Ihnen vorab einen Festpreis. Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung. In Anzeigen kennzeichnen Sie sie als „Visualisierung“; den Hinweis setzen wir auf Wunsch direkt ins Bild.</p></details>
+        <details data-on="renderings"><summary>Können Sie eine leere Wohnung einrichten?<i aria-hidden="true"></i></summary><p>Ja. Aus Ihren Handyfotos der leeren Räume entsteht ein Foto oder ein ruhiger Rundgang-Film, virtuell eingerichtet; Grundriss, Fenster und Böden bleiben erhalten, das prüfen wir bei jedem Bild. Im Film steht dann sichtbar „virtuell eingerichtet“, wie es in Immobilienanzeigen nötig ist.</p></details>
+        <details data-on="home ki-shots renderings"><summary>Muss ich KI-Videos kennzeichnen?<i aria-hidden="true"></i></summary><p>Ein Hinweis im Film ist bei uns nicht vorgegeben. Auf Wunsch blenden wir einen dezenten Hinweis „Mit KI erstellt“ ein, und Instagram und TikTok bieten beim Posten ein eigenes KI-Label. Ob eine Kennzeichnung in Ihrem Fall nötig ist, hängt vom Inhalt ab; im Zweifel lieber kennzeichnen.</p></details>
+        <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb, und Sie bezahlen sicher online. Normale NFC-Platten bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>
       </div>
     </div>
   </section>
@@ -2019,7 +2030,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     <div class="wrap contact__grid">
       <div>
         <h2 id="h-kontakt">Bereit für mehr Kunden?</h2>
-        <p class="lead">So bestellen Sie: Paket wählen, Angaben ausfüllen, in den Warenkorb legen und sicher online bezahlen. Alles hier auf der Website.</p>
+        <p class="lead">Schreiben Sie uns kurz, was Sie brauchen. Wir melden uns innerhalb von 24 Stunden mit einem Festpreis, kostenlos und unverbindlich. Wissen Sie schon, was Sie wollen? Dann bestellen Sie direkt:</p>
         <ul class="order" role="list">
           <li><a href="/websites#pakete"><b>Website</b><span>ab 399 €</span></a></li>
           <li><a href="/ki-shots#pakete"><b>KI-Werbevideos</b><span>ab 199 €</span></a></li>
@@ -2046,14 +2057,14 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
         <label class="consent"><input type="checkbox" id="fConsent" aria-describedby="eConsent"><span>Ich bin einverstanden, dass meine Angaben zur Bearbeitung der Anfrage verwendet werden.</span></label>
         <p class="consent-more">Mehr dazu in der <a href="/datenschutz">Datenschutzerklärung</a></p>
         <span class="err" id="eConsent" aria-live="polite"></span>
-        <button class="btn btn--ink" type="submit" id="send">Beratung anfragen</button>
+        <button class="btn btn--ink" type="submit" id="send">Kostenlose Beratung anfordern</button>
         <p class="status" id="status" role="status" hidden></p>
       </form>
     </div>
     <footer class="foot">
       <div class="wrap">
         <div class="foot__grid">
-          <div class="foot__brand"><p>Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
+          <div class="foot__brand"><p><strong>FOAV – Focus on Aesthetic Value.</strong> Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Persönlich aus München, zum Festpreis.</p></div>
           <div><h3>Leistungen</h3><ul><li><a href="/websites">Websites</a></li><li><a href="/ki-shots">KI-Werbevideos</a></li><li><a href="/renderings">Renderings</a></li><li><a href="/nfc-platten">NFC-Platten</a></li><li><a href="/shop">Shop</a></li></ul></div>
           <div><h3>Unternehmen</h3><ul><li><a href="/#team">Über uns</a></li><li><a href="/#ablauf">Ablauf</a></li><li><a href="/#angebot">Leistungen im Vergleich</a></li><li><a href="#fragen">Fragen</a></li></ul></div>
           <div><h3>Kontakt</h3><ul><li><a href="#pakete" data-offers>Angebot wählen</a></li><li><a href="/shop">Warenkorb</a></li><li><a href="mailto:info@foav.de">info@foav.de</a></li><li><a href="#kontakt">Kostenlose Beratung</a></li></ul></div>
@@ -2066,7 +2077,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 
 </main>
 
-<div class="dock away" id="dock"><a class="btn btn--line" href="/shop">Warenkorb</a><a class="btn btn--champ" href="#pakete" data-offers>Angebot wählen</a></div>
+<nav class="dock away" id="dock" aria-label="Schnellzugriff"><a class="btn btn--line" href="/shop">Warenkorb</a><a class="btn btn--champ" href="#pakete" data-offers>Angebot wählen</a></nav>
 
 <script src="/site/vendor/gsap-3.13/gsap.min.js" defer></script>
 <script src="/site/vendor/gsap-3.13/ScrollTrigger.min.js" defer></script>
@@ -2140,7 +2151,7 @@ document.addEventListener("DOMContentLoaded", function () {
     v.addEventListener("playing", function () { btn.hidden = true; });
     if (btn) btn.addEventListener("click", function (e) { e.stopPropagation(); start(v); });
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
-    whileVisible(v, function () { shown.push(v); if (!(still && v.id === "heroVid")) start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
+    whileVisible(v, function () { shown.push(v); if (still && v.id === "heroVid") return; if (v.id === "svcVid") { var ks = document.getElementById("ki-shots"); if (ks && !ks.classList.contains("s3")) return; } start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
   ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#immoVid", "#rndVid", "#cmpVid", "#pVid", "#kvLand"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
 
@@ -2248,6 +2259,7 @@ document.addEventListener("DOMContentLoaded", function () {
     new MutationObserver(function () {
       var now = sc.classList.contains("s3");
       if (now && !was) { try { v.currentTime = 0; var pr = v.play(); if (pr && pr.catch) pr.catch(function () {}); } catch (e) {} }
+      if (!now && was) { try { v.pause(); } catch (e) {} } // hidden again: do not decode in the background
       was = now;
     }).observe(sc, { attributes: true, attributeFilter: ["class"] });
   })();
@@ -2358,7 +2370,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
   if (cmp) (function () {
   grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
-  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.jpg", "", "/images/renderings/cafe-nachher.jpg", "/images/renderings/haus-nachher.jpg", "/images/renderings/bad-nachher.jpg"], befs = ["/images/ki-videos/wohnung-leer.jpg", "/images/ki-videos/wohnung-leer.jpg", "/images/renderings/cafe-vorher.jpg", "/images/renderings/haus-vorher.jpg", "/images/renderings/bad-vorher.jpg"], room = 0;
+  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.webp", "", "/images/renderings/cafe-nachher.jpg", "/images/renderings/haus-nachher.jpg", "/images/renderings/bad-nachher.jpg"], befs = ["/images/ki-videos/wohnung-leer.jpg", "/images/ki-videos/wohnung-leer.jpg", "/images/renderings/cafe-vorher.jpg", "/images/renderings/haus-vorher.jpg", "/images/renderings/bad-vorher.jpg"], room = 0;
   setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
@@ -2473,7 +2485,7 @@ document.addEventListener("DOMContentLoaded", function () {
         else fail(x.d && x.d.error);
       })
       .catch(function () { fail(); })
-      .then(function () { sendBtn.disabled = false; sendBtn.textContent = "Beratung anfragen"; });
+      .then(function () { sendBtn.disabled = false; sendBtn.textContent = "Kostenlose Beratung anfordern"; });
   });
 
 

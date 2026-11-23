@@ -17,9 +17,9 @@ export default function Datenschutz() {
       </p>
       <h2>2. Hosting und Server-Logfiles</h2>
       <p>
-        Beim Aufruf dieser Website werden durch den Hosting-Anbieter automatisch Informationen (IP-Adresse, Datum und Uhrzeit, aufgerufene
+        Diese Website wird bei Cloudflare (Cloudflare, Inc., USA) betrieben. Beim Aufruf werden durch den Hosting-Anbieter automatisch Informationen (IP-Adresse, Datum und Uhrzeit, aufgerufene
         Seite, Browser) in Server-Logfiles gespeichert. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO (berechtigtes Interesse am sicheren
-        Betrieb). Die Daten werden nach spätestens 14 Tagen gelöscht.
+        Betrieb). Die Daten werden nach spätestens 14 Tagen gelöscht. Cloudflare ist unter dem EU-US Data Privacy Framework zertifiziert.
       </p>
       <h2>3. Anfrageformular</h2>
       <p>
@@ -31,8 +31,8 @@ export default function Datenschutz() {
       <h2>4. Fragebogen und Foto-Upload</h2>
       <p>
         Im Website-Fragebogen, im Fragebogen für KI-Werbevideos und im Fragebogen für NFC-Platten mit Logo können Sie Angaben zu Ihrem Projekt machen und Fotos oder Ihr Logo hochladen. Die Dateien
-        werden bei Vercel Blob (Vercel Inc., USA) gespeichert und sind nur über eine zufällig erzeugte, nicht öffentlich verlinkte Adresse
-        erreichbar. Wir nutzen sie ausschließlich, um Ihren Auftrag zu erstellen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Vercel ist unter
+        werden im Speicherdienst Cloudflare R2 (Cloudflare, Inc., USA) gespeichert und sind nur über eine zufällig erzeugte, nicht öffentlich verlinkte Adresse
+        erreichbar. Wir nutzen sie ausschließlich, um Ihren Auftrag zu erstellen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO. Cloudflare ist unter
         dem EU-US Data Privacy Framework zertifiziert. Wir löschen die Dateien spätestens drei Monate nach Abschluss des Auftrags, auf Wunsch
         sofort. Bitte laden Sie keine Fotos hoch, auf denen Personen zu erkennen sind.
       </p>
@@ -52,7 +52,10 @@ export default function Datenschutz() {
       <p>Die verwendeten Schriftarten werden lokal von unserem Server ausgeliefert. Es findet keine Verbindung zu Servern von Google statt.</p>
       <h2>7. Cookies und Tracking</h2>
       <p>
-        Diese Website setzt keine Cookies zu Werbe- oder Analysezwecken. Um zu sehen, wie viele Besucher die Seite nutzen, verwenden wir Vercel Web Analytics (Vercel Inc., USA). Dabei werden keine Cookies gesetzt und keine Daten im Endgerät gespeichert. Erfasst werden nur aufgerufene Seiten, Herkunftsseite, Land, Gerätetyp, Browser und Betriebssystem. Ein Besucher wird nur über einen täglich wechselnden, nicht umkehrbaren Wert unterschieden, eine Wiedererkennung über mehrere Tage findet nicht statt. Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).
+        Diese Website setzt keine Cookies zu Werbe- oder Analysezwecken. Um zu sehen, wie viele Besucher die Seite nutzen, verwenden wir Cloudflare Web Analytics
+        (Cloudflare, Inc., USA). Dabei werden keine Cookies gesetzt und keine Daten im Endgerät gespeichert; es wird kein Profil gebildet und keine
+        IP-Adresse dauerhaft gespeichert. Erfasst werden nur aufgerufene Seite, Herkunftsseite, Land, Gerätetyp, Browser und Ladezeiten.
+        Rechtsgrundlage ist unser berechtigtes Interesse an einer bedarfsgerechten Gestaltung der Website (Art. 6 Abs. 1 lit. f DSGVO).
       </p>
       <h2>8. Ihre Rechte</h2>
       <p>

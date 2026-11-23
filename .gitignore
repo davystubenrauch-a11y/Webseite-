@@ -6,5 +6,10 @@ next-env.d.ts
 .env*.local
 .DS_Store
 
+# Cloudflare / OpenNext
+.open-next
+.wrangler
+.dev.vars
+
 # Graphify-Code-Karte (wird lokal erzeugt)
 graphify-out/

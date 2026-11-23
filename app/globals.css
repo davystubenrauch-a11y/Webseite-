@@ -159,6 +159,10 @@ input[type="range"].range::-moz-range-thumb {
 .legal p {
   @apply mt-3 leading-relaxed text-ink-muted;
 }
+/* Links inside running text must be recognisable without colour (WCAG 1.4.1). */
+.legal p a {
+  @apply text-ink underline underline-offset-2;
+}
 .legal .note {
   @apply mt-14 text-xs text-ink-faint;
 }

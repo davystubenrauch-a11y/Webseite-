@@ -28,3 +28,7 @@ const nextConfig = {
 };
 
 export default nextConfig;
+
+// Lets `next dev` use the Cloudflare bindings from wrangler.jsonc (R2 bucket UPLOADS) locally.
+import { initOpenNextCloudflareForDev } from "@opennextjs/cloudflare";
+initOpenNextCloudflareForDev();

@@ -1,3 +1,4 @@
+import { bucket } from "@/lib/storage";
 import { NextResponse } from "next/server";
 
 // Shows which services are set up, without revealing any key. Resend is asked read-only
@@ -9,7 +10,7 @@ export async function GET() {
     resend_key: Boolean(process.env.RESEND_API_KEY),
     stripe_key: Boolean(process.env.STRIPE_SECRET_KEY),
     stripe_webhook_secret: Boolean(process.env.STRIPE_WEBHOOK_SECRET),
-    photo_upload: Boolean(process.env.BLOB_READ_WRITE_TOKEN || process.env.BLOB_STORE_ID),
+    photo_upload: Boolean(bucket()),
     mail_to: process.env.INQUIRY_TO || "info@foav.de",
     mail_from: process.env.INQUIRY_FROM || "FOAV <info@foav.de>",
   };

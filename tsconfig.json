@@ -36,6 +36,8 @@
     ".next/dev/types/**/*.ts"
   ],
   "exclude": [
+    "worker.ts",
+    ".open-next",
     "node_modules",
     "spiruli"
   ]

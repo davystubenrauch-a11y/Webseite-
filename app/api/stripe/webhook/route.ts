@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { euro } from "@/lib/shop";
-import { stripe } from "@/lib/stripe";
+import { cryptoProvider, stripe } from "@/lib/stripe";
 
 // Stripe webhook: the only place an order counts as paid. Endpoint in the Stripe Dashboard:
 // https://foav.de/api/stripe/webhook with the events checkout.session.completed,
@@ -18,7 +18,7 @@ export async function POST(req: Request) {
   const body = await req.text();
   let event: Stripe.Event;
   try {
-    event = s.webhooks.constructEvent(body, req.headers.get("stripe-signature") ?? "", secret);
+    event = await s.webhooks.constructEventAsync(body, req.headers.get("stripe-signature") ?? "", secret, undefined, cryptoProvider);
   } catch {
     return NextResponse.json({ error: "bad signature" }, { status: 400 });
   }

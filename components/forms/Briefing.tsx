@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import { upload, uploadPresigned } from "@vercel/blob/client";
 import { site } from "@/lib/site";
 import { summarizeBriefing, type Briefing, type BriefingKind, type Photo } from "@/lib/briefing";
 
@@ -30,7 +29,7 @@ const css = `
   min-height:100vh; background:var(--bg); color:var(--text); font:400 17px/1.55 "Inter",-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
   letter-spacing:-.011em; -webkit-font-smoothing:antialiased; }
 .bf *, .bf *::before, .bf *::after { box-sizing:border-box; }
-.bf a { color:var(--ink); }
+.bf a { color:var(--ink); } .bf p a:not([class]) { text-decoration:underline; text-underline-offset:2px; }
 .bf-wrap { max-width:1180px; margin:0 auto; padding:0 clamp(16px,4vw,40px); }
 .bf-head { position:sticky; top:0; z-index:5; background:rgba(251,251,253,.86); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid var(--line); }
 .bf-head .bf-wrap { height:60px; display:flex; align-items:center; justify-content:space-between; }
@@ -265,18 +264,33 @@ export function usePrefill(sections: Section[], set: (id: string, v: string | st
   }, []);
 }
 
-/** Whether the server can accept photo uploads, and how (classic token or presigned URL). */
+/** Whether the server can accept photo uploads (Cloudflare R2 bucket bound). */
 function useUploadsEnabled() {
-  const [mode, setMode] = useState<"token" | "presigned" | false | null>(null);
+  const [mode, setMode] = useState<boolean | null>(null);
   useEffect(() => {
-    fetch("/api/upload").then((r) => r.json()).then((j) => setMode(j.enabled ? (j.mode === "presigned" ? "presigned" : "token") : false)).catch(() => setMode(false));
+    fetch("/api/upload").then((r) => r.json()).then((j) => setMode(Boolean(j.enabled))).catch(() => setMode(false));
   }, []);
   return mode;
 }
 
+/** PUT one file to /api/upload with progress; resolves with the file's link. */
+function sendFile(path: string, file: File, onProgress: (p: number) => void) {
+  return new Promise<string>((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("PUT", `/api/upload?path=${encodeURIComponent(path)}`);
+    xhr.setRequestHeader("Content-Type", file.type || "application/octet-stream");
+    xhr.upload.onprogress = (e) => { if (e.lengthComputable) onProgress(Math.round((e.loaded / e.total) * 100)); };
+    xhr.onload = () => {
+      try { const j = JSON.parse(xhr.responseText); if (xhr.status < 300 && j.url) resolve(j.url); else reject(new Error(j.error)); } catch (e) { reject(e); }
+    };
+    xhr.onerror = () => reject(new Error("network"));
+    xhr.send(file);
+  });
+}
+
 const slug = (s: string) => s.toLowerCase().normalize("NFKD").replace(/[^\w.]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 60) || "datei";
 
-/** Photo uploads for one group (room, "Logo", …). Files go straight to Vercel Blob. */
+/** Photo uploads for one group (room, "Logo", …). Files go to Cloudflare R2 via /api/upload. */
 export function usePhotos(kind: BriefingKind) {
   const ref = useRef(Math.random().toString(36).slice(2, 10));
   const mode = useUploadsEnabled();
@@ -291,15 +305,9 @@ export function usePhotos(kind: BriefingKind) {
       if (file.size > 25 * 1024 * 1024) item.error = "Größer als 25 MB";
       setItems((list) => [...list, item]);
       if (item.error) continue;
-      const send = mode === "presigned" ? uploadPresigned : upload;
       // a short random part keeps two files with the same name apart
-      send(`${kind}/${ref.current}/${slug(group)}/${Math.random().toString(36).slice(2, 7)}-${slug(file.name)}`, file, {
-        access: "public",
-        handleUploadUrl: "/api/upload",
-        multipart: file.size > 8 * 1024 * 1024,
-        onUploadProgress: ({ percentage }) => patch(id, { progress: percentage }),
-      })
-        .then((b) => patch(id, { url: b.url, progress: 100 }))
+      sendFile(`${kind}/${ref.current}/${slug(group)}/${Math.random().toString(36).slice(2, 7)}-${slug(file.name)}`, file, (p) => patch(id, { progress: p }))
+        .then((url) => patch(id, { url, progress: 100 }))
         .catch(() => patch(id, { error: "Upload fehlgeschlagen" }));
     }
   }

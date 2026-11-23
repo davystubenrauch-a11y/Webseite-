@@ -14,7 +14,7 @@ export default function Agb() {
       <h2>1. Geltungsbereich</h2>
       <p>
         Diese Bedingungen gelten für alle Aufträge an {site.address[0]} („{site.name}“, „wir“) über die Erstellung von Websites, KI-Werbevideos (kurze Werbefilme und Bilder, mit KI
-        aus Ihren Fotos erstellt) und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
+        aus Ihren Fotos erstellt), Renderings (fotorealistische Visualisierungen aus Ihren Fotos) und den Verkauf von NFC-Platten. Abweichende Bedingungen des Kunden gelten nur, wenn wir ihnen schriftlich zustimmen.
       </p>
 
       <h2>2. Vertragsschluss</h2>
@@ -43,11 +43,17 @@ export default function Agb() {
         des gewählten Pakets (Starter, Pro oder Brand-Paket). Licht, Hintergrund und Umgebung werden neu gestaltet; Ihr Produkt soll dabei
         unverändert bleiben. Einzelne Details können trotzdem abweichen, deshalb prüfen Sie die Ergebnisse vor der Veröffentlichung. Für eine
         zutreffende Darstellung Ihres Produkts in Werbung und Shop und für eine nötige Kennzeichnung als KI-Inhalt sind Sie verantwortlich; wir
-        blenden auf Wunsch einen Hinweis ein.
+        blenden auf Wunsch einen Hinweis „Mit KI erstellt“ ein.
       </p>
       <p>
-        <b>NFC-Platten:</b> Runde Platten (Ø 10 cm) mit NFC-Chip, den wir mit dem von Ihnen genannten Google-Profil verknüpfen, als Classic
-        Edition (Google-Design, Weiß oder Schwarz) oder als Custom Brand Edition mit Ihrem Logo. Bei der Custom Brand Edition erhalten Sie vor
+        <b>Renderings:</b> Fotorealistische Bilder oder kurze Rundgang-Filme, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos und Ihrer
+        Beschreibung entstehen, z. B. eine leere Wohnung virtuell eingerichtet oder ein Umbau vor Baubeginn. Je Bild ist eine Korrekturrunde
+        enthalten. Renderings sind Visualisierungen zur Vorstellung und Werbung; sie ersetzen keine Bau-, Statik- oder Genehmigungsplanung.
+        Verwenden Sie sie in Anzeigen, kennzeichnen Sie sie als „Visualisierung“ bzw. „virtuell eingerichtet“.
+      </p>
+      <p>
+        <b>NFC-Platten:</b> Runde Platten (Ø 10 cm) mit NFC-Chip, den wir mit dem von Ihnen genannten Google-Profil verknüpfen, als normale
+        Platte (Google-Design, Weiß) oder als Platte mit Ihrem Logo (Weiß oder Schwarz). Bei Platten mit Ihrem Logo erhalten Sie vor
         der Produktion eine Design-Vorschau; produziert wird erst nach Ihrer Freigabe. Weil diese Platten nach Ihren Vorgaben angefertigt werden,
         besteht für sie nach § 312g Abs. 2 Nr. 1 BGB kein Widerrufsrecht. Wir schulden die Platte und die Verknüpfung, keine bestimmte Zahl oder Art von Bewertungen. Bitte beachten Sie die Richtlinien
         von Google: Bewertungen dürfen nicht gekauft oder an Gegenleistungen geknüpft werden.
@@ -62,9 +68,9 @@ export default function Agb() {
 
       <h2>5. Lieferzeiten</h2>
       <p>
-        KI-Werbevideos liefern wir je nach Paket innerhalb von 48 Stunden (Starter) oder 72 Stunden (Pro, Brand-Paket), eine Website je nach Paket innerhalb von bis zu 7 Tagen. Die Frist beginnt,
-        sobald die Zahlung eingegangen ist und uns alle nötigen Unterlagen vorliegen (Fotos, Texte, Logo, Zugangsdaten). NFC-Platten versenden wir
-        nach Zahlungseingang innerhalb Deutschlands; die Lieferung der Classic Edition dauert 3 bis 7 Werktage. Die Custom Brand Edition
+        KI-Werbevideos liefern wir je nach Paket innerhalb von 48 Stunden (Starter) oder 72 Stunden (Pro, Brand-Paket), Renderings innerhalb von 48 Stunden (Rundgang-Filme innerhalb von 72 Stunden), den ersten Entwurf einer Website je nach Paket innerhalb von 5 bzw. 7 Tagen; online geht die Website nach Ihrer Freigabe. Die Frist beginnt,
+        sobald die Zahlung eingegangen ist und uns alle nötigen Unterlagen vorliegen (Fotos, Texte, Logo, Angaben aus dem Fragebogen). NFC-Platten versenden wir
+        nach Zahlungseingang innerhalb Deutschlands; die Lieferung normaler Platten dauert 3 bis 7 Werktage. Platten mit Ihrem Logo
         versenden wir innerhalb von 10 Werktagen nach Ihrer Freigabe der Design-Vorschau. Verzögerungen, die wir nicht zu vertreten haben, verlängern die Fristen
         entsprechend.
       </p>
@@ -85,7 +91,7 @@ export default function Agb() {
 
       <h2>8. Nutzungsrechte</h2>
       <p>
-        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website sowie die KI-Werbevideos für Ihren
+        Mit vollständiger Zahlung erhalten Sie das zeitlich und räumlich unbeschränkte Recht, die erstellte Website sowie die KI-Werbevideos und Renderings für Ihren
         Betrieb zu nutzen, auch in sozialen Medien, Werbeanzeigen, Onlineshops und auf Google. Wir dürfen die Arbeit als Referenz zeigen, sofern Sie nicht
         widersprechen.
       </p>
