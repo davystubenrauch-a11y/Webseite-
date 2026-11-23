@@ -21,6 +21,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 
 ## Stand: foav.de läuft auf Cloudflare (20.11.)
 - **Live:** foav.de + www.foav.de = Worker `foav-website` (Custom Domains, foav.de → www per `worker.ts`). Zone foav.de bei Cloudflare aktiv (Nameserver `lola`/`mario.ns.cloudflare.com`, bei Checkdomain umgestellt; Domain bleibt dort registriert, Mailpaket „Mail M“ bleibt). DNS-Einträge für Mail (MX secure-mailgate, mx1, autoconfig, autodiscover, SPF, DMARC) und Resend (`send`, `rsend`, `resend._domainkey`, `resend-domain-verification`) alle „DNS only“. Alte Vercel-Einträge (A 216.198.79.1, www CNAME) gelöscht. Getestet: alle Seiten, Upload, Anfrage FOAV-P4W9PZ per Resend.
+- 23.11.: Zweige `claude/hopeful-goodall-m39gmd` und `claude/sharp-cerf-sdkvuk` zusammengeführt (gleicher Stand). Website-Änderungen auf beide pushen, solange Cloudflare aus sharp-cerf baut.
 - Workers Builds baut **Zweig `claude/sharp-cerf-sdkvuk`** → Änderungen an der Website dort pushen, bis er in den Hauptzweig gemergt und in Cloudflare (Settings → Build → Branch) umgestellt ist.
 - Claude-Token hat **keine Zone-/DNS-Rechte**: DNS-Einträge löschen/ändern machen die Gründer im Dashboard; Workers-Custom-Domains per API gehen.
 - Offen: Vercel-Projekt löschen (nach ein paar Tagen), leeren Worker `foav` löschen, Stripe-Schlüssel als Worker-Secrets, Florian als Admin einladen.
