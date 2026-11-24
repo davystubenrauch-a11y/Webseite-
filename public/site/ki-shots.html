@@ -210,6 +210,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .lineup { position: relative; z-index: 1; width: 100%; max-width: 1320px; aspect-ratio: 16 / 7.4; margin: 0 auto; }
 .lu { position: absolute; bottom: 0; will-change: transform; }
 .lu-mac { left: 50%; width: 64%; margin-left: -32%; bottom: 3%; }
+.lu picture { display: contents; }
 .lu-mac .mac__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .lu-phone { right: 6%; bottom: 2%; width: 14.2%; z-index: 2; }
 .lu-disc { left: 5%; bottom: 1%; width: 20%; z-index: 2; }
@@ -1939,7 +1940,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
         <div class="pst__dev" aria-hidden="true">
           <figure class="ps-photo"><img decoding="async" src="/images/ki-videos/handy-1.jpg" alt=""><i class="ps-scan"></i><figcaption>Ihr Handyfoto</figcaption></figure>
           <svg class="ps-arrow" viewBox="0 0 120 40"><path class="ps-dash" d="M4 20h98"/><path d="M96 9l13 11-13 11"/></svg>
-          <div class="ps-phone"><div class="ps-scr"><img decoding="async" src="/images/ki-videos/spot-start.webp" alt=""><video id="pVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline autoplay preload="metadata"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video><div class="ps-reel"><b>Reels</b><svg class="ps-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><em>cafe.morgenrot</em><i class="ps-bar"><i></i></i></div></div></div>
+          <div class="ps-phone"><div class="ps-scr"><img decoding="async" src="/images/ki-videos/spot-start.webp" alt=""><video id="pVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video><div class="ps-reel"><b>Reels</b><svg class="ps-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg><em>cafe.morgenrot</em><i class="ps-bar"><i></i></i></div></div></div>
           <ul class="pst__tags" role="list"><li style="--i:0;--x:4%;--y:6%">Ruhige Kamerafahrten</li><li style="--i:1;--x:4%;--y:88%">Musik und Text</li><li style="--i:2;--x:32%;--y:74%">Fertig in 48 Stunden</li></ul>
         </div>
       </div></div>
@@ -1987,7 +1988,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
             <div class="kf__shot">
               <img decoding="async" class="kf__raw" src="/images/ki-videos/handy-1.jpg" alt="" loading="lazy">
               <img decoding="async" class="kf__pro" src="/images/ki-videos/spot-1.jpg" alt="" loading="lazy">
-              <video id="svcVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video>
+              <video id="svcVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video>
               <i class="kf__sweep" aria-hidden="true"></i>
               <div class="kf__cam" aria-hidden="true"><i class="kf__zoom">1×</i><span class="kf__modes"><i>VIDEO</i><b>FOTO</b><i>PORTRÄT</i></span><i class="kf__shut"></i></div>
               <div class="kf__cine" aria-hidden="true"><i class="kf__bar kf__bar--t"></i><i class="kf__bar kf__bar--b"></i><span class="kf__tc"><i></i>REC</span><span class="kf__res">4K · 24p</span><em class="kf__t1">Draußen grau.</em><em class="kf__t2">Drinnen Apfelkuchen.</em><span class="kf__wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i></span></div>

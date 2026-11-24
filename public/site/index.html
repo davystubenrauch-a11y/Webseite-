@@ -211,6 +211,7 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 .lineup { position: relative; z-index: 1; width: 100%; max-width: 1320px; aspect-ratio: 16 / 7.4; margin: 0 auto; }
 .lu { position: absolute; bottom: 0; will-change: transform; }
 .lu-mac { left: 50%; width: 64%; margin-left: -32%; bottom: 3%; }
+.lu picture { display: contents; }
 .lu-mac .mac__screen img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
 .lu-phone { right: 6%; bottom: 2%; width: 14.2%; z-index: 2; }
 .lu-disc { left: 5%; bottom: 1%; width: 20%; z-index: 2; }
@@ -1947,8 +1948,8 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <a class="hs__a hs-nfc" href="/nfc-platten"><span>NFC-Platte <b>14,90 €</b></span></a>
     </nav>
     <div class="lineup" id="lineup" aria-hidden="true">
-      <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><img decoding="async" src="/media/ref-villa-desk-top.webp" alt="" width="1200" height="780"></div></div><div class="mac__base"></div></div></div>
-      <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt=""><video id="heroVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline autoplay preload="metadata"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video></div></div></div>
+      <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img decoding="async" src="/media/ref-villa-desk-top.webp" alt="" width="1200" height="780"></picture></div></div><div class="mac__base"></div></div></div>
+      <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt=""></picture><video id="heroVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video></div></div></div>
       <div class="lu lu-disc"><div class="lu-tilt"><div><span class="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div></div></div>
     </div>
     </div>
@@ -1977,7 +1978,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
           <dl class="cmpc__rows"><div class="cmp-row"><dt>Sie schicken</dt><dd>Angaben, Logo und Fotos</dd></div><div class="cmp-row"><dt>Sie bekommen</dt><dd>Website mit 3 bis 10 Seiten, Hosting inklusive</dd></div><div class="cmp-row"><dt>Fertig</dt><dd>in 5 bis 7 Tagen</dd></div><div class="cmp-row"><dt>Passt zu</dt><dd>Läden, Handwerk, Praxen, Gastro</dd></div></dl>
         </article>
         <article class="cmpc cmpc--room">
-          <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt="" loading="lazy"><video id="cmpVid" muted loop playsinline autoplay preload="none" poster="/images/ki-videos/spot-start.webp"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video></div></div><span class="rt-chip"><i></i>Werbefilm läuft</span></div>
+          <div class="cmpc__stage" aria-hidden="true"><div class="iphone"><div class="iphone__screen"><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt="" loading="lazy"><video id="cmpVid" muted loop playsinline preload="none" poster="/images/ki-videos/spot-start.webp"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video></div></div><span class="rt-chip"><i></i>Werbefilm läuft</span></div>
           <h3>KI-Werbevideos</h3>
           <p class="cmpc__tag">Macht aus Ihren Handyfotos einen Werbefilm, der aussieht wie gedreht.</p>
           <p class="cmpc__price"><small>ab</small> 199 €</p><p class="cmpc__sub">Fertiger Film in 48 Stunden</p>
@@ -2042,7 +2043,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
             <div class="kf__shot">
               <img decoding="async" class="kf__raw" src="/images/ki-videos/handy-1.jpg" alt="" loading="lazy">
               <img decoding="async" class="kf__pro" src="/images/ki-videos/spot-1.jpg" alt="" loading="lazy">
-              <video id="svcVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline autoplay preload="metadata" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video>
+              <video id="svcVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none" aria-label="Beispiel-Werbefilm Café Morgenrot"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video>
               <i class="kf__sweep" aria-hidden="true"></i>
               <div class="kf__cam" aria-hidden="true"><i class="kf__zoom">1×</i><span class="kf__modes"><i>VIDEO</i><b>FOTO</b><i>PORTRÄT</i></span><i class="kf__shut"></i></div>
               <div class="kf__cine" aria-hidden="true"><i class="kf__bar kf__bar--t"></i><i class="kf__bar kf__bar--b"></i><span class="kf__tc"><i></i>REC</span><span class="kf__res">4K · 24p</span><em class="kf__t1">Draußen grau.</em><em class="kf__t2">Drinnen Apfelkuchen.</em><span class="kf__wave"><i style="--i:0"></i><i style="--i:1"></i><i style="--i:2"></i><i style="--i:3"></i><i style="--i:4"></i><i style="--i:5"></i><i style="--i:6"></i><i style="--i:7"></i><i style="--i:8"></i><i style="--i:9"></i><i style="--i:10"></i><i style="--i:11"></i><i style="--i:12"></i><i style="--i:13"></i><i style="--i:14"></i><i style="--i:15"></i></span></div>
@@ -2072,7 +2073,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
         <div class="rnd__tabs tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" data-rnd="wohnung">Leere Wohnung</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="cafe">Café-Umbau</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="haus">Haus-Sanierung</button><button type="button" role="tab" aria-selected="false" tabindex="-1" data-rnd="bad">Bad-Sanierung</button></div>
         <figure class="immo__card"><div class="immo__pic"><img decoding="async" id="rndB" src="/images/ki-videos/wohnung-leer.jpg" alt="Handyfoto einer leeren Wohnung" loading="lazy"></div><figcaption><b>1</b><span id="rndBc">Ihr Handyfoto der leeren Wohnung</span></figcaption></figure>
         <i class="immo__arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></i>
-        <figure class="immo__card"><div class="immo__pic"><video id="rndVid" poster="/images/ki-videos/wohnung-voll.webp" muted loop playsinline autoplay preload="none" aria-label="Beispiel: Rundgang durch die virtuell eingerichtete Wohnung"><source src="/videos/wohnung-rundgang.mp4?v=2" type="video/mp4"></video><img decoding="async" id="rndA" src="/images/renderings/cafe-nachher.jpg" alt="" loading="lazy" hidden><span class="immo__tag" id="rndTag"><i></i><em>Rundgang-Film</em></span></div><figcaption><b>2</b><span id="rndAc">Unser Rundgang-Film, virtuell eingerichtet</span></figcaption></figure>
+        <figure class="immo__card"><div class="immo__pic"><video id="rndVid" poster="/images/ki-videos/wohnung-voll.webp" muted loop playsinline preload="none" aria-label="Beispiel: Rundgang durch die virtuell eingerichtete Wohnung"><source src="/videos/wohnung-rundgang.mp4?v=2" type="video/mp4"></video><img decoding="async" id="rndA" src="/images/renderings/cafe-nachher.jpg" alt="" loading="lazy" hidden><span class="immo__tag" id="rndTag"><i></i><em>Rundgang-Film</em></span></div><figcaption><b>2</b><span id="rndAc">Unser Rundgang-Film, virtuell eingerichtet</span></figcaption></figure>
         <p class="immo__note">Beispiele, mit KI erstellt</p>
       </div>
     </div>
