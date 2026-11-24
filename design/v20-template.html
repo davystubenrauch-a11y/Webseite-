@@ -1872,6 +1872,14 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 .lu-disc .disc { --sx: -.342; --cy: .94; }
 .cmpc__stage--two .disc:not(.disc--black) { --sx: -.309; --cy: .951; }
 .cmpc__stage--two .disc--black { --sx: .242; --cy: .97; }
+
+/* ---------- phone hero: the café ad plays inside the small iPhone of the still image (loads after the page is visible) ---------- */
+.lineup-m { display: none; position: relative; }
+.lineup-m__scr { position: absolute; left: 80.7%; top: 41.95%; width: 16.76%; height: 54.94%; border-radius: 13.9% / 6.2%; overflow: hidden; opacity: 0; transition: opacity .6s ease; pointer-events: none; }
+.lineup-m__scr.on { opacity: 1; }
+.lineup-m__vid { width: 100%; height: 100%; object-fit: cover; display: block; }
+.lineup-m__scr i { position: absolute; left: 33.7%; top: 1.95%; width: 32.6%; height: 4.1%; border-radius: 99px; background: #050506; }
+@media (max-width: 700px) { .lineup-m { display: block; } }
 </style>
 </head>
 <body>
@@ -1908,7 +1916,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       </div>
     </div>
     <div class="hero__stage">
-    <img class="lineup-img" fetchpriority="high" src="/media/hero-lineup.webp?v=5" alt="Beispiele von FOAV: Website auf dem Laptop, KI-Werbevideo auf dem Handy und eine NFC-Platte" width="1026" height="708">
+    <div class="lineup-m"><img class="lineup-img" fetchpriority="high" src="/media/hero-lineup.webp?v=5" alt="Beispiele von FOAV: Website auf dem Laptop, KI-Werbevideo auf dem Handy und eine NFC-Platte" width="1026" height="708"><span class="lineup-m__scr" aria-hidden="true"><video class="lineup-m__vid" muted loop playsinline preload="none" data-src="/videos/hero-spot.mp4"></video><i></i></span></div>
     <nav class="hs" aria-label="Unsere Angebote">
       <a class="hs__a hs-web" href="/websites"><span>Website <b>ab 399 €</b></span></a>
       <a class="hs__a hs-room" href="/ki-shots"><span>KI-Werbevideo <b>ab 199 €</b></span></a>
@@ -1916,7 +1924,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
     </nav>
     <div class="lineup" id="lineup" aria-hidden="true">
       <div class="lu lu-mac"><div class="mac"><div class="mac__lid"><div class="mac__screen"><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img decoding="async" src="/media/ref-villa-desk-top.webp" alt="" width="1200" height="780"></picture></div></div><div class="mac__base"></div></div></div>
-      <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt=""></picture><video id="heroVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none"><source src="/videos/cafe-spot.mp4" type="video/mp4"></video></div></div></div>
+      <div class="lu lu-phone"><div class="iphone"><div class="iphone__screen"><picture><source media="(max-width: 700px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="><img decoding="async" class="iphone__still" src="/images/ki-videos/spot-start.webp" alt=""></picture><video id="heroVid" poster="/images/ki-videos/spot-start.webp" muted loop playsinline preload="none"><source src="/videos/hero-spot.mp4" type="video/mp4"></video></div></div></div>
       <div class="lu lu-disc"><div class="lu-tilt"><div><span class="disc"><svg viewBox="0 0 200 200" aria-hidden="true"><use href="#disc" width="200" height="200"/></svg></span></div></div></div>
     </div>
     </div>
@@ -2701,6 +2709,21 @@ document.addEventListener("DOMContentLoaded", function () {
         scrollTo({ top: y, behavior: reduce ? "auto" : "smooth" });
       });
     });
+  })();
+  /* phone hero: start the small café film after the page has loaded (not on slow/data-saver connections) */
+  (function () {
+    var v = document.querySelector(".lineup-m__vid"); if (!v || reduce) return;
+    var c = navigator.connection; if (c && (c.saveData || /2g/.test(c.effectiveType || ""))) return;
+    var mq = matchMedia("(max-width: 700px)"), scr = v.parentNode, go = false;
+    function load() {
+      if (go || !mq.matches) return; go = true;
+      v.src = v.getAttribute("data-src");
+      v.addEventListener("playing", function () { scr.classList.add("on"); }, { once: true });
+      new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { var p = v.play(); if (p && p.catch) p.catch(function () {}); } else v.pause(); }); }, { threshold: .2 }).observe(scr);
+    }
+    function later() { setTimeout(function () { (window.requestIdleCallback || setTimeout)(load); }, 1200); }
+    if (document.readyState === "complete") later(); else addEventListener("load", later);
+    mq.addEventListener && mq.addEventListener("change", load);
   })();
   /* reload: back to the very top */
   if (window.__reload) { window.scrollTo(0, 0); window.addEventListener("load", function () { window.scrollTo(0, 0); }); }
