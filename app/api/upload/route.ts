@@ -8,7 +8,7 @@ import { bucket } from "@/lib/storage";
 
 const types = ["image/jpeg", "image/png", "image/webp", "image/heic", "image/heif", "image/svg+xml", "application/pdf"];
 const maxBytes = 25 * 1024 * 1024;
-const okPath = (p: string) => /^(website|shots|nfc)\/[\w.\-/]+$/.test(p) && !p.includes("..") && p.length < 300;
+const okPath = (p: string) => /^(website|shots|nfc|render)\/[\w.\-/]+$/.test(p) && !p.includes("..") && p.length < 300;
 
 const hits = new Map<string, number[]>();
 /** 300 files per IP per hour is plenty for a questionnaire. */

@@ -52,6 +52,7 @@ const css = `
 function Pic({ id }: { id: ProductId }) {
   if (id.startsWith("web-")) return <div className="sh-pic"><img src="/media/ref-spiruli-desk-top.jpg?v=2" alt="" style={{ objectPosition: "left top" }} /></div>;
   if (id.startsWith("shots-")) return <div className="sh-pic"><img src={id === "shots-starter" ? "/images/ki-videos/spot-1.jpg" : "/images/ki-videos/wohnung-voll.jpg"} alt="" /></div>;
+  if (id.startsWith("render-")) return <div className="sh-pic"><img src={id === "render-film" ? "/images/ki-videos/wohnung-voll.webp" : "/images/renderings/haus-nachher.jpg"} alt="" /></div>;
   if (id === "nfc-custom") return <div className="sh-pic"><img className="disc-img" src="/images/ki-shots/nfc-logo-plate.webp" alt="" /></div>;
   return <div className="sh-pic"><img className="disc-img" src="/media/disc-weiss.svg" alt="" /></div>;
 }
@@ -78,9 +79,10 @@ export default function Shop({ online = false }: { online?: boolean }) {
     for (const k of Object.keys(c)) if (!products.some((p) => p.id === k)) delete c[k as ProductId];
     const num = (k: string) => Math.max(0, Math.min(50, Math.floor(+(q.get(k) ?? 0)) || 0));
     const w = num("weiss"), cu = num("custom");
-    const web = (q.get("web") ?? "").toLowerCase(), shots = (q.get("shots") ?? "").toLowerCase();
+    const web = (q.get("web") ?? "").toLowerCase(), shots = (q.get("shots") ?? "").toLowerCase(), render = (q.get("render") ?? "").toLowerCase();
     if (w) c["nfc-weiss"] = w; if (cu) c["nfc-custom"] = cu;
     if (shots === "starter" || shots === "pro" || shots === "brand") { delete c["shots-starter"]; delete c["shots-pro"]; delete c["shots-brand"]; c[`shots-${shots}` as ProductId] = 1; }
+    if (render === "1" || render === "3" || render === "film") { delete c["render-1"]; delete c["render-3"]; delete c["render-film"]; c[`render-${render}` as ProductId] = 1; }
     if (web === "basis" || web === "business" || web === "premium") { delete c["web-basis"]; delete c["web-business"]; delete c["web-premium"]; c[`web-${web}` as ProductId] = 1; }
     const nr = (q.get("ref") ?? "").replace(/[^A-Z0-9-]/gi, "").slice(0, 20);
     if (nr && !refs.includes(nr)) refs.push(nr);
@@ -136,9 +138,9 @@ export default function Shop({ online = false }: { online?: boolean }) {
       lead={hasService ? "Ihre Angaben sind bei uns. Nach der Zahlung legen wir sofort los." : "Normale NFC-Platten (Weiß, Google-Design) bestellen Sie hier direkt. Websites, KI-Werbevideos und Platten mit Ihrem Logo starten mit einem kurzen Fragebogen, danach landen Sie wieder hier."}
       steps={[
         ["Paket wählen", "Der Preis steht vorher fest."],
-        ["Fragebogen", "Websites, KI-Werbevideos und Logo-Platten: Angaben und Fotos senden."],
+        ["Fragebogen", "Websites, KI-Werbevideos, Renderings und Logo-Platten: Angaben und Fotos senden."],
         ["Bezahlen", online ? "Sicher per Karte, Apple Pay oder Google Pay." : "Per sicherem Zahlungslink, den wir Ihnen innerhalb eines Tages per E-Mail schicken."],
-        ["Ergebnis erhalten", "NFC-Platten in 3 bis 7 Werktagen per Post, KI-Werbevideos in 48 bis 72 Stunden, Website in 5 bis 7 Tagen."],
+        ["Ergebnis erhalten", "NFC-Platten in 3 bis 7 Werktagen per Post, KI-Werbevideos in 48 bis 72 Stunden, Renderings in 48 Stunden (Rundgang-Film 72 Stunden), Website in 5 bis 7 Tagen."],
       ]}
       done={done}
     >
@@ -164,7 +166,7 @@ export default function Shop({ online = false }: { online?: boolean }) {
           </div>
           <p className="sh-note">Normale Platte (Weiß): ab 5 Stück 13,90 €, ab 10 Stück 12,90 € pro Platte. Ab {shipping.freeFrom} Platten ist der Versand kostenlos, darunter kostet er {euro(shipping.price)}. Lieferzeit 3 bis 7 Werktage.</p>
           {!cart["nfc-custom"] && <p className="sh-note">Platten mit Ihrem Logo (ab 29,90 €)? Dafür brauchen wir Ihr Logo: <a href="/anfrage/nfc">kurzer Fragebogen mit Logo-Upload</a>, danach landen Sie wieder hier.</p>}
-          {!hasService && <p className="sh-note">Eine Website oder ein KI-Werbevideo? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a> oder <a href="/ki-shots#pakete">KI-Werbevideos</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
+          {!hasService && <p className="sh-note">Eine Website, ein KI-Werbevideo oder Renderings? Wählen Sie Ihr Paket auf der Seite <a href="/websites#pakete">Websites</a>, <a href="/ki-shots#pakete">KI-Werbevideos</a> oder <a href="/renderings#pakete">Renderings</a>. Nach dem kurzen Fragebogen kommen Sie hierher zurück und bezahlen.</p>}
         </div>
 
         <aside className="sh-cart" aria-label="Warenkorb">

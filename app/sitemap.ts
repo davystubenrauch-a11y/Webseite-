@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${base}/shop`, changeFrequency: "monthly", priority: 0.9 },
     { url: `${base}/anfrage/website`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/anfrage/ki-shots`, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${base}/anfrage/renderings`, changeFrequency: "monthly", priority: 0.6 },
     { url: `${base}/anfrage/nfc`, changeFrequency: "monthly", priority: 0.5 },
     { url: `${base}/impressum`, changeFrequency: "yearly", priority: 0.2 },
     { url: `${base}/widerruf`, changeFrequency: "yearly", priority: 0.2 },

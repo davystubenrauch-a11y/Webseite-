@@ -1898,6 +1898,10 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 .lineup-m__vid { width: 100%; height: 100%; object-fit: cover; display: block; }
 .lineup-m__scr i { position: absolute; left: 33.7%; top: 1.95%; width: 32.6%; height: 4.1%; border-radius: 99px; background: #050506; }
 @media (max-width: 700px) { .lineup-m { display: block; } }
+
+/* homepage price overview: 4 cards like the menu */
+@media (min-width: 1181px) { .plans--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } .plans--4 .plan { padding: 26px 24px; } }
+@media (min-width: 701px) and (max-width: 1180px) { .plans--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: none; } }
 </style>
 </head>
 <body>

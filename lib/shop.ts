@@ -1,6 +1,6 @@
 // Products, prices and shipping for the shop at /shop. Prices in cents.
 
-export type ProductId = "nfc-weiss" | "nfc-schwarz" | "nfc-custom" | "shots-starter" | "shots-pro" | "shots-brand" | "web-basis" | "web-business" | "web-premium";
+export type ProductId = "nfc-weiss" | "nfc-schwarz" | "nfc-custom" | "shots-starter" | "shots-pro" | "shots-brand" | "web-basis" | "web-business" | "web-premium" | "render-1" | "render-3" | "render-film";
 
 export type Product = {
   id: ProductId;
@@ -17,6 +17,9 @@ export const products: Product[] = [
   { id: "shots-starter", name: "KI-Werbevideo Starter", short: "1 Werbefilm (10 bis 15 Sekunden, Hochformat 9:16) aus Ihren Handyfotos, 3 Standbilder, fertig in 48 Stunden", price: 19900, physical: false, max: 3 },
   { id: "shots-pro", name: "KI-Werbevideos Pro", short: "3 Werbefilme (je 10 bis 20 Sekunden) in 9:16 und 16:9, Musik und Texte, 6 Standbilder, fertig in 72 Stunden", price: 44900, physical: false, max: 3 },
   { id: "shots-brand", name: "KI-Werbevideos Brand-Paket", short: "1 Hauptfilm bis 30 Sekunden und 5 Kurzfilme, alle Formate, Musik und Logo-Abspann, 12 Standbilder, fertig in 72 Stunden", price: 89900, physical: false, max: 2 },
+  { id: "render-1", name: "Rendering (1 Bild)", short: "1 fotorealistisches Bild aus Ihrem Handyfoto, leer eingerichtet oder Umbau gezeigt, 1 Korrekturrunde, fertig in 48 Stunden", price: 4900, physical: false, max: 5 },
+  { id: "render-3", name: "3 Renderings", short: "3 fotorealistische Bilder (3 Räume oder 3 Varianten), 1 Korrekturrunde je Bild, fertig in 48 Stunden", price: 11900, physical: false, max: 3 },
+  { id: "render-film", name: "Rundgang-Film", short: "Bis zu 3 leere Räume virtuell eingerichtet, Rundgang als Film (15 bis 20 Sekunden) plus Bilder, gekennzeichnet „virtuell eingerichtet“, fertig in 72 Stunden", price: 19900, physical: false, max: 2 },
   { id: "web-basis", name: "Website Basis", short: "3 Seiten mit Ihren Texten, Kontaktformular, Anruf- und WhatsApp-Knopf, Hosting inklusive, Entwurf in 5 Tagen nach Zahlung und Ihren Angaben", price: 39900, physical: false, max: 1 },
   { id: "web-business", name: "Website Business", short: "Bis 6 Seiten, alle Texte von uns, Terminbuchung oder Anfrageformular, Google-Bewertungen live, Hosting inklusive, Entwurf in 7 Tagen", price: 79900, physical: false, max: 1 },
   { id: "web-premium", name: "Website Premium", short: "Bis 10 Seiten auf Deutsch und Englisch, Scroll- und 3D-Animationen, inkl. 5 NFC-Platten für Google-Bewertungen, Hosting inklusive, Entwurf in 7 Tagen", price: 149900, physical: false, max: 1 },

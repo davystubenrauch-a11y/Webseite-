@@ -43,6 +43,7 @@ export async function POST(req: Request) {
 
   const next: Record<string, string[]> = {
     website: ["1. Falls noch nicht geschehen: Paket im Warenkorb bestellen (foav.de/shop).", "2. Nach der Zahlung beginnen wir. Den Entwurf Ihrer Website bekommen Sie als Link per E-Mail: Basis nach 5 Tagen, Business und Premium nach 7 Tagen.", "3. Sie sagen uns, was wir ändern sollen. Erst nach Ihrer Freigabe geht die Seite online."],
+    render: ["1. Falls noch nicht geschehen: Paket im Warenkorb bestellen (foav.de/shop).", "2. Nach der Zahlung beginnen wir. Ihre Renderings bekommen Sie als Download-Link per E-Mail: Bilder nach 48 Stunden, den Rundgang-Film nach 72 Stunden.", "3. Passt etwas nicht, korrigieren wir es mit Ihnen. Erst dann verwenden Sie die Bilder."],
     shots: ["1. Falls noch nicht geschehen: Paket im Warenkorb bestellen (foav.de/shop).", "2. Nach der Zahlung beginnen wir. Ihren Werbefilm bekommen Sie als Download-Link per E-Mail: Starter nach 48 Stunden, Pro und Brand-Paket nach 72 Stunden.", "3. Passt etwas nicht, ändern wir es mit Ihnen. Erst dann verwenden Sie den Film."],
     nfc: ["1. Falls noch nicht geschehen: Platten im Warenkorb bestellen (foav.de/shop).", "2. Innerhalb von 2 Werktagen schicken wir Ihnen eine Design-Vorschau Ihrer Platte zur Freigabe.", "3. Nach Ihrer Freigabe verknüpfen wir jede Platte mit Ihrem Google-Profil, testen sie und schicken sie per Post."],
   };
