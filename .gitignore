@@ -10,3 +10,6 @@ next-env.d.ts
 .open-next
 .wrangler
 .dev.vars
+
+# Graphify-Code-Karte (wird lokal erzeugt)
+graphify-out/

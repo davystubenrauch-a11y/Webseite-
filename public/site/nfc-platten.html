@@ -342,9 +342,9 @@ h3 { font-size: clamp(19px, 1.5vw, 22px); line-height: 1.25; letter-spacing: -.0
 
 /* NFC band */
 .nfcband { margin-top: clamp(100px, 12vw, 170px); padding: clamp(90px, 11vw, 150px) 0; }
-.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; box-shadow: 0 1px 0 #dcd8d0, 0 3px 0 #cdc8be, 0 5px 0 #bfb9ae, 0 40px 50px -16px rgba(0,0,0,.7); }
+.disc { --disc-bg: #fff; --disc-ink: #202124; display: block; aspect-ratio: 1; border-radius: 50%; background: var(--disc-bg); --sx: 0; --cy: 1; box-shadow: calc(var(--sx) * 1px) calc(var(--cy) * 1px) 0 #cfcfd4, calc(var(--sx) * 2px) calc(var(--cy) * 2px) 0 #cfcfd4, calc(var(--sx) * 3px) calc(var(--cy) * 3px) 0 #cfcfd4, calc(var(--sx) * 4px) calc(var(--cy) * 4px) 0 #cbcbd0, calc(var(--sx) * 5px) calc(var(--cy) * 5px) 0 #c7c7cc, calc(var(--sx) * 6px) calc(var(--cy) * 6px) 0 #c4c4c9, 0 40px 50px -16px rgba(0,0,0,.55); }
 .disc svg { width: 100%; height: 100%; }
-.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: 0 1px 0 #3a3a3e, 0 3px 0 #2c2c30, 0 5px 0 #222226, 0 40px 50px -16px rgba(0,0,0,.8); }
+.disc--black { --disc-bg: #0d0d0f; --disc-ink: #f5f5f7; box-shadow: calc(var(--sx) * 1px) calc(var(--cy) * 1px) 0 #2e2e32, calc(var(--sx) * 2px) calc(var(--cy) * 2px) 0 #2e2e32, calc(var(--sx) * 3px) calc(var(--cy) * 3px) 0 #2e2e32, calc(var(--sx) * 4px) calc(var(--cy) * 4px) 0 #2b2b2f, calc(var(--sx) * 5px) calc(var(--cy) * 5px) 0 #28282c, calc(var(--sx) * 6px) calc(var(--cy) * 6px) 0 #26262a, 0 40px 50px -16px rgba(0,0,0,.75); }
 .rings i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid var(--champ); opacity: 0; }
 @keyframes ring { from { transform: scale(1); opacity: .9; } to { transform: scale(1.9); opacity: 0; } }
 .ctrl { display: flex; flex-wrap: wrap; gap: 12px 18px; align-items: center; margin-top: 10px; }
@@ -1880,6 +1880,14 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .scene__foot { order: 2; margin-top: 4px; }
   .scene .more { order: 3; }
 }
+/* ---------- portrait examples (bathroom, 4:5) in the renderings cards and the slider ---------- */
+.rnd.is-tall .immo__pic { aspect-ratio: 4 / 5; width: min(100%, calc(70vh * .8)); margin-inline: auto; }
+.cmp.is-tall { aspect-ratio: 4 / 5; width: min(100%, calc(78vh * .8)); margin-inline: auto; }
+
+/* NFC plate edge: the edge offset is drawn in the plate's own plane, so it is turned against the plate's rotateZ to point straight down on screen (otherwise a gap on one side) */
+.lu-disc .disc { --sx: -.342; --cy: .94; }
+.cmpc__stage--two .disc:not(.disc--black) { --sx: -.309; --cy: .951; }
+.cmpc__stage--two .disc--black { --sx: .242; --cy: .97; }
 </style>
 </head>
 <body>
@@ -2355,10 +2363,12 @@ document.addEventListener("DOMContentLoaded", function () {
     var ex = {
       wohnung: ["/images/ki-videos/wohnung-leer.jpg", "", "Handyfoto einer leeren Wohnung", "", "Ihr Handyfoto der leeren Wohnung", "Unser Rundgang-Film, virtuell eingerichtet", "Rundgang-Film"],
       cafe: ["/images/renderings/cafe-vorher.jpg", "/images/renderings/cafe-nachher.jpg", "Handyfoto: altes Café vor dem Umbau", "Rendering: dasselbe Café nach dem geplanten Umbau", "Ihr Handyfoto: das Café heute", "Unser Rendering: so sieht es nach dem Umbau aus", "Visualisierung"],
-      haus: ["/images/renderings/haus-vorher.jpg", "/images/renderings/haus-nachher.jpg", "Handyfoto: Einfamilienhaus vor der Sanierung", "Rendering: dasselbe Haus nach der geplanten Sanierung", "Ihr Handyfoto: das Haus heute", "Unser Rendering: so sieht es nach der Sanierung aus", "Visualisierung"] };
+      haus: ["/images/renderings/haus-vorher.jpg", "/images/renderings/haus-nachher.jpg", "Handyfoto: Einfamilienhaus vor der Sanierung", "Rendering: dasselbe Haus nach der geplanten Sanierung", "Ihr Handyfoto: das Haus heute", "Unser Rendering: so sieht es nach der Sanierung aus", "Visualisierung"],
+      bad: ["/images/renderings/bad-vorher.jpg", "/images/renderings/bad-nachher.jpg", "Handyfoto: älteres Bad vor der Sanierung", "Rendering: dasselbe Bad nach der geplanten Sanierung", "Ihr Handyfoto: das Bad heute", "Unser Rendering: so sieht es nach der Sanierung aus", "Visualisierung"] };
+    var rsec = b.closest(".rnd");
     var tabs = $$("[data-rnd]");
     function pick(k) {
-      var e = ex[k]; b.src = e[0]; b.alt = e[2]; $("#rndBc").textContent = e[4]; $("#rndAc").textContent = e[5]; tag.querySelector("em").textContent = e[6];
+      var e = ex[k]; if (rsec) rsec.classList.toggle("is-tall", k === "bad"); b.src = e[0]; b.alt = e[2]; $("#rndBc").textContent = e[4]; $("#rndAc").textContent = e[5]; tag.querySelector("em").textContent = e[6];
       if (e[1]) { a.src = e[1]; a.alt = e[3]; a.hidden = false; v.hidden = true; v.pause(); tag.classList.add("is-img"); }
       else { a.hidden = true; v.hidden = false; tag.classList.remove("is-img"); if (!reduce) start(v); }
       tabs.forEach(function (t) { var on = t.getAttribute("data-rnd") === k; t.setAttribute("aria-selected", String(on)); t.tabIndex = on ? 0 : -1; });
@@ -2372,7 +2382,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var cmp = $("#cmp"), grip, tv, bimg, drag = false, touched = false, setX = function () {};
   if (cmp) (function () {
   grip = $("#grip"); tv = $("#tourVid"); bimg = $("#beforeImg");
-  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.webp", "", "/images/renderings/cafe-nachher.jpg", "/images/renderings/haus-nachher.jpg"], befs = ["/images/ki-videos/wohnung-leer.jpg", "/images/ki-videos/wohnung-leer.jpg", "/images/renderings/cafe-vorher.jpg", "/images/renderings/haus-vorher.jpg"], room = 0;
+  var aimg = $("#afterImg"), looks = ["/images/ki-videos/wohnung-voll.webp", "", "/images/renderings/cafe-nachher.jpg", "/images/renderings/haus-nachher.jpg", "/images/renderings/bad-nachher.jpg"], befs = ["/images/ki-videos/wohnung-leer.jpg", "/images/ki-videos/wohnung-leer.jpg", "/images/renderings/cafe-vorher.jpg", "/images/renderings/haus-vorher.jpg", "/images/renderings/bad-vorher.jpg"], room = 0;
   setX = function (p) { p = clamp(p, 3, 97); cmp.style.setProperty("--x", p + "%"); grip.setAttribute("aria-valuenow", Math.round(p)); }
   function pos(e) { var r = cmp.getBoundingClientRect(); setX((e.clientX - r.left) / r.width * 100); }
   cmp.addEventListener("pointerdown", function (e) { if (e.target.closest(".vplay")) return; drag = true; touched = true; pos(e); cmp.setPointerCapture(e.pointerId); if (tv.paused && !reduce) start(tv); });
@@ -2383,7 +2393,7 @@ document.addEventListener("DOMContentLoaded", function () {
     room = i;
     $$("[data-room]").forEach(function (b) { var on = +b.getAttribute("data-room") === i; b.setAttribute("aria-selected", String(on)); b.tabIndex = on ? 0 : -1; });
     if (bimg) bimg.src = befs[i];
-    cmp.classList.toggle("is-img", !!looks[i]);
+    cmp.classList.toggle("is-img", !!looks[i]); cmp.classList.toggle("is-tall", i === 4);
     if (looks[i]) { aimg.src = looks[i]; aimg.hidden = false; tv.pause(); } else { aimg.hidden = true; try { tv.currentTime = 0; } catch (e) {} start(tv); }
   }
   $$("[data-room]").forEach(function (b) {
