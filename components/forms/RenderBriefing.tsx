@@ -19,8 +19,8 @@ const sections: Section[] = [
     intro: "Den Preis sehen Sie sofort. Unsicher? Wählen Sie „Noch unsicher“, dann empfehlen wir Ihnen ein Paket.",
     questions: [
       { id: "paket", label: "Paket", type: "one", req: true, options: ["1 Rendering|1 Bild, 49 €", "3 Renderings|3 Bilder, 119 €", "Rundgang-Film|bis 3 Räume als Film, 199 €", "Noch unsicher|wir empfehlen Ihnen eines"] },
-      { id: "art", label: "Was möchten Sie zeigen?", type: "one", req: true, options: ["Leere Wohnung einrichten", "Umbau oder Renovierung", "Haus oder Fassade sanieren", "Garten oder Terrasse", "Laden, Café oder Praxis gestalten", "Sonstiges"] },
-      { id: "wofuer", label: "Wofür brauchen Sie die Bilder? (mehrere möglich)", type: "many", req: true, options: ["Exposé oder Immobilienanzeige", "Vermieter, Bank oder Familie überzeugen", "Planung mit Handwerkern", "Website oder Social Media", "Für mich selbst"] },
+      { id: "art", label: "Was möchten Sie zeigen? (optional)", type: "one", options: ["Leere Wohnung einrichten", "Umbau oder Renovierung", "Haus oder Fassade sanieren", "Garten oder Terrasse", "Laden, Café oder Praxis gestalten", "Sonstiges"] },
+      { id: "wofuer", label: "Wofür brauchen Sie die Bilder? (optional, mehrere möglich)", type: "many", options: ["Exposé oder Immobilienanzeige", "Vermieter, Bank oder Familie überzeugen", "Planung mit Handwerkern", "Website oder Social Media", "Für mich selbst"] },
       { id: "firma", label: "Unternehmen (optional)", type: "text", placeholder: "z. B. Immobilien Huber", half: true, hint: "Leer lassen, wenn Sie privat bestellen." },
     ],
   },
@@ -28,8 +28,8 @@ const sections: Section[] = [
     title: "Was soll zu sehen sein?",
     intro: "Ein Bild pro Zeile: welcher Raum und was sich ändern soll. Je genauer, desto besser passt das erste Ergebnis.",
     questions: [
-      { id: "bilder", label: "Ihre Bilder, eines pro Zeile", type: "textarea", req: true, placeholder: "z. B.\nWohnzimmer: gemütlich einrichten, Sofa an die lange Wand\nBad: neue Fliesen in Hellgrau, Dusche statt Wanne\nFassade: weiß verputzt, Fenster anthrazit" },
-      { id: "stil", label: "Stil", type: "one", req: true, options: ["Modern und hell", "Warm und gemütlich|Holz, Naturtöne", "Edel und ruhig", "Skandinavisch", "Landhaus", "Entscheiden Sie"] },
+      { id: "bilder", label: "Was soll sich ändern? Ein Bild pro Zeile", type: "textarea", req: true, placeholder: "z. B.\nWohnzimmer: gemütlich einrichten, Sofa an die lange Wand\nBad: neue Fliesen in Hellgrau, Dusche statt Wanne\nFassade: weiß verputzt, Fenster anthrazit" },
+      { id: "stil", label: "Stil (optional)", type: "one", options: ["Modern und hell", "Warm und gemütlich|Holz, Naturtöne", "Edel und ruhig", "Skandinavisch", "Landhaus", "Entscheiden Sie"] },
       { id: "licht", label: "Licht", type: "one", options: ["Tageslicht", "Abendstimmung|warmes Lampenlicht", "Entscheiden Sie"], half: true },
       { id: "format", label: "Format", type: "one", options: ["Querformat|Exposé, Website", "Hochformat|Instagram, Handy", "Beides"], half: true },
       { id: "bleiben", label: "Was muss genau so bleiben? (optional)", type: "textarea", placeholder: "z. B. Parkettboden, Kachelofen, Treppe", hint: "Wände, Fenster, Türen und Raumgröße lassen wir immer, wie sie sind. Nur was Sie beschreiben, ändert sich." },
@@ -39,7 +39,7 @@ const sections: Section[] = [
   {
     title: "Kennzeichnung",
     questions: [
-      { id: "hinweis", label: "Hinweis im Bild?", type: "one", req: true, options: ["Ja, „Visualisierung“ bzw. „virtuell eingerichtet“ ins Bild", "Nein, ich kennzeichne selbst"], hint: "In Immobilienanzeigen müssen virtuell eingerichtete Bilder als solche erkennbar sein." },
+      { id: "hinweis", label: "Hinweis im Bild? (optional)", type: "one", options: ["Ja, „Visualisierung“ bzw. „virtuell eingerichtet“ ins Bild", "Nein, ich kennzeichne selbst"], hint: "In Immobilienanzeigen müssen virtuell eingerichtete Bilder als solche erkennbar sein. Ohne Angabe setzen wir den Hinweis klein ins Bild." },
     ],
   },
 ];
@@ -94,7 +94,7 @@ export default function RenderBriefing() {
   return (
     <Shell
       title="Renderings: sehen, wie es fertig aussieht."
-      lead="Sie fotografieren den heutigen Zustand mit dem Handy und beschreiben, was sich ändern soll. Wir machen daraus ein fotorealistisches Bild: die leere Wohnung eingerichtet, das Bad nach dem Umbau, das Haus nach der Sanierung. Etwa 5 Minuten, Pflicht sind nur die markierten Felder. Ihre Angaben bleiben in diesem Browser gespeichert, falls Sie zwischendurch aufhören."
+      lead="Sie fotografieren den heutigen Zustand mit dem Handy und beschreiben, was sich ändern soll. Wir machen daraus ein fotorealistisches Bild: die leere Wohnung eingerichtet, das Bad nach dem Umbau, das Haus nach der Sanierung. Pflicht sind nur 3 Dinge: Paket, ein Foto und ein Satz, was sich ändern soll. Alles andere ist freiwillig. Ihre Angaben bleiben in diesem Browser gespeichert, falls Sie zwischendurch aufhören."
       steps={[
         ["Paket und Foto", "Ein normales Handyfoto pro Raum reicht."],
         ["Bestellen und bezahlen", "Im Warenkorb bestellen. Bezahlt wird sicher online, die Rechnung kommt per E-Mail."],
