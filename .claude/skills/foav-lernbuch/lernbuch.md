@@ -120,3 +120,7 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 ## 18.11.2026 – Persönliche Briefe an Betriebe in Solln
 - Kunde wollte keine Angebotsliste, sondern: „was ist bei diesem Betrieb negativ, und wie lösen wir es“. Aufbau je Brief: Überschrift = größte Schwäche, Steckbrief (Google, Website, Instagram), 2–3 Punkte „Aufgefallen → Unsere Lösung + Preis“, dann alle Angebote in einer Zeile, Besuchsangebot, „Ihre Nachbarn aus Solln“.
 - KI-Recherche (Firecrawl-Agent) irrt oft: „Website lädt nicht“ war 2× falsch, 2 Betriebe waren geschlossen/übergeben. Negative Befunde immer selbst nachprüfen, sonst nicht schreiben. Branchenwörter per Regex vorsichtig: „Fischer“ ≠ Fisch, „Meisterbetrieb“ enthält „eis“.
+
+### 2026-11-23 · NFC-Platte: Kante und Live-Zweig
+- 3D-Kante per `box-shadow`-Stufen: verschiedene Grautöne je Stufe zeigen sich als Linien → alle Stufen fast gleich grau. Der Versatz liegt in der Ebene der Platte; bei `rotateZ` zeigt er schräg → Lücke auf einer Seite. Lösung: Versatz gegen die Drehung ausgleichen (`--sx: -sin θ`, `--cy: cos θ` je Einsatzort). Aufdruck-SVG (r = 99,5) deckt die Platte nicht ganz → `background` auf `.disc` füllen, sonst Spalt zum Durchschauen.
+- „Ich sehe es nicht“ nach einem Push: erst prüfen, aus welchem Zweig die Live-Seite baut (seit 20.11. Cloudflare aus `claude/sharp-cerf-sdkvuk`). Mit `curl` auf foav.de nach einem eindeutigen Text suchen, statt anzunehmen, dass es online ist.
