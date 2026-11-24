@@ -4,6 +4,10 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-24 · Mail-Empfang nach Umzug der Nameserver
+- Checkdomain-Mailpaket + Nameserver bei Cloudflare: Gateway lehnt eingehende Mails mit „451 relay not permitted“ ab, bis der Checkdomain-DKIM-Eintrag `cloudpit._domainkey` (TXT, Wert vom Support) in der neuen DNS-Zone steht. Bei Kunden mit Checkdomain-Mail **vor** dem Nameserver-Wechsel beim Support den DKIM-Eintrag anfordern und mit umziehen. Prüfen per Resend-Log („Delivery Delayed“ → Klick zeigt SMTP-Code).
+- Werte nie abtippen lassen: aus Screenshots per Zeichenhöhe I/l unterscheiden, Base64 decodieren und als RSA-Schlüssel prüfen, dann als eine Zeile zum Kopieren geben; danach per DNS-Abfrage vergleichen.
+
 ### 2026-11-21 · Flüssigkeit und Videos auf Cloudflare
 - **Cloudflare Workers Static Assets beantworten Range-Anfragen mit 200 + ganzer Datei** → Safari/iPhone spielt Videos dann schlecht oder gar nicht. Lösung: `assets.run_worker_first: ["/videos/*"]` + `serveVideo()` in `worker.ts` (206/416, Accept-Ranges). Bei jedem Cloudflare-Projekt mit Videos prüfen: `curl -H "Range: bytes=0-1" …` muss 206 liefern.
 - Messen statt schätzen: Playwright mit CPU-Drossel 4× (Handy), rAF-Abstände beim Scrollen (> 34 ms = Ruckler), Long Tasks, CLS; Videos: `currentTime` muss nach 1,5 s weiterlaufen, `waiting`-Ereignisse zählen. Videos in Scroll-Filmen nur abspielen, wenn ihr Schritt sichtbar ist (sonst dekodiert der Browser unsichtbar mit).
