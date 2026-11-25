@@ -34,7 +34,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - 23.11.: Zweige `claude/hopeful-goodall-m39gmd` und `claude/sharp-cerf-sdkvuk` zusammengeführt (gleicher Stand). Website-Änderungen auf beide pushen, solange Cloudflare aus sharp-cerf baut.
 - Workers Builds baut **Zweig `claude/sharp-cerf-sdkvuk`** → Änderungen an der Website dort pushen, bis er in den Hauptzweig gemergt und in Cloudflare (Settings → Build → Branch) umgestellt ist.
 - Claude-Token hat **keine Zone-/DNS-Rechte**: DNS-Einträge löschen/ändern machen die Gründer im Dashboard; Workers-Custom-Domains per API gehen.
-- Offen: Vercel-Projekt löschen (nach ein paar Tagen), leeren Worker `foav` löschen, Stripe-Schlüssel als Worker-Secrets, Florian als Admin einladen.
+- Vercel-Projekt + Blob-Speicher „foav-fotos“ am 25.11. gelöscht (nur alte Roomtour-Fotos, kein `eingang/`). Offen: leeren Worker `foav` löschen, Stripe-Schlüssel als Worker-Secrets, Florian als Admin einladen.
 
 ## Stand: Umzug foav.de → Cloudflare vorbereitet (20.11.)
 - Code läuft auf Cloudflare Workers (OpenNext): `wrangler.jsonc`, `open-next.config.ts`, `worker.ts` (liefert die HTML-Seiten aus `public/site` und `/entwurf/<slug>`, `foav.de` → www; **neue Seiten in `next.config.mjs` UND `worker.ts` eintragen**), Uploads auf R2-Bucket `foav-uploads` (`lib/storage.ts`, `/api/upload` PUT, `/api/datei/<key>`), Stripe per fetch/WebCrypto, Vercel Analytics + `@vercel/blob` entfernt, Datenschutz auf Cloudflare angepasst. Lokal getestet mit `wrangler dev`.
