@@ -1883,7 +1883,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
   .scene .more { order: 3; }
 }
 /* ---------- portrait examples (bathroom, 4:5) in the renderings cards and the slider ---------- */
-/* Neubau: Scroll-Übergang Grundstück → Tag → Sonnenuntergang → Nacht */
+/* Neubau: Scroll-Übergang Grundstück → Tag → Abendsonne → Abendrot → Nacht (nur transform/opacity, per JS geglättet) */
 .nb { position: relative; }
 .nb__scroll { position: relative; height: 380vh; }
 .nb__pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; align-items: center; overflow: hidden; }
@@ -1891,54 +1891,70 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 .nb__head { text-align: center; }
 .nb__head .kicker { margin-bottom: 8px; }
 .nb__head h2 { margin: 0; font-size: clamp(1.75rem, 3.4vw, 3rem); max-width: 24ch; }
-.nb__stage { --t: 0; --w: 0%; --s: 0; position: relative; width: min(100%, calc((100svh - 340px) * 4 / 3)); aspect-ratio: 4 / 3; border-radius: var(--r); overflow: hidden; background: #dfe3da; box-shadow: 0 22px 44px -26px rgba(0,0,0,.4); isolation: isolate; }
-.nb__zoom { position: absolute; inset: 0; transform: scale(calc(1.06 - var(--t) * .015)); }
-.nb__img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
-.nb__l1 { -webkit-mask-image: linear-gradient(90deg, #000 calc(var(--w) - 14%), transparent var(--w)); mask-image: linear-gradient(90deg, #000 calc(var(--w) - 14%), transparent var(--w)); }
-.nb__l2 { opacity: clamp(0, calc(var(--t) - 1), 1); }
-.nb__l3 { opacity: clamp(0, calc(var(--t) - 2), 1); }
-.nb__l4 { opacity: clamp(0, calc(var(--t) - 3), 1); }
-.nb__scan { position: absolute; top: 0; bottom: 0; left: calc(var(--w) - 7%); width: 2px; margin-left: -1px; background: #fff; opacity: var(--s); box-shadow: 0 0 18px 6px rgba(255,255,255,.55), 0 0 60px 24px rgba(255,255,255,.22); pointer-events: none; z-index: 1; }
-.nb__tag { position: absolute; left: 14px; top: 14px; z-index: 2; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,.45); color: #fff; font-size: .75rem; font-weight: 600; -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.nb__head h1 { margin: 0 auto; font-size: clamp(2rem, 3.6vw, 3.25rem); line-height: 1.04; }
+.nb__sub { margin: 10px auto 0; max-width: 60ch; color: var(--text); font-size: clamp(1rem, 1.3vw, 1.1875rem); }
+.nb__sub b { color: var(--ink); }
+.nb__stage { position: relative; width: min(100%, calc((100svh - 340px) * 4 / 3)); aspect-ratio: 4 / 3; border-radius: var(--r); overflow: hidden; background: #dfe3da; box-shadow: 0 22px 44px -26px rgba(0,0,0,.4); isolation: isolate; transform: translateZ(0); }
+.nb--hero .nb__stage { width: min(100%, calc((100svh - 400px) * 4 / 3)); }
+.nb__zoom { position: absolute; inset: 0; transform: scale(1.06); will-change: transform; }
+.nb__img, .nb__rev { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.nb__rev { overflow: hidden; transform: translate3d(-100%, 0, 0); will-change: transform; }
+.nb__rev .nb__img { transform: translate3d(100%, 0, 0); will-change: transform; }
+.nb__l2, .nb__l3, .nb__l4 { opacity: 0; visibility: hidden; will-change: opacity; }
+.nb__scan { position: absolute; left: 0; top: 0; bottom: 0; width: 100%; opacity: 0; pointer-events: none; z-index: 1; transform: translate3d(0, 0, 0); will-change: transform, opacity; }
+.nb__scan::before { content: ""; position: absolute; left: -1px; top: 0; bottom: 0; width: 2px; background: #fff; box-shadow: 0 0 18px 6px rgba(255,255,255,.55), 0 0 60px 24px rgba(255,255,255,.22); }
+.nb__tag { position: absolute; left: 14px; top: 14px; z-index: 2; padding: 6px 12px; border-radius: 999px; background: rgba(0,0,0,.5); color: #fff; font-size: .75rem; font-weight: 600; }
 .nb__bar { width: min(100%, 720px); }
 .nb__track { position: relative; height: 2px; margin: 0 10%; background: var(--line); }
-.nb__track i { position: absolute; left: 0; top: 0; bottom: 0; width: calc(var(--p, 0) * 100%); background: var(--ink); }
+.nb__track i { position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0); will-change: transform; }
 .nb__stops { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); margin: 0; padding: 0; list-style: none; }
 .nb__stops button { position: relative; width: 100%; min-height: 44px; padding: 16px 2px 4px; border: 0; background: none; font: inherit; font-size: .875rem; font-weight: 500; color: var(--muted); cursor: pointer; transition: color .3s; }
 .nb__stops button::before { content: ""; position: absolute; left: 50%; top: -5px; width: 8px; height: 8px; margin-left: -4px; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 1.5px var(--muted); transition: background .3s, box-shadow .3s, transform .3s; }
 .nb__stops [aria-current] { color: var(--ink); font-weight: 600; }
 .nb__stops [aria-current]::before { background: var(--ink); box-shadow: inset 0 0 0 1.5px var(--ink); transform: scale(1.35); }
-.nb__foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 40px; align-items: center; padding-top: clamp(8px, 2vw, 24px); padding-bottom: clamp(72px, 8vw, 120px); }
+.nb__go { margin-top: 2px; }
+.nb__foot { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 40px; align-items: center; padding-top: clamp(8px, 2vw, 24px); padding-bottom: clamp(40px, 5vw, 72px); }
 .nb__foot > p:first-child { margin: 0; max-width: 62ch; color: var(--text); font-size: 1.0625rem; }
 .nb__foot b { color: var(--ink); }
-.nb__cta { order: 1; display: flex; flex-wrap: wrap; gap: 10px; } .nb__foot .rnd__fine { order: 2; grid-column: 1 / -1; margin-top: 18px; }
+.nb__cta { order: 1; display: flex; flex-wrap: wrap; gap: 10px; }
+.nb__foot .who { order: 2; grid-column: 1 / -1; margin-top: 20px; }
+.nb__foot .rnd__fine { order: 3; grid-column: 1 / -1; margin-top: 18px; }
 @media (max-width: 700px) {
   .nb__scroll { height: 340vh; }
   .nb__pin { align-items: flex-end; }
   .nb__in { padding-top: 64px; padding-bottom: 104px; }
   .nb__head h2 { font-size: 1.625rem; }
-  .nb__stage { width: 100%; border-radius: 16px; }
+  .nb__head h1 { font-size: 2.125rem; }
+  .nb__sub { margin-top: 8px; font-size: 1rem; }
+  .nb__stage, .nb--hero .nb__stage { width: 100%; border-radius: 16px; }
   .nb__tag { left: 10px; top: 10px; font-size: .6875rem; padding: 5px 9px; }
-  .nb__stops button { font-size: .75rem; }
+  .nb__stops button { font-size: .6875rem; padding-inline: 0; }
+  .nb__go { display: none; }
   .nb__foot { grid-template-columns: 1fr; }
   .nb__cta { margin-top: 12px; } .nb__cta .btn { flex: 1 1 100%; justify-content: center; }
-  .nb__stops button { font-size: .6875rem; padding-inline: 0; }
 }
+@media (max-width: 700px) and (max-height: 700px) { .nb__head h1 { font-size: 1.875rem; } .nb--hero .nb__in { gap: 12px; } }
+@media (max-width: 380px) { .nb__stops button:not([aria-current]) { color: transparent; } }
 @media (prefers-reduced-motion: reduce) { .nb__scan { display: none; } }
-.nb__foot { padding-bottom: clamp(40px, 5vw, 72px); }
-/* Startseite: drei weitere Rendering-Beispiele, kompakt */
+/* Startseite: drei weitere Rendering-Beispiele, Vorher | Nachher geteilt */
 .rx { padding-top: 0; }
+.rx__h { margin: 0 0 clamp(14px, 1.8vw, 22px); font-size: clamp(1.125rem, 1.6vw, 1.375rem); }
 .rx__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(12px, 1.6vw, 20px); }
 .rx__card { display: block; color: inherit; text-decoration: none; }
 .rx__pic { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: clamp(14px, 1.4vw, 20px); overflow: hidden; background: #e8e6e2; }
-.rx__pic > img, .rx__pic > video { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; transition: transform .6s cubic-bezier(.2,.7,.2,1); }
-.rx__card:hover .rx__pic > :first-child { transform: scale(1.03); }
-.rx__pic > .rx__b { inset: auto auto 10px 10px; width: 34%; height: auto; aspect-ratio: 4 / 3; border-radius: 10px; box-shadow: 0 0 0 2px #fff, 0 10px 24px rgba(0,0,0,.3); }
+.rx__pic img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.rx__bw { position: absolute; inset: 0; clip-path: inset(0 50% 0 0); }
+.rx__line { position: absolute; left: 50%; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 10px rgba(0,0,0,.25); }
+.rx__l, .rx__r { position: absolute; bottom: 10px; padding: 4px 10px; border-radius: 999px; background: rgba(0,0,0,.55); color: #fff; font-size: .75rem; font-weight: 600; font-style: normal; }
+.rx__l { left: 10px; } .rx__r { right: 10px; background: #fff; color: var(--ink); }
 .rx__t { display: grid; gap: 2px; padding: 12px 2px 0; }
 .rx__t b { font-size: 1rem; color: var(--ink); }
-.rx__t em { font-style: normal; font-size: .875rem; color: var(--muted); }
-@media (max-width: 700px) { .rx__grid { grid-template-columns: 1fr 1fr; } .rx__card:first-child { grid-column: 1 / -1; } .rx__t em { font-size: .8125rem; } }
-
+.rx__t small { font-size: .875rem; color: var(--muted); }
+@media (max-width: 700px) {
+  .rx__grid { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin-inline: -20px; padding: 0 20px 6px; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+  .rx__grid::-webkit-scrollbar { display: none; }
+  .rx__card { flex: 0 0 84%; scroll-snap-align: center; }
+}
 .rnd.is-tall .immo__pic { aspect-ratio: 4 / 5; width: min(100%, calc(70vh * .8)); margin-inline: auto; }
 .cmp.is-tall { aspect-ratio: 4 / 5; width: min(100%, calc(78vh * .8)); margin-inline: auto; }
 
@@ -2202,7 +2218,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------- header, dock, menu ---------- */
   var head = $("#head"), dock = $("#dock"), kontakt = $("#kontakt"), menuBtn = $("#menuBtn"), mnav = $("#mnav");
-  var nearContact = false, docH = 0, ticking = false, lastPg = -1;
+  var nearContact = false, docH = 0, ticking = false, lastPg = -1, heroDock = !!document.querySelector(".nb--hero");
   function measure() { docH = Math.max(1, document.documentElement.scrollHeight - innerHeight); }
   measure(); addEventListener("resize", measure); addEventListener("load", measure);
   if (kontakt && "IntersectionObserver" in window) new IntersectionObserver(function (es) { nearContact = es[0].isIntersecting; chrome(); }, { rootMargin: "0px 0px -20% 0px" }).observe(kontakt);
@@ -2211,7 +2227,7 @@ document.addEventListener("DOMContentLoaded", function () {
     var y = scrollY, pg = Math.round(Math.min(1, y / docH) * 400) / 400;
     head.classList.toggle("solid", y > 10 || head.classList.contains("open"));
     if (pg !== lastPg) { lastPg = pg; head.style.setProperty("--pg", pg); }
-    if (dock) dock.classList.toggle("away", y < innerHeight * .6 || nearContact);
+    if (dock) dock.classList.toggle("away", (y < innerHeight * .6 && !heroDock) || nearContact);
   }
   addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(chrome); } }, { passive: true }); chrome();
   function menu(open) { menuBtn.setAttribute("aria-expanded", String(open)); mnav.hidden = !open; head.classList.toggle("open", open); chrome(); }
@@ -2258,7 +2274,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (reduce) { v.pause(); v.removeAttribute("autoplay"); if (btn) btn.hidden = false; return; }
     whileVisible(v, function () { shown.push(v); if (still && v.id === "heroVid") return; if (v.id === "svcVid") { var ks = document.getElementById("ki-shots"); if (ks && !ks.classList.contains("s3")) return; } start(v); }, function () { shown = shown.filter(function (x) { return x !== v; }); v.pause(); }, .2);
   }
-  ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#immoVid", "#rndVid", "#rxVid", "#cmpVid", "#pVid", "#kvLand"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
+  ["#heroVid", "#svcVid", "#tourVid", "#cineVid", "#immoVid", "#rndVid", "#cmpVid", "#pVid", "#kvLand"].forEach(function (s) { if ($(s)) keepPlaying($(s)); });
 
   /* ---------- live logo preview on the NFC page (local only, nothing is uploaded) ---------- */
   (function () {
@@ -2629,9 +2645,18 @@ document.addEventListener("DOMContentLoaded", function () {
     if (false) G.to(".hero__top", { opacity: 0, y: -80, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "55% top", scrub: .5 } });
     if ($("#lineup")) G.to("#lineup", { scale: 1.04, y: -20, ease: "none", scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: .6 } });
     // services: each scene follows the scroll while its stage is pinned
+    // the scene follows the scroll with a short, frame-rate independent glide: fast swipes on a phone no longer jump
+    var glide = false, glideT = 0;
+    function glideStep(now) {
+      var dt = Math.min(50, now - glideT), k = 1 - Math.pow(.8, dt / 16.7), busy = false; glideT = now;
+      scenes.forEach(function (sc) { var d = sc._to - sc._v; if (Math.abs(d) > .0008) { sc._v += d * k; busy = true; } else sc._v = sc._to; sceneSet(sc, sc._v); });
+      if (busy) requestAnimationFrame(glideStep); else glide = false;
+    }
     scenes.forEach(function (sc) {
-      sceneSet(sc, 0);
-      ST.create({ trigger: sc, start: "top top", end: "bottom bottom", onUpdate: function (self) { sceneSet(sc, self.progress); }, onRefresh: function (self) { sceneSet(sc, self.progress); } });
+      sc._to = sc._v = 0; sceneSet(sc, 0);
+      ST.create({ trigger: sc, start: "top top", end: "bottom bottom",
+        onUpdate: function (self) { sc._to = self.progress; if (!glide) { glide = true; glideT = performance.now(); requestAnimationFrame(glideStep); } },
+        onRefresh: function (self) { sc._to = sc._v = self.progress; sceneSet(sc, sc._v); } });
     });
     // before / after follows the scroll until grabbed
     var mix = { x: 88 };
@@ -2735,47 +2760,63 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 })();
 
-/* Neubau: Scroll-Übergang */
+/* Neubau: Scroll-Übergang (geglättet; nur transform und opacity, damit es auf dem Handy flüssig läuft) */
 (function () {
   var st = document.getElementById("nbStage"); if (!st) return;
   var sec = st.closest(".nb"), box = sec.querySelector(".nb__scroll"), tag = document.getElementById("nbTag"),
-      btns = sec.querySelectorAll("[data-nb]"), cur = -1, ticking = false,
-      K = [[0, 0], [.06, 0], [.27, 1], [.34, 1], [.48, 2], [.55, 2], [.69, 3], [.75, 3], [.91, 4], [1, 4]],
-      at = [.03, .305, .515, .72, .955];
+      zoom = st.querySelector(".nb__zoom"), rev = st.querySelector(".nb__rev"), revImg = rev.firstElementChild,
+      scan = st.querySelector(".nb__scan"), fill = sec.querySelector(".nb__track i"), L = st.querySelectorAll(".nb__img"),
+      btns = sec.querySelectorAll("[data-nb]"), N = 4, target = 0, t = -1, step = -1, run = false, last = 0, vis = [],
+      K = [[0, 0], [.05, 0], [.26, 1], [.31, 1], [.47, 2], [.52, 2], [.68, 3], [.73, 3], [.92, 4], [1, 4]],
+      at = [.025, .285, .495, .705, .96];
+  function cl(x) { return x < 0 ? 0 : x > 1 ? 1 : x; }
   function ease(k) { return k * k * (3 - 2 * k); }
   function tOf(p) {
     for (var i = 1; i < K.length; i++) if (p <= K[i][0]) {
-      var a = K[i - 1], b = K[i], k = b[0] > a[0] ? (p - a[0]) / (b[0] - a[0]) : 1;
-      return a[1] + (b[1] - a[1]) * ease(Math.max(0, Math.min(1, k)));
+      var a = K[i - 1], b = K[i]; return a[1] + (b[1] - a[1]) * ease(cl((p - a[0]) / (b[0] - a[0] || 1)));
     }
-    return 4;
+    return N;
   }
-  function update() {
-    ticking = false;
-    var r = box.getBoundingClientRect(), span = box.offsetHeight - innerHeight,
-        p = span > 0 ? Math.max(0, Math.min(1, -r.top / span)) : 0, t = tOf(p), b = Math.min(t, 1);
-    st.style.setProperty("--t", t.toFixed(3));
-    st.style.setProperty("--w", (b * 114).toFixed(2) + "%");
-    st.style.setProperty("--s", (b > 0 && b < 1 ? Math.min(1, Math.min(b, 1 - b) * 8) : 0).toFixed(2));
-    sec.style.setProperty("--p", (t / 4).toFixed(4));
-    var n = Math.round(t);
-    if (n !== cur) {
-      cur = n; tag.textContent = t < .5 ? "Ihr Foto vom Grundstück" : "Visualisierung · mit KI erstellt";
-      for (var i = 0; i < btns.length; i++) { if (i === n) btns[i].setAttribute("aria-current", "step"); else btns[i].removeAttribute("aria-current"); }
+  function show(i, on) { if (vis[i] !== on) { vis[i] = on; L[i].style.visibility = on ? "visible" : "hidden"; } }
+  function render(v) {
+    var b = Math.min(v, 1);
+    zoom.style.transform = "scale(" + (1.06 - v * .015).toFixed(4) + ")";
+    rev.style.transform = "translate3d(" + ((b - 1) * 100).toFixed(2) + "%,0,0)";
+    revImg.style.transform = "translate3d(" + ((1 - b) * 100).toFixed(2) + "%,0,0)";
+    scan.style.transform = "translate3d(" + (b * 100).toFixed(2) + "%,0,0)";
+    scan.style.opacity = b > 0 && b < 1 ? Math.min(1, Math.min(b, 1 - b) * 8).toFixed(2) : "0";
+    show(0, v < 1); show(1, v > 0 && v < 2);
+    for (var i = 2; i < L.length; i++) { var o = cl(v - (i - 1)); show(i, o > 0 && v < i + 1); L[i].style.opacity = o.toFixed(3); }
+    fill.style.transform = "scaleX(" + (v / N).toFixed(4) + ")";
+    var n = Math.round(v);
+    if (n !== step) {
+      step = n; tag.textContent = v < .5 ? "Ihr Foto vom Grundstück" : "Visualisierung · mit KI erstellt";
+      for (var j = 0; j < btns.length; j++) { if (j === n) btns[j].setAttribute("aria-current", "step"); else btns[j].removeAttribute("aria-current"); }
     }
   }
-  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-  addEventListener("scroll", onScroll, { passive: true });
-  addEventListener("resize", onScroll);
+  function loop(now) {
+    var dt = Math.min(50, now - last), d = target - t; last = now;
+    t = t < 0 || Math.abs(d) < .0015 ? target : t + d * (1 - Math.pow(.84, dt / 16.7));
+    render(t);
+    if (t !== target) requestAnimationFrame(loop); else run = false;
+  }
+  function measure() {
+    var r = box.getBoundingClientRect(), span = box.offsetHeight - innerHeight;
+    if (r.bottom < -200 || r.top > innerHeight + 200) { if (t >= 0) return; }
+    target = tOf(span > 0 ? cl(-r.top / span) : 0);
+    if (!run) { run = true; last = performance.now(); requestAnimationFrame(loop); }
+  }
+  addEventListener("scroll", measure, { passive: true });
+  addEventListener("resize", measure);
   for (var i = 0; i < btns.length; i++) btns[i].addEventListener("click", function () {
     var n = +this.getAttribute("data-nb"), top = box.getBoundingClientRect().top + scrollY;
     scrollTo({ top: top + at[n] * (box.offsetHeight - innerHeight), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
   });
   if ("IntersectionObserver" in window) {
-    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); st.querySelectorAll("img").forEach(function (im) { im.loading = "eager"; }); } }, { rootMargin: "800px 0px" });
+    var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io.disconnect(); st.querySelectorAll("img").forEach(function (im) { im.loading = "eager"; }); } }, { rootMargin: "1000px 0px" });
     io.observe(sec);
   }
-  update();
+  measure();
 })();
 </script>
 <script>
