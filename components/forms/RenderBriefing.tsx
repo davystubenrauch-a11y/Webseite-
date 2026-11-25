@@ -19,7 +19,7 @@ const sections: Section[] = [
     intro: "Den Preis sehen Sie sofort. Unsicher? Wählen Sie „Noch unsicher“, dann empfehlen wir Ihnen ein Paket.",
     questions: [
       { id: "paket", label: "Paket", type: "one", req: true, options: ["1 Rendering|1 Bild, 49 €", "3 Renderings|3 Bilder, 119 €", "Rundgang-Film|bis 3 Räume als Film, 199 €", "Noch unsicher|wir empfehlen Ihnen eines"] },
-      { id: "art", label: "Was möchten Sie zeigen? (optional)", type: "one", options: ["Leere Wohnung einrichten", "Umbau oder Renovierung", "Haus oder Fassade sanieren", "Garten oder Terrasse", "Laden, Café oder Praxis gestalten", "Sonstiges"] },
+      { id: "art", label: "Was möchten Sie zeigen? (optional)", type: "one", options: ["Leere Wohnung einrichten", "Umbau oder Renovierung", "Haus oder Fassade sanieren", "Neubau auf dem Grundstück", "Garten oder Terrasse", "Laden, Café oder Praxis gestalten", "Sonstiges"] },
       { id: "wofuer", label: "Wofür brauchen Sie die Bilder? (optional, mehrere möglich)", type: "many", options: ["Exposé oder Immobilienanzeige", "Vermieter, Bank oder Familie überzeugen", "Planung mit Handwerkern", "Website oder Social Media", "Für mich selbst"] },
       { id: "firma", label: "Unternehmen (optional)", type: "text", placeholder: "z. B. Immobilien Huber", half: true, hint: "Leer lassen, wenn Sie privat bestellen." },
     ],
@@ -30,7 +30,7 @@ const sections: Section[] = [
     questions: [
       { id: "bilder", label: "Was soll sich ändern? Ein Bild pro Zeile", type: "textarea", req: true, placeholder: "z. B.\nWohnzimmer: gemütlich einrichten, Sofa an die lange Wand\nBad: neue Fliesen in Hellgrau, Dusche statt Wanne\nFassade: weiß verputzt, Fenster anthrazit" },
       { id: "stil", label: "Stil (optional)", type: "one", options: ["Modern und hell", "Warm und gemütlich|Holz, Naturtöne", "Edel und ruhig", "Skandinavisch", "Landhaus", "Entscheiden Sie"] },
-      { id: "licht", label: "Licht", type: "one", options: ["Tageslicht", "Abendstimmung|warmes Lampenlicht", "Entscheiden Sie"], half: true },
+      { id: "licht", label: "Licht", type: "one", options: ["Tageslicht", "Abendstimmung|warmes Lampenlicht", "Tag, Abend und Nacht|3 Bilder", "Entscheiden Sie"], half: true },
       { id: "format", label: "Format", type: "one", options: ["Querformat|Exposé, Website", "Hochformat|Instagram, Handy", "Beides"], half: true },
       { id: "bleiben", label: "Was muss genau so bleiben? (optional)", type: "textarea", placeholder: "z. B. Parkettboden, Kachelofen, Treppe", hint: "Wände, Fenster, Türen und Raumgröße lassen wir immer, wie sie sind. Nur was Sie beschreiben, ändert sich." },
       { id: "budget", label: "Gibt es Vorgaben? (optional)", type: "text", placeholder: "z. B. Möbel von IKEA, Fliesen Serie XY, Farbe nach RAL 7016" },
@@ -50,6 +50,7 @@ const tips = [
   "Tageslicht, Licht an, kein Blitz",
   "Pro Raum 1 bis 2 Fotos aus verschiedenen Ecken",
   "Haus oder Fassade: von der Straße, ganzes Gebäude im Bild",
+  "Neubau: Grundstück vom Rand aus, ganze Fläche im Bild; Plan, Skizze oder Beispielhaus als Foto dazu",
   "Kein Filter, nicht per WhatsApp verschickt",
 ];
 
