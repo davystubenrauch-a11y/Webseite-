@@ -3,7 +3,7 @@ import { display, sans, serif } from "@/lib/fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://foav.de"),
+  metadataBase: new URL("https://www.foav.de"),
   title: "FOAV – Focus on Aesthetic Value · Websites, KI-Videos und NFC-Platten aus München",
   description:
     "FOAV (Focus on Aesthetic Value) aus München: Websites ab 399 €, KI-Werbevideos ab 199 €, Renderings von Umbau und Sanierung ab 49 € und NFC-Platten für Google-Bewertungen ab 14,90 €. Festpreis, Antwort innerhalb von 24 Stunden.",

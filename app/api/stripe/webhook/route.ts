@@ -4,7 +4,7 @@ import { euro } from "@/lib/shop";
 import { cryptoProvider, stripe } from "@/lib/stripe";
 
 // Stripe webhook: the only place an order counts as paid. Endpoint in the Stripe Dashboard:
-// https://foav.de/api/stripe/webhook with the events checkout.session.completed,
+// https://www.foav.de/api/stripe/webhook with the events checkout.session.completed,
 // checkout.session.async_payment_succeeded and checkout.session.async_payment_failed.
 // Needs STRIPE_WEBHOOK_SECRET (whsec_…). Notifies FOAV by e-mail (Resend) or INQUIRY_WEBHOOK_URL.
 

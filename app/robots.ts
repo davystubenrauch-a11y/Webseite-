@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
 
-const base = "https://foav.de";
+const base = "https://www.foav.de";
 
 export default function robots(): MetadataRoute.Robots {
   // Old design versions and drafts stay reachable by link but are not indexed.

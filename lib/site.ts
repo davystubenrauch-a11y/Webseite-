@@ -2,7 +2,7 @@
 // contact sections is read from here, so update it in one place before going live.
 export const site = {
   name: "FOAV",
-  url: "https://foav.de",
+  url: "https://www.foav.de",
   claim: "Websites, KI-Werbevideos und NFC-Platten aus München.",
   email: "info@foav.de",
   city: "München",
