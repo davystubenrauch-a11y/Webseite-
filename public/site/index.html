@@ -1291,16 +1291,16 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 /* while the package choice is on screen its own bar replaces the bottom dock */
 body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 /* ---------- home: renderings as a large feature card below the three offers ---------- */
-.rfx { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; margin-top: clamp(20px, 2.4vw, 32px); padding: clamp(12px, 1.4vw, 18px); border-radius: clamp(22px, 2.4vw, 32px); background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
-.rfx__pic { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; background: #e8e6e2; }
+.rfx { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; margin-top: clamp(20px, 2.4vw, 32px); padding: clamp(12px, 1.4vw, 18px); border-radius: clamp(22px, 2.4vw, 32px); background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.rfx__pic { position: relative; display: block; aspect-ratio: 16 / 10; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; background: #e8e6e2; }
 .rfx__pic img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
 .rfx__pic > img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
 .rfx:hover .rfx__pic > img { transform: scale(1.03); }
-.rfx__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 48px 18px 15px; background: linear-gradient(transparent, rgba(0,0,0,.55)); color: #fff; font-size: .8125rem; font-weight: 500; }
+.rfx__cap { position: absolute; left: 0; right: 0; bottom: 0; padding: 36px 14px 11px; font-size: .75rem !important; background: linear-gradient(transparent, rgba(0,0,0,.55)); color: #fff; font-size: .8125rem; font-weight: 500; }
 @media (prefers-reduced-motion: reduce) { .rfx__pic > img { transition: none; } }
 .rfx__txt { padding: clamp(4px, 1vw, 12px) clamp(4px, 1.4vw, 20px) clamp(4px, 1vw, 12px) 0; }
 .rfx__new { display: inline-block; margin: 0 0 12px; padding: 4px 11px; border-radius: 999px; background: var(--ink); color: #fff; font-size: .75rem; font-weight: 600; letter-spacing: .02em; }
-.rfx h3 { margin: 0; font-size: clamp(1.5rem, 2.4vw, 2.25rem); line-height: 1.08; letter-spacing: -.02em; }
+.rfx h3 { margin: 0; font-size: clamp(1.25rem, 1.8vw, 1.625rem); line-height: 1.08; letter-spacing: -.02em; }
 .rfx__txt > p:not(.rfx__new):not(.rfx__price) { margin: 14px 0 0; color: var(--text); }
 .rfx__price { margin: 14px 0 0; color: var(--muted); } .rfx__price b { color: var(--ink); font-size: 1.25rem; }
 .rfx .cmpc__cta { margin-top: 22px; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 8px 22px; text-align: left; }
@@ -2193,6 +2193,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
 
 
   <section class="nb" id="neubau" aria-labelledby="h-nb">
+    <span id="renderings" aria-hidden="true"></span><span id="immobilien" aria-hidden="true"></span>
     <div class="nb__scroll">
       <div class="nb__pin">
         <div class="wrap nb__in">
@@ -2219,24 +2220,6 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <p>Neubau, Umbau oder leere Wohnung: Aus Ihrem Foto zeigen wir, wie es fertig aussieht. Fotorealistisch, als Bild oder Film. <b>49&nbsp;€ pro Bild, 3 Bilder 119&nbsp;€</b>, fertig in 48 Stunden.</p>
       <div class="nb__cta"><a class="btn btn--light" href="/renderings">Zum Angebot</a><a class="btn btn--line" href="/anfrage/renderings">Rendering bestellen</a></div>
       <p class="rnd__fine">Beispiele, mit KI erstellt. Visualisierungen dienen der Vorstellung und Werbung und ersetzen keine Bauplanung.</p>
-    </div>
-  </section>
-
-
-  <section class="sec" id="vorher-nachher" aria-labelledby="h-ba">
-    <span id="renderings" aria-hidden="true"></span><span id="immobilien" aria-hidden="true"></span>
-    <div class="wrap">
-      <div class="ba">
-        <div><h2 id="h-ba">Weitere Beispiele: vorher und nachher.</h2><p class="lead">Links das Foto, wie Sie es uns schicken. Rechts unser Ergebnis. Ziehen Sie den Regler zur Seite.</p><div class="tabs" role="tablist" aria-label="Beispiel wählen"><button type="button" role="tab" aria-selected="true" aria-controls="cmp" data-room="0">Wohnung</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="1">Wohnung als Film</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="2">Café-Umbau</button><button type="button" role="tab" aria-selected="false" aria-controls="cmp" tabindex="-1" data-room="3">Bad-Sanierung</button></div><p class="ba__note">Beispiele, mit KI erstellt. Wohnung virtuell eingerichtet, Umbauten als Visualisierung.</p></div>
-        <div class="cmp" id="cmp" role="tabpanel" aria-label="Vorher und Nachher">
-          <video id="tourVid" poster="/images/ki-videos/wohnung-voll.webp" muted loop playsinline preload="none" aria-label="Rundgang-Film der virtuell eingerichteten Wohnung"><source src="/videos/wohnung-rundgang.mp4?v=2" type="video/mp4"></video>
-          <img decoding="async" class="after" id="afterImg" src="/images/renderings/wohnung-nachher.webp" alt="Nachher: virtuell eingerichtet, mit KI erstellt" loading="lazy">
-          <img decoding="async" class="before" id="beforeImg" src="/images/renderings/wohnung-vorher.webp" alt="Vorher: Foto der leeren Wohnung" loading="lazy">
-          <button class="vplay" type="button" hidden><svg aria-hidden="true" viewBox="0 0 24 24"><path d="M7 4.5v15a1 1 0 0 0 1.5.86l12-7.5a1 1 0 0 0 0-1.72l-12-7.5A1 1 0 0 0 7 4.5z"/></svg>Video abspielen</button>
-          <span class="tag l">Ihr Foto</span><span class="tag r">Unser Ergebnis</span>
-          <div class="grip"><button type="button" id="grip" role="slider" aria-label="Vorher und Nachher vergleichen" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"><svg aria-hidden="true"><use href="#lr"/></svg></button></div>
-        </div>
-      </div>
     </div>
   </section>
 
