@@ -1294,13 +1294,14 @@ body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
 .rfx { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; margin-top: clamp(20px, 2.4vw, 32px); padding: clamp(12px, 1.4vw, 18px); border-radius: clamp(22px, 2.4vw, 32px); background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
 .rfx__pic { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; background: #e8e6e2; }
 .rfx__pic img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
-.rfx__b { clip-path: inset(0 52% 0 0); transition: clip-path .9s cubic-bezier(.2,.7,.2,1); }
-.rfx:hover .rfx__b { clip-path: inset(0 82% 0 0); }
-.rfx__pic::after { content: ""; position: absolute; top: 0; bottom: 0; left: 48%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 12px rgba(0,0,0,.3); transition: left .9s cubic-bezier(.2,.7,.2,1); }
-.rfx:hover .rfx__pic::after { left: 18%; }
-.rfx__pic em { position: absolute; bottom: 12px; padding: 5px 11px; border-radius: 999px; font-style: normal; font-size: .75rem; font-weight: 600; }
-.rfx__pic em:first-of-type { left: 12px; background: rgba(0,0,0,.55); color: #fff; }
-.rfx__pic em:last-of-type { right: 12px; background: #fff; color: var(--ink); }
+.rfx__pic > img { transition: transform 1.2s cubic-bezier(.2,.7,.2,1); }
+.rfx:hover .rfx__pic > img { transform: scale(1.03); }
+.rfx__r { position: absolute; right: 12px; top: 12px; padding: 5px 11px; border-radius: 999px; background: #fff; color: var(--ink); font-style: normal; font-size: .75rem; font-weight: 600; box-shadow: 0 2px 10px rgba(0,0,0,.15); }
+.rfx__ph { position: absolute; left: clamp(12px, 1.6vw, 20px); bottom: clamp(12px, 1.6vw, 20px); width: 38%; aspect-ratio: 4 / 3; padding: 5px; border-radius: 12px; background: #fff; box-shadow: 0 18px 36px -12px rgba(0,0,0,.45); transform: rotate(-3deg); transition: transform .6s cubic-bezier(.2,.7,.2,1); }
+.rfx:hover .rfx__ph { transform: rotate(-1deg) translateY(-4px); }
+.rfx__ph img { position: relative; display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 8px; }
+.rfx__ph em { position: absolute; left: 12px; bottom: 12px; padding: 4px 9px; border-radius: 999px; background: rgba(0,0,0,.6); color: #fff; font-style: normal; font-size: .6875rem; font-weight: 600; }
+@media (prefers-reduced-motion: reduce) { .rfx__pic > img, .rfx__ph { transition: none; } }
 .rfx__txt { padding: clamp(4px, 1vw, 12px) clamp(4px, 1.4vw, 20px) clamp(4px, 1vw, 12px) 0; }
 .rfx__new { display: inline-block; margin: 0 0 12px; padding: 4px 11px; border-radius: 999px; background: var(--ink); color: #fff; font-size: .75rem; font-weight: 600; letter-spacing: .02em; }
 .rfx h3 { margin: 0; font-size: clamp(1.5rem, 2.4vw, 2.25rem); line-height: 1.08; letter-spacing: -.02em; }
@@ -2123,7 +2124,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
         </article>
       </div>
       <div class="rfx">
-        <a class="rfx__pic" href="/renderings" tabindex="-1" aria-hidden="true"><img decoding="async" src="/images/renderings/neubau-abend-1000.webp" alt="" loading="lazy" width="1000" height="750"><img class="rfx__b" decoding="async" src="/images/renderings/neubau-grundstueck-1000.webp" alt="" loading="lazy" width="1000" height="750"><em>Ihr Foto</em><em>Unser Rendering</em></a>
+        <a class="rfx__pic" href="/renderings" tabindex="-1" aria-hidden="true"><img decoding="async" src="/images/renderings/neubau-abend-1000.webp" alt="" loading="lazy" width="1000" height="750"><em class="rfx__r">Unser Rendering</em><span class="rfx__ph"><img decoding="async" src="/images/renderings/neubau-grundstueck-1000.webp" alt="" loading="lazy" width="1000" height="750"><em>Ihr Foto</em></span></a>
         <div class="rfx__txt">
           <p class="rfx__new">Neu</p>
           <h3>Renderings: So sieht es aus, bevor es gebaut ist.</h3>
