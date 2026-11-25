@@ -25,8 +25,8 @@ pages = {
                  'Websites für Restaurants, Läden, Handwerk und Ferienwohnungen: Basis mit 3 Seiten ab 399 €, fertig in bis zu 7 Tagen. Festpreis vor dem Start, persönlich aus München.'),
     'ki-shots': ('ki-shots.html', '/ki-shots', 'KI-Werbevideos ab 199 € · Werbefilme aus Ihren Fotos · FOAV',
                  'Aus Ihren Handyfotos werden kurze Werbefilme für Cafés, Restaurants, Läden und Hotels, mit ruhigen Kamerafahrten, Musik und Text. Starter 199 €, Pro 449 €, Brand-Paket 899 €. Fertig in 48 bis 72 Stunden.'),
-    'renderings': ('renderings.html', '/renderings', 'Renderings ab 49 € · Wohnung einrichten, Umbau zeigen · FOAV',
-                   'Aus Ihrem Handyfoto wird ein fotorealistisches Bild vom Ergebnis: leere Wohnung virtuell eingerichtet, Umbau oder Sanierung gezeigt, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film ab 199 €. Fertig in 48 Stunden.'),
+    'renderings': ('renderings.html', '/renderings', 'Renderings ab 49 € · Neubau, Umbau, leere Wohnung · FOAV',
+                   'Aus Ihrem Foto wird ein fotorealistisches Bild vom Ergebnis: Haus auf dem leeren Grundstück, leere Wohnung virtuell eingerichtet, Umbau oder Sanierung, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film 199 €. Fertig in 48 Stunden.'),
     'nfc-platten': ('nfc-platten.html', '/nfc-platten', 'NFC-Platten für Google-Bewertungen · ab 14,90 € · FOAV',
                     'NFC-Platten für mehr Google-Bewertungen: Gast hält das Handy an die Platte, die Bewertungsseite öffnet sich. Classic 14,90 €, mit Ihrem Logo 29,90 €, ohne App.'),
 }

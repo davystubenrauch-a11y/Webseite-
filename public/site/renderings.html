@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <script>try{if("scrollRestoration" in history)history.scrollRestoration="manual";var nv=performance.getEntriesByType("navigation")[0];if(nv&&nv.type==="reload"){if(location.hash)history.replaceState(null,"",location.pathname+location.search);window.__reload=1;}}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, viewport-fit=cover">
-<title>Renderings ab 49 € · Wohnung einrichten, Umbau zeigen · FOAV</title>
-<meta name="description" content="Aus Ihrem Handyfoto wird ein fotorealistisches Bild vom Ergebnis: leere Wohnung virtuell eingerichtet, Umbau oder Sanierung gezeigt, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film ab 199 €. Fertig in 48 Stunden.">
+<title>Renderings ab 49 € · Neubau, Umbau, leere Wohnung · FOAV</title>
+<meta name="description" content="Aus Ihrem Foto wird ein fotorealistisches Bild vom Ergebnis: Haus auf dem leeren Grundstück, leere Wohnung virtuell eingerichtet, Umbau oder Sanierung, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film 199 €. Fertig in 48 Stunden.">
 <meta name="theme-color" content="#fbfbfd">
 <meta name="color-scheme" content="light">
 <link rel="canonical" href="https://www.foav.de/renderings">
@@ -18,8 +18,8 @@
 <meta property="og:site_name" content="FOAV">
 <meta name="application-name" content="FOAV"><meta name="apple-mobile-web-app-title" content="FOAV">
 <meta property="og:url" content="https://www.foav.de/renderings">
-<meta property="og:title" content="Renderings ab 49 € · Wohnung einrichten, Umbau zeigen · FOAV">
-<meta property="og:description" content="Aus Ihrem Handyfoto wird ein fotorealistisches Bild vom Ergebnis: leere Wohnung virtuell eingerichtet, Umbau oder Sanierung gezeigt, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film ab 199 €. Fertig in 48 Stunden.">
+<meta property="og:title" content="Renderings ab 49 € · Neubau, Umbau, leere Wohnung · FOAV">
+<meta property="og:description" content="Aus Ihrem Foto wird ein fotorealistisches Bild vom Ergebnis: Haus auf dem leeren Grundstück, leere Wohnung virtuell eingerichtet, Umbau oder Sanierung, bevor gebaut wird. 49 € pro Bild, 3 Bilder 119 €, Rundgang-Film 199 €. Fertig in 48 Stunden.">
 <meta property="og:image" content="https://www.foav.de/media/og-foav.jpg">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,6 +37,7 @@
    {"@type":"Offer","name":"NFC-Platte für Google-Bewertungen, Classic Edition","price":"14.90","priceCurrency":"EUR"},
    {"@type":"Offer","name":"NFC-Platte mit Ihrem Logo, Custom Brand Edition","price":"29.90","priceCurrency":"EUR"}]}},
  {"@type":"FAQPage","mainEntity":[
+  {"@type":"Question","name":"Können Sie ein Haus auf ein leeres Grundstück setzen?","acceptedAnswer":{"@type":"Answer","text":"Ja. Sie schicken ein Foto vom Grundstück und dazu Plan, Skizze, Ansicht vom Architekten oder ein Beispielhaus. FOAV zeigt das fertige Haus aus genau diesem Blickwinkel, auf Wunsch bei Tag, in der Abendsonne und in der Nacht. Drei Bilder kosten 119 Euro, fertig in 48 Stunden. Es ist eine Visualisierung und ersetzt keine Bauplanung."}},
   {"@type":"Question","name":"Ich habe schon eine Website. Was passiert damit, wenn FOAV mir eine neue baut?","acceptedAnswer":{"@type":"Answer","text":"Die Adresse (Domain) bleibt beim Betrieb, die E-Mail-Adresse funktioniert weiter. Die alte Seite bleibt online, bis die neue freigegeben ist; dann wird ohne Ausfall umgestellt. Texte und Fotos werden übernommen, alte Links weitergeleitet, damit bei Google nichts verloren geht. FOAV sagt danach genau, was beim alten Anbieter gekündigt werden kann."}},
   {"@type":"Question","name":"Wofür steht FOAV?","acceptedAnswer":{"@type":"Answer","text":"FOAV steht für Focus on Aesthetic Value. FOAV ist eine Agentur aus München, gegründet von Florian Dressler und Davy Stubenrauch, für Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Früher hieß sie F&D Solutions."}},
   {"@type":"Question","name":"Was brauchen Sie für ein KI-Werbevideo?","acceptedAnswer":{"@type":"Answer","text":"3 bis 10 normale Handyfotos Ihres Produkts, Gerichts oder Raums. Daraus entsteht ein kurzer Werbefilm mit ruhigen Kamerafahrten, Musik und Text, für Instagram, TikTok, Website und Immobilienportale. Leere Wohnungen richten wir auf Wunsch virtuell ein. Starter ab 199 €, fertig in 48 Stunden."}},
@@ -1288,6 +1289,30 @@ details[open] summary i { background: #1d1d1f; } details[open] summary i::before
 @media (max-width: 700px) { .choose__bar { bottom: calc(12px + env(safe-area-inset-bottom)); } }
 /* while the package choice is on screen its own bar replaces the bottom dock */
 body.in-choose .dock { transform: translateY(160%); pointer-events: none; }
+/* ---------- home: renderings as a large feature card below the three offers ---------- */
+.rfx { display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(20px, 3.5vw, 56px); align-items: center; margin-top: clamp(20px, 2.4vw, 32px); padding: clamp(12px, 1.4vw, 18px); border-radius: clamp(22px, 2.4vw, 32px); background: var(--white); box-shadow: inset 0 0 0 1px var(--line); }
+.rfx__pic { position: relative; display: block; aspect-ratio: 4 / 3; border-radius: clamp(14px, 1.6vw, 22px); overflow: hidden; background: #e8e6e2; }
+.rfx__pic img { position: absolute; inset: 0; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.rfx__b { clip-path: inset(0 52% 0 0); transition: clip-path .9s cubic-bezier(.2,.7,.2,1); }
+.rfx:hover .rfx__b { clip-path: inset(0 82% 0 0); }
+.rfx__pic::after { content: ""; position: absolute; top: 0; bottom: 0; left: 48%; width: 2px; margin-left: -1px; background: #fff; box-shadow: 0 0 12px rgba(0,0,0,.3); transition: left .9s cubic-bezier(.2,.7,.2,1); }
+.rfx:hover .rfx__pic::after { left: 18%; }
+.rfx__pic em { position: absolute; bottom: 12px; padding: 5px 11px; border-radius: 999px; font-style: normal; font-size: .75rem; font-weight: 600; }
+.rfx__pic em:first-of-type { left: 12px; background: rgba(0,0,0,.55); color: #fff; }
+.rfx__pic em:last-of-type { right: 12px; background: #fff; color: var(--ink); }
+.rfx__txt { padding: clamp(4px, 1vw, 12px) clamp(4px, 1.4vw, 20px) clamp(4px, 1vw, 12px) 0; }
+.rfx__new { display: inline-block; margin: 0 0 12px; padding: 4px 11px; border-radius: 999px; background: var(--ink); color: #fff; font-size: .75rem; font-weight: 600; letter-spacing: .02em; }
+.rfx h3 { margin: 0; font-size: clamp(1.5rem, 2.4vw, 2.25rem); line-height: 1.08; letter-spacing: -.02em; }
+.rfx__txt > p:not(.rfx__new):not(.rfx__price) { margin: 14px 0 0; color: var(--text); }
+.rfx__price { margin: 14px 0 0; color: var(--muted); } .rfx__price b { color: var(--ink); font-size: 1.25rem; }
+.rfx .cmpc__cta { margin-top: 22px; display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; justify-content: flex-start; gap: 8px 22px; text-align: left; }
+.rfx .cmpc__cta .btn { width: auto; }
+.rfx .cmpc__cta .more { margin-top: 0; }
+@media (max-width: 800px) { .rfx { grid-template-columns: 1fr; } .rfx__txt { padding: 4px 6px 8px; } }
+/* bigger tap areas without changing the look */
+.more { position: relative; }
+.more::after { content: ""; position: absolute; inset: -10px -8px; }
+.kf__dev .kv__snd::after { content: ""; position: absolute; inset: -6px; }
 /* ---------- scroll films: where the browser can, the scroll itself drives --a/--b/--c (no lag, exactly with the finger) ---------- */
 @property --sa { syntax: "<number>"; inherits: false; initial-value: 0; }
 @property --sb { syntax: "<number>"; inherits: false; initial-value: 0; }
@@ -2123,6 +2148,7 @@ img.lgw { opacity: 0; animation: lgSwap 9s ease-in-out infinite 2s; box-shadow: 
       <div>
         <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wofür steht FOAV?<i aria-hidden="true"></i></summary><p>FOAV steht für <strong>Focus on Aesthetic Value</strong>. Wir sind eine Agentur aus München, gegründet von Florian Dressler und Davy Stubenrauch, und machen Websites, KI-Werbevideos, Renderings und NFC-Platten für Google-Bewertungen. Bis Oktober 2026 hießen wir F&amp;D Solutions.</p></details>
         <details data-on="home renderings"><summary>Was sind Renderings, und was kosten sie?<i aria-hidden="true"></i></summary><p>Ein Rendering ist ein fotorealistisches Bild von etwas, das es noch nicht gibt: Ihr Laden nach dem Umbau, das Haus nach der Sanierung, die Terrasse, die neue Praxis. Sie schicken ein Handyfoto vom heutigen Zustand und beschreiben, was geplant ist, gern mit Skizze, Grundriss oder Beispielbildern. Ein Rendering kostet 49 €, drei Renderings 119 €, jeweils mit einer Korrekturrunde und fertig in 48 Stunden. Der Rundgang-Film mit bis zu 3 virtuell eingerichteten Räumen kostet 199 € und ist in 72 Stunden fertig. Sie müssen sich mit KI nicht auskennen: Paket auswählen, im kurzen Fragebogen Foto hochladen und Ihren Wunsch beschreiben, wir machen den Rest. Für mehr Bilder oder Räume nennen wir Ihnen vorab einen Festpreis. Renderings sind Visualisierungen zur Vorstellung und Werbung und ersetzen keine Bauplanung. In Anzeigen kennzeichnen Sie sie als „Visualisierung“; den Hinweis setzen wir auf Wunsch direkt ins Bild.</p></details>
+        <details data-on="home renderings"><summary>Können Sie ein Haus auf ein leeres Grundstück setzen?<i aria-hidden="true"></i></summary><p>Ja. Sie schicken ein Foto vom Grundstück und dazu, was dort entstehen soll: Plan, Skizze, Ansicht vom Architekten oder ein Beispielhaus, das Ihnen gefällt. Wir zeigen das fertige Haus aus genau diesem Blickwinkel, auf Wunsch bei Tag, in der Abendsonne und in der Nacht. Drei Bilder kosten 119 €, fertig in 48 Stunden. Das Ergebnis ist eine Visualisierung für Verkauf, Finanzierung oder Ihre eigene Vorstellung. Maße und Proportionen orientieren sich an Ihren Unterlagen, ersetzen aber keine Bauplanung.</p></details>
         <details data-on="renderings"><summary>Können Sie eine leere Wohnung einrichten?<i aria-hidden="true"></i></summary><p>Ja. Aus Ihren Handyfotos der leeren Räume entsteht ein Foto oder ein ruhiger Rundgang-Film, virtuell eingerichtet; Grundriss, Fenster und Böden bleiben erhalten, das prüfen wir bei jedem Bild. Im Film steht dann sichtbar „virtuell eingerichtet“, wie es in Immobilienanzeigen nötig ist.</p></details>
         <details data-on="home ki-shots renderings"><summary>Muss ich KI-Videos kennzeichnen?<i aria-hidden="true"></i></summary><p>Ein Hinweis im Film ist bei uns nicht vorgegeben. Auf Wunsch blenden wir einen dezenten Hinweis „Mit KI erstellt“ ein, und Instagram und TikTok bieten beim Posten ein eigenes KI-Label. Ob eine Kennzeichnung in Ihrem Fall nötig ist, hängt vom Inhalt ab; im Zweifel lieber kennzeichnen.</p></details>
         <details data-on="home websites ki-shots renderings nfc-platten"><summary>Wie bezahle ich, und bekomme ich eine Rechnung?<i aria-hidden="true"></i></summary><p>Direkt hier auf der Website: Sie wählen ein Paket, füllen den Fragebogen aus, das Paket liegt dann im Warenkorb, und Sie bezahlen sicher online. Normale NFC-Platten bestellen Sie ohne Fragebogen im <a class="inl" href="/shop">Shop</a>. Die Rechnung kommt per E-Mail.</p></details>

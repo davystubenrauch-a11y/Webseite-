@@ -34,7 +34,7 @@ const css = `
 .bf-head { position:sticky; top:0; z-index:5; background:rgba(251,251,253,.86); backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); border-bottom:1px solid var(--line); }
 .bf-head .bf-wrap { height:60px; display:flex; align-items:center; justify-content:space-between; }
 .bf-head img { height:24px; width:auto; display:block; }
-.bf-back { font-size:15px; text-decoration:none; color:var(--muted)!important; } .bf-back:hover { color:var(--ink)!important; }
+.bf-back { display:inline-flex; align-items:center; min-height:44px; font-size:15px; text-decoration:none; color:var(--muted)!important; } .bf-head a:first-child { display:inline-flex; align-items:center; min-height:44px; } .bf-back:hover { color:var(--ink)!important; }
 .bf-hero { padding:clamp(48px,7vw,88px) 0 clamp(28px,4vw,44px); }
 .bf h1 { margin:0; max-width:16ch; font:600 clamp(36px,5.4vw,64px)/1.04 "Inter",sans-serif; letter-spacing:-.04em; color:var(--ink); text-wrap:balance; }
 .bf-lead { max-width:56ch; margin:20px 0 0; font-size:19px; color:var(--text); }
