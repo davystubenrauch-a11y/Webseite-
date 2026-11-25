@@ -21,8 +21,8 @@ const pages: Record<string, string> = {
 export default {
   async fetch(request: Request, env: Env, ctx: unknown): Promise<Response> {
     const url = new URL(request.url);
-    // foav.de → www.foav.de (as before on Vercel)
-    if (url.hostname === "foav.de") {
+    // one address for Google: https://www.foav.de (canonical, sitemap and schema use it too)
+    if (url.hostname === "foav.de" || (url.protocol === "http:" && url.hostname === "www.foav.de")) {
       url.hostname = "www.foav.de";
       url.protocol = "https:";
       return Response.redirect(url.toString(), 301);

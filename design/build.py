@@ -44,8 +44,8 @@ for key, (fname, path, title, desc) in pages.items():
         page = re.sub(r'(<meta property="og:title" content=")[^"]*', r'\g<1>' + title, page, count=1)
         page = re.sub(r'(<meta name="description" content=")[^"]*', r'\g<1>' + desc, page, count=1)
         page = re.sub(r'(<meta property="og:description" content=")[^"]*', r'\g<1>' + desc, page, count=1)
-        page = page.replace('<link rel="canonical" href="https://foav.de/">', f'<link rel="canonical" href="https://foav.de{path}">')
-        page = page.replace('<meta property="og:url" content="https://foav.de/">', f'<meta property="og:url" content="https://foav.de{path}">')
+        page = page.replace('<link rel="canonical" href="https://www.foav.de/">', f'<link rel="canonical" href="https://www.foav.de{path}">')
+        page = page.replace('<meta property="og:url" content="https://www.foav.de/">', f'<meta property="og:url" content="https://www.foav.de{path}">')
         # the service page does not link to itself
         page = re.sub(r'<a class="more" href="%s">.*?</a>\s*' % re.escape(path), '', page, flags=re.S)
         page = re.sub(r'<a class="nx__card" href="%s">.*?</a>' % re.escape(path), '', page, flags=re.S)

@@ -4,6 +4,10 @@ Neueste Einträge oben. Regeln, die immer gelten, stehen ganz unten.
 
 ## Einträge
 
+### 2026-11-25 · Search Console nach Hosting-Wechsel
+- Prüfen: Canonical/Sitemap/robots zeigen auf dieselbe Adresse, auf die die Seite wirklich weiterleitet (bei foav.de war es apex vs. www). Google-Bestätigung per DNS-TXT beim Nameserver-Wechsel mit umziehen. Bei Kunden-Websites von Anfang an eine Adresse festlegen.
+- Parallel arbeitende Sitzungen: vor jedem Push `git fetch` + mergen; Website-Änderungen auf beide Zweige (sharp-cerf = Cloudflare-Build, hopeful-goodall = Standard).
+
 ### 2026-11-24 · Mail-Empfang nach Umzug der Nameserver
 - Checkdomain-Mailpaket + Nameserver bei Cloudflare: Gateway lehnt eingehende Mails mit „451 relay not permitted“ ab, bis der Checkdomain-DKIM-Eintrag `cloudpit._domainkey` (TXT, Wert vom Support) in der neuen DNS-Zone steht. Bei Kunden mit Checkdomain-Mail **vor** dem Nameserver-Wechsel beim Support den DKIM-Eintrag anfordern und mit umziehen. Prüfen per Resend-Log („Delivery Delayed“ → Klick zeigt SMTP-Code).
 - Werte nie abtippen lassen: aus Screenshots per Zeichenhöhe I/l unterscheiden, Base64 decodieren und als RSA-Schlüssel prüfen, dann als eine Zeile zum Kopieren geben; danach per DNS-Abfrage vergleichen.

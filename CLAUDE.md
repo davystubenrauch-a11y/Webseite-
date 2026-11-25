@@ -14,6 +14,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Gründer: „Renderings nicht wirklich präsent, kein Fragebogen; Preismodelle müssen Sinn machen und klar sagen, was man für welchen Preis bekommt“. **Neuer Fragebogen `/anfrage/renderings`** (`components/forms/RenderBriefing.tsx`, Art `render` in `lib/briefing.ts`, Upload-Ordner `render/`, Mail-Schritte in `/api/briefing`), Shop-Produkte `render-1` 49 €, `render-3` 119 €, `render-film` 199 € (`/shop?render=1|3|film`). Karten auf `/renderings#pakete` → „Dieses Paket wählen“ statt Kontaktformular. **Rundgang-Film jetzt fester Preis 199 €** = bis zu 3 leere Räume eingerichtet, Film 15–20 s + Bilder (vorher „ab 199 €“). 3 Renderings: „1 Korrekturrunde je Bild“.
 - Paketlisten Websites/KI-Werbevideos in gleicher Reihenfolge (Umfang · Texte/Szenen · Funktionen · Änderungen · Lieferzeit), „Änderungen bis zur Freigabe inklusive“ (stand schon in den FAQ), Szenen/Fotos je Video-Paket wie im Fragebogen (1/3/6 Szenen, 10/15/25 Fotos), je ein Satz „Kurz gesagt“ zum Unterschied. Preisübersicht `#preise` (ist `@none`, nicht sichtbar) korrigiert und auf 4 Karten umgestellt. Websites-FAQ „Ich habe schon eine Website …“ + PayPal/Stripe-Satz.
 
+## Stand: eine Adresse für Google (25.11.)
+- Canonical, Sitemap, robots.txt, Schema, `lib/site.ts`, Next-Metadaten und Fragebogen-Seiten jetzt **https://www.foav.de** (vorher https://foav.de, das aber auf www weiterleitet → widersprüchlich). `worker.ts`: foav.de und http://www.foav.de → 301 https://www.foav.de. **Stripe-Webhook später mit www-Adresse anlegen** (Stripe folgt keinen Weiterleitungen). Search-Console-Bestätigung per DNS-TXT `google-site-verification` liegt in Cloudflare.
+
 ## Stand: E-Mail-Empfang wieder ok (24.11.)
 - Nach dem Nameserver-Wechsel lehnte das Checkdomain-Mailgateway (secure-mailgate) alles an info@foav.de mit „451 relay not permitted“ ab. Lösung über Checkdomain-Support (Telefon): DKIM-TXT **`cloudpit._domainkey`** (Checkdomain-Schlüssel, 1024 Bit) bei Cloudflare eingetragen → Empfang und Website-Mails (Test FOAV-UMFQRN) funktionieren. `resend._domainkey` bleibt daneben bestehen.
 
@@ -34,7 +37,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - 23.11.: Zweige `claude/hopeful-goodall-m39gmd` und `claude/sharp-cerf-sdkvuk` zusammengeführt (gleicher Stand). Website-Änderungen auf beide pushen, solange Cloudflare aus sharp-cerf baut.
 - Workers Builds baut **Zweig `claude/sharp-cerf-sdkvuk`** → Änderungen an der Website dort pushen, bis er in den Hauptzweig gemergt und in Cloudflare (Settings → Build → Branch) umgestellt ist.
 - Claude-Token hat **keine Zone-/DNS-Rechte**: DNS-Einträge löschen/ändern machen die Gründer im Dashboard; Workers-Custom-Domains per API gehen.
-- Offen: Vercel-Projekt löschen (nach ein paar Tagen), leeren Worker `foav` löschen, Stripe-Schlüssel als Worker-Secrets, Florian als Admin einladen.
+- Vercel-Projekt + Blob-Speicher „foav-fotos“ am 25.11. gelöscht (nur alte Roomtour-Fotos, kein `eingang/`). Offen: leeren Worker `foav` löschen, Stripe-Schlüssel als Worker-Secrets, Florian als Admin einladen.
 
 ## Stand: Umzug foav.de → Cloudflare vorbereitet (20.11.)
 - Code läuft auf Cloudflare Workers (OpenNext): `wrangler.jsonc`, `open-next.config.ts`, `worker.ts` (liefert die HTML-Seiten aus `public/site` und `/entwurf/<slug>`, `foav.de` → www; **neue Seiten in `next.config.mjs` UND `worker.ts` eintragen**), Uploads auf R2-Bucket `foav-uploads` (`lib/storage.ts`, `/api/upload` PUT, `/api/datei/<key>`), Stripe per fetch/WebCrypto, Vercel Analytics + `@vercel/blob` entfernt, Datenschutz auf Cloudflare angepasst. Lokal getestet mit `wrangler dev`.
