@@ -15,21 +15,29 @@ export type Briefing = {
   email: string;
   phone: string;
   consent: boolean;
+  /** Website orders: agreed to the hosting agreement incl. data processing agreement (Art. 28 GDPR). */
+  hosting?: boolean;
+  /** Set by the server when `hosting` is true. */
+  hostingAt?: string;
   /** Honeypot, must stay empty. */
   website?: string;
 };
 
 export const kindLabels: Record<BriefingKind, string> = { website: "Website-Fragebogen", shots: "KI-Werbevideo-Auftrag", nfc: "NFC-Custom-Auftrag", render: "Rendering-Auftrag", roomtour: "Roomtour-Auftrag" };
 
+export const HOSTING_VERSION = "26.11.2026";
+export const HOSTING_URL = "https://www.foav.de/dokumente/hosting-vereinbarung.pdf";
+
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 export function validateBriefing(d: Briefing) {
-  const e: Partial<Record<"name" | "contact" | "consent", string>> = {};
+  const e: Partial<Record<"name" | "contact" | "consent" | "hosting", string>> = {};
   if (!d.name?.trim()) e.name = "Bitte geben Sie Ihren Namen an.";
   const email = d.email?.trim() ?? "";
   if (!email && !d.phone?.trim()) e.contact = "Bitte geben Sie eine Telefonnummer oder E-Mail an.";
   else if (email && !EMAIL.test(email)) e.contact = "Bitte prüfen Sie die E-Mail-Adresse.";
   if (!d.consent) e.consent = "Bitte stimmen Sie der Datenschutzerklärung zu.";
+  if (d.kind === "website" && !d.hosting) e.hosting = "Bitte stimmen Sie der Hosting-Vereinbarung zu. Ohne sie dürfen wir Ihre Website nicht für Sie bereitstellen.";
   return e;
 }
 
@@ -57,6 +65,7 @@ export function summarizeBriefing(d: Briefing) {
       lines.push(`  ${p.url}`);
     }
   }
+  if (d.hosting) lines.push("", "HOSTING-VEREINBARUNG", `Hosting-Vereinbarung mit Auftragsverarbeitung (Fassung ${HOSTING_VERSION}) zugestimmt${d.hostingAt ? ` am ${d.hostingAt}` : ""}`, HOSTING_URL);
   lines.push("", "KONTAKT", `Name: ${d.name}`);
   if (d.email) lines.push(`E-Mail: ${d.email}`);
   if (d.phone) lines.push(`Telefon: ${d.phone}`);

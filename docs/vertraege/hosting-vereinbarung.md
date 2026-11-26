@@ -151,6 +151,12 @@ Der Kunde ist für die Rechtmäßigkeit der Verarbeitung verantwortlich, insbeso
 | ☐ Weitere: ______________________ | ______________________ | ______________________ |
 
 
+## Abschluss
+
+Die Vereinbarung kommt entweder durch Unterschrift beider Seiten zustande oder dadurch, dass der Kunde ihr im Website-Fragebogen auf www.foav.de ausdrücklich zustimmt und FOAV den Auftrag annimmt. Bei Zustimmung im Fragebogen gelten die dort angegebenen Daten (Name bzw. Firma, E-Mail, Domain) als Angaben des Kunden; Datum und Uhrzeit der Zustimmung werden mit der Anfragenummer gespeichert, und der Kunde erhält diese Vereinbarung per E-Mail.
+
+Fassung vom 26.11.2026
+
 ## Unterschriften
 
 München, den ______________

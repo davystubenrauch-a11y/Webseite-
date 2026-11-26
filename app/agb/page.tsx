@@ -36,7 +36,7 @@ export default function Agb() {
         Verbindung (https), und verbinden sie mit Ihrer Domain. Ein Anspruch auf eine bestimmte Verfügbarkeit besteht nicht; Ausfälle beheben wir so schnell
         wie möglich. Sollten wir das Hosting einmal einstellen, kündigen wir es mindestens drei Monate vorher an und übergeben Ihnen alle Dateien der Website
         kostenlos, damit Sie sie bei einem Anbieter Ihrer Wahl weiter betreiben können. Inhalte, die gegen Gesetze oder Rechte Dritter verstoßen, dürfen wir
-        offline nehmen. Die Rechte an Ihren Inhalten und Ihrer Domain bleiben bei Ihnen.
+        offline nehmen. Die Rechte an Ihren Inhalten und Ihrer Domain bleiben bei Ihnen. Für das Hosting gilt zusätzlich unsere <a href="/dokumente/hosting-vereinbarung.pdf">Hosting-Vereinbarung mit Vertrag zur Auftragsverarbeitung</a>, der Sie bei der Bestellung zustimmen.
       </p>
       <p>
         <b>KI-Werbevideos:</b> Kurze Werbefilme und Standbilder, die mit Hilfe künstlicher Intelligenz aus Ihren Fotos entstehen. Bei Immobilien können leere Räume virtuell eingerichtet werden; solche Filme kennzeichnen wir als „virtuell eingerichtet“, in Anzahl und Formaten

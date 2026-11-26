@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { deliver } from "@/lib/deliver";
 import { hello, signature } from "@/lib/mailtext";
-import { kindLabels, summarizeBriefing, validateBriefing, type Briefing } from "@/lib/briefing";
+import { HOSTING_URL, kindLabels, summarizeBriefing, validateBriefing, type Briefing } from "@/lib/briefing";
 
 // Receives the website questionnaire and the roomtour order (answers + photo links)
 // and delivers them like /api/inquiry: Resend first, then a webhook, else 503 so the
@@ -34,6 +34,8 @@ export async function POST(req: Request) {
   const origin = new URL(req.url).origin;
   data.photos = (data.photos ?? []).slice(0, 200).filter((p) => typeof p.url === "string" && p.url.startsWith(`${origin}/api/datei/`));
 
+  data.hosting = data.kind === "website" ? data.hosting === true : undefined;
+  data.hostingAt = data.hosting ? new Date().toLocaleString("de-DE", { timeZone: "Europe/Berlin" }) + " Uhr" : undefined;
   const errors = validateBriefing(data);
   if (Object.keys(errors).length) return NextResponse.json({ ok: false, errors }, { status: 422 });
 
@@ -61,6 +63,7 @@ export async function POST(req: Request) {
       "",
       "Fehlt uns noch etwas, melden wir uns kurz. Meist reicht aber, was Sie geschickt haben.",
       "",
+      ...(data.hosting ? ["Sie haben der Hosting-Vereinbarung mit Vertrag zur Auftragsverarbeitung zugestimmt. Zum Speichern oder Ausdrucken:", HOSTING_URL, ""] : []),
       "Ihre Angaben zum Nachlesen:",
       "",
       summarizeBriefing(visible),

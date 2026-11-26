@@ -402,6 +402,8 @@ export function Submit({
   const [contact, setContact] = useState("");
   const [phone2, setPhone2] = useState("");
   const [consent, setConsent] = useState(false);
+  const [hosting, setHosting] = useState(false);
+  const needsHosting = kind === "website";
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending">("idle");
@@ -412,7 +414,8 @@ export function Submit({
   const data = useMemo<Briefing>(() => ({
     kind, answers: [], photos: [], name: name.trim(),
     email: contact.trim(), phone: phone2.trim(), consent, website: hp,
-  }), [kind, name, contact, phone2, consent, hp, isMail]);
+    ...(needsHosting ? { hosting } : {}),
+  }), [kind, name, contact, phone2, consent, hosting, needsHosting, hp, isMail]);
 
   async function send(e: React.FormEvent) {
     e.preventDefault();
@@ -422,12 +425,13 @@ export function Submit({
     if (!body.email) errs.contact = "Bitte geben Sie Ihre E-Mail-Adresse an. Dorthin kommen Rechnung, Entwurf und fertiges Ergebnis.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(body.email)) errs.contact = "Bitte prüfen Sie die E-Mail-Adresse.";
     if (!consent) errs.consent = "Bitte stimmen Sie der Datenschutzerklärung zu.";
+    if (needsHosting && !hosting) errs.hosting = "Bitte stimmen Sie der Hosting-Vereinbarung zu. Ohne sie dürfen wir Ihre Website nicht für Sie bereitstellen.";
     const m = missing ? missing() : [];
     setMiss(m);
     if (m.length && !Object.keys(errs).length) { setErrors({}); jump(m[0].id); return; }
     setErrors(errs);
     if (Object.keys(errs).length) {
-      document.getElementById(errs.name ? "c-name" : errs.contact ? "c-contact" : "c-consent")?.focus();
+      document.getElementById(errs.name ? "c-name" : errs.contact ? "c-contact" : errs.consent ? "c-consent" : "c-hosting")?.focus();
       return;
     }
     setState("sending");
@@ -485,6 +489,16 @@ export function Submit({
             <p className="bf-small" style={{ margin: "8px 0 0 34px" }}><a href="/datenschutz" target="_blank">Datenschutzerklärung lesen</a></p>
             {errors.consent && <p className="bf-err">{errors.consent}</p>}
           </div>
+          {needsHosting && (
+            <div className="bf-q">
+              <label className="bf-consent" style={{ fontWeight: 400, color: "var(--text)" }}>
+                <input id="c-hosting" type="checkbox" checked={hosting} onChange={(e) => setHosting(e.target.checked)} aria-invalid={!!errors.hosting} />
+                <span>Ich stimme der Hosting-Vereinbarung mit Vertrag zur Auftragsverarbeitung (Art. 28 DSGVO) zu. Darin ist geregelt, wie FOAV meine Website bereitstellt; Domain und Inhalte bleiben bei mir.</span>
+              </label>
+              <p className="bf-small" style={{ margin: "8px 0 0 34px" }}><a href="/dokumente/hosting-vereinbarung.pdf" target="_blank" rel="noopener">Hosting-Vereinbarung lesen (PDF)</a> · Sie bekommen sie auch per E-Mail.</p>
+              {errors.hosting && <p className="bf-err">{errors.hosting}</p>}
+            </div>
+          )}
           <div className="bf-q">
             <div className="bf-submit">
               <button className="bf-btn" type="submit" disabled={state === "sending" || photos.busy}>
