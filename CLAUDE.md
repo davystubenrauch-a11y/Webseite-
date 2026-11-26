@@ -7,6 +7,9 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - `.claude/skills/foav-website` (Kunden-Websites: Ablauf, Pakete, Design-Regeln, Recht), `foav-selbstpruefung` (Pflicht vor jeder Übergabe: Screenshots Handy/Computer, 2 Verbesserungsrunden), `foav-roomtour` (Higgsfield → Treue-Prüfung → ffmpeg), `foav-lernbuch` (`lernbuch.md` = Gedächtnis zwischen Sitzungen; zu Beginn lesen, nach jedem Projekt ergänzen).
 - Kundenprojekte: eigene private Repos; neue Sitzung mit **zwei** Repos starten (`Webseite-` + Kunden-Repo), damit die Skills geladen werden. **Standardzweig des Repos muss `claude/hopeful-goodall-m39gmd` sein** (GitHub → Settings → Default branch), sonst sehen neue Sitzungen den alten Stand.
 
+## Stand: Startbereich füllt den Bildschirm, bündig mit der Seite (26.11.)
+- Gründer: „warum so viel leerer Rand“ (großer Monitor). Ab 1000 px: `.hero` `min-height: 100svh`, Inhalt senkrecht mittig (`align-content: center`), Breite jetzt gleich `.wrap` (1320 / ab 1600 px 1500 / ab 1900 px 1680; vorher fest 1440 und dadurch nicht bündig mit Logo/Menü). `.wrap` ab 1900 px 1680 breit, Überschrift dort größer.
+
 ## Stand: Renderings gleichwertig, nicht dominant (25.11.)
 - Gründer: „Renderings sollen nicht untergehen, aber es soll sich nicht alles um sie drehen; andere Angebote nicht vernachlässigen“. Startseite: jedes Angebot hat einen Scroll-Abschnitt (Websites, KI-Werbevideos, Neubau `#neubau`, NFC); Renderings zusätzlich eine große Karte `.rfx` (Bild 4:3 links, Text rechts) unter den 3 Angebotskarten (nur das fertige Haus, Unterzeile „Vorher: leeres Grundstück · mit KI erstellt“; halbiertes Bild und schräg aufgelegter Abzug gefielen nicht). Vorher/Nachher-Regler nur noch auf /renderings. Anker `#renderings`/`#immobilien` sitzen auf der Startseite in `#neubau`.
 
