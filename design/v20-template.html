@@ -1318,17 +1318,18 @@ body.in-scene .dock { transform: translateY(160%); pointer-events: none; }
   .nb--hero .nb__in { padding-bottom: 100px !important; }
   .scene + .sec, .scene + section, .nb + .sec { padding-top: 28px; }
 }
-/* touch screens: films are normal blocks (iPhone Safari trembles with pinned/sticky blocks on fast swipes).
-   The steps still follow the swipe: they change while the film moves through the screen. */
+/* touch screens: films stay pinned while swiping. Safari only keeps a pinned (sticky) block perfectly still when no
+   ancestor clips overflow and the block itself has no transform/containment – otherwise it repositions it on the main
+   thread and it wobbles 1–2 px per frame (seen in the founder's screen recording, 27.11.). */
 @media (hover: none) {
-  .scene { height: auto !important; }
-  .scene .scene__pin { position: relative !important; height: 100svh; max-height: 860px; min-height: 600px; contain: none; }
-  .scene .scene__grid { padding-bottom: 28px !important; }
-  .nb .nb__scroll { height: auto !important; }
-  .nb .nb__pin { position: relative !important; height: auto; }
-  .nb .nb__in { padding-top: 36px !important; padding-bottom: 8px !important; }
-  .nb--hero .nb__in { padding-top: 84px !important; }
-  .scene + .sec, .scene + section, .nb + .sec, .nb + section { padding-top: 28px; }
+  html, body { overflow-x: visible !important; }
+  main > .scene, main > .nb { overflow: visible !important; }
+  .scene__pin, .nb__pin { height: 100svh !important; contain: none !important; transform: none !important; will-change: auto !important; }
+  .scene .scene__grid { padding-bottom: 92px !important; }
+  .nb:not(.nb--hero) .nb__in { padding-bottom: 96px !important; }
+  .scene { height: 280svh !important; }
+  .nb:not(.nb--hero) .nb__scroll { height: 320svh !important; }
+  .nb--hero .nb__scroll { height: 290svh !important; }
 }
 /* touch screens: the films change in calm, timed steps instead of following every pixel of the finger (no trembling) */
 .scene.step .scene__stage, .scene.step .scene__stage *, .scene.step .scene__text, .scene.step .scene__text *, .scene.step .scene__foot, .scene.step .how li {
@@ -3186,29 +3187,16 @@ document.addEventListener("DOMContentLoaded", function () {
         requestAnimationFrame(function () { requestAnimationFrame(function () { sc.classList.remove("jump"); }); });
         return;
       }
-      var now = performance.now(), wait = 450 - (now - (sc._last || 0));
+      var now = performance.now(), wait = 250 - (now - (sc._last || 0));
       if (wait <= 0) { sc._last = now; stepApply(sc, p); return; }
       clearTimeout(sc._t); sc._t = setTimeout(function () { sc._last = performance.now(); stepApply(sc, sc._want); }, wait);
     }
-    if (touchy) {
-      // stage centre at 80 % of the screen height = step 1, at 55 % = step 2, at 32 % = step 3 (positions cached, no layout reads while scrolling)
-      var tPos = [], tTick = false;
-      var tMeasure = function () { tPos = scenes.map(function (sc) { var r = sc.querySelector(".scene__stage").getBoundingClientRect(); return r.top + scrollY + r.height / 2; }); };
-      var tUpdate = function () {
-        tTick = false; var vh = innerHeight, y = scrollY;
-        scenes.forEach(function (sc, i) {
-          var c = (tPos[i] - y) / vh, p = c > .8 ? 0 : c > .55 ? .1 : c > .32 ? .5 : .9;
-          if (c > 1.2 || c < -.4) { if (sc._want !== p) stepSet(sc, p, false); return; }
-          if (sc._want !== p) stepSet(sc, p, true);
-        });
-      };
-      scenes.forEach(function (sc) { sc._sd = true; sc._step = true; sc.classList.add("step"); stepSet(sc, 0, false); });
-      tMeasure(); tUpdate();
-      addEventListener("scroll", function () { if (!tTick) { tTick = true; requestAnimationFrame(tUpdate); } }, { passive: true });
-      addEventListener("load", function () { tMeasure(); tUpdate(); });
-      addEventListener("resize", function () { tMeasure(); tUpdate(); });
-      if ("ResizeObserver" in window) new ResizeObserver(function () { tMeasure(); }).observe(document.body);
-    }
+    if (touchy) scenes.forEach(function (sc) {
+      sc._sd = true; sc._step = true; sc.classList.add("step"); stepSet(sc, 0, false);
+      ST.create({ trigger: sc, start: "top top", end: "bottom bottom",
+        onUpdate: function (self) { stepSet(sc, self.progress, self.isActive); }, onRefresh: function (self) { stepSet(sc, self.progress, false); },
+        onLeave: function () { stepSet(sc, 1, false); }, onLeaveBack: function () { stepSet(sc, 0, false); } });
+    });
     if (!touchy) scenes.forEach(function (sc) {
       sc._to = sc._v = 0;
       if (sdOk) { sc._sd = true; ["--a", "--b", "--c"].forEach(function (k) { sc.style.setProperty(k, ""); }); sc.classList.add("sd"); }
@@ -3372,16 +3360,14 @@ document.addEventListener("DOMContentLoaded", function () {
     var stop = function () { auto = false; clearTimeout(timer); };
     go(0);
     size();
-    var lastGo = 0, want = 0, tmr = 0, stC = 0;
-    size = function () { var r = st.getBoundingClientRect(); stC = r.top + scrollY + r.height / 2; };
+    var lastGo = 0, want = 0, tmr = 0;
     size();
     if ("ResizeObserver" in window) new ResizeObserver(function () { size(); }).observe(document.body);
     var onScroll = function () {
-      var c = (stC - scrollY) / innerHeight, raw = (.85 - c) / .6, p = cl(raw), n = p < .12 ? 0 : p < .34 ? 1 : p < .56 ? 2 : p < .78 ? 3 : 4;
-      if (c > 1.3) raw = -1; else if (c < -.3) raw = 2;
+      var raw = (scrollY - boxTop) / boxSpan, p = cl(raw), n = p < .14 ? 0 : p < .36 ? 1 : p < .58 ? 2 : p < .8 ? 3 : 4;
       want = n; if (n === cur) return;
       if (raw <= 0 || raw >= 1) { clearTimeout(tmr); sec.classList.add("jump"); go(n); lastGo = 0; requestAnimationFrame(function () { requestAnimationFrame(function () { sec.classList.remove("jump"); }); }); return; }
-      var wait = 450 - (performance.now() - lastGo);
+      var wait = 250 - (performance.now() - lastGo);
       clearTimeout(tmr);
       if (wait <= 0) { lastGo = performance.now(); go(n); }
       else tmr = setTimeout(function () { lastGo = performance.now(); if (want !== cur) go(want); }, wait);
@@ -3390,7 +3376,7 @@ document.addEventListener("DOMContentLoaded", function () {
     addEventListener("resize", function () { size(); onScroll(); });
     addEventListener("load", function () { size(); onScroll(); });
     for (var j = 0; j < btns.length; j++) btns[j].addEventListener("click", function () {
-      size(); var n = +this.getAttribute("data-nb"); scrollTo({ top: stC - innerHeight * (.85 - [.06, .23, .45, .67, .9][n] * .6), behavior: "smooth" });
+      size(); scrollTo({ top: boxTop + at[+this.getAttribute("data-nb")] * boxSpan, behavior: "smooth" });
     });
     onScroll();
     if ("IntersectionObserver" in window) {
