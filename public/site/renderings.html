@@ -78,7 +78,7 @@
 }
 .ticks li::before { background-color: var(--gold) !important; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E") !important; }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; overflow-x: hidden; }
+html { -webkit-text-size-adjust: 100%; scroll-padding-top: 84px; overflow-x: hidden; overflow-x: clip; }
 /* Safari: nothing may make the page wider than the screen (it would zoom out and pan sideways) */
 main > section, main > div, .foot { overflow-x: clip; }
 /* iPhone/iPad: Grundgröße folgt der eingestellten Textgröße (Dynamic Type) */
@@ -1337,6 +1337,18 @@ body.in-scene .dock { transform: translateY(160%); pointer-events: none; }
   .nb--hero .nb__in { padding-bottom: 100px !important; }
   .scene + .sec, .scene + section, .nb + .sec { padding-top: 28px; }
 }
+/* touch screens: films are normal blocks (no sticky pinning, plain native scrolling) and play their steps by themselves */
+@media (hover: none) {
+  .scene { height: auto !important; }
+  .scene .scene__pin { position: relative !important; height: 100svh; max-height: 860px; min-height: 600px; contain: none; }
+  .scene .scene__grid { padding-bottom: 92px !important; }
+  .nb .nb__scroll { height: auto !important; }
+  .nb .nb__pin { position: relative !important; height: auto; padding: 0 0 8px; }
+  .nb .nb__in { padding-top: 72px !important; padding-bottom: 8px !important; }
+  .nb--hero .nb__in { padding-top: 84px !important; }
+  .nb__stage { touch-action: pan-y; }
+  .scene + .sec, .scene + section, .nb + .sec, .nb + section { padding-top: 32px; }
+}
 /* touch screens: the films change in calm, timed steps instead of following every pixel of the finger (no trembling) */
 .scene.step .scene__stage, .scene.step .scene__stage *, .scene.step .scene__text, .scene.step .scene__text *, .scene.step .scene__foot, .scene.step .how li {
   transition-property: transform, translate, scale, rotate, opacity;
@@ -2260,11 +2272,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   /* ---------- header, dock, menu ---------- */
   var head = $("#head"), dock = $("#dock"), kontakt = $("#kontakt"), menuBtn = $("#menuBtn"), mnav = $("#mnav");
-  var nearContact = false, docH = 0, ticking = false, lastPg = -1, heroDock = !!document.querySelector(".nb--hero");
+  var progBar = document.getElementById("prog"), nearContact = false, docH = 0, ticking = false, lastPg = -1, heroDock = !!document.querySelector(".nb--hero");
   function measure() { docH = Math.max(1, document.documentElement.scrollHeight - innerHeight); }
   measure(); addEventListener("resize", measure); addEventListener("load", measure);
   if (kontakt && "IntersectionObserver" in window) new IntersectionObserver(function (es) { nearContact = es[0].isIntersecting; chrome(); }, { rootMargin: "0px 0px -20% 0px" }).observe(kontakt);
-  var films = [].slice.call(document.querySelectorAll(".scene, .nb:not(.nb--hero) .nb__scroll")), filmPos = [], inFilm = false;
+  var films = matchMedia("(hover: none)").matches ? [] : [].slice.call(document.querySelectorAll(".scene, .nb:not(.nb--hero) .nb__scroll")), filmPos = [], inFilm = false;
   function filmMeasure() { filmPos = films.map(function (f) { var r = f.getBoundingClientRect(); return [r.top + scrollY, r.bottom + scrollY]; }); }
   filmMeasure(); addEventListener("load", filmMeasure); addEventListener("resize", filmMeasure);
   function chrome() {
@@ -2274,7 +2286,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (f !== inFilm) { inFilm = f; document.body.classList.toggle("in-scene", f); }
     var y = scrollY, pg = Math.round(Math.min(1, y / docH) * 400) / 400;
     head.classList.toggle("solid", y > 10 || head.classList.contains("open"));
-    if (pg !== lastPg) { lastPg = pg; head.style.setProperty("--pg", pg); }
+    if (pg !== lastPg) { lastPg = pg; if (progBar) progBar.style.transform = "scaleX(" + pg + ")"; }
     if (dock) dock.classList.toggle("away", (y < innerHeight * .6 && !heroDock) || nearContact);
   }
   addEventListener("scroll", function () { if (!ticking) { ticking = true; requestAnimationFrame(chrome); } }, { passive: true }); chrome();
@@ -2709,10 +2721,20 @@ document.addEventListener("DOMContentLoaded", function () {
       for (var k in v) if (sc["_" + k] !== v[k]) { sc["_" + k] = v[k]; sc.style.setProperty(k, v[k]); }
       sceneSet(sc, p);
     }
-    scenes.forEach(function (sc) {
+    if (touchy) scenes.forEach(function (sc) {
+      sc._sd = true; sc._step = true; sc.classList.add("step"); stepSet(sc, 0);
+      var timers = [], played = false;
+      new IntersectionObserver(function (es) {
+        if (!es[0].isIntersecting || played) return;
+        played = true;
+        stepSet(sc, .1);
+        timers.push(setTimeout(function () { stepSet(sc, .5); }, 2600));
+        timers.push(setTimeout(function () { stepSet(sc, .9); }, 5400));
+      }, { threshold: .55 }).observe(sc);
+    });
+    if (!touchy) scenes.forEach(function (sc) {
       sc._to = sc._v = 0;
-      if (touchy) { sc._sd = true; sc._step = true; sc.classList.add("step"); }
-      else if (sdOk) { sc._sd = true; ["--a", "--b", "--c"].forEach(function (k) { sc.style.setProperty(k, ""); }); sc.classList.add("sd"); }
+      if (sdOk) { sc._sd = true; ["--a", "--b", "--c"].forEach(function (k) { sc.style.setProperty(k, ""); }); sc.classList.add("sd"); }
       if (sc._step) stepSet(sc, 0); else sceneSet(sc, 0);
       ST.create({ trigger: sc, start: "top top", end: "bottom bottom",
         onUpdate: function (self) { if (sc._step) { stepSet(sc, self.progress); return; } if (sc._sd) { sceneSet(sc, self.progress); return; } sc._to = self.progress; if (!glide) { glide = true; glideT = performance.now(); requestAnimationFrame(glideStep); } },
@@ -2724,7 +2746,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // on a phone the slider sweeps once by itself when it comes into view (time-based, independent of the finger)
     if (cmp && touchy) { mix.x = 85; setX(85); ST.create({ trigger: "#cmp", start: "top 75%", once: true, onEnter: function () { if (!touched) G.to(mix, { x: 30, duration: 1.8, ease: "power2.inOut", onUpdate: function () { if (!touched) setX(mix.x); } }); } }); }
     // process line and steps
-    if (steps) G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
+    if (steps && !touchy) G.to(steps, { "--p": 1, ease: "none", scrollTrigger: { trigger: steps, start: "top 75%", end: "bottom 55%", scrub: .4 } });
+    if (steps && touchy) ST.create({ trigger: steps, start: "top 75%", once: true, onEnter: function () { G.to(steps, { "--p": 1, duration: 1.4, ease: "power2.out" }); } });
     stepLis.forEach(function (li, i) { ST.create({ trigger: steps, start: "top " + (75 - i * 7) + "%", onEnter: function () { li.classList.add("lit"); }, onLeaveBack: function () { li.classList.remove("lit"); } }); });
     // section headlines: lines rise out of a mask once, when they enter the viewport
     var heads = $$(".sec h2, .scene h2, .phero h1").filter(function (h) { return !h.closest(".index"); });
@@ -2740,7 +2763,8 @@ document.addEventListener("DOMContentLoaded", function () {
     // about: the statement lights up word by word
     // footer: the wordmark rises into place
     if (!touchy) G.from("#footMark svg", { yPercent: 35, ease: "none", scrollTrigger: { trigger: "#footMark", start: "top bottom", end: "bottom bottom", scrub: .6 } });
-    if (say) G.to(words, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: say, start: "top 80%", end: "bottom 45%", scrub: .5 } });
+    if (say && !touchy) G.to(words, { opacity: 1, ease: "none", stagger: .1, scrollTrigger: { trigger: say, start: "top 80%", end: "bottom 45%", scrub: .5 } });
+    if (say && touchy) ST.create({ trigger: say, start: "top 85%", once: true, onEnter: function () { G.to(words, { opacity: 1, duration: .5, stagger: .04, ease: "power1.out" }); } });
     // magnetic buttons (mouse only)
     if (fine) $$(".btn--ink, .btn--champ").forEach(function (b) {
       var bx = G.quickTo(b, "x", { duration: .5, ease: "power3" }), by = G.quickTo(b, "y", { duration: .5, ease: "power3" });
@@ -2852,15 +2876,41 @@ document.addEventListener("DOMContentLoaded", function () {
     paint(cur);
     if (cur !== target) requestAnimationFrame(loop); else run = false;
   }
+  var boxTop = 0, boxSpan = 1;
+  function size() { var r = box.getBoundingClientRect(); boxTop = r.top + scrollY; boxSpan = Math.max(1, box.offsetHeight - innerHeight); }
+  size(); if (!touch) addEventListener("load", function () { size(); measure(); });
   function measure() {
-    var r = box.getBoundingClientRect(), span = box.offsetHeight - innerHeight, p = span > 0 ? cl(-r.top / span) : 0;
+    var p = cl((scrollY - boxTop) / boxSpan);
     var n = p < .16 ? 0 : p < .40 ? 1 : p < .62 ? 2 : p < .84 ? 3 : 4;
     if (n !== step) { step = n; for (var i = 0; i < btns.length; i++) { if (i === n) btns[i].setAttribute("aria-current", "step"); else btns[i].removeAttribute("aria-current"); } }
     if (touch) { if (cur !== n) { cur = n; paint(at[n] < .05 ? 0 : [0, .27, .49, .71, .93][n]); } return; }
     if (js) { target = p; if (!run) { run = true; last = performance.now(); requestAnimationFrame(loop); } }
   }
+  if (touch) {
+    var vals = [0, .27, .49, .71, .93], timer = 0, auto = true;
+    var go = function (n) {
+      n = Math.max(0, Math.min(4, n)); cur = n; step = n; paint(vals[n]);
+      for (var i = 0; i < btns.length; i++) { if (i === n) btns[i].setAttribute("aria-current", "step"); else btns[i].removeAttribute("aria-current"); }
+    };
+    var stop = function () { auto = false; clearTimeout(timer); };
+    go(0);
+    var playFrom = function (n) { if (!auto || n > 4) return; timer = setTimeout(function () { go(n); playFrom(n + 1); }, n === 1 ? 700 : 2200); };
+    new IntersectionObserver(function (es) { if (es[0].isIntersecting && auto && cur === 0) playFrom(1); }, { threshold: .6 }).observe(st);
+    for (var j = 0; j < btns.length; j++) btns[j].addEventListener("click", function () { stop(); go(+this.getAttribute("data-nb")); });
+    var x0 = null, y0 = 0;
+    st.addEventListener("touchstart", function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+    st.addEventListener("touchend", function (e) {
+      if (x0 === null) return; var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0; x0 = null;
+      if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.3) { stop(); go(cur + (dx < 0 ? 1 : -1)); }
+    }, { passive: true });
+    if ("IntersectionObserver" in window) {
+      var io2 = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { io2.disconnect(); st.querySelectorAll("img").forEach(function (im) { im.loading = "eager"; }); } }, { rootMargin: "1200px 0px" });
+      io2.observe(sec);
+    }
+    return;
+  }
   addEventListener("scroll", measure, { passive: true });
-  addEventListener("resize", measure);
+  addEventListener("resize", function () { size(); measure(); });
   for (var i = 0; i < btns.length; i++) btns[i].addEventListener("click", function () {
     var n = +this.getAttribute("data-nb"), top = box.getBoundingClientRect().top + scrollY;
     scrollTo({ top: top + at[n] * (box.offsetHeight - innerHeight), behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
