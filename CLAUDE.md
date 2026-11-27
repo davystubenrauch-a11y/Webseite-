@@ -8,6 +8,7 @@ Gründer: Florian Dressler (+49 155 66456417) und Davy Stubenrauch (+49 176 5661
 - Kundenprojekte: eigene private Repos; neue Sitzung mit **zwei** Repos starten (`Webseite-` + Kunden-Repo), damit die Skills geladen werden. **Standardzweig des Repos muss `claude/hopeful-goodall-m39gmd` sein** (GitHub → Settings → Default branch), sonst sehen neue Sitzungen den alten Stand.
 
 ## Stand: Handy wieder beim Wischen, aber stabil (27.11.)
+- Nachtrag „bei schnellem Swipen zittert/wackelt es“: Schrittwechsel höchstens alle 450 ms (der letzte Wunsch gewinnt, `stepSet(sc, p, active)`), außerhalb des geklebten Bereichs (`onLeave/onLeaveBack`, `isActive` false) Endzustand sofort ohne Übergang (Klasse `.jump`), Übergänge 0,6 s, am Handy keine Wackel-Effekte (`nBuzz`, Ringe, Glow) und kein Zoom im Neubau; Neubau-Stufen ebenso gedrosselt.
 - Gründer: „blöd, es soll beim Swipen sein“ → Touch wieder klebend + Schritte per Scroll-Position (ScrollTrigger nur Schwellen 2/33/66 %, `stepSet`), Neubau 5 Stufen per Scroll (gecachte Position, keine Layout-Abfrage je Event). Gegen iPhone-Zittern: `html { overflow-x: clip }` (hidden am Wurzelelement lässt sticky auf iOS zittern), Pin-Rahmen als eigene GPU-Ebene (`translate3d`, `backface-visibility`, `contain`), Höhen in `svh` (folgen nicht der Safari-Leiste: `.scene` 300svh, Neubau 330svh, Pin 100svh), untere Leiste bleibt stehen (kein Ein-/Ausblenden). Der Abschnitt darunter („ohne festgeklebte Filme“) ist damit überholt.
 
 ## Stand: Handy ohne festgeklebte Filme (27.11.)

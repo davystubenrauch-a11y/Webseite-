@@ -1350,9 +1350,14 @@ body.in-scene .dock { transform: translateY(160%); pointer-events: none; }
 /* touch screens: the films change in calm, timed steps instead of following every pixel of the finger (no trembling) */
 .scene.step .scene__stage, .scene.step .scene__stage *, .scene.step .scene__text, .scene.step .scene__text *, .scene.step .scene__foot, .scene.step .how li {
   transition-property: transform, translate, scale, rotate, opacity;
-  transition-duration: .9s; transition-timing-function: cubic-bezier(.22, .7, .2, 1);
+  transition-duration: .6s; transition-timing-function: cubic-bezier(.25, .1, .25, 1);
 }
-.nb--step :is(.nb__zoom, .nb__rev, .nb__rev .nb__img, .nb__l2, .nb__l3, .nb__l4, .nb__t0, .nb__t1, .nb__track i) { transition: transform 1.2s cubic-bezier(.45, 0, .2, 1), opacity 1.2s ease; }
+.nb--step :is(.nb__zoom, .nb__rev, .nb__rev .nb__img, .nb__l2, .nb__l3, .nb__l4, .nb__t0, .nb__t1, .nb__track i) { transition: transform .8s cubic-bezier(.45, 0, .2, 1), opacity .7s ease; }
+.nb--step .nb__zoom { transform: none !important; transition: none !important; }
+.scene.step.jump *, .nb--step.jump * { transition: none !important; }
+@media (hover: none) {
+  .scene.step .n-phone, .scene.step .n-floor::after, .scene.step .n-rings i { animation: none !important; }
+}
 .nb--step .nb__scan { display: none; }
 @media (prefers-reduced-motion: reduce) { .scene.step *, .nb--step * { transition-duration: .01s !important; } }
 /* ---------- scroll films: where the browser can, the scroll itself drives --a/--b/--c (no lag, exactly with the finger) ---------- */
@@ -2747,15 +2752,28 @@ document.addEventListener("DOMContentLoaded", function () {
     }
     var sdOk = !touchy && window.CSS && CSS.supports("animation-timeline: view()") && CSS.supports("animation-range: contain 0% contain 100%");
     // touch screens: three calm, timed steps (the stage itself never moves with the finger)
-    function stepSet(sc, p) {
+    function stepApply(sc, p) {
       var v = { "--a": p > .02 ? 1 : 0, "--b": p >= .33 ? 1 : 0, "--c": p >= .66 ? 1 : 0 };
       for (var k in v) if (sc["_" + k] !== v[k]) { sc["_" + k] = v[k]; sc.style.setProperty(k, v[k]); }
       sceneSet(sc, p);
     }
+    function stepSet(sc, p, active) {
+      sc._want = p;
+      if (active === false) {
+        // film not pinned (scrolled past quickly): set the end state at once, no running animation while it moves away
+        clearTimeout(sc._t); sc.classList.add("jump"); stepApply(sc, p); sc._last = 0;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { sc.classList.remove("jump"); }); });
+        return;
+      }
+      var now = performance.now(), wait = 450 - (now - (sc._last || 0));
+      if (wait <= 0) { sc._last = now; stepApply(sc, p); return; }
+      clearTimeout(sc._t); sc._t = setTimeout(function () { sc._last = performance.now(); stepApply(sc, sc._want); }, wait);
+    }
     if (touchy) scenes.forEach(function (sc) {
       sc._sd = true; sc._step = true; sc.classList.add("step"); stepSet(sc, 0);
       ST.create({ trigger: sc, start: "top top", end: "bottom bottom",
-        onUpdate: function (self) { stepSet(sc, self.progress); }, onRefresh: function (self) { stepSet(sc, self.progress); } });
+        onUpdate: function (self) { stepSet(sc, self.progress, self.isActive); }, onRefresh: function (self) { stepSet(sc, self.progress, false); },
+        onLeave: function (self) { stepSet(sc, 1, false); }, onLeaveBack: function (self) { stepSet(sc, 0, false); } });
     });
     if (!touchy) scenes.forEach(function (sc) {
       sc._to = sc._v = 0;
@@ -2920,9 +2938,15 @@ document.addEventListener("DOMContentLoaded", function () {
     var stop = function () { auto = false; clearTimeout(timer); };
     go(0);
     size();
+    var lastGo = 0, want = 0, tmr = 0;
     var onScroll = function () {
-      var p = cl((scrollY - boxTop) / boxSpan), n = p < .16 ? 0 : p < .40 ? 1 : p < .62 ? 2 : p < .84 ? 3 : 4;
-      if (n !== cur) go(n);
+      var raw = (scrollY - boxTop) / boxSpan, p = cl(raw), n = p < .16 ? 0 : p < .40 ? 1 : p < .62 ? 2 : p < .84 ? 3 : 4;
+      want = n; if (n === cur) return;
+      if (raw <= 0 || raw >= 1) { clearTimeout(tmr); sec.classList.add("jump"); go(n); lastGo = 0; requestAnimationFrame(function () { requestAnimationFrame(function () { sec.classList.remove("jump"); }); }); return; }
+      var wait = 450 - (performance.now() - lastGo);
+      clearTimeout(tmr);
+      if (wait <= 0) { lastGo = performance.now(); go(n); }
+      else tmr = setTimeout(function () { lastGo = performance.now(); if (want !== cur) go(want); }, wait);
     };
     addEventListener("scroll", onScroll, { passive: true });
     addEventListener("resize", function () { size(); onScroll(); });
