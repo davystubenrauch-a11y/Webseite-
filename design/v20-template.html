@@ -1321,9 +1321,13 @@ body.in-scene .dock { transform: translateY(160%); pointer-events: none; }
 /* touch screens: films stay pinned while swiping. Safari only keeps a pinned (sticky) block perfectly still when no
    ancestor clips overflow and the block itself has no transform/containment – otherwise it repositions it on the main
    thread and it wobbles 1–2 px per frame (seen in the founder's screen recording, 27.11.). */
+.f textarea, .f input, .f label { max-width: 100%; min-width: 0; }
 @media (hover: none) {
   html, body { overflow-x: visible !important; }
   main > .scene, main > .nb { overflow: visible !important; }
+  /* clip inside the film (children of the pinned block never touch the pinned block itself) */
+  .scene__grid, .nb__in, .scene__stage { overflow-x: clip; }
+  .scene__stage { overflow: hidden; }
   .scene__pin, .nb__pin { height: 100svh !important; contain: none !important; transform: none !important; will-change: auto !important; }
   .scene .scene__grid { padding-bottom: 92px !important; }
   .nb:not(.nb--hero) .nb__in { padding-bottom: 96px !important; }
@@ -2739,6 +2743,7 @@ document.addEventListener("DOMContentLoaded", function () {
   filmMeasure(); addEventListener("load", filmMeasure); addEventListener("resize", filmMeasure);
   function chrome() {
     ticking = false;
+    if (window.scrollX) scrollTo(0, scrollY);
     var yy = scrollY, vh = innerHeight, f = false;
     for (var fi = 0; fi < filmPos.length; fi++) if (yy >= filmPos[fi][0] - 1 && yy + vh <= filmPos[fi][1] + 1) { f = true; break; }
     if (f !== inFilm) { inFilm = f; document.body.classList.toggle("in-scene", f); }
